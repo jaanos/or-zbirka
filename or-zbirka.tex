@@ -26,7 +26,8 @@
 
 \newcounter{naloga}
 \counterwithin*{naloga}{subsection}
-\newenvironment{naloga}{\stepcounter{naloga} \noindent {\bf Naloga \arabic{subsection}.\arabic{naloga}.}}{\bigskip}
+\renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
+\newenvironment{naloga}[3]{\refstepcounter{naloga} \noindent {\bf Naloga \thenaloga.} \avtor{#2} \naslov{#1} \vir{#3}}{\bigskip}
 
 \begin{document}
 \title{Zbirka nalog iz Operacijskih raziskav}
@@ -36,6 +37,7 @@
 \section{Naloge}
 {
 \newcommand{\avtor}[1]{\hfill {\small Avtor: #1}\par}
+\newcommand{\naslov}[1]{\if\relax\detokenize{#1}\relax\else\noindent {\small\bf (#1)}\fi}
 \newcommand{\vir}[1]{\hfill {\small Vir: #1}\par}
 \newenvironment{vprasanje}{\smallskip\noindent\ignorespaces}{}
 \NewEnviron{odgovor}{}
@@ -45,6 +47,7 @@
 \section{Rešitve}
 {
 \newcommand{\avtor}[1]{}
+\newcommand{\naslov}[1]{}
 \newcommand{\vir}[1]{}
 \NewEnviron{vprasanje}{}
 \newenvironment{odgovor}{\noindent\ignorespaces}{}
