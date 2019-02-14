@@ -1,0 +1,192 @@
+\subsection{Zahtevnost algoritmov}
+
+\begin{naloga}
+\avtor{Janoš Vidali}
+\vir{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Naj bo $A[1 \dots n][1 \dots n]$ matrika (tj., seznam seznamov)
+dimenzij $n \times n$.
+Dan je spodnji program:
+\begin{small}
+\begin{algorithmic}
+\For{$i = 1, \dots, n$}
+    \For{$j = i+1, \dots, n$}
+        \State $A[i][j] \gets A[j][i]$
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{small}
+
+
+\begin{enumerate}[(a)]
+\item Kaj počne zgornji program?
+\item Oceni število korakov, ki jih opravi zgornji program,
+v odvisnosti od parametra $n$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}
+\avtor{Janoš Vidali}
+\vir{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Naj bo $\ell[1 \dots n]$ seznam,
+ki ima na začetku vse vrednosti nastavljene na $0$.
+Dan je spodnji program:
+
+\begin{small}
+\begin{algorithmic}
+\State $i \gets 1$
+\While{$i \le n$}
+    \State $\ell[i] \gets 1 - \ell[i]$
+    \If{$\ell[i] = 1$}
+        \State $i \gets 1$
+    \Else
+        \State $i \gets i+1$
+    \EndIf
+\EndWhile
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Kaj se dogaja, ko teče zgornji program?
+\item Oceni število korakov, ki jih opravi zgornji program,
+v odvisnosti od parametra $n$.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}
+\avtor{Janoš Vidali}
+\vir{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Algoritem {\sc BubbleSort} uredi vhodni seznam $\ell[1 \dots n]$ tako,
+da zamenjuje sosednje elemente v nepravem vrstnem redu:
+\begin{small}
+\begin{algorithmic}
+\Function{BubbleSort}{$\ell[1 \dots n]$}
+    \State $z \gets n$
+    \While{$z > 1$}
+        \State $y \gets 1$
+        \For{$i = 2, \dots, z$}
+            \If{$\ell[i-1] > \ell[i]$}
+                \State $\ell[i-1], \ell[i] \gets \ell[i], \ell[i-1]$
+                \State $y \gets i$
+            \EndIf
+        \EndFor
+        \State $z \gets y-1$
+    \EndWhile
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Izvedi algoritem na seznamu $[7, 11, 16, 7, 5]$.
+\item Določi časovno zahtevnost algoritma.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}
+\avtor{Janoš Vidali}
+\vir{Vaje OR 12.10.2016}
+\begin{vprasanje}
+Algoritem {\sc MergeSort} uredi vhodni seznam tako,
+da ga najprej razdeli na dva dela,
+nato vsakega rekurzivno uredi,
+nazadnje pa zlije dobljena urejena seznama.
+\begin{enumerate}[(a)]
+\item S psevdokodo zapiši algoritem {\sc MergeSort}.
+\item Izvedi algoritem na seznamu $[7, 11, 16, 7, 5, 0, 14, 1, 19, 13]$.
+\item Določi časovno zahtevnost algoritma.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}
+\avtor{Janoš Vidali}
+\vir{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Število $n$ želimo razcepiti
+na dva netrivialna celoštevilska faktorja,
+kar storimo s sledečim algoritmom:
+\begin{small}
+\begin{algorithmic}
+\Function{Razcep}{$n$}
+    \For{$i = 2, \dots, \lfloor \sqrt{n} \rfloor$}
+        \If{$n/i$ je celo število}
+            \State \Return $(i, n/i)$
+        \EndIf
+    \EndFor
+    \State \Return $n$ je praštevilo
+\EndFunction
+\end{algorithmic}
+\end{small}
+Določi časovno zahtevnost algoritma.
+Ali je ta algoritem polinomski?
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}
+\avtor{Janoš Vidali}
+\vir{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Zapiši rekurziven algoritem,
+ki na vhod dobi celo število $n$ in teče v času $O(\sqrt{n})$.
+Uporaba korenjenja ni dovoljena.
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}
+\avtor{?}
+\vir{Kolokvij OR 17.3.2013}
+\begin{vprasanje}
+Dani so končna neprazna množica $S \subset \N$ moči $n$,
+število $k \in \{1, 2, \dots, n\}$ ter algoritem {\sc Alg}:
+\begin{small}
+\begin{algorithmic}
+\Function{Alg}{$S, k$}
+    \State $x \gets$ naključen element $S$
+    \If{$|S| = 1$}
+        \State \Return $x$
+    \Else
+        \State $S^+ \gets \set{y \in S}{y \ge x}$
+        \State $S^- \gets \set{y \in S}{y < x}$
+        \If{$|S^-| < k$}
+            \State \Return {\sc Alg}$(S^+, k - |S^-|)$
+        \Else
+            \State \Return {\sc Alg}$(S^-, k)$
+        \EndIf
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{small}
+Ugotovi, kaj je izhod algoritma pri danih vhodnih podatkih $S$ in $k$.
+Oceni časovno zahtevnost algoritma v najslabšem in v povprečnem primeru.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

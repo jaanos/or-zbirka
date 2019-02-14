@@ -1,0 +1,53 @@
+\documentclass[a4paper, 11pt, titlepage]{article}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{chngcntr}
+\usepackage{environ}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amssymb,amstext,wasysym}
+\usepackage{algorithmicx,algpseudocode}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{verse}
+\usepackage{tabularx}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{eurosym}
+\usepackage{tikz}
+\usepackage{pgflibraryshapes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\p}{\ensuremath{\mathcal{P}}}
+\newcommand{\set}[2]{\ensuremath{\left\{ #1 \; \middle| \; #2 \right\}}}
+
+\newcounter{naloga}
+\counterwithin*{naloga}{subsection}
+\newenvironment{naloga}{\stepcounter{naloga} \noindent {\bf Naloga \arabic{subsection}.\arabic{naloga}.}}{\bigskip}
+
+\begin{document}
+\title{Zbirka nalog iz Operacijskih raziskav}
+\author{Janoš Vidali}
+\maketitle
+
+\section{Naloge}
+{
+\newcommand{\avtor}[1]{\hfill {\small Avtor: #1}\par}
+\newcommand{\vir}[1]{\hfill {\small Vir: #1}\par}
+\newenvironment{vprasanje}{\smallskip\noindent\ignorespaces}{}
+\NewEnviron{odgovor}{}
+\input{naloge/seznam.tex}
+}
+
+\section{Rešitve}
+{
+\newcommand{\avtor}[1]{}
+\newcommand{\vir}[1]{}
+\NewEnviron{vprasanje}{}
+\newenvironment{odgovor}{\noindent\ignorespaces}{}
+\input{naloge/seznam.tex}
+}
+\end{document}
