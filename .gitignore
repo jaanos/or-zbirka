@@ -1,0 +1,13 @@
+*~*
+__pycache__
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.pyc
+*.snm
+*.toc
+*.xls
+*.zip
+.DS_Store
