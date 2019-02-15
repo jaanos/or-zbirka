@@ -1,6 +1,8 @@
 *~*
 __pycache__
 *.aux
+*.bbl
+*.blg
 *.log
 *.nav
 *.out

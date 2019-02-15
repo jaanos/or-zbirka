@@ -1,0 +1,354 @@
+\subsection{Dinamično programiranje}
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Na avtocestni odsek dolžine $M$ kilometrov
+želimo postaviti oglasne plakate.
+Dovoljene lokacije plakatov določa urad za oglaševanje
+in so predstavljene s števili $x_1, x_2, \dots x_n$,
+kjer $x_i$ ($1 \le i \le n$)
+predstavlja oddaljenost od začetka odseka v kilometrih.
+Profitabilnost oglasa na lokaciji $x_i$ določa vrednost $v_i$
+($1 \le i \le n$).
+Urad za oglaševanje podaja tudi omejitev,
+da mora biti razdalja med oglasi vsaj $d$ kilometrov.
+Oglase želimo postaviti tako, da bodo čim bolj profitabilni.
+\begin{enumerate}[(a)]
+\item Reši problem za parametre $M = 20$, $d = 5$, $n = 8$,
+$(x_i)_{i=1}^n = (1, 2, 8, 10, 12,$ $14, 17, 20)$ in
+$(v_i)_{i=1}^n = (8, 8, 12, 10, 7, 5, 6, 10)$.
+\item Napiši rekurzivne enačbe za opisani problem.
+\item Napiši algoritem,
+ki poišče najbolj profitabilno postavitev oglasov za dane parametre.
+Kakšna je njegova časovna zahtevnost?
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Imamo nahrbtnik nosilnosti $M$ kilogramov.
+Danih je $n$ objektov z vrednostmi $v_i$ in težami $t_i$ ($1 \le i \le n$).
+Problem nahrbtnika sprašuje po izbiri predmetov
+$I \subseteq \{1, 2, \dots, n\}$,
+ki maksimizira njihovo skupno vrednost pri omejitvi $\sum_{i \in I} t_i \le M$.
+\begin{enumerate}[(a)]
+\item Napiši rekurzivne enačbe za opisani problem.
+\item Z uporabo rekurzivnih enačb reši problem za parametre $M = 8$, $n = 8$,
+$(v_i)_{i=1}^n = (9, 9, 8, 11, 10, 15,$ $3, 12)$ in
+$(t_i)_{i=1}^n = (3, 5, 1, 4, 3, 8, 2, 7)$.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Dana je matrika $A = (a_{ij})_{i,j=1}^{m,n}$.
+Poiskati želimo pot minimalne vsote,
+ki se začne v levem zgornjem kotu (pri $a_{11}$)
+in konča v desnem spodnjem kotu (pri $a_{mn}$).
+Dovoljeni so zgolj premiki v desno in navzdol.
+\begin{enumerate}[(a)]
+\item Reši problem za matriko
+$$
+A = \begin{pmatrix}
+131 & 673 & 234 & 103 &  18 \\
+201 &  96 & 342 & 965 & 150 \\
+630 & 803 & 746 & 422 & 111 \\
+537 & 699 & 497 & 121 & 956 \\
+805 & 732 & 524 &  37 & 332
+\end{pmatrix} .
+$$
+\item Napiši rekurzivne enačbe za opisani problem.
+\item Na osnovi rekurzivnih enačb napiši algoritem, ki reši opisani problem.
+Oceni tudi njegovo časovno zahtevnost v odvisnosti od $m$ in $n$.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Dan je niz $S = a_1 a_2 \dots a_n$,
+kjer so $a_i$ ($1 \le i \le n$) elementi neke končne abecede.
+Nizu $a_j a_{j+1} \dots a_k$, kjer je $1 \le j \le k \le n$,
+pravimo {\em strnjen podniz} niza $S$.
+S pomočjo dinamičnega programiranja napiši algoritem,
+ki določi najdaljši palindromski strnjen podniz v $S$.
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Dana je matrika $A = (a_{ij})_{i,j=1}^{m,n}$.
+Poiskati želimo strnjeno podmatriko matrike $A$
+z največjo vsoto komponent.
+\begin{enumerate}[(a)]
+\item Reši problem za matriko
+$$
+A = \begin{pmatrix}
+ 1 & -1 &  2 &  4 \\
+-3 & -2 &  8 &  2 \\
+-3 &  2 & -2 &  4 \\
+ 1 & -5 & -1 & -2
+\end{pmatrix} .
+$$
+\item Napiši rekurzivne enačbe za opisani problem.
+\item Napiši algoritem, ki reši opisani problem.
+Oceni tudi njegovo časovno zahtevnost v odvisnosti od $m$ in $n$.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Na voljo imamo kovance z vrednostmi $1 = v_1 < v_2 < \cdots < v_n$
+in vsoto $C$, ki jo želimo izplačati s kovanci.
+Predpostavljamo, da imamo dovolj velik nabor kovancev.
+\begin{enumerate}[(a)]
+\item Poišči izplačilo z najmanjšim številom kovancev
+za $C = 25$, $n = 4$ in $(v_i)_{i=1}^n = (1, 2, 5, 7)$.
+\item S pomočjo dinamičnega programiranja reši problem v splošnem.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{vprasanje}
+Na ulici je $n$ vrstnih hiš,
+pri čemer je v $i$-ti hiši $c_i$ denarja.
+Tat se odloča, katere izmed hiš naj oropa.
+Vsak oropan stanovalec to sporoči svojim sosedom,
+zato tat ne sme oropati dveh sosednjih hiš.
+Ker je tat poslušal predmet Operacijske raziskave,
+pozna dinamično programiranje.
+Pokaži, kako naj tat določi, katere hiše naj oropa.
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 31.5.2012}
+\begin{vprasanje}
+Imamo hlod dolžine $\ell$,
+ki bi ga radi razžagali na $n$ označenih mestih
+$0 < x_1 < x_2 < \dots < x_n < \ell$.
+Eno rezanje stane toliko, kolikor je dolžina hloda, ki ga režemo.
+Ko hlod prerežemo, dobimo dva manjša hloda, ki ju režemo naprej.
+Poiskati želimo zaporedje rezanj z najmanjšo ceno.
+\begin{enumerate}[(a)]
+\item Reši problem pri podatkih $\ell = 10$ in $(x)_{i=1}^4 = (3, 5, 7, 8)$.
+\item S pomočjo dinamičnega programiranja reši problem v splošnem.
+Oceni tudi njegovo časovno zahtevnost.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Hillier, Lieberman}{\cite[Problem~11.3-1]{hl}}
+\begin{vprasanje}
+Lastnik verige $n$ trgovin z živili je kupil $m$ zabojev svežih jagod.
+Naj bo $p_{ij}$ pričakovan dobiček v trgovini $j$,
+če tja dostavimo $i$ zabojev.
+Zanima nas, koliko zabojev naj gre v vsako trgovino,
+da bomo imeli čim večji zaslužek.
+Zaradi logističnih razlogov zabojev ne želimo deliti.
+\begin{enumerate}[(a)]
+\item Z dinamičnim programiranjem reši problem za podatke $m = 5$, $n = 3$
+in $p_{ij}$ iz sledeče tabele:
+$$
+\begin{array}{c|ccc}
+p_{ij} & 1 & 2 & 3 \\
+\hline
+0 &  0 &  0 &  0 \\
+1 &  5 &  6 &  4 \\
+2 &  9 & 11 &  9 \\
+3 & 14 & 15 & 13 \\
+4 & 17 & 19 & 18 \\
+5 & 21 & 22 & 20 \\
+\end{array}
+$$
+\item Napiši algoritem, ki reši opisani problem v splošnem.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Hillier, Lieberman}{\cite[Problem~11.3-8]{hl}}
+\begin{vprasanje}
+Podjetje bo kmalu uvedlo nov izdelek na zelo konkurenčen trg,
+zato trenutno pripravlja marketinško strategijo.
+Odločili so se, da bodo izdelek uvedli v treh fazah.
+V prvi fazi bodo pripravili posebno začetno ponudbo z močno znižano ceno,
+da bi privabili zgodnje kupce.
+Druga faza bo vključevala intenzivno oglaševalsko kampanjo,
+da bi zgodnje kupce prepričali, naj izdelek še vedno kupujejo po redni ceni.
+Znano je, da bo ob koncu druge faze
+konkurenčno podjetje predstavilo svoj izdelek.
+Zato bo v tretji fazi okrepljeno oglaševanje z namenom,
+da bi preprečili beg strank h konkurenci.
+
+Podjetje ima za oglaševanje na voljo $4$ milijone evrov,
+ki jih želimo čim bolj učinkovito porabiti.
+Naj bo $m$ tržni delež v procentih, pridobljen v prvi fazi,
+$f_2$ delež, ohranjen po drugi fazi,
+in $f_3$ delež, ohranjen po tretji fazi.
+Maksimizirati želimo končni tržni delež, torej količino $m f_2 f_3$.
+
+\begin{enumerate}[(a)]
+\item Denimo, da želimo v vsaki fazi porabiti nek večkratnik milijona evrov,
+pri čemer bomo pri prvi fazi porabili vsaj milijon evrov.
+V spodnji tabeli so zbrani vplivi porabljenih količin
+na vrednosti $m$, $f_2$ in $f_3$.
+$$
+\begin{array}{c|ccc}
+M€ & m & f_2 & f_3 \\
+\hline
+0 &  - & 0.2 & 0.3 \\
+1 & 20 & 0.4 & 0.5 \\
+2 & 30 & 0.5 & 0.6 \\
+3 & 40 & 0.6 & 0.7 \\
+4 & 50 &   - &   - \\
+\end{array}
+$$
+Kako naj razdelimo sredstva?
+\item Denimo sedaj,
+da lahko v vsaki fazi porabimo poljubno pozitivno količino denarja
+(seveda glede na omejitev skupne porabe).
+Naj bodo torej $x_1$, $x_2$ in $x_3$ količine denarja v milijonih evrov,
+ki jih porabimo v prvi, drugi in tretji fazi.
+Vpliv na tržni delež je podan s formulami
+$$
+m = x_1 (10 - x_1), \quad
+f_2 = 0.4 + 0.1 x_2, \quad \text{in} \quad
+f_3 = 0.6 + 0.07 x_3 .
+$$
+Kako naj sedaj razdelimo sredstva?
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 26.6.2012}
+\begin{vprasanje}
+Nori profesor Boltežar stanuje v stolpnici z $n$ nadstropji,
+oštevilčenimi od $1$ do $n$.
+Nori stanovalci tega bloka radi mečejo cvetlične lončke z balkonov.
+Boltežar bi rad ugotovil, katero je najvišje nadstropje,
+s katerega lahko pade cvetlični lonček, ne da bi se razbil.
+Jasno je, da če se lonček razbije pri padcu iz $k$-tega nadstropja,
+potem se razbije tudi pri padcu s $(k+1)$-tega nadstropja.
+Če bi Boltežar imel le en cvetlični lonček,
+bi ga lahko metal po vrsti od najnižjega nadstropja navzgor,
+dokler se ne bi razbil.
+V najslabšem primeru bi lonček torej vrgel $n$ krat
+(možno je, da bi lonček preživel tudi padec iz najvišjega nadstropja).
+
+Ker ima Boltežar doma $k$ cvetličnih lončkov,
+lahko do rezultata pride tudi z manjšim številom metov.
+S pomočjo dinamičnega programiranja bi rad poiskal strategijo metanja,
+ki bi minimizirala število potrebnih metov v najslabšem primeru.
+\begin{enumerate}[(a)]
+\item Napiši rekurzivne enačbe za opisani problem.
+\item Napiši algoritem, ki reši opisani problem.
+Oceni tudi njegovo časovno zahtevnost v odvisnosti od $n$ in $k$.
+\end{enumerate}
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Hillier, Lieberman}{\cite[Problem~11.2-2]{hl}}
+\begin{vprasanje}
+Vodja prodaje pri založniku učbenikov za fakulteto
+ima na voljo $6$ trgovskih potnikov,
+ki jim želi dodeliti eno od treh regij, v kateri bodo delovali.
+V vsaki regiji mora delovati vsaj en trgovski potnik.
+Naj bo $p_{ij}$ pričakovana porast v prodaji v regiji $j$,
+če bo tam delovalo $i$ trgovskih potnikov:
+$$
+\begin{array}{c|ccc}
+p_{ij} & 1 & 2 & 3 \\
+\hline
+1 & 35 & 21 & 28 \\
+2 & 48 & 42 & 41 \\
+3 & 70 & 56 & 63 \\
+4 & 89 & 70 & 75 \\
+\end{array}
+$$
+Reši problem s pomočjo dinamičnega programiranja.
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Hillier, Lieberman}{\cite[Problem~11.3-16]{hl}}
+\begin{vprasanje}
+Dan je sledeči nelinearni program.
+\begin{align*}
+\max &\quad 2x_1^2 + 2x_2 + 4x_3 - x_3^2 \\[1ex]
+2x_1 + x_2 + x_3 &\le 4 \\
+x_1, x_2, x_3 &\ge 0
+\end{align*}
+Reši ga s pomočjo dinamičnega programiranja.
+
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Hillier, Lieberman}{\cite[Problem~11.4-1]{hl}}
+\begin{vprasanje}
+Igralec na srečo bo odigral tri partije s svojimi prijatelji,
+pri čemer lahko vsakič stavi na svojo zmago.
+Stavi lahko katerokoli vsoto denarja, ki jo ima na voljo
+-- če izgubi partijo, zastavljeno vsoto izgubi, sicer pa tako vsoto pridobi.
+Pri vsaki partiji sta verjetnosti zmage in poraza enaki $1/2$.
+Na začetku ima $75 €$, na koncu pa želi imeti $100 €$
+(ker igra s prijatelji, noče imeti več kot toliko).
+
+Z dinamičnim programiranjem poišči strategijo stavljenja,
+ki maksimizira verjetnost, da bo na koncu imel natanko $100 €$.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
