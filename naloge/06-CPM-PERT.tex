@@ -1,0 +1,133 @@
+\subsection{CPM/PERT}
+
+\begin{naloga}{?}{Kolokvij OR 9.5.2013}
+\begin{vprasanje}[nal:brezzobec]
+Gradbinec in samooklicani arhitekt Brezzobec se je odločil,
+da bo postavil zelo posebno hišo.
+Gradnja bo imela sedem glavnih faz,
+ki so opisane v tabeli~\ref{tab:brezzobec}.
+\begin{enumerate}[(a)]
+\item Kdaj je lahko hiša najhitreje zgrajena?
+Katere faze so kritične?
+\item Koliko je kritičnih poti in katere so?
+\item Katero opravilo je najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko največ podaljšamo,
+ne da bi vplivali na trajanje gradnje.
+\item Brezzobčev brat je ponudil pomoč pri največ eni fazi gradnje.
+Slovi po tem, da pri fazi, pri kateri pomaga, zmanjša čas izvajanja za $10\%$.
+Pri kateri fazi naj pomaga, da bo čas gradnje čim krajši?
+\end{enumerate}
+
+\begin{table}[t]
+\makebox[\textwidth][c]{
+\begin{tabular}{c|l|c|c||c|c}
+faza & opis & trajanje & pogoj &
+min.~trajanje & cena za dan manj \\
+\hline
+A & gradnja kleti & 10 dni & / & 7 dni & 200 \\
+B & gradnja pritličja & 6 dni & A & 5 dni & 100 \\
+C & gradnja prvega nadstropja & 7 dni & B, F & 5 dni & 150 \\
+D & gradnja strehe & 8 dni & C, E & 6 dni & 160 \\
+E & gradnja desnega podpornega stebra & 13 dni & A & 9 dni & 250 \\
+F & gradnja glavnega podpornega stebra & 14 dni & / & 11 dni & 240 \\
+G & gradnja baročnega stolpa pred hišo & 30 dni & / & 25 dni & 300 \\
+\end{tabular}
+}
+\caption{Podatki za nalogi~\ref{nal:brezzobec} in~\ref{nal:brezzobec-pert}.}
+\label{tab:brezzobec}
+\end{table}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Vaje OR 28.5.2018}
+\begin{vprasanje}[nal:brezzobec-pert]
+Brezzobčev bratranec ima podjetje, ki lahko pomaga pri gradnji,
+vendar za vsak dan krajšanja posamezne faze zahteva ustrezno plačilo
+(glej zadnja dva stolpca tabele~\ref{tab:brezzobec}).
+Brezzobca zanima način,
+kako bi s čim manjšimi stroški čas gradnje zmanjšal na $27$ dni.
+Zapiši linearni program za ta problem.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 19.5.2015}
+\begin{vprasanje}[nal:palacinke]
+Dinamika priprave dveh palačink z dvema kuharjema
+je opisana v tabeli~\ref{tab:palacinke}.
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+\item Določi kritična opravila in kritično pot ter trajanje priprave.
+\item Katero opravilo je najmanj kritično?
+\item Določi razpored opravil,
+pri čemer en kuhar prevzame opravila na kritični poti,
+drugi pa naj čim kasneje začne in čim prej konča.
+\end{enumerate}
+
+\begin{table}[t]
+\centering
+\begin{tabular}{c|l|c|c}
+& aktivnost & trajanje & predhodna opravila \\
+\hline
+A & nakup moke, jajc in mleka & 5 min & C \\
+B & rezanje sira & 3 min & / \\
+C & vožnja do trgovine & 5 min & / \\
+D & čiščenje mešalnika & 2 min & E \\
+E & mešanje sestavin & 5 min & A \\
+F & pečenje prve palačinke & 2 min & E \\
+G & mazanje prve palačinke z marmelado & 1 min & F, J \\
+H & pečenje palačinke (s sirom) & 3 min & B, F \\
+I & pomivanje posode & 8 min & G, H \\
+J & odpiranje marmelade & 1 min & / \\
+\end{tabular}
+\caption{Podatki za nalogo~\ref{nal:palacinke}.}
+\label{tab:palacinke}
+\end{table}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Hillier, Lieberman}{\cite[Problem~10.4-4]{hl}}
+\begin{vprasanje}[nal:viadukt]
+Pri gradbenem podjetju razmišljajo,
+da bi se prijavili na razpis za prenovo avtocestnega viadukta.
+Identificirali so pet nalog, ki so opisane v tabeli~\ref{tab:viadukt}.
+
+Če bodo izbrani za izvedbo del, si obetajo zaslužek v višini $250.000 €$.
+Če del ne bodo končali v roku $11$ tednov,
+bodo morali plačati pogodbeno kazen v višini $500.000 €$.
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+\item Za vsako opravilo določi pričakovano trajanje in varianco.
+\item Določi pričakovano kritično pot ter trajanje izvedbe.
+\item Oceni verjetnost, da se bo projekt zaključil v $11$ tednih.
+Naj se podjetje prijavi na razpis?
+\end{enumerate}
+
+\begin{table}[t]
+\makebox[\textwidth][c]{
+\begin{tabular}{c|c|c|c|c}
+naloga & najkrajše trajanje & najbolj verjetno trajanje
+& najdaljše trajanje & predhodna opravila \\
+\hline
+A & $3$ tedni & $4$ tedni  & $5$ tednov & / \\
+B & $2$ tedna & $2$ tedna  & $2$ tedna  & A \\
+C & $3$ tedni & $5$ tednov & $6$ tednov & B \\
+D & $1$ teden & $3$ tedni  & $5$ tednov & A \\
+E & $2$ tedna & $3$ tedni  & $5$ tednov & B, D
+\end{tabular}
+}
+\caption{Podatki za nalogo~\ref{nal:viadukt}.}
+\label{tab:viadukt}
+\end{table}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
