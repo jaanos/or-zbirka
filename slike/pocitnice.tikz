@@ -1,0 +1,42 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{every node}=[]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
+
+\node[vertex] (ns) at ( 3,-3) [label=below:$0$ ] {LJ};
+\node[vertex] (na) at ( 6,-3) [label=below:$10$] {ZG};
+\node[vertex] (nb) at ( 0,-3) [label=below:$20$] {VE};
+\node[vertex] (nc) at (-3,-3) [label=below:$25$] {MO};
+\node[vertex] (nd) at ( 6, 0) [label=right:$12$] {BU};
+\node[vertex] (ne) at ( 3, 0) [label=  225:$15$] {WI};
+\node[vertex] (nf) at ( 0, 0) [label=above:$18$] {BN};
+\node[vertex] (ng) at (-3, 0) [label=below:$21$] {LU};
+\node[vertex] (nh) at (-6, 0) [label=below:$30$] {PA};
+\node[vertex] (ni) at ( 6, 3) [label=above:$8$ ] {BS};
+\node[vertex] (nj) at ( 3, 3) [label=above:$11$] {PR};
+\node[vertex] (nk) at ( 0, 3) [label=above:$16$] {BL};
+\node[vertex] (nl) at (-6, 3) [label=above:$27$] {BX};
+\node[vertex] (nt) at (-3, 3) [label=above:$24$] {AM};
+
+\draw (ns) -- (na) node[below, midway]         {$10$};
+\draw (ns) -- (nb) node[below, midway]         {$15$};
+\draw (ns) -- (nd) node[below, midway, sloped] {$13$};
+\draw (ns) -- (ne) node[right, midway]         {$18$};
+\draw (na) -- (nd) node[right, midway]         {$11$};
+\draw (nb) -- (nc) node[below, midway]         {$19$};
+\draw (nc) -- (nf) node[below, midway, sloped] {$30$};
+\draw (nc) -- (nh) node[below, midway, sloped] {$24$};
+\draw (nd) -- (ne) node[above, midway]         {$8$};
+\draw (nd) -- (ni) node[right, midway]         {$7$};
+\draw (ne) -- (nf) node[above, midway]         {$17$};
+\draw (ne) -- (ni) node[above, midway, sloped] {$4$};
+\draw (ne) -- (nj) node[left, midway]          {$9$};
+\draw (nf) -- (ng) node[above, midway]         {$12$};
+\draw (ng) -- (nh) node[above, midway]         {$16$};
+\draw (ng) -- (nl) node[above, midway, sloped] {$22$};
+\draw (ng) -- (nt) node[right, midway]         {$23$};
+\draw (nh) -- (nl) node[left, midway]          {$28$};
+\draw (ni) -- (nj) node[above, midway]         {$6$};
+\draw (nj) -- (nk) node[above, midway]         {$14$};
+\draw (nk) -- (nt) node[above, midway]         {$20$};
+\draw (nl) -- (nt) node[above, midway]         {$21$};
+\end{tikzpicture}

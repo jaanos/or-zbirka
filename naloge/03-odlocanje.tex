@@ -194,46 +194,7 @@ in odločitve sprejmi na podlagi izračunanih verjetnosti!
 Glej sliko~\fig{} za shemo možnih poti.
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.8]
-\tikzstyle{vertex}=[draw, fill=white]
-\small
-\node[vertex,rectangle] (K)   at (-4, 3) {K};
-\node[vertex,circle]    (FF)  at ( 2, 3) [label=45:$+1$ min?, label=225:$6$ min] {FF};
-\node[vertex,rectangle] (SD)  at (-2,-1) {ŠD};
-\node[vertex,rectangle] (FE)  at ( 2,-1) {FE};
-\node[vertex,circle]    (FEs) at (2.6,-1) [label=45:$+2$ min?] {};
-\node[vertex,rectangle] (FMF) at ( 4,-3) {FMF};
-
-\draw[->] (K) -- (FF)
-    node [midway, above] {bus 1, 6};
-\draw (K) -- (-4, 1)
-    node [midway, right] {$5$ min};
-\draw (-4, 1) -- (-2, 1)
-    node [midway, below] {bus 14};
-\draw[->] (-4, 1) -- (-2, 1) -- (SD);
-\draw[->] (FF) -- (FE)
-    node [midway, right] {bus 1, 6};
-\draw[->] (FEs) -- (4,-1) -- (FMF)
-    node [midway, left] {$4$ min}
-    node [midway, right] {peš};
-\draw (FE) -- (2,-4)
-    node [midway, left] {$2$ min};
-\draw (2,-4) -- (4,-4)
-    node [midway, below] {bus 1};
-\draw[->] (4,-4) -- (FMF);
-
-\draw[->] (-0.2,2.8) -- (0.8,2.8) arc (90:0:1) -- (1.8,0.8);
-\draw[->] (-1,-1.2) -- (1,-1.2);
-
-\draw[line width=3mm, white] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
-\draw[line width=2mm] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
-\draw[line width=2mm, white, densely dashed] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
-\draw[very thick] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
-
-\node[vertex,circle] (Z)   at ( 0,-1) [label=45:$+3$ min?, label=225:$4$ min] {};
-\draw[->] (SD) -- (Z);
-\draw[->] (Z) -- (FE);
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Shema možnih poti}
 \end{slika}
 \end{vprasanje}
@@ -350,45 +311,7 @@ Poišči optimalne odločitve in pričakovano vrednost
 v odvisnosti od vrednosti parametra $p$.
 
 \begin{slika}
-\leavevmode%
-\begin{tikzpicture}[style=thick,scale=0.6]
-\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
-\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
-\node[dec] (A) at (-8,-1) {};
-\node[ran] (B) at (-4, 2) {};
-\node[dec] (C) at (-4,-4) {};
-\node[dec] (D) at ( 0, 4) {};
-\node[dec] (E) at ( 0, 0) {};
-\node[ran] (F) at ( 0,-3) {};
-\node      (G) at ( 0,-5) {$0$};
-\node[ran] (H) at ( 4, 5) {};
-\node      (I) at ( 4, 3) {$-5$};
-\node[ran] (J) at ( 4, 1) {};
-\node      (K) at ( 4,-1) {$-5$};
-\node      (L) at ( 4,-2) {$25$};
-\node      (M) at ( 4,-4) {$-10$};
-\node      (N) at ( 8, 6) {$50$};
-\node      (O) at ( 8, 4) {$-10$};
-\node      (P) at ( 8, 2) {$30$};
-\node      (Q) at ( 8, 0) {$-30$};
-
-\draw (A) -- (B);
-\draw (A) -- (C);
-\draw (B) -- (D) node[above, midway, sloped] {$0.6$};
-\draw (B) -- (E) node[below, midway, sloped] {$0.4$};
-\draw (C) -- (F);
-\draw (C) -- (G);
-\draw (D) -- (H);
-\draw (D) -- (I);
-\draw (E) -- (J);
-\draw (E) -- (K);
-\draw (F) -- (L) node[above, midway, sloped] {$2p$};
-\draw (F) -- (M) node[below, midway, sloped] {$1-2p$};
-\draw (H) -- (N) node[above, midway, sloped] {$p$};
-\draw (H) -- (O) node[below, midway, sloped] {$1-p$};
-\draw (J) -- (P) node[above, midway, sloped] {$4p$};
-\draw (J) -- (Q) node[below, midway, sloped] {$1-4p$};
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Odločitveno drevo}
 \end{slika}
 \end{vprasanje}
@@ -493,29 +416,7 @@ Izračunaj tudi pričakovano trajanje poti.
 Glej sliko~\fig{} za shemo možnih poti.
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.8]
-\tikzstyle{vertex}=[draw, fill=white]
-\small
-\node[vertex, rectangle] (S) at ( 0, 0   ) {začetek};
-\node[vertex, rectangle] (T) at (-3, 8   ) {konec};
-\node[vertex, circle]    (P) at (-3, 1.73) {prelaz};
-\node[vertex, circle]    (V) at ( 0, 3.46) {vrač};
-\node[vertex, rectangle, minimum size=4mm] (K) at (3, 1.73) {};
-
-\draw (S) -- (P) node [midway, below, sloped] {$1$ ura};
-\draw (S) -- (V) node [midway, right] {$1$ ura};
-\draw (S) -- (K) node [midway, below, sloped] {$1$ ura};
-\draw (V) -- (P) node [midway, above, sloped] {$1$ ura};
-\draw (V) -- (K) node [midway, above, sloped] {$1$ ura};
-\draw (K) to[bend right=45] node [midway, above, sloped] {$11$ ur} (T);
-\draw[decorate, decoration={snake, amplitude=3, segment length=15}] (P) -- (T)
-    node [midway, right] {
-        \begin{tabular}{l}
-        $5$ ali $9$ ur \\ (če je prevozen)
-        \end{tabular}
-    };
-
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Shema možnih poti}
 \end{slika}
 \end{vprasanje}
@@ -533,41 +434,7 @@ Poišči optimalne odločitve in pričakovano vrednost
 v odvisnosti od vrednosti parametra $p$.
 
 \begin{slika}
-\leavevmode%
-\begin{tikzpicture}[style=thick,scale=0.7]
-\tikzstyle{dec}=[draw,rectangle,minimum size=1cm]
-\tikzstyle{ran}=[draw,circle,minimum size=1cm]
-\node[dec] (A) at (-8,-1) {};
-\node[ran] (B) at (-4, 2) {};
-\node[ran] (C) at (-4,-4) {};
-\node[dec] (D) at ( 0, 4) {};
-\node[dec] (E) at ( 0, 0) {};
-\node      (F) at ( 0,-3) {$40p + 20$};
-\node      (G) at ( 0,-5) {$0$};
-\node[ran] (H) at ( 4, 5) {};
-\node      (I) at ( 4, 3) {$-5$};
-\node[ran] (J) at ( 4, 1) {};
-\node      (K) at ( 4,-1) {$-5$};
-\node      (N) at ( 8, 6) {$50$};
-\node      (O) at ( 8, 4) {$-10$};
-\node      (P) at ( 8, 2) {$30$};
-\node      (Q) at ( 8, 0) {$-30$};
-
-\draw (A) -- (B);
-\draw (A) -- (C);
-\draw (B) -- (D) node[above, midway, sloped] {$0.9$};
-\draw (B) -- (E) node[below, midway, sloped] {$0.1$};
-\draw (C) -- (F) node[above, midway, sloped] {$0.5$};
-\draw (C) -- (G) node[below, midway, sloped] {$0.5$};
-\draw (D) -- (H);
-\draw (D) -- (I);
-\draw (E) -- (J);
-\draw (E) -- (K);
-\draw (H) -- (N) node[above, midway, sloped] {$p$};
-\draw (H) -- (O) node[below, midway, sloped] {$1-p$};
-\draw (J) -- (P) node[above, midway, sloped] {$1-p$};
-\draw (J) -- (Q) node[below, midway, sloped] {$p$};
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Odločitveno drevo}
 \end{slika}
 \end{vprasanje}

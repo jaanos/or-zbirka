@@ -1,0 +1,28 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+
+\node[vertex] (A) at (xyz polar cs:angle=157.5,radius=3) {A};
+\node[vertex] (B) at (xyz polar cs:angle=112.5,radius=3) {B};
+\node[vertex] (C) at (xyz polar cs:angle= 67.5,radius=3) {C};
+\node[vertex] (D) at (xyz polar cs:angle= 22.5,radius=3) {D};
+\node[vertex] (E) at (xyz polar cs:angle=337.5,radius=3) {E};
+\node[vertex] (F) at (xyz polar cs:angle=292.5,radius=3) {F};
+\node[vertex] (G) at (xyz polar cs:angle=247.5,radius=3) {G};
+\node[vertex] (H) at (xyz polar cs:angle=202.5,radius=3) {H};
+
+\draw[->] (A) -- (B) node [above, midway, sloped] {$2$};
+\draw[->] (A) -- (C) node [below, midway, sloped] {$-2$};
+\draw[->] (A) -- (H) node [left, midway] {$0$};
+\draw[->] (B) -- (C) node [above, midway] {$6$};
+\draw[->] (B) -- (E) node [above, near start, sloped] {$-2$};
+\draw[->] (C) -- (D) node [above, midway, sloped] {$2$};
+\draw[->] (C) -- (F) node [left, midway] {$6$};
+\draw[->] (D) -- (E) node [right, midway] {$7$};
+\draw[->] (F) -- (E) node [below, midway, sloped] {$6$};
+\draw[->] (G) -- (A) node [above, midway, sloped] {$-1$};
+\draw[->] (G) -- (D) node [below, near start, sloped] {$1$};
+\draw[->] (G) -- (F) node [below, midway] {$6$};
+\draw[->] (G) -- (H) node [below, midway, sloped] {$6$};
+\draw[->] (H) -- (B) node [below, midway, sloped] {$3$};
+\draw[->] (H) -- (F) node [above, midway, sloped] {$6$};
+\end{tikzpicture}

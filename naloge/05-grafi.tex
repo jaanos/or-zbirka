@@ -77,23 +77,7 @@ upoštevaj abecedni vrstni red.
 Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.7]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
-
-\node[vertex] (A) at (-2, 2) {A};
-\node[vertex] (B) at ( 0, 2) {B};
-\node[vertex] (C) at ( 2, 2) {C};
-\node[vertex] (D) at (-2, 0) {D};
-\node[vertex] (E) at ( 0, 0) {E};
-\node[vertex] (F) at ( 2, 0) {F};
-\node[vertex] (G) at (-2,-2) {G};
-\node[vertex] (H) at ( 0,-2) {H};
-\node[vertex] (I) at ( 2,-2) {I};
-
-\draw (B) -- (E) -- (A) -- (B) -- (C) -- (F) -- (E);
-\draw (F) -- (I);
-\draw (D) -- (G) -- (H) -- (D);
-\end{tikzpicture}
+\pgfslika
 \caption{Graf za nalogi~\nal{} in~\nal{dfs}.}
 \end{slika}
 \end{vprasanje}
@@ -119,41 +103,7 @@ določi razdalje od vozlišča $A$ do ostalih vozlišč
 v grafu s slike~\fig{}.
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
-
-\node[vertex] (A) at (-2, 2) {A};
-\node[vertex] (B) at ( 0, 2) {B};
-\node[vertex] (C) at ( 2, 2) {C};
-\node[vertex] (D) at ( 2, 0) {D};
-\node[vertex] (E) at ( 0, 0) {E};
-\node[vertex] (F) at (-2,-2) {F};
-\node[vertex] (G) at ( 0,-2) {G};
-\node[vertex] (H) at ( 2,-2) {H};
-
-\draw[->] (A) -- (B)
-    node [above, midway] {$3$};
-\draw[->] (A) -- (F)
-    node [left, midway] {$6$};
-\draw[->] (B) -- (C)
-    node [above, midway] {$7$};
-\draw[->] (B) -- (E)
-    node [left, midway] {$9$};
-\draw[->] (C) -- (D)
-    node [right, midway] {$7$};
-\draw[->] (D) -- (B)
-    node [above, midway, sloped] {$9$};
-\draw[->] (D) -- (H)
-    node [right, midway] {$4$};
-\draw[->] (E) -- (D)
-    node [above, midway] {$1$};
-\draw[->] (E) -- (G)
-    node [right, midway] {$1$};
-\draw[->] (F) to[bend left=20] node [above, midway] {$8$} (G);
-\draw[->] (G) to[bend left=20] node [below, midway] {$1$} (F);
-\draw[->] (H) -- (G)
-    node [below, midway] {$5$};
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
@@ -241,41 +191,7 @@ določi razdalje od vozlišča $A$ do ostalih vozlišč
 v grafu s slike~\fig{}.
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
-
-\node[vertex] (A) at (-2, 2) {A};
-\node[vertex] (B) at ( 0, 2) {B};
-\node[vertex] (C) at ( 2, 2) {C};
-\node[vertex] (D) at ( 2, 0) {D};
-\node[vertex] (E) at ( 0, 0) {E};
-\node[vertex] (F) at (-2,-2) {F};
-\node[vertex] (G) at ( 0,-2) {G};
-\node[vertex] (H) at ( 2,-2) {H};
-
-\draw[->] (A) -- (B)
-    node [above, midway] {$3$};
-\draw[->] (A) -- (F)
-    node [left, midway] {$6$};
-\draw[->] (B) -- (C)
-    node [above, midway] {$7$};
-\draw[->] (B) -- (E)
-    node [left, midway] {$9$};
-\draw[->] (C) -- (D)
-    node [right, midway] {$-7$};
-\draw[->] (D) -- (B)
-    node [above, midway, sloped] {$9$};
-\draw[->] (D) -- (H)
-    node [right, midway] {$4$};
-\draw[->] (E) -- (D)
-    node [above, midway] {$1$};
-\draw[->] (E) -- (G)
-    node [right, midway] {$1$};
-\draw[->] (F) to[bend left=20] node [above, midway] {$8$} (G);
-\draw[->] (G) to[bend left=20] node [below, midway] {$-1$} (F);
-\draw[->] (H) -- (G)
-    node [below, midway] {$-5$};
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
@@ -297,34 +213,7 @@ Dan je usmerjen acikličen graf s slike~\fig{}.
 \end{enumerate}
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
-
-\node[vertex] (A) at (xyz polar cs:angle=157.5,radius=3) {A};
-\node[vertex] (B) at (xyz polar cs:angle=112.5,radius=3) {B};
-\node[vertex] (C) at (xyz polar cs:angle= 67.5,radius=3) {C};
-\node[vertex] (D) at (xyz polar cs:angle= 22.5,radius=3) {D};
-\node[vertex] (E) at (xyz polar cs:angle=337.5,radius=3) {E};
-\node[vertex] (F) at (xyz polar cs:angle=292.5,radius=3) {F};
-\node[vertex] (G) at (xyz polar cs:angle=247.5,radius=3) {G};
-\node[vertex] (H) at (xyz polar cs:angle=202.5,radius=3) {H};
-
-\draw[->] (A) -- (B) node [above, midway, sloped] {$2$};
-\draw[->] (A) -- (C) node [below, midway, sloped] {$-2$};
-\draw[->] (A) -- (H) node [left, midway] {$0$};
-\draw[->] (B) -- (C) node [above, midway] {$6$};
-\draw[->] (B) -- (E) node [above, near start, sloped] {$-2$};
-\draw[->] (C) -- (D) node [above, midway, sloped] {$2$};
-\draw[->] (C) -- (F) node [left, midway] {$6$};
-\draw[->] (D) -- (E) node [right, midway] {$7$};
-\draw[->] (F) -- (E) node [below, midway, sloped] {$6$};
-\draw[->] (G) -- (A) node [above, midway, sloped] {$-1$};
-\draw[->] (G) -- (D) node [below, near start, sloped] {$1$};
-\draw[->] (G) -- (F) node [below, midway] {$6$};
-\draw[->] (G) -- (H) node [below, midway, sloped] {$6$};
-\draw[->] (H) -- (B) node [below, midway, sloped] {$3$};
-\draw[->] (H) -- (F) node [above, midway, sloped] {$6$};
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
@@ -351,45 +240,7 @@ Kakšna je njegova časovna zahtevnost?
 \end{enumerate}
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
-
-\node[vertex] (S) at (-5, 0) [label=above:$s$] {};
-\node[vertex] (A) at (-1, 3) {};
-\node[vertex] (B) at (-1, 1) {};
-\node[vertex] (C) at (-1,-1) {};
-\node[vertex] (D) at (-1,-3) {};
-\node[vertex] (E) at ( 2, 2) {};
-\node[vertex] (F) at ( 2,-2) {};
-\node[vertex] (G) at ( 4, 0) {};
-\node[vertex] (T) at ( 6, 0) [label=above:$t$] {};
-
-\draw[->] (S) -- (A)
-    node [above, midway, sloped] {$10$};
-\draw[->] (S) -- (B)
-    node [above, midway, sloped] {$10$};
-\draw[->] (S) -- (C)
-    node [below, midway, sloped] {$10$};
-\draw[->] (S) -- (D)
-    node [below, midway, sloped] {$10$};
-\draw[->] (A) -- (B)
-    node [left, midway] {$5$};
-\draw[->] (A) -- (E)
-    node [above, midway, sloped] {$5$};
-\draw[->] (B) -- (E)
-    node [below, midway, sloped] {$2$};
-\draw[->] (C) -- (F)
-    node [above, midway, sloped] {$2$};
-\draw[->] (D) -- (C)
-    node [left, midway] {$5$};
-\draw[->] (E) -- (G)
-    node [above, midway, sloped] {$10$};
-\draw[->] (F) -- (G)
-    node [below, midway, sloped] {$10$};
-\draw[->] (G) -- (T)
-    node [above, midway] {$20$};
-
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
@@ -428,53 +279,7 @@ Zadostovalo bo, če verjetnosti računaš na $3$ decimalke natančno.
 \end{enumerate}
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.7]
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, inner sep=-2pt, minimum size=6mm]
-
-\node[vertex] (ns) at (-6,-3) [label=left: {\small LA} ] {$1$};
-\node[vertex] (na) at (-6, 1) [label=left: {\small SF} ] {$1$};
-\node[vertex] (nb) at (-3,-3) [label=below:{\small PH} ] {$0.8$};
-\node[vertex] (nc) at (-3,-1) [label=above:{\small LV} ] {$0.5$};
-\node[vertex] (nd) at (-3, 3) [label=above:{\small RE} ] {$0.7$};
-\node[vertex] (ne) at ( 0,-3) [label=below:{\small EP} ] {$0.6$};
-\node[vertex] (nf) at ( 0,-1) [label=315:  {\small AQ} ] {$0.7$};
-\node[vertex] (ng) at ( 0, 1) [label=315:  {\small DE} ] {$0.8$};
-\node[vertex] (nh) at ( 0, 3) [label=above:{\small SLC}] {$0.9$};
-\node[vertex] (ni) at ( 3,-3) [label=below:{\small DA} ] {$0.8$};
-\node[vertex] (nj) at ( 3,-1) [label=315:  {\small OC} ] {$0.6$};
-\node[vertex] (nk) at ( 3, 1) [label=315:  {\small KC} ] {$0.7$};
-\node[vertex] (nl) at ( 3, 3) [label=above:{\small OM} ] {$0.4$};
-\node[vertex] (nm) at ( 6,-1) [label=right:{\small ME} ] {$0.7$};
-\node[vertex] (nn) at ( 6, 1) [label=right:{\small SL} ] {$0.9$};
-\node[vertex] (nt) at ( 6, 3) [label=right:{\small CH} ] {$1$};
-
-\draw (ns) -- (na);
-\draw (ns) -- (nb);
-\draw (ns) -- (nc);
-\draw (na) -- (nd);
-\draw (nb) -- (ne);
-\draw (nb) -- (nf);
-\draw (nc) -- (ng);
-\draw (nc) -- (nh);
-\draw (nd) -- (nh);
-\draw (ne) -- (nf);
-\draw (ne) -- (ni);
-\draw (nf) -- (ng);
-\draw (nf) -- (nj);
-\draw (ng) -- (nh);
-\draw (ng) -- (nk);
-\draw (ng) -- (nl);
-\draw (ni) -- (nj);
-\draw (ni) -- (nm);
-\draw (nj) -- (nk);
-\draw (nj) -- (nm);
-\draw (nk) -- (nl);
-\draw (nk) -- (nn);
-\draw (nl) -- (nt);
-\draw (nm) -- (nn);
-\draw (nn) -- (nt);
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
@@ -528,48 +333,7 @@ ki ne gre čez kraje iz prejšnje poti.
 \end{enumerate}
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=0.7]
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
-
-\node[vertex] (ns) at ( 3,-3) [label=below:$0$ ] {LJ};
-\node[vertex] (na) at ( 6,-3) [label=below:$10$] {ZG};
-\node[vertex] (nb) at ( 0,-3) [label=below:$20$] {VE};
-\node[vertex] (nc) at (-3,-3) [label=below:$25$] {MO};
-\node[vertex] (nd) at ( 6, 0) [label=right:$12$] {BU};
-\node[vertex] (ne) at ( 3, 0) [label=  225:$15$] {WI};
-\node[vertex] (nf) at ( 0, 0) [label=above:$18$] {BN};
-\node[vertex] (ng) at (-3, 0) [label=below:$21$] {LU};
-\node[vertex] (nh) at (-6, 0) [label=below:$30$] {PA};
-\node[vertex] (ni) at ( 6, 3) [label=above:$8$ ] {BS};
-\node[vertex] (nj) at ( 3, 3) [label=above:$11$] {PR};
-\node[vertex] (nk) at ( 0, 3) [label=above:$16$] {BL};
-\node[vertex] (nl) at (-6, 3) [label=above:$27$] {BX};
-\node[vertex] (nt) at (-3, 3) [label=above:$24$] {AM};
-
-\draw (ns) -- (na) node[below, midway]         {$10$};
-\draw (ns) -- (nb) node[below, midway]         {$15$};
-\draw (ns) -- (nd) node[below, midway, sloped] {$13$};
-\draw (ns) -- (ne) node[right, midway]         {$18$};
-\draw (na) -- (nd) node[right, midway]         {$11$};
-\draw (nb) -- (nc) node[below, midway]         {$19$};
-\draw (nc) -- (nf) node[below, midway, sloped] {$30$};
-\draw (nc) -- (nh) node[below, midway, sloped] {$24$};
-\draw (nd) -- (ne) node[above, midway]         {$8$};
-\draw (nd) -- (ni) node[right, midway]         {$7$};
-\draw (ne) -- (nf) node[above, midway]         {$17$};
-\draw (ne) -- (ni) node[above, midway, sloped] {$4$};
-\draw (ne) -- (nj) node[left, midway]          {$9$};
-\draw (nf) -- (ng) node[above, midway]         {$12$};
-\draw (ng) -- (nh) node[above, midway]         {$16$};
-\draw (ng) -- (nl) node[above, midway, sloped] {$22$};
-\draw (ng) -- (nt) node[right, midway]         {$23$};
-\draw (nh) -- (nl) node[left, midway]          {$28$};
-\draw (ni) -- (nj) node[above, midway]         {$6$};
-\draw (nj) -- (nk) node[above, midway]         {$14$};
-\draw (nk) -- (nt) node[above, midway]         {$20$};
-\draw (nl) -- (nt) node[above, midway]         {$21$};
-\end{tikzpicture}
+\pgfslika
 \caption{Graf za nalogi~\nal{} (brez uteži) in~\nal{pot}.}
 \end{slika}
 \end{vprasanje}
@@ -635,23 +399,7 @@ Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
 \end{enumerate}
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=2]
-\tikzstyle{vertex}=[draw, circle, fill=white, minimum size=4mm]
-\small
-\node[vertex] (A) at (1, 1) {$A$};
-\node[vertex] (B) at (2, 1) {$B$};
-\node[vertex] (C) at (3, 1) {$C$};
-\node[vertex] (D) at (4, 1) {$D$};
-\node[vertex] (E) at (0, 0) {$E$};
-\node[vertex] (F) at (1, 0) {$F$};
-\node[vertex] (G) at (2, 0) {$G$};
-\node[vertex] (H) at (3, 0) {$H$};
-\node[vertex] (I) at (4, 0) {$I$};
-\node[vertex] (J) at (5, 0) {$J$};
-
-\draw (C) -- (B) -- (A) -- (E) -- (F) -- (A) -- (G) -- (H) -- (B);
-\draw (D) -- (J) -- (I) -- (D) -- (C) -- (I);
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
@@ -691,45 +439,7 @@ Verjetnosti za graf s slike~\fig{} ni potrebno računati.
 \end{enumerate}
 
 \begin{slika}
-\begin{tikzpicture}[style=thick,scale=1.5]
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
-
-\node[vertex] (S) at ( 0, 0) {$S$};
-\node[vertex] (A) at ( 2, 1) {$A$};
-\node[vertex] (B) at ( 2, 0) {$B$};
-\node[vertex] (C) at ( 2,-1) {$C$};
-\node[vertex] (D) at ( 3, 1) {$D$};
-\node[vertex] (E) at ( 3, 0) {$E$};
-\node[vertex] (F) at ( 3,-1) {$F$};
-\node[vertex] (G) at ( 4, 1) {$G$};
-\node[vertex] (H) at ( 4, 0) {$H$};
-\node[vertex] (I) at ( 4,-1) {$I$};
-\node[vertex] (T) at ( 6,-0) {$T$};
-
-\draw[->] (S) -- (A) node[midway, above, sloped] {$2$};
-\draw[->] (S) -- (B) node[midway, above] {$3$};
-\draw[->] (S) -- (C) node[midway, below, sloped] {$5$};
-\draw[->] (A) -- (D) node[midway, above] {$6$};
-\draw[->] (B) -- (A) node[midway, left] {$4$};
-\draw[->] (B) -- (C) node[midway, left] {$6$};
-\draw[->] (B) -- (E) node[midway, above] {$6$};
-\draw[->] (B) -- (F) node[midway, near start, below, sloped] {$4$};
-\draw[->] (C) -- (F) node[midway, below] {$2$};
-\draw[->] (D) -- (E) node[midway, left] {$3$};
-\draw[->] (D) -- (G) node[midway, above] {$6$};
-\draw[->] (D) -- (H) node[midway, near start, above, sloped] {$1$};
-\draw[->] (E) -- (C) node[midway, near start, below, sloped] {$2$};
-\draw[->] (E) -- (F) node[midway, right] {$4$};
-\draw[->] (E) -- (G) node[midway, near start, below, sloped] {$4$};
-\draw[->] (F) -- (I) node[midway, below] {$5$};
-\draw[->] (G) -- (T) node[midway, above, sloped] {$4$};
-\draw[->] (H) -- (E) node[midway, below] {$1$};
-\draw[->] (H) -- (G) node[midway, right] {$5$};
-\draw[->] (H) -- (I) node[midway, right] {$1$};
-\draw[->] (H) -- (T) node[midway, above] {$3$};
-\draw[->] (I) -- (T) node[midway, below, sloped] {$1$};
-\end{tikzpicture}
+\pgfslika
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}

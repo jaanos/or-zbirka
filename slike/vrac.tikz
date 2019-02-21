@@ -1,0 +1,23 @@
+\begin{tikzpicture}[style=thick,scale=0.8]
+\tikzstyle{vertex}=[draw, fill=white]
+\small
+\node[vertex, rectangle] (S) at ( 0, 0   ) {začetek};
+\node[vertex, rectangle] (T) at (-3, 8   ) {konec};
+\node[vertex, circle]    (P) at (-3, 1.73) {prelaz};
+\node[vertex, circle]    (V) at ( 0, 3.46) {vrač};
+\node[vertex, rectangle, minimum size=4mm] (K) at (3, 1.73) {};
+
+\draw (S) -- (P) node [midway, below, sloped] {$1$ ura};
+\draw (S) -- (V) node [midway, right] {$1$ ura};
+\draw (S) -- (K) node [midway, below, sloped] {$1$ ura};
+\draw (V) -- (P) node [midway, above, sloped] {$1$ ura};
+\draw (V) -- (K) node [midway, above, sloped] {$1$ ura};
+\draw (K) to[bend right=45] node [midway, above, sloped] {$11$ ur} (T);
+\draw[decorate, decoration={snake, amplitude=3, segment length=15}] (P) -- (T)
+    node [midway, right] {
+        \begin{tabular}{l}
+        $5$ ali $9$ ur \\ (če je prevozen)
+        \end{tabular}
+    };
+
+\end{tikzpicture}

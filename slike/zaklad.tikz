@@ -1,0 +1,47 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{every node}=[]
+\tikzstyle{vertex}=[draw, circle, inner sep=-2pt, minimum size=6mm]
+
+\node[vertex] (ns) at (-6,-3) [label=left: {\small LA} ] {$1$};
+\node[vertex] (na) at (-6, 1) [label=left: {\small SF} ] {$1$};
+\node[vertex] (nb) at (-3,-3) [label=below:{\small PH} ] {$0.8$};
+\node[vertex] (nc) at (-3,-1) [label=above:{\small LV} ] {$0.5$};
+\node[vertex] (nd) at (-3, 3) [label=above:{\small RE} ] {$0.7$};
+\node[vertex] (ne) at ( 0,-3) [label=below:{\small EP} ] {$0.6$};
+\node[vertex] (nf) at ( 0,-1) [label=315:  {\small AQ} ] {$0.7$};
+\node[vertex] (ng) at ( 0, 1) [label=315:  {\small DE} ] {$0.8$};
+\node[vertex] (nh) at ( 0, 3) [label=above:{\small SLC}] {$0.9$};
+\node[vertex] (ni) at ( 3,-3) [label=below:{\small DA} ] {$0.8$};
+\node[vertex] (nj) at ( 3,-1) [label=315:  {\small OC} ] {$0.6$};
+\node[vertex] (nk) at ( 3, 1) [label=315:  {\small KC} ] {$0.7$};
+\node[vertex] (nl) at ( 3, 3) [label=above:{\small OM} ] {$0.4$};
+\node[vertex] (nm) at ( 6,-1) [label=right:{\small ME} ] {$0.7$};
+\node[vertex] (nn) at ( 6, 1) [label=right:{\small SL} ] {$0.9$};
+\node[vertex] (nt) at ( 6, 3) [label=right:{\small CH} ] {$1$};
+
+\draw (ns) -- (na);
+\draw (ns) -- (nb);
+\draw (ns) -- (nc);
+\draw (na) -- (nd);
+\draw (nb) -- (ne);
+\draw (nb) -- (nf);
+\draw (nc) -- (ng);
+\draw (nc) -- (nh);
+\draw (nd) -- (nh);
+\draw (ne) -- (nf);
+\draw (ne) -- (ni);
+\draw (nf) -- (ng);
+\draw (nf) -- (nj);
+\draw (ng) -- (nh);
+\draw (ng) -- (nk);
+\draw (ng) -- (nl);
+\draw (ni) -- (nj);
+\draw (ni) -- (nm);
+\draw (nj) -- (nk);
+\draw (nj) -- (nm);
+\draw (nk) -- (nl);
+\draw (nk) -- (nn);
+\draw (nl) -- (nt);
+\draw (nm) -- (nn);
+\draw (nn) -- (nt);
+\end{tikzpicture}

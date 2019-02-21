@@ -44,6 +44,7 @@
 \newenvironment{naloga}[3][]{\refstepcounter{naloga} \noindent {\bf Naloga \thenaloga.} \avtor{#2} \naslov{#1} \vir{#3}}{\bigskip}
 \newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\thislabel}\end{figure}}
 \newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\thislabel}\end{table}}
+\newcommand{\pgfslika}{\leavevmode\beginpgfgraphicnamed{fig-\thislabel}\input{slike/\thislabel.tikz}\endpgfgraphicnamed}
 
 \newcommand{\thislabel}{?}
 \newcommand{\nal}[1]{\ref{nal:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}

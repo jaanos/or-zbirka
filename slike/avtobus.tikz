@@ -1,0 +1,40 @@
+\begin{tikzpicture}[style=thick,scale=0.8]
+\tikzstyle{vertex}=[draw, fill=white]
+\small
+\node[vertex,rectangle] (K)   at (-4, 3) {K};
+\node[vertex,circle]    (FF)  at ( 2, 3) [label=45:$+1$ min?, label=225:$6$ min] {FF};
+\node[vertex,rectangle] (SD)  at (-2,-1) {ŠD};
+\node[vertex,rectangle] (FE)  at ( 2,-1) {FE};
+\node[vertex,circle]    (FEs) at (2.6,-1) [label=45:$+2$ min?] {};
+\node[vertex,rectangle] (FMF) at ( 4,-3) {FMF};
+
+\draw[->] (K) -- (FF)
+    node [midway, above] {bus 1, 6};
+\draw (K) -- (-4, 1)
+    node [midway, right] {$5$ min};
+\draw (-4, 1) -- (-2, 1)
+    node [midway, below] {bus 14};
+\draw[->] (-4, 1) -- (-2, 1) -- (SD);
+\draw[->] (FF) -- (FE)
+    node [midway, right] {bus 1, 6};
+\draw[->] (FEs) -- (4,-1) -- (FMF)
+    node [midway, left] {$4$ min}
+    node [midway, right] {peš};
+\draw (FE) -- (2,-4)
+    node [midway, left] {$2$ min};
+\draw (2,-4) -- (4,-4)
+    node [midway, below] {bus 1};
+\draw[->] (4,-4) -- (FMF);
+
+\draw[->] (-0.2,2.8) -- (0.8,2.8) arc (90:0:1) -- (1.8,0.8);
+\draw[->] (-1,-1.2) -- (1,-1.2);
+
+\draw[line width=3mm, white] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
+\draw[line width=2mm] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
+\draw[line width=2mm, white, densely dashed] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
+\draw[very thick] (0,-4) -- (0,-1) arc (0:90:1) -- (-4, 0);
+
+\node[vertex,circle] (Z)   at ( 0,-1) [label=45:$+3$ min?, label=225:$4$ min] {};
+\draw[->] (SD) -- (Z);
+\draw[->] (Z) -- (FE);
+\end{tikzpicture}
