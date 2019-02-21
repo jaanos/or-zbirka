@@ -7,12 +7,12 @@
 \usepackage{microtype}
 \usepackage{chngcntr}
 \usepackage{environ}
+\usepackage{needspace}
 \usepackage[small]{caption}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amsmath,amssymb,amstext,wasysym}
 \usepackage{algorithmicx,algpseudocode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{verse}
 \usepackage{tabularx}
 \usepackage{enumerate}
 \usepackage{hyperref}
@@ -41,7 +41,7 @@
 \newcounter{naloga}
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
-\newenvironment{naloga}[3][]{\refstepcounter{naloga} \noindent {\bf Naloga \thenaloga.} \avtor{#2} \naslov{#1} \vir{#3}}{\bigskip}
+\newenvironment{naloga}[3][]{\refstepcounter{naloga} \needspace{3\baselineskip}\noindent {\bf Naloga \thenaloga.} \avtor{#2} \naslov{#1} \vir{#3}}{\bigskip}
 \newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\thislabel}\end{figure}}
 \newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\thislabel}\end{table}}
 \newcommand{\pgfslika}{\leavevmode\beginpgfgraphicnamed{fig-\thislabel}\input{slike/\thislabel.tikz}\endpgfgraphicnamed}
@@ -67,6 +67,8 @@
 \input{naloge/seznam.tex}
 }
 
+\clearpage
+
 \section{Rešitve}
 {
 \newcommand{\avtor}[1]{}
@@ -76,6 +78,8 @@
 \newenvironment{odgovor}{\noindent\ignorespaces}{}
 \input{naloge/seznam.tex}
 }
+
+\clearpage
 
 \bibliographystyle{bababbrv-fl}
 \bibliography{reference}
