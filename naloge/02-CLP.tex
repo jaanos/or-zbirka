@@ -207,3 +207,254 @@ modeliraj problem iskanja minimalnega vpetega drevesa v grafu.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 15.12.2016}
+\begin{vprasanje}
+Na oddelku za matematiko je zaposlenih $n$ asistentov,
+ki jim moramo dodeliti vaje pri $m$ predmetih.
+Za asistenta $i$ ($1 \le i \le n$) naj bosta $a_i$ in $b_i$
+najmanjše in največje število ur, ki jih lahko izvaja,
+ter $N_i \subseteq \{1, 2, \dots, m\}$ množica predmetov,
+ki jih ne želi izvajati.
+Za predmet $j$ ($1 \le j \le m$)
+naj bo $c_j$ število skupin za vaje pri predmetu,
+ter $u_j$ število ur vaj na skupino.
+Poleg tega vemo, da sta asistenta $p$ in $q$ skregana,
+zato pri nobenem predmetu ne smeta oba izvajati vaj.
+
+Predmete želimo asistentom dodeliti tako,
+da bomo ob upoštevanju njihovih želja
+minimizirali največje število različnih predmetov,
+ki smo jih dodelili posamezenmu asistentu.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+
+
+{\small {\bf Namig:} napiši program s spremenljivko $t$,
+ki je dopusten natanko tedaj,
+ko vsak asistent dobi največ $t$ različnih predmetov,
+in potem minimimiziraj $t$.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 31.1.2017}
+\begin{vprasanje}
+Imamo $m$ opravil, ki jih želimo razporediti med $n$ strojev.
+Vsak stroj lahko hkrati opravlja le eno opravilo,
+vsa opravila pa trajajo eno časovno enoto, neodvisno od stroja.
+Če stroj $i$ ($1 \le i \le n$) uporabimo za vsaj eno opravilo,
+plačamo ceno $c_i$
+(cena ostane enaka, če na istem stroju naredimo več opravil).
+Skupni stroški ne smejo preseči količine $C$.
+Dani sta še množici parov $P$ in $S$,
+pri čemer $(j, k) \in P$ pomeni,
+da mora biti opravilo $j$ dokončano pred začetkom opravila $k$,
+$(j, k) \in S$ pa pomeni, da se opravili $j$ in $k$ ne smeta izvajati hkrati.
+Imamo še dodaten pogoj, ki zahteva,
+da je lahko v posamezni časovni enoti lahko aktivnih največ $A$ strojev.
+Minimizirati želimo čas dokončanja zadnjega stroja.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}[Problem polnjenja košev]{Sergio Cabello}{Izpit OR 15.3.2017}
+\begin{vprasanje}
+Imamo neskončno košev $B_1, B_2, \dots$, od katerih ima vsak velikost $V > 0$,
+in $n$ predmetov pozitivnih velikosti $s_1, s_2, \dots, s_n$,
+od katerih je vsaka največ $V$.
+Predmete želimo postaviti v koše tako, da porabimo čim manj košev,
+pri čemer noben koš ne vsebuje predmetov skupne velikosti več kot $V$.
+Na primer, če $V = 10$ ter $s_1 = 4$, $s_2 = 5$ in $s_3 = 7$,
+lahko to storimo z dvema košema, medtem ko z enim samim košem to ni mogoče.
+
+\begin{enumerate}[(a)]
+\item Zapiši celoštevilski linearni program, ki modelira zgornji problem.
+
+\item Denimo, da imamo seznam $L$ s pari predmetov,
+ki jih ne smemo postaviti v isti koš.
+Če imamo na primer $L = \{(1, 2), (3, 4), (1, 4)\}$,
+potem predmetov $1$ in $2$ ne moremo postaviti skupaj,
+prav tako ne predmetov $3$ in $4$ oziroma $1$ in $4$.
+
+Dopolni zgornji celoštevilski linearni program tako,
+da bo vključeval te omejitve.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 10.7.2017}
+\begin{vprasanje}
+Za hitrejše nalaganje posnetkov na YouTubu se uporabljajo krajevni strežniki,
+do katerih lahko uporabniki na določeni lokaciji hitreje dostopajo
+kakor do glavnega strežnika, ki vsebuje vse posnetke.
+Vendar pa imajo krajevni strežniki omejen prostor,
+zato je potrebno ugotoviti,
+kateri posnetki naj se naložijo na katere krajevne strežnike.
+
+Denimo, da imamo poleg glavnega strežnika še $k$ krajevnih strežnikov,
+$m$ internetnih po\-nud\-ni\-kov in $n$ posnetkov.
+Naj bo $c_h$ ($1 \le h \le k$) prostor v megabajtih,
+ki je na voljo na krajevnem strežniku $h$.
+Z indeksom $0$ označimo glavni strežnik
+-- lahko torej predpostavljaš $c_0 = \infty$.
+Nadalje naj bo $s_j$ ($1 \le j \le n$) velikost posnetka $j$,
+prav tako v megabajtih,
+$\ell_{hi}$ ($0 \le h \le k$, $1 \le i \le m$)
+latenca (zakasnitev pri prenosu v milisekundah)
+ponudnika $i$ do strežnika $h$,
+in $r_{ij}$ ($1 \le i \le m$, $1 \le j \le n$)
+število zahtevkov za posnetek $j$, ki jih pričakujejo od ponudnika $i$.
+Vsi parametri so cela števila.
+
+Pri vsakem zahtevku bo posnetek poslan iz strežnika z najmanjšo latenco,
+ki vsebuje želeni posnetek.
+Lahko predpostavljaš,
+da ima za vsakega ponudnika glavni strežnik največjo latenco
+(torej $\ell_{0i} \ge \ell_{hi}$ za vsaka $1 \le h \le k$, $1 \le i \le m$).
+Določiti želimo, katere posnetke naj naložimo na posamezen krajevni strežnik,
+da minimiziramo vsoto pričakovanih latenc pri vseh zahtevkih.
+Posamezen posnetek lahko seveda naložimo tudi na več krajevnih strežnikov,
+ali pa na nobenega (v tem primeru bo poslan iz glavnega strežnika).
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem. \\
+{\small {\bf Namig:}
+pri določitvi latence ponudnika za dan posnetek si pomagaj s spremenljivko,
+ki šteje strežnike z latenco, ki ne presega izračunane latence.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 29.8.2017}
+\begin{vprasanje}
+Distributer ima $A$ zabojev avokadov in $B$ zabojev banan,
+ki jih bo prodal $n$ trgovcem.
+Trgovec $i$ ($1 \le i \le n$)
+plača $a_i$ evrov za zaboj avokadov in $b_i$ evrov za zaboj banan,
+skupaj pa bo porabil največ $c_i$ evrov.
+Distributer bo zaboje dostavil s tovornjaki,
+v katerih je lahko največ $K$ zabojev (ne glede na vsebino).
+Če nekemu trgovcu dostavi $t$ zabojev,
+bo torej opravljenih $\lceil t/K \rceil$ voženj.
+Vsaka vožnja do trgovca $i$ (ne glede na to, koliko je poln tovornjak)
+ga stane $d_i$ evrov.
+Poleg tega bo trgovec $p$ kupil samo banane ali samo avokade,
+trgovec $q$ pa bo kupil vsaj en zaboj avokadov,
+če bo tudi trgovec $r$ kupil vsaj en zaboj avokadov.
+Distributer želi zaboje razdeliti med trgovce tako,
+da bo maksimiziral svoj dobiček
+-- torej vsoto cen, ki jih plačajo trgovci,
+zmanjšano za stroške dostave.
+Lahko predpostavljaš, da so vse cene pozitivne.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 23.4.2018}
+\begin{vprasanje}
+Pri izvedbi projekta bo potrebno narediti $n$ nalog,
+ki jih bomo dodelili delavcem.
+Vsako nalogo bo opravil natanko en delavec,
+vsak delavec pa lahko hkrati izvaja samo eno nalogo.
+Naj bo $t_i \in \N$ število časovnih enot,
+ki ga posamezen delavec potrebuje za dokončanje naloge $i$
+($1 \le i \le n$).
+Vsaka naloga mora biti opravljena v enem kosu
+(če torej začnemo z nalogo $i$ v času $s$,
+bo ta dokončana v času $s+t_i$,
+brez možnosti prekinitve in kasnejšega dokončanja).
+Celoten projekt mora biti dokončan v času $T$.
+Dana je še množica parov $S$,
+kjer $(i, j) \in S$ pomeni,
+da se naloga $j$ ne sme začeti, preden se zaključi naloga $i$
+(lahko se pa $j$ začne izvajati v trenutku, ko se $i$ konča).
+
+Delavce bomo najeli preko podjetja za posredovanje dela,
+to pa nam zaračuna fiksno ceno na najetega delavca
+(za ustrezna plačila delavcem bodo tako poskrbeli oni).
+Minimizirati želimo torej število najetih delavcev.
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem. \\
+{\small {\bf Namig:}
+rešitev celoštevilskega linearnega programa naj eksplicitno določi vrstni red,
+v katerem bo posamezen delavec izvajal naloge.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 11.6.2018}
+\begin{vprasanje}
+Avtobusno podjetje želi uvesti novo avtobusno linijo.
+Dan je neusmerjen enostaven graf $G = (V, E)$,
+katerega vozlišča predstavljajo postajališča,
+povezave pa ceste med njimi.
+Za vsako povezavo $uv \in E$ poznamo še čas $c_{uv} \in \N$,
+v katerem avtobus pride od $u$ do $v$.
+
+Dan je še seznam postajališč $p_1, p_2, \dots p_n \in V$,
+ki jih linija mora obiskati v tem vrstnem redu
+-- začeti mora v $p_1$ in končati v $p_n$,
+na poti med dvema postajališčema iz seznama
+pa lahko obišče tudi druga postajališča.
+Linija lahko vsako postajališče obišče največ enkrat
+(ko doseže končno postajališče, se vrne po isti poti do začetnega).
+Skupno trajanje vožnje (v eno smer) je lahko največ $T$.
+Podjetje želi določiti linijo tako, da bo obiskala čim več postaj.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem. \\
+{\small {\bf Namig:} poskrbi, da linija nima ciklov.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 5.7.2018}
+\begin{vprasanje}
+Nogometni klub pred novo sezono prenavlja svoj igralski kader.
+Naj bo $A$ množica trenutnih igralcev kluba,
+$B$ pa množica igralcev, za katere se v klubu zanimajo
+($A$ in $B$ sta disjunktni množici).
+Za vsakega igralca $i \in A$ imajo s strani kluba $j$ ($1 \le j \le n$)
+ponudbo v višini $p_{ij} \in \N$
+(če se klub $j$ ne zanima za igralca $i$, lahko predpostaviš $p_{ij} = 0$),
+za vsakega igralca $i \in B$ pa bodo morali plačati odkupnino $r_i \in \N$,
+če ga hočejo pripeljati v klub.
+Vsakega igralca $i \in A$ lahko seveda prodamo kvečjemu enemu klubu.
+Skupni stroški trgovanja
+(tj., razlika stroškov nakupov in dobička od odprodaj)
+ne smejo preseči $S$,
+število igralcev v klubu pa mora ostati enako kot pred trgovanjem.
+
+Za vsakega igralca $i \in A \cup B$ poznamo njegov količnik kvalitete $q_i$,
+vsak pa pripada natanko eni izmed množic
+$G$ (vratarji), $D$ (branilci), $M$ (vezni igralci) in $F$ (napadalci).
+Število igralcev kluba v vsaki izmed teh množic se lahko spremeni
+(poveča ali zmanjša) za največ $1$.
+Poleg tega lahko igralca $a, b \in A$ prodamo le istemu klubu
+-- ali pa oba igralca ostaneta v klubu.
+Doseči želimo, da bo kvaliteta kluba čim večja
+-- maksimizirati želimo torej vsoto količnikov $q_i$ za igralce v klubu.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

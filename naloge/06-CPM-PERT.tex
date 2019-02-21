@@ -33,7 +33,8 @@ F & gradnja glavnega podpornega stebra & 14 dni & / & 11 dni & 240 \\
 G & gradnja baročnega stolpa pred hišo & 30 dni & / & 25 dni & 300 \\
 \end{tabular}
 }
-\caption{Podatki za nalogi~\ref{nal:brezzobec} in~\ref{nal:brezzobec-pert}.}
+\caption{Podatki za nalogi~\ref{nal:brezzobec} (prvi štirje stolpci)
+in~\ref{nal:brezzobec-pert}.}
 \label{tab:brezzobec}
 \end{table}
 \end{vprasanje}
@@ -145,6 +146,190 @@ Zapiši celoštevilski linearni program, ki določi topološko urejanje grafa.
 \begin{naloga}{Sergio Cabello}{Vaje OR 14.12.2016}
 \begin{vprasanje}
 Zapiši algoritem, ki ugotovi, ali ima graf več kot eno topološko ureditev.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 31.1.2017}
+\begin{vprasanje}[nal:splet]
+Izdelati želimo terminski plan za izdelavo spletne aplikacije.
+V tabeli~\ref{tab:splet} so zbrana opravila pri izdelavi.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+\item Določi kritična opravila in kritično pot ter čas izdelave.
+\item Katero opravilo je najmanj kritično?
+Najmanj kritično jo opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na trajanje izdelave.
+\end{enumerate}
+
+\begin{table}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|l|c|c}
+opravilo & opis & trajanje & pogoji \\
+\hline
+A & natančna opredelitev funkcionalnosti & 15 dni & / \\
+B & programiranje uporabniškega vmesnika & 40 dni & K \\
+C & programiranje skrbniškega vmesnika & 25 dni & A, M \\
+D & programiranje strežniškega dela & 30 dni & A, M \\
+E & integracija uporabniškega vmesnika s strežnikom & 20 dni & B, D \\
+F & alfa testiranje & 20 dni & C, E \\
+G & beta testiranje & 30 dni & F, H \\
+H & pridobivanje testnih uporabnikov & 45 dni & A \\
+I & vnos zadnjih popravkov & 10 dni & G \\
+J & izdelava uporabniške dokumentacije & 35 dni & B \\
+K & dizajniranje uporabniškega vmesnika & 15 dni & A \\
+L & nabava računalniške opreme & 20 dni & / \\
+M & postavitev strežnikov & 10 dni & L \\
+\end{tabular}
+}
+\caption{Podatki za nalogo~\ref{nal:splet}}
+\label{tab:splet}
+\end{table}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 29.8.2017}
+\begin{vprasanje}[nal:studij]
+Peter zaključuje študij na Fakulteti za alternativno znanost.
+Opravil je že vse obvezne predmete,
+za pristop k zaključnemu izpitu pa mora opraviti še nekaj izbirnih predmetov.
+To bi rad storil čim hitreje.
+V tabeli~\ref{tab:studij} so našteti izbirni predmeti
+skupaj s trajanjem (v tednih, od pristopa do uspešnega opravljanja)
+in predmeti, h katerim lahko pristopi po uspešnem opravljanju.
+K predmetom A, C in F lahko pristopi že takoj,
+za pristop k ostalim predmetom pa zadostuje, če je opravljen eden od pogojev.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+\item Katere predmete naj Peter opravi,
+da bo lahko čim prej pristopil k zaključnemu izpitu?
+Koliko časa bo za to potreboval?
+Natančno opiši postopek iskanja odgovora.
+\end{enumerate}
+
+\begin{table}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|lcc}
+Oznaka & Predmet & Trajanje & Zadosten pogoj za \\ \hline
+A & Alternativna zgodovina   &  5 & I, J \\
+B & Astrološki praktikum     &  7 & D, G \\
+C & Diskretna numerologija   &  9 & B    \\
+D & Filozofija magije        &  4 & Z    \\
+E & Kvantno pravo            &  8 & B, H \\
+F & Postmoderna ekonomija    &  4 & E    \\
+G & Telepatija in telekineza &  5 & Z    \\
+H & Teorija antigravitacije  &  4 & G    \\
+I & Teorije zarote           &  5 & H    \\
+J & Ufologija II             & 10 & K    \\
+K & Uvod v kriptozoologijo   &  6 & Z    \\ \hline
+Z & Zaključni izpit          &  / & /
+\end{tabular}
+}
+\caption{Podatki za nalogo~\ref{nal:studij}.}
+\label{tab:studij}
+\end{table}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 11.6.2018}
+\begin{vprasanje}[nal:konferenca]
+Izdelati želimo terminski plan za organizacijo konference.
+V tabeli~\ref{tab:konferenca} so zbrana opravila pri organizaciji.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in čas izdelave.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje izvedbe.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo izvedba trajala manj kot $55$ dni.
+\end{enumerate}
+
+\begin{table}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+A & Izbira lokacije & / & 10 dni & 13 dni & 22 dni \\
+B & Rezervacija sob za goste & F & 13 dni & 22 dni & 25 dni \\
+C & Dogovarjanje za cene hotelskih sob & A & 3 dni & 6 dni & 9 dni \\
+D & Naročilo hrane in pijače & A & 6 dni & 15 dni & 21 dni \\
+E & Priprava letakov & C, J & 5 dni & 8 dni & 11 dni \\
+F & Pošiljanje letakov & E & 4 dni & 4 dni & 4 dni \\
+G & Priprava zbornika s povzetki & D, J & 22 dni & 28 dni & 31 dni \\
+H & Določitev glavnega govorca & / & 5 dni & 8 dni & 14 dni \\
+I & Planiranje poti za glavnega govorca & A, H & 11 dni & 14 dni & 17 dni \\
+J & Določitev ostalih govorcev & H & 12 dni & 15 dni & 21 dni \\
+K & Planiranje poti za ostale govorce & A, J & 9 dni & 12 dni & 18 dni \\
+\end{tabular}
+}
+\caption{Podatki za nalogo~\ref{nal:konferenca}.}
+\label{tab:konferenca}
+\end{table}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2018}
+\begin{vprasanje}[nal:letalo]
+Pri izdelavi letala imamo faze, opisane v tabeli~\ref{tab:letalo}.
+
+\begin{enumerate}[(a)]
+\item S pomočjo topološke ureditve ustreznega grafa
+določi kritična opravila in čas izdelave.
+Uporabi podatke iz stolpca ``trajanje''.
+
+\item Katero opravilo je najmanj kritično?
+Najmanj kritično jo opravilo,
+katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na trajanje izdelave.
+
+\item Naročnik bi rad, da letalo izdelamo v $75$ dneh.
+Posamezna opravila lahko skrajšamo tako, da zanje zadolžimo več delavcev.
+Seveda prinese tako krajšanje dodatne stroške,
+poleg tega pa za vsako opravilo poznamo najmanjše možno trajanje
+(glej zadnja dva stolpca v zgornji tabeli).
+Zapiši linearni program,
+s katerim modeliramo iskanje razporeda opravil,
+ki nam prinese čim manjše stroške.
+Linearnega programa ne rešuj.
+\end{enumerate}
+
+\begin{table}[t]
+\makebox[\textwidth][c]{
+\begin{tabular}{c|l|c|c||c|c}
+opravilo & opis & trajanje & pogoji & najmanjše trajanje & cena za dan manj \\
+\hline
+A & izgradnja nosu              & 40 dni & -    & 36 dni & 1000 \\
+B & izgradnja trupa s krili     & 50 dni & -    & 48 dni & 1500 \\
+C & izgradnja repa              & 35 dni & -    & 31 dni &  800 \\
+D & vgraditev pilotske kabine   & 30 dni & A    & 28 dni & 1200 \\
+E & opremljanje potniške kabine & 18 dni & F, G & 16 dni &  500 \\
+F & povezovanje nosu s trupom   & 10 dni & A, B &  9 dni & 1100 \\
+G & povezovanje repa s trupom   & 12 dni & B, C & 10 dni & 1300 \\
+H & vgraditev motorjev          & 20 dni & B    & 18 dni & 1400 \\
+\end{tabular}
+}
+\caption{Podatki za nalogo~\ref{nal:letalo}}
+\label{tab:letalo}
+\end{table}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}

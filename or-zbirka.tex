@@ -7,6 +7,7 @@
 \usepackage{microtype}
 \usepackage{chngcntr}
 \usepackage{environ}
+\usepackage[small]{caption}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amsmath,amssymb,amstext,wasysym}
 \usepackage{algorithmicx,algpseudocode}
@@ -18,12 +19,18 @@
 \usepackage{eurosym}
 \usepackage{tikz}
 \usepackage{pgflibraryshapes}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.pathmorphing}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 \newcommand{\p}{\ensuremath{\mathcal{P}}}
 \newcommand{\set}[2]{\ensuremath{\left\{ #1 \; \middle| \; #2 \right\}}}
+\newcommand{\mm}{\ensuremath{\phantom{|}-\phantom{|}}}
+\newcommand{\pp}{\ensuremath{\phantom{|}+\phantom{|}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareUnicodeCharacter{20AC}{\euro}
 \DeclareRobustCommand{\officialeuro}{%

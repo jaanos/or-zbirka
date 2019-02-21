@@ -140,6 +140,7 @@ Kakšen je pričakovani dobiček?
 \begin{vprasanje}[nal:dectree]
 Imaš odločitveno drevo s slike~\ref{fig:dectree},
 a nisi prepričan glede vrednosti $p \in [0, 1/3]$.
+Pričakovano vrednost želiš maksimizirati.
 Poišči optimalne odločitve glede na vrednost $p$.
 
 \begin{figure}[t]
@@ -239,6 +240,346 @@ Glej sliko~\ref{fig:avtobus} za shemo možnih poti.
 \end{tikzpicture}
 \caption{Shema možnih poti za nalogo~\ref{nal:avtobus}.}
 \label{fig:avtobus}
+\end{figure}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 31.1.2017}
+\begin{vprasanje}
+Dve podjetji bosta predstavili konkurenčna izdelka.
+Možnost imaš kupiti delnice prvega podjetja za ceno $10000 €$
+ali delnice drugega podjetja po ceni $5000 €$,
+lahko pa se seveda odločiš tudi, da delnic ne kupiš.
+Ocenjuješ, da bo z verjetnostjo $0.4$ uspelo prvo podjetje,
+z verjetnostjo $0.1$ bo uspelo drugo podjetje,
+z verjetnostjo $0.5$ pa ne bo uspelo nobeno izmed njiju
+(ne more se zgoditi, da bi obe uspeli).
+Ob uspehu prvega podjetja se bo vrednost njihovih delnic potrojila,
+ob uspehu drugega podjetja pa se bo vrednost njihovih delnic popeterila
+-- če si lastiš delnice uspešnega podjetja, jih torej lahko prodaš,
+pri čemer bo torej dobiček enak
+dvakratniku oziroma štirikratniku vloženega zneska.
+Delnic neuspešnega podjetja ne bo želel nihče kupiti,
+tako da je v tem primeru vloženi znesek izgubljen.
+
+Za mnenje lahko povprašaš tržnega izvedenca,
+ki bo po opravljeni raziskavi povedal,
+katero od dveh podjetij ima večje možnosti za uspeh.
+Če bo uspešno prvo podjetje, bo to pravilno napovedal z verjetnostjo $0.8$,
+če pa bo uspešno drugo podjetje,
+bo to pravilno napovedal z verjetnostjo $0.7$.
+V primeru, ko podjetji ne bosta uspeli,
+bo z verjetnostjo $0.4$ večje možnosti pripisal prvemu,
+z verjetnostjo $0.6$ pa drugemu podjetju.
+Za svoje mnenje izvedenec računa $1000 €$.
+
+Kakšne bodo tvoje odločitve,
+da bo tvoj pričakovani dobiček po odprodaji delnic čim večji?
+Nariši od\-lo\-čit\-ve\-no drevo
+in odločitve sprejmi na podlagi izračunanih verjetnosti.
+Pričakovani dobiček tudi izračunaj.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 10.7.2017}
+\begin{vprasanje}
+Proti računalniškemu programu igraš Texas hold 'em poker.
+Pravila igre tukaj niso pomembna.
+Ker imaš dostop do kode programa, poznaš logiko, po kateri se ravna.
+V trenutni igri si vložil $30$ žetonov, enako tudi nasprotnik.
+Nasprotnik z verjetnostjo $0.6$ meni, da so odprte karte ugodnejše zate,
+z verjetnostjo $0.4$ pa, da so ugodnejše zanj
+(sam si ne ustvariš nobenega mnenja).
+V prvem primeru je verjetnost, da so dejansko tvoje karte boljše, enaka $0.8$,
+v drugem pa le $0.1$.
+
+Nasprotnik se bo sedaj odločil, ali naj vloži še $10$ žetonov.
+Sam se lahko nato odločiš, ali boš vložil $0$, $10$ ali $20$ žetonov
+(skupni vložek bo torej $30$, $40$ ali $50$ žetonov).
+Če je tvoj vložek manjši od nasprotnikovega,
+je igra izgubljena in izgubiš do sedaj vloženo.
+Če je tvoj vložek enak na\-sprot\-ni\-ko\-ve\-mu,
+z nasprotnikom pogledata karte in tako določita zmagovalca.
+Če je tvoj vložek višji od nasprotnikovega,
+ima ta možnost odstopiti (tako pridobiš nasprotnikov vložek),
+ali pa izenačiti, nakar se zmagovalec določi na podlagi kart.
+Če zmagaš, pridobiš nasprotnikov vložek,
+če izgubiš, pa izgubiš svojega.
+
+V spodnji tabeli so zbrane verjetnosti dogodkov
+v odvisnosti od nasprotnikovega mnenja glede kart.
+Verjetnosti navedenih dogodkov pri istem mnenju so med seboj neodvisne.
+\begin{center}
+\makebox[\textwidth][c]{
+\begin{small}
+\begin{tabular}{r|cc}
+dogodek $\setminus$ nasprotnikovo mnenje
+& ugodnejše karte zate & za nasprotnika \\ \hline
+dejansko imaš boljše karte & 0.8 & 0.1 \\
+nasprotnik vloži $10$ žetonov po razkritju karte & 0.3 & 0.8 \\
+nasprotnik izenači skupni vložek $40$ žetonov & 0.2 & 0.7 \\
+nasprotnik izenači skupni vložek $50$ žetonov & 0.1 & 0.8
+\end{tabular}
+\end{small}
+}
+\end{center}
+Na primer:
+\begin{multline*}
+\Pr[\text{nasprotnik izenači skupni vložek $40$ žetonov} \ | \\
+| \ \text{nasprotnikovo mnenje je ``ugodnejše karte zate''}] = 0.2 .
+\end{multline*}
+
+Kakšne bodo tvoje odločitve,
+da bo tvoj pričakovani dobiček po koncu igre čim večji?
+Nariši odločitveno drevo
+in odločitve sprejmi na podlagi izračunanih verjetnosti.
+Pričakovani dobiček tudi izračunaj.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 29.8.2017}
+\begin{vprasanje}[nal:dectree2]
+Dano je odločitveno drevo s slike~\ref{fig:dectree2},
+pri čemer velja $0 \le p \le 1/4$.
+Pričakovano vrednost želimo maksimizirati.
+Poišči optimalne odločitve in pričakovano vrednost
+v odvisnosti od vrednosti parametra $p$.
+
+\begin{figure}
+\centering
+\leavevmode%
+\begin{tikzpicture}[style=thick,scale=0.6]
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
+\node[dec] (A) at (-8,-1) {};
+\node[ran] (B) at (-4, 2) {};
+\node[dec] (C) at (-4,-4) {};
+\node[dec] (D) at ( 0, 4) {};
+\node[dec] (E) at ( 0, 0) {};
+\node[ran] (F) at ( 0,-3) {};
+\node      (G) at ( 0,-5) {$0$};
+\node[ran] (H) at ( 4, 5) {};
+\node      (I) at ( 4, 3) {$-5$};
+\node[ran] (J) at ( 4, 1) {};
+\node      (K) at ( 4,-1) {$-5$};
+\node      (L) at ( 4,-2) {$25$};
+\node      (M) at ( 4,-4) {$-10$};
+\node      (N) at ( 8, 6) {$50$};
+\node      (O) at ( 8, 4) {$-10$};
+\node      (P) at ( 8, 2) {$30$};
+\node      (Q) at ( 8, 0) {$-30$};
+
+\draw (A) -- (B);
+\draw (A) -- (C);
+\draw (B) -- (D) node[above, midway, sloped] {$0.6$};
+\draw (B) -- (E) node[below, midway, sloped] {$0.4$};
+\draw (C) -- (F);
+\draw (C) -- (G);
+\draw (D) -- (H);
+\draw (D) -- (I);
+\draw (E) -- (J);
+\draw (E) -- (K);
+\draw (F) -- (L) node[above, midway, sloped] {$2p$};
+\draw (F) -- (M) node[below, midway, sloped] {$1-2p$};
+\draw (H) -- (N) node[above, midway, sloped] {$p$};
+\draw (H) -- (O) node[below, midway, sloped] {$1-p$};
+\draw (J) -- (P) node[above, midway, sloped] {$4p$};
+\draw (J) -- (Q) node[below, midway, sloped] {$1-4p$};
+\end{tikzpicture}
+\caption{Odločitveno drevo za nalogo~\ref{nal:dectree2}.}
+\label{fig:dectree2}
+\end{figure}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 23.4.2018}
+\begin{vprasanje}
+Mladi podjetnik je razvil inovativen izdelek
+in se odloča za nadaljnje korake pri njegovem trženju.
+Naenkrat lahko naroči izdelavo $500$ izdelkov po ceni $10000 €$
+ali $1000$ izdelkov po ceni $18000 €$,
+lahko se pa odloči tudi, da izdelave ne naroči.
+Podjetnik ocenjuje, da je izdelek tržno zanimiv z verjetnostjo $0.8$.
+Odloča se, ali naj posamezen izdelek prodaja po ceni $50 €$ ali $60 €$,
+pri čemer so v spodnji tabeli zbrana pričakovana števila prodanih kosov
+v odvisnosti od teh pogojev.
+
+\begin{center}
+\begin{tabular}{c|cc}
+& cena $50 €$ & cena $60 €$ \\
+\hline
+tržno zanimiv & $650$ & $550$ \\
+tržno nezanimiv & $250$ & $100$ \\
+\end{tabular}
+\end{center}
+
+Predpostavi, da se bodo prodali vsi izdelani kosi,
+če je število teh manjše od pričakovane prodaje pri danih pogojih.
+
+\begin{enumerate}[(a)]
+\item Kako naj se podjetnik odloči, da bo pričakovani zaslužek čim večji?
+Nariši od\-lo\-čit\-ve\-no drevo in ga uporabi pri sprejemanju odločitev.
+
+\item V zadnjem trenutku je podjetnik izvedel,
+da bo Podjetniški pospeševalnik objavil
+razpis za nagrado za najboljši izdelek.
+Razpisni pogoji zahtevajo,
+da se za potrebo kontrole kvalitete izdela vsaj $1000$ izdelkov,
+od katerih komisija izbere $20$ za dejansko kontrolo,
+z ostalimi pa lahko prijavitelj prosto razpolaga.
+Če podjetnik zmaga, bo dobil nagrado v višini $k$ evrov,
+pri čemer $k \in [1000, 5000]$ še ni znan,
+poleg tega pa si obeta tudi $20\%$ povečanje
+pričakovanega števila prodanih kosov (v vseh zgoraj omenjenih pogojih).
+Če ne zmaga, se pričakovanja ne spremenijo.
+Podjetnik ocenjuje, da je verjetnost zmage enaka $0.6$,
+če je izdelek tržno zanimiv,
+in $0.1$, če izdelek ni tržno zanimiv.
+
+Naj se podjetnik prijavi na razpis?
+Nariši odločitveno drevo in odločitve sprejmi v odvisnosti od parametra $k$!
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 11.6.2018}
+\begin{vprasanje}[nal:vrac]
+Podajamo se na pot v mesto na drugi strani gorovja.
+Lahko se odločimo za pot po cesti okoli gorovja,
+za kar bomo porabili $12$ ur.
+Vendar pa nas najkrajša pot vodi čez prelaz,
+ki je eno uro stran od začetne lokacije.
+Žal pa so razmere v gorah nepredvidljive:
+ocenjujemo, da bo z verjetnostjo $0.2$ prelaz čist
+in ga bomo lahko prevozili v $5$ urah,
+z ve\-rjet\-nost\-jo $0.1$ bo delno zasnežen in ga bomo prevozili v $9$ urah,
+z verjetnostjo $0.7$ pa bo neprevozen,
+zaradi česar se bomo morali vrniti na začetek in iti okoli gorovja
+(skupno trajanje poti bo v tem primeru torej $14$ ur).
+
+Edini, ki nam lahko kakorkoli pomaga pri oceni vremenskih razmer na prelazu,
+je lokalni vrač,
+ki pa živi v dolini pod goro in ne uporablja sodobne tehnologije,
+s katero bi ga lahko kontaktirali.
+Rade volje pa nam bo povedal, ali na gori vlada mir,
+če se na poti do prelaza ustavimo pri njem.
+Pogojne verjetnosti njegovega odgovora v odvisnosti od razmer na prelazu
+so podane v spodnji tabeli.
+\begin{center}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|ccc}
+$P\left(\text{vračev odgovor} \;\middle|\; \text{razmere na prelazu}\right)$
+& čist & delno zasnežen & neprevozen \\ \hline
+na gori vlada mir & $0.9$ & $0.5$ & $0.1$ \\
+na gori divja vojna & $0.1$ & $0.5$ & $0.9$
+\end{tabular}
+}
+\end{center}
+Do vrača imamo eno uro vožnje, do prelaza pa potem še eno uro.
+Če se po obisku vrača odločimo za pot okoli gorovja,
+bomo za nadaljnjo pot porabili $12$ ur.
+
+Kako se bomo odločili?
+Nariši odločitveno drevo in ga uporabi pri sprejemanju odločitev.
+Izračunaj tudi pričakovano trajanje poti.
+Glej sliko~\ref{fig:vrac} za shemo možnih poti.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[style=thick,scale=0.8]
+\tikzstyle{vertex}=[draw, fill=white]
+\small
+\node[vertex, rectangle] (S) at ( 0, 0   ) {začetek};
+\node[vertex, rectangle] (T) at (-3, 8   ) {konec};
+\node[vertex, circle]    (P) at (-3, 1.73) {prelaz};
+\node[vertex, circle]    (V) at ( 0, 3.46) {vrač};
+\node[vertex, rectangle, minimum size=4mm] (K) at (3, 1.73) {};
+
+\draw (S) -- (P) node [midway, below, sloped] {$1$ ura};
+\draw (S) -- (V) node [midway, right] {$1$ ura};
+\draw (S) -- (K) node [midway, below, sloped] {$1$ ura};
+\draw (V) -- (P) node [midway, above, sloped] {$1$ ura};
+\draw (V) -- (K) node [midway, above, sloped] {$1$ ura};
+\draw (K) to[bend right=45] node [midway, above, sloped] {$11$ ur} (T);
+\draw[decorate, decoration={snake, amplitude=3, segment length=15}] (P) -- (T)
+    node [midway, right] {
+        \begin{tabular}{l}
+        $5$ ali $9$ ur \\ (če je prevozen)
+        \end{tabular}
+    };
+
+\end{tikzpicture}
+\caption{Shema možnih poti za nalogo~\ref{nal:vrac}.}
+\label{fig:vrac}
+\end{figure}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2018}
+\begin{vprasanje}[nal:dectree3]
+Dano je odločitveno drevo s slike~\ref{fig:dectree3},
+pri čemer velja $0 \le p \le 1$.
+Pričakovano vrednost želimo maksimizirati.
+Poišči optimalne odločitve in pričakovano vrednost
+v odvisnosti od vrednosti parametra $p$.
+
+\begin{figure}[t]
+\centering
+\leavevmode%
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{dec}=[draw,rectangle,minimum size=1cm]
+\tikzstyle{ran}=[draw,circle,minimum size=1cm]
+\node[dec] (A) at (-8,-1) {};
+\node[ran] (B) at (-4, 2) {};
+\node[ran] (C) at (-4,-4) {};
+\node[dec] (D) at ( 0, 4) {};
+\node[dec] (E) at ( 0, 0) {};
+\node      (F) at ( 0,-3) {$40p + 20$};
+\node      (G) at ( 0,-5) {$0$};
+\node[ran] (H) at ( 4, 5) {};
+\node      (I) at ( 4, 3) {$-5$};
+\node[ran] (J) at ( 4, 1) {};
+\node      (K) at ( 4,-1) {$-5$};
+\node      (N) at ( 8, 6) {$50$};
+\node      (O) at ( 8, 4) {$-10$};
+\node      (P) at ( 8, 2) {$30$};
+\node      (Q) at ( 8, 0) {$-30$};
+
+\draw (A) -- (B);
+\draw (A) -- (C);
+\draw (B) -- (D) node[above, midway, sloped] {$0.9$};
+\draw (B) -- (E) node[below, midway, sloped] {$0.1$};
+\draw (C) -- (F) node[above, midway, sloped] {$0.5$};
+\draw (C) -- (G) node[below, midway, sloped] {$0.5$};
+\draw (D) -- (H);
+\draw (D) -- (I);
+\draw (E) -- (J);
+\draw (E) -- (K);
+\draw (H) -- (N) node[above, midway, sloped] {$p$};
+\draw (H) -- (O) node[below, midway, sloped] {$1-p$};
+\draw (J) -- (P) node[above, midway, sloped] {$1-p$};
+\draw (J) -- (Q) node[below, midway, sloped] {$p$};
+\end{tikzpicture}
+\caption{Odločitveno drevo za nalogo~\ref{nal:dectree3}.}
+\label{fig:dectree3}
 \end{figure}
 \end{vprasanje}
 \begin{odgovor}
