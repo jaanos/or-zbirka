@@ -1,11 +1,11 @@
 \subsection{CPM/PERT}
 
 \begin{naloga}{?}{Kolokvij OR 9.5.2013}
-\begin{vprasanje}[nal:brezzobec]
+\begin{vprasanje}[brezzobec]
 Gradbinec in samooklicani arhitekt Brezzobec se je odločil,
 da bo postavil zelo posebno hišo.
 Gradnja bo imela sedem glavnih faz,
-ki so opisane v tabeli~\ref{tab:brezzobec}.
+ki so opisane v tabeli~\tab{}.
 \begin{enumerate}[(a)]
 \item Kdaj je lahko hiša najhitreje zgrajena?
 Katere faze so kritične?
@@ -18,7 +18,7 @@ Slovi po tem, da pri fazi, pri kateri pomaga, zmanjša čas izvajanja za $10\%$.
 Pri kateri fazi naj pomaga, da bo čas gradnje čim krajši?
 \end{enumerate}
 
-\begin{table}[t]
+\begin{tabela}
 \makebox[\textwidth][c]{
 \begin{tabular}{c|l|c|c||c|c}
 faza & opis & trajanje & pogoj &
@@ -33,10 +33,9 @@ F & gradnja glavnega podpornega stebra & 14 dni & / & 11 dni & 240 \\
 G & gradnja baročnega stolpa pred hišo & 30 dni & / & 25 dni & 300 \\
 \end{tabular}
 }
-\caption{Podatki za nalogi~\ref{nal:brezzobec} (prvi štirje stolpci)
-in~\ref{nal:brezzobec-pert}.}
-\label{tab:brezzobec}
-\end{table}
+\caption{Podatki za nalogi~\nal{} (prvi štirje stolpci)
+in~\nal{brezzobec-pert}.}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -44,10 +43,10 @@ in~\ref{nal:brezzobec-pert}.}
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 28.5.2018}
-\begin{vprasanje}[nal:brezzobec-pert]
+\begin{vprasanje}[brezzobec-pert]
 Brezzobčev bratranec ima podjetje, ki lahko pomaga pri gradnji,
 vendar za vsak dan krajšanja posamezne faze zahteva ustrezno plačilo
-(glej zadnja dva stolpca tabele~\ref{tab:brezzobec}).
+(glej zadnja dva stolpca tabele~\tab{brezzobec}).
 Brezzobca zanima način,
 kako bi s čim manjšimi stroški čas gradnje zmanjšal na $27$ dni.
 Zapiši linearni program za ta problem.
@@ -58,9 +57,9 @@ Zapiši linearni program za ta problem.
 
 
 \begin{naloga}{?}{Izpit OR 19.5.2015}
-\begin{vprasanje}[nal:palacinke]
+\begin{vprasanje}[palacinke]
 Dinamika priprave dveh palačink z dvema kuharjema
-je opisana v tabeli~\ref{tab:palacinke}.
+je opisana v tabeli~\tab{}.
 \begin{enumerate}[(a)]
 \item Topološko uredi ustrezni graf in ga nariši.
 \item Določi kritična opravila in kritično pot ter trajanje priprave.
@@ -70,8 +69,7 @@ pri čemer en kuhar prevzame opravila na kritični poti,
 drugi pa naj čim kasneje začne in čim prej konča.
 \end{enumerate}
 
-\begin{table}[t]
-\centering
+\begin{tabela}
 \begin{tabular}{c|l|c|c}
 & aktivnost & trajanje & predhodna opravila \\
 \hline
@@ -86,9 +84,8 @@ H & pečenje palačinke (s sirom) & 3 min & B, F \\
 I & pomivanje posode & 8 min & G, H \\
 J & odpiranje marmelade & 1 min & / \\
 \end{tabular}
-\caption{Podatki za nalogo~\ref{nal:palacinke}.}
-\label{tab:palacinke}
-\end{table}
+\podnaslov{Podatki}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -96,10 +93,10 @@ J & odpiranje marmelade & 1 min & / \\
 
 
 \begin{naloga}{Hillier, Lieberman}{\cite[Problem~10.4-4]{hl}}
-\begin{vprasanje}[nal:viadukt]
+\begin{vprasanje}[viadukt]
 Pri gradbenem podjetju razmišljajo,
 da bi se prijavili na razpis za prenovo avtocestnega viadukta.
-Identificirali so pet nalog, ki so opisane v tabeli~\ref{tab:viadukt}.
+Identificirali so pet nalog, ki so opisane v tabeli~\tab{}.
 
 Če bodo izbrani za izvedbo del, si obetajo zaslužek v višini $250.000 €$.
 Če del ne bodo končali v roku $11$ tednov,
@@ -112,7 +109,7 @@ bodo morali plačati pogodbeno kazen v višini $500.000 €$.
 Naj se podjetje prijavi na razpis?
 \end{enumerate}
 
-\begin{table}[t]
+\begin{tabela}
 \makebox[\textwidth][c]{
 \begin{tabular}{c|c|c|c|c}
 naloga & najkrajše trajanje & najbolj verjetno trajanje
@@ -125,9 +122,8 @@ D & $1$ teden & $3$ tedni  & $5$ tednov & A \\
 E & $2$ tedna & $3$ tedni  & $5$ tednov & B, D
 \end{tabular}
 }
-\caption{Podatki za nalogo~\ref{nal:viadukt}.}
-\label{tab:viadukt}
-\end{table}
+\podnaslov{Podatki}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -153,9 +149,9 @@ Zapiši algoritem, ki ugotovi, ali ima graf več kot eno topološko ureditev.
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 31.1.2017}
-\begin{vprasanje}[nal:splet]
+\begin{vprasanje}[splet]
 Izdelati želimo terminski plan za izdelavo spletne aplikacije.
-V tabeli~\ref{tab:splet} so zbrana opravila pri izdelavi.
+V tabeli~\tab{} so zbrana opravila pri izdelavi.
 
 \begin{enumerate}[(a)]
 \item Topološko uredi ustrezni graf in ga nariši.
@@ -165,7 +161,7 @@ Najmanj kritično jo opravilo, katerega trajanje lahko najbolj podaljšamo,
 ne da bi vplivali na trajanje izdelave.
 \end{enumerate}
 
-\begin{table}
+\begin{tabela}
 \makebox[\textwidth][c]{
 \begin{tabular}{c|l|c|c}
 opravilo & opis & trajanje & pogoji \\
@@ -185,9 +181,8 @@ L & nabava računalniške opreme & 20 dni & / \\
 M & postavitev strežnikov & 10 dni & L \\
 \end{tabular}
 }
-\caption{Podatki za nalogo~\ref{nal:splet}}
-\label{tab:splet}
-\end{table}
+\podnaslov{Podatki}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -195,12 +190,12 @@ M & postavitev strežnikov & 10 dni & L \\
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 29.8.2017}
-\begin{vprasanje}[nal:studij]
+\begin{vprasanje}[studij]
 Peter zaključuje študij na Fakulteti za alternativno znanost.
 Opravil je že vse obvezne predmete,
 za pristop k zaključnemu izpitu pa mora opraviti še nekaj izbirnih predmetov.
 To bi rad storil čim hitreje.
-V tabeli~\ref{tab:studij} so našteti izbirni predmeti
+V tabeli~\tab{} so našteti izbirni predmeti
 skupaj s trajanjem (v tednih, od pristopa do uspešnega opravljanja)
 in predmeti, h katerim lahko pristopi po uspešnem opravljanju.
 K predmetom A, C in F lahko pristopi že takoj,
@@ -214,7 +209,7 @@ Koliko časa bo za to potreboval?
 Natančno opiši postopek iskanja odgovora.
 \end{enumerate}
 
-\begin{table}
+\begin{tabela}
 \makebox[\textwidth][c]{
 \begin{tabular}{c|lcc}
 Oznaka & Predmet & Trajanje & Zadosten pogoj za \\ \hline
@@ -232,9 +227,8 @@ K & Uvod v kriptozoologijo   &  6 & Z    \\ \hline
 Z & Zaključni izpit          &  / & /
 \end{tabular}
 }
-\caption{Podatki za nalogo~\ref{nal:studij}.}
-\label{tab:studij}
-\end{table}
+\podnaslov{Podatki}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -242,9 +236,9 @@ Z & Zaključni izpit          &  / & /
 
 
 \begin{naloga}{Janoš Vidali}{Kolokvij OR 11.6.2018}
-\begin{vprasanje}[nal:konferenca]
+\begin{vprasanje}[konferenca]
 Izdelati želimo terminski plan za organizacijo konference.
-V tabeli~\ref{tab:konferenca} so zbrana opravila pri organizaciji.
+V tabeli~\tab{} so zbrana opravila pri organizaciji.
 
 \begin{enumerate}[(a)]
 \item Topološko uredi ustrezni graf in ga nariši.
@@ -260,7 +254,7 @@ ne da bi vplivali na celotno trajanje izvedbe.
 da bo izvedba trajala manj kot $55$ dni.
 \end{enumerate}
 
-\begin{table}
+\begin{tabela}
 \makebox[\textwidth][c]{
 \begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
 & Opravilo & Pogoji & Minimalno trajanje
@@ -278,9 +272,8 @@ J & Določitev ostalih govorcev & H & 12 dni & 15 dni & 21 dni \\
 K & Planiranje poti za ostale govorce & A, J & 9 dni & 12 dni & 18 dni \\
 \end{tabular}
 }
-\caption{Podatki za nalogo~\ref{nal:konferenca}.}
-\label{tab:konferenca}
-\end{table}
+\podnaslov{Podatki}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -288,8 +281,8 @@ K & Planiranje poti za ostale govorce & A, J & 9 dni & 12 dni & 18 dni \\
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2018}
-\begin{vprasanje}[nal:letalo]
-Pri izdelavi letala imamo faze, opisane v tabeli~\ref{tab:letalo}.
+\begin{vprasanje}[letalo]
+Pri izdelavi letala imamo faze, opisane v tabeli~\tab{}.
 
 \begin{enumerate}[(a)]
 \item S pomočjo topološke ureditve ustreznega grafa
@@ -312,7 +305,7 @@ ki nam prinese čim manjše stroške.
 Linearnega programa ne rešuj.
 \end{enumerate}
 
-\begin{table}[t]
+\begin{tabela}
 \makebox[\textwidth][c]{
 \begin{tabular}{c|l|c|c||c|c}
 opravilo & opis & trajanje & pogoji & najmanjše trajanje & cena za dan manj \\
@@ -327,9 +320,8 @@ G & povezovanje repa s trupom   & 12 dni & B, C & 10 dni & 1300 \\
 H & vgraditev motorjev          & 20 dni & B    & 18 dni & 1400 \\
 \end{tabular}
 }
-\caption{Podatki za nalogo~\ref{nal:letalo}}
-\label{tab:letalo}
-\end{table}
+\podnaslov{Podatki}
+\end{tabela}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}

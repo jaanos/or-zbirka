@@ -42,6 +42,14 @@
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
 \newenvironment{naloga}[3][]{\refstepcounter{naloga} \noindent {\bf Naloga \thenaloga.} \avtor{#2} \naslov{#1} \vir{#3}}{\bigskip}
+\newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\thislabel}\end{figure}}
+\newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\thislabel}\end{table}}
+
+\newcommand{\thislabel}{?}
+\newcommand{\nal}[1]{\ref{nal:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}
+\newcommand{\fig}[1]{\ref{fig:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}
+\newcommand{\tab}[1]{\ref{tab:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}
+\newcommand{\podnaslov}[1]{\caption{#1 za nalogo~\nal{}.}}
 
 \begin{document}
 \title{Zbirka nalog iz Operacijskih raziskav}
@@ -53,7 +61,7 @@
 \newcommand{\avtor}[1]{\hfill {\small Avtor: #1}\par}
 \newcommand{\naslov}[1]{\if\relax\detokenize{#1}\relax\else\noindent {\small\bf (#1)}\fi}
 \newcommand{\vir}[1]{\hfill {\small Vir: #1}\par}
-\newenvironment{vprasanje}[1][]{\if\relax\detokenize{#1}\relax\else\label{#1}\fi\smallskip\noindent\ignorespaces}{}
+\newenvironment{vprasanje}[1][]{\if\relax\detokenize{#1}\relax\renewcommand{\thislabel}{\thenaloga}\else\renewcommand{\thislabel}{#1}\fi\label{nal:\thislabel}\smallskip\noindent\ignorespaces}{}
 \NewEnviron{odgovor}{}
 \input{naloge/seznam.tex}
 }

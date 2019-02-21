@@ -1,7 +1,7 @@
 \subsection{Algoritmi na grafih}
 
 \begin{naloga}{?}{Vaje OR 20.4.2016}
-\begin{vprasanje}[nal:matgraf]
+\begin{vprasanje}[matgraf]
 Zasnuj podatkovno strukturo za grafe,
 ki temelji na matrični predstavitvi.
 Podatkovna struktura naj ima sledeče metode:
@@ -23,7 +23,7 @@ Oceni tudi prostorsko zahtevnost celotne strukture.
 
 
 \begin{naloga}{?}{Vaje OR 20.4.2016}
-\begin{vprasanje}[nal:sosgraf]
+\begin{vprasanje}[sosgraf]
 Zasnuj podatkovno strukturo za grafe,
 ki temelji na seznamih sosedov.
 Zapiši metode kot pri prejšnji strukturi
@@ -38,7 +38,7 @@ in prostorsko zahtevnost celotne strukture.
 \begin{naloga}{?}{Vaje OR 20.4.2016}
 \begin{vprasanje}
 Kako moramo spremeniti strukturi
-iz nalog~\ref{nal:matgraf} in~\ref{nal:sosgraf},
+iz nalog~\nal{matgraf} in~\nal{sosgraf},
 da bosta predstavljali digrafe?
 \end{vprasanje}
 \begin{odgovor}
@@ -70,14 +70,13 @@ Napiši algoritem, ki poišče zvezdo danega digrafa, če ta obstaja.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 30.11.2016}
-\begin{vprasanje}[nal:bfs]
-Na grafu s slike~\ref{fig:bdfs} izvedi iskanje v širino.
+\begin{vprasanje}[bfs]
+Na grafu s slike~\fig{} izvedi iskanje v širino.
 V primerih, ko imaš več ena\-ko\-vred\-nih izbir,
 upoštevaj abecedni vrstni red.
 Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.7]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
@@ -95,9 +94,8 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 \draw (F) -- (I);
 \draw (D) -- (G) -- (H) -- (D);
 \end{tikzpicture}
-\caption{Graf za nalogi~\ref{nal:bfs} in~\ref{nal:dfs}.}
-\label{fig:bdfs}
-\end{figure}
+\caption{Graf za nalogi~\nal{} in~\nal{dfs}.}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -115,13 +113,12 @@ Zapiši algoritem, ki za vhodni graf $G$ določi njegov premer.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 7.12.2016}
-\begin{vprasanje}[nal:dijkstra]
+\begin{vprasanje}[dijkstra]
 S pomočjo Dijkstrovega algoritma
 določi razdalje od vozlišča $A$ do ostalih vozlišč
-v grafu s slike~\ref{fig:dijkstra}.
+v grafu s slike~\fig{}.
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.9]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
@@ -157,9 +154,8 @@ v grafu s slike~\ref{fig:dijkstra}.
 \draw[->] (H) -- (G)
     node [below, midway] {$5$};
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:dijkstra}.}
-\label{fig:dijkstra}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -227,8 +223,8 @@ Kdaj naj se iskanje konča in kako naj se poišče rešitev?
 
 \begin{naloga}%
 {Dasgupta, Papadimitriou, Vazirani}{\cite[Exercise~3.1]{dpv}}
-\begin{vprasanje}[nal:dfs]
-Na grafu s slike~\ref{fig:bdfs} izvedi iskanje v globino.
+\begin{vprasanje}[dfs]
+Na grafu s slike~\fig{bfs} izvedi iskanje v globino.
 V primerih, ko imaš več ena\-ko\-vred\-nih izbir,
 upoštevaj abecedni vrstni red.
 Za vsako povezavo določi, ali se nahaja v drevesu iskanja v globino.
@@ -239,13 +235,12 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v globino.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.5.2018}
-\begin{vprasanje}[nal:bf]
+\begin{vprasanje}[bf]
 S pomočjo Bellman-Fordovega algoritma
 določi razdalje od vozlišča $A$ do ostalih vozlišč
-v grafu s slike~\ref{fig:bf}.
+v grafu s slike~\fig{}.
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.9]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
@@ -281,9 +276,8 @@ v grafu s slike~\ref{fig:bf}.
 \draw[->] (H) -- (G)
     node [below, midway] {$-5$};
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:bf}.}
-\label{fig:bf}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -291,8 +285,8 @@ v grafu s slike~\ref{fig:bf}.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 7.12.2016}
-\begin{vprasanje}[nal:topo]
-Dan je usmerjen acikličen graf s slike~\ref{fig:topo}.
+\begin{vprasanje}[topo]
+Dan je usmerjen acikličen graf s slike~\fig{}.
 
 \begin{enumerate}[(a)]
 \item Poišči topološko ureditev vozlišč zgornjega grafa.
@@ -302,8 +296,7 @@ Dan je usmerjen acikličen graf s slike~\ref{fig:topo}.
 \item Poišči najdaljšo pot od vozlišča $G$ do vozlišča $E$.
 \end{enumerate}
 
-\begin{figure}
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.9]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
@@ -332,9 +325,8 @@ Dan je usmerjen acikličen graf s slike~\ref{fig:topo}.
 \draw[->] (H) -- (B) node [below, midway, sloped] {$3$};
 \draw[->] (H) -- (F) node [above, midway, sloped] {$6$};
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:topo}.}
-\label{fig:topo}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -342,7 +334,7 @@ Dan je usmerjen acikličen graf s slike~\ref{fig:topo}.
 
 
 \begin{naloga}{?}{Kolokvij OR 9.5.2013}
-\begin{vprasanje}[nal:oviratlon]
+\begin{vprasanje}[oviratlon]
 Oviratlon je tekalna preizkušnja
 na 8 do 10 kilometrov dolgi poti z različnimi ovirami.
 Zanima nas, na koliko različnih načinov lahko pridemo od štarta do cilja.
@@ -352,14 +344,13 @@ Uteži na povezavah nam predstavljajo,
 na koliko načinov jih lahko prečkamo.
 
 \begin{enumerate}[(a)]
-\item Reši nalogo za graf s slike~\ref{fig:oviratlon}.
+\item Reši nalogo za graf s slike~\fig{}.
 
 \item Zapiši algoritem, ki reši dani problem.
 Kakšna je njegova časovna zahtevnost?
 \end{enumerate}
 
-\begin{figure}
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.9]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
 
@@ -399,9 +390,8 @@ Kakšna je njegova časovna zahtevnost?
     node [above, midway] {$20$};
 
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:oviratlon}.}
-\label{fig:oviratlon}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -409,7 +399,7 @@ Kakšna je njegova časovna zahtevnost?
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 15.12.2016}
-\begin{vprasanje}[nal:zaklad]
+\begin{vprasanje}[zaklad]
 Lovec na zaklade se z bogatim ulovom
 vrača iz Kalifornije nazaj domov v Chicago,
 pri čemer mora seveda prečkati Divji zahod.
@@ -432,13 +422,12 @@ z uporabo variante Dijkstrovega algoritma,
 ter utemelji njegovo ustreznost.
 Lahko predpostaviš, da sta teži začetnega in končnega vozlišča enaki $1$.
 
-\item Reši problem za graf s slike~\ref{fig:zaklad},
+\item Reši problem za graf s slike~\fig{},
 pri čemer naj se pot začne v LA in konča v CH.
 Zadostovalo bo, če verjetnosti računaš na $3$ decimalke natančno.
 \end{enumerate}
 
-\begin{figure}
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.7]
 \tikzstyle{every node}=[]
 \tikzstyle{vertex}=[draw, circle, inner sep=-2pt, minimum size=6mm]
@@ -486,9 +475,8 @@ Zadostovalo bo, če verjetnosti računaš na $3$ decimalke natančno.
 \draw (nm) -- (nn);
 \draw (nn) -- (nt);
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:zaklad}.}
-\label{fig:zaklad}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -516,7 +504,7 @@ Utemelji pravilnost meje za časovno zahtevnost algoritma.
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 10.7.2017}
-\begin{vprasanje}[nal:pocitnice]
+\begin{vprasanje}[pocitnice]
 Z električnim vozilom se odpravljamo na počitnice.
 Vozilo moramo vsako noč napolniti,
 zato smo si pripravili seznam krajev in cestnih povezav med njimi,
@@ -535,12 +523,11 @@ kjer smo se ustavili na poti naprej.
 Dopolni zgornji algoritem, da bo našel še ustrezno pot nazaj.
 
 \item S pomočjo zgornjih algoritmov poišči najkrajšo pot od LJ do AM
-in najkrajšo pot nazaj v grafu s slike~\ref{fig:pocitnice},
+in najkrajšo pot nazaj v grafu s slike~\fig{},
 ki ne gre čez kraje iz prejšnje poti.
 \end{enumerate}
 
-\begin{figure}
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.7]
 \tikzstyle{every node}=[]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
@@ -583,9 +570,8 @@ ki ne gre čez kraje iz prejšnje poti.
 \draw (nk) -- (nt) node[above, midway]         {$20$};
 \draw (nl) -- (nt) node[above, midway]         {$21$};
 \end{tikzpicture}
-\caption{Graf za nalogi~\ref{nal:pocitnice} (brez uteži) in~\ref{nal:pot}.}
-\label{fig:pocitnice}
-\end{figure}
+\caption{Graf za nalogi~\nal{} (brez uteži) in~\nal{pot}.}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -593,7 +579,7 @@ ki ne gre čez kraje iz prejšnje poti.
 
 
 \begin{naloga}{Janoš Vidali}{Kolokvij OR 11.6.2018}
-\begin{vprasanje}[nal:prerezna]
+\begin{vprasanje}[prerezna]
 Dan je povezan neusmerjen enostaven graf $G = (V, E)$
 (tj., brez zank in večkratnih povezav).
 {\em Prerezno vozlišče} v grafu $G$ je tako vozlišče $u \in V$,
@@ -618,7 +604,7 @@ ki so v grafu $G$ sosedna vozlišču $u$
 ali njegovim potomcem v drevesu iskanja v globino.
 
 \begin{enumerate}[(a)]
-\item Za graf na sliki~\ref{fig:prerezna} nariši drevo iskanja v globino
+\item Za graf na sliki~\fig{} nariši drevo iskanja v globino
 (v njem označi tudi povratne povezave, npr.~s črtkano črto)
 in določi njegova prerezna vozlišča.
 Upoštevaj abecedni vrstni red obiskovanja vozlišč.
@@ -648,8 +634,7 @@ Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
 \item Oceni časovno zahtevnost celotnega algoritma.
 \end{enumerate}
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=2]
 \tikzstyle{vertex}=[draw, circle, fill=white, minimum size=4mm]
 \small
@@ -667,9 +652,8 @@ Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
 \draw (C) -- (B) -- (A) -- (E) -- (F) -- (A) -- (G) -- (H) -- (B);
 \draw (D) -- (J) -- (I) -- (D) -- (C) -- (I);
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:prerezna}.}
-\label{fig:prerezna}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -677,14 +661,14 @@ Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 5.7.2018}
-\begin{vprasanje}[nal:dag]
-Dan je utežen usmerjen acikličen graf s slike~\ref{fig:dag}.
+\begin{vprasanje}[dag]
+Dan je utežen usmerjen acikličen graf s slike~\fig{}.
 
 \begin{enumerate}[(a)]
-\item Poišči topološko ureditev grafa s slike~\ref{fig:dag}.
+\item Poišči topološko ureditev grafa s slike~\fig{}.
 
 \item Poišči najcenejšo pot od vozlišča $S$ do vozlišča $T$
-v grafu s slike~\ref{fig:dag}.
+v grafu s slike~\fig{}.
 
 \item Naj bo $G = (V, E)$ usmerjen acikličen graf
 z nenegativno uteženimi povezavami
@@ -703,11 +687,10 @@ Natančno opiši (z besedami ali psevdokodo),
 kako bi v času $O(m)$ (kjer je $m = |V| + |E|$)
 za vsako vozlišče $u \in V$ določil verjetnost $q_u$,
 da algoritem $\A$ obišče vozlišče $u$.
-Verjetnosti za graf s slike~\ref{fig:dag} ni potrebno računati.
+Verjetnosti za graf s slike~\fig{} ni potrebno računati.
 \end{enumerate}
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=1.5]
 \tikzstyle{every node}=[]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
@@ -747,9 +730,8 @@ Verjetnosti za graf s slike~\ref{fig:dag} ni potrebno računati.
 \draw[->] (H) -- (T) node[midway, above] {$3$};
 \draw[->] (I) -- (T) node[midway, below, sloped] {$1$};
 \end{tikzpicture}
-\caption{Graf za nalogo~\ref{nal:dag}.}
-\label{fig:dag}
-\end{figure}
+\podnaslov{Graf}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -757,7 +739,7 @@ Verjetnosti za graf s slike~\ref{fig:dag} ni potrebno računati.
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2018}
-\begin{vprasanje}[nal:pot]
+\begin{vprasanje}[pot]
 Odpravljamo se na pot, ki bo trajala več dni.
 Pripravili smo si seznam krajev in povezav med njimi,
 ki jih lahko prevozimo v enem dnevu.
@@ -771,7 +753,7 @@ Poiskati želimo čim cenejšo pot od začetne točke do destinacije
 in predlagaj čim bolj učinkovit algoritem za njegovo reševanje.
 
 \item S pomočjo zgornjega algoritma poišči najcenejšo pot od LJ do BX
-v grafu s slike~\ref{fig:pocitnice}.
+v grafu s slike~\fig{pocitnice}.
 Na povezavah so napisani stroški prevozov med krajema
 (veljajo za obe smeri),
 pri vozliščih pa stroški prenočitve v kraju.

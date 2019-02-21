@@ -137,19 +137,16 @@ Kakšen je pričakovani dobiček?
 
 
 \begin{naloga}{Sergio Cabello}{Izpit OR 15.3.2017}
-\begin{vprasanje}[nal:dectree]
-Imaš odločitveno drevo s slike~\ref{fig:dectree},
+\begin{vprasanje}[dectree]
+Imaš odločitveno drevo s slike~\fig{},
 a nisi prepričan glede vrednosti $p \in [0, 1/3]$.
 Pričakovano vrednost želiš maksimizirati.
 Poišči optimalne odločitve glede na vrednost $p$.
 
-\begin{figure}[t]
-	\centering
-	\includegraphics{slike/decision-tree.pdf}
-    \caption{Odločitveno drevo za nalogo~\ref{nal:dectree}.}
-    \label{fig:dectree}
-\end{figure}
-
+\begin{slika}
+\includegraphics{slike/decision-tree.pdf}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -157,7 +154,7 @@ Poišči optimalne odločitve glede na vrednost $p$.
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 15.12.2016}
-\begin{vprasanje}[nal:avtobus]
+\begin{vprasanje}[avtobus]
 Mudi se ti na izpit, a ravno v trenutku,
 ko prideš na postajo Konzorcij, odpelje avtobus številka 1.
 Na prikazovalniku se izpiše,
@@ -194,10 +191,9 @@ Kakšne bodo tvoje odločitve,
 da bo pričakovano trajanje poti do FMF čim krajše?
 Nariši od\-lo\-čit\-ve\-no drevo
 in odločitve sprejmi na podlagi izračunanih verjetnosti!
-Glej sliko~\ref{fig:avtobus} za shemo možnih poti.
+Glej sliko~\fig{} za shemo možnih poti.
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.8]
 \tikzstyle{vertex}=[draw, fill=white]
 \small
@@ -238,9 +234,8 @@ Glej sliko~\ref{fig:avtobus} za shemo možnih poti.
 \draw[->] (SD) -- (Z);
 \draw[->] (Z) -- (FE);
 \end{tikzpicture}
-\caption{Shema možnih poti za nalogo~\ref{nal:avtobus}.}
-\label{fig:avtobus}
-\end{figure}
+\podnaslov{Shema možnih poti}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -347,15 +342,14 @@ Pričakovani dobiček tudi izračunaj.
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 29.8.2017}
-\begin{vprasanje}[nal:dectree2]
-Dano je odločitveno drevo s slike~\ref{fig:dectree2},
+\begin{vprasanje}[dectree2]
+Dano je odločitveno drevo s slike~\fig{},
 pri čemer velja $0 \le p \le 1/4$.
 Pričakovano vrednost želimo maksimizirati.
 Poišči optimalne odločitve in pričakovano vrednost
 v odvisnosti od vrednosti parametra $p$.
 
-\begin{figure}
-\centering
+\begin{slika}
 \leavevmode%
 \begin{tikzpicture}[style=thick,scale=0.6]
 \tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
@@ -395,9 +389,8 @@ v odvisnosti od vrednosti parametra $p$.
 \draw (J) -- (P) node[above, midway, sloped] {$4p$};
 \draw (J) -- (Q) node[below, midway, sloped] {$1-4p$};
 \end{tikzpicture}
-\caption{Odločitveno drevo za nalogo~\ref{nal:dectree2}.}
-\label{fig:dectree2}
-\end{figure}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -458,7 +451,7 @@ Nariši odločitveno drevo in odločitve sprejmi v odvisnosti od parametra $k$!
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 11.6.2018}
-\begin{vprasanje}[nal:vrac]
+\begin{vprasanje}[vrac]
 Podajamo se na pot v mesto na drugi strani gorovja.
 Lahko se odločimo za pot po cesti okoli gorovja,
 za kar bomo porabili $12$ ur.
@@ -497,10 +490,9 @@ bomo za nadaljnjo pot porabili $12$ ur.
 Kako se bomo odločili?
 Nariši odločitveno drevo in ga uporabi pri sprejemanju odločitev.
 Izračunaj tudi pričakovano trajanje poti.
-Glej sliko~\ref{fig:vrac} za shemo možnih poti.
+Glej sliko~\fig{} za shemo možnih poti.
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \begin{tikzpicture}[style=thick,scale=0.8]
 \tikzstyle{vertex}=[draw, fill=white]
 \small
@@ -524,9 +516,8 @@ Glej sliko~\ref{fig:vrac} za shemo možnih poti.
     };
 
 \end{tikzpicture}
-\caption{Shema možnih poti za nalogo~\ref{nal:vrac}.}
-\label{fig:vrac}
-\end{figure}
+\podnaslov{Shema možnih poti}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -534,15 +525,14 @@ Glej sliko~\ref{fig:vrac} za shemo možnih poti.
 
 
 \begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2018}
-\begin{vprasanje}[nal:dectree3]
-Dano je odločitveno drevo s slike~\ref{fig:dectree3},
+\begin{vprasanje}[dectree3]
+Dano je odločitveno drevo s slike~\fig{},
 pri čemer velja $0 \le p \le 1$.
 Pričakovano vrednost želimo maksimizirati.
 Poišči optimalne odločitve in pričakovano vrednost
 v odvisnosti od vrednosti parametra $p$.
 
-\begin{figure}[t]
-\centering
+\begin{slika}
 \leavevmode%
 \begin{tikzpicture}[style=thick,scale=0.7]
 \tikzstyle{dec}=[draw,rectangle,minimum size=1cm]
@@ -578,9 +568,8 @@ v odvisnosti od vrednosti parametra $p$.
 \draw (J) -- (P) node[above, midway, sloped] {$1-p$};
 \draw (J) -- (Q) node[below, midway, sloped] {$p$};
 \end{tikzpicture}
-\caption{Odločitveno drevo za nalogo~\ref{nal:dectree3}.}
-\label{fig:dectree3}
-\end{figure}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
