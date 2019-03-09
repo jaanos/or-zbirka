@@ -1,4 +1,4 @@
-\subsection{Celoštevilsko linearno programiranje}
+\razdelek{Celoštevilsko linearno programiranje}
 
 \begin{naloga}{?}{Vaje OR 16.3.2016}
 \begin{vprasanje}[proj]
@@ -14,7 +14,23 @@ da ima projekt $p_i$ ob uspešnem dokončanju donos $c_i$ evrov.
 Katere projekte naj sponzorira, da bo donos čim večji?
 Na smiseln način modeliraj opisani problem z linearnim programom.
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsak projekt $p_i \in \p$ bomo uvedli spremenljivko $x_i$,
+katere vrednost interpretiramo kot
+$$
+x_i = \begin{cases}
+1, & \text{če naj občina sponzorira projekt $p_i$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max \ \sum_{i=1}^n c_i x_i && \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le x_i &\le 1, \quad x_i \in \Z \\
+&& \sum_{i=1}^n d_i x_i &\le M \\
+&& \sum_{i=1}^n a_i x_i &\ge N
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
@@ -36,7 +52,14 @@ da so za vsako množico $H \in S$ projekti iz $H$ med seboj v konfliktu
 \end{enumerate}
 Opiši, kako bi modelirali opisane omejitve.
 \end{vprasanje}
+
 \begin{odgovor}
+Celoštevilskemu linearnemu programu iz rešitve naloge~\res{proj}
+bomo dodali nove omejitve.
+\begin{enumerate}[(a)]
+\item $\displaystyle \forall (p_i, p_j) \in V : x_i \le x_j$
+\item $\displaystyle \forall H \in S : \sum_{p_i \in H} x_i \le 1$
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
 
@@ -56,7 +79,29 @@ V katerih skladiščih naj hranimo dobrine,
 da bodo skupni stroški najema in dostave čim manjši?
 Na smiseln način modeliraj opisani problem z linearnim programom.
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsako skladišče, ki ga uporabimo,
+želimo vedeti, kateri stranki bomo dostavili dobrino.
+Za $i$-to skladišče ($1 \le i \le n$) in $j$-to stranko ($1 \le j \le m$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če bomo iz $i$-tega skladišča dostavili $j$-ti stranki, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min \ \sum_{i=1}^n \sum_{j=1}^m (f_i + c_{ij}) x_{ij} && \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{Vsako skladišče uporabimo največ enkrat}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^m x_{ij} &\le 1
+\opis{Zadostimo potrebe vsake stranke}
+\forall j \in \{1, \dots, m\}: &\ & \sum_{i=1}^n x_{ij} &\ge d_j
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
@@ -73,7 +118,22 @@ da maksimizira dobiček,
 če lahko vsak predmet proda največ enkrat?
 Modeliraj opisani problem z linearnim programom.
 \end{vprasanje}
+
 \begin{odgovor}
+Za $i$-to ponudbo ($1 \le i \le k$) bomo uvedli spremenljivko $x_i$,
+katere vrednost interpretiramo kot
+$$
+x_i = \begin{cases}
+1, & \text{če naj dražitelj sprejme $i$-to ponudbo, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max \ \sum_{i=1}^n c_i x_i && \text{p.p.} \\
+\forall i \in \{1, \dots, k\}: &\ & 0 \le x_i &\le 1, \quad x_i \in \Z \\
+\forall p \in A: &\ & \sum_{\substack{i=1 \\ p \in B_i}}^k x_i &\le 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
@@ -84,7 +144,28 @@ Definiraj problem dominacijske množice v grafu
 in zapiši celoštevilski linearni program,
 ki rešuje opisani problem.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $G = (V, E)$ neusmerjen graf.
+Množica $D \subseteq V$ {\em dominira} graf $G$
+če je vsako vozlišče iz $V$ bodisi v $D$, bodisi ima soseda v $D$.
+Pri problemu dominacijske množice iščemo najmanjšo množico $D_{\min}$,
+ki dominira graf $G$.
+
+Za vsako vozlišče $v \in V$ bomo uvedli spremenljivko $x_v$,
+katere vrednost interpretiramo kot
+$$
+x_v = \begin{cases}
+1, & \text{vozlišče $v$ je v množici $D_{\min}$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ \sum_{v \in V} x_v &\quad \text{p.p.} \\
+\forall v \in V: &\ & 0 \le x_v &\le 1, \quad x_v \in \Z \\
+\forall v \in V: &\ & x_v + \sum_{uv \in E} x_u &\ge 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
@@ -94,7 +175,31 @@ ki rešuje opisani problem.
 Napiši linearni program,
 ki modelira iskanje največjega prirejanja v dvodelnem grafu.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $G = (V, E)$ dvodelen graf.
+Lahko torej zapišemo $V = A \cup B$ tako,
+da sta množici $A$ in $B$ disjunktni
+ter za vsako povezavo $uv \in E$ velja $u \in A$, $v \in B$.
+Množica $M \subset E$ je {\em prirejanje},
+če nobeni dve povezavi iz $M$ nimata skupnega krajišča.
+Iščemo največje prirejanje $M_{\max}$.
+
+Za vsako povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1, & \text{povezava $uv$ je v množici $M_{\max}$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max &\ & \sum_{uv \in E}^n x_{uv} &\quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z \\
+\forall u \in A: &\ & \sum_{uv \in E} x_{uv} &\le 1 \\
+\forall v \in B: &\ & \sum_{uv \in E} x_{uv} &\le 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
@@ -105,7 +210,35 @@ Napiši linearni program,
 ki modelira iskanje najkrajše poti
 med danima vozliščema $u$ in $v$ v usmerjenem grafu $G$.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $G = (V, E)$ usmerjen graf in $u, v \in V$ njegovi vozlišči.
+Poiskati želimo najkrajšo pot $P_{uv}$ od vozlišča $u$ do vozlišča $v$.
+
+Za vsako povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1, & \text{povezava $uv$ je v poti $P_{uv}$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ \sum_{uv \in E}^n x_{uv} &\quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z
+\opis{Iz vozlišča $u$ izstopimo enkrat več kakor vstopimo}
+&& \sum_{yu \in E} x_{yu} - \sum_{uz \in E} x_{uz} &= -1
+\opis{V vozlišče $v$ vstopimo enkrat več kakor izstopimo}
+&& \sum_{yv \in E} x_{yv} - \sum_{vz \in E} x_{vz} &= 1
+\opis{V ostala vozlišča vstopimo natanko tolikokrat kakor vstopimo}
+\forall w \in V \setminus \{u, v\}: &\ &
+\sum_{yw \in E} x_{yw} - \sum_{wz \in E} x_{wz} &= 0
+\end{alignat*}
+Zgornje omejitve sicer dovolijo, da posamezno vozlišče obiščemo večkrat,
+a se je mogoče teh zank znebiti,
+pri čemer se vrednost ciljne funkcije zmanjša.
+Tako bo optimalna rešitev zagotovo pot od vozlišča $u$ do vozlišča $v$.
 \end{odgovor}
 \end{naloga}
 
@@ -127,7 +260,39 @@ Kukavica želi maksimizirati pričakovano število preživelih mladičev.
 
 Zapiši problem kot celoštevilski linearni program.
 \end{vprasanje}
+
 \begin{odgovor}
+Oštevilčimo gnezda s števili od $1$ do $12$:
+gnezdi taščic naj imata števili $1$ in $2$,
+gnezda vrtnih penic naj imajo števila $3$ in $4$, $5$ in $6$,
+gnezda travniških cip naj imajo števila $7$ in $8$, in $9$,
+gnezdi belih pastiric naj imata števili $10$ in $11$,
+sovino gnezdo pa naj ima število $12$.
+Za $i$-to gnezdo ($1 \le i \le 12$) in $j \in \{1, 2, 3\}$
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če naj kukavica v $i$-to gnezdo izleže natanko $j$ jajc, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Naj bo $V = \{\{1, 2\}, \{3, 4, 5, 6\}, \{7, 8, 9\}, \{10, 11\}, \{12\}\}$
+particija indeksov gnezd glede na vrsto ptice.
+Zapišimo celoštevilski linearni program.
+\begin{align*}
+\max \ \sum_{i=1}^{12} j \ p_{ij} \ x_{ij} &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, 12\}: \ \sum_{j=1}^3 x_{ij} &\le 1
+\opis{Skupaj izleže $16$ jajc}
+\sum_{i=1}^{12} \sum_{j=1}^3 j \ x_{ij} &= 16
+\opis{K vsaki vrsti ptice izleže vsaj eno jajce}
+\forall S \in V: \ \sum_{i \in S} \sum_{j=1}^3 x_{ij} &\ge 1
+\opis{Pri taščicah izleže strogo več jajc kot pri belih pastiricah}
+\sum_{i=1}^2 \sum_{j=1}^3 j \ x_{ij} - \sum_{i=10}^{11} \sum_{j=1}^3 j \ x_{ij} &\ge 1
+\opis{Pri drugi beli pastirici ne bo odložila jajca,
+če bo pri prvi taščici odložila dve jajci ali več}
+\sum_{j=2}^3 x_{1j} + \sum_{j=1}^3 x_{11,j} &\le 1
+\end{align*}
 \end{odgovor}
 \end{naloga}
 
@@ -162,7 +327,44 @@ Kako naj Janez proda vino, da bo čim več zaslužil?
 
 Zapiši problem kot celoštevilski linearni program.
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsako sorto $i \in I = \{RM, LR, RR\}$
+(rumeni muškat, laški rizling, renski rizling)
+in kupca $j \in J = \{K, L, Z, O\}$
+(bar Kocka, bar Luka, župnišče Sv. Martin, občina Duplek)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če naj Janez proda sorto $i$ kupcu $j$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{gather*}
+\begin{alignedat}{4}
+\max &\ 2000 x_{RM, K} &&+ 2200 x_{RM, L} &&+ 750 x_{RM, Z} &&+ 1800 x_{RM, O} \\
+{}+ &\ 10000 x_{LR, K} &&+ 5500 x_{LR, L} &&+ 750 x_{LR, Z} &&+ 1800 x_{LR, O} \\
+{}+ &\ 5000 x_{RR, K}  &&+ 5500 x_{RR, L} &&+ 750 x_{RR, Z} &&+ 1800 x_{RR, O}
+\quad \text{p.p.}
+\end{alignedat} \\
+\begin{aligned}
+\forall i \in I \ \forall j \in J: \ 0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{Vsako sorto proda največ enemu kupcu}
+\forall i \in I: \sum_{j \in J} x_{ij} &\le 1
+\opis{Vsak kupec dobi največ eno sorto}
+\forall j \in J: \sum_{i \in I} x_{ij} &\le 1
+\opis{Občina ne bo kupila rumenega muškata ali laškega rizlinga}
+x_{RM, O} + x_{LR, O} &= 0
+\opis{Če Kocka dobi laški rizling, potem Luka dobi rumeni muškat}
+x_{LR, K} &\le x_{RM, L}
+\opis{Če občina in župnišče ne kupita ničesar, tudi Kocka ne kupi ničesar}
+\sum_{i \in I} (x_{i, O} + x_{i, Z} - x_{i, K}) &\ge 0
+\opis{Ženin pogoj}
+x_{s_A, A} + x_{s_B, B} + \sum_{j \in J \setminus \{C\}} x_{s_C, j} &\le 2
+\end{aligned}
+\end{gather*}
 \end{odgovor}
 \end{naloga}
 
