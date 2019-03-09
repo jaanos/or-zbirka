@@ -15,14 +15,35 @@ Dan je spodnji program:
 \end{algorithmic}
 \end{small}
 
-
 \begin{enumerate}[(a)]
 \item Kaj počne zgornji program?
 \item Oceni število korakov, ki jih opravi zgornji program,
 v odvisnosti od parametra $n$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Program prepiše vnose v matriki $A$ nad diagonalo
+na ustrezno mesto pod diagonalo tako,
+da je po izvedbi programa matrika $A$ simetrična.
+\item Kot korak bomo upoštevali posamezno izvedbo notranje zanke {\bf for},
+kjer kopiramo vrednost v matriki na drugo mesto
+-- ob predpostavki, da je velikost vnosov omejena
+(npr.~32-bitna cela števila),
+bo trajanje take operacije omejeno s konstanto.
+Preštejmo število takih korakov:
+$$
+\sum_{i=1}^n \sum_{j=i+1}^n 1 = \sum_{i=1}^n (n-i) = \sum_{i=0}^{n-1} i =
+{n(n-1) \over 2}
+$$
+
+Lahko bi seveda upoštevali še korake,
+ki so potrebni za vzdrževanje števcev zank
+(inicializacija števca, povečevanje števca, preverjanje konca zanke),
+a bi spet dobili kvadratni polinom v $n$.
+Tako lahko rečemo, da je število korakov omejeno z $O(n^2)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
 
@@ -52,9 +73,60 @@ Dan je spodnji program:
 \item Oceni število korakov, ki jih opravi zgornji program,
 v odvisnosti od parametra $n$.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item V vsakem obhodu zanke {\bf while}
+se vrednost $\ell[i]$ spremeni iz $0$ v $1$ ali obratno.
+Če se vrednost spremeni na $1$, se $i$ nastavi na $1$,
+sicer se pa poveča za $1$.
+
+Izpišimo si vrednosti v seznamu $\ell$ in spremenljivke $i$
+ob koncu vsakega obhoda zanke {\bf while} tekom izvajanja algoritma,
+recimo za $n = 4$:
+$$
+\begin{array}{c|c|ccc|c|c}
+\text{obhod} & \ell[4 \dots 1] & i &\qquad&
+\text{obhod} & \ell[4 \dots 1] & i \\ \cline{1-3} \cline{5-7}
+ 1 & 0001 & 1 && 16 & 1001 & 1 \\
+ 2 & 0000 & 2 && 17 & 1000 & 2 \\
+ 3 & 0010 & 1 && 18 & 1010 & 1 \\
+ 4 & 0011 & 1 && 19 & 1011 & 1 \\
+ 5 & 0010 & 2 && 20 & 1010 & 2 \\
+ 6 & 0000 & 3 && 21 & 1000 & 3 \\
+ 7 & 0100 & 1 && 22 & 1100 & 1 \\
+ 8 & 0101 & 1 && 23 & 1101 & 1 \\
+ 9 & 0100 & 2 && 24 & 1100 & 2 \\
+10 & 0110 & 1 && 25 & 1110 & 1 \\
+11 & 0111 & 1 && 26 & 1111 & 1 \\
+12 & 0110 & 2 && 27 & 1110 & 2 \\
+13 & 0100 & 3 && 28 & 1100 & 3 \\
+14 & 0000 & 4 && 29 & 1000 & 4 \\
+15 & 1000 & 1 && 30 & 0000 & 5 \\
+\end{array}
+$$
+Če pogledamo samo tiste obhode, na koncu katerih velja $i = 1$, opazimo,
+da vrednosti v seznamu $\ell$ predstavljajo
+dvojiške zapise števil od $1$ do $2^n - 1$
+v ostalih pa se najmanj pomembna $1$ zamenja z $0$.
+Algoritem torej simulira dvojiški števec z $n$ mesti.
+
+\item Algoritem obišče vseh $2^n - 1$ števil,
+poleg tega pa mora vsakič poskrbeti za zamenjavo vseh enic
+za najmanj pomembno ničlo.
+Ob upoštevanju, da obstaja $2^{n-i}$ števil
+z najmanj pomembno ničlo na $i$-tem mestu,
+za vrednost $2^n - 1$ pa je potrebno nadomestiti vseh $n$ mest,
+je skupno število korakov enako
+\begin{multline*}
+n + \sum_{i=1}^n (i \cdot 2^{n-i}) =
+\sum_{j=1}^n \left(1 + \sum_{i=j}^n 2^{n-i}\right) = \\
+= \sum_{j=1}^n \left(1 + \sum_{i=0}^{n-j} 2^i\right) =
+\sum_{j=1}^n 2^{n-j+1} = 2^{n+1} - 2 .
+\end{multline*}
+Časovna zahtevnost algoritma je torej $O(2^n)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
 
@@ -85,15 +157,53 @@ da zamenjuje sosednje elemente v nepravem vrstnem redu:
 \item Izvedi algoritem na seznamu $[7, 11, 16, 7, 5]$.
 \item Določi časovno zahtevnost algoritma.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Izpišimo vrednosti spremenljivk ob koncu vsakega obhoda zanke {\bf for}
+oziroma {\bf while}, ko se prejšnja konča.
+
+$$
+\begin{array}{c|c|c|c|c}
+\text{obhod {\bf while}} & i & y & z & \ell[1 \dots 5] \\ \hline
+1 & 2 & 1 & 5 & [7, 11, 16, 7, 5] \\
+1 & 3 & 1 & 5 & [7, 11, 16, 7, 5] \\
+1 & 4 & 4 & 5 & [7, 11, 7, 16, 5] \\
+1 & 5 & 5 & 5 & [7, 11, 7, 5, 16] \\
+1 &   & 5 & 4 & [7, 11, 7, 5, 16] \\
+2 & 2 & 1 & 4 & [7, 11, 7, 5, 16] \\
+2 & 3 & 3 & 4 & [7, 7, 11, 5, 16] \\
+2 & 4 & 4 & 4 & [7, 7, 5, 11, 16] \\
+2 &   & 4 & 3 & [7, 7, 5, 11, 16] \\
+3 & 2 & 1 & 3 & [7, 7, 5, 11, 16] \\
+3 & 3 & 3 & 3 & [7, 5, 7, 11, 16] \\
+3 &   & 3 & 2 & [7, 5, 7, 11, 16] \\
+4 & 2 & 2 & 2 & [5, 7, 7, 11, 16] \\
+4 &   & 2 & 1 & [5, 7, 7, 11, 16] \\
+\end{array}
+$$
+
+\item Naj bodo $z_1, z_2, \dots, z_k$ vrednosti,
+ki jih zavzame spremenljivka $z$ ob vsakem vstopu v zanko {\bf while}.
+Očitno velja $z_i - 1 \ge z_{i+1}$ za vsak $i$,
+tako da velja $k \le n-1$.
+Največje število korakov je torej
+$$
+\sum_{z=2}^n (z-1) = {n(n-1) \over 2} .
+$$
+Tako število korakov dosežemo,
+če je seznam $\ell$ na začetku urejen padajoče
+-- tako vsakič pride do zamenjave v zadnjem koraku zanke {\bf for},
+zato se $z$ vsakič zmanjša za $1$.
+Časovna zahtevnost algoritma je torej $O(n^2)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 12.10.2016}
-\begin{vprasanje}
+\begin{vprasanje}[mergesort]
 Algoritem {\sc MergeSort} uredi vhodni seznam tako,
 da ga najprej razdeli na dva dela,
 nato vsakega rekurzivno uredi,
@@ -103,9 +213,57 @@ nazadnje pa zlije dobljena urejena seznama.
 \item Izvedi algoritem na seznamu $[7, 11, 16, 7, 5, 0, 14, 1, 19, 13]$.
 \item Določi časovno zahtevnost algoritma.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item
+\begin{small}
+\begin{algorithmic}
+\Function{MergeSort}{$\ell[1 \dots n]$}
+    \If{$n \le 1$}
+        \State \Return $\ell$
+    \EndIf
+    \State $m \gets \lceil {n \over 2} \rceil$
+    \State $\ell_1 \gets \text{\sc MergeSort}(\ell[1 \dots m])$
+    \State $\ell_2 \gets \text{\sc MergeSort}(\ell[m+1 \dots n])$
+    \State $i, j \gets 1, 1$
+    \State $\ell' \gets []$
+    \While{$i \le m \land j \le n-m$}
+        \If{$\ell_1[i] \le \ell_2[j]$}
+            \State dodaj $\ell_1[i]$ na konec $\ell'$
+            \State $i \gets i+1$
+        \Else
+            \State dodaj $\ell_2[j]$ na konec $\ell'$
+            \State $j \gets j+1$
+        \EndIf
+    \EndWhile
+    \State pripni $\ell_1[i \dots m]$ na konec $\ell'$
+    \State pripni $\ell_2[j \dots n-m]$ na konec $\ell'$
+    \State \Return $\ell'$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Izvajanje algoritma je prikazano na sliki~\fig{}.
+Nad črtkano črto je prikazano rekurzivno razbijanje seznamov,
+pod njo pa zlivanje dobljenih urejenih podseznamov.
+
+\item Funkcija obsega dva rekurzivna klica na seznamih polovične dolžine
+ter združevanje obeh dobljenih seznamov v enega.
+Naj bo $T(n)$ čas izvajanja algoritma pri vhodnem seznamu dolžine $n$.
+Ker združevanje poteka v linearnem času, velja rekurzivna zveza
+$$
+T(n) = O(n) + 2T\left({n \over 2}\right) .
+$$
+Po krovnem izreku lahko izpeljemo,
+da je časovna zahtevnost algoritma $O(n \log n)$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\nal{}(b)]{Diagram izvajanja algoritma}
+\end{slika}
 \end{odgovor}
 \end{naloga}
 
@@ -129,9 +287,14 @@ kar storimo s sledečim algoritmom:
 \end{small}
 Določi časovno zahtevnost algoritma.
 Ali je ta algoritem polinomski?
-
 \end{vprasanje}
+
 \begin{odgovor}
+Algoritem teče v času $O(\sqrt{n})$.
+Ker je vhod algoritma število $n$,
+ki je zapisano kot zaporedje $\ell = O(\log n)$ bitov,
+vidimo, da algoritem teče v času $O(2^{\ell/2})$
+in torej ni polinomski v dolžini vhoda.
 \end{odgovor}
 \end{naloga}
 
@@ -141,14 +304,31 @@ Ali je ta algoritem polinomski?
 Zapiši rekurziven algoritem,
 ki na vhod dobi celo število $n$ in teče v času $O(\sqrt{n})$.
 Uporaba korenjenja ni dovoljena.
-
 \end{vprasanje}
+
 \begin{odgovor}
+Po krovnem izreku ima časovno zahtevnost $O(\sqrt{n})$ algoritem,
+katerega čas izvajanja $T(n)$ je opisan z rekurzivno zvezo
+$$
+T(n) = O(1) + 2T\left({n \over 4}\right) .
+$$
+Zapišimo tak algoritem:
+\begin{small}
+\begin{algorithmic}
+\Function{Korenski}{$\ell[1 \dots n]$}
+    \If{$n \ge 4$}
+        \State $m \gets \lfloor {n \over 4} \rfloor$
+        \State $\text{\sc Korenski}(\ell[1 \dots m])$
+        \State $\text{\sc Korenski}(\ell[n-m+1 \dots n])$
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{small}
 \end{odgovor}
 \end{naloga}
 
 
-\begin{naloga}{?}{Kolokvij OR 17.3.2013}
+\begin{naloga}{?}{Kolokvij OR 17.4.2013}
 \begin{vprasanje}
 Dani so končna neprazna množica $S \subset \N$ moči $n$,
 število $k \in \{1, 2, \dots, n\}$ ter algoritem {\sc Alg}:
@@ -156,16 +336,14 @@ Dani so končna neprazna množica $S \subset \N$ moči $n$,
 \begin{algorithmic}
 \Function{Alg}{$S, k$}
     \State $x \gets$ naključen element $S$
-    \If{$|S| = 1$}
+    \State $S^+ \gets \set{y \in S}{y > x}$
+    \State $S^- \gets \set{y \in S}{y < x}$
+    \If{$|S^-| < k-1$}
+        \State \Return {\sc Alg}$(S^+, k - |S^-| - 1)$
+    \ElsIf{$|S^-| = k-1$}
         \State \Return $x$
     \Else
-        \State $S^+ \gets \set{y \in S}{y \ge x}$
-        \State $S^- \gets \set{y \in S}{y < x}$
-        \If{$|S^-| < k$}
-            \State \Return {\sc Alg}$(S^+, k - |S^-|)$
-        \Else
-            \State \Return {\sc Alg}$(S^-, k)$
-        \EndIf
+        \State \Return {\sc Alg}$(S^-, k)$
     \EndIf
 \EndFunction
 \end{algorithmic}
@@ -173,6 +351,63 @@ Dani so končna neprazna množica $S \subset \N$ moči $n$,
 Ugotovi, kaj je izhod algoritma pri danih vhodnih podatkih $S$ in $k$.
 Oceni časovno zahtevnost algoritma v najslabšem in v povprečnem primeru.
 \end{vprasanje}
+
 \begin{odgovor}
+Algoritem poišče $k$-ti najmanjši element v množici $S$.
+Množico razdeli na dva dela glede na naključno izbrani element $x$.
+Če ima množica $S^-$ elementov, manjših od $x$, natanko $k-1$ elementov,
+potem je $x$ iskani element.
+Če ima $S^-$ manj kot $k-1$ elementov,
+algoritem rekurzivno poišče $(|S^-| - k - 1)$-ti element
+v množici $S^+$ elementov, večjih od $x$,
+sicer pa rekurzivno poišče $k$-ti element v množici $|S^-|$.
+
+V najslabšem primeru je velikost množice,
+ki jo algoritem rekurzivno preišče, enaka $n - 1$.
+Ker algoritem porabi $O(n)$ korakov za razporejanje elementov po množicah,
+v najslabšem primeru za čas izvajanja $T(n)$ velja
+$$
+T(n) = O(n) + T(n-1) = O\left(\sum_{i=0}^n (n-i)\right) = O(n^2).
+$$
+
+Poglejmo si sedaj povprečni čas izvajanja $\hat{T}(n)$.
+Denimo, da je izbrani element $x$ $j$-ti po vrsti.
+Če velja $j = k$, potem algoritem konča.
+Če velja $j < k$, potem algoritem rekurzivno pregleda
+množico $S^+$ z $n-j$ elementi,
+če pa velja $j > k$, pa pregleda množico $S^-$ z $j-1$ elementi.
+Zapišimo rekurzivno zvezo za $\hat{T}(n)$:
+$$
+\hat{T}(n) = O(n) +
+{1 \over n} \left(\sum_{j=1}^{k-1} \hat{T}(n-j) +
+\sum_{j=k+1}^n \hat{T}(j-1) \right)
+$$
+Denimo, da je čas izvajanja nerekurzivnega dela funkcije
+omejen s $c \cdot n$ koraki za neko konstanto $c > 0$.
+Z indukcijo bomo pokazali,
+da velja $\hat{T}(n) \le C \cdot n$ za neko konstanto $C > 0$.
+
+Po zgornji predpostavki velja $\hat{T}(1) \le cn$.
+Denimo, da za vse $m < n$ velja $\hat{T}(m) \le Cm$.
+Potem velja
+\begin{align*}
+\hat{T}(n) &\le cn +
+{1 \over n} \left(\sum_{j=1}^{k-1} C(n-j) +
+\sum_{j=k+1}^n C(j-1) \right) \\
+&= cn + {C \over 2n} ((2n-k)(k-1) + (n+k-1)(n-k)) \\
+&= cn + {C \over 2n} (n^2 + 2nk - 3n - 2k^2 + 2k) \\
+&= \left(c + {C \over 2}\right) n + {C(2k - 3) \over 2} - {Ck(k-1) \over n}
+\end{align*}
+Označimo sedaj $\alpha = k/n$ -- velja torej $0 < \alpha \le 1$.
+\begin{align*}
+\hat{T}(n) &\le
+\left(c + C \left({1 \over 2} + \alpha - \alpha^2\right) \right) n
++ C \left(\alpha - {3 \over 2}\right) \\
+&\le \left(c + C \left({1 \over 2} + \alpha (1 - \alpha)\right) \right) n \\
+&\le \left(c + {3C \over 4} \right) n
+\end{align*}
+Če vzamemo $C \ge 4c$,
+potem po indukciji velja $\hat{T}(n) \le Cn$ za vse $n$.
+Algoritem torej v povprečnem primeru opravi $O(n)$ korakov.
 \end{odgovor}
 \end{naloga}

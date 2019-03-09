@@ -38,19 +38,29 @@
   {\fontencoding{U}\fontfamily{eurosym}\selectfont e}}
 \newcommand{\ME}{\ensuremath{\operatorname{M€}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def/51751#51751
+\makeatletter
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{%
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+\makeatother
+
 \newcounter{naloga}
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
-\newenvironment{naloga}[3][]{\refstepcounter{naloga} \needspace{3\baselineskip}\noindent {\bf Naloga \thenaloga.} \avtor{#2} \naslov{#1} \vir{#3}}{\bigskip}
+\newenvironment{naloga}[3][]{\refstepcounter{naloga} \needspace{3\baselineskip}\noindent {\bf Naloga\tanaloga}\avtor{#2}\naslov{#1}\vir{#3}}{\bigskip}
 \newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\thislabel}\end{figure}}
 \newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\thislabel}\end{table}}
 \newcommand{\pgfslika}{\leavevmode\beginpgfgraphicnamed{fig-\thislabel}\input{slike/\thislabel.tikz}\endpgfgraphicnamed}
+\newcommand{\oznaka}[1]{\if\relax\detokenize{#1}\relax\grenewcommand{\thislabel}{\thenaloga}\else\grenewcommand{\thislabel}{#1}\fi}
+\newcommand{\taoznaka}[1]{\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}
 
 \newcommand{\thislabel}{?}
-\newcommand{\nal}[1]{\ref{nal:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}
-\newcommand{\fig}[1]{\ref{fig:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}
-\newcommand{\tab}[1]{\ref{tab:\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}}
-\newcommand{\podnaslov}[1]{\caption{#1 za nalogo~\nal{}.}}
+\newcommand{\nal}[1]{\ref{nal:\taoznaka{#1}}}
+\newcommand{\fig}[1]{\ref{fig:\taoznaka{#1}}}
+\newcommand{\tab}[1]{\ref{tab:\taoznaka{#1}}}
+\newcommand{\podnaslov}[2][]{\caption{#2 za nalogo~\if\relax\detokenize{#1}\relax\nal{}\else#1\fi.}}
 
 \begin{document}
 \title{Zbirka nalog iz Operacijskih raziskav}
@@ -62,8 +72,9 @@
 \newcommand{\avtor}[1]{\hfill {\small Avtor: #1}\par}
 \newcommand{\naslov}[1]{\if\relax\detokenize{#1}\relax\else\noindent {\small\bf (#1)}\fi}
 \newcommand{\vir}[1]{\hfill {\small Vir: #1}\par}
-\newenvironment{vprasanje}[1][]{\if\relax\detokenize{#1}\relax\renewcommand{\thislabel}{\thenaloga}\else\renewcommand{\thislabel}{#1}\fi\label{nal:\thislabel}\smallskip\noindent\ignorespaces}{}
+\newenvironment{vprasanje}[1][]{\oznaka{#1}\label{nal:\thislabel}\smallskip\noindent\ignorespaces}{}
 \NewEnviron{odgovor}{}
+\newcommand{\tanaloga}{ \thenaloga.}
 \input{naloge/seznam.tex}
 }
 
@@ -74,8 +85,9 @@
 \newcommand{\avtor}[1]{}
 \newcommand{\naslov}[1]{}
 \newcommand{\vir}[1]{}
-\NewEnviron{vprasanje}{}
+\NewEnviron{vprasanje}[1][]{\oznaka{#1}{\bf \nal{}.}}
 \newenvironment{odgovor}{\noindent\ignorespaces}{}
+\newcommand{\tanaloga}{}
 \input{naloge/seznam.tex}
 }
 
