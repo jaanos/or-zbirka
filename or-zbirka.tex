@@ -22,6 +22,7 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{matrix}
 \usetikzlibrary{decorations.pathmorphing}
+\pgfrealjobname{or-zbirka}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
@@ -36,6 +37,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\razdelek}[2][7]{\needspace{#1\baselineskip}\subsection{#2}}
 \newcommand{\opis}[2][2]{\shortintertext{\small\needspace{#1\baselineskip}#2:}}
+\newcommand{\namig}[1]{\\ {\small {\bf Namig:} #1}}
+\newcommand{\nadaljevanje}[1]{{\em Nadaljevanje sledi v nalogi~\nal{#1}.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareUnicodeCharacter{20AC}{\euro}
 \DeclareRobustCommand{\officialeuro}{%
@@ -71,7 +74,6 @@
 \newcommand{\tab}[1]{\ref{tab:\taoznaka{#1}}}
 \newcommand{\res}[1]{\ref{res:\taoznaka{#1}}}
 \newcommand{\podnaslov}[2][]{\caption{#2 za nalogo~\if\relax\detokenize{#1}\relax\del{}\else#1\fi.}}
-\newcommand{\namig}[1]{\\ {\small {\bf Namig:} #1}}
 
 \begin{document}
 \title{Zbirka nalog iz Operacijskih raziskav}
