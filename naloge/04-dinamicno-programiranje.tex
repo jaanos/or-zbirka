@@ -1,6 +1,6 @@
 \razdelek{Dinamično programiranje}
 
-\begin{naloga}{?}{Vaje OR 6.4.2016}
+\begin{naloga}{?}{Izpit OR 15.9.2010}
 \begin{vprasanje}
 Na avtocestni odsek dolžine $M$ kilometrov
 želimo postaviti oglasne plakate.
@@ -408,9 +408,8 @@ da je produkt $a_i a_{i+1} \cdots a_{j-1} a_j$ čim večji.
 \item Zapiši rekurzivne enačbe za reševanje danega problema.
 Razloži, kaj predstavljajo spremenljivke,
 v kakšnem vrstnem redu jih računamo,
-ter kako dobimo optimalno rešitev. \\
-{\small {\bf Namig:}
-posebej obravnavaj pozitivne in negativne delne produkte.}
+ter kako dobimo optimalno rešitev.
+\namig{posebej obravnavaj pozitivne in negativne delne produkte.}
 
 \item Oceni časovno zahtevnost algoritma, ki sledi iz zgoraj zapisanih enačb.
 
@@ -530,9 +529,8 @@ Primer je podan na sliki~\fig{}.
 \item Zapiši rekurzivne enačbe za reševanje danega problema.
 Razloži, kaj predstavljajo spremenljivke,
 v kakšnem vrstnem redu jih računamo,
-ter kako dobimo optimalno rešitev. \\
-{\small {\bf Namig:}
-posebej obravnavaj dva primera glede na postavitev zadnje domine.}
+ter kako dobimo optimalno rešitev.
+\namig{posebej obravnavaj dva primera glede na postavitev zadnje domine.}
 
 \item Oceni časovno zahtevnost algoritma, ki sledi iz zgoraj zapisanih enačb.
 
@@ -637,6 +635,199 @@ v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
 M &= 100, & (x_i)_{i=1}^8 &= ( 5, 12, 22, 34, 49, 65, 83, 91), \\
 K &= 30,  & (c_i)_{i=1}^8 &= (18, 11, 21, 16, 23, 15, 19, 13).
 \end{align*}
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 26.1.2010}
+\begin{vprasanje}
+Pri neznanem problemu, ki smo se ga lotili z dinamičnim programiranjem,
+smo prišli do naslednje rekurzivne zveze:
+$$
+c_{i,j} = \max\{c_{i-1,j-1}, c_{i+1,j-1} + 2c_{i-1,j+1}\} .
+$$
+Izračunati želimo vrednost $c_{m,n}$.
+Katere vrednosti $c_{i,j}$,
+pri čemer je $(i, j)$ zunaj $\{1, \dots, m\} \times \{1, \dots, n\}$,
+moramo poznati, da bo $c_{m,n}$ enolično določen?
+Poišči čim manjšo takšno množico.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 26.1.2010}
+\begin{vprasanje}
+Upravljalec nove moderne visoko tehnološko opremljene kongresne dvorane
+v Kongresnem centru Grebka Pohleparja zaračunava za najem dvorane $5 €$/min.
+Povpraševanje za najem nove dvorane je ogromno,
+a se na žalost ponudbe časovno prekrivajo,
+dvorano pa seveda lahko najame le ena stranka naenkrat.
+Tako se je upravljalec že prvi dan znašel pod goro ponudb,
+med katerimi je napol v paniki izbiral,
+bodimo pošteni, tako bolj ``čez palec''.
+A za kongresni center, ki nosi ime takega velikana ekonomije, se spodobi,
+da si uredi vse segmente poslovanja čim bolj optimalno
+in je kot tak zgled drugim.
+Predpostavimo,
+da ima upravljalec v trenutku odločanja podatke v obliki intervalov
+$[z_i, k_i]$, $i = 1, \dots, n$,
+kjer $z_i$ in $k_i$ predstavljata začetni in končni čas ponudbe $i$.
+Ponudbi se prekrivata, če je njun presek neprazen časovni interval.
+
+\begin{enumerate}[(a)]
+\item Denimo, da uredimo intervale ponudb
+glede na začetne čase ponudb od najmanjšega do največjega.
+Potem izberemo prvi interval, vse intervale, ki ga prekrivajo, pa zavržemo,
+ter postopek ponovimo rekurzivno.
+Upravljalcu se ta postopek zdi optimalen. Kaj pa meniš ti?
+
+\item Denimo, da so intervali ponudb urejeni kot v prejšnji točki
+ter da je interval $I$ zadnji interval v neki optimalni izbiri OPT.
+Premisli,
+kateri intervali so lahko kandidati za predzadnji interval v izbiri OPT.
+Na podlagi tega premisleka sestavi postopek,
+ki s pomočjo dinamičnega programiranja najde optimalno rešitev problema.
+Postopek utemelji.
+
+\item Kakšna je časovna zahtevnost tvojega algoritma v najslabšem primeru?
+
+\item Z uporabo razvitega algoritma reši problem za podatke
+$(15, 60)$, $(60, 180)$, $(30, 90)$, $(120, 210)$,
+$(165, 255)$, $(75, 135)$, $(30, 105)$, $(90, 150)$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 26.1.2010}
+\begin{vprasanje}
+Jatifi Bajrami se ukvarja s preprodajo pomaranč.
+Naslednja sezona je razdeljena na $n$ mesecev.
+Za vsak mesec so znana predvidena povpraševanja $r_1, \dots, r_n$.
+Nabavni stroški v mesecu $i$ so sestavljeni iz fiksnih stroškov $K_i$
+ter stroškov za nabavo sadja.
+Na začetku meseca $i$ stane škatla pomaranč $c_i$.
+Če Jatifi takrat kupi $m$ škatel,
+je za nabavo sadja torej moral odšteti $mc_i$ denarnih enot.
+Če se Jatifi zaradi nižje cene v nekem mesecu
+odloči nakupiti vnaprej za več mesecev,
+mora plačati skladiščenje za škatle pomaranč za preostale mesece,
+pri čemer je cena skladiščenja za škatlo v mesecu $i$ enaka $h_i$.
+Jatifi kupuje izključno, ko ve, da so mu zaloge popolnoma pošle,
+in od tega ne odstopa, saj se mu zdi škoda,
+da bi v skladišču hranil stare pomaranče.
+Pomaranče prodaja ves čas po isti ceni.
+Jatifi bi rad maksimiziral dobiček in zadovoljil celotno povpraševanje.
+
+\begin{enumerate}[(a)]
+\item Predlagaj rešitev problema s pomočjo dinamičnega programiranja.
+Pri tem so vhodni podatki $n$ mesecev, $r = (r_i)_{i=1}^n$,
+$K = (K_i)_{i=1}^n$, $c = (c_i)_{i=1}^n$ ter $h = (h_i)_{i=1}^n$.
+Kakšno časovno zahtevnost ima tvoj algoritem?
+
+\item Naj bo $n = 4$, $r = (20, 40, 15, 10)$, $K = (2, 3, 4, 2)$,
+$c = (3, 4, 3, 4)$ ter $h = (1, 1, 1, 2)$.
+Poišči optimalno strategijo kupovanja pomaranč.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 5.2.2010}
+\begin{vprasanje}
+Dana je rekurzija
+$$
+c_{i,j} = \min_{i \le k \le j} \left(c_{i-1,k} + \sum_{u=i}^k a_{i,u}\right),
+\quad c_{0,j} = c_{i,0} = 1 ,
+$$
+kjer je $A = (a_{i,j})_{i,j=1}^n$ matrika realnih števil.
+Pokaži in zelo natančno utemelji,
+da lahko izračunaš $c_{n,n}$ v času $O(n^3)$.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 5.2.2010}
+\begin{vprasanje}
+Na znanem TV kanalu HOP.tv bodo ob sredah ob 17h
+predvajali humanitarno igro Prodajalec\texttrademark,
+pri kateri igralec prodaja predmete tipa $X$ in predmete tipa $Y$
+v določenem zaporedju $P$,
+v studio pa po vrsti prihajajo potencialni kupci.
+Organizatorji vnaprej določijo zaporedje kupcev
+in $i$-temu kupcu določijo tudi tip predmeta $T_i$.
+Kupec $i$ lahko sam poda le ceno $c_i$,
+ki jo je pripravljen plačati za predmet.
+Organizatorji na podlagi tega določijo zaporedje $P$ tako,
+da je izvedljiva prodaja vseh predmetov v zaporedju $P$.
+Podatkov $P$, $T$ in $c$ igralec seveda ne pozna vnaprej.
+Kupci prihajajo v studio in igralec se odloča,
+ali jim za ponujeno ceno trenutni predmet proda ali ne.
+Pri tem mu svetuje in vpliva na njegov humanitarni čut
+znani voditelj Joras Š.
+Če igralec trenutnega predmeta ne proda $i$-temu kupcu,
+pride naslednji kupec, če pa ga proda,
+pa prisluži za humanitarne namene $c_i$ enot denarja
+in naslednjemu kupcu poskusi prodati naslednji predmet v zaporedju $P$.
+V sezoni zmaga igralec,
+katerega prodaja je procentualno največja glede na optimalno prodajo.
+Na HOP.tv so na žalost kupili
+le okrnjeno licenco za igro Prodajalec\texttrademark,
+ki ne vključuje programske opreme za preračun optimalnih rešitev,
+tako da te prosijo za pomoč.
+Za primer: če so podatki $T = XYXXY$, $c = (2, 2, 7, 1, 1)$ in $P = XY$,
+je optimalna rešitev prodaja $X$ tretjemu kupcu ter prodaja $Y$ petemu kupcu,
+s katero prislužimo $c_3 + c_5 = 7 + 1 = 8$ enot denarja.
+
+\begin{enumerate}[(a)]
+\item S pomočjo dinamičnega programiranja izpelji algoritem,
+ki za dane $T$, $c$ in $P$ poišče optimalno rešitev.
+Podaj ustrezno rekurzivno zvezo ter opiši,
+kako rekonstruiramo optimalno rešitev.
+\namig{zgleduj se po algoritmu za najdaljše skupno podzaporedje.}
+
+\item Kakšna je časovna zahtevnost tvojega algoritma v najslabšem primeru?
+
+\item Izvedi algoritem na zgornjih podatkih in tako preveri,
+da je opisana rešitev v zgornjem primeru res optimalna.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.6.2010}
+\begin{vprasanje}
+Podatke (nize) stiskamo na naslednji način.
+Podana je tabela $m$ nizov, dolžina vsakega je kvečjemu $k$.
+Radi bi zakodirali podatkovni niz $D$ dolžine $n$
+z najkrajšim možnim zaporedjem nizov iz tabele.
+Npr., če naša tabela vsebuje nize $(a, ba, abab, b)$
+in bi radi zakodirali niz $bababbaababa$,
+je najboljši način kodiranja zaporedje $(b, abab, ba, abab, a)$,
+torej s petimi kodnimi besedami.
+
+\begin{enumerate}[(a)]
+\item S pomočjo strategije dinamičnega programiranja
+izpelji čim bolj učinkovit algoritem,
+ki poišče najkrajše kodiranje danega niza $D$,
+če kodiranje za tak niz obstaja.
+
+\item Demonstriraj uporabo algoritma na podanem nizu $bababbaababa$.
+
+\item Kakšna je časovna zahtevnost tvoje rešitve?
 \end{enumerate}
 \end{vprasanje}
 \begin{odgovor}

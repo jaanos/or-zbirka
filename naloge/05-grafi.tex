@@ -372,13 +372,11 @@ ali njegovim potomcem v drevesu iskanja v globino.
 (v njem označi tudi povratne povezave, npr.~s črtkano črto)
 in določi njegova prerezna vozlišča.
 Upoštevaj abecedni vrstni red obiskovanja vozlišč.
-Za vsako vozlišče $u$ določi še vrednosti $\ell_u$ in $p_u$. \\
-{\small {\bf Namig:}
-vrednosti $p_u$ najprej določi za vozlišča z večjo globino.}
+Za vsako vozlišče $u$ določi še vrednosti $\ell_u$ in $p_u$.
+\namig{vrednosti $p_u$ najprej določi za vozlišča z večjo globino.}
 
-\item Napiši rekurzivno formulo za vrednost $p_u$. \\
-{\small {\bf Namig:} loči med sosedi $v$ vozlišča $u$ v grafu $G$
-(pišeš lahko $u \sim v$)
+\item Napiši rekurzivno formulo za vrednost $p_u$.
+\namig{loči med sosedi $v$ vozlišča $u$ v grafu $G$ (pišeš lahko $u \sim v$)
 in njegovimi neposrednimi nasledniki $w$ v preiskovalnem drevesu ($u \to w$).}
 
 \item Natančno opiši funkcijo \verb|previsit(u, v)|
@@ -390,8 +388,8 @@ ki poskrbi za izračun vrednosti $\ell_u$.
 ki naj za vozlišče $u$ izračuna vrednost $p_u$ in ugotovi,
 ali je $u$ prerezno vozlišče, in ga v tem primeru doda v \verb|izhod|.
 Predpostavi, da imaš globine vozlišč že poračunane
-(tudi, če točka (c) ni rešena). \\
-{\small {\bf Namig:} obravnavaj dve možnosti --
+(tudi, če točka (c) ni rešena).
+\namig{obravnavaj dve možnosti --
 ko je $u$ koren drevesa, in ko $u$ ni koren drevesa.
 Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
 
@@ -468,6 +466,184 @@ Na povezavah so napisani stroški prevozov med krajema
 (veljajo za obe smeri),
 pri vozliščih pa stroški prenočitve v kraju.
 \end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 19.11.2009}
+\begin{vprasanje}
+Naj bo $G$ graf z uteženimi povezavami, kjer so uteži nenegativne.
+Dokaži ali ovrzi naslednje trditve:
+\begin{enumerate}[(a)]
+\item Če v grafu obstaja enolična najkrajša povezava,
+potem je ta povezava vsebovana v vsakem drevesu najkrajših poti.
+\item Če v grafu obstaja enolična najkrajša povezava,
+potem je ta vključena v vsako minimalno vpeto drevo.
+\item Naj bo $e$ povezava v grafu $G$,
+ki je izmed povezav na nekem ciklu $C$ najdaljša.
+Če iz $G$ odstranimo povezavo $e$, dobimo graf $G'$.
+Pokaži, da je poljubno minimalno vpeto drevo v $G'$
+tudi minimalno vpeto drevo v $G$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 19.11.2009}
+\begin{vprasanje}
+Zaradi naravnih nesreč so reševalci prejeli klice
+za $n$ ponesrečenih oseb iz različnih lokacij,
+ki jih je potrebno prepeljati v $k$ bolnišnic po danem cestnem omrežju.
+Ponesrečence lahko prepeljemo do bolnišnic,
+ki so oddaljene za največ pol ure urgentne vožnje
+(za dane ponesrečence imamo torej v splošnem več izbir za bolnišnice).
+Da pa bolnišnic ne bi preobremenili, zahtevamo,
+da v vsako bolnišnico pride največ $\lceil {n \over k} \rceil$ ponesrečencev.
+Zanima nas, ali je to izvedljivo.
+Modeliraj problem in ga prevedi na kakšen znan problem.
+\end{vprasanje}
+
+\begin{odgovor}
+Dano cestno omrežje lahko predstavimo kot usmerjen graf $G$,
+kjer uteži predstavljajo čas potovanja po cestni povezavi.
+Na grafu $G$ lahko uporabimo Floyd-Warshallov algoritem
+za izračun razdalje med vsemi pari vozlišč.
+Nato zgradimo dvodelen graf $H$,
+v katerem imamo po eno vozlišče za vsakega ponesrečenca
+in po $\lceil {n \over k} \rceil$ vozlišč za vsako bolnišnico,
+vozlišči pa sta povezani,
+če je razdalja od ponesrečenca do bolnišnice v grafu $G$ največ pol ure.
+Na grafu $H$ nato z madžarsko metodo poiščemo največje prirejanje $M$.
+Če ima najdeno prirejanje $n$ povezav,
+potem smo našli ustrezno dodelitev ponesrečencev bolnišnicam,
+sicer pa ta ne obstaja.
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 19.11.2009}
+\begin{vprasanje}[poslovnez]
+Janez je prekaljen poslovnež, ki hoče vedno zaslužiti kar največ.
+A Janez lahko naenkrat prevzame le en posel.
+Če se en posel začne med izvajanjem nekega drugega posla,
+novega posla ne more prevzeti.
+Poslovne priložnosti so predstavljene z grafom.
+Vozlišča predstavljajo stanja, v katerih Janez izbira med posli,
+izhodne povezave iz vsakega vozlišča pa predstavljajo posle,
+ki se jih lahko loti.
+Cene povezav predstavljajo dobiček pri poslu oziroma izgubo,
+če je cena negativna
+(včasih je potrebno sprejeti tudi kak posel, ki nosi izgubo,
+da se lahko prebijemo do dobičkonosnega posla \dots).
+V vsakem stanju lahko Janez izbere katerega koli izmed poslov,
+ki pripadajo izhodnim povezavam.
+Tekom svoje poslovne kariere se lahko Janez
+v določenem stanju znajde tudi večkrat.
+Janez se trenutno nahaja v izbrani točki grafa.
+\begin{enumerate}[(a)]
+\item Za poljuben graf poslovnih priložnosti ugotovi,
+kakšen problem moraš na njem rešiti, da boš lahko pravilno svetoval Janezu,
+da bo uresničil svoje poslovne ambicije.
+Predlagaj algoritem, s katerim rešiš problem,
+in oceni časovno zahtevnost predlagane rešitve.
+Janeza med drugim še posebej zanima,
+ali mu graf poslovnih priložnosti zagotavlja stalno pridobivanje poslov
+in dobičkonosno poslovanje za celo kariero.
+\item Za graf poslovnih priložnosti s slike~\fig{}
+izberi ustrezen algoritem in ga izvedi ter izračunaj,
+koliko največ lahko zasluži Janez, če ``vstopi v igro'' v stanju $A$ ali $B$.
+Upoštevaj lastnosti spodnjega grafa in navedi, kateri algoritem je to.
+Ali graf predstavlja poslovne priložnosti,
+ki bodo Janezu zagotovile trajno dobičkonosno poslovanje?
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 5.2.2010}
+\begin{vprasanje}
+Odgovori na naslednje trditve.
+\begin{enumerate}[(a)]
+\item Neusmerjeno omrežje $G$ s pozitivnimi razdaljami na povezavah
+razdelimo na dve disjunktni množici vozlišč $A$ in $B$,
+ki pokrivata vsa vozlišča.
+Naj bo $e$ najkrajša povezava z enim krajiščem v $A$ in drugim v $B$.
+Pokaži ali ovrzi:
+    \begin{itemize}
+    \item Vsaka najkrajša pot med kakim vozliščem iz $A$
+    in kakim vozliščem iz $B$ vsebuje povezavo $e$.
+    \item Obstaja najkrajša pot med nekima vozlščema v grafu $G$,
+    ki vsebuje povezavo $e$.
+    \item Za vsak par vozlišč $a \in A$ in $b \in B$ obstaja najkrajša pot,
+    ki vsebuje povezavo $e$.
+    \end{itemize}
+\item Naj bo $e$ povezava v grafu $G$,
+ki je izmed povezav na nekem ciklu $C$ najdaljša.
+Če iz $G$ odstranimo povezavo $e$, dobimo graf $G'$.
+Pokaži, da je poljubno minimalno vpeto drevo v $G'$
+tudi minimalno vpeto drevo v $G$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.6.2010}
+\begin{vprasanje}
+Na univerzi na grškem otoku Lenoritas
+so zaradi gospodarske krize uvedli varčevalne ukrepe,
+ki vključujejo tudi nov režim plačevanja za izpite,
+ki jih pazijo asistenti.
+Asistentom sta ostali le dve boniteti:
+nadomestilo za izvedbo strnjenega zaporedja izpitov
+ter nadomestilo za vsako ``luknjo'', daljšo od pol ure,
+med strnjenimi zaporedji izpitov.
+Ostale bonitete,
+kot so trinajsta in štirinajsta plača
+ter dodatek za točnost na delovnem mestu,
+je univerza pred kratkim ukinila.
+Tako se univerzi splača, da uporabi čim manj asistentov,
+ki pazijo strnjena zaporedja izpitov brez ``lukenj''.
+Za vsak dan so termini izpitov podani v naprej.
+Podatki za ponedeljek so $(7, 8)$, $(8, 9)$, $(9, 10)$, $(8, 12)$,
+$(10, 13)$, $(12, 15)$, $(13, 15)$, $(9, 12)$, $(7, 10)$.
+
+Ne glede na ekonomičnost se je dekan odločil,
+da bo v ponedeljek vodji sindikata asistentov dr.~Dusanikusu Semolitakisu
+zagodel in mu dal kar najdaljše možno strnjeno zaporedje izpitov.
+Izberi ustrezen algoritem za izvedbo te naloge
+s kar se da najboljšo časovno zahtevnostjo (in jo tudi navedi),
+ter s pomočjo le-tega reši dekanov ``problem'' za ponedeljek.
+
+{\em Nadaljevanje sledi v nalogi~\nal{lenority}.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 15.9.2010}
+\begin{vprasanje}
+Z usmerjenim grafom je podano omrežje enosmernih prehodov
+med letališkimi terminali (glej npr.~sliko~\fig{terminali}).
+Načrtovalci niso čisto gotovi, ali je možno prehajati med vsemi terminali.
+Predlagaj algoritem, ki bi ugotovil,
+ali je vedno možen prehod med poljubnima izbranima terminaloma.
+Kakšna je časovna zahtevnost predlaganega algoritma?
+
+{\em Nadaljevanje sledi v nalogi~\nal{terminali}.}
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
