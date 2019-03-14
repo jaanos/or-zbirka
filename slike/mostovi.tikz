@@ -1,0 +1,10 @@
+\begin{tikzpicture}[style=thick,scale=0.6]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
+
+\node[vertex] (A) at (-2, 2) {$2$};
+\node[vertex] (B) at ( 0, 2) {$1$};
+\node[vertex] (C) at ( 0, 0) {$3$};
+\node[vertex] (D) at ( 2, 0) {$3$};
+\node[vertex] (E) at (-2,-2) {$3$};
+\node[vertex] (F) at ( 2,-2) {$2$};
+\end{tikzpicture}

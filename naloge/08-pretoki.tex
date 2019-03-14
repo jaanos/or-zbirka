@@ -128,3 +128,110 @@ da bo pretočnost med vhodnimi in izhodnimi terminali kar največja?
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 25.11.2010}
+\begin{vprasanje}[greedyflow]
+Nov in neizkušen predavatelj Operacijskih raziskav se odloči,
+da bo poenostavil Ford-Fulkersonov algoritem.
+Študentom pove,
+naj za iskanje maksimalnega pretoka na omrežju s končnimi kapacitetami
+uporabijo naslednji algoritem:
+\begin{small}
+\begin{algorithmic}
+\Function{Greedyflow}{$G = (V, E), u, s, t$}
+    \For{$e \in E$}
+        \State $f(e) \gets 0$
+    \EndFor
+    \While{obstaja pot od $s$ do $t$}
+        \State $P \gets$ poljubna pot od $s$ do $t$
+        \State $\gamma \gets$ minimalna kapaciteta povezav poti $P$
+        \For{$e \in P$}
+            \State $f(e) \gets f(e) + \gamma$
+            \If{$u(e) = \gamma$}
+                \State odstrani $e$ iz $G$
+            \Else
+                \State $u(e) \gets u(e) - \gamma$
+            \EndIf
+        \EndFor
+    \EndWhile
+    \State \Return $f$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Dokaži,
+da lahko na grafu s slike~\fig{}
+z uporabo algoritma {\sc Greedyflow} dobimo pravilno rešitev.
+
+\item Poišči primer omrežja in izbire poti,
+tako da algoritem {\sc Greedyflow} ne da pravilnega rezultata.
+
+\item Ali za vsako omrežje obstaja taka izbira poti,
+da bo algoritem {\sc Greedyflow} dal maksimalni pretok?
+
+\item Dokaži, da je razlika med maksimalnim pretokom in pretokom,
+ki ga vrne algoritem {\sc Greedyflow}, lahko poljubno velika.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 9.2.2011}
+\begin{vprasanje}
+\begin{enumerate}[(a)]
+\item Poišči usmerjen graf $G$, vozlišči $s$, $t$ in kapacitete povezav,
+da bo imel $G$ natanko en minimalen $(s, t)$-prerez.
+
+\item Poišči usmerjen graf $G$, vozlišči $s$, $t$ in kapacitete povezav,
+da bo imel $G$ več minimalnih $(s, t)$-prerezov.
+
+\item Poišči usmerjen graf $G_n$, vozlišči $s$, $t$ in kapacitete povezav,
+da bo imel $G_n$ natanko $n$ minimalnih $(s, t)$-prerezov.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.6.2011}
+\begin{vprasanje}
+Navdušenje nad koncem študijskega leta na ljubljanski univerzi
+je botrovalo temu,
+da v ambulanti Univerzitetne klinike
+$169$ študentov išče nujno zdravniško pomoč.
+Vsak od študentov potrebuje eno enoto krvi,
+klinika pa ima na zalogi $170$ enot krvi.
+V spodnji tabeli je prikazano število enot krvi posamezne krvne skupine,
+ki so na zalogi,
+in število študentov z dano krvno skupino.
+\begin{center}
+\begin{tabular}{l|cccc}
+Krvna skupina &  A &  B &  O & AB \\ \hline
+Zaloga        & 46 & 34 & 45 & 45 \\
+Povpraševanje & 39 & 38 & 42 & 50
+\end{tabular}
+\end{center}
+Osebe s krvno skupino A lahko prejmejo kri tipa A ali O.
+Osebe tipa B lahko prejmejo kri tipa B ali O.
+Osebe tipa O lahko prejmejo samo kri tipa O.
+Osebe tipa AB lahko prejmejo katerokoli krvno skupino.
+Naša naloga je razporediti enote krvi tako,
+da bomo z njo oskrbeli kar se da veliko število študentov.
+Iz podatkov sestavi omrežje
+in modeliraj nalogo kot problem maksimalnega pretoka.
+Največ koliko pacientov lahko oskrbimo?
+Utemelji.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

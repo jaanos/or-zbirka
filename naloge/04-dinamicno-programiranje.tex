@@ -833,3 +833,71 @@ ki poišče najkrajše kodiranje danega niza $D$,
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 24.1.2011}
+\begin{vprasanje}
+Danih imamo $n$ kock, ki jih želimo zložiti v čim višji stolp.
+Dimenzije $i$-te kocke so $a_i \times b_i \times c_i$,
+kjer je $a_i$ dolžina, $b_i$ širina in $c_i$ višina.
+Kock ne smemo rotirati,
+kocko $i$ pa lahko postavimo na kocko $j$ samo,
+če je $a_i < a_j$ in $b_i < b_j$.
+Brez škode za splošnost lahko predpostavimo,
+da je $a_1 \ge a_2 \ge \dots \ge a_n$.
+S pomočjo dinamičnega programiranja poišči najvišji možni stolp.
+
+Kako bi nalogo rešil, če je dovoljena tudi rotacija kock?
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 9.2.2011}
+\begin{vprasanje}
+Znanstveniki proučujejo novo vrsto bakterije.
+V DNK te bakterije so našli naslednje zaporedje nukleotidov:
+\begin{center}
+{\tt AACAGTTA}.
+\end{center}
+Sumijo, da je to različica gena že znane bakterije, ki ima zaporedje
+\begin{center}
+{\tt ACCATGTA}.
+\end{center}
+Če sta zaporedji dovolj podobni,
+obstaja verjetnost, da imata gena podobni funkciji.
+Dovoljene so naslednje operacije:
+\begin{itemize}
+\item substitucija ({\tt ACT} $\to$ {\tt AGT}),
+\item vstavljanje ({\tt AC} $\to$ {\tt AGC}),
+\item izbris ({\tt AGC} $\to$ {\tt AC}) in
+\item transpozicija ({\tt AT} $\to$ {\tt TA}).
+\end{itemize}
+\begin{enumerate}[(a)]
+\item Pomagajte znanstvenikom in napišite postopek,
+ki bo preštel najmanše število operacij,
+s katerim pridemo od enega DNK zaporedja do drugega.
+\item Postopek iz prejšnje točke izvedite nad podanima zaporedjema
+in ugotovite število razlik.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.6.2011}
+\begin{vprasanje}
+Dano imamo zaporedje simbolov $\top$ (resnično) in $\bot$ (neresnično).
+Med vsakima izrazoma imamo $\land$ (prvi in drugi),
+$\lor$ (prvi ali drugi) ali $\oplus$ (prvi ali drugi, ne pa tudi oba),
+npr.~$\top \land \top \oplus \bot$.
+Izračunaj število postavitev oklepajev, da je rezultat $\top$,
+in število postavitev oklepajev, da je rezultat $\bot$.
+\namig{definiraj $T_{i,j}$ in $F_{i,j}$
+kot število takih postavitev oklepajev med $i$-tim in $j$-tim izrazom.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

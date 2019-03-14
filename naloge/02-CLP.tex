@@ -657,3 +657,93 @@ Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 24.1.2011}
+\begin{vprasanje}
+Podjetje dobiva po pošti čeke iz celotne Evrope.
+Čas potovanja čeka je odvisen od kraja, od koder je bil ček poslan,
+in od kraja, kamor ček potuje.
+Na primer, ček, poslan iz Vzhodne Evrope v Berlin, v povprečju potuje 5 dni,
+-- podjetje mora torej čakati 5 dni,
+preden lahko ček unovči in razpolaga z denarjem.
+Iz Severne Evrope je v povprečju dnevno poslanih za $70.000 €$ čekov,
+iz Zahodne Evrope za $50.000 €$, iz Vzhodne $60.000 €$,
+iz Južne pa $40.000 €$.
+Podjetje želi obračunavati čeke kar se da hitro,
+saj izgubi $20\%$ vrednosti čeka na letni ravni.
+Podjetje lahko postavi podružnice (in s tem poštne predale)
+v Londonu, Berlinu, Budimpešti in/ali Madridu.
+Strošek vzdrževanja ene podružnice znaša $50.000 €$ letno.
+Časi potovanja čekov so razvidni iz spodnje tabele:
+\begin{center}
+\begin{tabular}{c|cccc}
+& London & Berlin & Budimpešta & Madrid \\ \hline
+Severna Evropa & 2 & 6 & 8 & 6 \\
+Zahodna Evropa & 6 & 2 & 5 & 5 \\
+Vzhodna Evropa & 8 & 5 & 2 & 5 \\
+Južna Evropa   & 8 & 5 & 5 & 2
+\end{tabular}
+\end{center}
+Primer: če Severna Evropa pošilja čeke v Budimpešto,
+bo v obtoku v pov\-preč\-ju za $560.000 €$ ($= 8 \cdot 70.000 €$) čekov,
+kar z $20\%$ izgubo pomeni $112.000 €$ izgube na letni ravni.
+Zanima nas, kje naj podjetje postavi podružnice, da bodo stroški čim manjši.
+Zastavi nalogo kot celoštevilski linearni program.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 9.2.2011}
+\begin{vprasanje}
+Selektor košarkaške reprezentance bi rad sestavil petčlansko začetno postavo, ki bo imela povprečno
+višino kar se da visoko. Na voljo ima sledeče igralce:
+\begin{center}
+\begin{tabular}{lll}
+Igralec & Višina & Pozicija \\ \hline
+Anže    & 213    & Center   \\
+Borut   & 208    & Center   \\
+Ciril   & 203    & Krilo    \\
+David   & 192    & Krilo    \\
+Emil    & 196    & Krilo    \\
+Filip   & 197    & Obramba  \\
+Gorazd  & 200    & Obramba  \\
+Hugo    & 195    & Obramba  \\
+\end{tabular}
+\end{center}
+Pri izbiri mora selektor upoštevati naslednje pogoje:
+\begin{itemize}
+\item v začetni postavi morajo biti zastopane vse tri pozicije,
+\item v rezervi mora biti bodisi Ciril bodisi Filip, ne pa oba,
+\item v začetni postavi je lahko največ en center,
+\item če začne Borut ali David, mora Hugo ostati v rezervi.
+\end{itemize}
+Formuliraj problem kot celoštevilski linearni program.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.6.2011}
+\begin{vprasanje}[mostovi]
+Otoke (vozlišča) na sliki~\fig{}
+je potrebno povezati z mostovi po sledečih pravilih:
+\begin{itemize}
+\item mostovi potekajo samo v vodoravni ali navpični smeri,
+\item v rezervi mora biti bodisi Ciril bodisi Filip, ne pa oba,
+\item med dvema otokoma smeta biti največ dva mostova,
+\item številka na otoku pove, koliko mostov naj vodi na ta otok.
+\end{itemize}
+Formuliraj problem kot celoštevilski linearni program.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Otoki}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
