@@ -195,7 +195,7 @@ x_{uv} = \begin{cases}
 $$
 Zapišimo celoštevilski linearni program.
 \begin{alignat*}{2}
-\max &\ & \sum_{uv \in E}^n x_{uv} &\quad \text{p.p.} \\
+\max &\ & \sum_{uv \in E} x_{uv} &\quad \text{p.p.} \\
 \forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z \\
 \forall u \in A: &\ & \sum_{uv \in E} x_{uv} &\le 1 \\
 \forall v \in B: &\ & \sum_{uv \in E} x_{uv} &\le 1
@@ -225,7 +225,7 @@ x_{uv} = \begin{cases}
 $$
 Zapišimo celoštevilski linearni program.
 \begin{alignat*}{2}
-&& \min \ \sum_{uv \in E}^n x_{uv} &\quad \text{p.p.} \\
+&& \min \ \sum_{uv \in E} x_{uv} &\quad \text{p.p.} \\
 \forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z
 \opis{Iz vozlišča $u$ izstopimo enkrat več kakor vstopimo}
 && \sum_{yu \in E} x_{yu} - \sum_{uz \in E} x_{uz} &= -1
@@ -373,7 +373,45 @@ x_{s_A, A} + x_{s_B, B} + \sum_{j \in J \setminus \{C\}} x_{s_C, j} &\le 2
 Napiši linearni program,
 ki poišče razdalje od danega vozlišča $u$ v grafu $G$.
 \end{vprasanje}
+
 \begin{odgovor}
+Graf $G = (V, E)$ smatramo kot usmerjen graf
+(če je dani graf ne\-usme\-rjen,
+vsako povezavo nadomestimo s parom nasprotno usmerjenih povezav).
+Naj bo $n = |V|$ število vozlišč grafa $G$.
+Rešitev celoštevilskega linearnega programa
+predstavlja usmerjeno drevo najkrajših poti s korenom v vozlišču $u$.
+
+Za vsako povezavo $vw \in E$ bomo uvedli spremenljivko $x_{vw}$,
+katere vrednost interpretiramo kot
+$$
+x_{vw} = \begin{cases}
+1, & \text{povezava $vw$ je v drevesu najkrajših poti, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo za vsako vozlišče $v \in V$
+uvedli še spremenljivko $y_v$,
+ki nam pove razdaljo od vozlišča $u$ do vozlišča $v$.
+Minimizirati želimo vse vrednosti $y_v$, zato bomo minimizirali njihovo vsoto.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ \sum_{v \in V} y_v \quad \text{p.p.} \\
+\forall vw \in E: &\ & 0 \le x_{vw} &\le 1, \quad x_{vw} \in \Z
+\opis{Vozlišče $u$ nima vstopne povezave v drevesu}
+&& \sum_{vu \in E} x_{vu} &= 0
+\opis{Ostala vozlišča imajo natanko eno vstopno povezavo v drevesu}
+\forall vw \in E, & \ v \ne u: \ & \sum_{vw \in E} x_{vw} &= 1
+\opis{Vozlišče $u$ je na razdalji $0$ od sebe}
+&& y_u &= 0
+\opis{Če je povezava $vw$ v drevesu,
+je razdalja do $w$ vsaj za $1$ večja od razdalje do $v$,
+sicer pa je razlika največ $n-1$}
+\forall vw \in E: &\ & y_v + n x_{vw} &\le y_w + n - 1
+\opis{V drevesu je natanko $n-1$ povezav}
+&& \sum_{vw \in e} x_{vw} &= n-1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
@@ -383,21 +421,92 @@ ki poišče razdalje od danega vozlišča $u$ v grafu $G$.
 Napiši linearni program,
 ki modelira določanje kromatičnega števila grafa.
 \end{vprasanje}
+
 \begin{odgovor}
+{\em Pravilno barvanje} (neusmerjenega) grafa $G = (V, E)$
+je taka dodelitev barv vozliščem grafa $G$,
+da imata krajišči vsake povezave različno barvo.
+{\em Kromatično število} grafa $G$ je najmanjše število barv,
+ki jih potrebujemo za pravilno barvanje grafa $G$.
+
+Naj bo $n = |V|$ število vozlišč grafa $G$
+-- to je tudi največje število barv, ki jih lahko uporabimo.
+Za vsako vozlišče $v \in V$ in vsako barvo $i$ ($1 \le i \le n$)
+bomo uvedli spremenljivko $x_{vi}$,
+katere vrednost interpretiramo kot
+$$
+x_{vi} = \begin{cases}
+1, & \text{vozlišče $v$ pobarvamo z barvo $i$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$, ki šteje uporabljene barve.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ t \quad \text{p.p.} \\
+\forall v \in V \ \forall i \in \{1, \dots, n\}: &\ &
+0 \le x_{vi} &\le 1, \quad x_{vi} \in \Z
+\opis{Vsako vozlišče je natanko ene barve}
+\forall v \in V: &\ & \sum_{i=1}^n x_{vi} &= 1
+\opis{Krajišči povezav sta različnih barv}
+\forall uv \in E \ \forall i \in \{1, \dots, n\}: &\ &
+x_{ui} + x_{vi} &\le 1
+\opis{Omejimo $t$ z indeksi uporabljenih barv}
+\forall uv \in E \ \forall i \in \{1, \dots, n\}: &\ &
+i x_{vi} &\le t
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
 
 \begin{naloga}[problem trgovskega potnika]{?}{Vaje OR 16.3.2016}
-\begin{vprasanje}
+\begin{vprasanje}[tsp]
 Danih je $n$ mest na zemljevidu.
 Strošek potovanja iz mesta $i$ v mesto $j$ je $c_{ij}$ ($1 \le i, j \le n$).
 Trgovski potnik želi obiskati vseh $n$ mest,
 pri tem pa minimizirati strošek potovanja.
 Na smiseln način modeliraj opisani problem z linearnim programom.
 \end{vprasanje}
+
 \begin{odgovor}
+Pot bomo opisali z množico povezav v polnem grafu z $n$ vozlišči (mesti),
+ki tvorijo cikel.
+Za vsak par mest $(i, j)$ ($1 \le i, j \le n$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{iz $i$-tega mesta odpotujemo v $j$-to mesto} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poskrbeti bomo morali še,
+da bo naša rešitev res sestavljena iz enega samega cikla.
+V ta namen bomo za $i$-to mesto ($1 \le i \le n$) uvedli spremenljivko $y_i$,
+ki pove, katero po vrsti smo to mesto obiskali.
+Ker je rešitev cikel, si lahko poljubno izberemo,
+katero je prvo obiskano mesto (npr.~mesto z indeksom $1$).
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min \ \sum_{i=1}^n \sum_{j=1}^n x_{ij} c_{ij} && \text{p.p.}\\
+\forall i, j \in \{1, \dots, n\}: &\ &
+0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{V vsako mesto prispemo natanko enkrat}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^n x_{ij} &= 1
+\opis{Vsako mesto zapustimo natanko enkrat}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{i=1}^n x_{ij} &= 1
+\opis{Če iz mesta $i$ potujemo v mesto $j > 1$, mu to sledi v vrstnem redu}
+\forall i  \in \{1, \dots, n\} \ \forall j \in \{2, \dots, n\}: &\ &
+y_i + n x_{ij} &\le y_j + n - 1
+\end{alignat*}
 \end{odgovor}
+Zadnji pogoj poskrbi, da rešitev nima cikla brez mesta z indeksom $1$.
+Skupaj s pogojema, da vsako mesto obiščemo in zapustimo natanko enkrat,
+si tako zagotovimo, da bo rešitev obsegala natanko en cikel.
+Vrednost spremenljivk $y_i$ ($1 \le i \le n$) ni omejena
+-- zadnji pogoj poskrbi le, da je največja razlika med njimi enaka $n-1$.
 \end{naloga}
 
 
@@ -406,7 +515,45 @@ Na smiseln način modeliraj opisani problem z linearnim programom.
 S celoštevilskim linearnim programom
 modeliraj problem iskanja minimalnega vpetega drevesa v grafu.
 \end{vprasanje}
+
 \begin{odgovor}
+Denimo, da imamo usmerjen graf $G = (V, E)$,
+kjer ima vsaka povezava $uv \in E$ svojo ceno $c_{uv}$
+(če je dani graf ne\-usme\-rjen,
+vsako povezavo nadomestimo s parom nasprotno usmerjenih povezav z isto ceno).
+Minimalno vpeto drevo je drevo $T = (V, E')$ z $E' \subseteq E$,
+za katerega je vsota cen povezav iz $E'$ najmanjša.
+
+Naj bo $n = |V|$ število vozlišč grafa $G$.
+Za vsako povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1, & \text{povezava $uv$ je v množici $E'$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poskrbeti moramo še, da bo naša rešitev res drevo.
+Izberimo si vozlišče $r \in V$ kot koren drevesa
+in za vsako vozlišče $v \in V$ uvedimo še spremenljivko $y_v$,
+ki se povečuje z globino vozlišča v drevesu.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min &\ & \sum_{uv \in E} x_{uv} c_{uv} &\quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z
+\opis{V vozlišče $r$ ne vstopi nobena povezava v drevesu}
+&& \sum_{ur \in E} x_{ur} &= 0
+\opis{V ostala vozlišča vstopi natanko ena povezava}
+\forall u \in V \setminus \{r\}: &\ & \sum_{uv \in E} x_{uv} &= 1
+\opis{Vrednost $y_v$ ($v \in V$) se povečeje po povezavah iz drevesa}
+\forall uv \in E: &\ & y_u + n x_{uv} &\le y_v + n - 1
+\end{alignat*}
+Zadnji pogoj poskrbi,
+da so vsa vozlišča v drevesu in ne v nepovezanem ciklu.
+Podobno kot pri nalogi~\res{tsp}
+vrednost spremenljivk $y_v$ ($v \in V$) ni omejena
+-- pogoj poskrbi le, da je največja razlika med njimi največ $n-1$.
 \end{odgovor}
 \end{naloga}
 
@@ -435,7 +582,45 @@ Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 ko vsak asistent dobi največ $t$ različnih predmetov,
 in potem minimimiziraj $t$.}
 \end{vprasanje}
+
 \begin{odgovor}
+Za $i$-tega asistenta ($1 \le i \le n$)
+in $j$-ti predmet ($1 \le j \le m$)
+bomo uvedli spremenljivki $x_{ij}$ in $y_{ij}$,
+kjer je $x_{ij}$ število skupin,
+ki jih $i$-temu asistentu dodelimo pri $j$-tem predmetu,
+vrednost $y_{ij}$ pa interpretiramo kot
+$$
+y_{ij} = \begin{cases}
+1, & \text{$i$-ti asistentu bo izvajal vaje pri $j$-tem predmetu, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$,
+s katero omejimo največje število različnih predmetov
+pri posameznem asistentu.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ t \quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+x_{ij} &\ge 0, \quad x_{ij} \in \Z \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le y_{ij} &\le 1, \quad y_{ij} \in \Z
+\opis{$x_{ij} = 0$ natanko tedaj, ko $y_{ij} = 0$}
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+y_{ij} \le x_{ij} &\le c_j y_{ij}
+\opis{Omejimo število ur za vsakega asistenta}
+\forall i \in \{1, \dots, n\}: &\ & a_i \le \sum_{j=1}^m u_j x_{ij} &\le b_i
+\opis{Neželenih predmetov ne dodelimo}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j \in N_i} y_{ij} &= 0
+\opis{Za vsak predmet dodelimo potrebno število skupin}
+\forall j \in \{1, \dots, m\}: &\ & \sum_{i=1}^n x_{ij} &= c_j
+\opis{Nobenega predmeta ne dodelimo asistentoma $p$ in $q$}
+\forall j \in \{1, \dots, m\}: &\ & y_{pj} + y_{qj} &\le 1
+\opis{Število različnih predmetov na asistenta omejimo s $t$}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^n y_{ij} &\le t
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
 
