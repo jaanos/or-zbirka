@@ -6,9 +6,19 @@ Na ulici nas ustavi neznanec in nam predlaga met kovanca.
 Če pade grb, nam izplača $250000 €$,
 če pade glava, pa mi njemu $100000 €$.
 Ali naj sprejmemo ponudbo?
-
 \end{vprasanje}
+
 \begin{odgovor}
+Če predpostavimo, da je kovanec pošten,
+je potem pričakovani dobiček ob metu kovanca enak
+$$
+{1 \over 2} \cdot 250000 € - {1 \over 2} \cdot 100000 € = 75000 € .
+$$
+Ta vrednost je večja od ničelnega dobička, če ponudbe ne sprejmemo,
+zato se nam izplača ponudbo sprejeti.
+Seveda gre pri tej odločitvi tudi za oceno,
+kolikšno tveganje smo pripravljeni sprejeti
+-- ali si lahko privoščimo izgubiti $100000 €$, če ne bomo imeli sreče?
 \end{odgovor}
 \end{naloga}
 
@@ -29,15 +39,72 @@ Verjetnost & $0.1$ & $0.15$ & $0.3$ & $0.2$ & $0.15$ & $0.1$
 pri čemer jih žemlja tedaj stane $0.3 €$.
 Ob koncu dneva jim pekarna odkupi presežek po $0.15 €$ na žemljo.
 Koliko žemelj se trgovini splača kupiti?
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $x$ število kupljenih žemelj, $k$ pa število prodanih žemelj.
+Če je $k \le x$, imamo dobiček
+$$
+k \cdot 0.2 € - (x-k) \cdot 0.05 € = k \cdot 0.25 € - x \cdot 0.05 € .
+$$
+Če pa je $k \ge x$, je dobiček enak
+$$
+x \cdot 0.2 € + (k-x) \cdot 0.1 € = k \cdot 0.1 € + x \cdot 0.1 € .
+$$
+Pri $x = k$ obe formuli dasta dobiček $k \cdot 0.2 €$.
+Izračunajmo pričakovani dobiček pri naročilu $x$ žemelj za različne intervale:
+\begin{align*}
+x \le 50:         &\ x \cdot 0.1 € +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80 + 0.15 \cdot 90 + 0.1 \cdot 100)
+                     \cdot 0.1 € \\
+                  &= x \cdot 0.1 € + 7.45 € \\
+50 \le x \le 60:  &\ x \cdot (0.9 \cdot 0.1 € - 0.1 \cdot 0.05 €) +
+                     0.1 \cdot 50 \cdot 0.25 € \ + \\
+                  &\ (0.15 \cdot 60 + 0.3 \cdot 70 + 0.2 \cdot 80 +
+                      0.15 \cdot 90 + 0.1 \cdot 100) \cdot 0.1 € \\
+                  &= x \cdot 0.085 € + 8.2 € \\
+60 \le x \le 70:  &\ x \cdot (0.75 \cdot 0.1 € - 0.25 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60) \cdot 0.25 € \ + \\
+                  &\ (0.3 \cdot 70 + 0.2 \cdot 80 + 0.15 \cdot 90 +
+                      0.1 \cdot 100) \cdot 0.1 € \\
+                  &=  x \cdot 0.0625 € + 9.55 € \\
+70 \le x \le 80:  &\ x \cdot (0.45 \cdot 0.1 € - 0.55 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 \ + \\
+                  &\ 0.3 \cdot 70) \cdot 0.25 € +
+                     (0.2 \cdot 80 + 0.15 \cdot 90 + 0.1 \cdot 100)
+                     \cdot 0.1 € \\
+                  &= x \cdot 0.0175 € + 12.7 € \\
+80 \le x \le 90:  &\ x \cdot (0.25 \cdot 0.1 € - 0.75 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80) \cdot 0.25 € +
+                     (0.15 \cdot 90 + 0.1 \cdot 100) \cdot 0.1 € \\
+                  &= -x \cdot 0.0125 € + 15.1 € \\
+90 \le x \le 100: &\ x \cdot (0.1 \cdot 0.1 € - 0.9 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80 + 0.15 \cdot 90) \cdot 0.25 € +
+                     0.1 \cdot 100 \cdot 0.1 € \\
+                  &= -x \cdot 0.035 € + 17.125 € \\
+x \ge 100:        &\ -x \cdot 0.05 € +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80 + 0.15 \cdot 90 + 0.1 \cdot 100)
+                     \cdot 0.25 € \\
+                  &= -x \cdot 0.05 € + 18.625 €
+\end{align*}
+Funkcija pričakovanega dobička je torej zvezna in odsekoma linearna v $x$,
+pri čemer je smerni koeficient pozitiven pri $x < 80$
+in negativen pri $x > 80$.
+Pričakovan dobiček torej maksimiziramo pri naročilu $80$ žemelj
+-- tedaj ta znaša
+$$
+80 \cdot 0.0175 € + 12.7 € = 14.1 € .
+$$
 \end{odgovor}
 \end{naloga}
 
 
 \begin{naloga}{?}{Izpit OR 5.6.2014}
-\begin{vprasanje}
+\begin{vprasanje}[operacija]
 Pacient ima na voljo operacijo.
 Brez operacije bo živel natanko $3$ mesece.
 Z uspešno opravljeno operacijo bo živel natanko $12$ mesecev.
@@ -54,7 +121,59 @@ Ali naj pacient opravi test?
 Nariši odločitveno drevo
 in odločitve sprejmi na podlagi izračunanih ve\-rjet\-no\-sti!
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Ob opravljeni operaciji
+je pričakovana življenjska doba (v mesecih) enaka
+$$
+0.7 \cdot 12 + 0.3 \cdot 0 = 8.4 .
+$$
+Ker je to več od $3$ mesecev brez operacije, se zanjo pacient odloči.
+
+\item Zanesljivost $0.9$ razumemo tako,
+da test z verjetnostjo $0.9$ pravilno napove vsak izid operacije,
+torej
+\begin{align*}
+P(\text{test napove uspeh} \;|\; \text{operacija je uspešna}) &= 0.9
+\quad \text{in} \\
+P(\text{test napove uspeh} \;|\; \text{operacija je neuspešna}) &= 0.1 .
+\end{align*}
+Izračunajmo še verjetnosti napovedi testa
+ter uspešnosti operacije ob vsaki napovedi.
+\begin{small}
+\begin{align*}
+P(\text{test napove uspeh}) &= 0.7 \cdot 0.9 + 0.3 \cdot 0.1 = 0.66 \\
+P(\text{test napove neuspeh}) &= 0.7 \cdot 0.1 + 0.3 \cdot 0.9 = 0.34 \\
+P(\text{operacija je uspešna} \;|\; \text{test napove uspeh})
+&= {0.7 \cdot 0.9 \over 0.66} = {21 \over 22} \approx 0.9545 \\
+P(\text{operacija je neuspešna} \;|\; \text{test napove uspeh})
+&= {0.3 \cdot 0.1 \over 0.66} = {1 \over 22} \approx 0.0455 \\
+P(\text{operacija je uspešna} \;|\; \text{test napove neuspeh})
+&= {0.7 \cdot 0.1 \over 0.34} = {7 \over 34} \approx 0.2059 \\
+P(\text{operacija je uspešna} \;|\; \text{test napove neuspeh})
+&= {0.3 \cdot 0.9 \over 0.34} = {27 \over 34} \approx 0.7941
+\end{align*}
+\end{small}
+Ob upoštevanju, da se bo test končal brez komplikacij z verjetnostjo $0.995$,
+sta verjetnosti pozitivnega in negativnega izida testa brez komplikacij
+enaki $0.6567$ oziroma $0.3383$.
+
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig{}.
+Izračunamo lahko, da je ob opravljanju testa
+pričakovana življenjska doba $8.537$ mesecev,
+kar je več kot $8.4$ mesecev brez testa,
+zato se odločimo za test.
+Če test napove uspeh, se odločimo za operacijo, sicer pa ne.
+\end{enumerate}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}
 
@@ -698,5 +817,89 @@ Kakšno odločitev svetuješ direktorici banke?
 \end{enumerate}
 \end{vprasanje}
 \begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OR 11.4.2008}
+\begin{vprasanje}
+Janez želi naložiti vsoto $1000 €$ v banko za dobo petih let.
+Odloča se med tem, da bi jo vezal za pet let (obrestna mera $5\%$)
+ali pa petkrat zaporedoma po eno leto (obrestna mera $4\%$).
+Če denar veže za pet let, vmes pa varčevanje prekine,
+mu pripada le obrestna mera $3\%$.
+Ocenjuje, da lahko v naslednjih petih letih pride do naslednjih situacij:
+\begin{itemize}
+\item varčeval bo pet let, pri tem se obrestna mera ne spremeni,
+\item varčeval bo pet let, obrestna mera se po treh letih poveča za $30\%$,
+\item varčeval bo pet let, obrestna mera se po treh letih zmanjša za $20\%$,
+\item varčeval bo tri leta.
+\end{itemize}
+Opiši, kako naj se odloči glede na posamezne kriterije
+(optimist, pesimist, Laplace, Savage).
+Določi vrednosti parametera $\alpha$,
+pri katerih je po Hurwiczevem kriteriju možnih več enakovrednih odločitev.
+\end{vprasanje}
+
+\begin{odgovor}
+Zaradi enostavnosti predpostavimo,
+da se obrestuje samo glavnica (enkrat na leto),
+pri čemer pri petletnem varčevanju vsakič velja začetna obrestna mera.
+Izračunajmo obresti po petih letih pri različnih shemah vezave
+glede na dogajanje po treh letih:
+\begin{center}
+\begin{tabular}{c|cccc}
+shema & nespremenjena & povečana & zmanjšana & prekinitev \\ \hline
+$5$ let              & $250$ & $250$ & $250$ &   $-$ \\
+$3 + 2 \cdot 1$ leto & $170$ & $194$ & $154$ &   $-$ \\
+$3$ leta             &  $90$ &  $90$ &  $90$ &  $90$ \\ \hline
+$5 \cdot 1$ leto     & $200$ & $224$ & $184$ &   $-$ \\
+$3 \cdot 1$ leto     & $120$ & $120$ & $120$ & $120$ \\
+\end{tabular}
+\end{center}
+Drugih možnosti ne bomo obravnavali,
+saj se očitno $5$-letna vezava ne izplača, če jo bomo predčasno prekinili.
+Iz zgornje tabele je torej jasno,
+da se bomo odločili bodisi za $5$-letno vezavo ali pa vsakoletno vezavo,
+z morebitno prekinitvijo oziroma prenehanjem po $3$ letih
+brez nadaljnje vezave.
+Dobimo torej sledečo odločitveno tabelo:
+\begin{center}
+\begin{tabular}{c|cccc}
+začetna shema & nespremenjena & povečana & zmanjšana & prekinitev \\ \hline
+$5$ let          & $250$ & $250$ & $250$ &  $90$ \\
+$5 \cdot 1$ leto & $200$ & $224$ & $184$ & $120$ \\
+\end{tabular}
+\end{center}
+
+Pri optimistovem kriteriju se ravnamo glede na najboljši možen izid.
+Pri $5$-letni vezavi je to $250 €$, pri letni vezavi pa $224 €$,
+zato se odločimo za $5$-letno vezavo.
+
+Pri pesimistovem (Waldovem) kriteriju se ravnamo glede na najslabši možen izid.
+Pri $5$-letni vezavi je to $90 €$, pri letni vezavi pa $120 €$,
+zato se odločimo za letno vezavo.
+
+Pri Laplaceovem kriteriju so vse možnosti enako verjetne.
+Pri $5$-letni vezavi je torej pričakovani dobiček enak
+$(250 € + 250 € + 250 € + 90 €)/4 = 210 €$,
+pri letni vezavi pa $(200 € + 224 € + 184 € + 120 €)/4 = 182 €$,
+zato se odločimo za $5$-letno vezavo.
+
+Pri Savageovem kriteriju želimo minimizirati največje možno obžalovanje.
+Pri $5$-letni vezavi je največje obžalovanje enako $120 € - 90 € = 30 €$,
+pri letni vezavi pa $250 € - \min\{200€, 224€, 184€\} = 66 €$,
+zato se odločimo za $5$-letno vezavo.
+
+Pri Hurwiczevem kriteriju upoštevamo,
+da se najboljši izid zgodi z ve\-rjet\-nost\-jo $\alpha$,
+najslabši pa z verjetnostjo $1 - \alpha$.
+Pri $5$-letni vezavi je torej pričakovan dobiček enak
+$\alpha \cdot 250 € + (1 - \alpha) \cdot 90 € = \alpha \cdot 160 € + 90 €$,
+pri letni vezavi pa
+$\alpha \cdot 224 € + (1 - \alpha) \cdot 120 € = \alpha \cdot 104 € + 120 €$.
+Pri vrednosti $\alpha = 15/28$ sta obe možnosti enakovredni.
+Pri večjih vrednostih $\alpha$ se odločimo za $5$-letno vezavo,
+pri manjših pa za letno vezavo.
 \end{odgovor}
 \end{naloga}
