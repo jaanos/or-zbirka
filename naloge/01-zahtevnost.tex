@@ -134,7 +134,7 @@ n + \sum_{i=1}^n (i \cdot 2^{n-i}) =
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
 \begin{vprasanje}
 Algoritem {\sc BubbleSort} uredi vhodni seznam $\ell[1 \dots n]$ tako,
-da zamenjuje sosednje elemente v nepravem vrstnem redu:
+da zamenjuje so\-sed\-nje elemente v nepravem vrstnem redu:
 \begin{small}
 \begin{algorithmic}
 \Function{BubbleSort}{$\ell[1 \dots n]$}
@@ -477,7 +477,7 @@ ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
 Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
 ne moremo pa jih spreminjati.
 Elementi ``tabele'' $A$ so indeksirani s celimi števili od $1$ do $n$,
-kjer je $n = A.length()$ indeks zadnjega elementa ``tabele'' $A$.
+kjer je $n = A.\length()$ indeks zadnjega elementa ``tabele'' $A$.
 Edina operacija (poleg dostopanja do posameznih elementov),
 ki jo lahko izvajamo nad $A$, je ``obračanje podtabele''.
 Če ima na začetku $A$ vrednosti
@@ -485,7 +485,7 @@ $$
 A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{j-1}, a_j, a_{j+1},
      \dots, a_{n-1}, a_n],
 $$
-po klicu ukaza $A.obrni(i, j)$ izgleda takole:
+po klicu ukaza $A.\obrni(i, j)$ izgleda takole:
 $$
 A = [a_1, a_2, \dots, a_{i-1}, a_j, a_{j-1}, \dots, a_{i+1}, a_i, a_{j+1},
      \dots, a_{n-1}, a_n] .
@@ -495,13 +495,13 @@ nad to podatkovno strukturo.
 Najprej je seveda implementiral algoritem za urejanje:
 \begin{small}
 \begin{algorithmic}
-\State $n \gets A.length()$
+\State $n \gets A.\length()$
 \For{$i = 2, \dots, n$}
     \State $j \gets i$
     \While{$j > 1 \land A[j-1] > A[i]$}
         \State $j \gets i-1$
     \EndWhile
-    \State $A.obrni(j, i)$
+    \State $A.\obrni(j, i)$
     \If{$j+1 < i$}
         \State
     \EndIf
@@ -570,14 +570,14 @@ ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
 Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
 ne moremo pa jih spreminjati.
 Elementi ``tabele'' $A$ so indeksirani s celimi števili od $1$ do $n$,
-kjer je $n = A.length()$ indeks zadnjega elementa ``tabele'' $A$.
+kjer je $n = A.\length()$ indeks zadnjega elementa ``tabele'' $A$.
 Edina operacija (poleg dostopanja do posameznih elementov),
-ki jo lahko izvajamo nad $A$, je $A.obrniZacetek(i)$.
+ki jo lahko izvajamo nad $A$, je $A.\obrniZacetek(i)$.
 Če ima na začetku $A$ vrednosti
 $$
 A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{n-1}, a_n],
 $$
-po klicu ukaza $A.obrniZacetek(i)$ izgleda takole:
+po klicu ukaza $A.\obrniZacetek(i)$ izgleda takole:
 $$
 A = [a_i, a_{i-1}, \dots, a_2, a_1, a_{i+1}, \dots, a_{n-1}, a_n] .
 $$
@@ -586,12 +586,12 @@ nad to podatkovno strukturo.
 Najprej je seveda implementiral algoritem za urejanje:
 \begin{small}
 \begin{algorithmic}
-\State $n \gets A.length()$
+\State $n \gets A.\length()$
 \For{$i = n, \dots, 2$}
     \For{$j = 1, \dots, i-1$}
         \If{$A[j] > A[i]$}
-            \State $A.obrniZacetek(j)$
-            \State $A.obrniZacetek(i)$
+            \State $A.\obrniZacetek(j)$
+            \State $A.\obrniZacetek(i)$
         \EndIf
     \EndFor
 \EndFor
@@ -600,14 +600,14 @@ Najprej je seveda implementiral algoritem za urejanje:
 
 \begin{enumerate}[(a)]
 \item Oceni časovno zahtevnost zgornjega algoritma.
-Upoštevaj, da se operacija $A.obrniZacetek(i)$ izvede v konstantnem času.
+Upoštevaj, da se operacija $A.\obrniZacetek(i)$ izvede v konstantnem času.
 
 \item Algoritem izvedi na ``tabeli'' $A = [5, 9, 12, 7, 15]$.
 Ali deluje pravilno?
 
 \item Napiši algoritem za urejanje, ki bo deloval pravilno.
 Njegova časovna zahtevnost ne sme biti slabša
-od časovne zahtevnosti algoritma Dr.~Kaczyńskega.
+od časovne zahtevnosti algoritma dr.~Kaczyńskega.
 \end{enumerate}
 \end{vprasanje}
 \begin{odgovor}
