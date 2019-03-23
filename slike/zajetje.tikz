@@ -1,0 +1,77 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+
+\node[vertex] (O) at (-7, 0) [label=left:$O$] {};
+\node[vertex] (A) at (-2, 4) {};
+\node[vertex] (B) at (-2, 2) {};
+\node[vertex] (C) at (-2, 1) {};
+\node[vertex] (D) at (-2,-1) {};
+\node[vertex] (E) at (-2,-2) {};
+\node[vertex] (F) at (-2,-4) {};
+\node[vertex] (G) at ( 0, 4) {};
+\node[vertex] (H) at ( 0, 2) {};
+\node[vertex] (I) at ( 0, 1) {};
+\node[vertex] (J) at ( 0,-1) {};
+\node[vertex] (K) at ( 0,-2) {};
+\node[vertex] (L) at ( 0,-4) {};
+\node[vertex] (M) at ( 5, 0) {};
+\node[vertex] (T) at ( 7, 0) [label=right:$T$] {};
+
+\draw[->] (O) -- (A)
+    node [above, midway, sloped] {$10$};
+\draw[->] (O) -- (B)
+    node [above, midway, sloped] {$10$};
+\draw[->] (O) -- (C)
+    node [below, near end, sloped] {$10$};
+\draw[->] (O) -- (D)
+    node [above, near end, sloped] {$10$};
+\draw[->] (O) -- (E)
+    node [below, midway, sloped] {$10$};
+\draw[->] (O) -- (F)
+    node [below, midway, sloped] {$10$};
+\draw[->] (A) -- (B)
+    node [left, midway] {$5$};
+\draw[->] (A) -- (G)
+    node [above, midway] {$5$};
+\draw[->] (B) -- (G)
+    node [above, midway, sloped] {$a_1$};
+\draw[->] (B) -- (H)
+    node [below, midway] {$5$};
+\draw[->] (C) -- (D)
+    node [left, midway] {$5$};
+\draw[->] (C) -- (I)
+    node [above, midway] {$5$};
+\draw[->] (D) -- (I)
+    node [above, midway, sloped] {$a_2$};
+\draw[->] (D) -- (J)
+    node [below, midway] {$5$};
+\draw[->] (E) -- (F)
+    node [left, midway] {$5$};
+\draw[->] (E) -- (K)
+    node [above, midway] {$5$};
+\draw[->] (F) -- (K)
+    node [above, midway, sloped] {$a_3$};
+\draw[->] (F) -- (L)
+    node [below, midway] {$5$};
+\draw[->] (G) -- (H)
+    node [right, midway] {$5$};
+\draw[->] (G) -- (M)
+    node [above, midway, sloped] {$10$};
+\draw[->] (H) -- (M)
+    node [above, midway, sloped] {$10$};
+\draw[->] (I) -- (J)
+    node [right, midway] {$5$};
+\draw[->] (I) -- (M)
+    node [below, near start, sloped] {$10$};
+\draw[->] (J) -- (M)
+    node [above, near start, sloped] {$10$};
+\draw[->] (K) -- (L)
+    node [right, midway] {$5$};
+\draw[->] (K) -- (M)
+    node [below, midway, sloped] {$10$};
+\draw[->] (L) -- (M)
+    node [below, midway, sloped] {$10$};
+\draw[->] (M) -- (T)
+    node [above, midway] {$50$};
+
+\end{tikzpicture}

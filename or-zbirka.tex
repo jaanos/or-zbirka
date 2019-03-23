@@ -8,9 +8,10 @@
 \usepackage{chngcntr}
 \usepackage{environ}
 \usepackage{needspace}
+\usepackage{fourier}
 \usepackage[small]{caption}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{amsmath,amssymb,amstext,wasysym,mathtools}
+\usepackage{amsmath,amssymb,amstext,wasysym,mathtools,mathdots}
 \usepackage{algorithmicx,algpseudocode}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tabularx}
@@ -35,7 +36,7 @@
 \newcommand{\EVPI}{\ensuremath{\operatorname{EVPI}}}
 \newcommand{\EVE}{\ensuremath{\operatorname{EVE}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\razdelek}[1]{\clearpage\subsection{#1}}
+\newcommand{\razdelek}[1]{\novastran\subsection{#1}\renewcommand{\novastran}{\clearpage}}
 \newcommand{\opis}[2][2]{\shortintertext{\small\needspace{#1\baselineskip}#2:}}
 \newcommand{\namig}[1]{\\ {\small {\bf Namig:} #1}}
 \newcommand{\nadaljevanje}[1]{{\em Nadaljevanje sledi v nalogi~\nal{#1}.}}
@@ -88,6 +89,7 @@
 \newcommand{\avtor}[1]{\renewcommand{\taavtor}{\hfill {\small Avtor: #1}\par}}
 \newcommand{\naslov}[1]{\renewcommand{\tanaslov}{\if\relax\detokenize{#1}\relax\else\noindent {\small\bf (#1)}\fi}}
 \newcommand{\vir}[1]{\renewcommand{\tavir}{\hfill {\small Vir: #1}\par}}
+\newcommand{\novastran}{}
 \newenvironment{vprasanje}[1][]{\oznaka{#1}\label{nal:\thislabel}{\bf \res{}.}\taavtor\tanaslov\tavir\smallskip\noindent\ignorespaces}{}
 \NewEnviron{odgovor}{}
 \input{naloge/seznam.tex}
@@ -101,6 +103,7 @@
 \newcommand{\avtor}[1]{}
 \newcommand{\naslov}[1]{}
 \newcommand{\vir}[1]{}
+\newcommand{\novastran}{}
 \NewEnviron{vprasanje}[1][]{\oznaka{#1}\label{res:\thislabel}{\bf \nal{}.}}
 \newenvironment{odgovor}{\noindent\ignorespaces}{}
 \input{naloge/seznam.tex}

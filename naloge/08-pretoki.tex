@@ -235,3 +235,141 @@ Utemelji.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 4.5.2012}
+\begin{vprasanje}[zajetje]
+Iz zajetja $O$ želimo preko treh čistilnih postaj
+(vsako predstavljajo $4$ vozlišča)
+napeljati vodo do tovarne $T$.
+Opravka imamo z vodovodnim omrežjem,
+predstavljenim z grafom na sliki~\fig{}.
+Na povezavah so kapacitete cevi (v litrih na sekundo),
+cevi z oznakami $a_1$, $a_2$ in $a_3$ pa še niso zgrajene.
+
+\begin{enumerate}[(a)]
+\item Koliko vode lahko po danem omrežju dobi tovarna na sekundo?
+
+\item Trenutni dotok vode v tovarno za potrebe proizvodnje ni dovolj velik,
+zato razmišljajo o izgradnji novih cevi.
+Možne lokacije novih cevi so $a_1$, $a_2$ in $a_3$.
+Uprava tovarne se je odločila,
+da bodo s postavitvijo novih cevi na nekaterih možnih lokacijah
+povečali pretok kar največ, kot je mogoče.
+Cev kapacitete $k$ stane $k \cdot 100 €$.
+Za inštalacijo ene cevi morajo plačati dodatnih $10000 €$.
+Koliko najmanj jih bo stal projekt?
+\end{enumerate}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Omrežje}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 4.5.2012}
+\begin{vprasanje}
+Na divjem žuru matematikov se je zbralo $n$ ljudi.
+Organizator je priskrbel $s$ različnih vrst sendvičev,
+a ne v neomejenih količinah.
+Na voljo imajo $u_i$ sendvičev sorte $i$ ($1 \le i \le s$).
+Prav tako imajo na voljo $p$ različnih sokov;
+$w_i$ predstavlja število sokov sorte $i$ ($1 \le $i$ \le p$).
+Za vsakega udeleženca zabave je znano,
+katere sokove in sendviče ima rad.
+
+\begin{enumerate}[(a)]
+\item Zanima nas, ali lahko hrano in pijačo razdelimo tako,
+da dobi vsak udeleženec zabave en sendvič, ki ga ima rad,
+in en sok, ki ga ima rad.
+Nalogo formuliraj kot problem maksimalnega pretoka v ustreznem grafu.
+Jasno napiši, kako iz dobljenega maksimalnega toka ugotovimo,
+ali želena razdelitev hrane in pijače obstaja.
+
+\item S pomočjo formulacije iz prejšnje točke
+reši nalogo za naslednje konkretne podatke:
+\begin{center}
+\begin{tabular}{c|ccc|c}
+Vrsta soka & Količina & \quad & Vrsta sendviča & Količina \\
+\cline{1-2} \cline{4-5}
+Ananas          & 1 && Pohanček & 1 \\
+Črni ribez      & 1 && Šoferski & 1 \\
+Rdeča pomaranča & 2 && Kraški   & 2 \\
+Jagoda          & 2 && Vegi     & 1 \\
+Borovnica       & 2
+\end{tabular}
+
+\bigskip
+\begin{tabular}{c|c|c}
+Ime & Seznam sokov & Seznam sendvičev \\ \hline
+Damir   & ananas, jagoda                & pohanček, šoferski       \\
+Jasna   & ananas, črni ribez, jagoda    & kraški, vegi             \\
+Bernard & črni ribez, jagoda            & vegi, pohanček, šoferski \\
+Matjaž  & ananas, rdeča pomaranča       & kraški, vegi             \\
+Sanela  & borovnica, črni ribez, jagoda & vegi                     \\
+Patrik  & borovnica, jagoda             & kraški, vegi
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 26.6.2012}
+\begin{vprasanje}[mafija]
+V nekem velikem mehiškem mestu je center mesta sestavljen iz ulic,
+ki so pravokotne ena na drugo
+in iz ptičje perspektive izgledajo kot pravokotna karirasta mreža.
+Vse banke se nahajajo v centru,
+in sicer tik ob križiščih (v vsakem križišču kvečjemu ena banka).
+Križišča so označena s svojimi koordinatami v mreži.
+V tem mestu so ropi bank zelo pogosti.
+Tako pogosti, da se včasih roparji na begu zaletijo med seboj
+(saj bežijo pred policijskimi vozili pri veliki hitrosti).
+Če ropar uspe pripeljati do ulice, ki vodi ven iz centra, je ``rešen'',
+saj center obdajajo slumi, kjer policija nima moči,
+saj jih nadzirajo mafijski botri.
+Roparji so se sestali na Veliki mafijski konferenci
+in sklenili temu kaosu narediti konec.
+Odločili so se, da bodo naročili informacijski sistem,
+kamor bodo vsak večer vnesli lokacije bank, ki jih nameravajo oropati,
+program pa jim bo sestavil načrt ropov za naslednji dan.
+Rope je mogoče izvesti, če:
+\begin{itemize}
+\item so vse lokacije bank različne
+(dve ekipi ne smeta na isti dan oropati iste banke), in
+\item za vsako lokacijo obstaja pot, ki pelje ven iz centra,
+tako da nobeni dve poti ne gresta vzdolž iste ulice
+(s tem poskušamo preprečiti, da bi se roparji medsebojno zaleteli;
+smer vožnje pri tem ni pomembna).
+\end{itemize}
+Opiši algoritem, ki bo kot vhod dobil celi števili $n$ in $m$,
+ki predstavljata število vodoravnih in navpičnih ulic,
+ter seznam lokacij bank $L$.
+Algoritem naj vrne seznam poti,
+po katerih bodo roparji bežali (za vsako lokacijo po eno pot).
+Če vseh ropov ni mogoče izvesti, naj algoritem javi napako.
+
+Za $n = 7$, $m = 6$ in
+$$
+L = \{(4, 5), (4, 4), (4, 3), (6, 4), (7, 4),
+      (2, 5), (6, 5), (2, 4), (2, 3), (6, 3)\}
+$$
+lahko dobimo na primer poti, podane na sliki~\fig{}.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Shema ulic in bank ter primer izhoda}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

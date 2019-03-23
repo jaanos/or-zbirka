@@ -429,3 +429,187 @@ potem je $T(n) = O(n)$.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 4.5.2012}
+\begin{vprasanje}
+Naj bo $G = (V, E)$ enostaven usmerjen graf
+(tj., brez zank in vzporednih povezav),
+podan z matriko sosednosti $A = (a_{ij})_{i,j=1}^n$ ($n = |V|$),
+kjer je $a_{ij} = 1$, če je $ij \in E$, in $a_{ij} = 0$ sicer.
+Želimo ugotoviti, ali v $G$ obstaja kak usmerjen trikotnik
+(tj., usmerjen cikel dolžine $3$).
+\begin{enumerate}[(a)]
+\item Konrad je napisal naslednji algoritem, ki naj bi rešil ta problem:
+\begin{small}
+\begin{algorithmic}
+\For{$i = 1, \dots, n$}
+    \For{$j = 1, \dots, n$}
+        \For{$k = 1, \dots, n$}
+            \For{$\ell = 1, \dots, n$}
+                \If{$a_{ij} = a_{jk} = a_{j\ell} = 1 \land \ell = i$}
+                    \State \Return{\sc True}
+                \EndIf
+            \EndFor
+        \EndFor
+    \EndFor
+\EndFor
+\State \Return{\sc False}
+\end{algorithmic}
+\end{small}
+Ali algoritem deluje pravilno?
+Kakšna je njegova časovna zahtevnost?
+
+\item V psevdokodi napiši algoritem, ki reši problem v času $O(n^3)$.
+Koliko korakov naredi tvoj algoritem v najboljšem
+in koliko v najslabšem primeru?
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 26.6.2012}
+\begin{vprasanje}
+Dr.~Kaczyński se ukvarja s podatkovno strukturo $A$,
+ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
+Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
+ne moremo pa jih spreminjati.
+Elementi ``tabele'' $A$ so indeksirani s celimi števili od $1$ do $n$,
+kjer je $n = A.length()$ indeks zadnjega elementa ``tabele'' $A$.
+Edina operacija (poleg dostopanja do posameznih elementov),
+ki jo lahko izvajamo nad $A$, je ``obračanje podtabele''.
+Če ima na začetku $A$ vrednosti
+$$
+A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{j-1}, a_j, a_{j+1},
+     \dots, a_{n-1}, a_n],
+$$
+po klicu ukaza $A.obrni(i, j)$ izgleda takole:
+$$
+A = [a_1, a_2, \dots, a_{i-1}, a_j, a_{j-1}, \dots, a_{i+1}, a_i, a_{j+1},
+     \dots, a_{n-1}, a_n] .
+$$
+Dr.~Kaczyński se je lotil implementacije algoritmov
+nad to podatkovno strukturo.
+Najprej je seveda implementiral algoritem za urejanje:
+\begin{small}
+\begin{algorithmic}
+\State $n \gets A.length()$
+\For{$i = 2, \dots, n$}
+    \State $j \gets i$
+    \While{$j > 1 \land A[j-1] > A[i]$}
+        \State $j \gets i-1$
+    \EndWhile
+    \State $A.obrni(j, i)$
+    \If{$j+1 < i$}
+        \State
+    \EndIf
+\EndFor
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item V zgornji algoritem se je prikradla manjša tipkarska napaka,
+poleg tega pa je ena vrstica celo izginila.
+Popravi algoritem, da bo deloval pravilno.
+
+\item Popravljeni algoritem izvedi na ``tabeli'' $A = [5, 3, 12, 9, 1, 15]$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 9.7.2012}
+\begin{vprasanje}
+Dan je algoritem $H$,
+ki na vhod sprejme enostaven neusmerjen graf $G = (V, E)$
+(tj., brez zank in vzporednih povezav)
+ter različni vozlišči $u, v \in V$:
+\begin{small}
+\begin{algorithmic}
+\Function{$H$}{$G, u, v$}
+    \If{$|V| = 2 \land u \in sosedi(v)$}
+        \State \Return{\sc True}
+    \EndIf
+    \For{$w \in sosedi(u) \setminus \{v\}$}
+        \If{$H(G - u , w, v)$}
+            \State \Return{\sc True}
+        \EndIf
+    \EndFor
+    \State \Return{\sc False}
+\EndFunction
+\end{algorithmic}
+\end{small}
+Oznaka $G - u$ predstavlja graf,
+ki ga dobimo iz $G$ tako, da odstranimo vozlišče $u$ in vse njegove povezave.
+
+\begin{enumerate}[(a)]
+\item Za katere vhode $(G, u, v)$ algoritem $H$ vrne {\sc True}?
+\namig{poglej, kako je z grafi z $2, 3, 4, 5, \dots$ vozlišči,
+in poskusi posplošiti.}
+
+\item Denimo, da je $G = (V, E)$ graf z $n$ vozlišči,
+pri čemer je vozlišče $v$ izolirano (tj., nima nobene povezave),
+med vsakima drugima dvema vozliščema pa imamo povezavo.
+Pokaži, da se pri klicu $H(G, u, v)$ (kjer je $u \in V \setminus \{v\}$)
+zadnja vrstica funkcije $H$ izvede $\Theta((n-2)!)$-krat.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 4.9.2012}
+\begin{vprasanje}
+Dr.~Kaczyński se ukvarja s podatkovno strukturo $A$,
+ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
+Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
+ne moremo pa jih spreminjati.
+Elementi ``tabele'' $A$ so indeksirani s celimi števili od $1$ do $n$,
+kjer je $n = A.length()$ indeks zadnjega elementa ``tabele'' $A$.
+Edina operacija (poleg dostopanja do posameznih elementov),
+ki jo lahko izvajamo nad $A$, je $A.obrniZacetek(i)$.
+Če ima na začetku $A$ vrednosti
+$$
+A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{n-1}, a_n],
+$$
+po klicu ukaza $A.obrniZacetek(i)$ izgleda takole:
+$$
+A = [a_i, a_{i-1}, \dots, a_2, a_1, a_{i+1}, \dots, a_{n-1}, a_n] .
+$$
+Dr.~Kaczyński se je lotil implementacije algoritmov
+nad to podatkovno strukturo.
+Najprej je seveda implementiral algoritem za urejanje:
+\begin{small}
+\begin{algorithmic}
+\State $n \gets A.length()$
+\For{$i = n, \dots, 2$}
+    \For{$j = 1, \dots, i-1$}
+        \If{$A[j] > A[i]$}
+            \State $A.obrniZacetek(j)$
+            \State $A.obrniZacetek(i)$
+        \EndIf
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Oceni časovno zahtevnost zgornjega algoritma.
+Upoštevaj, da se operacija $A.obrniZacetek(i)$ izvede v konstantnem času.
+
+\item Algoritem izvedi na ``tabeli'' $A = [5, 9, 12, 7, 15]$.
+Ali deluje pravilno?
+
+\item Napiši algoritem za urejanje, ki bo deloval pravilno.
+Njegova časovna zahtevnost ne sme biti slabša
+od časovne zahtevnosti algoritma Dr.~Kaczyńskega.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

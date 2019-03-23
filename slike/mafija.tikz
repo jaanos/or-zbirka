@@ -1,0 +1,42 @@
+\begin{tikzpicture}[style=thin,scale=0.9]
+\tiny
+\tikzstyle{vertex}=[draw, thick, circle, fill=white, inner sep=0pt, minimum size=4mm]
+
+\draw (0.5, -1) -- (6.5, -1);
+\draw (0.5, -2) -- (6.5, -2);
+\draw (0.5, -3) -- (6.5, -3);
+\draw (0.5, -4) -- (6.5, -4);
+\draw (0.5, -5) -- (6.5, -5);
+\draw (0.5, -6) -- (6.5, -6);
+\draw (0.5, -7) -- (6.5, -7);
+
+\draw (1, -0.5) -- (1, -7.5);
+\draw (2, -0.5) -- (2, -7.5);
+\draw (3, -0.5) -- (3, -7.5);
+\draw (4, -0.5) -- (4, -7.5);
+\draw (5, -0.5) -- (5, -7.5);
+\draw (6, -0.5) -- (6, -7.5);
+
+\node[vertex] (b1) at (5, -4) [label= 45:{$(4,5)$}] {};
+\node[vertex] (b2) at (4, -4) [label=315:{$(4,4)$}] {};
+\node[vertex] (b3) at (3, -4) [label=135:{$(4,3)$}] {};
+\node[vertex] (b4) at (4, -6) [label=315:{$(6,4)$}] {};
+\node[vertex] (b5) at (4, -7) [label=225:{$(7,4)$}] {};
+\node[vertex] (b6) at (5, -2) [label= 45:{$(2,5)$}] {};
+\node[vertex] (b7) at (5, -6) [label= 45:{$(6,5)$}] {};
+\node[vertex] (b8) at (4, -2) [label=315:{$(2,4)$}] {};
+\node[vertex] (b9) at (3, -2) [label=135:{$(2,3)$}] {};
+\node[vertex] (b0) at (3, -6) [label=135:{$(6,3)$}] {};
+
+\draw[->,very thick] (b1) -- (6.5, -4);
+\draw[->,very thick] (b2) -- (4, -3) -- (0.5, -3);
+\draw[->,very thick] (b3) -- (0.5, -4);
+\draw[->,very thick] (b4) -- (4, -5) -- (6.5, -5);
+\draw[->,very thick] (b5) -- (4, -7.5);
+\draw[->,very thick] (b6) -- (5, -3) -- (6.5, -3);
+\draw[->,very thick] (b7) -- (6.5, -6);
+\draw[->,very thick] (b8) -- (4, -1) -- (3, -1) -- (3, -0.5);
+\draw[->,very thick] (b9) -- (2, -2) -- (2, -0.5);
+\draw[->,very thick] (b0) -- (2, -6) -- (2, -7.5);
+
+\end{tikzpicture}

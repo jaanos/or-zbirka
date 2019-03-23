@@ -901,3 +901,88 @@ kot število takih postavitev oklepajev med $i$-tim in $j$-tim izrazom.}
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 31.5.2012}
+\begin{vprasanje}
+Samostojna umetnica z nadimkom Stekelce se preživlja z barvanjem na steklo.
+Tokrat je dobila naročilo
+za izdelavo dveh zelo posebnih pobarvanih steklenih kroglic.
+Plačilo je dobila vnaprej, stroške pa bo imela le z nabavo stekla,
+saj ima barv in čopičev že dovolj na zalogi.
+Če ne uspe izdelati obeh kroglic v dogovorjenem času,
+bo morala plačati $800 €$ kazni.
+Steklene kroglice lahko naroči v steklarni, in sicer jo vsaka stane $100 €$.
+Steklarna ima stroške vsakič, ko zažene proizvodnjo teh kroglic,
+zato ji za vsako naročilo (ne glede na število naročenih kroglic)
+zaračuna dodatnih $300 €$.
+Kljub temu, da mora Stekelce zmeraj plačati vse dobljene kroglice,
+je za vsako le $50 \%$ verjetnost, da bo zanjo uporabna.
+Neuporabne kroglice lahko vrže kar v smeti,
+odvečne uporabne kroglice pa zanjo prav tako niso vredne nič
+in jih bo brez stroškov zavrgla.
+\begin{enumerate}[(a)]
+\item Ker je naročilo časovno omejeno,
+ima Stekelce čas za največ dve naročili v steklarni.
+Po koliko kroglic naj vsakič naroči, da bodo pričakovani stroški čim manjši?
+(Število naročenih kroglic pri drugem naročilu
+bo seveda odvisno od števila dobrih kroglic pri prvem naročilu.)
+
+\item Kaj pa,
+če steklarna v prvi seriji za naročilo namesto $300 €$ zahteva le $150 €$,
+v drugi seriji pa stroški naročila ostanejo $300 €$?
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 9.7.2012}
+\begin{vprasanje}
+Dan je številski trikotnik
+$$
+\begin{array}{ccccccccc}
+                &&&& a_{1,1} \\
+            &&& a_{2,1} && a_{2,2} \\
+        && a_{3,1} && a_{3,2} && a_{3,3} \\
+     & \iddots && \vdots && \vdots && \ddots \\
+a_{n,1} && a_{n,2} && \cdots && a_{n,n-1} && a_{n,n}
+\end{array} ,
+$$
+kjer so $a_{i,j} \in \Z$.
+{\em Spust} v takem trikotniku je pot od vrha do dna
+-- t.j., zaporedje $(a_{i, j_i})_{i=1}^n$,
+kjer je $j_1 = 1$ in $j_i \in \{j_{i-1}, j_{i-1}+1\}$
+za vsak $i = 2, \dots, n$.
+Teža spusta je vsota števil, po katerih poteka spust
+(torej $\sum_{i=1}^n a_{i, j_i}$).
+
+S pomočjo dinamičnega programiranja opiši postopek,
+ki poišče najtežji spust v danem številskem trikotniku.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 4.9.2012}
+\begin{vprasanje}
+Antonio se preživlja z graviranjem na zlato.
+Ravnokar je dobil naročilo za graviranje
+dveh zelo umetelno izdelanih zaročnih prstanov.
+Če ne uspe izdelati prstanov v dogovorjenem času,
+bo moral plačati $1600 €$ kazni.
+Prstane lahko naroči pri zlatarju, ki ga je izbral naročnik.
+Ta zlatar bo izdelavo vsakega prstana zaračunal po $100 €$,
+varovana dostava pa (ne glede na število prstanov) stane $200 €$.
+Ker prstani niso čisto homogeni,
+je verjetnost, da graviranje uspe, le $50 \%$.
+Ves ostali material (neuspeli prstani, opilki ipd.)
+bo moral na koncu vrniti zlatarju (tako je določeno v pogodbi).
+Ker je naročilo časovno omejeno, ima časa za največ 2 naročili pri zlatarju.
+Koliko prstanov naj vsakič naroči, da bodo pričakovani stroški čim manjši?
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
