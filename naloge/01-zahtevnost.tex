@@ -713,3 +713,74 @@ Utemelji, da je časovna zahtevnosti tvojega algoritma res $O(n \log n)$.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 19.5.2015}
+\begin{vprasanje}
+Dana je zgornje trikotna matrika $A \in \Z^{n \times n}$,
+ki ima na diagonali neničelne vred\-no\-sti,
+in vektor $b \in \Z^n$.
+V psevdokodi zapiši algoritem, ki sprejme $A$ in $b$
+ter reši sistem enačb $Ax = b$.
+V psevdokodi lahko uporabiš le aritmetične operacije na številih,
+ne pa recimo operacije invertiranja matrike $A$
+(razen, če posebej napišeš psevdokodo za tako operacijo).
+
+Kakšna je časovna zahtevnost tvojega algoritma?
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 24.6.2015}
+\begin{vprasanje}
+Dan je algoritem, ki na vhod sprejme seznam števil
+$A = [a_1, a_2, \dots, a_n]$
+in vrne preurejen seznam $A$,
+pri čemer preurejanje poteka tako:
+\begin{itemize}
+\item Algoritem najprej primerja in uredi prvi dve števili v tabeli,
+nato drugo in tretje število, nato tretje in četrto število, \dots,
+in nazadnje še $(n-1)$-to in $n$-to število.
+\item Celoten opisan postopek iz prejšnje alineje
+algoritem ponavlja tako dolgo,
+dokler se med postopkom vsaj dvakrat dva elementa tabele zamenjata
+(tj., algoritem se ustavi,
+če se v ponovitvi prejšnje alineje zgodi največ ena zamenjava).
+\end{itemize}
+
+Ponazorimo delovanje algoritma na primeru vhoda $A = [\pi, 7, 3, \sqrt{2}]$.
+Potem se med izvajanjem algoritma seznam spreminja tako:
+$$
+\begin{array}{cccccccc}
+A &\to& [\pi, 7, 3, \sqrt{2}]
+  &\to& [\pi, 3, 7, \sqrt{2}]
+  &\to& [\pi, 3, \sqrt{2}, 7] &\to \\
+  &   & [3, \pi, \sqrt{2}, 7]
+  &\to& [3, \sqrt{2}, \pi, 7]
+  &\to& [3, \sqrt{2}, \pi, 7] &\to \\
+  &   & [\sqrt{2}, 3, \pi, 7]
+  &\to& [\sqrt{2}, 3, \pi, 7]
+  &\to& [\sqrt{2}, 3, \pi, 7]
+\end{array}
+$$
+
+\begin{enumerate}[(a)]
+\item Podaj primer vhoda, kjer algoritem ne vrne urejene tabele.
+Na tem primeru zapiši zaporedje tabel med izvajanjem algoritma.
+
+\item Gornji algoritem zapiši v psevdokodi (ne prirejaj/izboljšuj algoritma).
+Kakšna je njegova časovna zahtevnost?
+\namig{ali je po tem, ko se prvič izvede prva alineja v opisu algoritma,
+katero število že na istem mestu, kot bi bilo v urejeni tabeli?}
+
+\item Recimo, da na vhod dobimo tabelo dolžine $n$.
+Kakšni morajo biti vhodni podatki,
+da algoritem naredi najmanjše število primerjav?
+Kolikšno je v tem primeru to število?
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

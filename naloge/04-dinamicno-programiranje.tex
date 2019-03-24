@@ -1114,3 +1114,53 @@ $p_3(j)$ & $0$ & $0.3$ & $0.6$ & $0.8$ & $0.85$ & $0.85$
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 24.6.2015}
+\begin{vprasanje}
+Tajni agent slovenske obveščevalne službe
+nam je prinesel besedilo v neznanem tujem jeziku,
+brez ločil in brez presledkov.
+V bistvu smo dobili en zelo dolg niz znakov (recimo dolžine $n$).
+Ker v obveščevalni službi sumijo, da je besedilo v turkmenščini,
+so nam prinesli elektronski seznam veljavnih turkmenskih besed
+(ki so ga dobili iz skeniranja več turkmenskih spletnih strani
+ter iz slovarja njihovega knjižnega jezika).
+Ta seznam besed nam pomaga, da lahko hitro preverimo,
+ali je dana beseda veljavna.
+
+Naša naloga je, da preverimo,
+ali lahko besedilo razdelimo na zaporedje veljavnih turkmenskih besed.
+Reši nalogo s pomočjo dinamičnega programiranja.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.8.2015}
+\begin{vprasanje}
+V podjetju Hierarhija so delavci razvrščeni hierarhično tako,
+da za vsaka dva delavca vemo, kdo je komu nadrejen.
+Če povemo še bolj natančno, delavce lahko postavimo v vrsto tako,
+da so za vsakega delavca levo od njega podrejeni, desno pa nadrejeni.
+
+Recimo, da je v podjetju $n$ delavcev, označimo jih z $d_1, d_2, \dots, d_n$.
+Predpostavimo tudi, da so že urejeni hierarhično,
+tj., delavec $d_i$ je podrejen delavcem $d_{i+1}, d_{i+2}, \dots, d_n$.
+Vsak delavec se boji prvih nekaj delavcev, ki so mu podrejeni,
+da bi ga prehiteli v hierarhiji.
+Naj bo $k_i \in \N_0$ stopnja ogroženosti delavca $d_i$ ($1 \le i \le n$).
+Stopnja ogroženosti nam pove,
+koliko delavcev, ki so podrejeni delavcu $d_i$, se ta delavec ``boji''.
+Z drugimi besedami,
+delavec $d_i$ se boji delavcev $d_{i_1}, d_{i-2}, \dots, d_{i-k_i}$.
+
+Z dinamičnim programiranjem poišči tako največjo skupino delavcev,
+da se nihče v tej skupini ne bo bal drugega iz te skupine.
+Dovolj je zapisati rekurzivno enačbo z začetnimi pogoji.
+Kako lahko izvemo, kateri delavci so v tej (največji) skupini?
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

@@ -1194,3 +1194,135 @@ da morata biti števili $1$ in $2$ sosednji.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 19.5.2015}
+\begin{vprasanje}
+Podjetje Nijke proizvaja moške copate.
+Po svetu ima več tovarn,
+vsaka je na stopnji razvoja $1$, $2$, $3$ ali $4$.
+Koliko dobička prinese
+tovarna na posamezni stopnji razvoja v posamezni državi
+ter koliko tovarn na posamezni stopnji razvoja ima trenutno vsaka država,
+je razvidno iz tabele~\tab{}.
+
+V naslednjem letu lahko nadgradimo do $15$ tovarn,
+v vsaki državi največ $3$.
+Vsako tovarno lahko nadgradimo največ za eno stopnjo.
+Dodatno moramo upoštevati še naslednje omejitve.
+\begin{itemize}
+\item Slovenija mora imeti več tovarn stopnje $4$ kot Hrvaška
+in več tovarn stopnje $3$ kot Italija.
+\item Število nadgradenj tovarn v EU (države nad črto tabeli~\tab{})
+mora biti vsaj tolikšno kot število nadgradenj tovarn izven EU.
+\item Če Azerbajdžan nadgradi svojo tovarno
+in Armenija ne nadgradi tovarne stopnje $3$,
+potem mora Armenija nadgraditi vse tri tovarne stopnje $1$.
+\item Iran mora imeti vsaj toliko tovarn stopnje $4$
+kot vse države EU skupaj.
+\end{itemize}
+
+Napiši celoštevilski linearni program,
+ki upošteva opisane omejitve in pove,
+kje in koliko tovarn moramo nadgraditi, da bomo imeli kar največji dobiček.
+
+\begin{tabela}
+\begin{tabular}{c|cccc|cccc}
+& \multicolumn{4}{|c|}{dobiček}
+& \multicolumn{4}{c}{število tovarn} \\
+država & st.~$1$ & st.~$2$ & st.~$3$ & st.~$4$
+& st.~$1$ & st.~$2$ & st.~$3$ & st.~$4$ \\ \hline
+Avstrija     & 3 &  4 &  7 & 10 &  0 & 0 & 0 &  5 \\
+Slovenija    & 3 &  3 &  5 &  8 &  0 & 1 & 2 &  1 \\
+Italija      & 4 &  4 &  6 &  8 &  1 & 1 & 1 &  1 \\
+Madžarska    & 5 &  7 &  8 & 10 &  0 & 1 & 2 &  1 \\
+Hrvaška      & 3 &  4 &  5 &  7 &  1 & 2 & 1 &  0 \\ \hline
+Iran         & 6 & 10 & 10 & 10 &  3 & 0 & 4 & 10 \\
+Irak         & 2 &  4 &  4 &  6 &  5 & 3 & 0 &  0 \\
+Afganistan   & 6 &  6 &  5 &  2 & 20 & 0 & 0 &  0 \\
+Turkmenistan & 6 &  7 &  7 &  6 & 10 & 5 & 5 &  0 \\
+Pakistan     & 6 &  7 &  7 &  7 & 10 & 7 & 2 &  0 \\
+Armenija     & 6 &  7 &  9 & 10 &  3 & 0 & 1 &  0 \\
+Azerbajdžan  & 6 &  7 &  9 &  8 &  0 & 1 & 0 &  0 \\
+\end{tabular}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 24.6.2015}
+\begin{vprasanje}
+Krt Črnko že vrsto let domuje pod zelenim travnikom.
+Zgradil si je že pravo kraljestvo rovov,
+ki ga lahko predstavimo z grafom $G = (V, E)$:
+vozlišča grafa so križišča rovov, povezave pa so rovi.
+Črnkov travnik je pred kratkim kupila velika korporacija in se odločila,
+da bo Črnka pregnala s plinom.
+A slednji se ne bo pustil kar tako odgnati
+in namerava na križišča svojega kraljestva postaviti zaščitne maske.
+
+\begin{enumerate}[(a)]
+\item Pomagaj Črnku tako, da napišeš celoštevilski linearni program,
+ki za graf $G$ določi križišča, kamor naj Črnko postavi maske,
+da jih bo porabil čim manj in da bo imelo vsako križišče masko,
+ali pa bo masko imelo sosednje križišče.
+
+\item Kako se CLP spremeni, če se Črnko odloči:
+    \begin{itemize}
+    \item da bo masko gotovo postavil v križišče $s \in V$,
+    ne pa v križišče $t \in V$?
+    \item da bosta največ dve izmed križišč $s_1, s_2, \dots, s_k \in V$
+    imeli masko?
+    \item da bo v primeru, ko bo v križišču $v_1 \in V$ maska,
+    v križišču $v_2 \in V$ pa ne,
+    postavil masko v križišče $v_3 \in V$ ali v križišče $v_4 \in V$?
+    \end{itemize}
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.8.2015}
+\begin{vprasanje}
+Poslovnež Kopalec je lastnik velike evropske verige bazenov.
+Trenutno ima v lasti $20$ bazenov,
+ki jih označimo kar s števili od $1$ do $20$.
+Vsi razen bazenov $1$, $2$ in $3$ so v ``osnovnem'' stanju,
+tj., okoli njih ni zgrajen noben večji kompleks.
+Bazeni $1$, $2$ in $3$ so pa v ``nadgrajenem'' stanju,
+kar pomeni, da je okoli njih zgrajen večji kompleks,
+seveda v lasti gospoda Kopalca.
+
+V naslednjem $5$-letnem obdobju
+bo gospod Kopalec nadgradil nekaj svojih bazenov,
+ki so trenutno v osnovnem stanju,
+nekaj bazenov pa bo prodal.
+Napiši celoštevilski linearni program,
+ki bo gospodu Kopalcu pomagal maksimizirati število nadgrajenih bazenov
+po koncu 5-letnega obdobja. Pri tem upoštevaj naslednje omejitve:
+\begin{itemize}
+\item Gospod Kopalec bo nadgradil največ dvakrat toliko bazenov,
+kot jih bo prodal.
+\item Gospod Kopalec ne bo prodal bazenov,
+ki so nadgrajeni ali jih bo nadgradil.
+\item Če bo gospod Kopalec nadgradil bazen $8$,
+potem bo nadgradil tudi bazena $14$ in $11$, ne bo pa prodal bazena $15$.
+\item Gospod Kopalec ne bo nadgradil bazenov $4$, $5$, $6$ in $7$,
+če ne bo prodal bazenov $15$, $16$, $17$, $18$, $19$ in $20$
+(tj., če ne proda nobenega od bazenov $15$--$20$,
+potem ne bo nadgradil nobenega od bazenov $4$--$7$).
+\item Za neka $a$ in $b$ ($4 \le a, b \le 20$),
+ki ju želi gospod Kopalec določiti kasneje,
+bo prodal bazen $a$ in nadgradil bazen $b$.
+\item Ženi gospoda Kopalca je všeč bazen $c$ ($1 \le c \le 20$) tak, kot je.
+Zato ga gospod Kopalec ne bo prodajal, niti nadgrajeval.
+\end{itemize}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

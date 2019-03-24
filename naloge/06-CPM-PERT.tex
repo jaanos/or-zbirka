@@ -64,9 +64,6 @@ je opisana v tabeli~\tab{}.
 \item Topološko uredi ustrezni graf in ga nariši.
 \item Določi kritična opravila in kritično pot ter trajanje priprave.
 \item Katero opravilo je najmanj kritično?
-\item Določi razpored opravil,
-pri čemer en kuhar prevzame opravila na kritični poti,
-drugi pa naj čim kasneje začne in čim prej konča.
 \end{enumerate}
 
 \begin{tabela}
@@ -84,8 +81,19 @@ H & pečenje palačinke (s sirom) & 3 min & B, F \\
 I & pomivanje posode & 8 min & G, H \\
 J & odpiranje marmelade & 1 min & / \\
 \end{tabular}
-\podnaslov{Podatki}
+\caption{Podatki za nalogi~\nal{} in~\nal{palacinke2}.}
 \end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Janoš Vidali}{Vaje OR 14.12.2016}
+\begin{vprasanje}[palacinke2]
+Določi razpored opravil iz naloge~\nal{palacinke},
+pri čemer en kuhar prevzame opravila na kritični poti,
+drugi pa naj čim kasneje začne in čim prej konča.
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
@@ -302,6 +310,44 @@ G & povezovanje repa s trupom   & 12 dni & B, C & 10 dni & 1300 \\
 H & vgraditev motorjev          & 20 dni & B    & 18 dni & 1400 \\
 \end{tabular}
 }
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.8.2015}
+\begin{vprasanje}
+Gradimo objekt in želimo narediti opravila iz tabele~\tab{},
+za katera vemo tudi, katera druga opravila morajo biti predhodno izvedena.
+\begin{enumerate}[(a)]
+\item Opravila A--J določajo usmerjen acikličen graf,
+kjer so povezave določene s predhodnimi opravili.
+Nariši ta graf in ga topološko uredi
+(lahko ga že narišeš topološko urejenega).
+
+\item Določi kritična opravila, kritično pot in trajanje gradnje.
+
+\item Katero opravilo je najmanj kritično?
+\end{enumerate}
+
+\begin{tabela}
+\begin{tabular}{c|l|c|c}
+& aktivnost & trajanje & predhodna opravila \\
+\hline
+A & postavitev stebra 1 & 4 dni & / \\
+B & postavitev stebra 2 & 3 dni & D \\
+C & postavitev stebra 3 & 5 dni & H \\
+D & postavitev stebra 4 & 6 dni & A, E \\
+E & postavitev stene 1  & 4 dni & A, G \\
+F & postavitev stene 2  & 2 dni & H, I \\
+G & postavitev stene 3  & 2 dni & / \\
+H & postavitev stene 4  & 1 dan & / \\
+I & postavitev stene 5  & 6 dni & C \\
+J & betoniranje plošče  & 2 dni & C, E, F \\
+\end{tabular}
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
