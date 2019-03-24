@@ -1392,3 +1392,75 @@ ima dobljeni celoštevilski linearni program?
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Teorija OR 5.7.2013}
+\begin{vprasanje}
+Zapiši naslednji problem kot celoštevilski linearni program.
+\begin{align*}
+\min & f(x) + g(y) + h(z) \quad \text{p.p.} \\
+f(x) &= \begin{cases}
+        10      & \text{če $x = 0$, in} \\
+        10 + 5x & \text{če $x > 0$}
+        \end{cases} \\
+g(y) &= \begin{cases}
+        10     & \text{če $y = 0$, in} \\
+        5 + 5y & \text{če $y > 0$}
+        \end{cases} \\
+h(z) &= \begin{cases}
+        8       & \text{če $z = 0$, in} \\
+        10 + 4z & \text{če $z > 0$}
+        \end{cases} \\
+x + y + z &\ge 100 \\
+      (x \ge 5 \land y \ge 5)
+&\lor (x \ge 5 \land z \ge 5)
+ \lor (y \ge 5 \land z \ge 5) \\
+x, y, z &\ge 0, \quad x, y, z \in \Z
+\end{align*}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Sergio Cabello}{Teorija OR 12.7.2017}
+\begin{vprasanje}
+Zapiši naslednji problem kot celoštevilski linearni program.
+\begin{align*}
+\min & f_1(x_1) + f_2(x_2) \quad \text{p.p.} \\
+f_1(x_1) &= \begin{cases}
+            0         & \text{če $x_1 = 0$, in} \\
+            10 + 5x_1 & \text{če $x_1 > 0$}
+            \end{cases} \\
+f_2(x_2) &= \begin{cases}
+            0         & \text{če $x_2 = 0$, in} \\
+            20 + 4x_2 & \text{če $x_2 > 0$}
+            \end{cases} \\
+100x_1 + 150x_2 &\le 10000 \\
+x_1, x_2 &\ge 0
+\end{align*}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{Sergio Cabello}{Teorija OR 5.9.2017}
+\begin{vprasanje}[sudoku]
+Obravnavamo manjši sudoku velikosti $4\times 4$ na sliki~\fig{}.
+Vanj vpisujemo števila med 1 in 4.
+Vsako število se pojavi natanko enkrat v vsaki vrstici,
+vsakem stolpcu in vsakem od $4$ kvadratov velikosti $2 \times 2$,
+omejenih z debelejšo črto.
+Opiši celoštevilski linearni program za reševanje takega problema
+oz.~za določanje, da rešitev ne obstaja.
+Koliko spremenljvk in pogojev ima linearni program?
+
+\begin{slika}
+\includegraphics[scale=.7]{slike/sudoku}
+\podnaslov{Primer sudokuja}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
