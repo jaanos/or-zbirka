@@ -1326,3 +1326,69 @@ Zato ga gospod Kopalec ne bo prodajal, niti nadgrajeval.
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 12.5.2016}
+\begin{vprasanje}
+Dan je enostaven graf $G = (V, E)$
+in funkcija uteži na povezavah $w : E \to \R_{>0}$.
+Podmnožici $M \subseteq E$ pravimo {\em prirejanje},
+če za vsaki različni povezavi $e, e' \in M$ velja $e \cap e' = \emptyset$
+(tj., nobeni dve povezavi iz $M$ nimata skupnega krajišča).
+Prirejanje $M$ je {\em maksimalno},
+če ne obstaja tako prirejanje $M'$, da velja $M \subset M'$.
+{\em Teža} prirejanja $M$ je vsota uteži njegovih povezav,
+torej $\sum_{e \in M} w(e)$.
+
+Formuliraj celoštevilski linearni program,
+ki za dani vhodni graf $G$ poišče maksimalno prirejanje najmanjše teže.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 24.5.2016}
+\begin{vprasanje}
+Dan je graf $G = (V, E)$.
+Razbitju $V_1, V_2, \dots, V_k$ množice vozlišč $V$
+pravimo {\em $k$-barvno pakiranje},
+če velja $d_G(u, v) > i$ za vsaki različni vozlišči $u, v \in V_i$
+($1 \le i \le k$) --
+tj., poljubni dve vozlišči iz $V_i$ sta v grafu $G$ oddaljeni za več kot $i$.
+Minimalnemu številu $k$, za katero obstaja $k$-barvno pakiranje,
+pravimo {\em mavrično pakirno število} in ga označimo s $\chi_p(G)$.
+Napiši celoštevilski linearni program,
+ki za dani graf $G$ izračuna $\chi_p(G)$.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 24.5.2016}
+\begin{vprasanje}
+Naj bo $G = (V, E)$ enostaven graf.
+Barvanju vozlišč grafa $c_k : V \to \{1, 2, \dots, k\}$
+pravimo {\em $k$-uravnoteženo barvanje},
+če ima naslednji lastnosti:
+\begin{itemize}
+\item Če sta vozlišči $u$ in $v$ sosedni v $G$,
+potem velja $c_k(u) \ne c_k(v)$.
+\item Za vsaka $i, j \in \{1, 2, \dots, k\}$ velja
+$$
+\Big| |\set{v \in V}{c_k(v) = i}| - |\set{v \in V}{c_k(v) = h}| \Big|
+\le 1
+$$
+-- tj., število vozlišč, pobarvanih z barvama $i$ in $j$,
+se razlikuje za največ $1$.
+\end{itemize}
+Napiši celoštevilski linearni program, ki ima dopustno rešitev natanko tedaj,
+ko za vhodni graf $G$ obstaja $k$-uravnoteženo barvanje.
+Predpostaviš lahko, da je tudi $k$ vhodni podatek.
+Koliko pogojev in koliko spremenljivk
+ima dobljeni celoštevilski linearni program?
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
