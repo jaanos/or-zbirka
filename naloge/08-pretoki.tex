@@ -239,11 +239,11 @@ Utemelji.
 
 \begin{naloga}{?}{Izpit OR 24.6.2014}
 \begin{vprasanje}
-Pri podatkih iz naloge~\nal{kri} poišči še odgovore na naslednji vprašanji.
+Pri podatkih iz naloge~\nal{kri} poišči še odgovora na naslednji vprašanji.
 \begin{enumerate}[(a)]
-\item Koliko enot krvi od vsake krvne skupine ostane neporabljene?
+\item Koliko enot krvi vsake krvne skupine ostane neporabljenih?
 \item Koliko enot ustrezne krvne skupine naj na kliniki še naročijo,
-da bodo pozdravili vse paciente?
+da bodo po\-zdra\-vi\-li vse paciente?
 \end{enumerate}
 \end{vprasanje}
 \begin{odgovor}
@@ -452,5 +452,209 @@ in ga uporabi na grafu s slike~\fig{}.
 \end{slika}
 \end{vprasanje}
 \begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OM 23.4.2014}
+\begin{vprasanje}[pretok1]
+Poišči maksimalni pretok in minimalni prerez na grafu s slike~\fig{}.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Poiščemo disjunktne povečujoče poti.
+Postopek reševanja je prikazan na slikah~%
+\fig{pretok1a},~\fig{pretok1b},~\fig{pretok1c} in~\fig{pretok1d}.
+Dobimo maksimalni pretok $6+2+2 = 2+5+1+2 = 10$.
+
+\begin{slika}
+\pgfslika[pretok1a]
+\podnaslov{Prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok1b]
+\podnaslov{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok1c]
+\podnaslov{Tretji korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok1d]
+\podnaslov{Maksimalni pretok in minimalni prerez}
+\end{slika}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OM 23.4.2014}
+\begin{vprasanje}[pretok2]
+Poišči maksimalni pretok in minimalni prerez na grafu s slike~\fig{}.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Poiščemo disjunktne povečujoče poti.
+Postopek reševanja je prikazan na slikah~%
+\fig{pretok2a},~\fig{pretok2b} in~\fig{pretok2c}.
+Dobimo maksimalni pretok $2+3+2+3 = 1+4+4+1 = 10$.
+
+\begin{slika}
+\pgfslika[pretok2a]
+\podnaslov{Prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok2b]
+\podnaslov{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok2c]
+\podnaslov{Maksimalni pretok in minimalni prerez}
+\end{slika}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OM 23.4.2014}
+\begin{vprasanje}[pretok3]
+Poišči maksimalni pretok in minimalni prerez na grafu s slike~\fig{}
+v odvisnosti od parametra $a$.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Najprej poiščemo maksimalni pretok za $a = 0$
+(tj., brez povezave s parametrom).
+Dobimo maksimalni pretok $0+3 = 3+0+0 = 3$, glej sliko~\fig{pretok3a}.
+
+Za $a > 0$ poiščemo povečujočo pot.
+Če je $0 < a \le 3$,
+povečamo pretok po povečujoči poti za $a$
+in tako dobimo maksimalen pretok $p^* = a+3$ ($3 < p^* \le 6$),
+saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig{pretok3b}.
+V nasprotnem primeru ($a > 3$) pretok povečamo za $3$
+in poiščemo novo povečujočo pot.
+
+Če je $3 < a \le 5$, povečamo pretok po povečujoči poti za $a-3$
+in tako dobimo maksimalen pretok $p^* = a+3$ ($6 < p^* \le 8$),
+saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig{pretok3c}.
+V nasprotnem primeru ($a > 5$) pretok povečamo za $2$.
+
+Za $a > 5$ dobimo maksimalni pretok $5+3 = 3+2+3 = 8$,
+glej sliko~\fig{pretok3d}.
+
+\begin{slika}
+\pgfslika[pretok3a]
+\podnaslov{Maksimalni pretok pri $a = 0$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3b]
+\podnaslov{Maksimalni pretok pri $0 < a \le 3$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3c]
+\podnaslov{Maksimalni pretok pri $3 < a \le 5$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3d]
+\podnaslov{Maksimalni pretok pri $a > 5$}
+\end{slika}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OM 23.4.2014}
+\begin{vprasanje}[pretok4]
+V grafu na sliki~\fig{} lahko kapaciteto ene povezave povečamo za $1$.
+Katera naj bo ta povezava, da bomo povečali maksimalni pretok?
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Poiščemo disjunktne povečujoče poti.
+Postopek reševanja je prikazan na slikah~%
+\fig{pretok4a},~\fig{pretok4b},~\fig{pretok4c} in~\fig{pretok4d}.
+Dobimo maksimalni pretok $5+10+8 = 8+4+3+8 = 23$.
+Če želimo povečati pretok,
+lahko povečamo kapaciteto povezave v minimalnem prerezu.
+Ta povezava mora biti edina zasičena povezava v poti od izvora do ponora.
+Na grafu s slike~\fig{pretok4d}
+je taka le povezava med najbolj zgornjima vozliščema.
+
+Pretok bi sicer lahko spremenili tako,
+da med črnimi vozlišči ni zasičenih povezav, kot na sliki~\fig{pretok4e}.
+Tako bi lahko povečali kapaciteto katerekoli od označenih povezav.
+
+\begin{slika}
+\pgfslika[pretok4a]
+\podnaslov{Prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok4b]
+\podnaslov{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok4c]
+\podnaslov{Tretji korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok4d]
+\podnaslov{Maksimalni pretok in minimalni prerez}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok4e]
+\podnaslov{Alternativna rešitev z več kandidati za povečanje kapacitete}
+\end{slika}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Vaje OM 23.4.2014}
+\begin{vprasanje}[pretok5]
+Poišči maksimalni pretok na grafu s slike~\fig{}, če ta obstaja!
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Če najdemo povečujočo pot z najmanjšo kapaciteto $\infty$,
+je problem neomejen.
+Postopek reševanja je prikazan na slikah~%
+\fig{pretok5a},~\fig{pretok5b} in~\fig{pretok5c}.
+Povečujoče poti s kapaciteto $\infty$ ne najdemo,
+dobimo pa maksimalen pretok $3+44+13 = 44+16 = 60$.
+
+\begin{slika}
+\pgfslika[pretok5a]
+\podnaslov{Prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok5b]
+\podnaslov{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok5c]
+\podnaslov{Maksimalni pretok in minimalni prerez}
+\end{slika}
 \end{odgovor}
 \end{naloga}
