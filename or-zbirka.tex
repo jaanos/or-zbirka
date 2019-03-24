@@ -66,7 +66,7 @@
 \newcounter{naloga}
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
-\newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\noindent {\bf Naloga}}{\bigskip}
+\newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\addcontentsline{toc}{subsubsection}{Naloga \thenaloga}\noindent {\bf Naloga}}{\bigskip}
 \newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\curlabel}\end{figure}}
 \newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\curlabel}\end{table}}
 \newcommand{\pgfslika}[1][]{\grenewcommand{\curlabel}{\taoznaka{#1}}\leavevmode\beginpgfgraphicnamed{fig-\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
