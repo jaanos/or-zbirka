@@ -106,38 +106,6 @@ Zapišimo celoštevilski linearni program.
 \end{naloga}
 
 
-\begin{naloga}[problem kombinatorične dražbe]%
-{Sergio Cabello}{Vaje OR 5.3.2018}
-\begin{vprasanje}
-Dražitelj ponuja predmete iz množice $A$
-in prejme ponudbe $\{(B_i, c_i)\}_{i=1}^k$,
-pri čemer je $c_i$ cena,
-ki jo udeleženec dražbe ponudi za predmete v množici $B_i \subseteq A$.
-Katere ponudbe naj dražitelj sprejme,
-da maksimizira dobiček,
-če lahko vsak predmet proda največ enkrat?
-Modeliraj opisani problem z linearnim programom.
-\end{vprasanje}
-
-\begin{odgovor}
-Za $i$-to ponudbo ($1 \le i \le k$) bomo uvedli spremenljivko $x_i$,
-katere vrednost interpretiramo kot
-$$
-x_i = \begin{cases}
-1, & \text{če naj dražitelj sprejme $i$-to ponudbo, in} \\
-0  & \text{sicer.}
-\end{cases}
-$$
-Zapišimo celoštevilski linearni program.
-\begin{alignat*}{2}
-\max \ \sum_{i=1}^n c_i x_i && \text{p.p.} \\
-\forall i \in \{1, \dots, k\}: &\ & 0 \le x_i &\le 1, \quad x_i \in \Z \\
-\forall p \in A: &\ & \sum_{\substack{i=1 \\ p \in B_i}}^k x_i &\le 1
-\end{alignat*}
-\end{odgovor}
-\end{naloga}
-
-
 \begin{naloga}{?}{Vaje OR 16.3.2016}
 \begin{vprasanje}
 Definiraj problem dominacijske množice v grafu
@@ -1060,5 +1028,105 @@ Pri pisanju celoštevilskih linearnih programov si lahko pomagaš z oznakami:
 \end{slika}
 \end{vprasanje}
 \begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 17.4.2013}
+\begin{vprasanje}
+Danih je $n$ praznih škatel z volumni $v_1, v_2, \dots, v_n$.
+Dana so naslednja pravila pospravljanja škatel:
+\begin{itemize}
+\item več manjših škatel lahko zložimo v večjo,
+če njihov skupni volumen ne presežemo volumna večje škatle, in
+\item škatle, ki ima znotraj sebe že kakšno škatlo,
+ne smemo več postaviti znotraj večje škatle.
+\end{itemize}
+Zanima nas takšno pospravljanje škatel,
+da bo skupen volumen škatel, ki ostanejo, čim manjši.
+Formuliraj nalogo kot celoštevilski linearni program.
+
+Na primer, če imamo škatle z volumni $2, 3, 6, 8, 9$,
+potem je ena možna rešitev (ne nujno optimalna!),
+da zložimo škatli z volumnoma $2$ in $3$ znotraj škatle z volumnom $6$
+ter škatlo z volumnom $8$ znotraj največje škatle.
+Ta razporeditev ima skupni volumen $6 + 9 = 15$.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}[problem kombinatorične dražbe]{?}{Izpit OR 14.6.2013}
+\begin{vprasanje}
+Pohorski škratje so se v osrednji sobani svojega podzemnega kraljestva
+zbrali na dražbi.
+Vodja dražbe prodaja predmete $A = \{1, 2, \dots, k\}$,
+ki so jih škratje uspeli ``pridobiti'' od ljudi.
+Ponudbe so pari $(B_i, c_i)$,
+kjer je $B_i \subseteq A$ in je $c_i > 0$ cena ponudbe.
+Škrat, ki je ponudil $j$-to ponudbo,
+je torej pripravljen za predmete $B_i$ plačati $c_i$
+(če bi dobil le nekaj od predmetov iz $B_i$, ne bi plačal nič).
+Vodja dražbe prejme $k$ ponudb $\{(B_i, c_i)\}_{i=1}^k$,
+od vsakega škrata največ eno.
+Predmete želi razdeliti med ponudnike, da bo iztržil kar največ.
+
+\begin{enumerate}[(a)]
+\item Predstavi problem kot celoštevilski linearni program!
+
+\item Kako se celoštevilski linearni program spremeni,
+če dodamo naslednja pogoja?
+    \begin{itemize}
+    \item Če je ponudba 1 uspešna,
+    potem mora biti uspešna tudi ponudba 2 ali ponudba 3.
+    \item Če so uspešne vse ponudbe s sodim indeksom,
+    potem morajo biti ne\-uspeš\-ne vsaj tri ponudbe z lihim indeksom.
+    \end{itemize}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Za $i$-to ponudbo ($1 \le i \le k$) bomo uvedli spremenljivko $x_i$,
+katere vrednost interpretiramo kot
+$$
+x_i = \begin{cases}
+1, & \text{če naj dražitelj sprejme $i$-to ponudbo, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max \ \sum_{i=1}^n c_i x_i && \text{p.p.} \\
+\forall i \in \{1, \dots, k\}: &\ & 0 \le x_i &\le 1, \quad x_i \in \Z \\
+\forall p \in A: &\ & \sum_{\substack{i=1 \\ p \in B_i}}^k x_i &\le 1
+\end{alignat*}
+
+\item Celoštevilskemu linearnemu programu dodamo še dva pogoja.
+    \begin{itemize}
+    \item Če je ponudba 1 uspešna,
+    potem mora biti uspešna tudi ponudba 2 ali ponudba 3:
+    $$
+    x_1 \le x_2 + x_3
+    $$
+    \item Če so uspešne vse ponudbe s sodim indeksom,
+    potem morajo biti ne\-uspeš\-ne vsaj tri ponudbe z lihim indeksom:
+    $$
+    \sum_{i=1}^{k} \left(2 + (-1)^i\right) x_{i}
+    \le k + 2 \left\lfloor {k \over 2} \right\rfloor - 3
+    $$
+    Razlaga: na levi strani ponudbe z lihim indeksom štejemo enkrat,
+    ponudbe s sodim indeksom
+    (teh je $\lfloor {k \over 2} \rfloor$)
+    pa trikrat.
+    Če sprejmemo vse ponudbe s sodim indeksom,
+    potem desna stran omejuje število sprejetih ponudb na $k - 3$
+    -- vsaj treh ponudb z lihim indeksom torej nismo sprejeli.
+    Če pa ne sprejmemo vseh ponudb s sodim indeksom,
+    je vsota na levi za vsaj $3$ manjša od maksimalne,
+    tako da lahko sprejmemo poljubno število ponudb z lihim indeksom.
+    \end{itemize}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

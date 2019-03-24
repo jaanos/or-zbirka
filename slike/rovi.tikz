@@ -1,0 +1,48 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+
+\node[vertex] (A) at (-3,-2) [label=below:$A$] {};
+\node[vertex] (B) at (-6, 0) {};
+\node[vertex] (C) at (-3, 0) {};
+\node[vertex] (D) at (-3, 2) {};
+\node[vertex] (E) at ( 3,-2) {};
+\node[vertex] (F) at ( 3, 0) {};
+\node[vertex] (G) at ( 3, 2) {};
+\node[vertex] (Z) at ( 6, 0) [label=right:$\check{Z}$] {};
+
+\draw[->] (A) -- (C)
+    node [left, midway] {$2$};
+\draw[->] (A) -- (E)
+    node [below, midway] {$5$};
+\draw[->] (A) -- (F)
+    node [below, near end, sloped] {$4$};
+\draw[->] (B) -- (A)
+    node [below, midway, sloped] {$10$};
+\draw[->] (B) -- (C)
+    node [above, midway] {$2$};
+\draw[->] (B) -- (D)
+    node [above, midway, sloped] {$1$};
+\draw[->] (C) -- (E)
+    node [below, near start, sloped] {$2$};
+\draw[->] (C) -- (F)
+    node [above, midway] {$x$};
+\draw[->] (C) -- (G)
+    node [above, near start, sloped] {$7$};
+\draw[->] (D) -- (C)
+    node [left, midway] {$4$};
+\draw[->] (D) -- (G)
+    node [above, midway] {$2$};
+\draw[->] (E) -- (F)
+    node [right, midway] {$5$};
+\draw[->] (E) -- (Z)
+    node [below, midway, sloped] {$1$};
+\draw[->] (F) -- (D)
+    node [above, near start, sloped] {$y$};
+\draw[->] (F) -- (G)
+    node [right, midway] {$2$};
+\draw[->] (F) -- (Z)
+    node [above, midway] {$2$};
+\draw[->] (G) -- (Z)
+    node [above, midway, sloped] {$11$};
+
+\end{tikzpicture}

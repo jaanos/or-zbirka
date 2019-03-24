@@ -485,7 +485,7 @@ $$
 A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{j-1}, a_j, a_{j+1},
      \dots, a_{n-1}, a_n],
 $$
-po klicu ukaza $A.\obrni(i, j)$ izgleda takole:
+po klicu ukaza $A.\reverse(i, j)$ izgleda takole:
 $$
 A = [a_1, a_2, \dots, a_{i-1}, a_j, a_{j-1}, \dots, a_{i+1}, a_i, a_{j+1},
      \dots, a_{n-1}, a_n] .
@@ -501,7 +501,7 @@ Najprej je seveda implementiral algoritem za urejanje:
     \While{$j > 1 \land A[j-1] > A[i]$}
         \State $j \gets i-1$
     \EndWhile
-    \State $A.\obrni(j, i)$
+    \State $A.\reverse(j, i)$
     \If{$j+1 < i$}
         \State
     \EndIf
@@ -531,10 +531,10 @@ ter različni vozlišči $u, v \in V$:
 \begin{small}
 \begin{algorithmic}
 \Function{$H$}{$G, u, v$}
-    \If{$|V| = 2 \land u \in sosedi(v)$}
+    \If{$|V| = 2 \land u \in \Adj(v)$}
         \State \Return{\sc True}
     \EndIf
-    \For{$w \in sosedi(u) \setminus \{v\}$}
+    \For{$w \in \Adj(u) \setminus \{v\}$}
         \If{$H(G - u , w, v)$}
             \State \Return{\sc True}
         \EndIf
@@ -572,12 +572,12 @@ ne moremo pa jih spreminjati.
 Elementi ``tabele'' $A$ so indeksirani s celimi števili od $1$ do $n$,
 kjer je $n = A.\length()$ indeks zadnjega elementa ``tabele'' $A$.
 Edina operacija (poleg dostopanja do posameznih elementov),
-ki jo lahko izvajamo nad $A$, je $A.\obrniZacetek(i)$.
+ki jo lahko izvajamo nad $A$, je $A.\reverseStart(i)$.
 Če ima na začetku $A$ vrednosti
 $$
 A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{n-1}, a_n],
 $$
-po klicu ukaza $A.\obrniZacetek(i)$ izgleda takole:
+po klicu ukaza $A.\reverseStart(i)$ izgleda takole:
 $$
 A = [a_i, a_{i-1}, \dots, a_2, a_1, a_{i+1}, \dots, a_{n-1}, a_n] .
 $$
@@ -590,8 +590,8 @@ Najprej je seveda implementiral algoritem za urejanje:
 \For{$i = n, \dots, 2$}
     \For{$j = 1, \dots, i-1$}
         \If{$A[j] > A[i]$}
-            \State $A.\obrniZacetek(j)$
-            \State $A.\obrniZacetek(i)$
+            \State $A.\reverseStart(j)$
+            \State $A.\reverseStart(i)$
         \EndIf
     \EndFor
 \EndFor
@@ -600,7 +600,7 @@ Najprej je seveda implementiral algoritem za urejanje:
 
 \begin{enumerate}[(a)]
 \item Oceni časovno zahtevnost zgornjega algoritma.
-Upoštevaj, da se operacija $A.\obrniZacetek(i)$ izvede v konstantnem času.
+Upoštevaj, da se operacija $A.\reverseStart(i)$ izvede v konstantnem času.
 
 \item Algoritem izvedi na ``tabeli'' $A = [5, 9, 12, 7, 15]$.
 Ali deluje pravilno?
@@ -609,6 +609,106 @@ Ali deluje pravilno?
 Njegova časovna zahtevnost ne sme biti slabša
 od časovne zahtevnosti algoritma dr.~Kaczyńskega.
 \end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Kolokvij OR 9.5.2013}
+\begin{vprasanje}
+Profesionalni programer je gospodu Velikozobcu prodal algoritem {\sc Koši}.
+A Velikozobec je že v letih in je pozabil, kaj naj bi ta algoritem vračal.
+V prospektu je zasledil naslednjo psevdokodo algoritma:
+\begin{small}
+\begin{algorithmic}
+\Require{$s[0 \dots n-1]$ tabela tromestnih števil}
+\State $T \gets$ tabela velikosti $10$,
+    katere elementi so prazne vrste (podatkovne strukture)
+\For{$i = 0, 1, \dots, n-1$}
+    \For{$i = 0, 1, \dots, 9$}
+        \If{zadnja števka $s[i] = j$}
+            \State $T[j].\append(s[i])$
+        \EndIf
+    \EndFor
+\EndFor
+\State $k \gets 0$
+\For{$i = 0, 1, \dots, n-1$}
+    \While{$T[k].\isEmpty()$}
+        \State $k \gets k+1$
+    \EndWhile
+    \State $s[i] \gets T[k].\pop()$
+\EndFor
+\For{$i = 0, 1, \dots, n-1$}
+    \For{$i = 0, 1, \dots, 9$}
+        \If{srednja števka $s[i] = j$}
+            \State $T[j].\append(s[i])$
+        \EndIf
+    \EndFor
+\EndFor
+\State $k \gets 0$
+\For{$i = 0, 1, \dots, n-1$}
+    \While{$T[k].\isEmpty()$}
+        \State $k \gets k+1$
+    \EndWhile
+    \State $s[i] \gets T[k].\pop()$
+\EndFor
+\For{$i = 0, 1, \dots, n-1$}
+    \For{$i = 0, 1, \dots, 9$}
+        \If{prva števka $s[i] = j$}
+            \State $T[j].\append(s[i])$
+        \EndIf
+    \EndFor
+\EndFor
+\State $k \gets 0$
+\For{$i = 0, 1, \dots, n-1$}
+    \While{$T[k].\isEmpty()$}
+        \State $k \gets k+1$
+    \EndWhile
+    \State $s[i] \gets T[k].\pop()$
+\EndFor
+\State \Return{$s$}
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Algoritem izvedi na primeru
+$$
+s = [146, 145, 359, 100, 359, 486, 200, 367, 980, 909, 257, 100] .
+$$
+Dovolj je napisati tabelo $s$ po vsaki izmed zunanjih zank.
+
+\item Kakšna je časovna zahtevnost algoritma?
+
+\item Kaj algoritem vrača?
+
+\item Gospod Velikozobec je ugotovil,
+da se algoritem na vhodih velikosti $n = 10000$
+izvede v približno $0.25$ sekundah.
+Približno koliko časa potrebuje za izvajanje na vhodih velikosti $n = 50000$?
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 28.8.2013}
+\begin{vprasanje}
+Asistent pri predmetu Operacijske raziskave je dobil idejo,
+kako bi predelal algoritem, ki z zlivanjem uredi seznam celih števil.
+Namesto,
+da na začetku seznam razdelimo na dva (približno) enako velika seznama,
+ga razdelimo na tri (približno) enako velike sezname.
+Le-te rekurzivno uredimo ter združimo (``zlijemo''), da dobimo urejen seznam.
+
+Napiši psevdokodo algoritma časovne zahtevnosti $O(n \log n)$,
+ki uresniči asistentovo idejo.
+V psevdokodi lahko uporabiš algoritem {\tt zlij},
+ki sprejme urejena seznama celih števil $A$ in $B$ dolžin $m$ in $n$
+ter vrne urejen seznam števil iz $A$ in $B$ dolžine $m+n$ v času $O(m+n)$.
+Psevdokode algoritma {\tt zlij} ni potrebno pisati.
+Utemelji, da je časovna zahtevnosti tvojega algoritma res $O(n \log n)$.
 \end{vprasanje}
 \begin{odgovor}
 \end{odgovor}
