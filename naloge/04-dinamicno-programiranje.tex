@@ -1044,3 +1044,73 @@ oz.~mu povemo, da s svojim znanjem ne more priti do vrha po veljavni poti!
 \begin{odgovor}
 \end{odgovor}
 \end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 5.6.2014}
+\begin{vprasanje}
+Dano je zaporedje števil $c_1, c_2, \dots, c_n$.
+Igralca $A$ in $B$ igrata igro,
+pri kateri $A$ bodisi z začetka bodisi s konca danega zaporedja
+izbere eno (prej še neizbrano) število,
+$B$ pa tako izbira dvakrat zapored.
+Igrata, dokler števil ne zmanjka.
+Zmaga igralec z največjo skupno vsoto izbranih števil.
+Denimo, da začne igralec $A$.
+S pomočjo dinamičnega programiranja določi maksimalni znesek,
+ki ga $A$ lahko doseže, če tudi drugi igralec igra optimalno.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 24.6.2014}
+\begin{vprasanje}
+Kmet redi ovce, pri čemer se vsako leto njihovo število podvoji:
+če ima na začetku leta $N$ ovac, jih ima ob koncu leta $2N$.
+Denimo, da ima kmet $k_0$ ovac na začetku leta $0$.
+Ob prehodu iz leta $i-1$ v leto $i$ se vsakič odloči,
+koliko ovac bo prodal, pri čemer je profit enak $p_i$ za vsako prodano ovco.
+Ob začetku leta $n$ hoče imeti prodane vse ovce.
+
+\begin{enumerate}[(a)]
+\item S pomočjo dinamičnega programiranja opiši algoritem,
+ki za dane podatke $n, k_0$ in $p_1, p_2, \dots, p_n$
+izračuna maksimalni profit, ki ga lahko kmet doseže po $n$ letih.
+
+\item Reši nalogo za $n = 3$, $k_0 = 2$,
+$p_1 = 100 €$, $p_2 = 130 €$ in $p_3 = 120 €$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
+
+
+\begin{naloga}{?}{Izpit OR 25.8.2014}
+\begin{vprasanje}
+Na voljo imamo $w$ delavcev, ki jih želimo razporediti med $N$ opravil.
+Dane imamo verjetnosti $p_k(j)$,
+da bo $k$-to opravilo uspešno opravljeno, če na njem dela $j$ delavcev.
+
+\begin{enumerate}[(a)]
+\item S pomočjo dinamičnega programiranja opiši algoritem,
+ki izračuna maksimalno verjetnost,
+da bo vseh $N$ opravil uspešno opravljenih (opravila so med seboj neodvisna).
+
+\item Izračunaj maksimalno verjetnost uspešno opravljenih opravil
+in določi število delavcev na posameznem opravilu
+za $N = 3$, $w = 5$ in verjetnosti iz spodnje tabele:
+\begin{center}
+\begin{tabular}{c|cccccc}
+$j$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
+$p_1(j)$ & $0$ & $0.5$ & $0.6$ & $0.7$ & $0.8$  & $0.85$ \\
+$p_2(j)$ & $0$ & $0.4$ & $0.7$ & $0.8$ & $0.9$  & $0.95$ \\
+$p_3(j)$ & $0$ & $0.3$ & $0.6$ & $0.8$ & $0.85$ & $0.85$
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
