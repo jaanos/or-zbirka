@@ -3,6 +3,7 @@ __pycache__
 *.aux
 *.bbl
 *.blg
+*.dpth
 *.log
 *.nav
 *.out
@@ -13,3 +14,4 @@ __pycache__
 *.xls
 *.zip
 .DS_Store
+test.tex

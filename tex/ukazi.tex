@@ -1,0 +1,59 @@
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\p}{\ensuremath{\mathcal{P}}}
+\newcommand{\set}[2]{\ensuremath{\left\{ #1 \; \middle| \; #2 \right\}}}
+\newcommand{\mm}{\ensuremath{\phantom{|}-\phantom{|}}}
+\newcommand{\pp}{\ensuremath{\phantom{|}+\phantom{|}}}
+\newcommand{\EVPI}{\ensuremath{\operatorname{EVPI}}}
+\newcommand{\EVE}{\ensuremath{\operatorname{EVE}}}
+\newcommand{\Adj}{\ensuremath{\text{\sc Adj}}}
+\newcommand{\length}{\ensuremath{\operatorname{length}}}
+\newcommand{\reverse}{\ensuremath{\operatorname{reverse}}}
+\newcommand{\reverseStart}{\ensuremath{\operatorname{reverseStart}}}
+\newcommand{\append}{\ensuremath{\operatorname{append}}}
+\newcommand{\pop}{\ensuremath{\operatorname{pop}}}
+\newcommand{\isEmpty}{\ensuremath{\operatorname{isEmpty}}}
+\renewcommand{\algorithmicrequire}{{\bf Vhod:}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\razdelek}[1]{\novastran\subsection{#1}\renewcommand{\novastran}{\clearpage}}
+\newcommand{\opis}[2][2]{\shortintertext{\small\needspace{#1\baselineskip}#2:}}
+\newcommand{\namig}[1]{\\ {\small {\bf Namig:} #1}}
+\newcommand{\nadaljevanje}[1]{{\em Nadaljevanje sledi v nalogi~\nal{#1}.}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareUnicodeCharacter{20AC}{\euro}
+\DeclareRobustCommand{\officialeuro}{%
+  \ifmmode\expandafter\text\fi
+  {\fontencoding{U}\fontfamily{eurosym}\selectfont e}}
+\newcommand{\ME}{\ensuremath{\operatorname{M€}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def/51751#51751
+\makeatletter
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{%
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+\makeatother
+
+\newcounter{naloga}
+\counterwithin*{naloga}{subsection}
+\renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
+\newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\addcontentsline{toc}{subsubsection}{Naloga \thenaloga}\noindent {\bf Naloga}}{\bigskip}
+\newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\curlabel}\end{figure}}
+\newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\curlabel}\end{table}}
+\newcommand{\pgfslika}[1][]{\grenewcommand{\curlabel}{\taoznaka{#1}}\leavevmode\beginpgfgraphicnamed{pgf/\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
+\newcommand{\oznaka}[1]{\if\relax\detokenize{#1}\relax\grenewcommand{\thislabel}{\thenaloga}\else\grenewcommand{\thislabel}{#1}\fi\grenewcommand{\curlabel}{\thislabel}}
+\newcommand{\taoznaka}[1]{\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}
+\newcommand{\izpisiNalogo}[1]{\oznaka{#1}\input{naloge/#1.tex}}
+
+\newcommand{\taavtor}{}
+\newcommand{\tanaslov}{}
+\newcommand{\tavir}{}
+\newcommand{\thislabel}{?}
+\newcommand{\curlabel}{\thislabel}
+\newcommand{\fig}[1]{\ref{fig:\taoznaka{#1}}}
+\newcommand{\tab}[1]{\ref{tab:\taoznaka{#1}}}
+\newcommand{\podnaslov}[2][]{\caption{#2 za nalogo~\if\relax\detokenize{#1}\relax\del{}\else#1\fi.}}
+
+\allowdisplaybreaks

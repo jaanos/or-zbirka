@@ -1,8 +1,8 @@
 SHELL := /bin/bash
 ZBIRKA := or-zbirka
 
-TEX_FILES := $(shell ls naloge/*.tex)
-FIG_FILES := $(shell ls slike/*.tikz | grep -v osnova | sed -r "s|^slike/(.*)\\.tikz|fig-\\1.pdf|")
+TEX_FILES := $(shell ls naloge/*.tex tex/*.tex)
+FIG_FILES := $(shell ls slike/*.tikz | grep -v osnova | sed -r "s|^slike/(.*)\\.tikz|pgf/\\1.pdf|")
 BIB_FILES := reference.bib slovene.bdf
 
 all: zbirka
@@ -19,8 +19,8 @@ $(ZBIRKA).bbl: $(BIB_FILES)
 	bibtex $(ZBIRKA)
 	pdflatex $(ZBIRKA).tex
 
-fig-%.pdf: slike/%.tikz
-	pdflatex --jobname=fig-$* $(ZBIRKA).tex
+pgf/%.pdf: slike/%.tikz
+	pdflatex --jobname=pgf/$* $(ZBIRKA).tex
 
 slike/pretok%.tikz: slike/pretok%-osnova.tikz
 
