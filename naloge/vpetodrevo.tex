@@ -1,0 +1,46 @@
+\begin{naloga}{?}{Vaje OR 23.3.2016}
+\begin{vprasanje}
+S celoštevilskim linearnim programom
+modeliraj problem iskanja minimalnega vpetega drevesa v grafu.
+\end{vprasanje}
+
+\begin{odgovor}
+Denimo, da imamo usmerjen graf $G = (V, E)$,
+kjer ima vsaka povezava $uv \in E$ svojo ceno $c_{uv}$
+(če je dani graf ne\-usme\-rjen,
+vsako povezavo nadomestimo s parom nasprotno usmerjenih povezav z isto ceno).
+Minimalno vpeto drevo je drevo $T = (V, E')$ z $E' \subseteq E$,
+za katerega je vsota cen povezav iz $E'$ najmanjša.
+
+Naj bo $n = |V|$ število vozlišč grafa $G$.
+Za vsako povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1, & \text{povezava $uv$ je v množici $E'$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poskrbeti moramo še, da bo naša rešitev res drevo.
+Izberimo si vozlišče $r \in V$ kot koren drevesa
+in za vsako vozlišče $v \in V$ uvedimo še spremenljivko $y_v$,
+ki se povečuje z globino vozlišča v drevesu.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min &\ & \sum_{uv \in E} x_{uv} c_{uv} &\quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z
+\opis{V vozlišče $r$ ne vstopi nobena povezava v drevesu}
+&& \sum_{ur \in E} x_{ur} &= 0
+\opis{V ostala vozlišča vstopi natanko ena povezava}
+\forall u \in V \setminus \{r\}: &\ & \sum_{uv \in E} x_{uv} &= 1
+\opis{Vrednost $y_v$ ($v \in V$) se povečeje po povezavah iz drevesa}
+\forall uv \in E: &\ & y_u + n x_{uv} &\le y_v + n - 1
+\end{alignat*}
+Zadnji pogoj poskrbi,
+da so vsa vozlišča v drevesu in ne v nepovezanem ciklu.
+Podobno kot pri nalogi~\res{tsp}
+vrednost spremenljivk $y_v$ ($v \in V$) ni omejena
+-- pogoj poskrbi le, da je največja razlika med njimi največ $n-1$.
+\end{odgovor}
+\end{naloga}

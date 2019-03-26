@@ -1,0 +1,70 @@
+\begin{naloga}{?}{Kolokvij OR 31.5.2012}
+\begin{vprasanje}
+Vinar Janez je pridelal $2000$ litrov rumenega muškata,
+$10000$ litrov laškega rizlinga in $5000$ litrov renskega rizlinga.
+Njegovi kupci so bara Kocka in Luka ter župnišče Sv.~Martin in občina Duplek.
+Vsak od njih je pripravljen kupiti največ določeno količino vina
+po fiksni ceni, ne glede na sorto:
+
+\begin{center}
+\begin{tabular}{r|cccc}
+kupec & Kocka & Luka & župnišče & občina \\ \hline
+cena za liter & $1.0$ & $1.1$ & $1.5$ & $1.8$ \\
+največja količina v litrih & $15000$ & $5000$ & $500$ & $1000$ \\
+\end{tabular}
+\end{center}
+
+Janez se je odločil, da bo vsako sorto prodal največ enemu kupcu,
+in sicer v maksimalni količini
+(če kupec ne kupi vsega vina iste sorte, ga Janez ohrani zase).
+Župan pravi, da občina drugega vina kot renskega rizlinga ne bo kupila.
+Bar Luka želi rumeni muškat, če bar Kocka dobi laški rizling.
+Pri Kocki so se dogovorili, da če občina in župnišče ne kupijo nič,
+tudi oni ne bodo kupili ničesar.
+Janezova žena pa vztraja,
+da če kupec $A$ kupi sorto $s_A$ in kupec $B$ kupi sorto $s_B$,
+potem naj sorta $s_C$ ostane doma ali jo kupi kupec $C$ (za neke $A, B, C$).
+Kako naj Janez proda vino, da bo čim več zaslužil?
+
+Zapiši problem kot celoštevilski linearni program.
+\end{vprasanje}
+
+\begin{odgovor}
+Za vsako sorto $i \in I = \{RM, LR, RR\}$
+(rumeni muškat, laški rizling, renski rizling)
+in kupca $j \in J = \{K, L, Z, O\}$
+(bar Kocka, bar Luka, župnišče Sv. Martin, občina Duplek)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če naj Janez proda sorto $i$ kupcu $j$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{gather*}
+\begin{alignedat}{4}
+\max &\ 2000 x_{RM, K} &&+ 2200 x_{RM, L} &&+ 750 x_{RM, Z} &&+ 1800 x_{RM, O} \\
+{}+ &\ 10000 x_{LR, K} &&+ 5500 x_{LR, L} &&+ 750 x_{LR, Z} &&+ 1800 x_{LR, O} \\
+{}+ &\ 5000 x_{RR, K}  &&+ 5500 x_{RR, L} &&+ 750 x_{RR, Z} &&+ 1800 x_{RR, O}
+\quad \text{p.p.}
+\end{alignedat} \\
+\begin{aligned}
+\forall i \in I \ \forall j \in J: \ 0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{Vsako sorto proda največ enemu kupcu}
+\forall i \in I: \sum_{j \in J} x_{ij} &\le 1
+\opis{Vsak kupec dobi največ eno sorto}
+\forall j \in J: \sum_{i \in I} x_{ij} &\le 1
+\opis{Občina ne bo kupila rumenega muškata ali laškega rizlinga}
+x_{RM, O} + x_{LR, O} &= 0
+\opis{Če Kocka dobi laški rizling, potem Luka dobi rumeni muškat}
+x_{LR, K} &\le x_{RM, L}
+\opis{Če občina in župnišče ne kupita ničesar, tudi Kocka ne kupi ničesar}
+\sum_{i \in I} (x_{i, O} + x_{i, Z} - x_{i, K}) &\ge 0
+\opis{Ženin pogoj}
+x_{s_A, A} + x_{s_B, B} + \sum_{j \in J \setminus \{C\}} x_{s_C, j} &\le 2
+\end{aligned}
+\end{gather*}
+\end{odgovor}
+\end{naloga}

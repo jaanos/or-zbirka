@@ -73,6 +73,7 @@
 \newcommand{\pgfslika}[1][]{\grenewcommand{\curlabel}{\taoznaka{#1}}\leavevmode\beginpgfgraphicnamed{fig-\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
 \newcommand{\oznaka}[1]{\if\relax\detokenize{#1}\relax\grenewcommand{\thislabel}{\thenaloga}\else\grenewcommand{\thislabel}{#1}\fi\grenewcommand{\curlabel}{\thislabel}}
 \newcommand{\taoznaka}[1]{\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}
+\newcommand{\izpisiNalogo}[1]{\oznaka{#1}\input{naloge/#1.tex}}
 
 \newcommand{\taavtor}{}
 \newcommand{\tanaslov}{}
@@ -99,9 +100,9 @@
 \newcommand{\naslov}[1]{\renewcommand{\tanaslov}{\if\relax\detokenize{#1}\relax\else\noindent {\small\bf (#1)}\fi}}
 \newcommand{\vir}[1]{\renewcommand{\tavir}{\hfill {\small Vir: #1}\par}}
 \newcommand{\novastran}{}
-\newenvironment{vprasanje}[1][]{\oznaka{#1}\label{nal:\thislabel}{\bf \res{}.}\taavtor\tanaslov\tavir\smallskip\noindent\ignorespaces}{}
+\newenvironment{vprasanje}{\label{nal:\thislabel}{\bf \res{}.}\taavtor\tanaslov\tavir\smallskip\noindent\ignorespaces}{}
 \NewEnviron{odgovor}{}
-\input{naloge/seznam.tex}
+\input{tex/seznam.tex}
 }
 
 \clearpage
@@ -113,9 +114,9 @@
 \newcommand{\naslov}[1]{}
 \newcommand{\vir}[1]{}
 \newcommand{\novastran}{}
-\NewEnviron{vprasanje}[1][]{\oznaka{#1}\label{res:\thislabel}{\bf \nal{}.}}
+\NewEnviron{vprasanje}{\label{res:\thislabel}{\bf \nal{}.}}
 \newenvironment{odgovor}{\noindent\ignorespaces}{}
-\input{naloge/seznam.tex}
+\input{tex/seznam.tex}
 }
 
 \clearpage

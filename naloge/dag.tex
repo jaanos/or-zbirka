@@ -1,0 +1,38 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 5.7.2018}
+\begin{vprasanje}
+Dan je utežen usmerjen acikličen graf s slike~\fig{}.
+
+\begin{enumerate}[(a)]
+\item Poišči topološko ureditev grafa s slike~\fig{}.
+
+\item Poišči najcenejšo pot od vozlišča $S$ do vozlišča $T$
+v grafu s slike~\fig{}.
+
+\item Naj bo $G = (V, E)$ usmerjen acikličen graf
+z nenegativno uteženimi povezavami
+ter $s, t \in V$ njegovi vozlišči.
+Algoritem $\A$ se po grafu $G$ sprehaja po naslednjem pravilu:
+začne v vozlišču $s$,
+v vsakem koraku pa se iz vozlišča $u$ premakne
+v njegovega izhodnega soseda $v$ z verjetnostjo
+$$
+p_{uv} = {\ell_{uv} \over \sum_{u \to w} \ell_{uw}} ,
+$$
+kjer je $\ell_{uv}$ teža povezave od $u$ do $v$.
+Algoritem $\A$ se ustavi, ko doseže vozlišče $t$.
+
+Natančno opiši (z besedami ali psevdokodo),
+kako bi v času $O(m)$ (kjer je $m = |V| + |E|$)
+za vsako vozlišče $u \in V$ določil verjetnost $q_u$,
+da algoritem $\A$ obišče vozlišče $u$.
+Verjetnosti za graf s slike~\fig{} ni potrebno računati.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

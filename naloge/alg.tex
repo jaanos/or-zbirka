@@ -1,0 +1,83 @@
+\begin{naloga}{?}{Kolokvij OR 17.4.2013}
+\begin{vprasanje}
+Dani so končna neprazna množica $S \subset \N$ moči $n$,
+število $k \in \{1, 2, \dots, n\}$ ter algoritem {\sc Alg}:
+\begin{small}
+\begin{algorithmic}
+\Function{Alg}{$S, k$}
+    \State $x \gets$ naključen element $S$
+    \State $S^+ \gets \set{y \in S}{y > x}$
+    \State $S^- \gets \set{y \in S}{y < x}$
+    \If{$|S^-| < k-1$}
+        \State \Return {\sc Alg}$(S^+, k - |S^-| - 1)$
+    \ElsIf{$|S^-| = k-1$}
+        \State \Return $x$
+    \Else
+        \State \Return {\sc Alg}$(S^-, k)$
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{small}
+Ugotovi, kaj je izhod algoritma pri danih vhodnih podatkih $S$ in $k$.
+Oceni časovno zahtevnost algoritma v najslabšem in v povprečnem primeru.
+\end{vprasanje}
+
+\begin{odgovor}
+Algoritem poišče $k$-ti najmanjši element v množici $S$.
+Množico razdeli na dva dela glede na naključno izbrani element $x$.
+Če ima množica $S^-$ elementov, manjših od $x$, natanko $k-1$ elementov,
+potem je $x$ iskani element.
+Če ima $S^-$ manj kot $k-1$ elementov,
+algoritem rekurzivno poišče $(|S^-| - k - 1)$-ti element
+v množici $S^+$ elementov, večjih od $x$,
+sicer pa rekurzivno poišče $k$-ti element v množici $|S^-|$.
+
+V najslabšem primeru je velikost množice,
+ki jo algoritem rekurzivno preišče, enaka $n - 1$.
+Ker algoritem porabi $O(n)$ korakov za razporejanje elementov po množicah,
+v najslabšem primeru za čas izvajanja $T(n)$ velja
+$$
+T(n) = O(n) + T(n-1) = O\left(\sum_{i=0}^n (n-i)\right) = O(n^2).
+$$
+
+Poglejmo si sedaj povprečni čas izvajanja $\hat{T}(n)$.
+Denimo, da je izbrani element $x$ $j$-ti po vrsti.
+Če velja $j = k$, potem algoritem konča.
+Če velja $j < k$, potem algoritem rekurzivno pregleda
+množico $S^+$ z $n-j$ elementi,
+če pa velja $j > k$, pa pregleda množico $S^-$ z $j-1$ elementi.
+Zapišimo rekurzivno zvezo za $\hat{T}(n)$:
+$$
+\hat{T}(n) = O(n) +
+{1 \over n} \left(\sum_{j=1}^{k-1} \hat{T}(n-j) +
+\sum_{j=k+1}^n \hat{T}(j-1) \right)
+$$
+Denimo, da je čas izvajanja nerekurzivnega dela funkcije
+omejen s $c \cdot n$ koraki za neko konstanto $c > 0$.
+Z indukcijo bomo pokazali,
+da velja $\hat{T}(n) \le C \cdot n$ za neko konstanto $C > 0$.
+
+Po zgornji predpostavki velja $\hat{T}(1) \le cn$.
+Denimo, da za vse $m < n$ velja $\hat{T}(m) \le Cm$.
+Potem velja
+\begin{align*}
+\hat{T}(n) &\le cn +
+{1 \over n} \left(\sum_{j=1}^{k-1} C(n-j) +
+\sum_{j=k+1}^n C(j-1) \right) \\
+&= cn + {C \over 2n} ((2n-k)(k-1) + (n+k-1)(n-k)) \\
+&= cn + {C \over 2n} (n^2 + 2nk - 3n - 2k^2 + 2k) \\
+&= \left(c + {C \over 2}\right) n + {C(2k - 3) \over 2} - {Ck(k-1) \over n}
+\end{align*}
+Označimo sedaj $\alpha = k/n$ -- velja torej $0 < \alpha \le 1$.
+\begin{align*}
+\hat{T}(n) &\le
+\left(c + C \left({1 \over 2} + \alpha - \alpha^2\right) \right) n
++ C \left(\alpha - {3 \over 2}\right) \\
+&\le \left(c + C \left({1 \over 2} + \alpha (1 - \alpha)\right) \right) n \\
+&\le \left(c + {3C \over 4} \right) n
+\end{align*}
+Če vzamemo $C \ge 4c$,
+potem po indukciji velja $\hat{T}(n) \le Cn$ za vse $n$.
+Algoritem torej v povprečnem primeru opravi $O(n)$ korakov.
+\end{odgovor}
+\end{naloga}

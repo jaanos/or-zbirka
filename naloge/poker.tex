@@ -1,0 +1,57 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 10.7.2017}
+\begin{vprasanje}
+Proti računalniškemu programu igraš Texas hold 'em poker.
+Pravila igre tukaj niso pomembna.
+Ker imaš dostop do kode programa, poznaš logiko, po kateri se ravna.
+V trenutni igri si vložil $30$ žetonov, enako tudi nasprotnik.
+Nasprotnik z verjetnostjo $0.6$ meni, da so odprte karte ugodnejše zate,
+z verjetnostjo $0.4$ pa, da so ugodnejše zanj
+(sam si ne ustvariš nobenega mnenja).
+V prvem primeru je verjetnost, da so dejansko tvoje karte boljše, enaka $0.8$,
+v drugem pa le $0.1$.
+
+Nasprotnik se bo sedaj odločil, ali naj vloži še $10$ žetonov.
+Sam se lahko nato odločiš, ali boš vložil $0$, $10$ ali $20$ žetonov
+(skupni vložek bo torej $30$, $40$ ali $50$ žetonov).
+Če je tvoj vložek manjši od nasprotnikovega,
+je igra izgubljena in izgubiš do sedaj vloženo.
+Če je tvoj vložek enak na\-sprot\-ni\-ko\-ve\-mu,
+z nasprotnikom pogledata karte in tako določita zmagovalca.
+Če je tvoj vložek višji od nasprotnikovega,
+ima ta možnost odstopiti (tako pridobiš nasprotnikov vložek),
+ali pa izenačiti, nakar se zmagovalec določi na podlagi kart.
+Če zmagaš, pridobiš nasprotnikov vložek,
+če izgubiš, pa izgubiš svojega.
+
+V spodnji tabeli so zbrane verjetnosti dogodkov
+v odvisnosti od nasprotnikovega mnenja glede kart.
+Verjetnosti navedenih dogodkov pri istem mnenju so med seboj neodvisne.
+\begin{center}
+\makebox[\textwidth][c]{
+\begin{small}
+\begin{tabular}{r|cc}
+dogodek $\setminus$ nasprotnikovo mnenje
+& ugodnejše karte zate & za nasprotnika \\ \hline
+dejansko imaš boljše karte & 0.8 & 0.1 \\
+nasprotnik vloži $10$ žetonov po razkritju karte & 0.3 & 0.8 \\
+nasprotnik izenači skupni vložek $40$ žetonov & 0.2 & 0.7 \\
+nasprotnik izenači skupni vložek $50$ žetonov & 0.1 & 0.8
+\end{tabular}
+\end{small}
+}
+\end{center}
+Na primer:
+\begin{multline*}
+\Pr[\text{nasprotnik izenači skupni vložek $40$ žetonov} \ | \\
+| \ \text{nasprotnikovo mnenje je ``ugodnejše karte zate''}] = 0.2 .
+\end{multline*}
+
+Kakšne bodo tvoje odločitve,
+da bo tvoj pričakovani dobiček po koncu igre čim večji?
+Nariši odločitveno drevo
+in odločitve sprejmi na podlagi izračunanih verjetnosti.
+Pričakovani dobiček tudi izračunaj.
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

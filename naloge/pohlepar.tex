@@ -1,0 +1,44 @@
+\begin{naloga}{?}{Kolokvij OR 26.1.2010}
+\begin{vprasanje}
+Upravljalec nove moderne visoko tehnološko opremljene kongresne dvorane
+v Kongresnem centru Grebka Pohleparja zaračunava za najem dvorane $5 €$/min.
+Povpraševanje za najem nove dvorane je ogromno,
+a se na žalost ponudbe časovno prekrivajo,
+dvorano pa seveda lahko najame le ena stranka naenkrat.
+Tako se je upravljalec že prvi dan znašel pod goro ponudb,
+med katerimi je napol v paniki izbiral,
+bodimo pošteni, tako bolj ``čez palec''.
+A za kongresni center, ki nosi ime takega velikana ekonomije, se spodobi,
+da si uredi vse segmente poslovanja čim bolj optimalno
+in je kot tak zgled drugim.
+Predpostavimo,
+da ima upravljalec v trenutku odločanja podatke v obliki intervalov
+$[z_i, k_i]$, $i = 1, \dots, n$,
+kjer $z_i$ in $k_i$ predstavljata začetni in končni čas ponudbe $i$.
+Ponudbi se prekrivata, če je njun presek neprazen časovni interval.
+
+\begin{enumerate}[(a)]
+\item Denimo, da uredimo intervale ponudb
+glede na začetne čase ponudb od najmanjšega do največjega.
+Potem izberemo prvi interval, vse intervale, ki ga prekrivajo, pa zavržemo,
+ter postopek ponovimo rekurzivno.
+Upravljalcu se ta postopek zdi optimalen. Kaj pa meniš ti?
+
+\item Denimo, da so intervali ponudb urejeni kot v prejšnji točki
+ter da je interval $I$ zadnji interval v neki optimalni izbiri OPT.
+Premisli,
+kateri intervali so lahko kandidati za predzadnji interval v izbiri OPT.
+Na podlagi tega premisleka sestavi postopek,
+ki s pomočjo dinamičnega programiranja najde optimalno rešitev problema.
+Postopek utemelji.
+
+\item Kakšna je časovna zahtevnost tvojega algoritma v najslabšem primeru?
+
+\item Z uporabo razvitega algoritma reši problem za podatke
+$(15, 60)$, $(60, 180)$, $(30, 90)$, $(120, 210)$,
+$(165, 255)$, $(75, 135)$, $(30, 105)$, $(90, 150)$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

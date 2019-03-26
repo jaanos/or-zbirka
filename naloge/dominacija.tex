@@ -1,0 +1,30 @@
+\begin{naloga}{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Definiraj problem dominacijske množice v grafu
+in zapiši celoštevilski linearni program,
+ki rešuje opisani problem.
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bo $G = (V, E)$ neusmerjen graf.
+Množica $D \subseteq V$ {\em dominira} graf $G$
+če je vsako vozlišče iz $V$ bodisi v $D$, bodisi ima soseda v $D$.
+Pri problemu dominacijske množice iščemo najmanjšo množico $D_{\min}$,
+ki dominira graf $G$.
+
+Za vsako vozlišče $v \in V$ bomo uvedli spremenljivko $x_v$,
+katere vrednost interpretiramo kot
+$$
+x_v = \begin{cases}
+1, & \text{vozlišče $v$ je v množici $D_{\min}$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ \sum_{v \in V} x_v &\quad \text{p.p.} \\
+\forall v \in V: &\ & 0 \le x_v &\le 1, \quad x_v \in \Z \\
+\forall v \in V: &\ & x_v + \sum_{uv \in E} x_u &\ge 1
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

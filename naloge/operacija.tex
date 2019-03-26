@@ -1,0 +1,73 @@
+\begin{naloga}{?}{Izpit OR 5.6.2014}
+\begin{vprasanje}
+Pacient ima na voljo operacijo.
+Brez operacije bo živel natanko $3$ mesece.
+Z uspeš\-no opravljeno operacijo bo živel natanko $12$ mesecev.
+Operacija je neuspešna z verjetnostjo $0.3$
+(v tem primeru pacient dočaka $0$ mesecev).
+Cilj pacienta je maksimiranje pričakovane življenjske dobe.
+\begin{enumerate}[(a)]
+\item Ali naj pacient sprejme operacijo?
+\item Pacient lahko opravi predhodni test,
+ki z zanesljivostjo $0.9$ napove uspeš\-nost operacije,
+vendar z verjetnostjo $0.005$ pacient zaradi komplikacij med testom umre.
+Ali naj pacient opravi test?
+\end{enumerate}
+Nariši odločitveno drevo
+in odločitve sprejmi na podlagi izračunanih ve\-rjet\-no\-sti!
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Ob opravljeni operaciji
+je pričakovana življenjska doba (v mesecih) enaka
+$$
+0.7 \cdot 12 + 0.3 \cdot 0 = 8.4 .
+$$
+Ker je to več od $3$ mesecev brez operacije, se zanjo pacient odloči.
+
+\item Zanesljivost $0.9$ razumemo tako,
+da test z verjetnostjo $0.9$ pravilno napove vsak izid operacije,
+torej
+\begin{align*}
+P(\text{test napove uspeh} \;|\; \text{operacija je uspešna}) &= 0.9
+\quad \text{in} \\
+P(\text{test napove uspeh} \;|\; \text{operacija je neuspešna}) &= 0.1 .
+\end{align*}
+Izračunajmo še verjetnosti napovedi testa
+ter uspešnosti operacije ob vsaki napovedi.
+\begin{small}
+\begin{align*}
+P(\text{test napove uspeh}) &= 0.7 \cdot 0.9 + 0.3 \cdot 0.1 = 0.66 \\
+P(\text{test napove neuspeh}) &= 0.7 \cdot 0.1 + 0.3 \cdot 0.9 = 0.34 \\
+P(\text{operacija je uspešna} \;|\; \text{test napove uspeh})
+&= {0.7 \cdot 0.9 \over 0.66} = {21 \over 22} \approx 0.9545 \\
+P(\text{operacija je neuspešna} \;|\; \text{test napove uspeh})
+&= {0.3 \cdot 0.1 \over 0.66} = {1 \over 22} \approx 0.0455 \\
+P(\text{operacija je uspešna} \;|\; \text{test napove neuspeh})
+&= {0.7 \cdot 0.1 \over 0.34} = {7 \over 34} \approx 0.2059 \\
+P(\text{operacija je uspešna} \;|\; \text{test napove neuspeh})
+&= {0.3 \cdot 0.9 \over 0.34} = {27 \over 34} \approx 0.7941
+\end{align*}
+\end{small}
+Ob upoštevanju, da se bo test končal brez komplikacij z verjetnostjo $0.995$,
+sta verjetnosti pozitivnega in negativnega izida testa brez komplikacij
+enaki $0.6567$ oziroma $0.3383$.
+
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig{}.
+Izračunamo lahko, da je ob opravljanju testa
+pričakovana življenjska doba $8.537$ mesecev,
+kar je več kot $8.4$ mesecev brez testa,
+zato se odločimo za test.
+Če test napove uspeh, se odločimo za operacijo, sicer pa ne.
+\end{enumerate}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}

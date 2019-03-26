@@ -1,0 +1,46 @@
+\begin{naloga}{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Napiši celoštevilski linearni program,
+ki poišče razdalje od danega vozlišča $u$ v grafu $G$.
+\end{vprasanje}
+
+\begin{odgovor}
+Graf $G = (V, E)$ smatramo kot usmerjen graf
+(če je dani graf ne\-usme\-rjen,
+vsako povezavo nadomestimo s parom nasprotno usmerjenih povezav).
+Naj bo $n = |V|$ število vozlišč grafa $G$.
+Rešitev celoštevilskega linearnega programa
+predstavlja usmerjeno drevo najkrajših poti s korenom v vozlišču $u$.
+
+Za vsako povezavo $vw \in E$ bomo uvedli spremenljivko $x_{vw}$,
+katere vrednost interpretiramo kot
+$$
+x_{vw} = \begin{cases}
+1, & \text{povezava $vw$ je v drevesu najkrajših poti, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo za vsako vozlišče $v \in V$
+uvedli še spremenljivko $y_v$,
+ki nam pove razdaljo od vozlišča $u$ do vozlišča $v$.
+Minimizirati želimo vse vrednosti $y_v$, zato bomo minimizirali njihovo vsoto.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ \sum_{v \in V} y_v \quad \text{p.p.} \\
+\forall vw \in E: &\ & 0 \le x_{vw} &\le 1, \quad x_{vw} \in \Z
+\opis{Vozlišče $u$ nima vstopne povezave v drevesu}
+&& \sum_{vu \in E} x_{vu} &= 0
+\opis{Ostala vozlišča imajo natanko eno vstopno povezavo v drevesu}
+\forall vw \in E, & \ v \ne u: \ & \sum_{vw \in E} x_{vw} &= 1
+\opis{Vozlišče $u$ je na razdalji $0$ od sebe}
+&& y_u &= 0
+\opis{Če je povezava $vw$ v drevesu,
+je razdalja do $w$ vsaj za $1$ večja od razdalje do $v$,
+sicer pa je razlika največ $n-1$}
+\forall vw \in E: &\ & y_v + n x_{vw} &\le y_w + n - 1
+\opis{V drevesu je natanko $n-1$ povezav}
+&& \sum_{vw \in e} x_{vw} &= n-1
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

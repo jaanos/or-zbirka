@@ -1,0 +1,39 @@
+\begin{naloga}{?}{Izpit OR 9.7.2012}
+\begin{vprasanje}
+Dan je algoritem $H$,
+ki na vhod sprejme enostaven neusmerjen graf $G = (V, E)$
+(tj., brez zank in vzporednih povezav)
+ter različni vozlišči $u, v \in V$:
+\begin{small}
+\begin{algorithmic}
+\Function{$H$}{$G, u, v$}
+    \If{$|V| = 2 \land u \in \Adj(v)$}
+        \State \Return{\sc True}
+    \EndIf
+    \For{$w \in \Adj(u) \setminus \{v\}$}
+        \If{$H(G - u , w, v)$}
+            \State \Return{\sc True}
+        \EndIf
+    \EndFor
+    \State \Return{\sc False}
+\EndFunction
+\end{algorithmic}
+\end{small}
+Oznaka $G - u$ predstavlja graf,
+ki ga dobimo iz $G$ tako, da odstranimo vozlišče $u$ in vse njegove povezave.
+
+\begin{enumerate}[(a)]
+\item Za katere vhode $(G, u, v)$ algoritem $H$ vrne {\sc True}?
+\namig{poglej, kako je z grafi z $2, 3, 4, 5, \dots$ vozlišči,
+in poskusi posplošiti.}
+
+\item Denimo, da je $G = (V, E)$ graf z $n$ vozlišči,
+pri čemer je vozlišče $v$ izolirano (tj., nima nobene povezave),
+med vsakima drugima dvema vozliščema pa imamo povezavo.
+Pokaži, da se pri klicu $H(G, u, v)$ (kjer je $u \in V \setminus \{v\}$)
+zadnja vrstica funkcije $H$ izvede $\Theta((n-2)!)$-krat.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

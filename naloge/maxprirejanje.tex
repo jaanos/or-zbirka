@@ -1,0 +1,32 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 12.10.2016}
+\begin{vprasanje}
+Napiši linearni program,
+ki modelira iskanje največjega prirejanja v dvodelnem grafu.
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bo $G = (V, E)$ dvodelen graf.
+Lahko torej zapišemo $V = A \cup B$ tako,
+da sta množici $A$ in $B$ disjunktni
+ter za vsako povezavo $uv \in E$ velja $u \in A$, $v \in B$.
+Množica $M \subset E$ je {\em prirejanje},
+če nobeni dve povezavi iz $M$ nimata skupnega krajišča.
+Iščemo največje prirejanje $M_{\max}$.
+
+Za vsako povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1, & \text{povezava $uv$ je v množici $M_{\max}$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max &\ & \sum_{uv \in E} x_{uv} &\quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z \\
+\forall u \in A: &\ & \sum_{uv \in E} x_{uv} &\le 1 \\
+\forall v \in B: &\ & \sum_{uv \in E} x_{uv} &\le 1
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

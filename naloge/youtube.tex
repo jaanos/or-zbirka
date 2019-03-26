@@ -1,0 +1,42 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 10.7.2017}
+\begin{vprasanje}
+Za hitrejše nalaganje posnetkov na YouTubu se uporabljajo krajevni strežniki,
+do katerih lahko uporabniki na določeni lokaciji hitreje dostopajo
+kakor do glavnega strežnika, ki vsebuje vse posnetke.
+Vendar pa imajo krajevni strežniki omejen prostor,
+zato je potrebno ugotoviti,
+kateri posnetki naj se naložijo na katere krajevne strežnike.
+
+Denimo, da imamo poleg glavnega strežnika še $k$ krajevnih strežnikov,
+$m$ internetnih po\-nud\-ni\-kov in $n$ posnetkov.
+Naj bo $c_h$ ($1 \le h \le k$) prostor v megabajtih,
+ki je na voljo na krajevnem strežniku $h$.
+Z indeksom $0$ označimo glavni strežnik
+-- lahko torej predpostavljaš $c_0 = \infty$.
+Nadalje naj bo $s_j$ ($1 \le j \le n$) velikost posnetka $j$,
+prav tako v megabajtih,
+$\ell_{hi}$ ($0 \le h \le k$, $1 \le i \le m$)
+latenca (zakasnitev pri prenosu v milisekundah)
+ponudnika $i$ do strežnika $h$,
+in $r_{ij}$ ($1 \le i \le m$, $1 \le j \le n$)
+število zahtevkov za posnetek $j$, ki jih pričakujejo od ponudnika $i$.
+Vsi parametri so cela števila.
+
+Pri vsakem zahtevku bo posnetek poslan iz strežnika z najmanjšo latenco,
+ki vsebuje želeni posnetek.
+Lahko predpostavljaš,
+da ima za vsakega ponudnika glavni strežnik največjo latenco
+(torej $\ell_{0i} \ge \ell_{hi}$ za vsaka $1 \le h \le k$, $1 \le i \le m$).
+Določiti želimo, katere posnetke naj naložimo na posamezen krajevni strežnik,
+da minimiziramo vsoto pričakovanih latenc pri vseh zahtevkih.
+Posamezen posnetek lahko seveda naložimo tudi na več krajevnih strežnikov,
+ali pa na nobenega (v tem primeru bo poslan iz glavnega strežnika).
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\namig{pri določitvi latence ponudnika za dan posnetek
+si pomagaj s spremenljivko, ki šteje strežnike z latenco,
+ki ne presega izračunane latence.}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

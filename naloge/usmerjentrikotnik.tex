@@ -1,0 +1,37 @@
+\begin{naloga}{?}{Kolokvij OR 4.5.2012}
+\begin{vprasanje}
+Naj bo $G = (V, E)$ enostaven usmerjen graf
+(tj., brez zank in vzporednih povezav),
+podan z matriko sosednosti $A = (a_{ij})_{i,j=1}^n$ ($n = |V|$),
+kjer je $a_{ij} = 1$, če je $ij \in E$, in $a_{ij} = 0$ sicer.
+Želimo ugotoviti, ali v $G$ obstaja kak usmerjen trikotnik
+(tj., usmerjen cikel dolžine $3$).
+\begin{enumerate}[(a)]
+\item Konrad je napisal naslednji algoritem, ki naj bi rešil ta problem:
+\begin{small}
+\begin{algorithmic}
+\For{$i = 1, \dots, n$}
+    \For{$j = 1, \dots, n$}
+        \For{$k = 1, \dots, n$}
+            \For{$\ell = 1, \dots, n$}
+                \If{$a_{ij} = a_{jk} = a_{j\ell} = 1 \land \ell = i$}
+                    \State \Return{\sc True}
+                \EndIf
+            \EndFor
+        \EndFor
+    \EndFor
+\EndFor
+\State \Return{\sc False}
+\end{algorithmic}
+\end{small}
+Ali algoritem deluje pravilno?
+Kakšna je njegova časovna zahtevnost?
+
+\item V psevdokodi napiši algoritem, ki reši problem v času $O(n^3)$.
+Koliko korakov naredi tvoj algoritem v najboljšem
+in koliko v najslabšem primeru?
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

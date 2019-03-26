@@ -1,0 +1,43 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 23.4.2018}
+\begin{vprasanje}
+Imamo zaporedje $n$ polj,
+pri čemer je na $i$-tem polju zapisano število $a_i$.
+Na voljo imamo še $\lfloor n/2 \rfloor$ domin,
+z vsako od katerih lahko pokrijemo dve sosednji polji.
+Vsaka domina je sestavljena iz dveh delov:
+na enem je znak $+$, na drugem pa znak $-$.
+Posamezno polje lahko pokrijemo z le eno domino;
+če sta pokriti dve sosednji polji, morata biti pokriti z različnima znakoma
+(bodisi z iste, bodisi z druge domine).
+Iščemo tako postavitev domin,
+ki maksimizira vsoto pokritih števil,
+pomnoženih z znakom na delu domine, ki pokriva število.
+Pri tem ni potrebno, da uporabimo vse domine.
+Primer je podan na sliki~\fig{}.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo,
+ter kako dobimo optimalno rešitev.
+\namig{posebej obravnavaj dva primera glede na postavitev zadnje domine.}
+
+\item Oceni časovno zahtevnost algoritma, ki sledi iz zgoraj zapisanih enačb.
+
+\item S svojim algoritmom poišči optimalno pokritje
+za primer s slike~\fig{}.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\caption{Primer dopustnega (ne nujno optimalnega) pokritja
+za nalogo~\nal{}.
+Vsota tega pokritja je $3 - (-4) - 5 + 9 - 1 + 2 = 12$.
+Če bi eno od zadnjih dveh domin obrnili (zamenjala bi se znaka),
+dobljeno pokritje ne bi bilo dopustno,
+saj bi dve zaporedni polji bili pokriti z enakima znakoma.}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

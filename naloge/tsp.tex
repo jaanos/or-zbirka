@@ -1,0 +1,48 @@
+\begin{naloga}[problem trgovskega potnika]{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Danih je $n$ mest na zemljevidu.
+Strošek potovanja iz mesta $i$ v mesto $j$ je $c_{ij}$ ($1 \le i, j \le n$).
+Trgovski potnik želi obiskati vseh $n$ mest,
+pri tem pa minimizirati strošek potovanja.
+Na smiseln način modeliraj opisani problem z linearnim programom.
+\end{vprasanje}
+
+\begin{odgovor}
+Pot bomo opisali z množico povezav v polnem grafu z $n$ vozlišči (mesti),
+ki tvorijo cikel.
+Za vsak par mest $(i, j)$ ($1 \le i, j \le n$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{iz $i$-tega mesta odpotujemo v $j$-to mesto} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poskrbeti bomo morali še,
+da bo naša rešitev res sestavljena iz enega samega cikla.
+V ta namen bomo za $i$-to mesto ($1 \le i \le n$) uvedli spremenljivko $y_i$,
+ki pove, katero po vrsti smo to mesto obiskali.
+Ker je rešitev cikel, si lahko poljubno izberemo,
+katero je prvo obiskano mesto (npr.~mesto z indeksom $1$).
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min \ \sum_{i=1}^n \sum_{j=1}^n x_{ij} c_{ij} && \text{p.p.}\\
+\forall i, j \in \{1, \dots, n\}: &\ &
+0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{V vsako mesto prispemo natanko enkrat}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^n x_{ij} &= 1
+\opis{Vsako mesto zapustimo natanko enkrat}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{i=1}^n x_{ij} &= 1
+\opis{Če iz mesta $i$ potujemo v mesto $j > 1$, mu to sledi v vrstnem redu}
+\forall i  \in \{1, \dots, n\} \ \forall j \in \{2, \dots, n\}: &\ &
+y_i + n x_{ij} &\le y_j + n - 1
+\end{alignat*}
+\end{odgovor}
+Zadnji pogoj poskrbi, da rešitev nima cikla brez mesta z indeksom $1$.
+Skupaj s pogojema, da vsako mesto obiščemo in zapustimo natanko enkrat,
+si tako zagotovimo, da bo rešitev obsegala natanko en cikel.
+Vrednost spremenljivk $y_i$ ($1 \le i \le n$) ni omejena
+-- zadnji pogoj poskrbi le, da je največja razlika med njimi enaka $n-1$.
+\end{naloga}

@@ -1,0 +1,43 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 11.6.2018}
+\begin{vprasanje}
+Izdelati želimo terminski plan za organizacijo konference.
+V tabeli~\tab{} so zbrana opravila pri organizaciji.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in čas izdelave.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje izvedbe.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo izvedba trajala manj kot $55$ dni.
+\end{enumerate}
+
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+A & Izbira lokacije & / & 10 dni & 13 dni & 22 dni \\
+B & Rezervacija sob za goste & F & 13 dni & 22 dni & 25 dni \\
+C & Dogovarjanje za cene hotelskih sob & A & 3 dni & 6 dni & 9 dni \\
+D & Naročilo hrane in pijače & A & 6 dni & 15 dni & 21 dni \\
+E & Priprava letakov & C, J & 5 dni & 8 dni & 11 dni \\
+F & Pošiljanje letakov & E & 4 dni & 4 dni & 4 dni \\
+G & Priprava zbornika s povzetki & D, J & 22 dni & 28 dni & 31 dni \\
+H & Določitev glavnega govorca & / & 5 dni & 8 dni & 14 dni \\
+I & Planiranje poti za glavnega govorca & A, H & 11 dni & 14 dni & 17 dni \\
+J & Določitev ostalih govorcev & H & 12 dni & 15 dni & 21 dni \\
+K & Planiranje poti za ostale govorce & A, J & 9 dni & 12 dni & 18 dni \\
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

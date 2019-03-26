@@ -1,0 +1,79 @@
+\begin{naloga}{Batagelj, Kaufman}{\cite[Naloga~4.2]{bk}}
+\begin{vprasanje}
+Trgovina pri pekarni kupuje žemlje po $0.2 €$
+in jih prodaja po $0.4 €$.
+Skozi leta poslovanja so izračunali
+naslednjo porazdelitev za prodajo žemljic.
+\begin{center}
+\begin{tabular}{c|cccccc}
+Prodaja & $50$ & $60$ & $70$ & $80$ & $90$ & $100$ \\
+\hline
+Verjetnost & $0.1$ & $0.15$ & $0.3$ & $0.2$ & $0.15$ & $0.1$
+\end{tabular}
+\end{center}
+Če žemelj zmanjka, naročijo pri pekarni razliko,
+pri čemer jih žemlja tedaj stane $0.3 €$.
+Ob koncu dneva jim pekarna odkupi presežek po $0.15 €$ na žemljo.
+Koliko žemelj se trgovini splača kupiti?
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bo $x$ število kupljenih žemelj, $k$ pa število prodanih žemelj.
+Če je $k \le x$, imamo dobiček
+$$
+k \cdot 0.2 € - (x-k) \cdot 0.05 € = k \cdot 0.25 € - x \cdot 0.05 € .
+$$
+Če pa je $k \ge x$, je dobiček enak
+$$
+x \cdot 0.2 € + (k-x) \cdot 0.1 € = k \cdot 0.1 € + x \cdot 0.1 € .
+$$
+Pri $x = k$ obe formuli dasta dobiček $k \cdot 0.2 €$.
+Izračunajmo pričakovani dobiček pri naročilu $x$ žemelj za različne intervale:
+\begin{align*}
+x \le 50:         &\ x \cdot 0.1 € +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80 + 0.15 \cdot 90 + 0.1 \cdot 100)
+                     \cdot 0.1 € \\
+                  &= x \cdot 0.1 € + 7.45 € \\
+50 \le x \le 60:  &\ x \cdot (0.9 \cdot 0.1 € - 0.1 \cdot 0.05 €) +
+                     0.1 \cdot 50 \cdot 0.25 € \ + \\
+                  &\ (0.15 \cdot 60 + 0.3 \cdot 70 + 0.2 \cdot 80 +
+                      0.15 \cdot 90 + 0.1 \cdot 100) \cdot 0.1 € \\
+                  &= x \cdot 0.085 € + 8.2 € \\
+60 \le x \le 70:  &\ x \cdot (0.75 \cdot 0.1 € - 0.25 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60) \cdot 0.25 € \ + \\
+                  &\ (0.3 \cdot 70 + 0.2 \cdot 80 + 0.15 \cdot 90 +
+                      0.1 \cdot 100) \cdot 0.1 € \\
+                  &=  x \cdot 0.0625 € + 9.55 € \\
+70 \le x \le 80:  &\ x \cdot (0.45 \cdot 0.1 € - 0.55 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 \ + \\
+                  &\ 0.3 \cdot 70) \cdot 0.25 € +
+                     (0.2 \cdot 80 + 0.15 \cdot 90 + 0.1 \cdot 100)
+                     \cdot 0.1 € \\
+                  &= x \cdot 0.0175 € + 12.7 € \\
+80 \le x \le 90:  &\ x \cdot (0.25 \cdot 0.1 € - 0.75 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80) \cdot 0.25 € +
+                     (0.15 \cdot 90 + 0.1 \cdot 100) \cdot 0.1 € \\
+                  &= -x \cdot 0.0125 € + 15.1 € \\
+90 \le x \le 100: &\ x \cdot (0.1 \cdot 0.1 € - 0.9 \cdot 0.05 €) +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80 + 0.15 \cdot 90) \cdot 0.25 € +
+                     0.1 \cdot 100 \cdot 0.1 € \\
+                  &= -x \cdot 0.035 € + 17.125 € \\
+x \ge 100:        &\ -x \cdot 0.05 € +
+                     (0.1 \cdot 50 + 0.15 \cdot 60 + 0.3 \cdot 70 \ + \\
+                  &\  0.2 \cdot 80 + 0.15 \cdot 90 + 0.1 \cdot 100)
+                     \cdot 0.25 € \\
+                  &= -x \cdot 0.05 € + 18.625 €
+\end{align*}
+Funkcija pričakovanega dobička je torej zvezna in odsekoma linearna v $x$,
+pri čemer je smerni koeficient pozitiven pri $x < 80$
+in negativen pri $x > 80$.
+Pričakovan dobiček torej maksimiziramo pri naročilu $80$ žemelj
+-- tedaj ta znaša
+$$
+80 \cdot 0.0175 € + 12.7 € = 14.1 € .
+$$
+\end{odgovor}
+\end{naloga}

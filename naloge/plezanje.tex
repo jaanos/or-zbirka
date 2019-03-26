@@ -1,0 +1,42 @@
+\begin{naloga}{?}{Izpit OR 28.8.2013}
+\begin{vprasanje}
+Za šestimi gorami poteka tekmovanje v plezanju na goro Lep Trikotnik.
+Vsak odsek te gore ima prirejeno težavnost od $-4$ do $4$.
+Goro lahko ponazorimo s številskim trikotnikom
+$$
+\begin{array}{ccccccccc}
+                &&&& a_{1,1} \\
+            &&& a_{2,1} && a_{2,2} \\
+        && a_{3,1} && a_{3,2} && a_{3,3} \\
+     & \iddots && \vdots && \vdots && \ddots \\
+a_{n,1} && a_{n,2} && \cdots && a_{n,n-1} && a_{n,n}
+\end{array} ,
+$$
+kjer so $a_{i,j} \in \{-4, -3, \dots, 3, 4\}$ težavnosti odsekov.
+{\em Veljavna pot} v takem trikotniku je pot od vznožja do vrha,
+ki gre zmeraj desno navzgor ali levo navzgor
+-- t.j., zaporedje $(a_{n-i, j_i})_{i=0}^{n-1}$,
+kjer je $1 \le j_i \le n-i$ in $j_i \in \{j_{i-1}-1, j_{i-1}\}$
+za vsak $i = 0, 1, \dots, n-1$.
+{\em Teža} veljavne poti je vsota težavnosti odsekov,
+po katerih poteka pot (torej $\sum_{i=0}^{n-1} a_{n-i, j_i}$).
+
+Na tekmovanje sta se med drugimi prijavila tudi gornika Marin in Mirko.
+V okviru svojih sposobnosti želita izbrati kar najtežjo pot do vrha.
+Oba zmoreta plezati po odsekih težavnosti $3$ ali manj.
+
+\begin{enumerate}[(a)]
+\item Marin ni dovolj izkušen, da bi lahko plezal po odsekih težavnosti $4$.
+Opiši, kako lahko najdemo najtežjo veljavno pot za Marina,
+oz.~mu povemo, da s svojim znanjem ne more priti do vrha po veljavni poti!
+
+\item Gornik Mirko je izkušenejši od Marina.
+Odseke težavnosti $4$ lahko prepleza,
+a ne more preplezati dveh zaporednih odsekov te težavnosti.
+Opiši, kako lahko najdemo najtežjo veljavno pot za Mirka,
+oz.~mu povemo, da s svojim znanjem ne more priti do vrha po veljavni poti!
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

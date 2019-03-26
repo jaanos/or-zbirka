@@ -1,0 +1,42 @@
+\begin{naloga}{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Napiši linearni program,
+ki modelira določanje kromatičnega števila grafa.
+\end{vprasanje}
+
+\begin{odgovor}
+{\em Pravilno barvanje} (neusmerjenega) grafa $G = (V, E)$
+je taka dodelitev barv vozliščem grafa $G$,
+da imata krajišči vsake povezave različno barvo.
+{\em Kromatično število} grafa $G$ je najmanjše število barv,
+ki jih potrebujemo za pravilno barvanje grafa $G$.
+
+Naj bo $n = |V|$ število vozlišč grafa $G$
+-- to je tudi največje število barv, ki jih lahko uporabimo.
+Za vsako vozlišče $v \in V$ in vsako barvo $i$ ($1 \le i \le n$)
+bomo uvedli spremenljivko $x_{vi}$,
+katere vrednost interpretiramo kot
+$$
+x_{vi} = \begin{cases}
+1, & \text{vozlišče $v$ pobarvamo z barvo $i$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$, ki šteje uporabljene barve.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ t \quad \text{p.p.} \\
+\forall v \in V \ \forall i \in \{1, \dots, n\}: &\ &
+0 \le x_{vi} &\le 1, \quad x_{vi} \in \Z
+\opis{Vsako vozlišče je natanko ene barve}
+\forall v \in V: &\ & \sum_{i=1}^n x_{vi} &= 1
+\opis{Krajišči povezav sta različnih barv}
+\forall uv \in E \ \forall i \in \{1, \dots, n\}: &\ &
+x_{ui} + x_{vi} &\le 1
+\opis{Omejimo $t$ z indeksi uporabljenih barv}
+\forall uv \in E \ \forall i \in \{1, \dots, n\}: &\ &
+i x_{vi} &\le t
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

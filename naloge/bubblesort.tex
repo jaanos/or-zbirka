@@ -1,0 +1,69 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Algoritem {\sc BubbleSort} uredi vhodni seznam $\ell[1 \dots n]$ tako,
+da zamenjuje so\-sed\-nje elemente v nepravem vrstnem redu:
+\begin{small}
+\begin{algorithmic}
+\Function{BubbleSort}{$\ell[1 \dots n]$}
+    \State $z \gets n$
+    \While{$z > 1$}
+        \State $y \gets 1$
+        \For{$i = 2, \dots, z$}
+            \If{$\ell[i-1] > \ell[i]$}
+                \State $\ell[i-1], \ell[i] \gets \ell[i], \ell[i-1]$
+                \State $y \gets i$
+            \EndIf
+        \EndFor
+        \State $z \gets y-1$
+    \EndWhile
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Izvedi algoritem na seznamu $[7, 11, 16, 7, 5]$.
+\item Določi časovno zahtevnost algoritma.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Izpišimo vrednosti spremenljivk ob koncu vsakega obhoda zanke {\bf for}
+oziroma {\bf while}, ko se prejšnja konča.
+
+$$
+\begin{array}{c|c|c|c|c}
+\text{obhod {\bf while}} & i & y & z & \ell[1 \dots 5] \\ \hline
+1 & 2 & 1 & 5 & [7, 11, 16, 7, 5] \\
+1 & 3 & 1 & 5 & [7, 11, 16, 7, 5] \\
+1 & 4 & 4 & 5 & [7, 11, 7, 16, 5] \\
+1 & 5 & 5 & 5 & [7, 11, 7, 5, 16] \\
+1 &   & 5 & 4 & [7, 11, 7, 5, 16] \\
+2 & 2 & 1 & 4 & [7, 11, 7, 5, 16] \\
+2 & 3 & 3 & 4 & [7, 7, 11, 5, 16] \\
+2 & 4 & 4 & 4 & [7, 7, 5, 11, 16] \\
+2 &   & 4 & 3 & [7, 7, 5, 11, 16] \\
+3 & 2 & 1 & 3 & [7, 7, 5, 11, 16] \\
+3 & 3 & 3 & 3 & [7, 5, 7, 11, 16] \\
+3 &   & 3 & 2 & [7, 5, 7, 11, 16] \\
+4 & 2 & 2 & 2 & [5, 7, 7, 11, 16] \\
+4 &   & 2 & 1 & [5, 7, 7, 11, 16] \\
+\end{array}
+$$
+
+\item Naj bodo $z_1, z_2, \dots, z_k$ vrednosti,
+ki jih zavzame spremenljivka $z$ ob vsakem vstopu v zanko {\bf while}.
+Očitno velja $z_i - 1 \ge z_{i+1}$ za vsak $i$,
+tako da velja $k \le n-1$.
+Največje število korakov je torej
+$$
+\sum_{z=2}^n (z-1) = {n(n-1) \over 2} .
+$$
+Tako število korakov dosežemo,
+če je seznam $\ell$ na začetku urejen padajoče
+-- tako vsakič pride do zamenjave v zadnjem koraku zanke {\bf for},
+zato se $z$ vsakič zmanjša za $1$.
+Časovna zahtevnost algoritma je torej $O(n^2)$.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

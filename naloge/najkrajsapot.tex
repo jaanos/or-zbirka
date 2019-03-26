@@ -1,0 +1,37 @@
+\begin{naloga}{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Napiši linearni program,
+ki modelira iskanje najkrajše poti
+med danima vozliščema $u$ in $v$ v usmerjenem grafu $G$.
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bo $G = (V, E)$ usmerjen graf in $u, v \in V$ njegovi vozlišči.
+Poiskati želimo najkrajšo pot $P_{uv}$ od vozlišča $u$ do vozlišča $v$.
+
+Za vsako povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1, & \text{povezava $uv$ je v poti $P_{uv}$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ \sum_{uv \in E} x_{uv} &\quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z
+\opis{Iz vozlišča $u$ izstopimo enkrat več kakor vstopimo}
+&& \sum_{yu \in E} x_{yu} - \sum_{uz \in E} x_{uz} &= -1
+\opis{V vozlišče $v$ vstopimo enkrat več kakor izstopimo}
+&& \sum_{yv \in E} x_{yv} - \sum_{vz \in E} x_{vz} &= 1
+\opis{V ostala vozlišča vstopimo natanko tolikokrat kakor vstopimo}
+\forall w \in V \setminus \{u, v\}: &\ &
+\sum_{yw \in E} x_{yw} - \sum_{wz \in E} x_{wz} &= 0
+\end{alignat*}
+Zgornje omejitve sicer dovolijo, da posamezno vozlišče obiščemo večkrat,
+a se je mogoče teh zank znebiti,
+pri čemer se vrednost ciljne funkcije zmanjša.
+Tako bo optimalna rešitev zagotovo pot od vozlišča $u$ do vozlišča $v$.
+\end{odgovor}
+\end{naloga}

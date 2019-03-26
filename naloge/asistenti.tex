@@ -1,0 +1,65 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 15.12.2016}
+\begin{vprasanje}
+Na oddelku za matematiko je zaposlenih $n$ asistentov,
+ki jim moramo dodeliti vaje pri $m$ predmetih.
+Za asistenta $i$ ($1 \le i \le n$) naj bosta $a_i$ in $b_i$
+najmanjše in največje število ur, ki jih lahko izvaja,
+ter $N_i \subseteq \{1, 2, \dots, m\}$ množica predmetov,
+ki jih ne želi izvajati.
+Za predmet $j$ ($1 \le j \le m$)
+naj bo $c_j$ število skupin za vaje pri predmetu,
+ter $u_j$ število ur vaj na skupino.
+Poleg tega vemo, da sta asistenta $p$ in $q$ skregana,
+zato pri nobenem predmetu ne smeta oba izvajati vaj.
+
+Predmete želimo asistentom dodeliti tako,
+da bomo ob upoštevanju njihovih želja
+minimizirali največje število različnih predmetov,
+ki smo jih dodelili posamezenmu asistentu.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\namig{napiši program s spremenljivko $t$, ki je dopusten natanko tedaj,
+ko vsak asistent dobi največ $t$ različnih predmetov,
+in potem minimimiziraj $t$.}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-tega asistenta ($1 \le i \le n$)
+in $j$-ti predmet ($1 \le j \le m$)
+bomo uvedli spremenljivki $x_{ij}$ in $y_{ij}$,
+kjer je $x_{ij}$ število skupin,
+ki jih $i$-temu asistentu dodelimo pri $j$-tem predmetu,
+vrednost $y_{ij}$ pa interpretiramo kot
+$$
+y_{ij} = \begin{cases}
+1, & \text{$i$-ti asistentu bo izvajal vaje pri $j$-tem predmetu, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$,
+s katero omejimo največje število različnih predmetov
+pri posameznem asistentu.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ t \quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+x_{ij} &\ge 0, \quad x_{ij} \in \Z \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le y_{ij} &\le 1, \quad y_{ij} \in \Z
+\opis{$x_{ij} = 0$ natanko tedaj, ko $y_{ij} = 0$}
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+y_{ij} \le x_{ij} &\le c_j y_{ij}
+\opis{Omejimo število ur za vsakega asistenta}
+\forall i \in \{1, \dots, n\}: &\ & a_i \le \sum_{j=1}^m u_j x_{ij} &\le b_i
+\opis{Neželenih predmetov ne dodelimo}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j \in N_i} y_{ij} &= 0
+\opis{Za vsak predmet dodelimo potrebno število skupin}
+\forall j \in \{1, \dots, m\}: &\ & \sum_{i=1}^n x_{ij} &= c_j
+\opis{Nobenega predmeta ne dodelimo asistentoma $p$ in $q$}
+\forall j \in \{1, \dots, m\}: &\ & y_{pj} + y_{qj} &\le 1
+\opis{Število različnih predmetov na asistenta omejimo s $t$}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^n y_{ij} &\le t
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

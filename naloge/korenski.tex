@@ -1,0 +1,27 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Zapiši rekurziven algoritem,
+ki na vhod dobi celo število $n$ in teče v času $O(\sqrt{n})$.
+Uporaba korenjenja ni dovoljena.
+\end{vprasanje}
+
+\begin{odgovor}
+Po krovnem izreku ima časovno zahtevnost $O(\sqrt{n})$ algoritem,
+katerega čas izvajanja $T(n)$ je opisan z rekurzivno zvezo
+$$
+T(n) = O(1) + 2T\left({n \over 4}\right) .
+$$
+Zapišimo tak algoritem:
+\begin{small}
+\begin{algorithmic}
+\Function{Korenski}{$\ell[1 \dots n]$}
+    \If{$n \ge 4$}
+        \State $m \gets \lfloor {n \over 4} \rfloor$
+        \State $\text{\sc Korenski}(\ell[1 \dots m])$
+        \State $\text{\sc Korenski}(\ell[n-m+1 \dots n])$
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{small}
+\end{odgovor}
+\end{naloga}

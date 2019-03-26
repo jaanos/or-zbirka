@@ -1,0 +1,29 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Število $n$ želimo razcepiti
+na dva netrivialna celoštevilska faktorja,
+kar storimo s sledečim algoritmom:
+\begin{small}
+\begin{algorithmic}
+\Function{Razcep}{$n$}
+    \For{$i = 2, \dots, \lfloor \sqrt{n} \rfloor$}
+        \If{$n/i$ je celo število}
+            \State \Return $(i, n/i)$
+        \EndIf
+    \EndFor
+    \State \Return $n$ je praštevilo
+\EndFunction
+\end{algorithmic}
+\end{small}
+Določi časovno zahtevnost algoritma.
+Ali je ta algoritem polinomski?
+\end{vprasanje}
+
+\begin{odgovor}
+Algoritem teče v času $O(\sqrt{n})$.
+Ker je vhod algoritma število $n$,
+ki je zapisano kot zaporedje $\ell = O(\log n)$ bitov,
+vidimo, da algoritem teče v času $O(2^{\ell/2})$
+in torej ni polinomski v dolžini vhoda.
+\end{odgovor}
+\end{naloga}

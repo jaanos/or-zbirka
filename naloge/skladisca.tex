@@ -1,0 +1,40 @@
+\begin{naloga}[problem prevoza in skladiščenja dobrin]{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+V Evropski uniji je na voljo $n$ skladišč,
+pri čemer znašajo stroški najema $i$-tega skladišča $f_i$
+(ne glede na zasedenost),
+vsako skladišče pa lahko hrani enoto dobrine.
+Imamo $m$ strank, ki jim dostavljamo dobrine,
+pri čemer $c_{ij}$ ($1 \le i \le n$, $1 \le j \le m$)
+predstavlja strošek dostave dobrine stranki $j$ iz skladišča $i$.
+Predpostavimo tudi, da ima vsaka stranka določeno potrebo $d_j$,
+ki ponazarja število enot dobrine, ki jo potrebuje.
+V katerih skladiščih naj hranimo dobrine,
+da bodo skupni stroški najema in dostave čim manjši?
+Na smiseln način modeliraj opisani problem z linearnim programom.
+\end{vprasanje}
+
+\begin{odgovor}
+Za vsako skladišče, ki ga uporabimo,
+želimo vedeti, kateri stranki bomo dostavili dobrino.
+Za $i$-to skladišče ($1 \le i \le n$) in $j$-to stranko ($1 \le j \le m$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če bomo iz $i$-tega skladišča dostavili $j$-ti stranki, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min \ \sum_{i=1}^n \sum_{j=1}^m (f_i + c_{ij}) x_{ij} && \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{Vsako skladišče uporabimo največ enkrat}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^m x_{ij} &\le 1
+\opis{Zadostimo potrebe vsake stranke}
+\forall j \in \{1, \dots, m\}: &\ & \sum_{i=1}^n x_{ij} &\ge d_j
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

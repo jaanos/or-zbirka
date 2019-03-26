@@ -1,0 +1,27 @@
+\begin{naloga}{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Obravnavajmo posplošen scenarij iz naloge~\nal{proj}.
+\begin{enumerate}[(a)]
+\item Denimo, da so projekti lahko med seboj odvisni.
+Imejmo množico $V \subseteq \p^2$, ki določa,
+da za vsak par projektov $(p_i, p_j) \in V$ velja,
+da lahko projekt $p_i$ sponzoriramo le,
+če sponzoriramo tudi projekt $p_j$.
+
+\item Nekateri izmed projektov so lahko v konfliktu.
+Naj bo $S \subseteq 2^\p$ družina množic, ki določa,
+da so za vsako množico $H \in S$ projekti iz $H$ med seboj v konfliktu
+(tj., hkrati lahko sponzoriramo le enega izmed njih.)
+\end{enumerate}
+Opiši, kako bi modelirali opisane omejitve.
+\end{vprasanje}
+
+\begin{odgovor}
+Celoštevilskemu linearnemu programu iz rešitve naloge~\res{proj}
+bomo dodali nove omejitve.
+\begin{enumerate}[(a)]
+\item $\displaystyle \forall (p_i, p_j) \in V : x_i \le x_j$
+\item $\displaystyle \forall H \in S : \sum_{p_i \in H} x_i \le 1$
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

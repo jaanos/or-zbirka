@@ -1,0 +1,50 @@
+\begin{naloga}{?}{Izpit OR 26.6.2012}
+\begin{vprasanje}
+V nekem velikem mehiškem mestu je center mesta sestavljen iz ulic,
+ki so pravokotne ena na drugo
+in iz ptičje perspektive izgledajo kot pravokotna karirasta mreža.
+Vse banke se nahajajo v centru,
+in sicer tik ob križiščih (v vsakem križišču kvečjemu ena banka).
+Križišča so označena s svojimi koordinatami v mreži.
+V tem mestu so ropi bank zelo pogosti.
+Tako pogosti, da se včasih roparji na begu zaletijo med seboj
+(saj bežijo pred policijskimi vozili pri veliki hitrosti).
+Če ropar uspe pripeljati do ulice, ki vodi ven iz centra, je ``rešen'',
+saj center obdajajo slumi, kjer policija nima moči,
+saj jih nadzirajo mafijski botri.
+Roparji so se sestali na Veliki mafijski konferenci
+in sklenili temu kaosu narediti konec.
+Odločili so se, da bodo naročili informacijski sistem,
+kamor bodo vsak večer vnesli lokacije bank, ki jih nameravajo oropati,
+program pa jim bo sestavil načrt ropov za naslednji dan.
+Rope je mogoče izvesti, če:
+\begin{itemize}
+\item so vse lokacije bank različne
+(dve ekipi ne smeta na isti dan oropati iste banke), in
+\item za vsako lokacijo obstaja pot, ki pelje ven iz centra,
+tako da nobeni dve poti ne gresta vzdolž iste ulice
+(s tem poskušamo preprečiti, da bi se roparji medsebojno zaleteli;
+smer vožnje pri tem ni pomembna).
+\end{itemize}
+Opiši algoritem, ki bo kot vhod dobil celi števili $n$ in $m$,
+ki predstavljata število vodoravnih in navpičnih ulic,
+ter seznam lokacij bank $L$.
+Algoritem naj vrne seznam poti,
+po katerih bodo roparji bežali (za vsako lokacijo po eno pot).
+Če vseh ropov ni mogoče izvesti, naj algoritem javi napako.
+
+Za $n = 7$, $m = 6$ in
+$$
+L = \{(4, 5), (4, 4), (4, 3), (6, 4), (7, 4),
+      (2, 5), (6, 5), (2, 4), (2, 3), (6, 3)\}
+$$
+lahko dobimo na primer poti, podane na sliki~\fig{}.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Shema ulic in bank ter primer izhoda}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

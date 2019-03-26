@@ -1,0 +1,63 @@
+\begin{naloga}{?}{Kolokvij OR 9.5.2013}
+\begin{vprasanje}
+V turistični agenciji Zobček že vrsto let organizirajo izlete po Sloveniji.
+Zaradi velikega povpraševanja so se odločili,
+da bodo ponudbo razširili tudi na Madžarsko.
+Izbrali so destinacije in vodiče,
+sedaj pa želijo slednje razporediti po destinacijah tako,
+da bi vsako destinacijo pokrivala natanko dva vodiča
+in bi vsak vodič pokrival natanko eno destinacijo.
+Vsak vodič je podal seznam destinacij, urejenih po priljubljenosti,
+začenši s tisto, po kateri bi najraje vodil turiste.
+Agencija je za vsako destinacijo naredila urejen seznam vodičev,
+tako da je na prvem mestu tisti vodič,
+ki bi predvidoma najbolje vodil turiste po destinaciji,
+na zadnjem pa tisti, ki bi to predvidoma počel najslabše.
+
+Če bi bilo destinacij in vodičev malo,
+bi agencija sama nekako razdelila vodiče med destinacije, a temu ni tako.
+Še več, seznam destinacij in vodičev nameravajo z leti spreminjati,
+zato nujno potrebujejo postopek,
+ki bi jim pomagal razdeliti vodiče po destinacijah.
+
+\begin{enumerate}[(a)]
+\item Danih je $n$ destinacij in $2n$ vodičev,
+pri čemer za vsako destinacijo poznamo preference agencije glede vodičev
+in za vsakega vodiča poznamo njegove preference glede destinacij.
+Opiši algoritem časovne zahtevnosti $O(n^2)$,
+ki izračuna {\em stabilno razdelitev} vodičev med destinacije oz.~nam pove,
+da stabilna razdelitev ne obstaja.
+
+Razdelitev $2n$ vodičev med n destinacij je {\em nestabilna},
+če obstajata vodič $v$ in destinacija $d$,
+tako da bi $v$ raje vodil po destinaciji $d$ kakor po trenutni destinaciji
+in bi agencija raje imela vodiča $v$ na destinaciji $d$
+namesto enega izmed trenutnih vodičev na tej destinaciji.
+Razdelitev $2n$ vodičev med $n$ destinacij je {\em stabilna},
+če sta vsaki destinaciji dodeljena natanko dva vodiča in če ni nestabilna.
+
+\item Reši nalogo za naslednje podatke ($n = 3$):
+\begin{center}
+\begin{tabular}{c|c}
+Destinacija & preference agencije glede vodičev \\ \hline
+Budimpešta  & Anisa, Bela, Črt, Ema, Dana, Corina \\
+Győr        & Črt, Bela, Corina, Dana, Ema, Anisa \\
+Szeged      & Ema, Anisa, Bela, Dana, Črt, Corina
+\end{tabular}
+
+\bigskip
+\begin{tabular}{c|c}
+Vodič  & preference vodičev \\ \hline
+Anisa  & Szeged, Budimpešta, Győr \\
+Bela   & Budimpešta, Szeged, Győr \\
+Corina & Győr, Szeged, Budimpešta \\
+Črt    & Budimpešta, Győr, Szeged \\
+Dana   & Budimpešta, Szeged, Győr \\
+Ema    & Győr, Budimpešta, Szeged
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

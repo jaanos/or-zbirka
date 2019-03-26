@@ -1,0 +1,48 @@
+\begin{naloga}{?}{Izpit OR 5.2.2010}
+\begin{vprasanje}
+Na znanem TV kanalu HOP.tv bodo ob sredah ob 17h
+predvajali humanitarno igro Prodajalec\texttrademark,
+pri kateri igralec prodaja predmete tipa $X$ in predmete tipa $Y$
+v določenem zaporedju $P$,
+v studio pa po vrsti prihajajo potencialni kupci.
+Organizatorji vnaprej določijo zaporedje kupcev
+in $i$-temu kupcu določijo tudi tip predmeta $T_i$.
+Kupec $i$ lahko sam poda le ceno $c_i$,
+ki jo je pripravljen plačati za predmet.
+Organizatorji na podlagi tega določijo zaporedje $P$ tako,
+da je izvedljiva prodaja vseh predmetov v zaporedju $P$.
+Podatkov $P$, $T$ in $c$ igralec seveda ne pozna vnaprej.
+Kupci prihajajo v studio in igralec se odloča,
+ali jim za ponujeno ceno trenutni predmet proda ali ne.
+Pri tem mu svetuje in vpliva na njegov humanitarni čut
+znani voditelj Joras Š.
+Če igralec trenutnega predmeta ne proda $i$-temu kupcu,
+pride naslednji kupec, če pa ga proda,
+pa prisluži za humanitarne namene $c_i$ enot denarja
+in naslednjemu kupcu poskusi prodati naslednji predmet v zaporedju $P$.
+V sezoni zmaga igralec,
+katerega prodaja je procentualno največja glede na optimalno prodajo.
+Na HOP.tv so na žalost kupili
+le okrnjeno licenco za igro Prodajalec\texttrademark,
+ki ne vključuje programske opreme za preračun optimalnih rešitev,
+tako da te prosijo za pomoč.
+Za primer: če so podatki $T = XYXXY$, $c = (2, 2, 7, 1, 1)$ in $P = XY$,
+je optimalna rešitev prodaja $X$ tretjemu kupcu ter prodaja $Y$ petemu kupcu,
+s katero prislužimo $c_3 + c_5 = 7 + 1 = 8$ enot denarja.
+
+\begin{enumerate}[(a)]
+\item S pomočjo dinamičnega programiranja izpelji algoritem,
+ki za dane $T$, $c$ in $P$ poišče optimalno rešitev.
+Podaj ustrezno rekurzivno zvezo ter opiši,
+kako rekonstruiramo optimalno rešitev.
+\namig{zgleduj se po algoritmu za najdaljše skupno podzaporedje.}
+
+\item Kakšna je časovna zahtevnost tvojega algoritma v najslabšem primeru?
+
+\item Izvedi algoritem na zgornjih podatkih in tako preveri,
+da je opisana rešitev v zgornjem primeru res optimalna.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

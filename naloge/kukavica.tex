@@ -1,0 +1,52 @@
+\begin{naloga}{?}{Izpit OR 28.8.2013}
+\begin{vprasanje}
+Kukavica bo izlegla $16$ jajc in jih podtaknila v $12$ gnezd,
+ki pripadajo dvema taščicama, štirim vrtnim penicam, trem travniškim cipam,
+dvema belima pastiricama in eni sovi.
+V vsako gnezdo lahko izleže največ tri jajca,
+pri čemer je verjetnost, da mladiči v gnezdu $i$ preživijo,
+enaka $p_{ij}$, kjer je $j$ število podtaknjenih jajc v gnezdu $i$
+(preživijo bodisi vsi ali noben mladič v posameznem gnezdu).
+Pri vsaki od petih vrst ptic želi izleči vsaj eno jajce,
+pri taščicah pa želi izleči strogo več jajc kot pri belih pastiricah.
+Poleg tega pri drugi beli pastirici ne bo odložila jajca,
+če bo pri prvi taščici odložila dve jajci ali več.
+Kukavica želi maksimizirati pričakovano število preživelih mladičev.
+
+Zapiši problem kot celoštevilski linearni program.
+\end{vprasanje}
+
+\begin{odgovor}
+Oštevilčimo gnezda s števili od $1$ do $12$:
+gnezdi taščic naj imata števili $1$ in $2$,
+gnezda vrtnih penic naj imajo števila $3$ in $4$, $5$ in $6$,
+gnezda travniških cip naj imajo števila $7$ in $8$, in $9$,
+gnezdi belih pastiric naj imata števili $10$ in $11$,
+sovino gnezdo pa naj ima število $12$.
+Za $i$-to gnezdo ($1 \le i \le 12$) in $j \in \{1, 2, 3\}$
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če naj kukavica v $i$-to gnezdo izleže natanko $j$ jajc, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Naj bo $V = \{\{1, 2\}, \{3, 4, 5, 6\}, \{7, 8, 9\}, \{10, 11\}, \{12\}\}$
+particija indeksov gnezd glede na vrsto ptice.
+Zapišimo celoštevilski linearni program.
+\begin{align*}
+\max \ \sum_{i=1}^{12} j \ p_{ij} \ x_{ij} &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, 12\}: \ \sum_{j=1}^3 x_{ij} &\le 1
+\opis{Skupaj izleže $16$ jajc}
+\sum_{i=1}^{12} \sum_{j=1}^3 j \ x_{ij} &= 16
+\opis{K vsaki vrsti ptice izleže vsaj eno jajce}
+\forall S \in V: \ \sum_{i \in S} \sum_{j=1}^3 x_{ij} &\ge 1
+\opis{Pri taščicah izleže strogo več jajc kot pri belih pastiricah}
+\sum_{i=1}^2 \sum_{j=1}^3 j \ x_{ij} - \sum_{i=10}^{11} \sum_{j=1}^3 j \ x_{ij} &\ge 1
+\opis{Pri drugi beli pastirici ne bo odložila jajca,
+če bo pri prvi taščici odložila dve jajci ali več}
+\sum_{j=2}^3 x_{1j} + \sum_{j=1}^3 x_{11,j} &\le 1
+\end{align*}
+\end{odgovor}
+\end{naloga}

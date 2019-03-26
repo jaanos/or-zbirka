@@ -1,0 +1,46 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2018}
+\begin{vprasanje}
+Pri izdelavi letala imamo faze, opisane v tabeli~\tab{}.
+
+\begin{enumerate}[(a)]
+\item S pomočjo topološke ureditve ustreznega grafa
+določi kritična opravila in čas izdelave.
+Uporabi podatke iz stolpca ``trajanje''.
+
+\item Katero opravilo je najmanj kritično?
+Najmanj kritično jo opravilo,
+katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na trajanje izdelave.
+
+\item Naročnik bi rad, da letalo izdelamo v $75$ dneh.
+Posamezna opravila lahko skrajšamo tako, da zanje zadolžimo več delavcev.
+Seveda prinese tako krajšanje dodatne stroške,
+poleg tega pa za vsako opravilo poznamo najmanjše možno trajanje
+(glej zadnja dva stolpca v zgornji tabeli).
+Zapiši linearni program,
+s katerim modeliramo iskanje razporeda opravil,
+ki nam prinese čim manjše stroške.
+Linearnega programa ne rešuj.
+\end{enumerate}
+
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|l|c|c||c|c}
+opravilo & opis & trajanje & pogoji & najmanjše trajanje & cena za dan manj \\
+\hline
+A & izgradnja nosu              & 40 dni & -    & 36 dni & 1000 \\
+B & izgradnja trupa s krili     & 50 dni & -    & 48 dni & 1500 \\
+C & izgradnja repa              & 35 dni & -    & 31 dni &  800 \\
+D & vgraditev pilotske kabine   & 30 dni & A    & 28 dni & 1200 \\
+E & opremljanje potniške kabine & 18 dni & F, G & 16 dni &  500 \\
+F & povezovanje nosu s trupom   & 10 dni & A, B &  9 dni & 1100 \\
+G & povezovanje repa s trupom   & 12 dni & B, C & 10 dni & 1300 \\
+H & vgraditev motorjev          & 20 dni & B    & 18 dni & 1400 \\
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

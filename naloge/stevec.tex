@@ -1,0 +1,81 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Naj bo $\ell[1 \dots n]$ seznam,
+ki ima na začetku vse vrednosti nastavljene na $0$.
+Dan je spodnji program:
+
+\begin{small}
+\begin{algorithmic}
+\State $i \gets 1$
+\While{$i \le n$}
+    \State $\ell[i] \gets 1 - \ell[i]$
+    \If{$\ell[i] = 1$}
+        \State $i \gets 1$
+    \Else
+        \State $i \gets i+1$
+    \EndIf
+\EndWhile
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Kaj se dogaja, ko teče zgornji program?
+\item Oceni število korakov, ki jih opravi zgornji program,
+v odvisnosti od parametra $n$.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item V vsakem obhodu zanke {\bf while}
+se vrednost $\ell[i]$ spremeni iz $0$ v $1$ ali obratno.
+Če se vrednost spremeni na $1$, se $i$ nastavi na $1$,
+sicer se pa poveča za $1$.
+
+Izpišimo si vrednosti v seznamu $\ell$ in spremenljivke $i$
+ob koncu vsakega obhoda zanke {\bf while} tekom izvajanja algoritma,
+recimo za $n = 4$:
+$$
+\begin{array}{c|c|ccc|c|c}
+\text{obhod} & \ell[4 \dots 1] & i &\qquad&
+\text{obhod} & \ell[4 \dots 1] & i \\ \cline{1-3} \cline{5-7}
+ 1 & 0001 & 1 && 16 & 1001 & 1 \\
+ 2 & 0000 & 2 && 17 & 1000 & 2 \\
+ 3 & 0010 & 1 && 18 & 1010 & 1 \\
+ 4 & 0011 & 1 && 19 & 1011 & 1 \\
+ 5 & 0010 & 2 && 20 & 1010 & 2 \\
+ 6 & 0000 & 3 && 21 & 1000 & 3 \\
+ 7 & 0100 & 1 && 22 & 1100 & 1 \\
+ 8 & 0101 & 1 && 23 & 1101 & 1 \\
+ 9 & 0100 & 2 && 24 & 1100 & 2 \\
+10 & 0110 & 1 && 25 & 1110 & 1 \\
+11 & 0111 & 1 && 26 & 1111 & 1 \\
+12 & 0110 & 2 && 27 & 1110 & 2 \\
+13 & 0100 & 3 && 28 & 1100 & 3 \\
+14 & 0000 & 4 && 29 & 1000 & 4 \\
+15 & 1000 & 1 && 30 & 0000 & 5 \\
+\end{array}
+$$
+Če pogledamo samo tiste obhode, na koncu katerih velja $i = 1$, opazimo,
+da vrednosti v seznamu $\ell$ predstavljajo
+dvojiške zapise števil od $1$ do $2^n - 1$
+v ostalih pa se najmanj pomembna $1$ zamenja z $0$.
+Algoritem torej simulira dvojiški števec z $n$ mesti.
+
+\item Algoritem obišče vseh $2^n - 1$ števil,
+poleg tega pa mora vsakič poskrbeti za zamenjavo vseh enic
+za najmanj pomembno ničlo.
+Ob upoštevanju, da obstaja $2^{n-i}$ števil
+z najmanj pomembno ničlo na $i$-tem mestu,
+za vrednost $2^n - 1$ pa je potrebno nadomestiti vseh $n$ mest,
+je skupno število korakov enako
+\begin{multline*}
+n + \sum_{i=1}^n (i \cdot 2^{n-i}) =
+\sum_{j=1}^n \left(1 + \sum_{i=j}^n 2^{n-i}\right) = \\
+= \sum_{j=1}^n \left(1 + \sum_{i=0}^{n-j} 2^i\right) =
+\sum_{j=1}^n 2^{n-j+1} = 2^{n+1} - 2 .
+\end{multline*}
+Časovna zahtevnost algoritma je torej $O(2^n)$.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

@@ -1,0 +1,76 @@
+\begin{naloga}{?}{Kolokvij OR 9.5.2013}
+\begin{vprasanje}
+Profesionalni programer je gospodu Velikozobcu prodal algoritem {\sc Koši}.
+A Velikozobec je že v letih in je pozabil, kaj naj bi ta algoritem vračal.
+V prospektu je zasledil naslednjo psevdokodo algoritma:
+\begin{small}
+\begin{algorithmic}
+\Require{$s[0 \dots n-1]$ tabela tromestnih števil}
+\State $T \gets$ tabela velikosti $10$,
+    katere elementi so prazne vrste (podatkovne strukture)
+\For{$i = 0, 1, \dots, n-1$}
+    \For{$i = 0, 1, \dots, 9$}
+        \If{zadnja števka $s[i] = j$}
+            \State $T[j].\append(s[i])$
+        \EndIf
+    \EndFor
+\EndFor
+\State $k \gets 0$
+\For{$i = 0, 1, \dots, n-1$}
+    \While{$T[k].\isEmpty()$}
+        \State $k \gets k+1$
+    \EndWhile
+    \State $s[i] \gets T[k].\pop()$
+\EndFor
+\For{$i = 0, 1, \dots, n-1$}
+    \For{$i = 0, 1, \dots, 9$}
+        \If{srednja števka $s[i] = j$}
+            \State $T[j].\append(s[i])$
+        \EndIf
+    \EndFor
+\EndFor
+\State $k \gets 0$
+\For{$i = 0, 1, \dots, n-1$}
+    \While{$T[k].\isEmpty()$}
+        \State $k \gets k+1$
+    \EndWhile
+    \State $s[i] \gets T[k].\pop()$
+\EndFor
+\For{$i = 0, 1, \dots, n-1$}
+    \For{$i = 0, 1, \dots, 9$}
+        \If{prva števka $s[i] = j$}
+            \State $T[j].\append(s[i])$
+        \EndIf
+    \EndFor
+\EndFor
+\State $k \gets 0$
+\For{$i = 0, 1, \dots, n-1$}
+    \While{$T[k].\isEmpty()$}
+        \State $k \gets k+1$
+    \EndWhile
+    \State $s[i] \gets T[k].\pop()$
+\EndFor
+\State \Return{$s$}
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Algoritem izvedi na primeru
+$$
+s = [146, 145, 359, 100, 359, 486, 200, 367, 980, 909, 257, 100] .
+$$
+Dovolj je napisati tabelo $s$ po vsaki izmed zunanjih zank.
+
+\item Kakšna je časovna zahtevnost algoritma?
+
+\item Kaj algoritem vrača?
+
+\item Gospod Velikozobec je ugotovil,
+da se algoritem na vhodih velikosti $n = 10000$
+izvede v približno $0.25$ sekundah.
+Približno koliko časa potrebuje za izvajanje na vhodih velikosti $n = 50000$?
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

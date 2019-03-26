@@ -1,0 +1,50 @@
+\begin{naloga}{?}{Vaje OM 23.4.2014}
+\begin{vprasanje}
+Poišči maksimalni pretok in minimalni prerez na grafu s slike~\fig{}
+v odvisnosti od parametra $a$.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Najprej poiščemo maksimalni pretok za $a = 0$
+(tj., brez povezave s parametrom).
+Dobimo maksimalni pretok $0+3 = 3+0+0 = 3$, glej sliko~\fig{pretok3a}.
+
+Za $a > 0$ poiščemo povečujočo pot.
+Če je $0 < a \le 3$,
+povečamo pretok po povečujoči poti za $a$
+in tako dobimo maksimalen pretok $p^* = a+3$ ($3 < p^* \le 6$),
+saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig{pretok3b}.
+V nasprotnem primeru ($a > 3$) pretok povečamo za $3$
+in poiščemo novo povečujočo pot.
+
+Če je $3 < a \le 5$, povečamo pretok po povečujoči poti za $a-3$
+in tako dobimo maksimalen pretok $p^* = a+3$ ($6 < p^* \le 8$),
+saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig{pretok3c}.
+V nasprotnem primeru ($a > 5$) pretok povečamo za $2$.
+
+Za $a > 5$ dobimo maksimalni pretok $5+3 = 3+2+3 = 8$,
+glej sliko~\fig{pretok3d}.
+
+\begin{slika}
+\pgfslika[pretok3a]
+\podnaslov{Maksimalni pretok pri $a = 0$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3b]
+\podnaslov{Maksimalni pretok pri $0 < a \le 3$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3c]
+\podnaslov{Maksimalni pretok pri $3 < a \le 5$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3d]
+\podnaslov{Maksimalni pretok pri $a > 5$}
+\end{slika}
+\end{odgovor}
+\end{naloga}

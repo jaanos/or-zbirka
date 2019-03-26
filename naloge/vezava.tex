@@ -1,0 +1,82 @@
+\begin{naloga}{?}{Vaje OR 11.4.2008}
+\begin{vprasanje}
+Janez želi naložiti vsoto $1000 €$ v banko za dobo petih let.
+Odloča se med tem, da bi jo vezal za pet let (obrestna mera $5\%$)
+ali pa petkrat zaporedoma po eno leto (obrestna mera $4\%$).
+Če denar veže za pet let, vmes pa varčevanje prekine,
+mu pripada le obrestna mera $3\%$.
+Ocenjuje, da lahko v naslednjih petih letih pride do naslednjih situacij:
+\begin{itemize}
+\item varčeval bo pet let, pri tem se obrestna mera ne spremeni,
+\item varčeval bo pet let, obrestna mera se po treh letih poveča za $30\%$,
+\item varčeval bo pet let, obrestna mera se po treh letih zmanjša za $20\%$,
+\item varčeval bo tri leta.
+\end{itemize}
+Opiši, kako naj se odloči glede na posamezne kriterije
+(optimist, pesimist, Laplace, Savage).
+Določi vrednosti parametera $\alpha$,
+pri katerih je po Hurwiczevem kriteriju možnih več enakovrednih odločitev.
+\end{vprasanje}
+
+\begin{odgovor}
+Zaradi enostavnosti predpostavimo,
+da se obrestuje samo glavnica (enkrat na leto),
+pri čemer pri petletnem varčevanju vsakič velja začetna obrestna mera.
+Izračunajmo obresti po petih letih pri različnih shemah vezave
+glede na dogajanje po treh letih:
+\begin{center}
+\begin{tabular}{c|cccc}
+shema & nespremenjena & povečana & zmanjšana & prekinitev \\ \hline
+$5$ let              & $250$ & $250$ & $250$ &   $-$ \\
+$3 + 2 \cdot 1$ leto & $170$ & $194$ & $154$ &   $-$ \\
+$3$ leta             &  $90$ &  $90$ &  $90$ &  $90$ \\ \hline
+$5 \cdot 1$ leto     & $200$ & $224$ & $184$ &   $-$ \\
+$3 \cdot 1$ leto     & $120$ & $120$ & $120$ & $120$ \\
+\end{tabular}
+\end{center}
+Drugih možnosti ne bomo obravnavali,
+saj se očitno $5$-letna vezava ne izplača, če jo bomo predčasno prekinili.
+Iz zgornje tabele je torej jasno,
+da se bomo odločili bodisi za $5$-letno vezavo ali pa vsakoletno vezavo,
+z morebitno prekinitvijo oziroma prenehanjem po $3$ letih
+brez nadaljnje vezave.
+Dobimo torej sledečo odločitveno tabelo:
+\begin{center}
+\begin{tabular}{c|cccc}
+začetna shema & nespremenjena & povečana & zmanjšana & prekinitev \\ \hline
+$5$ let          & $250$ & $250$ & $250$ &  $90$ \\
+$5 \cdot 1$ leto & $200$ & $224$ & $184$ & $120$ \\
+\end{tabular}
+\end{center}
+
+Pri optimistovem kriteriju se ravnamo glede na najboljši možen izid.
+Pri $5$-letni vezavi je to $250 €$, pri letni vezavi pa $224 €$,
+zato se odločimo za $5$-letno vezavo.
+
+Pri pesimistovem (Waldovem) kriteriju se ravnamo glede na najslabši možen izid.
+Pri $5$-letni vezavi je to $90 €$, pri letni vezavi pa $120 €$,
+zato se odločimo za letno vezavo.
+
+Pri Laplaceovem kriteriju so vse možnosti enako verjetne.
+Pri $5$-letni vezavi je torej pričakovani dobiček enak
+$(250 € + 250 € + 250 € + 90 €)/4 = 210 €$,
+pri letni vezavi pa $(200 € + 224 € + 184 € + 120 €)/4 = 182 €$,
+zato se odločimo za $5$-letno vezavo.
+
+Pri Savageovem kriteriju želimo minimizirati največje možno obžalovanje.
+Pri $5$-letni vezavi je največje obžalovanje enako $120 € - 90 € = 30 €$,
+pri letni vezavi pa $250 € - \min\{200€, 224€, 184€\} = 66 €$,
+zato se odločimo za $5$-letno vezavo.
+
+Pri Hurwiczevem kriteriju upoštevamo,
+da se najboljši izid zgodi z ve\-rjet\-nost\-jo $\alpha$,
+najslabši pa z verjetnostjo $1 - \alpha$.
+Pri $5$-letni vezavi je torej pričakovan dobiček enak
+$\alpha \cdot 250 € + (1 - \alpha) \cdot 90 € = \alpha \cdot 160 € + 90 €$,
+pri letni vezavi pa
+$\alpha \cdot 224 € + (1 - \alpha) \cdot 120 € = \alpha \cdot 104 € + 120 €$.
+Pri vrednosti $\alpha = 15/28$ sta obe možnosti enakovredni.
+Pri večjih vrednostih $\alpha$ se odločimo za $5$-letno vezavo,
+pri manjših pa za letno vezavo.
+\end{odgovor}
+\end{naloga}

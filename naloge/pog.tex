@@ -1,0 +1,54 @@
+\begin{naloga}{?}{Izpit OR 24.6.2013}
+\begin{vprasanje}
+Profesionalni programer je vladi Republike Slovenije
+prodal algoritem {\sc PoG}.
+A na pristojnem ministrstvu so pozabili, kdo je ta algoritem naročil,
+in zato ne vedo, kaj naj bi algoritem vračal.
+V prospektu so zasledili naslednjo psevdokodo algoritma:
+\begin{small}
+\begin{algorithmic}
+\Require{neusmerjen graf $G = (V, E)$}
+\For{$v \in V$}
+    \State obarvaj $v$ sivo
+\EndFor
+\State $Q \gets$ nova vrsta
+\State $s \gets 0$
+\For{$v \in V$}
+    \If{$v$ je siv}
+        \State $s \gets s+1$
+        \State $Q.\append(v)$
+        \While{$\lnot Q.\isEmpty()$}
+            \State $w \gets Q.\pop()$
+            \For{$u \in \Adj(w)$}
+                \If{$u$ je siv}
+                    \State $Q.\append(u)$
+                    \State obarvaj $u$ rumeno
+                \EndIf
+            \EndFor
+        \EndWhile
+    \EndIf
+\EndFor
+\State \Return{$s$}
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Algoritem izvedi na grafu s slike~\fig{},
+tj,. nariši graf vsakič, ko se spremeni barva nekega vozlišča.
+Koliko je takrat vrednost števca?
+
+\item Kaj algoritem vrača?
+Odgovor utemelji.
+
+\item Kakšna je časovna zahtevnost algoritma?
+Odgovor utemelji.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

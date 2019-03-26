@@ -1,0 +1,46 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
+\begin{vprasanje}
+Naj bo $A[1 \dots n][1 \dots n]$ matrika (tj., seznam seznamov)
+dimenzij $n \times n$.
+Dan je spodnji program:
+\begin{small}
+\begin{algorithmic}
+\For{$i = 1, \dots, n$}
+    \For{$j = i+1, \dots, n$}
+        \State $A[i][j] \gets A[j][i]$
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Kaj počne zgornji program?
+\item Oceni število korakov, ki jih opravi zgornji program,
+v odvisnosti od parametra $n$.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Program prepiše vnose v matriki $A$ nad diagonalo
+na ustrezno mesto pod diagonalo tako,
+da je po izvedbi programa matrika $A$ simetrična.
+\item Kot korak bomo upoštevali posamezno izvedbo notranje zanke {\bf for},
+kjer kopiramo vrednost v matriki na drugo mesto
+-- ob predpostavki, da je velikost vnosov omejena
+(npr.~32-bitna cela števila),
+bo trajanje take operacije omejeno s konstanto.
+Preštejmo število takih korakov:
+$$
+\sum_{i=1}^n \sum_{j=i+1}^n 1 = \sum_{i=1}^n (n-i) = \sum_{i=0}^{n-1} i =
+{n(n-1) \over 2}
+$$
+
+Lahko bi seveda upoštevali še korake,
+ki so potrebni za vzdrževanje števcev zank
+(inicializacija števca, povečevanje števca, preverjanje konca zanke),
+a bi spet dobili kvadratni polinom v $n$.
+Tako lahko rečemo, da je število korakov omejeno z $O(n^2)$.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

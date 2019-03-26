@@ -1,0 +1,62 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 11.6.2018}
+\begin{vprasanje}
+Dan je povezan neusmerjen enostaven graf $G = (V, E)$
+(tj., brez zank in večkratnih povezav).
+{\em Prerezno vozlišče} v grafu $G$ je tako vozlišče $u \in V$,
+da graf $G - u$
+(tj., graf $G$ brez vozlišča $u$ in povezav s krajiščem v $u$)
+ni več povezan.
+Poiskati želimo seznam prereznih vozlišč grafa $G$.
+
+Pri iskanju si bomo pomagali s preiskovanjem v globino.
+Ob prvem obisku vozlišča $u$ s predhodnikom $v$
+se tako pokliče funkcija \verb|previsit(u, v)|,
+ob njegovem zadnjem obisku pa funkcija \verb|postvisit(u, v)|.
+Če je $u$ koren preiskovalnega drevesa, potem ima $v$ vrednost \verb|None|.
+Predpostavi, da imaš v obeh funkcijah dostop do seznama \verb|izhod|,
+kamor bo treba dodati najdena presečna vozlišča.
+Prav tako imata lahko obe funkciji dostop do drugih pomožnih spremenljivk.
+
+Naj bo $\ell_u$ globina vozlišča $u$ v drevesu iskanja v globino
+(tj., razdalja od korena do $u$ v drevesu iskanja v globino).
+Za vsako vozlišče $u$ definiramo vrednost $p_u$ kot najmanjšo globino vozlišč,
+ki so v grafu $G$ sosedna vozlišču $u$
+ali njegovim potomcem v drevesu iskanja v globino.
+
+\begin{enumerate}[(a)]
+\item Za graf na sliki~\fig{} nariši drevo iskanja v globino
+(v njem označi tudi povratne povezave, npr.~s črtkano črto)
+in določi njegova prerezna vozlišča.
+Upoštevaj abecedni vrstni red obiskovanja vozlišč.
+Za vsako vozlišče $u$ določi še vrednosti $\ell_u$ in $p_u$.
+\namig{vrednosti $p_u$ najprej določi za vozlišča z večjo globino.}
+
+\item Napiši rekurzivno formulo za vrednost $p_u$.
+\namig{loči med sosedi $v$ vozlišča $u$ v grafu $G$ (pišeš lahko $u \sim v$)
+in njegovimi neposrednimi nasledniki $w$ v preiskovalnem drevesu ($u \to w$).}
+
+\item Natančno opiši funkcijo \verb|previsit(u, v)|
+(z besedami ali psevdokodo),
+ki poskrbi za izračun vrednosti $\ell_u$.
+
+\item Natančno opiši funkcijo \verb|postvisit(u, v)|
+(z besedami ali psevdokodo),
+ki naj za vozlišče $u$ izračuna vrednost $p_u$ in ugotovi,
+ali je $u$ prerezno vozlišče, in ga v tem primeru doda v \verb|izhod|.
+Predpostavi, da imaš globine vozlišč že poračunane
+(tudi, če točka (c) ni rešena).
+\namig{obravnavaj dve možnosti --
+ko je $u$ koren drevesa, in ko $u$ ni koren drevesa.
+Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
+
+\item Oceni časovno zahtevnost celotnega algoritma.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

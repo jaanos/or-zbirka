@@ -1,0 +1,55 @@
+\begin{naloga}{?}{Izpit OR 19.5.2015}
+\begin{vprasanje}
+Podjetje Nijke proizvaja moške copate.
+Po svetu ima več tovarn,
+vsaka je na stopnji razvoja $1$, $2$, $3$ ali $4$.
+Koliko dobička prinese
+tovarna na posamezni stopnji razvoja v posamezni državi
+ter koliko tovarn na posamezni stopnji razvoja ima trenutno vsaka država,
+je razvidno iz tabele~\tab{}.
+
+V naslednjem letu lahko nadgradimo do $15$ tovarn,
+v vsaki državi največ $3$.
+Vsako tovarno lahko nadgradimo največ za eno stopnjo.
+Dodatno moramo upoštevati še naslednje omejitve.
+\begin{itemize}
+\item Slovenija mora imeti več tovarn stopnje $4$ kot Hrvaška
+in več tovarn stopnje $3$ kot Italija.
+\item Število nadgradenj tovarn v EU (države nad črto tabeli~\tab{})
+mora biti vsaj tolikšno kot število nadgradenj tovarn izven EU.
+\item Če Azerbajdžan nadgradi svojo tovarno
+in Armenija ne nadgradi tovarne stopnje $3$,
+potem mora Armenija nadgraditi vse tri tovarne stopnje $1$.
+\item Iran mora imeti vsaj toliko tovarn stopnje $4$
+kot vse države EU skupaj.
+\end{itemize}
+
+Napiši celoštevilski linearni program,
+ki upošteva opisane omejitve in pove,
+kje in koliko tovarn moramo nadgraditi, da bomo imeli kar največji dobiček.
+
+\begin{tabela}
+\begin{tabular}{c|cccc|cccc}
+& \multicolumn{4}{|c|}{dobiček}
+& \multicolumn{4}{c}{število tovarn} \\
+država & st.~$1$ & st.~$2$ & st.~$3$ & st.~$4$
+& st.~$1$ & st.~$2$ & st.~$3$ & st.~$4$ \\ \hline
+Avstrija     & 3 &  4 &  7 & 10 &  0 & 0 & 0 &  5 \\
+Slovenija    & 3 &  3 &  5 &  8 &  0 & 1 & 2 &  1 \\
+Italija      & 4 &  4 &  6 &  8 &  1 & 1 & 1 &  1 \\
+Madžarska    & 5 &  7 &  8 & 10 &  0 & 1 & 2 &  1 \\
+Hrvaška      & 3 &  4 &  5 &  7 &  1 & 2 & 1 &  0 \\ \hline
+Iran         & 6 & 10 & 10 & 10 &  3 & 0 & 4 & 10 \\
+Irak         & 2 &  4 &  4 &  6 &  5 & 3 & 0 &  0 \\
+Afganistan   & 6 &  6 &  5 &  2 & 20 & 0 & 0 &  0 \\
+Turkmenistan & 6 &  7 &  7 &  6 & 10 & 5 & 5 &  0 \\
+Pakistan     & 6 &  7 &  7 &  7 & 10 & 7 & 2 &  0 \\
+Armenija     & 6 &  7 &  9 & 10 &  3 & 0 & 1 &  0 \\
+Azerbajdžan  & 6 &  7 &  9 &  8 &  0 & 1 & 0 &  0 \\
+\end{tabular}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

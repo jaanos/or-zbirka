@@ -1,0 +1,31 @@
+\begin{naloga}{?}{Kolokvij OR 19.11.2009}
+\begin{vprasanje}
+Zaradi naravnih nesreč so reševalci prejeli klice
+za $n$ ponesrečenih oseb iz različnih lokacij,
+ki jih je potrebno prepeljati v $k$ bolnišnic po danem cestnem omrežju.
+Ponesrečence lahko prepeljemo do bolnišnic,
+ki so oddaljene za največ pol ure urgentne vožnje
+(za dane ponesrečence imamo torej v splošnem več izbir za bolnišnice).
+Da pa bolnišnic ne bi preobremenili, zahtevamo,
+da v vsako bol\-niš\-ni\-co
+pride največ $\lceil {n \over k} \rceil$ ponesrečencev.
+Zanima nas, ali je to izvedljivo.
+Modeliraj problem in ga prevedi na kakšen znan problem.
+\end{vprasanje}
+
+\begin{odgovor}
+Dano cestno omrežje lahko predstavimo kot usmerjen graf $G$,
+kjer uteži predstavljajo čas potovanja po cestni povezavi.
+Na grafu $G$ lahko uporabimo Floyd-Warshallov algoritem
+za izračun razdalje med vsemi pari vozlišč.
+Nato zgradimo dvodelen graf $H$,
+v katerem imamo po eno vozlišče za vsakega ponesrečenca
+in po $\lceil {n \over k} \rceil$ vozlišč za vsako bolnišnico,
+vozlišči pa sta povezani,
+če je razdalja od ponesrečenca do bolnišnice v grafu $G$ največ pol ure.
+Na grafu $H$ nato z madžarsko metodo poiščemo največje prirejanje $M$.
+Če ima najdeno prirejanje $n$ povezav,
+potem smo našli ustrezno dodelitev ponesrečencev bolnišnicam,
+sicer pa ta ne obstaja.
+\end{odgovor}
+\end{naloga}

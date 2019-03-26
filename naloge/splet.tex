@@ -1,0 +1,39 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 31.1.2017}
+\begin{vprasanje}
+Izdelati želimo terminski plan za izdelavo spletne aplikacije.
+V tabeli~\tab{} so zbrana opravila pri izdelavi.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+\item Določi kritična opravila in kritično pot ter čas izdelave.
+\item Katero opravilo je najmanj kritično?
+Najmanj kritično jo opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na trajanje izdelave.
+\end{enumerate}
+
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|l|c|c}
+opravilo & opis & trajanje & pogoji \\
+\hline
+A & natančna opredelitev funkcionalnosti & 15 dni & / \\
+B & programiranje uporabniškega vmesnika & 40 dni & K \\
+C & programiranje skrbniškega vmesnika & 25 dni & A, M \\
+D & programiranje strežniškega dela & 30 dni & A, M \\
+E & integracija uporabniškega vmesnika s strežnikom & 20 dni & B, D \\
+F & alfa testiranje & 20 dni & C, E \\
+G & beta testiranje & 30 dni & F, H \\
+H & pridobivanje testnih uporabnikov & 45 dni & A \\
+I & vnos zadnjih popravkov & 10 dni & G \\
+J & izdelava uporabniške dokumentacije & 35 dni & B \\
+K & dizajniranje uporabniškega vmesnika & 15 dni & A \\
+L & nabava računalniške opreme & 20 dni & / \\
+M & postavitev strežnikov & 10 dni & L \\
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

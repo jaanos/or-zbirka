@@ -1,0 +1,33 @@
+\begin{naloga}{?}{Vaje OR 16.3.2016}
+\begin{vprasanje}
+Občina Ljubljana želi projekte iz množice
+$\p = \{p_1, p_2, \dots, p_n\}$,
+pri čemer ima na voljo $M$ evrov kapitala.
+V želji po razvoju regije želijo,
+da se v sklopu sponzoriranih projektov ustvari vsaj $N$ delovnih mest.
+Projekt $p_i$ ($1 \le i \le n)$ potrebuje $d_i$ evrov finančne pomoči
+in zaposli $a_i$ ljudi.
+Na občini so ocenili,
+da ima projekt $p_i$ ob uspešnem dokončanju donos $c_i$ evrov.
+Katere projekte naj sponzorira, da bo donos čim večji?
+Na smiseln način modeliraj opisani problem z linearnim programom.
+\end{vprasanje}
+
+\begin{odgovor}
+Za vsak projekt $p_i \in \p$ bomo uvedli spremenljivko $x_i$,
+katere vrednost interpretiramo kot
+$$
+x_i = \begin{cases}
+1, & \text{če naj občina sponzorira projekt $p_i$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max \ \sum_{i=1}^n c_i x_i && \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le x_i &\le 1, \quad x_i \in \Z \\
+&& \sum_{i=1}^n d_i x_i &\le M \\
+&& \sum_{i=1}^n a_i x_i &\ge N
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

@@ -1,0 +1,50 @@
+\begin{naloga}{?}{Izpit OR 26.6.2012}
+\begin{vprasanje}
+Dr.~Kaczyński se ukvarja s podatkovno strukturo $A$,
+ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
+Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
+ne moremo pa jih spreminjati.
+Elementi ``tabele'' $A$ so indeksirani s celimi števili od $1$ do $n$,
+kjer je $n = A.\length()$ indeks zadnjega elementa ``tabele'' $A$.
+Edina operacija (poleg dostopanja do posameznih elementov),
+ki jo lahko izvajamo nad $A$, je ``obračanje podtabele''.
+Če ima na začetku $A$ vrednosti
+$$
+A = [a_1, a_2, \dots, a_{i-1}, a_i, a_{i+1}, \dots, a_{j-1}, a_j, a_{j+1},
+     \dots, a_{n-1}, a_n],
+$$
+po klicu ukaza $A.\reverse(i, j)$ izgleda takole:
+$$
+A = [a_1, a_2, \dots, a_{i-1}, a_j, a_{j-1}, \dots, a_{i+1}, a_i, a_{j+1},
+     \dots, a_{n-1}, a_n] .
+$$
+Dr.~Kaczyński se je lotil implementacije algoritmov
+nad to podatkovno strukturo.
+Najprej je seveda implementiral algoritem za urejanje:
+\begin{small}
+\begin{algorithmic}
+\State $n \gets A.\length()$
+\For{$i = 2, \dots, n$}
+    \State $j \gets i$
+    \While{$j > 1 \land A[j-1] > A[i]$}
+        \State $j \gets i-1$
+    \EndWhile
+    \State $A.\reverse(j, i)$
+    \If{$j+1 < i$}
+        \State
+    \EndIf
+\EndFor
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item V zgornji algoritem se je prikradla manjša tipkarska napaka,
+poleg tega pa je ena vrstica celo izginila.
+Popravi algoritem, da bo deloval pravilno.
+
+\item Popravljeni algoritem izvedi na ``tabeli'' $A = [5, 3, 12, 9, 1, 15]$.
+\end{enumerate}
+\end{vprasanje}
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

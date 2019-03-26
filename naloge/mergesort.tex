@@ -1,0 +1,64 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 12.10.2016}
+\begin{vprasanje}
+Algoritem {\sc MergeSort} uredi vhodni seznam tako,
+da ga najprej razdeli na dva dela,
+nato vsakega rekurzivno uredi,
+nazadnje pa zlije dobljena urejena seznama.
+\begin{enumerate}[(a)]
+\item S psevdokodo zapiši algoritem {\sc MergeSort}.
+\item Izvedi algoritem na seznamu $[7, 11, 16, 7, 5, 0, 14, 1, 19, 13]$.
+\item Določi časovno zahtevnost algoritma.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item
+\begin{small}
+\begin{algorithmic}
+\Function{MergeSort}{$\ell[1 \dots n]$}
+    \If{$n \le 1$}
+        \State \Return $\ell$
+    \EndIf
+    \State $m \gets \lceil {n \over 2} \rceil$
+    \State $\ell_1 \gets \text{\sc MergeSort}(\ell[1 \dots m])$
+    \State $\ell_2 \gets \text{\sc MergeSort}(\ell[m+1 \dots n])$
+    \State $i, j \gets 1, 1$
+    \State $\ell' \gets []$
+    \While{$i \le m \land j \le n-m$}
+        \If{$\ell_1[i] \le \ell_2[j]$}
+            \State dodaj $\ell_1[i]$ na konec $\ell'$
+            \State $i \gets i+1$
+        \Else
+            \State dodaj $\ell_2[j]$ na konec $\ell'$
+            \State $j \gets j+1$
+        \EndIf
+    \EndWhile
+    \State pripni $\ell_1[i \dots m]$ na konec $\ell'$
+    \State pripni $\ell_2[j \dots n-m]$ na konec $\ell'$
+    \State \Return $\ell'$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Izvajanje algoritma je prikazano na sliki~\fig{}.
+Nad črtkano črto je prikazano rekurzivno razbijanje seznamov,
+pod njo pa zlivanje dobljenih urejenih podseznamov.
+
+\item Funkcija obsega dva rekurzivna klica na seznamih polovične dolžine
+ter združevanje obeh dobljenih seznamov v enega.
+Naj bo $T(n)$ čas izvajanja algoritma pri vhodnem seznamu dolžine $n$.
+Ker združevanje poteka v linearnem času, velja rekurzivna zveza
+$$
+T(n) = O(n) + 2T\left({n \over 2}\right) .
+$$
+Po krovnem izreku lahko izpeljemo,
+da je časovna zahtevnost algoritma $O(n \log n)$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\res{}(b)]{Diagram izvajanja algoritma}
+\end{slika}
+\end{odgovor}
+\end{naloga}
