@@ -1,7 +1,7 @@
 \razdelek{Zahtevnost algoritmov}
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
-\begin{vprasanje}
+\begin{vprasanje}[zrcaljenje]
 Naj bo $A[1 \dots n][1 \dots n]$ matrika (tj., seznam seznamov)
 dimenzij $n \times n$.
 Dan je spodnji program:
@@ -49,7 +49,7 @@ Tako lahko rečemo, da je število korakov omejeno z $O(n^2)$.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
-\begin{vprasanje}
+\begin{vprasanje}[stevec]
 Naj bo $\ell[1 \dots n]$ seznam,
 ki ima na začetku vse vrednosti nastavljene na $0$.
 Dan je spodnji program:
@@ -132,7 +132,7 @@ n + \sum_{i=1}^n (i \cdot 2^{n-i}) =
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
-\begin{vprasanje}
+\begin{vprasanje}[bubblesort]
 Algoritem {\sc BubbleSort} uredi vhodni seznam $\ell[1 \dots n]$ tako,
 da zamenjuje so\-sed\-nje elemente v nepravem vrstnem redu:
 \begin{small}
@@ -269,7 +269,7 @@ da je časovna zahtevnost algoritma $O(n \log n)$.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
-\begin{vprasanje}
+\begin{vprasanje}[razcep]
 Število $n$ želimo razcepiti
 na dva netrivialna celoštevilska faktorja,
 kar storimo s sledečim algoritmom:
@@ -300,7 +300,7 @@ in torej ni polinomski v dolžini vhoda.
 
 
 \begin{naloga}{Janoš Vidali}{Vaje OR 21.2.2018}
-\begin{vprasanje}
+\begin{vprasanje}[korenski]
 Zapiši rekurziven algoritem,
 ki na vhod dobi celo število $n$ in teče v času $O(\sqrt{n})$.
 Uporaba korenjenja ni dovoljena.
@@ -329,7 +329,7 @@ Zapišimo tak algoritem:
 
 
 \begin{naloga}{?}{Kolokvij OR 17.4.2013}
-\begin{vprasanje}
+\begin{vprasanje}[alg]
 Dani so končna neprazna množica $S \subset \N$ moči $n$,
 število $k \in \{1, 2, \dots, n\}$ ter algoritem {\sc Alg}:
 \begin{small}
@@ -413,7 +413,7 @@ Algoritem torej v povprečnem primeru opravi $O(n)$ korakov.
 \end{naloga}
 
 \begin{naloga}{?}{Kolokvij OR 25.11.2010}
-\begin{vprasanje}
+\begin{vprasanje}[onotacija]
 \begin{enumerate}[(a)]
 \item Dokaži, da za poljubni konstanti $a, b \in \R$, kjer je $b > 0$,
 velja ${(n + a)}^b = O(n^b)$.
@@ -432,7 +432,7 @@ potem je $T(n) = O(n)$.
 
 
 \begin{naloga}{?}{Kolokvij OR 4.5.2012}
-\begin{vprasanje}
+\begin{vprasanje}[usmerjentrikotnik]
 Naj bo $G = (V, E)$ enostaven usmerjen graf
 (tj., brez zank in vzporednih povezav),
 podan z matriko sosednosti $A = (a_{ij})_{i,j=1}^n$ ($n = |V|$),
@@ -471,7 +471,7 @@ in koliko v najslabšem primeru?
 
 
 \begin{naloga}{?}{Izpit OR 26.6.2012}
-\begin{vprasanje}
+\begin{vprasanje}[reverse]
 Dr.~Kaczyński se ukvarja s podatkovno strukturo $A$,
 ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
 Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
@@ -523,7 +523,7 @@ Popravi algoritem, da bo deloval pravilno.
 
 
 \begin{naloga}{?}{Izpit OR 9.7.2012}
-\begin{vprasanje}
+\begin{vprasanje}[hamilton]
 Dan je algoritem $H$,
 ki na vhod sprejme enostaven neusmerjen graf $G = (V, E)$
 (tj., brez zank in vzporednih povezav)
@@ -564,7 +564,7 @@ zadnja vrstica funkcije $H$ izvede $\Theta((n-2)!)$-krat.
 
 
 \begin{naloga}{?}{Izpit OR 4.9.2012}
-\begin{vprasanje}
+\begin{vprasanje}[reversestart]
 Dr.~Kaczyński se ukvarja s podatkovno strukturo $A$,
 ki je zelo podobna tabeli (angl.~{\em array}) celih števil.
 Vrednosti v posameznih celicah ``tabele'' $A$ lahko beremo,
@@ -616,7 +616,7 @@ od časovne zahtevnosti algoritma dr.~Kaczyńskega.
 
 
 \begin{naloga}{?}{Kolokvij OR 9.5.2013}
-\begin{vprasanje}
+\begin{vprasanje}[kosi]
 Profesionalni programer je gospodu Velikozobcu prodal algoritem {\sc Koši}.
 A Velikozobec je že v letih in je pozabil, kaj naj bi ta algoritem vračal.
 V prospektu je zasledil naslednjo psevdokodo algoritma:
@@ -694,7 +694,7 @@ Približno koliko časa potrebuje za izvajanje na vhodih velikosti $n = 50000$?
 
 
 \begin{naloga}{?}{Izpit OR 28.8.2013}
-\begin{vprasanje}
+\begin{vprasanje}[zlivanje]
 Asistent pri predmetu Operacijske raziskave je dobil idejo,
 kako bi predelal algoritem, ki z zlivanjem uredi seznam celih števil.
 Namesto,
@@ -716,7 +716,7 @@ Utemelji, da je časovna zahtevnosti tvojega algoritma res $O(n \log n)$.
 
 
 \begin{naloga}{?}{Izpit OR 19.5.2015}
-\begin{vprasanje}
+\begin{vprasanje}[sistem]
 Dana je zgornje trikotna matrika $A \in \Z^{n \times n}$,
 ki ima na diagonali neničelne vred\-no\-sti,
 in vektor $b \in \Z^n$.
@@ -734,7 +734,7 @@ Kakšna je časovna zahtevnost tvojega algoritma?
 
 
 \begin{naloga}{?}{Izpit OR 24.6.2015}
-\begin{vprasanje}
+\begin{vprasanje}[preurejanje]
 Dan je algoritem, ki na vhod sprejme seznam števil
 $A = [a_1, a_2, \dots, a_n]$
 in vrne preurejen seznam $A$,
