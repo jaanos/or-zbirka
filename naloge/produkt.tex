@@ -14,8 +14,55 @@ Ta stane $1 \ME$,
 z verjetnostjo $2/3$ pa bo pravilno napovedala uspeh projekta
 (ne glede na to, ali bi ta uspel ali ne).
 Kako naj se podjetje odloči?
-
 \end{vprasanje}
+
 \begin{odgovor}
+Če se podjetje odloči za samostojno prodajo,
+bo ob uspehu imelo $100000 \cdot 600 € - 6 \ME = 54 \ME$ dobička,
+ob neuspehu pa $10000 \cdot 600 € - 6 \ME = 0 \ME$.
+Ker je pričakovani dobiček enak
+$$
+{1 \over 2} \cdot 54 \ME + {1 \over 2} \cdot 0 \ME = 27 \ME,
+$$
+kar je več kot $15 \ME$,
+kolikor bi zaslužili ob prodaji konkurenci,
+se podjetju (v odsotnosti raziskave) bolj izplača samostojna prodaja.
+
+Zanesljivost raziskave je tako v primeru uspeha kot neuspeha enaka $2/3$,
+torej
+\begin{align*}
+P(\text{raziskava napove uspeh} \;|\; \text{investicija uspe})
+&= {2 \over 3} \\
+P(\text{raziskava napove uspeh} \;|\; \text{investicija ne uspe})
+&= {1 \over 3}
+\end{align*}
+Izračunajmo še verjetnosti napovedi raziskave
+ter uspešnosti investicije ob vsaki napovedi.
+\begin{align*}
+P(\text{raziskava napove uspeh}) &=
+{2 \over 3} \cdot {1 \over 2} + {1 \over 3} \cdot {1 \over 2} = {1 \over 2} \\
+P(\text{raziskava napove neuspeh}) &=
+{1 \over 3} \cdot {1 \over 2} + {2 \over 3} \cdot {1 \over 2} = {1 \over 2} \\
+P(\text{investicija uspe} \;|\; \text{raziskava napove uspeh})
+&= {2/3 \cdot 1/2 \over 1/2} = {2 \over 3} \\
+P(\text{investicija ne uspe} \;|\; \text{raziskava napove uspeh})
+&= {1/3 \cdot 1/2 \over 1/2} = {1 \over 3} \\
+P(\text{investicija uspe} \;|\; \text{raziskava napove neuspeh})
+&= {1/3 \cdot 1/2 \over 1/2} = {1 \over 3} \\
+P(\text{investicija ne uspe} \;|\; \text{raziskava napove neuspeh})
+&= {2/3 \cdot 1/2 \over 1/2} = {2 \over 3}
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig{}.
+Opazimo, da rezultat raziskave ne vpliva na našo odločitev o prodaji,
+zato se za raziskavo ne odločimo
+in tako pričakujemo dobiček $27 \ME$.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

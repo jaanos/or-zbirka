@@ -22,14 +22,18 @@ $(ZBIRKA).bbl: $(BIB_FILES)
 pgf/%.pdf: slike/%.tikz
 	pdflatex --jobname=pgf/$* $(ZBIRKA).tex
 
-slike/pretok%.tikz: slike/pretok%-osnova.tikz
+pgf/dectree.pdf: slike/dectree-osnova.tikz
 
-slike/pretok1%.tikz: slike/pretok1-osnova.tikz
+pgf/dectree-resitev.pdf: slike/dectree-osnova.tikz
 
-slike/pretok2%.tikz: slike/pretok2-osnova.tikz
+pgf/pretok%.pdf: slike/pretok%-osnova.tikz
 
-slike/pretok3%.tikz: slike/pretok3-osnova.tikz
+pgf/pretok1%.pdf: slike/pretok1-osnova.tikz
 
-slike/pretok4%.tikz: slike/pretok4-osnova.tikz
+pgf/pretok2%.pdf: slike/pretok2-osnova.tikz
 
-slike/pretok5%.tikz: slike/pretok5-osnova.tikz
+pgf/pretok3%.pdf: slike/pretok3-osnova.tikz
+
+pgf/pretok4%.pdf: slike/pretok4-osnova.tikz
+
+pgf/pretok5%.pdf: slike/pretok5-osnova.tikz

@@ -6,10 +6,45 @@ Pričakovano vrednost želiš maksimizirati.
 Poišči optimalne odločitve glede na vrednost $p$.
 
 \begin{slika}
-\includegraphics{slike/decision-tree.pdf}
+\pgfslika
 \podnaslov{Odločitveno drevo}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Izračunajmo najprej pričakovane vrednosti v vozliščih $C$, $D$ in $E$
+odločitvenega drevesa s slike~\fig{}.
+\begin{alignat*}{2}
+C &= 10 \cdot p + 2 \cdot p - 5 \cdot (1-2p) &&= 22p - 5 \\
+D &= 3 \cdot 2p - 2 \cdot (1-2p) &&= 10p - 2 \\
+E &= 1 \cdot 3p + 0 \cdot (1 - 3p) &&= 3p
+\end{alignat*}
+Obravnavajmo najprej odločitev v vozlišču $B$.
+Za pot k vozlišču $D$ se odločimo,
+če velja $10p - 2 \ge 3p$ oziroma $p \ge 2/7$,
+sicer se odločimo za pot k vozlišču $E$.
+Obravnavajmo sedaj še odločitev v vozlišču $A$
+-- za pot k vozlišču $C$ se odločimo, če velja:
+\begin{alignat*}{4}
+p < {2 \over 7}: &\quad& 22p - 5 &\ge 3p
+&\quad&\Rightarrow \quad & {5 \over 19} \le p &< {2 \over 7} \\
+p \ge {2 \over 7}: &\quad& 22p - 5 &\ge 10p-2
+&\quad&\Rightarrow \quad & p &\ge {2 \over 7} \ge {1 \over 4}
+\end{alignat*}
+Odločamo se torej tako:
+\begin{itemize}
+\item če je $0 \le p < 5/19$,
+se odločimo za pot preko vozlišča $B$ k vozlišču $E$,
+pričakovana vrednost je $3p \in [0, 15/19)$; in
+\item če je $5/19 \le p \le 1/3$,
+se odločimo za pot k vozlišču $C$,
+pričakovana vrednost je $22p-5 \in [15/19, 7/3]$.
+\end{itemize}
+Proces odločanja je prikazan na sliki~\fig{dectree-resitev}.
+
+\begin{slika}
+\pgfslika[dectree-resitev]
+\podnaslov[\res{} v odvisnosti od vrednosti parametra $p$]{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

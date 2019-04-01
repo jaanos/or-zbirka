@@ -1,0 +1,70 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm, inner sep=0pt]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm, inner sep=0pt]
+\tikzstyle{pick}=[double, very thick]
+\node[dec] (A) at (-8, 0) [label=below:16:52.5] {};
+\node[ran] (B) at (-5, 4) [label=above:18:20] {FF1};
+\node[ran] (C) at (-5, 2) [label=below:17:50] {FF6};
+\node[ran] (D) at (-5,-2) [label=below:16:52.5] {vlak};
+\node[ran] (E) at (-1, 3) [label=below:17:48] {FE};
+\node[ran] (F) at (-1, 1) [label=above:17:54] {FE};
+\node[ran] (G) at (-1,-1) [label=below:18:18] {FE};
+\node[ran] (H) at (-1,-3) [label=above:16:48] {FE};
+\node[dec] (I) at ( 2, 2) [label=below:18:00] {};
+\node[dec] (J) at ( 2, 0) [label=below:18:00] {};
+\node[dec] (K) at ( 2,-2) [label=below:18:20] {};
+\node[dec] (L) at ( 2,-4) [label=below:17:00] {};
+\node[ran] (M) at ( 5, 2) [label=below:18:30] {FF1};
+\node[ran] (N) at ( 5,-3) [label=below:18:20] {FF1};
+\node[ran] (O) at ( 5,-5) [label=below:18:20] {FF1};
+\node      (a) at (-1, 5) {18:00};
+\node      (b) at (-1, 4) {19:00};
+\node      (c) at ( 2, 3) {16:00};
+\node      (d) at ( 2, 1) {17:00};
+\node      (e) at ( 2,-1) {18:00};
+\node      (f) at ( 2,-3) {15:00};
+\node      (g) at ( 5, 3) {18:00};
+\node      (h) at ( 5, 1) {19:00};
+\node      (i) at ( 5, 0) {18:00};
+\node      (j) at ( 5,-2) {20:00};
+\node      (k) at ( 5,-4) {17:00};
+\node      (l) at ( 8, 3) {18:00};
+\node      (m) at ( 8, 2) {19:00};
+\node      (n) at ( 8,-2) {18:00};
+\node      (o) at ( 8,-3) {19:00};
+\node      (p) at ( 8,-4) {18:00};
+\node      (q) at ( 8,-5) {19:00};
+
+\draw (A) -- (B) node[above, midway, sloped] {avtobus 1};
+\draw (A) -- (C) node[below, midway, sloped] {avtobus 6};
+\draw[pick] (A) -- (D) node[below, midway, sloped] {avtobus 14};
+\draw (B) -- (a) node[above, midway, sloped] {zelena: $2/3$};
+\draw (B) -- (b) node[below, midway] {rdeča: $1/3$};
+\draw (C) -- (E) node[above, midway, sloped] {zelena: $2/3$};
+\draw (C) -- (F) node[below, midway, sloped] {rdeča: $1/3$};
+\draw (D) -- (G) node[above, midway, sloped] {vlak: $1/20$};
+\draw (D) -- (H) node[below, midway, sloped] {ni vlaka: $19/20$};
+\draw (E) -- (c) node[above, midway] {zelena: $1/10$};
+\draw (E) -- (I) node[below, midway, sloped] {rdeča: $9/10$};
+\draw (F) -- (d) node[above, midway] {zelena: $1/10$};
+\draw (F) -- (J) node[below, midway, sloped] {rdeča: $9/10$};
+\draw (G) -- (e) node[above, midway] {zelena: $1/10$};
+\draw (G) -- (K) node[below, midway, sloped] {rdeča: $9/10$};
+\draw (H) -- (f) node[above, midway] {zelena: $1/10$};
+\draw (H) -- (L) node[below, midway, sloped] {rdeča: $9/10$};
+\draw[pick] (I) -- (g) node[above, midway, sloped] {peš};
+\draw (I) -- (M) node[below, midway] {čakamo 1};
+\draw (J) -- (h) node[above, midway, sloped] {peš};
+\draw[pick] (J) -- (i) node[below, midway] {čakamo 1};
+\draw (K) -- (j) node[above, midway] {peš};
+\draw[pick] (K) -- (N) node[below, midway, sloped] {čakamo 1};
+\draw[pick] (L) -- (k) node[above, midway] {peš};
+\draw (L) -- (O) node[below, midway, sloped] {čakamo 1};
+\draw (M) -- (l) node[above, midway, sloped] {zelena: $1/2$};
+\draw (M) -- (m) node[below, midway] {rdeča: $1/2$};
+\draw (N) -- (n) node[above, midway, sloped] {zelena: $2/3$};
+\draw (N) -- (o) node[below, midway] {rdeča: $1/3$};
+\draw (O) -- (p) node[above, midway, sloped] {zelena: $2/3$};
+\draw (O) -- (q) node[below, midway] {rdeča: $1/3$};
+\end{tikzpicture}

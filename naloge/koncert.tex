@@ -11,8 +11,19 @@ Vsaka prodana karta prinese $10 €$ dobička,
 vsak obiskovalec, ki ne bo mogel v dvorano, pa pomeni $30 €$ stroškov
 (ker je že plačal $10 €$ za karto, ima torej organizator $20 €$ izgube).
 Koliko kart naj prireditelj proda, da bo pričakovani dobiček čim večji?
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $x_n$ pričakovani dobiček pri prodanih $n$ kartah.
+Izračunajmo $x_n$ pri $n \in \{100, 101, 102, 103\}$:
+\begin{alignat*}{2}
+x_{100} &= 100 \cdot 10 € &&= 1000 € \\
+x_{101} &= 101 \cdot 10 € - 0.2 \cdot 30 € &&= 1004 € \\
+x_{102} &= 102 \cdot 10 € - 0.2 \cdot 60 € - 0.3 \cdot 30 € &&= 999 € \\
+x_{103} &= 103 \cdot 10 € - 0.2 \cdot 90 € - 0.3 \cdot 60 € - 0.4 \cdot 30 €
+&&= 982 €
+\end{alignat*}
+Organizator bo torej maksimiziral pričakovani dobiček,
+če proda $101$ karto.
 \end{odgovor}
 \end{naloga}
