@@ -5,8 +5,8 @@
 \input{tex/ukazi.tex}
 \pgfrealjobname{test}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\nal}[1][]{{\tt \taoznaka{#1}}}
-\newcommand{\res}[1][]{{\tt \taoznaka{#1}}}
+\newcommand{\nal}[1][]{{\tt \taoznaka{#1}}\xspace}
+\newcommand{\res}[1][]{{\tt \taoznaka{#1}}\xspace}
 
 % Zamenjaj ime naloge z želeno nalogo za testiranje
 \newcommand{\testnaNaloga}{ajkalaj}
