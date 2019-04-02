@@ -15,7 +15,7 @@ se pri prevajanju zbirke uporabi že prevedena slika,
 tudi, če se je izvorna koda slike spremenila.
 V tem primeru je potrebno sliko znova prevesti.
 
-To si lahko olajšamo z uporabo GNU Make.
+To si lahko olajšamo z uporabo [GNU Make](https://www.gnu.org/software/make/).
 Ukaz
 ```bash
 make
