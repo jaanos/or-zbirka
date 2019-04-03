@@ -73,3 +73,7 @@ bo pri nadaljnjih pushih s te veje zadostovalo napisati `git push`.
 Ko so commiti na GitHubu,
 lahko odprete pull request
 s svoje veje na vejo `master` na glavnem repozitoriju.
+
+Zgornja navodila predpostavljajo, da uporabljate git iz ukazne vrstice -
+seveda pa lahko uporabljate katerikoli odjemalec za git
+(npr. TortoiseGit, GitHub Desktop, Sourcetree, ...).
