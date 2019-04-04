@@ -23,6 +23,7 @@ Uporabljajo se sledeči paketi za LaTeX:
 * `amstext`
 * `babel`
 * `babelbib`
+* `bookmark`
 * `caption`
 * `chngcntr`
 * `enumerate`
