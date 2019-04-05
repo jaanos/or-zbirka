@@ -6,6 +6,7 @@ ki se začne v levem zgornjem kotu (pri $a_{11}$)
 in konča v desnem spodnjem kotu (pri $a_{mn}$).
 Dovoljeni so zgolj premiki v desno in navzdol.
 \begin{enumerate}[(a)]
+\item Napiši rekurzivne enačbe za opisani problem.
 \item Reši problem za matriko
 $$
 A = \begin{pmatrix}
@@ -16,12 +17,93 @@ A = \begin{pmatrix}
 805 & 732 & 524 &  37 & 332
 \end{pmatrix} .
 $$
-\item Napiši rekurzivne enačbe za opisani problem.
 \item Na osnovi rekurzivnih enačb napiši algoritem, ki reši opisani problem.
 Oceni tudi njegovo časovno zahtevnost v odvisnosti od $m$ in $n$.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ cena minimalne vsote poti od $a_{11}$ do $a_{ij}$.
+Določimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+p_{11} &= a_{11} \\
+p_{1j} &= a_{1j} + p_{i,j-1} && (2 \le j \le n) \\
+p_{i1} &= a_{i1} + p_{i-1,1} && (2 \le i \le m) \\
+p_{ij} &= a_{ij} + \min\{p_{i-1,j}, p_{i,j-1}\}
+&& (2 \le i \le m, \ 2 \le j \le n)
+\end{align*}
+Vrednosti $p_{ij}$ računamo v leksikografskem vrstnem redu indeksov
+(npr.~najprej naraščajoče po $i$, nato pa naraščajoče po $j$).
+Minimalno vsoto poti dobimo kot $p^* = p_{mn}$.
+
+\item Vrednosti $p_{ij}$ ($1 \le i \le m$, $1 \le j \le n$)
+zapišimo v matriki skupaj z informacijo,
+katero predhodno vrednost smo upoštevali.
+$$
+\left(p_{ij}\right)_{i,j=1}^5 = \left(\begin{array}{rrrrr}
+          131 & \gets     804 & \gets    1038 & \gets    1141 & \gets    1159
+\\
+\uparrow  332 & \gets     428 & \gets     770 & \gets    1735 & \uparrow 1309
+\\
+\uparrow  962 & \uparrow 1231 & \uparrow 1516 & \gets    1938 & \uparrow 1420
+\\
+\uparrow 1499 & \uparrow 1930 & \uparrow 2013 & \uparrow 2059 & \uparrow 2376
+\\
+\uparrow 2304 & \uparrow 2662 & \uparrow 2537 & \uparrow 2096 & \gets    2428
+\end{array}\right)
+$$
+Vidimo lahko, da je optimalna pot
+$(a_{11}, a_{21}, a_{22}, a_{23}, a_{33}, a_{34}, a_{44}, a_{54}, a_{55})$
+z vsoto $2428$.
+
+\item Da bomo lahko rekonstruirali pot,
+bomo hranili še vrednosti $k_{ij}$ z indeksi predhodne lokacije.
+\begin{align*}
+k_{1j} &= (1, j-1) && (2 \le j \le n) \\
+k_{i1} &= (i-1, 1) && (2 \le i \le m) \\
+k_{ij} &= \begin{cases}
+(i-1, j) & \text{če $p_{i-1,j} \le p_{i,j-1}$, in} \\
+(i, j-1) & \text{sicer}
+\end{cases}
+&& (2 \le i \le m, \ 2 \le j \le n)
+\end{align*}
+Zapišimo algoritem, ki vrne minimalno vsoto in pot, ki jo doseže.
+\begin{small}
+\begin{algorithmic}
+\Function{MatrixSum}{$(a_{ij})_{i,j=1}^{m,n}$}
+    \For{$i = 1, \dots, m$}
+        \For{$j = 1, \dots, n$}
+            \If{$i = 1 \land j = 1$} \hfill rekurzivna enačba
+                \State $s \gets 0$
+            \ElsIf{$i = 1$}
+                \State $s \gets p_{i,j-1}$
+                \State $k_{ij} = (i, j-1)$
+            \ElsIf{$j = 1$}
+                \State $s \gets p_{i-1,j}$
+                \State $k_{ij} = (i-1, j)$
+            \Else
+                \State $(s, k_{ij}) \gets \min\{(p_{i,j-1}, (i, j-1)),
+                                                (p_{i-1,j}, (i-1, j))\}$
+            \EndIf
+            \State $p_{ij} = a_{ij} + s$
+        \EndFor
+    \EndFor
+    \State $P \gets$ prazen seznam
+    \State $(i, j) \gets (m, n)$
+    \While{$i > 1 \lor j > 1$} \hfill rekonstruiramo rešitev
+        \State $P.\append((i, j))$ \hfill postavimo plakat na mesto $x_i$
+        \State $(i, j) \gets k_{i, j}$
+    \EndWhile
+    \State $P.\append((1, 1))$ \hfill dodamo še levi zgornji kot
+    \State $P.\reverse()$ \hfill obrnemo, da dobimo pot v pravem vrstnem redu
+    \State \Return $(p_{mn}, P)$ \hfill vrnemo vsoto in pot
+\EndFunction
+\end{algorithmic}
+\end{small}
+Dvojna zanka {\bf for} opravi $mn$ korakov,
+zanka {\bf while} pa opravi $m+n-2$ korakov.
+Časovna zahtevnost algoritma je torej $O(mn)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

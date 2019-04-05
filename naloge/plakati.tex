@@ -12,16 +12,104 @@ Urad za oglaševanje podaja tudi omejitev,
 da mora biti razdalja med oglasi vsaj $d$ kilometrov.
 Oglase želimo postaviti tako, da bodo čim bolj profitabilni.
 \begin{enumerate}[(a)]
+\item Napiši rekurzivne enačbe za opisani problem.
 \item Reši problem za parametre $M = 20$, $d = 5$, $n = 8$,
 $(x_i)_{i=1}^n = (1, 2, 8, 10, 12,$ $14, 17, 20)$ in
 $(v_i)_{i=1}^n = (8, 8, 12, 10, 7, 5, 6, 10)$.
-\item Napiši rekurzivne enačbe za opisani problem.
 \item Napiši algoritem,
 ki poišče najbolj profitabilno postavitev oglasov za dane parametre.
 Kakšna je njegova časovna zahtevnost?
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_i$ največja skupna profitabilnost,
+če obravnavamo le plakatna mesta do $x_i$.
+Poleg tega naj bo $y_i$ indeks zadnjega plakatnega mesta,
+ki je od tre\-nut\-ne\-ga oddaljeno največ $d$ kilometrov.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+y_0 &= 0, & p_0 &= 0 \\
+y_i &= \max\set{j}{y_{i-1} \le j \le i, x_j \le x_i - d},
+& p_i &= \max\{p_{i-1}, v_i + p_{y_i}\} \quad (1 \le i \le n)
+\end{align*}
+Vrednosti $p_i$ računamo naraščajoče po indeksu $i$ ($1 \le i \le n$).
+Optimalno skupno profitabilnost dobimo kot $p^* = p_n$.
+
+\item Po rekurzivni enačbi iz točke (a)
+izračunajmo vrednosti $y_i$ in $p_i$ ($0 \le i \le n$).
+\begin{alignat*}{3}
+y_0 &= 0 &\qquad p_0 &= 0 \\
+y_1 &= 0 &\qquad p_1 &= \max\{0, \underline{8 + 0}\}    &&= 8 \\
+y_2 &= 0 &\qquad p_2 &= \max\{\underline{8}, 8 + 0\}    &&= 8 \\
+y_3 &= 2 &\qquad p_3 &= \max\{8, \underline{12 + 8}\}   &&= 20 \\
+y_4 &= 2 &\qquad p_4 &= \max\{\underline{20}, 10 + 8\}  &&= 20 \\
+y_5 &= 2 &\qquad p_5 &= \max\{\underline{20}, 7 + 8\}   &&= 20 \\
+y_6 &= 3 &\qquad p_6 &= \max\{20, \underline{5 + 20}\}  &&= 25 \\
+y_7 &= 5 &\qquad p_7 &= \max\{25, \underline{6 + 20}\}  &&= 26 \\
+y_8 &= 6 &\qquad p_8 &= \max\{26, \underline{10 + 25}\} &&= 35
+\end{alignat*}
+Optimalna skupna profitabilnost je torej $p^* = p_8 = 35$,
+dobimo pa jo tako, da sledimo izbranim vrednostim (zgoraj so podčrtane).
+Na $x_8$ postavimo plakat;
+ker je $y_8 = 6$, ugotovimo, da na $x_6$ postavimo plakat;
+ker je $y_6 = 3$, ugotovimo, da na $x_3$ postavimo plakat;
+ker je $y_3 = 2$, ugotovimo,
+da na $x_2$ ne postavimo plakata in ga postavimo na $x_1$.
+Izbrane lokacije so torej $x_1$, $x_3$, $x_6$ in $x_8$.
+
+\item Ker je $(x_i)_{i=1}^n$ naraščajoče zaporedje,
+opazimo, da lahko vrednosti $y_i$ računamo tako,
+da povečujemo predhodni indeks, dokler ga še lahko.
+Ker vred\-nost $y_i$ potrebujemo le še v $(i+1)$-tem koraku,
+bomo hranili samo trenutno vrednost $y$.
+Poleg $p_i$ ($1 \le i \le n$) bomo računali še vrednosti
+\begin{align*}
+j_i &= \begin{cases}
+y_i & \text{če izberemo postavitev plakata na $i$-to mesto, in} \\
+i-1 & \text{sicer;}
+\end{cases} \qquad \text{ter} \\
+b_i &= \begin{cases}
+\True & \text{če izberemo postavitev plakata na $i$-to mesto, in} \\
+\False & \text{sicer.}
+\end{cases}
+\end{align*}
+Iz teh vrednosti bomo lahko rekonstruirali optimalno postavitev plakatov.
+
+Zapišimo algoritem, ki vrne optimalno skupno profitabilnost
+ter seznam lokacij, kamor naj postavimo plakate.
+\begin{small}
+\begin{algorithmic}
+\Function{Plakati}{$(x_i)_{i=1}^n, (v_i)_{i=1}^n, d$}
+    \State $p_0 \gets 0$
+    \State $y \gets 0$
+    \State $S \gets$ prazen seznam
+    \For{$i = 1, \dots, n$}
+        \While{$x_{y+1} \le x_i - d$} \hfill izračunamo $y_i$
+            \State $y \gets y+1$
+        \EndWhile
+        \State $p_i, j_i, b_i \gets \max\{(p_{i-1}, i-1, \False),
+                                          (v_i + p_y, y, \True)\})$
+            \hfill rekurzivna enačba
+    \EndFor
+    \State $P \gets$ prazen seznam
+    \State $i \gets n$
+    \While{$i > 0$} \hfill rekonstruiramo rešitev
+        \If{$b_i$}
+            \State $P.\append(x_i)$ \hfill postavimo plakat na mesto $x_i$
+        \EndIf
+        \State $i \gets j_i$
+    \EndWhile
+    \State $P.\reverse()$ \hfill obrnemo, da bo seznam naraščajoč
+    \State \Return $(p_n, P)$ \hfill vrnemo profitabilnost in lokacije
+\EndFunction
+\end{algorithmic}
+\end{small}
+Opazimo, da obe zunanji zanki naredita $O(n)$ korakov.
+Največ toliko korakov naredimo tudi v notranji zanki {\bf while},
+saj vrednost $y$ samo povečujemo, ta pa nikdar ne preseže $n$.
+Časovna zahtevnost algoritma je torej $O(n)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

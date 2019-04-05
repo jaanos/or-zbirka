@@ -6,8 +6,68 @@ Nizu $a_j a_{j+1} \dots a_k$, kjer je $1 \le j \le k \le n$,
 pravimo {\em strnjen podniz} niza $S$.
 S pomočjo dinamičnega programiranja napiši algoritem,
 ki določi najdaljši palindromski strnjen podniz v $S$.
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj $b_{ij}$ pove,
+ali je strnjen podniz $a_i a_{i+1} \dots a_{j-2} a_{j-1}$ palindromski,
+torej, ali velja $a_{i+k-1} = a_{j-k}$ za vsak $k$ ($1 \le k \le j-i$).
+Ker so vsi podnizi dolžin $0$ in $1$ palindromski,
+lahko določimo začetne pogoje in rekurzivno enačbo.
+\begin{align*}
+b_{i,i} &= \top && (1 \le i \le n+1) \\
+b_{i,i+1} &= \top && (1 \le i \le n) \\
+b_{i,j} &= b_{i+1,j-1} \land (a_i = a_{j-1}) && (1 \le i < j-1 \le n)
+\end{align*}
+Vrednosti $b_{ij}$ računamo v leksikografskem vrstnem redu
+glede na $(j-i, i)$.
+Dolžino $p^*$ najdaljšega palindromskega strnjenega podniza
+dobimo kot največjo razliko indeksov,
+za katere je $b_{ij}$ resničen, torej
+$$
+p^* = \max\set{j-i}{1 \le i \le j \le n+1 \ \land \ b_{ij}} .
+$$
+Hkrati lahko seveda dobimo tudi začetek in konec
+najdaljšega palindromskega strnjenega podniza.
+
+Zapišimo algoritem,
+ki vrne dolžino najdaljšega palindromskega strnjenega podniza
+$a_i a_{i+1} \dots a_{j-2} a_{j-1}$ skupaj z indeksoma $i$ in $j$.
+Vrednost $p^*$ ter pripadajoča indeksa bomo računali sproti.
+\begin{small}
+\begin{algorithmic}
+\Function{Palindrom}{$(a_i)_{i=1}^n$}
+    \If{$n = 0$} \hfill če je niz prazen, imamo podniz dolžine $0$
+        \State \Return $(0, 1, 1)$
+    \EndIf
+    \State $(p^*, i^*, j^*) \gets (1, n, n+1)$ \hfill podniz dolžine $1$
+    \For{$i = 1, \dots, n$} \hfill začetni pogoji
+        \State $b_{ii} \gets \True$
+        \State $b_{i,i+1} \gets \True$
+    \EndFor
+    \State $b_{n+1,n+1} \gets \True$
+    \For{$h = 2, \dots, n$} \hfill rekurzivna enačba
+        \For{$i = 1, \dots, n-h+1$}
+            \State $b_{i,i+h} \gets b_{i+1,i+h-1} \land (a_i = a_{i+h-1})$
+            \If{$b_{i,i+h}$} \hfill če najdemo palindrom, posodobimo izhod
+                \State $(p^*, i^*, j^*) \gets (h, i, i+h)$
+            \EndIf
+        \EndFor
+    \EndFor
+    \State \Return $(p^*, i^*, j^*)$ \hfill vrnemo dolžino in meje
+\EndFunction
+\end{algorithmic}
+\end{small}
+V prvi zanki {\bf for} naredimo $n$ korakov,
+v dvojni zanki pa
+$$
+\sum_{h=2}^n (n-h+1) = \sum_{j=1}^{n-1} j = {n(n-1) \over 2} = O(n^2)
+$$
+korakov.
+Časovna zahtevnost algoritma je torej $O(n^2)$.
+
+Problem je mogoče reševati tudi v linearnem času z
+\href{https://en.wikipedia.org/wiki/Longest_palindromic_substring#%
+Manacher's_algorithm}{Manacherjevim algoritmom}.
 \end{odgovor}
 \end{naloga}

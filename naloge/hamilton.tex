@@ -8,14 +8,14 @@ ter različni vozlišči $u, v \in V$:
 \begin{algorithmic}
 \Function{$H$}{$G, u, v$}
     \If{$|V| = 2 \land u \in \Adj(v)$}
-        \State \Return{\sc True}
+        \State \Return \True
     \EndIf
     \For{$w \in \Adj(u) \setminus \{v\}$}
         \If{$H(G - u , w, v)$}
-            \State \Return{\sc True}
+            \State \Return \True
         \EndIf
     \EndFor
-    \State \Return{\sc False}
+    \State \Return \False
 \EndFunction
 \end{algorithmic}
 \end{small}
@@ -23,7 +23,7 @@ Oznaka $G - u$ predstavlja graf,
 ki ga dobimo iz $G$ tako, da odstranimo vozlišče $u$ in vse njegove povezave.
 
 \begin{enumerate}[(a)]
-\item Za katere vhode $(G, u, v)$ algoritem $H$ vrne {\sc True}?
+\item Za katere vhode $(G, u, v)$ algoritem $H$ vrne \True?
 \namig{poglej, kako je z grafi z $2, 3, 4, 5, \dots$ vozlišči,
 in poskusi posplošiti.}
 

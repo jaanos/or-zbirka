@@ -11,8 +11,57 @@ ki maksimizira njihovo skupno vrednost pri omejitvi $\sum_{i \in I} t_i \le M$.
 $(v_i)_{i=1}^n = (9, 9, 8, 11, 10, 15,$ $3, 12)$ in
 $(t_i)_{i=1}^n = (3, 5, 1, 4, 3, 8, 2, 7)$.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bosta $I_j$ in $c_j$
+optimalna izbira predmetov ter njihova skupna vrednost,
+če imamo nahrbtnik z nosilnostjo $j$ kilogramov.
+Določimo začetni pogoj in rekurzivno enačbo.
+\begin{align*}
+(c_0, I_0) &= (0, \emptyset) \\
+(c_j, I_j) &= \max\left(\{(c_{j-1}, I_{j-1})\} \cup
+    \set{(c_{j-t_i} + v_i, I_{j-t_i} \cup \{i\})}%
+        {1 \le i \le n, t_i \le j, i \not\in I_{j-t_i}}\right)
+\end{align*}
+Vrednosti $c_j$ in $I_j$ računamo naraščajoče po indeksu $j$
+($1 \le j \le M$).
+Optimalno skupno vrednost dobimo kot $c^* = c_M$,
+optimalno izbiro predmetov pa kot $I^* = I_M$.
+
+\item Potek algoritma je prikazan v tabeli~\tab.
+V vsaki vrstici je podčrtana vrednost pri tistem predmetu,
+ki ga dodamo v ustreznem koraku.
+Če nobena vred\-nost ni podčrtana,
+do izboljšave ni prišlo in zato uporabimo predhodno rešitev.
+Preberemo lahko,
+da je optimalna izbira predmetov $3$, $4$ in $5$ s skupno vrednostjo $29$.
+\end{enumerate}
+
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc||cccccccc}
+\multicolumn{2}{c}{} & $v_i$ & 9 & 9 & 8 & 11 & 10 & 15 & 3 & 12 \\
+\multicolumn{2}{c}{} & $t_i$ & 3 & 5 & 1 &  4 &  3 &  8 & 2 &  7 \\
+\cline{3-11}
+$j$ & $c_j$ & $I_j$ & 1 & 2 & 3 &  4 &  5 &  6 & 7 &  8 \\
+\hline
+0 &  0 & $\emptyset$ & \\
+1 &  8 & $\{3\}$ &&& \underline{$0+8$} \\
+2 &  8 & $\{3\}$ &&&&&&& $0+3$ \\
+3 & 11 & $\{3, 7\}$ & $0+9$ &&&& $0+10$ && \underline{$8+3$} \\
+4 & 18 & $\{3, 5\}$ & $8+9$ &&& $0+11$ & \underline{$8+10$} && $8+3$ \\
+5 & 19 & $\{3, 4\}$ & $8+9$ & $0+9$ && \underline{$8+11$} & $8+10$ \\
+6 & 21 & $\{3, 5, 7\}$ &
+    $11+9$ & $8+9$ && $8+11$ & \underline{$11+10$} && $18+3$ \\
+7 & 27 & $\{1, 3, 5\}$ &
+    $\underline{18+9}$ & $8+9$ && $11+11$ &&& $19+3$ & $0+12$ \\
+8 & 29 & $\{3, 4, 5\}$ &
+    $19+9$ & $11+9$ && \underline{$18+11$} & $19+10$ & $0+15$ && $8+12$
+\end{tabular}
+}
+\podnaslov[\res{}(b)]{Potek reševanja}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

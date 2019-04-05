@@ -15,13 +15,13 @@ kjer je $a_{ij} = 1$, če je $ij \in E$, in $a_{ij} = 0$ sicer.
         \For{$k = 1, \dots, n$}
             \For{$\ell = 1, \dots, n$}
                 \If{$a_{ij} = a_{jk} = a_{j\ell} = 1 \land \ell = i$}
-                    \State \Return{\sc True}
+                    \State \Return \True
                 \EndIf
             \EndFor
         \EndFor
     \EndFor
 \EndFor
-\State \Return{\sc False}
+\State \Return \False
 \end{algorithmic}
 \end{small}
 Ali algoritem deluje pravilno?
