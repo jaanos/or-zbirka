@@ -4,6 +4,7 @@ Dana je matrika $A = (a_{ij})_{i,j=1}^{m,n}$.
 Poiskati želimo strnjeno podmatriko matrike $A$
 z največjo vsoto komponent.
 \begin{enumerate}[(a)]
+\item Napiši rekurzivne enačbe za opisani problem.
 \item Reši problem za matriko
 $$
 A = \begin{pmatrix}
@@ -13,12 +14,114 @@ A = \begin{pmatrix}
  1 & -5 & -1 & -2
 \end{pmatrix} .
 $$
-\item Napiši rekurzivne enačbe za opisani problem.
 \item Napiši algoritem, ki reši opisani problem.
 Oceni tudi njegovo časovno zahtevnost v odvisnosti od $m$ in $n$.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{hij}$ največja vsota komponent strnjene podmatrike
+z vrsticami od $h$-te do $i$-te vrstice matrike $A$,
+katere zadnji stolpec je $j$-ti stolpec matrike $A$.
+Poleg tega naj bo $s_{ij}$ vsota prvih $i$ komponent
+v $j$-tem stolpcu matrike $A$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+s_{0j}  &= 0 && (1 \le j \le n) \\
+s_{ij}  &= a_{ij} + s_{i-1,j} && (1 \le i \le m, \ 1 \le j \le n) \\
+p_{hi0} &= 0 && (1 \le h \le i \le m) \\
+p_{hik} &= s_{ik} - s_{h-1,k} + \max\{0, p_{h,i,k-1}\} &&
+(1 \le h \le i \le m, \ 1 \le k \le n)
+\end{align*}
+Najprej za vsak $j$ ($1 \le j \le n$)
+izračunamo vrednosti $s_{ij}$ naraščajoče po indeksu $i$,
+nato pa za vsaka $h$ in $i$ ($1 \le h \le i \le m$)
+izračunamo vrednosti $p_{hik}$ naraščajoče po indeksu $k$.
+Največjo vsoto kompoment dobimo kot
+$p^* = \max\set{p_{hik}}{1 \le h \le i \le m, \ 0 \le k \le n}$.
+
+\item Najprej poračunajmo vrednosti $s_{ij}$.
+$$
+(s_{ij})_{i,j=1}^4 = \begin{pmatrix}
+ 1 & -1 &  2 &  4 \\
+-2 & -3 & 10 &  6 \\
+-5 & -1 &  8 & 10 \\
+-4 & -6 &  7 &  8
+\end{pmatrix}
+$$
+Sedaj poračunajmo še vrednosti $p_{hik}$.
+$$
+\begin{array}{cc|cccc}
+\multicolumn{2}{c|}{p_{hik}} & \multicolumn{4}{c}{k} \\ \hline
+h & i &  1 &  2 &  3 &  4 \\ \hline
+1 & 1 &  1 &  0 &  2 &  6 \\
+1 & 2 & -2 & -3 & 10 & 16 \\
+1 & 3 & -5 & -1 &  8 & 18 \\
+1 & 4 & -4 & -6 &  7 & 15 \\ \hline
+2 & 2 & -3 & -2 &  8 & 10 \\
+2 & 3 & -6 &  0 &  6 & 12 \\
+2 & 4 & -5 & -5 &  5 &  9 \\ \hline
+3 & 3 & -3 &  2 &  0 &  4 \\
+3 & 4 & -2 & -2 & -3 &  2 \\ \hline
+4 & 4 &  1 & -4 & -1 & -2
+\end{array}
+$$
+Opazimo, da je največja vsota komponent enaka $p^* = p_{134} = 18$.
+Indeks $j$ prvega stolpca iskane podmatrike je taka vrednost,
+da za vse $\ell$ ($j \le \ell \le k$) velja $p_{13\ell} > 0$.
+V našem primeru je torej $j = 3$
+-- iskana podmatrika je torej
+$$
+A_{1 \dots 3, 3 \dots 4} = \begin{pmatrix}
+ 2 &  4 \\
+ 8 &  2 \\
+-2 &  4
+\end{pmatrix} .
+$$
+
+\item Zapišimo algoritem,
+ki bo vrnil največjo vsoto komponent strnjene podmatrike skupaj s paroma,
+ki določata prvo in zadnjo vrstico oziroma stolpec.
+\begin{small}
+\begin{algorithmic}
+\Function{MaxStrnjenaPodmatrika}{$(a_{ij})_{i,j=1}^{m,n}$}
+    \For{$j = 1, \dots, n$} \hfill računanje $s_{ij}$
+        \State $s_{0j} \gets 0$ \hfill začetni pogoj
+        \For{$i = 1, \dots, m$}
+            \State $s_{ij} \gets a_{ij} + s_{i-1,j}$ \hfill rekurzivna enačba
+        \EndFor
+    \EndFor
+    \State $p^*, h^*, i^*, j^*, k^* \gets 0, 0, 0, 0, 0$
+        \hfill ničelna rešitev
+    \For{$h = 1, \dots, n$} \hfill računanje $p_{hik}$
+        \For{$i = h, \dots, n$}
+            \State $p_{hi0} \gets 0$ \hfill začetni pogoj
+            \State $j \gets 1$ \hfill vsoto začenjamo s prvim stolpcem
+            \For{$k = 1, \dots, m$}
+                \State $p_{hik} \gets s_{ik} - s_{h-1,k}
+                                    + \max\{0, p_{h,i,k-1}\}$
+                    \hfill rekurzivna enačba
+                \If{$p_{hik} > p^*$}
+                        \hfill preverimo, ali imamo boljšo rešitev
+                    \State $p^*, h^*, i^*, j^*, k^* \gets p_{hij}, h, i, j, k$
+                \ElsIf{$p_{hik} < 0$} \hfill če je vsota negativna,
+                    \State $j \gets k+1$ \hfill
+                        bomo naslednjo vsoto začeli v naslednjem stolpcu
+                \EndIf
+            \EndFor
+        \EndFor
+    \EndFor
+    \State \Return $p^*, (h^*, i^*), (j^*, k^*)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Za računanje $s_{ij}$ potrebujemo $O(mn)$ korakov,
+za računanje $p_{hik}$ pa $O(mn^2)$ korakov.
+Skupna časovna zahtevnost algoritma je torej $O(mn^2)$.
+Opazimo, da se v primeru, ko velja $n > m$,
+matriko $A$ izplača transponirati,
+saj tako dobimo časovno zahtevnost $O(m^2 n)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

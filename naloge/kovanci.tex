@@ -1,15 +1,68 @@
 \begin{naloga}{?}{Vaje OR 6.4.2016}
 \begin{vprasanje}
 Na voljo imamo kovance z vrednostmi $1 = v_1 < v_2 < \cdots < v_n$
-in vsoto $C$, ki jo želimo izplačati s kovanci.
+in vsoto $C$, ki jo želimo izplačati s čim manjšim številom kovancev.
 Predpostavljamo, da imamo dovolj velik nabor kovancev.
 \begin{enumerate}[(a)]
+\item S pomočjo dinamičnega programiranja reši problem v splošnem.
 \item Poišči izplačilo z najmanjšim številom kovancev
 za $C = 25$, $n = 4$ in $(v_i)_{i=1}^n = (1, 2, 5, 7)$.
-\item S pomočjo dinamičnega programiranja reši problem v splošnem.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_j$ število kovancev,
+ki jih potrebujemo za izplačilo vsote $j$.
+Določimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+p_0 &= 0 \\
+p_j &= 1 + \min\set{p_{j-v_i}}{1 \le i \le n, \ v_i \le j}
+\qquad (1 \le j \le C)
+\end{align*}
+Vrednosti $p_j$ ($0 \le j \le C$) računamo naraščajoče po indeksu $j$.
+Najmanjše število kovancev dobimo s $p^* = p_C$.
+
+\item Izračunajmo vrednosti $p_j$ pri danih podatkih.
+\begin{alignat*}{4}
+p_0    &= 0                      &&    &\qquad
+p_{13} &= 1 + \min\{2, 3, 2, 2\} &&= 3 \\
+p_1    &= 1 + \min\{0\}          &&= 1 &\qquad
+p_{14} &= 1 + \min\{3, 3, 2, 1\} &&= 2 \\
+p_2    &= 1 + \min\{1, 0\}       &&= 1 &\qquad
+p_{15} &= 1 + \min\{2, 3, 2, 2\} &&= 3 \\
+p_3    &= 1 + \min\{1, 1\}       &&= 2 &\qquad
+p_{16} &= 1 + \min\{3, 2, 3, 2\} &&= 3 \\
+p_4    &= 1 + \min\{2, 1\}       &&= 2 &\qquad
+p_{17} &= 1 + \min\{3, 3, 2, 2\} &&= 3 \\
+p_5    &= 1 + \min\{2, 2, 0\}    &&= 1 &\qquad
+p_{18} &= 1 + \min\{3, 3, 3, 3\} &&= 4 \\
+p_6    &= 1 + \min\{1, 2, 1\}    &&= 2 &\qquad
+p_{19} &= 1 + \min\{4, 3, 2, 2\} &&= 3 \\
+p_7    &= 1 + \min\{2, 1, 1, 0\} &&= 1 &\qquad
+p_{20} &= 1 + \min\{3, 4, 3, 3\} &&= 4 \\
+p_8    &= 1 + \min\{1, 2, 2, 1\} &&= 2 &\qquad
+p_{21} &= 1 + \min\{4, 3, 3, 2\} &&= 3 \\
+p_9    &= 1 + \min\{2, 1, 2, 1\} &&= 2 &\qquad
+p_{22} &= 1 + \min\{3, 4, 3, 3\} &&= 4 \\
+p_{10} &= 1 + \min\{2, 2, 1, 2\} &&= 2 &\qquad
+p_{23} &= 1 + \min\{4, 3, 4, 3\} &&= 4 \\
+p_{11} &= 1 + \min\{2, 2, 2, 2\} &&= 3 &\qquad
+p_{24} &= 1 + \min\{4, 4, 3, 3\} &&= 4 \\
+p_{12} &= 1 + \min\{3, 2, 1, 1\} &&= 2 &\qquad
+p_{25} &= 1 + \min\{4, 4, 4, 4\} &&= 5
+\end{alignat*}
+Za izplačilo vrednosti $25$ torej potrebujemo vsaj $5$ kovancev.
+Iz zgornjega izračuna lahko izplačilo rekosntruiramo tako,
+da uporabimo tak kovanec,
+da je za izplačilo preostanka potrebnih najmanj kovancev.
+Opazimo,
+da lahko vsoto $25$ s petimi kovanci izplačamo na tri različne načine:
+$$
+25 = 1 \cdot 1 + 2 \cdot 5 + 2 \cdot 7
+   = 2 \cdot 2 + 3 \cdot 7
+   = 5 \cdot 5 .
+$$
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
