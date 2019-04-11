@@ -124,6 +124,26 @@ lahko za sklic postavimo še `{}`,
 da se presledek ne izpiše
 (npr. `\nal{}(a)` za sklic na točko (a) trenutne naloge).
 
+## Drugo
+
+Tukaj je še nekaj napotkov za pisanje rešitev.
+
+* Za ločilo decimalk se uporablja pika (`.`).
+  Za ločilo tisočic se uporablja kratek presledek
+  (`\,` v matematičnem načinu).
+* Algoritmi se pišejo v psevdokodi z uporabo okolja `algorithmic`.
+  - Za logični konstanti v psevodkodi
+    sta definirana ukaza `\True` in `\False`.
+  - Definirani so tudi ukazi za pogoste operacije na podatkovnih strukturah:
+    `\length`, `\isEmpty`, `\append`, `\pop`, `\reverse`.
+  - Grafi se v specifikaciji vhoda algoritma navajajo
+    v obliki *G* = (*V*, *E*) -
+    potem se lahko v algoritmu sklicujemo na množici *V* in *E*.
+    Za soseščino vozlišča je definiran ukaz `\Adj`.
+  - Predpostavljamo, da se standardni algoritmi na grafih obnašajo tako,
+    kot ste jih spoznali na predavanjih in vajah - koda je na voljo na
+    [repozitoriju predmeta](https://github.com/jaanos/operacijske-raziskave/tree/master/vaje/Grafi).
+
 ## Testiranje
 
 Zaradi velike količine slik je prevajanje zbirke dolgotrajen proces
