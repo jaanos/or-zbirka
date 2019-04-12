@@ -1,0 +1,18 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+
+\node[vertex] (A) at (-2, 2) {A};
+\node[vertex] (B) at ( -4, 0) {B};
+\node[vertex] (C) at ( -4, -2) {C};
+\node[vertex] (D) at ( 4, 2) {D};
+\node[vertex] (E) at ( 0, 0) {E};
+\node[vertex] (F) at ( 0, -2) {F};
+\node[vertex] (G) at ( 2, 0) {G};
+\node[vertex] (H) at ( 6, 0) {H};
+\node[vertex] (I) at ( 0, -4) {I};
+
+\draw (A) -- (B) -- (C);
+\draw (A) -- (E) -- (F) -- (I);
+\draw (D) -- (G);
+\draw (D) -- (H);
+\end{tikzpicture}
