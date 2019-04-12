@@ -32,20 +32,20 @@ po čemer dobimo inverzno topološko ureditev.
 To pa dosežemo tako, da po tem, ko docela preiščemo vozlišče, tega položimo na sklad. \\
 
 \begin{algorithmic}
-\Function{Topo}{$Graph$}
-	\State $z \gets \length(Graph)$
+\Function{Topo}{V, E}
+	\State $z \gets \length(V)$
 	\State oznaceni $\gets [\False, \dots, \False]$
 	\State toposklad $\gets []$
 	\Function{dfs}{$u$}
 		\State oznaceni[u] = \True
-		\For{$\forall u \rightarrow$ v}
+		\For{$\forall (u, v) \in E$}
 			\If{not oznaceni[$v$]}
 				\State dfs(v)
 			\EndIf
 		\EndFor
 		\State toposklad.\append(u)
 	\EndFunction
-	\For{$\forall u = 1, 2, \dots, n - 1$}
+	\For{$\forall u =0, 1, 2, \dots, n - 1$}
 		\If{not oznaceni[$v$]}
 			\State dfs(v)
 		\EndIf
@@ -78,29 +78,29 @@ predhodnik(u) $= argmin_{v \rightarrow u}(dist(v) + l(v, u))$ \\
 Na koncu dobimo pot tako da sledimo predhodnikom E, dokler ne pridemo do G.  \\
 
 \begin{algorithmic}
-\Function{najkrajšaPot}{$Graph, s, e$}
-	\State $n \gets \length(Graph)$
-	\State $topo \gets [6, 0, 7, 1, 2, 5, 3, 4]$
-	\State $dist \gets [\infty, \dots, \infty]$
-	\State $dist[s] = 0$
-	\State $predhodniki \gets [None, \dots, None]$
-	\For{$\forall u \in topo$}
-		\For{$\forall$ u $\rightarrow$ v}
-			\If{$dist[v] \ \textgreater \ dist[u] + l(u, v)$}
-				\State $dist[v] \gets dist[u] + l(u, v)$
-				\State $predhodniki[v] \gets u$
+\Function{najkrajšaPot}{$V, E, s, e$}
+	\State $n \gets \length(V)$
+	\State topo $\gets [6, 0, 7, 1, 2, 5, 3, 4]$
+	\State dist $\gets [\infty, \dots, \infty]$
+	\State dist[s] $\gets 0$
+	\State predhodniki $\gets [None, \dots, None]$
+	\For{$\forall u \in \text{topo}$}
+		\For{$\forall (u, v) \in E$}
+			\If{$\text{dist[v]} \ \textgreater \ \text{dist[u]} + l(u, v)$}
+				\State dist[v] $\gets$ dist[u] + $l(u, v)$
+				\State predhodniki[v] $\gets u$
 			\EndIf
 		\EndFor
 	\EndFor
-	\State $pot \gets [e]$
+	\State pot $\gets [e]$
 	\While{\True}
-		\State $predhodnik \gets predhodniki[pot[-1]]$
-		\State $pot.\append(predhodnik)$
-		\If{$predhodnik = s ali predhodnik = None$}
-			\State $zaključi zanko$
+		\State predhodnik $\gets$ predhodniki[pot[-1]]
+		\State pot.$\append$(predhodnik)
+		\If{$\text{predhodnik = s ali predhodnik = None}$}
+			\State $\text{zaključi zanko}$
 		\EndIf
 	\EndWhile
-	\State vrni $dist[e], \reverse(pot)$
+	\State vrni dist[e], $\reverse$(pot)
 \EndFunction  \\
 \end{algorithmic}
 
