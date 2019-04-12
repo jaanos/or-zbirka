@@ -18,17 +18,17 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 \begin{algorithmic}
 \Require{graf G, vozlišče $s \in V$}
 	\For{$v \in V(G)$}:
-		\State oznaceni[v] = \False
+		\State oznaceni[v] $\gets$ \False
 	\EndFor
 	\For{$s \in V(G)$}:
-		\If{oznaceni[s] = \False}:
-			\State oznaceni[s] = \True
-			\State Q = [s]
+		\If{oznaceni[s] $\gets$ \False}:
+			\State oznaceni[s] $\gets$ \True
+			\State Q $\gets$ [s]
 			\While{Q ni prazna}:
-				\State u = odstrani-prvega(Q)
+				\State u $\gets$ odstrani-prvega(Q)
 				\For{$(u, v) \in E(G)$}:
 					\If{oznaceni[v] = \False}:
-						\State oznaceni[v] = \True
+						\State oznaceni[v] $\gets$ \True
 						\State vstavi(Q, v)
 					\EndIf
 				\EndFor
@@ -40,73 +40,39 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 \end{small}
 %
 Če sledimo zgornjemu algoritmu in predpostavki, da upoštevamo vrstni red, začnemo v vozlišču A ter je potek sledeč: \\
-%
-\underline{Predpriprava:}\\
-oznaceni = $[\False, \False, \False, \False, \False, \False, \False, \False, \False]$\\
-oznaceni[A] = \True\\
-oznaceni = $[\True, \False, \False, \False, \False, \False, \False, \False, \False]$\\
-Q = [A]\\
-\\
-\underline{1. korak:}\\
-Odstranimo A iz vrste in pregledamo vse njegove sosede.\\
-oznaceni[B] = \True\\
-oznaceni = $[\True, \True, \False, \False, \False, \False, \False, \False, \False]$\\
-Q = [B]\\
-oznaceni[E] = \True\\
-oznaceni = $[\True, \True, \False, \False, \True, \False, \False, \False, \False]$\\
-Q = [B, E]\\
-\\
-\underline{2. korak:}\\
-Odstranimo B iz vrste in pogledamo vse njegove sosede, ki so še vedno neoznačeni.\\
-oznaceni[C] = \True\\
-oznaceni = $[\True, \True, \True, \False, \True, \False, \False, \False, \False]$\\
-Q = [E, C]\\
-\\
-\underline{3.korak:}\\
-Odstranimo E iz vrste.\\
-oznaceni[F] = \True\\
-oznaceni = $[\True, \True, \True, \False, \True, \True, \False, \False, \False]$\\
-Q = [C, F]\\
-\\
-\underline{4. korak:}\\
-Odstranimo C iz vrste. Ker nima sosedov, ki bi bili še vedno neoznačeni, gremo naprej.\\
-Q = [F]\\
-\\
-\underline{5. korak:}\\
-Odstranimo F iz vrste.\\
-oznaceni[I] = \True\\
-oznaceni = $[\True, \True, \True, \False, \True, \True, \False, \False, \True]$\\
-Q = [I]\\
-\\
-\underline{6. korak:}\\
-Odstranimo I iz vrste. Ker nima neoznačenih sosedov, gremo naprej.\\
-\\
-\underline{7. korak:}\\
-Ker je na tej točki vrsta prazna, se vrnemo v zanko for, kjer preišče vsa vozlišča, dokler ne pride do enega, ki je še vedno neoznačeno. V našem primeru, ker vozlišča jemljemo po abecednem vrstenm redu, bo to vozlišče D.\\
-\\
-\underline{8. korak:}\\
-oznaceni[D] = \True\\
-oznaceni = $[\True, \True, \True, \True, \True, \True, \False, \False, \True]$\\
-Q = [D]\\
-\\
-\underline{9. korak:}\\
-Iz vrste odstranimo D.\\
-oznaceni[G] = \True\\
-oznaceni = $[\True, \True, \True, \True, \True, \True, \True, \False, \True]$\\
-Q = [G]\\
-oznaceni[H] = \True\\
-oznaceni = $[\True, \True, \True, \True, \True, \True, \True, \True, \True]$\\
-Q = [G, H]\\
-\\
-\underline{10. korak:}\\
-Odstranimo G iz vrste. Ker nima neoznačenih sosedov, gremo naprej.\\
-\\
-\underline{11. korak:}\\
-Odstranimo H iz vrste. Ker nima neoznačenih sosedov, gremo naprej.\\
-\\
-\underline{12. korak:}\\
-Ker je na tej točki vrsta prazna, se algoritem ustavi.
-Vidimo, da so vrednosti za vsa vozlišča nastavljene na \True, zato vemo, da smo obiskali vsa. \\
+$$
+\begin{array}{c|c|c|c|c}
+s & u & v & Q & O \text{...množica označenih vozlišč} \\ \hline
+A &   &   & [A]  & \{A\} \\
+A & A & B & [B] & \{A, B\} \\
+A & A & E & [B, E] & \{A, B, E\} \\
+A & B & C & [E, C] & \{A, B, C, E\} \\
+A & B  & E &  & \{A, B, C, E\} \\
+A & E & A & [C] & \{A, B, C, E\} \\
+A & E & B &  & \{A, B, C, E\} \\
+A & E & F & [C, F] & \{A, B, C, E, F\} \\
+A & C  & B & [F] &  \{A, B, C, E, F\} \\
+A & C & F &  &  \{A, B, C, E, F\} \\
+A & F & C &  &  \{A, B, C, E, F\} \\
+A & F  & E &  &  \{A, B, C, E, F\} \\
+A & F & I & [I] &  \{A, B, C, E, F, I\} \\
+A & I  & F & [\hspace{0.2cm} ] &  \{A, B, C, E, F, I\} \\
+B & & & &  \{A, B, C, E, F, I\} \\
+C & & & &  \{A, B, C, E, F, I\} \\
+D & & & [D] &  \{A, B, C, D, E, F, I\} \\
+D &D &G &[G] &  \{A, B, C, D, E, F, G, I\} \\
+D &D &H &[G, H] &  \{A, B, C, D, E, F, G, H, I\} \\
+D &G &D &[H] &  \{A, B, C, D, E, F, G, H, I\} \\
+D &G &H & &  \{A, B, C, D, E, F, G, H, I\} \\
+D &H &D & &  \{A, B, C, D, E, F, G, H, I\} \\
+D &H &G &  [\hspace{0.2cm} ]&  \{A, B, C, D, E, F, G, H, I\} \\
+E & & & &  \{A, B, C, D, E, F, G, H, I\} \\
+F & & & &  \{A, B, C, D, E, F, G, H, I\} \\
+G & & & &  \{A, B, C, D, E, F, G, H, I\} \\
+H & & & &  \{A, B, C, D, E, F, G, H, I\} \\
+I & & & &  \{A, B, C, D, E, F, G, H, I\} \\
+\end{array}
+$$
 %
 Drevo iskanja v širino: 
 %
