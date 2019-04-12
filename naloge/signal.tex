@@ -1,0 +1,109 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 19.4.2019}
+\begin{vprasanje}
+Gradimo avtocesto skozi puščavo in želimo zagovoviti,
+da bo v celoti pokrita z mobilnim signalom.
+Cesta je ravna in dolga $n$ milj ($n \in \Z$),
+na vsako miljo pa imamo možnost postaviti
+bodisi manjšo bazno postajo z dosegom $1$ miljo,
+bodisi večjo bazno postajo z dosegom $2$ milji.
+Cena postavitve manjše bazne postaje na $i$-ti milji
+je podana s parametrom $a_i$,
+cena postavitve večje bazne postaje pa s parametrom $b_i$ ($0 \le i \le n$).
+Predpostaviš lahko, da so vse cene pozitivne.
+Poiskati želimo torej čim cenejšo postavitev baznih postaj,
+da je vsaka točka avtoceste pokrita s signalom.
+
+\medskip
+\noindent
+{\bf Primer:} če postavimo manjši postaji na milji $0$ in $3$,
+potem je interval $(1, 2)$ nepokrit.
+Če pa npr.~postajo namesto na milji $0$ postavimo na milji $1$,
+smo tako v celoti pokrili interval $[0, 4]$.
+Enak učinek bi dosegli,
+če bi namesto dveh manjših postaj postavili večjo postajo na miljo $2$.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo,
+ter kako dobimo optimalno rešitev.
+\namig{uporabi različne spremenljivke glede na doseg zadnje postaje.}
+
+\item Oceni časovno zahtevnost algoritma, ki sledi iz zgoraj zapisanih enačb.
+
+\item S svojim algoritmom poišči optimalno postavitev postaj za $n = 10$ ter
+\begin{align*}
+(a_i)_{i=0}^{10} &= (2,  3,  5, 10, 14, 21, 15,  6,  9,  3,  1)
+\quad \text{in} \\
+(b_i)_{i=0}^{10} &= (6, 10, 12, 18, 24, 25, 20, 11, 16,  7,  4) .
+\end{align*}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bodo $p_i$, $q_i$ in $r_i$
+najmanjše cene postavitve baznih postaj do $i$-te milje tako,
+da v celoti pokrijejo intervale $[0, i]$, $[0, i+1]$ oziroma $[0, i+2]$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{-2} &= p_{-1} = 0, \qquad q_{-1} = r_{-1} = \infty \\
+r_i &= b_i + p_{i-2} && (0 \le i \le n) \\
+q_i &= \min\{r_{i-1}, r_i, a_i + p_{i-1}\} && (0 \le i \le n) \\
+p_i &= \min\{q_{i-1}, q_i\} && (0 \le i \le n)
+\end{align*}
+Vrednosti $r_i$, $q_i$ in $p_i$ računamo naraščajoče po indeksu $n$.
+Najmanjšo ceno postavitve baznih postaj dobimo s $p^* = p_n$.
+
+\item Za izračun vrednosti $r_i$, $q_i$ in $p_i$ za posamezen $i$
+potrebujemo konstantno mnogo časa.
+Ker ta izračun opravimo $(n+1)$-krat,
+je torej časovna zahtevnost ustreznega algoritma $O(n)$.
+
+\item Izračunajmo vrednosti $r_i$, $q_i$ in $p_i$ ($0 \le i \le 10$).
+\begin{alignat*}{6}
+r_0    &= 6+0                                   &&= 6  &\qquad
+q_0    &= \min\{\infty, 6, \underline{2+0}\}    &&= 2  &\qquad
+p_0    &= \min\{\infty, \underline{2}\}         &&= 2  \\
+r_1    &= 10+0                                  &&= 10 &\qquad
+q_1    &= \min\{6, 10, \underline{3+2}\}        &&= 5  &\qquad
+p_1    &= \min\{\underline{2}, 5\}              &&= 2  \\
+r_2    &= 12+2                                  &&= 14 &\qquad
+q_2    &= \min\{10, 14, \underline{5+2}\}       &&= 7  &\qquad
+p_2    &= \min\{\underline{5}, 7\}              &&= 5  \\
+r_3    &= 18+2                                  &&= 20 &\qquad
+q_3    &= \min\{\underline{14}, 20, 10+5\}      &&= 14 &\qquad
+p_3    &= \min\{\underline{7}, 14\}             &&= 7  \\
+r_4    &= 24+5                                  &&= 29 &\qquad
+q_4    &= \min\{\underline{20}, 29, 14+7\}      &&= 20 &\qquad
+p_4    &= \min\{\underline{14}, 20\}            &&= 14 \\
+r_5    &= 25+7                                  &&= 32 &\qquad
+q_5    &= \min\{\underline{29}, 32, 21+14\}     &&= 29 &\qquad
+p_5    &= \min\{\underline{20}, 29\}            &&= 20 \\
+r_6    &= 20+14                                 &&= 34 &\qquad
+q_6    &= \min\{\underline{32}, 34, 15+20\}     &&= 32 &\qquad
+p_6    &= \min\{\underline{29}, 32\}            &&= 29 \\
+r_7    &= 11+20                                 &&= 31 &\qquad
+q_7    &= \min\{34, \underline{31}, 6+29\}      &&= 31 &\qquad
+p_7    &= \min\{32, \underline{31}\}            &&= 31 \\
+r_8    &= 16+29                                 &&= 45 &\qquad
+q_8    &= \min\{\underline{31}, 45, 9+31\}      &&= 31 &\qquad
+p_8    &= \min\{\underline{31}, 31\}            &&= 31 \\
+r_9    &= 7+31                                  &&= 38 &\qquad
+q_9    &= \min\{45, 38, \underline{3+31}\}      &&= 34 &\qquad
+p_9    &= \min\{\underline{31}, 34\}            &&= 31 \\
+r_{10} &= 4+31                                  &&= 35 &\qquad
+q_{10} &= \min\{38, 35, \underline{1+31}\}      &&= 32 &\qquad
+p_{10} &= \min\{34, \underline{32}\}            &&= 32 \\
+\end{alignat*}
+Cena postavitve baznih postaj je torej $p^* = p_{10} = 32$.
+Poglejmo, kam moramo postaviti bazne postaje.
+\begin{align*}
+p_{10} &= q_{10}       = a_{10} + p_9 && \text{manjša postaja na $10$} \\
+p_9    &= q_8    = r_7 = b_7    + p_5 && \text{večja postaja na $7$}   \\
+p_5    &= q_4    = r_3 = b_3    + p_1 && \text{večja postaja na $3$}   \\
+p_1    &= q_0          = a_0          && \text{manjša postaja na $0$}
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
