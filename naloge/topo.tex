@@ -15,6 +15,98 @@ Dan je usmerjen acikličen graf s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
-\begin{odgovor}
+\begin{odgovor}\\
+
+\noindent a) Za lažjo predstavo vozlišč v sledečih algoritmih
+označimo črke A do H, ki označujejo vozlišča s števili od 0 do 7.\\
+
+\noindent Upoštevamo, da je graf acikličen, torej za vsaki vozliščii $u, v \in G$ velja: \\[5px]
+$u \rightarrow v \implies $ pooznaka(u)\ \textgreater \ pooznaka(v), \\[5px]
+kjer je pooznaka števec s katerim označimo vozlišče, ko ga v algoritmu dfs docela preiščemo.\\
+
+\noindent Trditev lahko dokažemo s premislekom poteka določitev pooznak,
+ko pridemo v algoritmu dfs prvo do u in prvo do v vozlišč.
+Trditev nam omogoča zapis krajšega algoritma, ki bo implementiral dfs.
+Ideja je, da padajoče uredimo vozlišča po njihovih pooznakah,
+po čemer dobimo inverzno topološko ureditev.
+To pa dosežemo tako, da po tem, ko docela preiščemo vozlišče, tega položimo na sklad. \\
+
+\begin{algorithmic}
+\item def topo(G):
+\item\quad n = \length(G)
+\item\quad toposklad = []  \\
+\item\quad def dfs(u): 
+\item\qquad označi u
+\item\qquad za $\forall$ u $\rightarrow$ v:
+\item\qquad\quad če v ni označen: 
+\item\qquad\qquad dfs(v) 
+\item\qquad\quad položi u na toposklad \\
+\item\quad za $\forall u = 1, 2, \dots, n - 1$
+\item\qquad če u ni označen:
+\item\qquad\quad dfs(u) 
+\item\quad vrni \reverse(toposklad) \\
+\end{algorithmic}
+
+\noindent Po klicu topo(Graf), nam ta vrne ureditev vozlišč $[6, 0, 7, 1, 2, 5, 3, 4]$, 
+kar lahko pretvorimo nazaj v začetne oznake $[G, A, H, B, C, F, D, E]$. \pagebreak
+
+\noindent b) Tukaj bomo uporabili rezultat prejšnje naloge in osnoven 
+koncept dinamičnega programiranja.\\
+
+\noindent Naj dist(u) predstavlja najkrajšo razdaljo do vozlišča u.
+Trivialna rešitev je za dist(G), saj je to vozlišče brez vhodnih povezav, torej je najdaljša pot do njega
+enaka 0. Zapišimo rekurzivno formulo: \\
+$dist(u) = min_{v \rightarrow u}(dist(v) + l(v, u))$, \
+kjer l(v, u) določa utež povezave v $\rightarrow$ u \\
+
+\noindent Da bomo imeli vse potrebovane dist(v) definirane pred klicom dist(u) 
+poskrbimo z rezultatom prejšnje naloge, saj pri topološki ureditvi vodijo vse povezave le naprej, 
+torej po premiku na naslednje vozlišče ne potrebujemo vozlišč po, a le ta pred njim,
+katera pa že imamo.\\
+
+\noindent Torej imamo vse kar potrebujemo za izračun najkrajše poti, 
+za beleženje vozlišč skozi katera vodi ta pot pa bomo uporabili seznam predhodnikov, 
+ki bo nakazoval katero vozlišče smo izbrali za predhodnika, torej: \\
+predhodnik(u) $= argmin_{v \rightarrow u}(dist(v) + l(v, u))$ \\
+Na koncu dobimo pot tako da sledimo predhodnikom E, dokler ne pridemo do G.  \\
+
+\begin{algorithmic}
+\item def najkrajšaPot(G, s, e): 
+\item\quad n = \length(G) 
+\item\quad topo = $[6, 0, 7, 1, 2, 5, 3, 4]$ 
+\item\quad dist = [$\infty$] * n 
+\item\quad dist[s] = 0 
+\item\quad predhodniki = [None] * n \\
+\item\quad za $\forall$ u $\in$ topo: 
+\item\qquad za $\forall$ u $\rightarrow$ v:
+\item\qquad\quad če dist[v] \ \textgreater \ dist[u] + w 
+\item\qquad\qquad dist[v] = dist[u] + l(u, v)
+\item\qquad\qquad predhodniki[v] = u  \\
+\item\quad pot = [e] 
+\item\quad ponavljaj: 
+\item\qquad predhodnik = predhodniki[pot[-1]]
+\item\qquad pot.\append(predhodnik)
+\item\qquad če predhodnik = s ali predhodnik je None: 
+\item\qquad\quad zaključi zanko \\
+\item\quad vrni dist[e], \reverse(pot) \\
+\end{algorithmic}
+
+\noindent Premislimo kaj nam vrne algoritem, ko poklicemo najkrajšaPot(Graf, 6, 4).
+Vrne nam dolžino od vozlišča G (6) do E (4), kot drugi argument pa vrne vozlišča, 
+skozi katera je algoritem potoval, da je opravil to pot, to pa je [6, 0, 1, 4], kar pretvorimo
+v [G, A, B, E]. \\
+
+\noindent Pripomnimo, da algoritem deluje pravilno, ker iščemo razdaljo od G naprej, saj je 
+G začetno vozlišče v topološki ureditvi in nima predhodnika, torej se bo algoritem, 
+ki išče pot preko predhodnikov ustavil po tem, ko pride do G.
+Algoritem lahko posplošimo tako, da gledamo vozlišča v topološki ureditvi le od s naprej, 
+prejšnja pa ignoriramo, saj iz s ne moremo priti do njih.\\
+
+\noindent c) Postopamo kot v prejšnjem algoritmu, le da namesto $\infty$ vzamemo v dist 
+za zaćetne vrednosti $-\infty$, v zanki pa na vsakem koraku preverjamo pogoj  \\
+$dist[v] \ \textgreater \ dist[u] + w$ . \\
+Poleg teh sprememb je algoritem identičen.\\
+Vrne nam [6, 7, 1, 2, 3, 4], torej [G, H, B, C, D, E].
+
 \end{odgovor}
 \end{naloga}
