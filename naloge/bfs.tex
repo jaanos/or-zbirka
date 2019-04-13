@@ -17,17 +17,17 @@ Sledili bomo naslednjemu algoritmu.
 \begin{small}
 \begin{algorithmic}
 \Require{graf $G = (V, E)$}
-	\For{$v \in V$}:
+	\For{$v \in V$}
 		\State oznaceni$[v] \gets$ \False
 	\EndFor
-	\For{$s \in V$}:
-		\If{oznaceni$[s] = \False$}:
+	\For{$s \in V$}
+		\If{oznaceni$[s] = \False$}
 			\State oznaceni$[s] \gets \True$
 			\State $Q \gets [s]$
-			\While{$\lnot Q.\isEmpty()$}:
+			\While{$\lnot Q.\isEmpty()$}
 				\State $u \gets Q.\pop()$
-				\For{$v \in \Adj(u)$}:
-					\If{$\lnot$oznaceni$[v]$}:
+				\For{$v \in \Adj(u)$}
+					\If{$\lnot$oznaceni$[v]$}
 						\State oznaceni$[v] \gets \True$
 						\State $Q.\append(v)$
 					\EndIf
