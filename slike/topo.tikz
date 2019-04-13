@@ -1,14 +1,14 @@
 \begin{tikzpicture}[style=thick,scale=0.9]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
-\node[vertex] (a) at (xyz polar cs:angle=157.5,radius=3) {a};
-\node[vertex] (b) at (xyz polar cs:angle=112.5,radius=3) {b};
-\node[vertex] (c) at (xyz polar cs:angle= 67.5,radius=3) {c};
-\node[vertex] (d) at (xyz polar cs:angle= 22.5,radius=3) {d};
-\node[vertex] (e) at (xyz polar cs:angle=337.5,radius=3) {e};
-\node[vertex] (f) at (xyz polar cs:angle=292.5,radius=3) {f};
-\node[vertex] (g) at (xyz polar cs:angle=247.5,radius=3) {g};
-\node[vertex] (h) at (xyz polar cs:angle=202.5,radius=3) {h};
+\node[vertex] (a) at (xyz polar cs:angle=157.5,radius=3) {$a$};
+\node[vertex] (b) at (xyz polar cs:angle=112.5,radius=3) {$b$};
+\node[vertex] (c) at (xyz polar cs:angle= 67.5,radius=3) {$c$};
+\node[vertex] (d) at (xyz polar cs:angle= 22.5,radius=3) {$d$};
+\node[vertex] (e) at (xyz polar cs:angle=337.5,radius=3) {$e$};
+\node[vertex] (f) at (xyz polar cs:angle=292.5,radius=3) {$f$};
+\node[vertex] (g) at (xyz polar cs:angle=247.5,radius=3) {$g$};
+\node[vertex] (h) at (xyz polar cs:angle=202.5,radius=3) {$h$};
 
 \draw[->] (a) -- (b) node [above, midway, sloped] {$2$};
 \draw[->] (a) -- (c) node [below, midway, sloped] {$-2$};
