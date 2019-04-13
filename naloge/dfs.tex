@@ -7,5 +7,79 @@ upoštevaj abecedni vrstni red.
 Za vsako povezavo določi, ali se nahaja v drevesu iskanja v globino.
 \end{vprasanje}
 \begin{odgovor}
+
+Sledili bomo naslednjemu algoritmu.
+\begin{small}
+\begin{algorithmic}
+\Require{graf G}
+	\For{$v \in V(G)$}:
+		\State oznaceni[v] $\gets$ \False
+	\EndFor
+	\For{$s \in V(G)$}:
+		\If{oznaceni[s] $\gets$ \False}:
+			\State razisci(G, v)
+		\EndIf
+	\EndFor
+\end{algorithmic}
+\end{small}
+%
+%
+\begin{small}
+\begin{algorithmic}
+\Require{graf G, vozlišče $v \in V(G)$}
+	\State oznaceni[s] $\gets$ \True
+		\For{$(s, v) \in E(G)$}:
+			\If{oznaceni[v] = \False}:
+				\State oznaceni[v] $\gets$ \True
+				\State razisci(G, v)
+			\EndIf
+		\EndFor		
+\end{algorithmic}
+\end{small}
+%
+Potek zgornjega algoritma na grafu $G$,
+pri čemer sledimo abecednemu vrstnemu redu vozlišč,
+je prikazan v tabeli~\tab.
+Gozd iskanja v širino je prikazan na sliki~\fig[dfs-resitev],
+iz katere je razvidno, da so drevesne povezave
+$$
+(A, B), (B, C), (C, F), (F, E), (F, I), (D, G), (G, H).
+$$
+\begin{tabela}
+\begin{tabular}{c|c|c}
+$s$ & $v$ & množica označenih vozlišč \\ \hline
+A &   & \{A\} \\
+A &B & \{A, B\} \\
+B & A &  \{A, B\} \\
+B & C &  \{A, B, C\} \\
+C & B & \{A, B, C\} \\
+C & F & \{A, B, C, F\} \\
+F & C & \{A, B, C, F\} \\
+F & E & \{A, B, C, E, F\} \\
+E & A & \{A, B, C, E, F\} \\
+E & B & \{A, B, C, E, F\} \\
+E & F & \{A, B, C, E, F\} \\
+F & I & \{A, B, C, E, F, I\} \\
+I & F & \{A, B, C, E, F, I\} \\
+B & E & \{A, B, C, E, F, I\} \\
+A & E & \{A, B, C, E, F, I\} \\
+B & & \{A, B, C, E, F, I\} \\
+C & & \{A, B, C, E, F, I\} \\
+D & & \{A, B, C, D, E, F, I\} \\
+D & G &\{A, B, C, D, E, F, G, I\} \\
+G & D & \{A, B, C, D, E, F, G, I\} \\
+G & H & \{A, B, C, D, E, F, G, H, I\} \\
+H & D & \{A, B, C, D, E, F, G, H, I\} \\
+H & G & \{A, B, C, D, E, F, G, H, I\} \\
+D & H & \{A, B, C, D, E, F, G, H, I\} \\
+\end{tabular}
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+\begin{slika}
+\pgfslika[dfs-resitev]
+\podnaslov{Gozd iskanja v globino}
+\end{slika}
+
 \end{odgovor}
 \end{naloga}
