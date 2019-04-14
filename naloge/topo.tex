@@ -5,9 +5,9 @@ Dan je usmerjen acikličen graf s slike~\fig.
 \begin{enumerate}[(a)]
 \item Poišči topološko ureditev vozlišč zgornjega grafa.
 
-\item Poišči najkrajšo pot od vozlišča $G$ do vozlišča $E$.
+\item Poišči najkrajšo pot od vozlišča $g$ do vozlišča $e$.
 
-\item Poišči najdaljšo pot od vozlišča $G$ do vozlišča $E$.
+\item Poišči najdaljšo pot od vozlišča $g$ do vozlišča $e$.
 \end{enumerate}
 
 \begin{slika}
@@ -16,5 +16,139 @@ Dan je usmerjen acikličen graf s slike~\fig.
 \end{slika}
 \end{vprasanje}
 \begin{odgovor}
+
+\begin{enumerate}[(a)]
+\item Upoštevamo, da je graf $G = (V, E)$ acikličen,
+torej za vsaki vozlišči $u, v \in V$ velja
+$$
+u \rightarrow v \implies \postlabel(u) > \postlabel(v),
+$$
+kjer je $\postlabel$ števec, s katerim označimo vozlišče,
+ko ga v algoritmu {\sc dfs} docela preiščemo.
+
+Trditev lahko dokažemo z obravnavanjem dveh primerov, in sicer, 
+ko z {\sc dfs} pridemo v vozlišče $u$ pred $v$,
+in ko pridemo v vozlišče $v$ pred $u$.
+V prvem primeru bomo pred določitvijo pooznake vozlišču $u$
+morali obiskati vse njegove sosede,
+torej tudi $v$, ki mu bomo določili pooznako pred $u$.
+V drugem primeru pridemo prej do $v$,
+a ker je graf acikličen, od $v$ ne bomo prišli do $u$,
+torej bomo spet $v$ obdelali prej.
+
+Trditev nam omogoča zapis krajšega algoritma, ki bo implementiral {\sc dfs}.
+Njegova ideja je, da padajoče uredimo vozlišča po njihovih pooznakah, 
+in tako dobimo inverzno topološko ureditev.
+To dosežemo tako, da po popolni obdelavi vozlišča tega postavimo na sklad.
+
+\begin{small}
+\begin{algorithmic}
+\Function{Topo}{$G = (V, E)$}
+	\State oznaceni $\gets$ slovar z vrednostjo $\False$ za vsako vozlišče iz $V$
+	\State toposklad $\gets []$
+	\Function{dfs}{$u$}
+		\State oznaceni$[u] \gets \True$
+		\For{$v \in \Adj(u)$}
+			\If{$\lnot$oznaceni$[v]$}
+				\State {\sc dfs}$(v)$
+			\EndIf
+		\EndFor
+		\State toposklad$.\append(u)$
+	\EndFunction
+	\For{$u \in V$}
+		\If{$\lnot$oznaceni$[u]$}
+			\State {\sc dfs}$(u)$
+		\EndIf
+	\EndFor
+	\State toposklad.\reverse()
+	\State \Return toposklad
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Klicu {\sc Topo}$(G)$ nam vrne ureditev vozlišč $[g, a, h, b, c, f, d, e]$.
+
+\item Tukaj bomo uporabili rezultat iz prejšnje točke
+in osnoven koncept dinamičnega programiranja.
+
+Označimo z $\ell(u, v)$ utež povezave $u \rightarrow v$.
+Naj $d_G(u)$ predstavlja najkrajšo razdaljo
+od izbranega vozlišča $s$ do vozlišča $u$.
+
+\begin{align*}
+d_G(s) &= 0 \\
+d_G(u) &= \min_{v \rightarrow u}(d_G(v) + \ell(v, u))
+\qquad (u \in V \setminus \{s\})
+\end{align*}
+
+Da bomo imeli vse potrebne $d_G(v)$ definirane pred klicem $d_G(u)$,
+poskrbimo z rezultatom iz prejšnje točke,
+saj pri topološki ureditvi vodijo vse povezave le naprej,
+Po premiku na naslednje vozlišče tako ne potrebujemo kasnejših vozlišč,
+pač pa le prejšnja, za katera vrednost že poznamo.
+
+Imamo torej vse, kar potrebujemo za izračun najkrajše poti.
+Za beleženje vozlišč, skozi katera vodi ta pot,
+bomo uporabili seznam predhodnikov,
+ki bo nakazoval, katero vozlišče smo izbrali za predhodnika.
+\begin{align*}
+\pred(s) &= \Null \\
+\pred(u) &= \argmin_{v \rightarrow u}(d_G(v) + \ell(v, u))
+\qquad (u \in V \setminus \{s\})
+\end{align*}
+Na koncu dobimo pot tako,
+da sledimo predhodnikom podanega končnega vozlišča $t$,
+dokler ne pridemo do $s$.
+
+\begin{small}
+\begin{algorithmic}
+\Function{najkrajšaPot}{$G = (V, E), s, t$}
+	\State topo $\gets$ {\sc Topo}$(G)$
+	\State $d_G \gets$ slovar z vrednostjo $\infty$ za vsako vozlišče $v \in V$
+	\State $d_G[s] \gets 0$
+	\State $\pred \gets$ slovar z vrednostjo $\Null$ za vsako vozlišče $v \in V$
+	\For{$u \in \text{topo}$}
+		\For{$v \in \Adj(u)$}
+			\If{$d_G[v] > d_G[u] + \ell(u, v)$}
+				\State $d_G[v] \gets d_G[u] + \ell(u, v)$
+				\State $\pred[v] \gets u$
+			\EndIf
+		\EndFor
+	\EndFor
+    \State $u \gets t$
+	\State pot $\gets [t]$
+	\While{$\pred[u] \ne \Null$}
+        \State $u \gets \pred[u]$
+		\State pot.$\append(u)$
+	\EndWhile
+    \State pot.$\reverse()$
+	\State \Return ($d_G[t]$, pot)
+\EndFunction 
+\end{algorithmic}
+\end{small}
+
+Klic {\sc najkrajšaPot}$(G, g, e)$
+vrne razdaljo od vozlišča $g$ do vozlišča $e$
+ter seznam vozlišč, skozi katera je algoritem potoval,
+da je opravil to pot -- to so $[g, a, b, e]$.
+
+Pripomnimo, da algoritem deluje pravilno
+ne glede na položaj začetnega vozlišča $s$ v topološki ureditvi.
+Za vsako vozlišče $u$, ki v topološki ureditvi nastopa pred $s$,
+namreč velja $d_G(u) = \infty$,
+tako da se ne nastavi kot predhodnik nobenemu vozlišču.
+Tako se vozlišču $s$ ne bo nastavil predhodnik.
+Algoritem lahko nekoliko pohitrimo tako,
+da gledamo vozlišča v topološki ureditvi le od $s$ naprej,
+prejšnja pa ignoriramo, saj iz $s$ ne moremo priti do njih.
+Prav tako bi se lahko ustavili, ko dosežemo vozlišče $t$.
+
+\item Uporabimo algoritem {\sc najdaljšaPot},
+ki deluje na enak način kot {\sc najkrajšaPot},
+le da namesto $\infty$ vzame v $d_G$ za začetne vrednosti $-\infty$,
+v zanki pa na vsakem koraku preverja pogoj $d_G[v] < d_G[u] + \ell(u, v)$.
+Klic {\sc najdaljšaPot}$(G, g, e)$ vrne pot $[g, h, b, c, d, e]$.
+\end{enumerate}
+
 \end{odgovor}
 \end{naloga}

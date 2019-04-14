@@ -1,28 +1,28 @@
 \begin{tikzpicture}[style=thick,scale=0.9]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
-\node[vertex] (A) at (xyz polar cs:angle=157.5,radius=3) {A};
-\node[vertex] (B) at (xyz polar cs:angle=112.5,radius=3) {B};
-\node[vertex] (C) at (xyz polar cs:angle= 67.5,radius=3) {C};
-\node[vertex] (D) at (xyz polar cs:angle= 22.5,radius=3) {D};
-\node[vertex] (E) at (xyz polar cs:angle=337.5,radius=3) {E};
-\node[vertex] (F) at (xyz polar cs:angle=292.5,radius=3) {F};
-\node[vertex] (G) at (xyz polar cs:angle=247.5,radius=3) {G};
-\node[vertex] (H) at (xyz polar cs:angle=202.5,radius=3) {H};
+\node[vertex] (a) at (xyz polar cs:angle=157.5,radius=3) {$a$};
+\node[vertex] (b) at (xyz polar cs:angle=112.5,radius=3) {$b$};
+\node[vertex] (c) at (xyz polar cs:angle= 67.5,radius=3) {$c$};
+\node[vertex] (d) at (xyz polar cs:angle= 22.5,radius=3) {$d$};
+\node[vertex] (e) at (xyz polar cs:angle=337.5,radius=3) {$e$};
+\node[vertex] (f) at (xyz polar cs:angle=292.5,radius=3) {$f$};
+\node[vertex] (g) at (xyz polar cs:angle=247.5,radius=3) {$g$};
+\node[vertex] (h) at (xyz polar cs:angle=202.5,radius=3) {$h$};
 
-\draw[->] (A) -- (B) node [above, midway, sloped] {$2$};
-\draw[->] (A) -- (C) node [below, midway, sloped] {$-2$};
-\draw[->] (A) -- (H) node [left, midway] {$0$};
-\draw[->] (B) -- (C) node [above, midway] {$6$};
-\draw[->] (B) -- (E) node [above, near start, sloped] {$-2$};
-\draw[->] (C) -- (D) node [above, midway, sloped] {$2$};
-\draw[->] (C) -- (F) node [left, midway] {$6$};
-\draw[->] (D) -- (E) node [right, midway] {$7$};
-\draw[->] (F) -- (E) node [below, midway, sloped] {$6$};
-\draw[->] (G) -- (A) node [above, midway, sloped] {$-1$};
-\draw[->] (G) -- (D) node [below, near start, sloped] {$1$};
-\draw[->] (G) -- (F) node [below, midway] {$6$};
-\draw[->] (G) -- (H) node [below, midway, sloped] {$6$};
-\draw[->] (H) -- (B) node [below, midway, sloped] {$3$};
-\draw[->] (H) -- (F) node [above, midway, sloped] {$6$};
+\draw[->] (a) -- (b) node [above, midway, sloped] {$2$};
+\draw[->] (a) -- (c) node [below, midway, sloped] {$-2$};
+\draw[->] (a) -- (h) node [left, midway] {$0$};
+\draw[->] (b) -- (c) node [above, midway] {$6$};
+\draw[->] (b) -- (e) node [above, near start, sloped] {$-2$};
+\draw[->] (c) -- (d) node [above, midway, sloped] {$2$};
+\draw[->] (c) -- (f) node [left, midway] {$6$};
+\draw[->] (d) -- (e) node [right, midway] {$7$};
+\draw[->] (f) -- (e) node [below, midway, sloped] {$6$};
+\draw[->] (g) -- (a) node [above, midway, sloped] {$-1$};
+\draw[->] (g) -- (d) node [below, near start, sloped] {$1$};
+\draw[->] (g) -- (f) node [below, midway] {$6$};
+\draw[->] (g) -- (h) node [below, midway, sloped] {$6$};
+\draw[->] (h) -- (b) node [below, midway, sloped] {$3$};
+\draw[->] (h) -- (f) node [above, midway, sloped] {$6$};
 \end{tikzpicture}

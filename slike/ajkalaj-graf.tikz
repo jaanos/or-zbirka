@@ -10,7 +10,7 @@
 \draw[dashed] (0.6,-0.02) -- (0.6,9.4/21+0.02) node[below, at start] {$3/5$};
 \draw[dashed] (1,-0.02) -- (1,1.02) node[below, at start] {$1$};
 
-\draw[dashed] (-0.02,9.4/21) -- (0.62,9.4/21) node[left, at start] {$940.000 €$};
-\draw[dashed] (-0.02,1) -- (1.02,1) node[left, at start] {$2.100.000 €$};
+\draw[dashed] (-0.02,9.4/21) -- (0.62,9.4/21) node[left, at start] {$940\,000 €$};
+\draw[dashed] (-0.02,1) -- (1.02,1) node[left, at start] {$2\,100\,000 €$};
 
 \end{tikzpicture}

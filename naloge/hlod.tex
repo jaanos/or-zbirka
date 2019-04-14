@@ -7,12 +7,52 @@ Eno rezanje stane toliko, kolikor je dolžina hloda, ki ga režemo.
 Ko hlod prerežemo, dobimo dva manjša hloda, ki ju režemo naprej.
 Poiskati želimo zaporedje rezanj z najmanjšo ceno.
 \begin{enumerate}[(a)]
-\item Reši problem pri podatkih $\ell = 10$ in $(x)_{i=1}^4 = (3, 5, 7, 8)$.
 \item S pomočjo dinamičnega programiranja reši problem v splošnem.
 Oceni tudi njegovo časovno zahtevnost.
+\item Reši problem pri podatkih $\ell = 10$ in $(x)_{i=1}^4 = (3, 5, 7, 8)$.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $x_0 = 0$ in $x_{n+1} = \ell$,
+ter naj bo $p_{ij}$ cena rezanja dela hloda od $x_i$ do $x_{j+1}$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{ii} &= 0 && (0 \le i \le n) \\
+p_{ij} &= x_{j+1} - x_i + \min\set{p_{ih} + p_{h+1,j}}{i \le h < j}
+&& (0 \le i < j \le n)
+\end{align*}
+Vrednosti $p_{ij}$ ($0 \le i \le j \le n$)
+računamo v leksikografskem vrstnem redu glede na $(j-i, i)$.
+Najmanjšo ceno rezanja dobimo kot $p^* = p_{0n}$.
+
+Za izračun spremenljivke $p_{ij}$ potrebujemo $j-i$ korakov.
+Skupno število korakov algoritma je torej
+\begin{multline*}
+\sum_{i=0}^n \sum_{j=i}^n (j-i) = \sum_{i=0}^n \sum_{j=0}^{n-i} j =
+\sum_{i=0}^n {(n-i)(n-i+1) \over 2} = \\
+\sum_{i=0}^n {i(i+1) \over 2} = {n(n+1)(n+2) \over 6} = O(n^3) .
+\end{multline*}
+
+\item Izračunajmo vrednosti $p_{ij}$ ($0 \le i < j \le n$).
+\begin{alignat*}{3}
+p_{01} &=&  5 - 0 &+ \min\{0+0\} &&= 5 \\
+p_{12} &=&  7 - 3 &+ \min\{0+0\} &&= 4 \\
+p_{23} &=&  8 - 5 &+ \min\{0+0\} &&= 3 \\
+p_{34} &=& 10 - 7 &+ \min\{0+0\} &&= 3 \\
+p_{02} &=&  7 - 0 &+ \min\{0+4, 5+0\} &&= 11 \\
+p_{13} &=&  8 - 3 &+ \min\{0+3, 4+0\} &&= 8 \\
+p_{24} &=& 10 - 5 &+ \min\{0+3, 3+0\} &&= 8 \\
+p_{03} &=&  8 - 0 &+ \min\{0+8, 5+3, 11+0\} &&= 16 \\
+p_{14} &=& 10 - 3 &+ \min\{0+8, 4+3, 8+0\} &&= 14 \\
+p_{04} &=& 10 - 0 &+ \min\{0+14, 5+8, 11+3, 16+0\} &&= 23
+\end{alignat*}
+Najmanjša cena rezanja je torej $23$, dosežemo pa jo tako,
+da najprej razrežemo na mestu $x_2 = 5$,
+nato pa en del še na mestu $x_1 = 3$,
+drugi del pa še na mestih $x_3 = 7$ in $x_4 = 8$
+(pri slednjih dveh vrstni red ni pomemben).
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
