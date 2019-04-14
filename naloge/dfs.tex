@@ -41,36 +41,38 @@ je prikazan v tabeli~\tab.
 Gozd iskanja v širino je prikazan na sliki~\fig,
 iz katere je razvidno, da so drevesne povezave
 $$
-(A, B), (B, C), (C, F), (F, E), (F, I), (D, G), (G, H).
+(a, b), (b, c), (c, f), (f, e), (f, i), (d, g), (g, h).
 $$
 \begin{tabela}
-\begin{tabular}{c|c|c}
-$v$ & $u$ & množica označenih vozlišč \\ \hline
-A &   & \{A\} \\
-A &B & \{A, B\} \\
-B & A &  \{A, B\} \\
-B & C &  \{A, B, C\} \\
-C & B & \{A, B, C\} \\
-C & F & \{A, B, C, F\} \\
-F & C & \{A, B, C, F\} \\
-F & E & \{A, B, C, E, F\} \\
-E & A & \{A, B, C, E, F\} \\
-E & B & \{A, B, C, E, F\} \\
-E & F & \{A, B, C, E, F\} \\
-F & I & \{A, B, C, E, F, I\} \\
-I & F & \{A, B, C, E, F, I\} \\
-B & E & \{A, B, C, E, F, I\} \\
-A & E & \{A, B, C, E, F, I\} \\
-B & & \{A, B, C, E, F, I\} \\
-C & & \{A, B, C, E, F, I\} \\
-D & & \{A, B, C, D, E, F, I\} \\
-D & G &\{A, B, C, D, E, F, G, I\} \\
-G & D & \{A, B, C, D, E, F, G, I\} \\
-G & H & \{A, B, C, D, E, F, G, H, I\} \\
-H & D & \{A, B, C, D, E, F, G, H, I\} \\
-H & G & \{A, B, C, D, E, F, G, H, I\} \\
-D & H & \{A, B, C, D, E, F, G, H, I\} \\
-\end{tabular}
+$$
+\begin{array}{c|c|c}
+v & u & \text{množica označenih vozlišč} \\ \hline
+a &   & \{a\} \\
+a &b & \{a, b\} \\
+b & a &  \{a, b\} \\
+b & c &  \{a, b, c\} \\
+c & b & \{a, b, c\} \\
+c & f & \{a, b, c, f\} \\
+f & c & \{a, b, c, f\} \\
+f & e & \{a, b, c, e, f\} \\
+e & a & \{a, b, c, e, f\} \\
+e & b & \{a, b, c, e, f\} \\
+e & f & \{a, b, c, e, f\} \\
+f & i & \{a, b, c, e, f, i\} \\
+i & f & \{a, b, c, e, f, i\} \\
+b & e & \{a, b, c, e, f, i\} \\
+a & e & \{a, b, c, e, f, i\} \\
+b & & \{a, b, c, e, f, i\} \\
+c & & \{a, b, c, e, f, i\} \\
+d & & \{a, b, c, d, e, f, i\} \\
+d & g &\{a, b, c, d, e, f, g, i\} \\
+g & d & \{a, b, c, d, e, f, g, i\} \\
+g & h & \{a, b, c, d, e, f, g, h, i\} \\
+h & d & \{a, b, c, d, e, f, g, h, i\} \\
+h & g & \{a, b, c, d, e, f, g, h, i\} \\
+d & h & \{a, b, c, d, e, f, g, h, i\} \\
+\end{array}
+$$
 \podnaslov{Potek izvajanja algoritma}
 \end{tabela}
 

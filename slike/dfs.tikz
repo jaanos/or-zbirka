@@ -1,15 +1,15 @@
 \begin{tikzpicture}[style=thick,scale=0.7]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
-\node[vertex] (A) at (-2, 2) {A};
-\node[vertex] (B) at ( -2, 0) {B};
-\node[vertex] (C) at ( -2, -2) {C};
-\node[vertex] (D) at ( 4, 2) {D};
-\node[vertex] (E) at ( -4, -6) {E};
-\node[vertex] (F) at ( -2, -4) {F};
-\node[vertex] (G) at ( 4, 0) {G};
-\node[vertex] (H) at ( 4, -2) {H};
-\node[vertex] (I) at ( 0, -6) {I};
+\node[vertex] (A) at (-2, 2) {$a$};
+\node[vertex] (B) at (-2, 0) {$b$};
+\node[vertex] (C) at (-2,-2) {$c$};
+\node[vertex] (D) at ( 4, 2) {$d$};
+\node[vertex] (E) at (-4,-6) {$e$};
+\node[vertex] (F) at (-2,-4) {$f$};
+\node[vertex] (G) at ( 4, 0) {$g$};
+\node[vertex] (H) at ( 4,-2) {$h$};
+\node[vertex] (I) at ( 0,-6) {$i$};
 
 \draw (A) -- (B) -- (C) -- (F) -- (E);
 \draw (F) -- (I);

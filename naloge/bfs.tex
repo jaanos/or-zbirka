@@ -44,41 +44,43 @@ je prikazan v tabeli~\tab.
 Gozd iskanja v širino je prikazan na sliki~\fig[bfs-resitev],
 iz katere je razvidno, da so drevesne povezave
 $$
-(A, B), (B, C), (A, E), (E, F), (F, I), (D, G), (D, H).
+(a, b), (b, c), (a, e), (e, f), (f, i), (d, g), (d, h).
 $$
 
 \begin{tabela}
-\begin{tabular}{c|c|c|c|c}
-$s$ & $u$ & $v$ & $Q$ & množica označenih vozlišč \\ \hline
-A &   &   & [A]  & \{A\} \\
-A & A & B & [B] & \{A, B\} \\
-A & A & E & [B, E] & \{A, B, E\} \\
-A & B & C & [E, C] & \{A, B, C, E\} \\
-A & B  & E &  & \{A, B, C, E\} \\
-A & E & A & [C] & \{A, B, C, E\} \\
-A & E & B &  & \{A, B, C, E\} \\
-A & E & F & [C, F] & \{A, B, C, E, F\} \\
-A & C  & B & [F] &  \{A, B, C, E, F\} \\
-A & C & F &  &  \{A, B, C, E, F\} \\
-A & F & C &  &  \{A, B, C, E, F\} \\
-A & F  & E &  &  \{A, B, C, E, F\} \\
-A & F & I & [I] &  \{A, B, C, E, F, I\} \\
-A & I  & F & [\ ] &  \{A, B, C, E, F, I\} \\
-B & & & &  \{A, B, C, E, F, I\} \\
-C & & & &  \{A, B, C, E, F, I\} \\
-D & & & [D] &  \{A, B, C, D, E, F, I\} \\
-D &D &G &[G] &  \{A, B, C, D, E, F, G, I\} \\
-D &D &H &[G, H] &  \{A, B, C, D, E, F, G, H, I\} \\
-D &G &D &[H] &  \{A, B, C, D, E, F, G, H, I\} \\
-D &G &H & &  \{A, B, C, D, E, F, G, H, I\} \\
-D &H &D & &  \{A, B, C, D, E, F, G, H, I\} \\
-D &H &G &  [\ ]&  \{A, B, C, D, E, F, G, H, I\} \\
-E & & & &  \{A, B, C, D, E, F, G, H, I\} \\
-F & & & &  \{A, B, C, D, E, F, G, H, I\} \\
-G & & & &  \{A, B, C, D, E, F, G, H, I\} \\
-H & & & &  \{A, B, C, D, E, F, G, H, I\} \\
-I & & & &  \{A, B, C, D, E, F, G, H, I\} \\
-\end{tabular}
+$$
+\begin{array}{c|c|c|c|c}
+s & u & v & Q & \text{množica označenih vozlišč} \\ \hline
+a &   &   & [a]  & \{a\} \\
+a & a & b & [b] & \{a, b\} \\
+a & a & e & [b, e] & \{a, b, e\} \\
+a & b & c & [e, c] & \{a, b, c, e\} \\
+a & b  & e &  & \{a, b, c, e\} \\
+a & e & a & [c] & \{a, b, c, e\} \\
+a & e & b &  & \{a, b, c, e\} \\
+a & e & f & [c, f] & \{a, b, c, e, f\} \\
+a & c  & b & [f] &  \{a, b, c, e, f\} \\
+a & c & f &  &  \{a, b, c, e, f\} \\
+a & f & c &  &  \{a, b, c, e, f\} \\
+a & f  & e &  &  \{a, b, c, e, f\} \\
+a & f & i & [i] &  \{a, b, c, e, f, i\} \\
+a & i  & f & [\ ] &  \{a, b, c, e, f, i\} \\
+b & & & &  \{a, b, c, e, f, i\} \\
+c & & & &  \{a, b, c, e, f, i\} \\
+d & & & [d] &  \{a, b, c, d, e, f, i\} \\
+d &d &g &[g] &  \{a, b, c, d, e, f, g, i\} \\
+d &d &h &[g, h] &  \{a, b, c, d, e, f, g, h, i\} \\
+d &g &d &[h] &  \{a, b, c, d, e, f, g, h, i\} \\
+d &g &h & &  \{a, b, c, d, e, f, g, h, i\} \\
+d &h &d & &  \{a, b, c, d, e, f, g, h, i\} \\
+d &h &g &  [\ ]&  \{a, b, c, d, e, f, g, h, i\} \\
+e & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+f & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+g & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+h & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+i & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+\end{array}
+$$
 \podnaslov{Potek izvajanja algoritma}
 \end{tabela}
 
