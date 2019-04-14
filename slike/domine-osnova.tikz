@@ -1,0 +1,12 @@
+\tikzstyle{field}=[rectangle, minimum size=10mm]
+\tikzstyle{domino}=[field, draw, minimum size=9mm]
+
+\node[field] at (0, 0) {$6$};
+\node[field] at (1, 0) {$3$};
+\node[field] at (2, 0) {$-4$};
+\node[field] at (3, 0) {$2$};
+\node[field] at (4, 0) {$-3$};
+\node[field] at (5, 0) {$5$};
+\node[field] at (6, 0) {$9$};
+\node[field] at (7, 0) {$1$};
+\node[field] at (8, 0) {$2$};

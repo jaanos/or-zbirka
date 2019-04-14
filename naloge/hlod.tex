@@ -37,16 +37,16 @@ Skupno število korakov algoritma je torej
 
 \item Izračunajmo vrednosti $p_{ij}$ ($0 \le i < j \le n$).
 \begin{alignat*}{3}
-p_{01} &=&  5 - 0 &+ \min\{0+0\} &&= 5 \\
-p_{12} &=&  7 - 3 &+ \min\{0+0\} &&= 4 \\
-p_{23} &=&  8 - 5 &+ \min\{0+0\} &&= 3 \\
-p_{34} &=& 10 - 7 &+ \min\{0+0\} &&= 3 \\
-p_{02} &=&  7 - 0 &+ \min\{0+4, 5+0\} &&= 11 \\
-p_{13} &=&  8 - 3 &+ \min\{0+3, 4+0\} &&= 8 \\
-p_{24} &=& 10 - 5 &+ \min\{0+3, 3+0\} &&= 8 \\
-p_{03} &=&  8 - 0 &+ \min\{0+8, 5+3, 11+0\} &&= 16 \\
-p_{14} &=& 10 - 3 &+ \min\{0+8, 4+3, 8+0\} &&= 14 \\
-p_{04} &=& 10 - 0 &+ \min\{0+14, 5+8, 11+3, 16+0\} &&= 23
+p_{01} &=&  5 - 0 &+ \min\{\underline{0+0}\} &&= 5 \\
+p_{12} &=&  7 - 3 &+ \min\{\underline{0+0}\} &&= 4 \\
+p_{23} &=&  8 - 5 &+ \min\{\underline{0+0}\} &&= 3 \\
+p_{34} &=& 10 - 7 &+ \min\{\underline{0+0}\} &&= 3 \\
+p_{02} &=&  7 - 0 &+ \min\{\underline{0+4}, 5+0\} &&= 11 \\
+p_{13} &=&  8 - 3 &+ \min\{\underline{0+3}, 4+0\} &&= 8 \\
+p_{24} &=& 10 - 5 &+ \min\{\underline{0+3}, 3+0\} &&= 8 \\
+p_{03} &=&  8 - 0 &+ \min\{\underline{0+8}, 5+3, 11+0\} &&= 16 \\
+p_{14} &=& 10 - 3 &+ \min\{0+8, \underline{4+3}, 8+0\} &&= 14 \\
+p_{04} &=& 10 - 0 &+ \min\{0+14, \underline{5+8}, 11+3, 16+0\} &&= 23
 \end{alignat*}
 Najmanjša cena rezanja je torej $23$, dosežemo pa jo tako,
 da najprej razrežemo na mestu $x_2 = 5$,
