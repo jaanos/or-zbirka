@@ -18,19 +18,19 @@ Sledili bomo naslednjemu algoritmu.
 \begin{algorithmic}
 \Function{bfs}{$G = (V, E), \visit$}
 	\For{$v \in V$}
-		\State oznaceni$[v] \gets \False$
+		\State $\visited[v] \gets \False$
         \State $\pred[v] \gets \Null$
 	\EndFor
 	\For{$s \in V$}
-		\If{$\lnot$oznaceni$[s]$}
-			\State oznaceni$[s] \gets \True$
+		\If{$\lnot \visited[s]$}
+			\State $\visited[s] \gets \True$
 			\State $Q \gets [s]$
 			\While{$\lnot Q.\isEmpty()$}
 				\State $u \gets Q.\pop()$
                 \State $\visit(u, \pred[u])$
-				\For{$v \in \Adj(u)$}
-					\If{$\lnot$oznaceni$[v]$}
-						\State oznaceni$[v] \gets \True$
+				\For{$v \in \Adj(G, u)$}
+					\If{$\lnot \visited[v]$}
+						\State $\visited[v] \gets \True$
 						\State $\pred[v] \gets u$
 						\State $Q.\append(v)$
 					\EndIf
@@ -83,7 +83,7 @@ e & & & &  \{a, b, c, d, e, f, g, h, i\} \\
 f & & & &  \{a, b, c, d, e, f, g, h, i\} \\
 g & & & &  \{a, b, c, d, e, f, g, h, i\} \\
 h & & & &  \{a, b, c, d, e, f, g, h, i\} \\
-i & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+i & & & &  \{a, b, c, d, e, f, g, h, i\}
 \end{array}
 $$
 \podnaslov{Potek izvajanja algoritma}

@@ -10,10 +10,10 @@ Poiskati želimo seznam prereznih vozlišč grafa $G$.
 
 Pri iskanju si bomo pomagali s preiskovanjem v globino.
 Ob prvem obisku vozlišča $u$ s predhodnikom $v$
-se tako pokliče funkcija \verb|previsit(u, v)|,
-ob njegovem zadnjem obisku pa funkcija \verb|postvisit(u, v)|.
-Če je $u$ koren preiskovalnega drevesa, potem ima $v$ vrednost \verb|None|.
-Predpostavi, da imaš v obeh funkcijah dostop do seznama \verb|izhod|,
+se tako pokliče funkcija $\previsit(u, v)$,
+ob njegovem zadnjem obisku pa funkcija $\postvisit(u, v)$.
+Če je $u$ koren preiskovalnega drevesa, potem ima $v$ vrednost $\Null$.
+Predpostavi, da imaš v obeh funkcijah dostop do seznama {\sl izhod},
 kamor bo treba dodati najdena presečna vozlišča.
 Prav tako imata lahko obe funkciji dostop do drugih pomožnih spremenljivk.
 
@@ -35,16 +35,15 @@ Za vsako vozlišče $u$ določi še vrednosti $\ell_u$ in $p_u$.
 \namig{loči med sosedi $v$ vozlišča $u$ v grafu $G$ (pišeš lahko $u \sim v$)
 in njegovimi neposrednimi nasledniki $w$ v preiskovalnem drevesu ($u \to w$).}
 
-\item Natančno opiši funkcijo \verb|previsit(u, v)|
+\item Natančno opiši funkcijo $\previsit(u, v)$
 (z besedami ali psevdokodo),
 ki poskrbi za izračun vrednosti $\ell_u$.
 
-\item Natančno opiši funkcijo \verb|postvisit(u, v)|
+\item Natančno opiši funkcijo $\postvisit(u, v)$
 (z besedami ali psevdokodo),
 ki naj za vozlišče $u$ izračuna vrednost $p_u$ in ugotovi,
-ali je $u$ prerezno vozlišče, in ga v tem primeru doda v \verb|izhod|.
-Predpostavi, da imaš globine vozlišč že poračunane
-(tudi, če točka (c) ni rešena).
+ali je $u$ prerezno vozlišče, in ga v tem primeru doda v {\sl izhod}.
+Predpostavi, da imaš globine vozlišč že poračunane.
 \namig{obravnavaj dve možnosti --
 ko je $u$ koren drevesa, in ko $u$ ni koren drevesa.
 Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}

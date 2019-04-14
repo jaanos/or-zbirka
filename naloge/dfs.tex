@@ -13,15 +13,15 @@ Sledili bomo naslednjemu algoritmu.
 \begin{algorithmic}
 \Function{dfs}{$G = (V, E), \previsit, \postvisit$}
 	\For{$v \in V$}
-		\State oznaceni$[v] \gets \False$
+		\State $\visited[v] \gets \False$
 	\EndFor
     \Function{Razišči}{$v, w$}
-        \If{oznaceni$[v]$}
+        \If{$\visited[v]$}
             \State \Return
         \EndIf
-        \State oznaceni$[v] \gets \True$
+        \State $\visited[v] \gets \True$
         \State $\previsit(v, w)$
-		\For{$u \in \Adj(v)$}:
+		\For{$u \in \Adj(G, v)$}:
             \State {\sc Razišči}$(u, v)$
 		\EndFor
         \State $\postvisit(v, w)$
@@ -70,7 +70,7 @@ g & d & \{a, b, c, d, e, f, g, i\} \\
 g & h & \{a, b, c, d, e, f, g, h, i\} \\
 h & d & \{a, b, c, d, e, f, g, h, i\} \\
 h & g & \{a, b, c, d, e, f, g, h, i\} \\
-d & h & \{a, b, c, d, e, f, g, h, i\} \\
+d & h & \{a, b, c, d, e, f, g, h, i\}
 \end{array}
 $$
 \podnaslov{Potek izvajanja algoritma}

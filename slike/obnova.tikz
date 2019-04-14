@@ -1,5 +1,5 @@
 \begin{tikzpicture}[style=thick,scale=0.6]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
 
 \node[vertex] (A) at (-6, 2) {$a$};
 \node[vertex] (B) at (-6,-2) {$b$};
