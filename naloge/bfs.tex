@@ -16,29 +16,34 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 Sledili bomo naslednjemu algoritmu.
 \begin{small}
 \begin{algorithmic}
-\Require{graf $G = (V, E)$}
+\Function{bfs}{$G = (V, E), \visit$}
 	\For{$v \in V$}
-		\State oznaceni$[v] \gets$ \False
+		\State oznaceni$[v] \gets \False$
+        \State $\pred[v] \gets \Null$
 	\EndFor
 	\For{$s \in V$}
-		\If{oznaceni$[s] = \False$}
+		\If{$\lnot$oznaceni$[s]$}
 			\State oznaceni$[s] \gets \True$
 			\State $Q \gets [s]$
 			\While{$\lnot Q.\isEmpty()$}
 				\State $u \gets Q.\pop()$
+                \State $\visit(u, \pred[u])$
 				\For{$v \in \Adj(u)$}
 					\If{$\lnot$oznaceni$[v]$}
 						\State oznaceni$[v] \gets \True$
+						\State $\pred[v] \gets u$
 						\State $Q.\append(v)$
 					\EndIf
 				\EndFor
 			\EndWhile
 		\EndIf
 	\EndFor
+\EndFunction
 \end{algorithmic}
 \end{small}
 %
-Potek zgornjega algoritma na grafu $G$,
+Potek zgornjega algoritma na grafu s slike~\fig
+(pri čemer za $\visit$ vzamemo $\NOp$, torej ne naredimo ničesar),
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
 Gozd iskanja v širino je prikazan na sliki~\fig[bfs-resitev],
