@@ -6,48 +6,46 @@ V primerih, ko imaš več ena\-ko\-vred\-nih izbir,
 upoštevaj abecedni vrstni red.
 Za vsako povezavo določi, ali se nahaja v drevesu iskanja v globino.
 \end{vprasanje}
-\begin{odgovor}
 
+\begin{odgovor}
 Sledili bomo naslednjemu algoritmu.
 \begin{small}
 \begin{algorithmic}
-\Require{graf G}
-	\For{$v \in V(G)$}:
-		\State oznaceni[v] $\gets$ \False
+\Function{dfs}{$G = (V, E), \previsit, \postvisit$}
+	\For{$v \in V$}
+		\State oznaceni$[v] \gets \False$
 	\EndFor
-	\For{$s \in V(G)$}:
-		\If{oznaceni[s] $\gets$ \False}:
-			\State razisci(G, v)
-		\EndIf
+    \Function{Razišči}{$v, w$}
+        \If{oznaceni$[v]$}
+            \State \Return
+        \EndIf
+        \State oznaceni$[v] \gets \True$
+        \State $\previsit(v, w)$
+		\For{$u \in \Adj(v)$}:
+            \State {\sc Razišči}$(u, v)$
+		\EndFor
+        \State $\postvisit(v, w)$
+    \EndFunction
+	\For{$v \in V$}
+		\State {\sc Razišči}$(v, \Null)$
 	\EndFor
+\EndFunction
 \end{algorithmic}
 \end{small}
 %
-%
-\begin{small}
-\begin{algorithmic}
-\Require{graf G, vozlišče $v \in V(G)$}
-	\State oznaceni[s] $\gets$ \True
-		\For{$(s, v) \in E(G)$}:
-			\If{oznaceni[v] = \False}:
-				\State oznaceni[v] $\gets$ \True
-				\State razisci(G, v)
-			\EndIf
-		\EndFor		
-\end{algorithmic}
-\end{small}
-%
-Potek zgornjega algoritma na grafu $G$,
+Potek zgornjega algoritma na grafu s slike~\fig[bfs]
+(pri čemer za $\previsit$ in $\postvisit$ vzamemo $\NOp$,
+torej ne naredimo ničesar),
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
-Gozd iskanja v širino je prikazan na sliki~\fig[dfs-resitev],
+Gozd iskanja v širino je prikazan na sliki~\fig,
 iz katere je razvidno, da so drevesne povezave
 $$
 (A, B), (B, C), (C, F), (F, E), (F, I), (D, G), (G, H).
 $$
 \begin{tabela}
 \begin{tabular}{c|c|c}
-$s$ & $v$ & množica označenih vozlišč \\ \hline
+$v$ & $u$ & množica označenih vozlišč \\ \hline
 A &   & \{A\} \\
 A &B & \{A, B\} \\
 B & A &  \{A, B\} \\
@@ -77,7 +75,7 @@ D & H & \{A, B, C, D, E, F, G, H, I\} \\
 \end{tabela}
 
 \begin{slika}
-\pgfslika[dfs-resitev]
+\pgfslika
 \podnaslov{Gozd iskanja v globino}
 \end{slika}
 
