@@ -99,9 +99,9 @@ na katere je možno sklicevanje, npr.
 Okolje `tabela` deluje podobno kot okolje `slika` -
 neobvezni argument za postavitev (s privzeto vrednostjo `t`)
 se poda k LaTeXovemu okolju `table`.
-Na tabelo se [sklicujemo](#sklicevanje) z imenom trenutne naloge -
-spreminjanje oznake (in s tem podpora za več tabel pri posamezni nalogi)
-trenutno ni omogočeno.
+Na tabelo se [sklicujemo](#sklicevanje) z imenom trenutne naloge,
+lahko pa znotraj okolja `tabela`
+z ukazom `\setlabel` nastavimo tudi drugačno oznako.
 
 ## Sklicevanje
 
@@ -132,14 +132,24 @@ Tukaj je še nekaj napotkov za pisanje rešitev.
   Za ločilo tisočic se uporablja kratek presledek
   (`\,` v matematičnem načinu).
 * Algoritmi se pišejo v psevdokodi z uporabo okolja `algorithmic`.
+  - Enočrkovne spremenljivke se pišejo v matematičnem načinu.
+  - Besedne spremenljivke se pišejo s poševnimi črkami (`{\sl ...}`).
+  - Imena funkcij se pišejo z malimi inicialkami (`{\sc ...}`)
+    z velikimi začetnicami besed (CamelCase).
+    Pri podajanju imena funkcije v `\Function` uporaba `\sc` ni potrebna.
+  - Imena metod se pišejo z običajnimi črkami -
+    v matematičnem načinu se lahko v ta namen uporablja `\operatorname{...}`.
   - Za logični konstanti v psevodkodi
     sta definirana ukaza `\True` in `\False`.
+  - Za prazno vrednost se uporablja `\Null`,
+    za funkcijo, ki ne naredi ničesar, pa `\NOp`.
   - Definirani so tudi ukazi za pogoste operacije na podatkovnih strukturah:
     `\length`, `\isEmpty`, `\append`, `\pop`, `\reverse`.
   - Grafi se v specifikaciji vhoda algoritma navajajo
     v obliki *G* = (*V*, *E*) -
     potem se lahko v algoritmu sklicujemo na množici *V* in *E*.
-    Za soseščino vozlišča je definiran ukaz `\Adj`.
+    Za soseščino vozlišča je definiran ukaz `\Adj`
+    (npr. `\Adj(G, u)` za sosede vozlišča *u* v grafu *G*).
   - Predpostavljamo, da se standardni algoritmi na grafih obnašajo tako,
     kot ste jih spoznali na predavanjih in vajah - koda je na voljo na
     [repozitoriju predmeta](https://github.com/jaanos/operacijske-raziskave/tree/master/vaje/Grafi).
