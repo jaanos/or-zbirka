@@ -32,9 +32,9 @@ ki zadošča pogoju nesosednosti in vključuje člen $a_i$.
 
 Za izračun vrednosti $V_i$ moramo imeti podane že vse prejšnje $V_j$, torej vse $V_j$, za $j < i$.
 To dosežemo tako, da te vrednosti računamo naraščajoče z začetkom v $1$ in koncem v $n$.
-Po izračunu vseh vrednosti $V_i$, bo maximalna vrednost iskanega problema enaka $\max_{1 \leq i \leq n}(V_i)$.
+Po izračunu vseh vrednosti $V_i$ bo maximalna vrednost iskanega problema enaka $\max_{1 \leq i \leq n}(V_i)$.
 
-Podamo lahkoše  alternativno rekurzivno zvezo za ta problem, in sicer 
+Podamo lahko še alternativno rekurzivno zvezo za ta problem, in sicer 
 definirajmo $U_i$ kot največjo vsoto nesosednjih členov zaporadja, 
 ki jo dobimo, če gledamo samo elemente od 1 do $i$.
 Ta definicija se razlikuje od zgornje po tem, da dobljena vsota ne vključuje nujno elementa $a_i$.
@@ -71,15 +71,15 @@ kar sledi neposredno iz definicije vrednosti $U_n$.
 \end{small}
 
 Algoritem enostavno upošteva drugo rekurzivno zvezo in iterativno, naraščajoče po $i$, pridobiva 
-vrednosti $U[i]$ dokler ne pride do $U[n]$, kar vrne kot optimalno vrednost.
+vrednosti $U[i]$, dokler ne pride do $U[n]$, kar vrne kot optimalno vrednost.
 Časovna zahtevnost je očitno $O(n)$, saj zanko izvedemo enkrat, v njej pa porabimo konstantno časa.
 
 Izvajanje algoritma na primeru $a = [-2, 3, 10, -4, 7, 21, 5, 0, -10]$ si lahko ogledamo v tabeli ~\tab.
 
 Algoritem lahko nadgradimo tako, da vrne tudi zaporedje, ki maksimizira vsoto.
 To dosežemo s seznamom predhodnikov, v katerega na vsaki iteraciji shranimo indeks, ki smo ga uporabili v izračunu $U_i$, torej $i-2$ ali pa $i-1$.
-Po koncu  izvajanja zanke kot v algoritmu {\sc Topo} iz naloge~\res[topo] dobivamo pot, med tem pa dodajamo le tiste člene, z razmikom 2, 
-saj so to tisti ki smo jih dejansko prišteli v vsoto.
+Po koncu  izvajanja zanke kot v algoritmu {\sc Topo} iz naloge~\res[topo] dobivamo pot, med tem pa dodajamo le tiste člene z razmikom 2, 
+saj so to tisti, ki smo jih dejansko prišteli v vsoto.
 
 \begin{tabela}
 $$
