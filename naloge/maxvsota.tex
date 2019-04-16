@@ -18,38 +18,34 @@ Kakšna je njegova časovna zahtevnost?
 
 \item Naj bo $V_i$ največja vsota nesosednjih členov zaporedja, ki jo lahko dobimo,
 če gledamo samo elemente od 1 do $i$, in vključuje $a_i$.
-
 \begin{align*}
 V_{-1} &= 0 \\
 V_0 &= 0 \\
 V_i &= \max_{j < i - 1}\left(V_j\right) + a_i
-\qquad (i \in \{1, 2, \dots, n\})
+\qquad (1 \le i \le n)
 \end{align*}
-
-Vidimo, da na i-tem koraku iščemo največjo prejšnjo nesosednjo vsoto $V_j$, 
+Vidimo, da na $i$-tem koraku iščemo največjo prejšnjo nesosednjo vsoto $V_j$,
 ki ji bomo priključili element $a_i$, torej izračunamo največjo vsoto, 
 ki zadošča pogoju nesosednosti in vključuje člen $a_i$.
 
 Podamo lahko še alternativno rekurzivno zvezo za ta problem, in sicer 
 definirajmo $U_i$ kot največjo vsoto nesosednjih členov zaporadja, ki jo dobimo, 
 če gledamo samo elemente od 1 do $i$.
-Ta definicija se razlikuje od zgornje po tem, da dobljena vsota ne potrebuje nujno 
-vključevati elementa $a_i$.
-
+Ta definicija se razlikuje od zgornje po tem,
+da dobljena vsota ne vključuje nujno elementa $a_i$.
 \begin{align*}
 U_{-1} &= 0 \\
 U_0 &= 0 \\
 U_i &= \max\left(U_{j - 2} + a_i, U_{j - 1}\right)
-\qquad\ \left(i \in \{1, 2, \dots, n\}\right)
+\qquad (1 \le i \le n)
 \end{align*}
-
 Ideja tega rekurzivnega zapisa je podobna zgornjemu,
-le da se namesto iskanja maximuma, odloči ali bo $i$-ti člen vključila v vsoto, 
-ali pa ga bo izpustila
+le da se namesto iska\-nja maksimuma odloči,
+če bo $i$-ti člen vključila v vsoto oziroma ga bo izpustila.
 
 \item Algoritem bo sledil prvi rekurzivni zvezi, 
 maximum prejšnjih vsot pa bomo iskali na optimalen način, torej
-
+\begin{small}
 \begin{algorithmic}
 \Function{maxvsota}{$a$}
 	\State $n \gets \length(a)$
@@ -76,10 +72,11 @@ maximum prejšnjih vsot pa bomo iskali na optimalen način, torej
 	\State \Return (pot, $V$[tmax])
 \EndFunction
 \end{algorithmic}
-
+\end{small}
 Kot vidiimo algoritem hrani maximum prejšnjih vsot in spotoma preverja nove kandidate zanj.
-Iz tega razloga imamo časovno zahtevnost $\mathcal{O}(n)$, kljub temu, da se je pri zapisu 
-rekurzivne formule zdelo, da bi ta lahko bila $\mathcal{O}(n^2)$.
+Iz tega razloga imamo časovno zahtevnost $O(n)$,
+kljub temu, da se je pri zapisu rekurzivne formule zdelo,
+da bi ta lahko bila $O(n^2)$.
 
 \begin{tabela}
 $$
