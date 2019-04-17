@@ -18,73 +18,94 @@ Kakšna je njegova časovna zahtevnost?
 
 \item Naj bo $V_i$ največja vsota nesosednjih členov zaporedja, ki jo lahko dobimo,
 če gledamo samo elemente od 1 do $i$, in vključuje $a_i$.
-
 \begin{align*}
 V_{-1} &= 0 \\
 V_0 &= 0 \\
 V_i &= \max_{j < i - 1}\left(V_j\right) + a_i
 \qquad (1 \le i \le n)
 \end{align*}
-
 Vidimo, da na $i$-tem koraku iščemo največjo prejšnjo nesosednjo vsoto $V_j$,
 ki ji bomo priključili element $a_i$, torej izračunamo največjo vsoto, 
 ki zadošča pogoju nesosednosti in vključuje člen $a_i$.
 
-Za izračun vrednosti $V_i$ moramo imeti podane že vse prejšnje $V_j$, torej vse $V_j$, za $j < i$.
+Za izračun vrednosti $V_i$ moramo imeti podane že vse prejšnje $V_j$,
+torej vse $V_j$ z $j < i$.
 To dosežemo tako, da te vrednosti računamo naraščajoče z začetkom v $1$ in koncem v $n$.
-Po izračunu vseh vrednosti $V_i$ bo maximalna vrednost iskanega problema enaka $\max_{1 \leq i \leq n}(V_i)$.
+Po izračunu vseh vrednosti $V_i$ bo maksimalna vrednost iskanega problema
+enaka $V^* = \max_{1 \leq i \leq n}(V_i)$.
 
 Podamo lahko še alternativno rekurzivno zvezo za ta problem, in sicer 
-definirajmo $U_i$ kot največjo vsoto nesosednjih členov zaporadja, 
-ki jo dobimo, če gledamo samo elemente od 1 do $i$.
+definirajmo $U_i$ kot največjo vsoto nesosednjih členov zaporedja,
+ki jo dobimo, če gledamo samo elemente od $1$ do $i$.
 Ta definicija se razlikuje od zgornje po tem, da dobljena vsota ne vključuje nujno elementa $a_i$.
-
 \begin{align*}
 U_{-1} &= 0 \\
 U_0 &= 0 \\
-U_i &= \max\left(U_{j - 2} + a_i, U_{j - 1}\right)
+U_i &= \max\left(U_{i - 2} + a_i, U_{i - 1}\right)
 \qquad (1 \le i \le n)
 \end{align*}
-
 Ideja tega rekurzivnega zapisa je podobna zgornji,
-le da se namesto iska\-nja maksimuma odloči,
-če bo $i$-ti člen vključila v vsoto oziroma ga bo izpustila.
+le da se namesto iska\-nja maksimuma odločamo,
+ali bomo $i$-ti člen vključili v vsoto oziroma ga bomo izpustili.
 
 Vrstni red iskanja vrednosti $U_i$ določimo z naraščajočim zaporedjem indeksov $i$, ko $1\leq i \leq n$, 
-saj imamo tako pred reševanjem problema $U_i$ definirane vse vrednosti prej.
-Ko izračunamo vse vrednosti $U_i$, je maximum vsote zaporedja enak $U_n$,
+saj imamo tako pred reševanjem problema $U_i$
+definirane vse predhodne vrednosti.
+Ko izračunamo vse vrednosti $U_i$,
+je maksimum vsote zaporedja enak $U^* = U_n$,
 kar sledi neposredno iz definicije vrednosti $U_n$.
 
 \item Algoritem bo sledil drugi rekurzivni zvezi.
 
 \begin{small}
 \begin{algorithmic}
-\Function{maxvsota}{$a$}
-	\State $n \gets \length(a)$
-	\State $U \gets$ slovar z vrednostmi $0$ in ključi $i$, za $i \leq -1 \leq n$
+\Function{MaxVsota}{$(a_i)_{i=1}^n$}
+	\State $U_{-1} \gets 0$
+	\State $U_0 \gets 0$
 	\For{$i = 1, 2, \dots, n$}
-		\State $U[i] \gets \max(U[i-2] + a[i], U[i-1])$
+		\State $U_i \gets \max(U_{i-2} + a_i, U_{i-1})$
 	\EndFor
-	\Return $U[n]$
+    \State $\ell \gets$ prazen seznam
+    \State $i \gets n$
+    \While{$i > 0$}
+        \If{$U_i = U_{i-1}$}
+            \State $i \gets i-1$
+        \Else
+            \State $\ell.\append(i)$
+            \State $i \gets i-2$
+        \EndIf
+    \EndWhile
+    \State $\ell.\reverse()$
+	\State \Return $(U_n, \ell)$
 \EndFunction
 \end{algorithmic}
 \end{small}
 
-Algoritem enostavno upošteva drugo rekurzivno zvezo in iterativno, naraščajoče po $i$, pridobiva 
-vrednosti $U[i]$, dokler ne pride do $U[n]$, kar vrne kot optimalno vrednost.
-Časovna zahtevnost je očitno $O(n)$, saj zanko izvedemo enkrat, v njej pa porabimo konstantno časa.
+Algoritem enostavno upošteva drugo rekurzivno zvezo in iterativno,
+naraščajoče po $i$,
+računa vrednosti $U_i$, dokler ne pride do $U_n$,
+kar vrne kot optimalno vrednost.
+Časovna zahtevnost je očitno $O(n)$, saj zanko izvedemo enkrat,
+v vsakem obhodu pa porabimo konstantno časa.
 
-Izvajanje algoritma na primeru $a = [-2, 3, 10, -4, 7, 21, 5, 0, -10]$ si lahko ogledamo v tabeli ~\tab.
+Izvajanje algoritma na primeru $a = [-2, 3, 10, -4, 7, 21, 5, 0, -10]$
+si lahko ogledamo v tabeli~\tab.
+Iz zadnje vrstice lahko ugotovimo,
+da je podzaporedje z največjo vsoto $(a_3, a_6) = (10, 21)$.
 
-Algoritem lahko nadgradimo tako, da vrne tudi zaporedje, ki maksimizira vsoto.
-To dosežemo s seznamom predhodnikov, v katerega na vsaki iteraciji shranimo indeks, ki smo ga uporabili v izračunu $U_i$, torej $i-2$ ali pa $i-1$.
-Po koncu  izvajanja zanke kot v algoritmu {\sc Topo} iz naloge~\res[topo] dobivamo pot, med tem pa dodajamo le tiste člene z razmikom 2, 
-saj so to tisti, ki smo jih dejansko prišteli v vsoto.
+Algoritem vrne tudi indekse elementov podzaporedja, ki maksimizira vsoto.
+To doseže tako, da primerja sosednje elemente zaporedja $(U_i)_{i=0}^n$
+-- če se $U_{i-1}$ in $U_i$ razlikujeta,
+potem mora očitno veljati $U_i = U_{i-2} + a_i$,
+sicer pa element $a_i$ ni bil uporabljen v vsoti.
+Po koncu izvajanja zanke tako dobimo seznam indeksov elementov zaporedja,
+ki smo jih dejansko prišteli v vsoto.
+\end{enumerate}
 
 \begin{tabela}
 $$
 \begin{array}{c|ccccccccccc}
-i & V_{-1} & V_0 & V_1 & V_2 & V_3 & V_4 & V_5 & V_6 & V_7 & V_8 & V_9 \\ \hline
+i & U_{-1} & U_0 & U_1 & U_2 & U_3 & U_4 & U_5 & U_6 & U_7 & U_8 & U_9 \\ \hline
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 2 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -94,13 +115,11 @@ i & V_{-1} & V_0 & V_1 & V_2 & V_3 & V_4 & V_5 & V_6 & V_7 & V_8 & V_9 \\ \hline
 6 & 0 & 0 & 0 & 3 & 10 & 10 & 17 & 31 & 0 & 0 & 0 \\
 7 & 0 & 0 & 0 & 3 & 10 & 10 & 17 & 31 & 31 & 0 & 0 \\
 8 & 0 & 0 & 0 & 3 & 10 & 10 & 17 & 31 & 31 & 31 & 0 \\
-9 & 0 & 0 & 0 & 3 & 10 & 10 & 17 & 31 & 31 & 31 & 31 \\
+9 & 0 & 0 & 0 & 3 & 10 & 10 & 17 & 31 & 31 & 31 & 31
 \end{array}
 $$
-\podnaslov{Potek izvajanja algoritma {\sc maxvsota}}
+\podnaslov{Potek izvajanja algoritma}
 \end{tabela}
-
-\end{enumerate}
 
 \end{odgovor}
 \end{naloga}
