@@ -11,6 +11,77 @@ Na začetku ima $75 €$, na koncu pa želi imeti $100 €$
 Z dinamičnim programiranjem poišči strategijo stavljenja,
 ki maksimizira verjetnost, da bo na koncu imel natanko $100 €$.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $p_i(x)$ največja verjetnost,
+da bo igralec na srečo na koncu imel natanko $100 €$,
+če bo v $i$-to igro vstopil z $x$ evri.
+Opazimo, da če tretjo igro začne z manj kot $50 €$,
+je ne bo mogel končati s $100 €$.
+Če ima $x$ evrov, kjer je $50 \le x < 100$,
+potem bo stavil $100 - x$ evrov in upal na zmago;
+pri $x > 100$ pa bo stavil $x - 100$ evrov in upal na poraz.
+Če ima natanko $100 €$, potem ne bo stavil in si tako zagotovil,
+da bo tudi na koncu imel natanko $100 €$.
+Določimo torej začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_3(x) &= \begin{cases}
+0 & 0 \le x < 50 \\
+{1 \over 2} & 50 \le x < 100 \\
+1 & x = 100 \\
+{1 \over 2} & x > 100
+\end{cases} \\
+p_2(x) &= \max\set{p_3(x-y) + p_3(x+y) \over 2}{0 \le y \le x} \\
+p_1(x) &= \max\set{p_2(x-y) + p_2(x+y) \over 2}{0 \le y \le x}
+\end{align*}
+Maksimalno verjetnost dobimo kot $p^* = p_1(75)$.
+
+Izračunajmo sedaj $p_2(x)$ in $p^* = p_1(75)$.
+\begin{alignat*}{2}
+p_2(x) &= {1 \over 2} \begin{cases}
+0+0 & 0 \le x < 25 \\
+\max\left\{0+0, \underline{0+{1 \over 2}}\right\} & 25 \le x < 50 \\
+\max\left\{\underline{{1 \over 2}+{1 \over 2}}, 0+{1 \over 2},
+           0+1\right\} & x = 50 \\
+\max\left\{\underline{{1 \over 2}+{1 \over 2}}, 0+{1 \over 2},
+           0+1, 0+{1 \over 2}\right\} & 50 < x < 75 \\
+\max\left\{{1 \over 2}+{1 \over 2}, \underline{{1 \over 2}+1},
+           0+{1 \over 2}\right\} & x = 75 \\
+\max\left\{{1 \over 2}+{1 \over 2}, \underline{{1 \over 2}+1},
+           {1 \over 2}+{1 \over 2}, 0+{1 \over 2}\right\} & 75 < x < 100 \\
+\max\left\{\underline{1+1}, {1 \over 2}+{1 \over 2},
+           0+{1 \over 2}\right\} & x = 100 \\
+\max\left\{{1 \over 2}+{1 \over 2}, \underline{1+{1 \over 2}},
+           {1 \over 2}+{1 \over 2}, 0+{1 \over 2}\right\} & x > 100
+\end{cases}
+&&= \begin{cases}
+0 & 0 \le x < 25 \\
+{1 \over 4} & 25 \le x < 50 \\
+{1 \over 2} & 50 \le x < 75 \\
+{3 \over 4} & 75 \le x < 100 \\
+1 & x = 100 \\
+{3 \over 4} & x \ge 100
+\end{cases} \\
+p_1(75) &= {1 \over 2} \max\left\{\underline{{3 \over 4}+{3 \over 4}},
+                                  {1 \over 2}+{3 \over 4},
+                                  {1 \over 2}+1,
+                                  {1 \over 4}+{3 \over 4},
+                                  0+{3 \over 4}\right\} &&= {3 \over 4}
+\end{alignat*}
+Maksimalna verjetnost je torej $p^* = {3 \over 4}$.
+Poiščimo strategijo, pri kateri jo dobimo.
+\begin{align*}
+p_1(75) &= {p_2(75-0) + p_2(75+0) \over 2}
+&& \text{v prvi igri ne stavimo} \\
+p_2(75) &= {p_3(75-25) + p_3(75+25) \over 2}
+&& \text{v drugi igri stavimo $25 €$} \\
+p_3(50) &= {1 \over 2}
+&& \text{če izgubimo, v tretji stavimo $25 €$} \\
+p_3(100) &= 1
+&& \text{če zmagamo, v tretji ne stavimo}
+\end{align*}
+Pri drugi optimalni strategiji v prvi igri stavimo $25 €$,
+v drugi igri pa ne glede na izid prve igre ne stavimo.
+V tretji igri potem ravnamo enako kot v zgornji strategiji.
 \end{odgovor}
 \end{naloga}

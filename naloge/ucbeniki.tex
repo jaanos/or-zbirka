@@ -17,8 +17,40 @@ p_{ij} & 1 & 2 & 3 \\
 \end{array}
 $$
 Reši problem s pomočjo dinamičnega programiranja.
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $r_{ij}$ največja pričakovana porast v prodaji,
+če prvim $j$ regijam dodelimo $i$ trgovskih potnikov.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+r_{i1} &= p_{i1} && (1 \le i \le 4) \\
+r_{ij} &= \max\set{r_{h,j-1} + p_{i-h,j}}{1 \le h < i}
+&& (2 \le i \le 3, \ i \le j \le i+3)
+\end{align*}
+Vrednosti $r_{ij}$ računamo v leksikografskem vrstnem redu glede na $(j, i)$.
+Največji pričakovani porast dobimo kot $r^* = r_{63}$.
+
+Izračunajmo vrednosti $r_{ij}$ ($2 \le i \le 3$, $i \le j \le i+3$).
+\begin{alignat*}{2}
+r_{22} &= 35 + 21 &&= 56 \\
+r_{32} &= \max\{\underline{35+42}, 48+21\} &&= 77 \\
+r_{42} &= \max\{\underline{35+56}, 48+42, 70+21\} &&= 91 \\
+r_{52} &= \max\{35+70, 48+56, \underline{70+42}, 89+21\} &&= 112 \\
+r_{33} &= 56 + 28 &&= 84 \\
+r_{43} &= \max\{56+41, \underline{77+28}\} &&= 105 \\
+r_{53} &= \max\{\underline{56+63}, 77+41, 91+28\} &&= 119 \\
+r_{63} &= \max\{56+75, \underline{77+63}, 91+41, 112+28\} &&= 140
+\end{alignat*}
+Največji pričakovani porast je torej $r^* = r_{63} = 140$.
+Poiščimo še optimalno razporeditev trgovskih potnikov.
+\begin{align*}
+r_{63} &= r_{32} + p_{33} && \text{$3$ trgovski potniki v tretjo regijo} \\
+r_{32} &= r_{11} + p_{22} && \text{$2$ trgovska potnika v drugo regijo} \\
+r_{11} &= p_{11}          && \text{$1$ trgovski potnik v prvo regijo}
+\end{align*}
+Druga optimalna razporeditev je,
+da razporedimo $3$ trgovske potnike v prvo regijo,
+$2$ v drugo regijo in $1$ v tretjo regijo.
 \end{odgovor}
 \end{naloga}

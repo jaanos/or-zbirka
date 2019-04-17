@@ -15,15 +15,100 @@ V najslabšem primeru bi lonček torej vrgel $n$ krat
 
 Ker ima Boltežar doma $k$ cvetličnih lončkov,
 lahko do rezultata pride tudi z manjšim številom metov.
-S pomočjo dinamičnega programiranja bi rad po\-is\-kal strategijo metanja,
+S pomočjo dinamičnega programiranja bi rad po\-iskal strategijo metanja,
 ki bi minimizirala število potrebnih metov v najslabšem primeru.
 \begin{enumerate}[(a)]
 \item Napiši rekurzivne enačbe za opisani problem.
 \item Napiši algoritem, ki reši opisani problem.
 Oceni tudi njegovo časovno zahtevnost v odvisnosti od $n$ in $k$.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ največje število metov za določitev nadstropja,
+če moramo določiti izmed $i$ nadstropij in imamo na voljo $j$ lončkov.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{0j} &= 0 && (1 \le j \le k) \\
+p_{i1} &= i && (0 \le i \le n) \\
+p_{ij} &= 1 + \min\set{\max\{p_{h-1,j-1}, p_{i-h,j}\}}{1 \le h \le i}
+&& (1 \le i \le n, \ 2 \le j \le k)
+\end{align*}
+Vrednosti $p_{ij}$ ($1 \le i \le n$, $2 \le j \le k$)
+računamo v leksikografskem vrstnem redu indeksov.
+Največje število metov pri optimalni strategiji dobimo kot $p^* = p_{nk}$.
+
+\item Da bomo lahko rekonstruirali strategijo,
+bomo hranili še vrednosti $r_{ij}$ ($1 \le i \le n$, $2 \le j \le k$),
+ki nam povedo, iz katerega od $i$-tih nadstropij, med katerimi določamo,
+naj vržemo lonček, če imamo na voljo še $j$ lončkov.
+Velja torej
+$$
+p_{ij} = 1 + \max\{p_{r_{ij}-1,j-1}, p_{i-r_{ij},j}\}
+\quad (1 \le i \le n, \ 2 \le j \le k) .
+$$
+Sedaj lahko zapišemo algoritem za določanje optimalne strategije metanja.
+\begin{small}
+\begin{algorithmic}
+\Function{Lončki}{$n, k$}
+    \For{$j = 1, \dots, k$}
+        \State $p_{0j} \gets 0$ \hfill robni pogoji za $0$ nadstropij
+    \EndFor
+    \For{$i = 1, \dots, n$}
+        \State $p_{i1} \gets i$ \hfill robni pogoji za $1$ lonček
+        \State $r_{i1} \gets 1$ \hfill če imamo samo $1$ lonček,
+                                       ga vržemo iz najnižjega nadstropja
+        \For{$j = 2, \dots, k$} \hfill rekurzivna enačba
+            \State $p_{ij}, r_{ij} \gets \min\set{(1 + \max\{p_{h-1,j-1},
+                                                             p_{i-h,j}\}, h)}%
+                                                 {1 \le h \le i}$
+        \EndFor
+    \EndFor
+    \Function{Strategija}{$i, j, h$}
+            \hfill pomožna funkcija za izračun strategije
+        \If{$j = 0$} \hfill če smo ostali brez lončkov,
+            \State \Return $[h]$
+                \hfill potem se ne razbijejo do $h$-tega nadstropja
+        \EndIf
+        \State $\ell \gets$ prazen seznam
+        \While{$i > 0$}
+                \hfill dodamo nadstropje za naslednji met in strategijo,
+            \State $\ell.\append$(($h + r_{ij}$,
+                {\sc Strategija$(r_{ij}-1, j-1, h)$})) \hfill če se razbije
+            \State $h \gets h + r_{ij}$
+                \hfill če se ne razbije, nadaljujemo z višjimi nadstropji
+            \State $i \gets i - r_{ij}$
+        \EndWhile
+        \State $\ell.\append(h)$
+            \hfill če do konca ostane cel, imamo najvišje nadstropje
+        \State \Return $\ell$
+    \EndFunction
+    \State \Return ($p_{nk}$, {\sc Strategija}$(n, k, 0)$)
+\EndFunction
+\end{algorithmic}
+\end{small}
+Funkcija {\sc Lončki} poleg največjega potrebnega števila metov
+vrne še strategijo metanja.
+Ta je podana kot seznam parov,
+kjer prvi element pove nadstropje, iz katerega naj vržemo lonček,
+drugi element pa nadaljnjo strategijo, če se lonček razbije.
+Če lonček preživi padec, nadaljujemo z naslednjim elementom seznama.
+Zadnji element seznama je številka najvišjega nadstropja,
+iz katerega lahko vržemo lonček, da se ta ne razbije,
+če je ta preživel vse predhodne mete v seznamu.
+
+Algoritem najprej izračuna vrednosti spremenljivk z rekurzivnimi enačbami,
+pri čemer naredi $O(nk)$ korakov.
+Strategijo potem sestavi z rekurzivnimi klici funkcije {\sc Strategija}.
+Če bi strategijo zapisali kot drevo,
+bi opazili, da ima to drevo natanko $n+1$ listov
+(enega za vsak možen rezultat),
+saj vsak met razdeli množico možnih rezultatov na dva dela.
+Velikost strategije je torej $O(n)$,
+tak\-šna pa je tudi časovna zahtevnost njenega sestavljanja,
+saj v vsakem obhodu zanke {\bf while} dodamo en element.
+Skupna časovna zahtevnost algoritma je torej $O(nk)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

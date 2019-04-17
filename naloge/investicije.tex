@@ -1,0 +1,67 @@
+\begin{naloga}{W.~L.~Winston}{\cite[\S 18, Example~5]{w}}
+\begin{vprasanje}
+Podjetje ima na voljo $6\,000 €$ za investiranje.
+Na voljo so tri investicije, pri katerih je donosnost (v $1\,000 €$) enaka
+\begin{align*}
+r_1(d_1) &= \begin{cases}
+7d_1 + 2, & \text{če $d_1 \ge 1$, in} \\
+0 & \text{sicer;}
+\end{cases} \\
+r_2(d_2) &= \begin{cases}
+3d_2 + 7, & \text{če $d_2 \ge 1$, in} \\
+0 & \text{sicer;}
+\end{cases}
+\quad \text{oziroma} \\
+r_3(d_3) &= \begin{cases}
+4d_3 + 5, & \text{če $d_3 \ge 1$, in} \\
+0 & \text{sicer;}
+\end{cases}
+\end{align*}
+kjer so $d_1, d_2, d_3$ vložki v vsako investicijo v $1\,000 €$.
+Kako naj podjetje investira svoj denar, da bo zaslužek čim večji?
+\end{vprasanje}
+
+\begin{odgovor}
+Problem bomo razdelili na tri dele,
+pri čemer bomo v $i$-tem delu obravnavali situacijo,
+ko vlagamo v prvih $i$ investicij.
+Vrednost $p_i(x)$ naj torej označuje največji zaslužek,
+če v prvih $i$ investicij vložimo znesek $x$.
+
+Ker vrednost $r_1(x)$ narašča z $x$, velja $p_1(x) = r_1(x)$.
+Sedaj določimo $p_2(x)$.
+\begin{align*}
+p_2(x) &= \max\set{p_1(y) + r_2(x-y)}{0 \le y \le x} \\
+&= \begin{cases}
+\begin{aligned}
+\max&\big(\set{3x - 3y + 7}{0 \le y < 1, \ y \le x-1} \\
+&\cup \set{3x + 4y + 9}{1 \le y \le x-1} \\
+&\cup \set{0}{x-1 < y < 1} \\
+&\cup \set{7y+2}{x-1 < y \le x, \ y \ge 1}\big),
+\end{aligned}
+& \text{če $x \ge 1$, in} \\
+0 & \text{sicer}
+\end{cases} \\
+&= \begin{cases}
+0 & 0 \le x < 1 \\
+3x+7 & 1 \le x < {5 \over 4}, \\
+7x+2 & {5 \over 4} \le x < 2, \\
+7x+5 & x \ge 2
+\end{cases}
+\end{align*}
+Največji zaslužek bomo dobili kot $p^* = p_3(6)$.
+\begin{alignat*}{2}
+p_3(6) &= \max&&{} \set{p_2(z) + r_3(6-z)}{0 \le z \le 6} \\
+&= \max&&{} \big(\set{-4z+29}{0 \le z < 1} \\
+&&&\cup \set{-z+36}{1 \le z < {5 \over 4}} \\
+&&&\cup \set{3z+31}{{5 \over 4} \le z < 2} \\
+&&&\cup \set{3z+34}{2 \le z \le 5} \\
+&&&\cup \set{7z+5}{5 < z \le 6}\big) \\
+&= 49
+\end{alignat*}
+Ker velja $p^* = p_3(6) = p_2(5) + r_3(1) = r_1(4) + r_2(1) + r_3(1)$,
+največji zaslužek $49\,000 €$ dosežemo,
+če vložimo $4\,000 €$ v prvo investicijo
+in po $1\,000 €$ v drugi dve investiciji.
+\end{odgovor}
+\end{naloga}
