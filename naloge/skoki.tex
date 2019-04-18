@@ -20,5 +20,59 @@ Kakšna je njegova časovna zahtevnost?
 \end{enumerate}
 \end{vprasanje}
 \begin{odgovor}
+
+\begin{enumerate}[a)]
+
+\item Definirajmo usmerjen graf $G_a$, ki ima za vozlišča števila $1, 2, \dots n$ in povezavo $i \rightarrow j$ natanko tedaj, ko $i < j \leq i + a_i$.
+Skratka vsakemu členu (indeksu) zaporedja dodelimo dosegljiva vozlišča, do katerih lahko iz njega  pridemo, in ta vozlišča povežemo.
+
+Problem smo prevedli na osnovno nalogo dinamičnega programiranjem, saj moramo poiskati najkrajšo pot med začetno in končno točko v 
+usmerjenem, acikličnem grafu $G_a$.
+
+Naj bo $d_i$ najkrajša pot od vozlišča $i$ do vozlišča $j$ v grafu $G_a$. 
+Rekurzijo potem lahko zapišemo kot
+
+\begin{align*}
+d_n &= 0 \\
+d_i &= \min_{k = 1, 2, \dots, \min(a_i + 1, n - i)}(d_{i + k}) + 1
+\end{align*}
+
+Da bomo imeli vse prejšnje probleme rešene pred trenutnim, bomo vrednosti $d_i$ računali padajoče po $i$ za $1 \leq i \leq n$, 
+saj začnemo v zadnjem vozlišču $n$, nakar se pomikamo nazaj.
+Po razrešitvi vseh problemov, optimum $d*$ dobimo kot prvo vrednost $d_1$, torej $d* = d_1$, kar sledi iz definicije vrednosti $d_i$.
+
+\item Algoritem bo sledil rekurzivni zvezi.
+
+\begin{small}
+\begin{algorithmic}
+\Function{Skoki}{S}
+	\State $n \gets \length(S)$
+	\State po $\gets [\Null, \dots, \Null]$
+	\State d $\gets [\infty, \dots, \infty, 0]$
+	\For{i = n - 1 , n - 2, \dots, 1}
+		\State $k \gets \argmin_{k = i + 1, i + 2, \dots, i + \min(S[i], n - i )}(d[k])$
+		\State po$[i] \gets k$
+		\State $d[i] \gets d[k] + 1$
+	\EndFor
+	\State pot $\gets []$
+	\State an $\gets 1$
+	\While{$an \neq \Null$}
+		\State pot.$\append(an)$
+		\State $an \gets po[an]$
+	\EndWhile
+	\State \Return (pot, $d[1]$)
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Algoritem ima v znani obliki časovno zahtevnost enako $O(|V| + |E|)$, kjer sta $V$ in $E$ množici vozlišč ter povezav v gradu $G_a$, 
+saj potujemo skozi povezave grafa, prek vozlišč in na vsaki iteraciji opravimo konstantno mnogo korakov.
+Število vozlišč v našem grafu je $n$, število povezav pa je odvisno od elementov v vhodnem seznamu $S$.
+V najslabšem primeru lahko dobimo za vhod $S = [n, n, \dots, n]$.
+Časovna zahtevnost našega algoritma bo potem $O(n^2)$, saj je število vozlišč enako n, število povezav pa lahko izračunamo kot 
+$$(n - 1) + (n - 2) +  \dots + 1 + 0 = \frac{n * (n - 1)}{2} = \frac{n ^2 - n}{2} = O(n^2)$$.
+
+\end{enumerate}
+
 \end{odgovor}
 \end{naloga}
