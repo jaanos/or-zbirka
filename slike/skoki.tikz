@@ -1,0 +1,29 @@
+\begin{tikzpicture}[->,style=thick,scale=0.8]
+\tikzstyle{vertex}=[draw, fill=white]
+\small
+\node [vertex, circle] (1) at ( 0, 0 ) {$1$};
+\node [vertex, circle] (2) at (2, 0 ) {$2$};
+\node [vertex, circle]  (3) at (4, 0) {$3$};
+\node [vertex, circle] (4) at (6, 0) {$4$};
+\node [vertex, circle] (5) at (8, 0) {$5$};
+\node [vertex, circle] (6) at (10, 0) {$6$};
+\node [vertex, circle] (7) at (12, 0) {$7$};
+\node [vertex, circle] (8) at (14, 0) {$8$};
+
+\draw (1) -- (2);
+\draw (2) -- (3);
+\draw (2) to [bend right=45] node [midway, above, sloped] {} (4);
+\draw (2) to [bend left=45] node [midway, above, sloped] {} (5);
+\draw (3) -- (4);
+\draw (3) to [bend left=45] node [midway, above, sloped] {} (5);
+\draw (3) to [bend right=45] node [midway, above, sloped] {} (6);
+\draw (3) to [bend left=45] node [midway, above, sloped] {} (7);
+\draw (3) to [bend right=45] node [midway, above, sloped] {} (8);
+\draw (4) -- (5);
+\draw (5) -- (6);
+\draw (5) to [bend left=45] node [midway, above, sloped] {} (7);
+\draw (5) to [bend right=35] node [midway, above, sloped] {} (8);
+\draw (6) -- (7);
+\draw (6) to [bend left=25] node [midway, above, sloped] {} (8);
+\draw (7) -- (8);
+\end{tikzpicture}
