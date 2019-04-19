@@ -21,46 +21,47 @@ Kakšna je njegova časovna zahtevnost?
 \end{vprasanje}
 \begin{odgovor}
 
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 
-\item Definirajmo usmerjen graf $G_a$, ki ima za vozlišča števila $1, 2, \dots n$ in povezavo $i \rightarrow j$ natanko tedaj, ko $i < j \leq i + a_i$.
-Skratka vsakemu členu (indeksu) zaporedja dodelimo dosegljiva vozlišča, do katerih lahko iz njega  pridemo, in ta vozlišča povežemo.
+\item Definirajmo usmerjen graf $G_a$,
+ki ima za vozlišča števila $1, 2, \dots n$
+in povezavo $i \rightarrow j$ natanko tedaj, ko velja $i < j \leq i + a_i$.
+Skratka, vsakemu členu (indeksu) zaporedja dodelimo vozlišče
+in ga povežemo s tistimi, ki so iz njega dosegljiva v enem koraku.
 
 Problem smo prevedli na osnovno nalogo dinamičnega programiranja, saj moramo poiskati najkrajšo pot med začetno in končno točko v 
 usmerjenem, acikličnem grafu $G_a$.
 
 Naj bo $d_i$ najkrajša pot od vozlišča $i$ do vozlišča $j$ v grafu $G_a$. 
 Rekurzivno zvezo potem lahko zapišemo kot
-
 \begin{align*}
 d_n &= 0 \\
-d_i &= \min_{k = 1, 2, \dots, \min(a_i + 1, n - i)}(d_{i + k}) + 1
+d_i &= 1 + \min\set{d_k}{i+1 \le k \le \min(i+a_i, n)}
+\qquad (1 \le i < n)
 \end{align*}
-
 Da bomo imeli vse prejšnje probleme rešene pred trenutnim, bomo vrednosti $d_i$ računali padajoče po $i$ za $1 \leq i \leq n$, 
-saj začnemo v zadnjem vozlišču $n$, nakar pa se pomikamo nazaj.
-Po razrešitvi vseh problemov, optimum $d^*$ dobimo kot prvo vrednost $d_1$, torej $f(S) = d^* = d_1$, kar sledi iz definicije vrednosti $d_i$.
+saj začnemo v zadnjem vozlišču $n$ in se nato pomikamo nazaj.
+Po razrešitvi vseh problemov optimum $d^*$ dobimo kot vrednost $d_1$,
+torej $f(S) = d^* = d_1$, kar sledi iz definicije vrednosti $d_i$.
 
 \item Algoritem bo sledil rekurzivni zvezi.
 
 \begin{small}
 \begin{algorithmic}
-\Function{Skoki}{S}
-	\State $n \gets \length(S)$
-	\State po $\gets [\Null, \dots, \Null]$
-	\State d $\gets [\infty, \dots, \infty, 0]$
-	\For{i = n - 1 , n - 2, \dots, 1}
-		\State $k \gets \argmin_{k = i + 1, i + 2, \dots, i + \min(S[i], n - i )}(d[k])$
-		\State po$[i] \gets k$
-		\State $d[i] \gets d[k] + 1$
+\Function{Skoki}{$(a_i)_{i=1}^n$}
+	\State $d_n \gets 0$
+	\For{$i = n - 1 , n - 2, \dots, 1$}
+		\State $d_i, p_i \gets
+            \min\set{(1+d_k, k)}{i+1 \le k \le \min(i+a_i, n)}$
 	\EndFor
-	\State pot $\gets []$
-	\State an $\gets 1$
-	\While{$an \neq \Null$}
-		\State pot.$\append(an)$
-		\State $an \gets po[an]$
+	\State {\sl pot} $\gets$ prazen seznam
+	\State $i \gets 1$
+	\While{$i < n$}
+		\State {\sl pot}.$\append(i)$
+		\State $i \gets p_i$
 	\EndWhile
-	\State \Return (pot, $d[1]$)
+    \State {\sl pot}.$\append(n)$
+	\State \Return ($d_1$, {\sl pot})
 \EndFunction
 \end{algorithmic}
 \end{small}
@@ -68,9 +69,14 @@ Po razrešitvi vseh problemov, optimum $d^*$ dobimo kot prvo vrednost $d_1$, tor
 Algoritem ima v znani obliki časovno zahtevnost enako $O(|V| + |E|)$, kjer sta $V$ in $E$ množici vozlišč ter povezav v gradu $G_a$, 
 saj potujemo skozi povezave grafa, prek vozlišč in na vsaki iteraciji opravimo konstantno mnogo korakov.
 Število vozlišč v našem grafu je $n$, število povezav pa je odvisno od elementov v vhodnem seznamu $S$.
-V najslabšem primeru lahko dobimo za vhod $S = [n, n, \dots, n]$.
-Časovna zahtevnost našega algoritma bo potem $O(n^2)$, saj je število vozlišč enako n, število povezav pa lahko izračunamo kot 
-$$(n - 1) + (n - 2) +  \dots + 1 + 0 = \frac{n * (n - 1)}{2} = \frac{n ^2 - n}{2} = O(n^2)$$.
+V najslabšem primeru lahko za vhod velja $a_i \ge n-i$ za vsak $i$.
+Časovna zahtevnost našega algoritma bo potem $O(n^2)$,
+saj je število vozlišč enako $n$,
+število povezav pa lahko izračunamo kot
+$$
+(n - 1) + (n - 2) + \dots + 1 + 0 = \frac{n (n - 1)}{2}
+= \frac{n ^2 - n}{2} = O(n^2)
+$$.
 
 Poglejmo si delovanje algoritma na primeru $S = [1,3,5,1,3,10,6,13]$.
 Najprej sestavimo graf $G_a$.
@@ -110,17 +116,17 @@ Algoritem nam vrne optimalno pot $[1, 2, 3, 8]$, torej je $f(S) = 3$.
 
 \begin{tabela}
 \begin{tabular}{cc|cccccccccc}
-$i$ & $a_i$ & $d_1$ & $d_2$ & $d_3$ & $d_4$ & $d_5$ & $d_6$ & $d_7$ & $d_8$ & $po[i]$\\ \hline
-$8$ & $13$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $0$ & $\Null$\\
+$i$ & $a_i$ & $d_1$ & $d_2$ & $d_3$ & $d_4$ & $d_5$ & $d_6$ & $d_7$ & $d_8$ & $p_i$\\ \hline
+$8$ & $13$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $0$ & \\
 $7$ & $6$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $1$ & $0$ & $8$\\
 $6$ & $10$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $1$ & $1$ & $0$ & $8$\\
 $5$ & $3$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $1$ & $1$ & $1$ & $0$ & $8$\\
 $4$ & $1$ & $\infty$ & $\infty$ & $\infty$ & $2$ & $1$ & $1$ & $1$ & $0$ & $5$\\
 $3$ & $5$ & $\infty$ & $\infty$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $8$\\
 $2$ & $3$ & $\infty$ & $2$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $3$\\
-$1$ & $1$ & $3$ & $2$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $2$\\
+$1$ & $1$ & $3$ & $2$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $2$
 \end{tabular}
-\podnaslov[\res{}(b)]{Potek izvajanja algoritma {\sc Skoki}}
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
 \end{tabela}
 
 
