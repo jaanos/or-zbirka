@@ -66,8 +66,9 @@ torej $f(S) = d^* = d_1$, kar sledi iz definicije vrednosti $d_i$.
 \end{algorithmic}
 \end{small}
 
-Algoritem ima v znani obliki časovno zahtevnost enako $O(|V| + |E|)$, kjer sta $V$ in $E$ množici vozlišč ter povezav v grafu $G_a$, 
-saj potujemo skozi povezave grafa, prek vozlišč in na vsaki iteraciji opravimo konstantno mnogo korakov.
+Algoritem ima časovno zahtevnost enako $O(|V| + |E|)$,
+kjer sta $V$ in $E$ množici vozlišč in povezav v grafu $G_a$,
+saj za vsako vozlišče pregledamo njegove vhod\-ne povezave.
 Število vozlišč v našem grafu je $n$, število povezav pa je odvisno od elementov v vhodnem seznamu $S$.
 V najslabšem primeru lahko za vhod velja $a_i \ge n-i$ za vsak $i$.
 Časovna zahtevnost našega algoritma bo potem $O(n^2)$,
@@ -75,37 +76,34 @@ saj je število vozlišč enako $n$,
 število povezav pa lahko izračunamo kot
 $$
 (n - 1) + (n - 2) + \dots + 1 + 0 = \frac{n (n - 1)}{2}
-= \frac{n ^2 - n}{2} = O(n^2)
-$$.
+= \frac{n ^2 - n}{2} = O(n^2) .
+$$
 
 Poglejmo si delovanje algoritma na primeru $S = [1,3,5,1,3,10,6,13]$.
-Sestavljeni graf $G_a$ lahko vidimo na sliki~\fig
+Ustrezni graf $G_a$ je prikazan na sliki~\fig.
+V tabeli~\tab je prikazan potek izvajanja algoritma.
+Algoritem nam vrne optimalno pot $[1, 2, 3, 8]$, torej je $f(S) = 3$.
+\end{enumerate}
 
 \begin{slika}
 \pgfslika
-\podnaslov{Predstava skokov kot povezave v grafu}
+\podnaslov[\res{}(b)]{Predstavitev skokov z grafom}
 \end{slika}
 
-V tabeli~\tab si lahko ogledamo simulacijo.
-Algoritem nam vrne optimalno pot $[1, 2, 3, 8]$, torej je $f(S) = 3$.
-
 \begin{tabela}
-\begin{tabular}{cc|cccccccccc}
-$i$ & $a_i$ & $d_1$ & $d_2$ & $d_3$ & $d_4$ & $d_5$ & $d_6$ & $d_7$ & $d_8$ & $p_i$\\ \hline
-$8$ & $13$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $0$ & \\
-$7$ & $6$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $1$ & $0$ & $8$\\
-$6$ & $10$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $1$ & $1$ & $0$ & $8$\\
-$5$ & $3$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $1$ & $1$ & $1$ & $0$ & $8$\\
-$4$ & $1$ & $\infty$ & $\infty$ & $\infty$ & $2$ & $1$ & $1$ & $1$ & $0$ & $5$\\
-$3$ & $5$ & $\infty$ & $\infty$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $8$\\
-$2$ & $3$ & $\infty$ & $2$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $3$\\
-$1$ & $1$ & $3$ & $2$ & $1$ & $2$ & $1$ & $1$ & $1$ & $0$ & $2$
+\begin{tabular}{cc|cc}
+$i$ & $a_i$ & $d_i$ & $p_i$ \\ \hline
+$8$ & $13$ & $0$       \\
+$7$ & $6$  & $1$ & $8$ \\
+$6$ & $10$ & $1$ & $8$ \\
+$5$ & $3$  & $1$ & $8$ \\
+$4$ & $1$  & $2$ & $5$ \\
+$3$ & $5$  & $1$ & $8$ \\
+$2$ & $3$  & $2$ & $3$ \\
+$1$ & $1$  & $3$ & $2$
 \end{tabular}
 \podnaslov[\res{}(b)]{Potek izvajanja algoritma}
 \end{tabela}
-
-
-\end{enumerate}
 
 \end{odgovor}
 \end{naloga}
