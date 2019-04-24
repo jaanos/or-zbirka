@@ -7,8 +7,40 @@ Dan je sledeči nelinearni program.
 x_1, x_2, x_3 &\ge 0
 \end{align*}
 Reši ga s pomočjo dinamičnega programiranja.
-
 \end{vprasanje}
+
 \begin{odgovor}
+Nelinearni program bomo rešili s pomočjo sledečih rekurzivnih enačb.
+\begin{align*}
+p_2(x) &= 2x \\
+p_1(x) &= \max\set{2y^2 + p_2(x-2y)}{0 \le y \le {x \over 2}} \\
+p_3(x) &= \max\set{p_1(x-z) + 4z - z^2}{0 \le z \le x}
+\end{align*}
+Optimalno vrednost ciljne funkcije bomo dobili kot $p^* = p_3(4)$.
+
+Najprej izračunajmo $p_1(x)$, kjer je $0 \le x \le 4$.
+$$
+p_1(x) = \max\set{2y^2 + 2x - 4y}{0 \le y \le {x \over 2}}
+$$
+Zgornji izraz je kvadraten polinom v $y$ s pozitivnim vodilnim členom,
+ki tako maksimum doseže na eni izmed robnih točk,
+torej z vrednostjo $2x$ ali ${x^2 \over 2}$.
+Ker za vse $x \le 4$ velja $2x \ge {x^2 \over 2}$,
+imamo torej $p_1(x) = 2x$ za vse $x \in [0, 4]$.
+V optimalni rešitvi nelinearnega programa bo torej veljalo $x_1 = 0$.
+
+Sedaj izračunajmo še $p^* = p_3(4)$.
+$$
+p_3(4) = \max\set{2(4-z) + 4z - z^2}{0 \le z \le 4}
+$$
+Zgornji izraz je kvadraten polinom v $z$ z negativnim vodilnim členom.
+Da po\-išče\-mo maksimum, poglejmo, kje ima njegov odvod vrednost $0$.
+\begin{align*}
+0 &= 2 - 2z \\
+z &= 1
+\end{align*}
+Optimalna rešitev nelinearnega programa
+je torej $x_1 = 0$, $x_2 = 3$, $x_3 = 1$,
+vrednost ciljne funkcije pa je tedaj enaka $p^* = 9$.
 \end{odgovor}
 \end{naloga}

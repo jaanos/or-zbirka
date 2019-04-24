@@ -1,7 +1,7 @@
 \begin{naloga}{David Gajser}{Kolokvij OR 31.5.2012}
 \begin{vprasanje}
-Vinar Janez je pridelal $2000$ litrov rumenega muškata,
-$10000$ litrov laškega rizlinga in $5000$ litrov renskega rizlinga.
+Vinar Janez je pridelal $2\,000$ litrov rumenega muškata,
+$10\,000$ litrov laškega rizlinga in $5\,000$ litrov renskega rizlinga.
 Njegovi kupci so bara Kocka in Luka ter župnišče Sv.~Martin in občina Duplek.
 Vsak od njih je pripravljen kupiti največ določeno količino vina
 po fiksni ceni, ne glede na sorto:
@@ -10,7 +10,7 @@ po fiksni ceni, ne glede na sorto:
 \begin{tabular}{r|cccc}
 kupec & Kocka & Luka & župnišče & občina \\ \hline
 cena za liter & $1.0$ & $1.1$ & $1.5$ & $1.8$ \\
-največja količina v litrih & $15000$ & $5000$ & $500$ & $1000$ \\
+največja količina v litrih & $15\,000$ & $5\,000$ & $500$ & $1\,000$ \\
 \end{tabular}
 \end{center}
 
@@ -45,9 +45,12 @@ $$
 Zapišimo celoštevilski linearni program.
 \begin{gather*}
 \begin{alignedat}{4}
-\max &\ 2000 x_{RM, K} &&+ 2200 x_{RM, L} &&+ 750 x_{RM, Z} &&+ 1800 x_{RM, O} \\
-{}+ &\ 10000 x_{LR, K} &&+ 5500 x_{LR, L} &&+ 750 x_{LR, Z} &&+ 1800 x_{LR, O} \\
-{}+ &\ 5000 x_{RR, K}  &&+ 5500 x_{RR, L} &&+ 750 x_{RR, Z} &&+ 1800 x_{RR, O}
+\max &\  2\,000 x_{RM, K} &&+ 2\,200 x_{RM, L}
+    &&+     750 x_{RM, Z} &&+ 1\,800 x_{RM, O} \\
+{}+  &\ 10\,000 x_{LR, K} &&+ 5\,500 x_{LR, L}
+    &&+     750 x_{LR, Z} &&+ 1\,800 x_{LR, O} \\
+{}+  &\  5\,000 x_{RR, K} &&+ 5\,500 x_{RR, L} &&+
+            750 x_{RR, Z} &&+ 1\,800 x_{RR, O}
 \quad \text{p.p.}
 \end{alignedat} \\
 \begin{aligned}

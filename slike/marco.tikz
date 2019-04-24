@@ -1,18 +1,18 @@
 \begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
 
-\node[vertex] (A) at (-7, 0) {$A$};
-\node[vertex] (B) at (-5, 2) {$B$};
-\node[vertex] (C) at (-5,-2) {$C$};
-\node[vertex] (D) at (-1, 3) {$D$};
-\node[vertex] (E) at (-1, 1) {$E$};
-\node[vertex] (F) at (-1,-1) {$F$};
-\node[vertex] (G) at (-1,-3) {$G$};
-\node[vertex] (H) at ( 1, 3) {$H$};
-\node[vertex] (I) at ( 1,-1) {$I$};
-\node[vertex] (J) at ( 5, 3) {$J$};
-\node[vertex] (K) at ( 7, 3) {$K$};
-\node[vertex] (L) at ( 7,-3) {$L$};
+\node[vertex] (A) at (-7, 0) {$a$};
+\node[vertex] (B) at (-5, 2) {$b$};
+\node[vertex] (C) at (-5,-2) {$c$};
+\node[vertex] (D) at (-1, 3) {$d$};
+\node[vertex] (E) at (-1, 1) {$e$};
+\node[vertex] (F) at (-1,-1) {$f$};
+\node[vertex] (G) at (-1,-3) {$g$};
+\node[vertex] (H) at ( 1, 3) {$h$};
+\node[vertex] (I) at ( 1,-1) {$i$};
+\node[vertex] (J) at ( 5, 3) {$j$};
+\node[vertex] (K) at ( 7, 3) {$k$};
+\node[vertex] (L) at ( 7,-3) {$\ell$};
 
 \draw[->] (A) -- (B) node [midway, above, sloped] {$-1$};
 \draw[->] (A) -- (C) node [midway, below, sloped] {$1$};

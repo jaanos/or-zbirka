@@ -2,12 +2,12 @@
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
 
 \node[vertex] (s) at (-3, 0) {$s$};
-\node[vertex] (A) at (-2, 2) {$A$};
-\node[vertex] (B) at ( 2, 2) {$B$};
-\node[vertex] (C) at (-1, 0) {$C$};
-\node[vertex] (D) at ( 1, 0) {$D$};
-\node[vertex] (E) at (-2,-2) {$E$};
-\node[vertex] (F) at ( 2,-2) {$F$};
+\node[vertex] (A) at (-2, 2) {$a$};
+\node[vertex] (B) at ( 2, 2) {$b$};
+\node[vertex] (C) at (-1, 0) {$c$};
+\node[vertex] (D) at ( 1, 0) {$d$};
+\node[vertex] (E) at (-2,-2) {$e$};
+\node[vertex] (F) at ( 2,-2) {$f$};
 \node[vertex] (t) at ( 3, 0) {$t$};
 
 \draw (s) -- (A) node [above, midway, sloped] {$2$};

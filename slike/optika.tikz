@@ -1,12 +1,12 @@
 \begin{tikzpicture}[style=thick,scale=0.8]
 
-\node[draw,star,star points=7,star point ratio=0.8] (A) at (-5, 0)  [label=left:$10$] {$A$};
-\node[draw,star,star points=7,star point ratio=0.8] (B) at (-1, 2) [label=above:$12$] {$B$};
-\node[draw,regular polygon,regular polygon sides=7] (C) at ( 0, 0) [label=right:$15$] {$C$};
-\node[draw,star,star points=7,star point ratio=0.8] (D) at (-1,-2) [label=below:$7$]  {$D$};
-\node[draw,diamond] (E) at ( 1, 2) [label=above:$13$] {$E$};
-\node[draw,star,star points=7,star point ratio=0.8] (F) at ( 1,-2) [label=below:$5$]  {$F$};
-\node[draw,circle] (G) at ( 5, 0) [label=right:$3$]  {$G$};
+\node[draw,star,star points=7,star point ratio=0.8] (A) at (-5, 0)  [label=left:$10$] {$a$};
+\node[draw,star,star points=7,star point ratio=0.8] (B) at (-1, 2) [label=above:$12$] {$b$};
+\node[draw,regular polygon,regular polygon sides=7] (C) at ( 0, 0) [label=right:$15$] {$c$};
+\node[draw,star,star points=7,star point ratio=0.8] (D) at (-1,-2) [label=below:$7$]  {$d$};
+\node[draw,diamond] (E) at ( 1, 2) [label=above:$13$] {$e$};
+\node[draw,star,star points=7,star point ratio=0.8] (F) at ( 1,-2) [label=below:$5$]  {$f$};
+\node[draw,circle] (G) at ( 5, 0) [label=right:$3$]  {$g$};
 
 
 \draw (A) -- (B) node [midway, above, sloped] {$4$};

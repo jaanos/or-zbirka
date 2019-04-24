@@ -49,8 +49,74 @@ f_3 = 0.6 + 0.07 x_3 .
 $$
 Kako naj sedaj razdelimo sredstva?
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bodo $m(x)$, $f_2(x)$ in $f_3(x)$ začetni tržni delež oziroma deleža,
+ohranjena po drugi in tretji fazi,
+ob vložku $x$ milijonov evrov v posamezno fazo.
+Uporabili bomo sledeče rekurzivne enačbe.
+\begin{align*}
+p_3(x) &= f_3(x) \\
+p_2(x) &= \max\set{f_2(x-y) p_3(y)}{0 \le y \le x} \\
+p_1(x) &= \max\set{m(x-y) p_2(y)}{0 \le y \le x}
+\end{align*}
+Optimalni tržni delež (v milijonih evrov) pri vložku $4 \ME$
+bomo dobili kot $p^* = p_1(4)$.
+
+\begin{enumerate}[(a)]
+\item Najprej izračunajmo $p_2(x)$ za $x \in \{0, 1, 2, 3\}$.
+Ker je $m(0) = 0$, nas namreč $p_2(4)$ ne zanima.
+\begin{alignat*}{2}
+p_2(0) &= 0.2 \cdot 0.3 &&= 0.06 \\
+p_2(1) &= \max\{\underline{0.4 \cdot 0.3}, 0.2 \cdot 0.5\}  &&= 0.12 \\
+p_2(2) &= \max\{0.5 \cdot 0.3, \underline{0.4 \cdot 0.5}, 0.2 \cdot 0.6\}
+                                                            &&= 0.2 \\
+p_2(3) &= \max\{0.6 \cdot 0.3, \underline{0.5 \cdot 0.5},
+                0.4 \cdot 0.6, 0.2 \cdot 0.7\}              &&= 0.25
+\end{alignat*}
+Izračunajmo še $p^* = p_1(4)$.
+$$
+p_1(4) = \max\{50 \cdot 0.06, 40 \cdot 0.12, \underline{30 \cdot 0.2},
+               20 \cdot 0.25\} = 6
+$$
+Optimalni končni tržni delež $6 \%$ torej dosežemo tako,
+da v prvo vazo vložimo $2 \ME$, v vsako od naslednjih dveh faz pa po $1 \ME$.
+
+\item Najprej izračunajmo $p_2(x)$ za $0 \le x \le 4$.
+\begin{align*}
+p_2(x) &= \max\set{(0.4 + 0.1x - 0.1y) (0.6 + 0.07 y)}{0 \le y \le x} \\
+&= \max\set{-0.007y^2 + (0.007x - 0.032) y + 0.06 x + 0.24}{0 \le y \le x}
+\end{align*}
+Odvajajmo zgornji izraz po $y$, da poiščemo maksimum na intervalu $[0, x]$.
+\begin{align*}
+0 &= -0.014y + 0.007x - 0.032 \\
+y &= {1 \over 2} x - {16 \over 7}
+\end{align*}
+Za $x \in [0, 32/7)$ je ta vrednost manjša od $0$
+-- ker imamo kvadraten polinom z negativnim vodilnim členom,
+je maksimum torej dosežen pri $y = 0$.
+Ker je $4 < 32/7$, torej velja
+$$
+p_2(x) = 0.06 x + 0.24 \quad (0 \le x \le 4)
+$$
+-- tj., v tretjo fazo se nam ne izplača vlagati.
+Sedaj izračunajmo še $p^* = p_1(4)$.
+\begin{align*}
+p_1(4) &= \max\set{(4-z)(6+z) (0.06 z + 0.24)}{0 \le z \le 4} \\
+&= \max\set{-0.06z^3 - 0.36z^2 + 0.96z + 5.76}{0 \le z \le 4}
+\end{align*}
+Poglejmo, kje ima zgornji izraz maksimum na intervalu $[0, 4]$.
+\begin{align*}
+0 &= -0.18z^2 - 0.72z + 0.96 \\
+z &= {-12 \pm 4\sqrt{21} \over 6}
+\end{align*}
+Ker imamo kubičen polinom z negativnim vodilnim členom,
+je maksimum dosežen pri večji od zgornjih rešitev,
+torej $z \approx 1.055$.
+Optimalni tržni delež je tako $p^* \approx 6.302$,
+dobimo pa ga tako, da $1.055 \ME$ vložimo v drugo fazo,
+preostanek pa v prvo fazo.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

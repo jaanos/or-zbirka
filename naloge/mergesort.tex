@@ -27,10 +27,10 @@ nazadnje pa zlije dobljena urejena seznama.
     \State $\ell' \gets []$
     \While{$i \le m \land j \le n-m$}
         \If{$\ell_1[i] \le \ell_2[j]$}
-            \State dodaj $\ell_1[i]$ na konec $\ell'$
+            \State $\ell'.\append(\ell_1[i])$
             \State $i \gets i+1$
         \Else
-            \State dodaj $\ell_2[j]$ na konec $\ell'$
+            \State $\ell'.\append(\ell_2[j])$
             \State $j \gets j+1$
         \EndIf
     \EndWhile

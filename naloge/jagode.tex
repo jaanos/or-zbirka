@@ -23,8 +23,72 @@ p_{ij} & 1 & 2 & 3 \\
 $$
 \item Napiši algoritem, ki reši opisani problem v splošnem.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $z_{ij}$ največji zaslužek, ki ga lahko imamo,
+če $i$ zabojev razporedimo v prvih $j$ trgovin.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+z_{i1} &= p_{i1} && (0 \le i \le m) \\
+z_{ij} &= \max\set{z_{h,j-1} + p_{i-h,j}}{0 \le h \le i}
+&& (0 \le i \le m, \ 2 \le j \le n)
+\end{align*}
+Vrednosti $z_{ij}$ računamo v leksikografskem vrstnem redu glede na $(j, i)$.
+Največji skupni zaslužek dobimo kot $z^* = z_{mn}$.
+\begin{enumerate}[(a)]
+\item Izračunajmo vrednosti $z_{ij}$ ($0 \le i \le m$, $2 \le j \le n$).
+\begin{alignat*}{2}
+z_{02} &= 0+0 &&= 0 \\
+z_{12} &= \max\{\underline{0+6}, 5+0\} &&= 6 \\
+z_{22} &= \max\{\underline{0+11}, 5+6, 9+0\} &&= 11 \\
+z_{32} &= \max\{0+15, \underline{5+11}, 9+6, 14+0\} &&= 16 \\
+z_{42} &= \max\{0+19, \underline{5+15}, 9+11, 14+6, 17+0\} &&= 20 \\
+z_{52} &= \max\{0+22, 5+19, 9+15, \underline{14+11}, 17+6, 21+0\} &&= 25 \\
+z_{03} &= 0+0 &&= 0 \\
+z_{13} &= \max\{0+4, \underline{6+0}\} &&= 6 \\
+z_{23} &= \max\{0+9, 6+4, \underline{11+0}\} &&= 11 \\
+z_{33} &= \max\{0+13, 6+9, 11+4, \underline{16+0}\} &&= 16 \\
+z_{43} &= \max\{0+18, 6+13, \underline{11+9}, 16+4, 20+0\} &&= 20 \\
+z_{53} &= \max\{0+20, 6+18, 11+13, \underline{16+9}, 20+4, 25+0\} &&= 25
+\end{alignat*}
+Največji zaslužek je torej $z^* = z_{53} = 25$.
+Poiščimo še optimalno razporeditev zabojev.
+\begin{align*}
+z_{53} &= z_{32} + p_{23} && \text{$2$ zaboja v tretjo trgovino} \\
+z_{32} &= z_{11} + p_{22} && \text{$2$ zaboja v drugo trgovino} \\
+z_{11} &= p_{11}          && \text{$1$ zaboj v prvo trgovino}
+\end{align*}
+Druga optimalna razporeditev je,
+da gredo $3$ zaboji v prvo trgovino, $2$ v drugo trgovino in noben v tretjo.
+
+\item Da bomo lahko rekonstruirali rešitev,
+bomo hranili še vrednosti $k_{ij}$ ($0 \le i \le m$, $2 \le j \le n$),
+tako da bo veljalo $z_{ij} = z_{k_{ij},j-1} + p_{i-k_{ij},j}$.
+\begin{small}
+\begin{algorithmic}
+\Function{Jagode}{$(p_{ij})_{i,j=0,1}^{m,n}$}
+    \For{$i = 0, \dots, m$}
+        \State $z_{i1} \gets p_{i1}$
+        \State $k_{i1} \gets 0$
+    \EndFor
+    \For{$j = 2, \dots, n$}
+        \For{$i = 0, \dots, m$}
+            \State $z_{ij}, k_{ij} \gets
+                \max\set{(z_{h,j-1} + p_{i-h,j}, h)}{0 \le h \le i}$
+        \EndFor
+    \EndFor
+    \State {\sl resitev} $\gets$ tabela z $n$ polji
+    \State $j \gets m$
+    \For{$i = n, \dots, 1$}
+        \State {\sl resitev}$[i] \gets j - k_{ij}$
+        \State $j \gets k_{ij}$
+    \EndFor
+    \State \Return ($z_{mn}$, {\sl resitev})
+\EndFunction
+\end{algorithmic}
+\end{small}
+Algoritem teče v času $O(m^2 n)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

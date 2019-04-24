@@ -19,7 +19,7 @@ V prospektu so zasledili naslednjo psevdokodo algoritma:
         \State $Q.\append(v)$
         \While{$\lnot Q.\isEmpty()$}
             \State $w \gets Q.\pop()$
-            \For{$u \in \Adj(w)$}
+            \For{$u \in \Adj(G, w)$}
                 \If{$u$ je siv}
                     \State $Q.\append(u)$
                     \State obarvaj $u$ rumeno

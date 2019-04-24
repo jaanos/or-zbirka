@@ -8,16 +8,31 @@
 \newcommand{\pp}{\ensuremath{\phantom{|}+\phantom{|}}}
 \newcommand{\EVPI}{\ensuremath{\operatorname{EVPI}}}
 \newcommand{\EVE}{\ensuremath{\operatorname{EVE}}}
-\newcommand{\Adj}{\ensuremath{\text{\sc Adj}}}
 \newcommand{\length}{\ensuremath{\operatorname{length}}}
 \newcommand{\reverse}{\ensuremath{\operatorname{reverse}}}
 \newcommand{\reverseStart}{\ensuremath{\operatorname{reverseStart}}}
 \newcommand{\append}{\ensuremath{\operatorname{append}}}
 \newcommand{\pop}{\ensuremath{\operatorname{pop}}}
 \newcommand{\isEmpty}{\ensuremath{\operatorname{isEmpty}}}
+\newcommand{\visited}{\ensuremath{\text{\sl visited}}}
+\newcommand{\postlabel}{\ensuremath{\text{\sl postlabel}}}
+\newcommand{\pred}{\ensuremath{\text{\sl pred}}}
 \newcommand{\True}{\ensuremath{\text{\sc True}}}
 \newcommand{\False}{\ensuremath{\text{\sc False}}}
+\newcommand{\Null}{\ensuremath{\text{\sc Null}}}
+\newcommand{\NOp}{\ensuremath{\text{\sc NoOp}}}
+\newcommand{\visit}{\ensuremath{\text{\sc Visit}}}
+\newcommand{\previsit}{\ensuremath{\text{\sc Previsit}}}
+\newcommand{\postvisit}{\ensuremath{\text{\sc Postvisit}}}
+\newcommand{\Init}{\ensuremath{\text{\sc Init}}}
+\newcommand{\AddVertex}{\ensuremath{\text{\sc AddVertex}}}
+\newcommand{\AddEdge}{\ensuremath{\text{\sc AddEdge}}}
+\newcommand{\DelVertex}{\ensuremath{\text{\sc DelVertex}}}
+\newcommand{\DelEdge}{\ensuremath{\text{\sc DelEdge}}}
+\newcommand{\Adj}{\ensuremath{\text{\sc Adj}}}
 \renewcommand{\algorithmicrequire}{{\bf Vhod:}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\razdelek}[1]{\novastran\subsection{#1}\renewcommand{\novastran}{\clearpage}}
 \newcommand{\opis}[2][2]{\shortintertext{\small\needspace{#1\baselineskip}#2:}}
@@ -42,9 +57,10 @@
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
 \newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\addcontentsline{toc}{subsubsection}{Naloga \thenaloga}\noindent {\bf Naloga}}{\bigskip}
-\newenvironment{slika}[1][t]{\begin{figure}[#1]\centering}{\label{fig:\curlabel}\end{figure}}
-\newenvironment{tabela}[1][t]{\begin{table}[#1]\centering}{\label{tab:\curlabel}\end{table}}
-\newcommand{\pgfslika}[1][]{\grenewcommand{\curlabel}{\taoznaka{#1}}\leavevmode\beginpgfgraphicnamed{pgf/\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
+\newenvironment{slika}[1][t]{\setlabel{\thislabel}\begin{figure}[#1]\centering}{\label{fig:\curlabel}\end{figure}}
+\newenvironment{tabela}[1][t]{\setlabel{\thislabel}\begin{table}[#1]\centering}{\label{tab:\curlabel}\end{table}}
+\newcommand{\setlabel}[1]{\grenewcommand{\curlabel}{\taoznaka{#1}}}
+\newcommand{\pgfslika}[1][]{\setlabel{#1}\leavevmode\beginpgfgraphicnamed{pgf/\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
 \newcommand{\oznaka}[1]{\if\relax\detokenize{#1}\relax\grenewcommand{\thislabel}{\thenaloga}\else\grenewcommand{\thislabel}{#1}\fi\grenewcommand{\curlabel}{\thislabel}}
 \newcommand{\taoznaka}[1]{\if\relax\detokenize{#1}\relax\thislabel\else#1\fi}
 \newcommand{\izpisiNalogo}[1]{\oznaka{#1}\input{naloge/#1.tex}}

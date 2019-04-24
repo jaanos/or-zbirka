@@ -6,11 +6,11 @@ ki na vhod sprejme enostaven neusmerjen graf $G = (V, E)$
 ter različni vozlišči $u, v \in V$:
 \begin{small}
 \begin{algorithmic}
-\Function{$H$}{$G, u, v$}
-    \If{$|V| = 2 \land u \in \Adj(v)$}
+\Function{$H$}{$G = (V, E), u, v$}
+    \If{$|V| = 2 \land u \in \Adj(G, v)$}
         \State \Return \True
     \EndIf
-    \For{$w \in \Adj(u) \setminus \{v\}$}
+    \For{$w \in \Adj(G, u) \setminus \{v\}$}
         \If{$H(G - u , w, v)$}
             \State \Return \True
         \EndIf

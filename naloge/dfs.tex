@@ -6,6 +6,80 @@ V primerih, ko imaš več ena\-ko\-vred\-nih izbir,
 upoštevaj abecedni vrstni red.
 Za vsako povezavo določi, ali se nahaja v drevesu iskanja v globino.
 \end{vprasanje}
+
 \begin{odgovor}
+Sledili bomo naslednjemu algoritmu.
+\begin{small}
+\begin{algorithmic}
+\Function{dfs}{$G = (V, E), \previsit, \postvisit$}
+	\For{$v \in V$}
+		\State $\visited[v] \gets \False$
+	\EndFor
+    \Function{Razišči}{$v, w$}
+        \If{$\visited[v]$}
+            \State \Return
+        \EndIf
+        \State $\visited[v] \gets \True$
+        \State $\previsit(v, w)$
+		\For{$u \in \Adj(G, v)$}:
+            \State {\sc Razišči}$(u, v)$
+		\EndFor
+        \State $\postvisit(v, w)$
+    \EndFunction
+	\For{$v \in V$}
+		\State {\sc Razišči}$(v, \Null)$
+	\EndFor
+\EndFunction
+\end{algorithmic}
+\end{small}
+%
+Potek zgornjega algoritma na grafu s slike~\fig[bfs]
+(pri čemer za $\previsit$ in $\postvisit$ vzamemo $\NOp$,
+torej ne naredimo ničesar),
+pri čemer sledimo abecednemu vrstnemu redu vozlišč,
+je prikazan v tabeli~\tab.
+Gozd iskanja v širino je prikazan na sliki~\fig,
+iz katere je razvidno, da so drevesne povezave
+$$
+(a, b), (b, c), (c, f), (f, e), (f, i), (d, g), (g, h).
+$$
+\begin{tabela}
+$$
+\begin{array}{c|c|c}
+v & u & \text{množica označenih vozlišč} \\ \hline
+a &   & \{a\} \\
+a &b & \{a, b\} \\
+b & a &  \{a, b\} \\
+b & c &  \{a, b, c\} \\
+c & b & \{a, b, c\} \\
+c & f & \{a, b, c, f\} \\
+f & c & \{a, b, c, f\} \\
+f & e & \{a, b, c, e, f\} \\
+e & a & \{a, b, c, e, f\} \\
+e & b & \{a, b, c, e, f\} \\
+e & f & \{a, b, c, e, f\} \\
+f & i & \{a, b, c, e, f, i\} \\
+i & f & \{a, b, c, e, f, i\} \\
+b & e & \{a, b, c, e, f, i\} \\
+a & e & \{a, b, c, e, f, i\} \\
+b & & \{a, b, c, e, f, i\} \\
+c & & \{a, b, c, e, f, i\} \\
+d & & \{a, b, c, d, e, f, i\} \\
+d & g &\{a, b, c, d, e, f, g, i\} \\
+g & d & \{a, b, c, d, e, f, g, i\} \\
+g & h & \{a, b, c, d, e, f, g, h, i\} \\
+h & d & \{a, b, c, d, e, f, g, h, i\} \\
+h & g & \{a, b, c, d, e, f, g, h, i\} \\
+d & h & \{a, b, c, d, e, f, g, h, i\}
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Gozd iskanja v globino}
+\end{slika}
+
 \end{odgovor}
 \end{naloga}

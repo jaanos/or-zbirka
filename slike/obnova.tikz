@@ -1,18 +1,18 @@
 \begin{tikzpicture}[style=thick,scale=0.6]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
 
-\node[vertex] (A) at (-6, 2) {$A$};
-\node[vertex] (B) at (-6,-2) {$B$};
-\node[vertex] (C) at (-2, 6) {$C$};
-\node[vertex] (D) at (-2, 2) {$D$};
-\node[vertex] (E) at (-2,-2) {$E$};
-\node[vertex] (F) at (-2,-6) {$F$};
-\node[vertex] (G) at ( 2, 6) {$G$};
-\node[vertex] (H) at ( 2, 2) {$H$};
-\node[vertex] (I) at ( 2,-2) {$I$};
-\node[vertex] (J) at ( 2,-6) {$J$};
-\node[vertex] (K) at ( 6, 2) {$K$};
-\node[vertex] (L) at ( 6,-2) {$L$};
+\node[vertex] (A) at (-6, 2) {$a$};
+\node[vertex] (B) at (-6,-2) {$b$};
+\node[vertex] (C) at (-2, 6) {$c$};
+\node[vertex] (D) at (-2, 2) {$d$};
+\node[vertex] (E) at (-2,-2) {$e$};
+\node[vertex] (F) at (-2,-6) {$f$};
+\node[vertex] (G) at ( 2, 6) {$g$};
+\node[vertex] (H) at ( 2, 2) {$h$};
+\node[vertex] (I) at ( 2,-2) {$i$};
+\node[vertex] (J) at ( 2,-6) {$j$};
+\node[vertex] (K) at ( 6, 2) {$k$};
+\node[vertex] (L) at ( 6,-2) {$\ell$};
 
 \draw (A) -- (B) node [midway, left] {$7$};
 \draw (A) -- (C) node [midway, above, sloped] {$2$};

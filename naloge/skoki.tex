@@ -20,5 +20,90 @@ Kakšna je njegova časovna zahtevnost?
 \end{enumerate}
 \end{vprasanje}
 \begin{odgovor}
+
+\begin{enumerate}[(a)]
+
+\item Definirajmo usmerjen graf $G_a$,
+ki ima za vozlišča števila $1, 2, \dots n$
+in povezavo $i \rightarrow j$ natanko tedaj, ko velja $i < j \leq i + a_i$.
+Skratka, vsakemu členu (indeksu) zaporedja dodelimo vozlišče
+in ga povežemo s tistimi, ki so iz njega dosegljiva v enem koraku.
+
+Problem smo prevedli na osnovno nalogo dinamičnega programiranja, saj moramo poiskati najkrajšo pot med začetno in končno točko v 
+usmerjenem, acikličnem grafu $G_a$.
+
+Naj bo $d_i$ najkrajša pot od vozlišča $i$ do vozlišča $j$ v grafu $G_a$. 
+Rekurzivno zvezo potem lahko zapišemo kot
+\begin{align*}
+d_n &= 0 \\
+d_i &= 1 + \min\set{d_k}{i+1 \le k \le \min(i+a_i, n)}
+\qquad (1 \le i < n)
+\end{align*}
+Da bomo imeli vse prejšnje probleme rešene pred trenutnim, bomo vrednosti $d_i$ računali padajoče po $i$ za $1 \leq i \leq n$, 
+saj začnemo v zadnjem vozlišču $n$ in se nato pomikamo nazaj.
+Po razrešitvi vseh problemov optimum $d^*$ dobimo kot vrednost $d_1$,
+torej $f(S) = d^* = d_1$, kar sledi iz definicije vrednosti $d_i$.
+
+\item Algoritem bo sledil rekurzivni zvezi.
+
+\begin{small}
+\begin{algorithmic}
+\Function{Skoki}{$(a_i)_{i=1}^n$}
+	\State $d_n \gets 0$
+	\For{$i = n - 1 , n - 2, \dots, 1$}
+		\State $d_i, p_i \gets
+            \min\set{(1+d_k, k)}{i+1 \le k \le \min(i+a_i, n)}$
+	\EndFor
+	\State {\sl pot} $\gets$ prazen seznam
+	\State $i \gets 1$
+	\While{$i < n$}
+		\State {\sl pot}.$\append(i)$
+		\State $i \gets p_i$
+	\EndWhile
+    \State {\sl pot}.$\append(n)$
+	\State \Return ($d_1$, {\sl pot})
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Algoritem ima časovno zahtevnost enako $O(|V| + |E|)$,
+kjer sta $V$ in $E$ množici vozlišč in povezav v grafu $G_a$,
+saj za vsako vozlišče pregledamo njegove vhod\-ne povezave.
+Število vozlišč v našem grafu je $n$, število povezav pa je odvisno od elementov v vhodnem seznamu $S$.
+V najslabšem primeru lahko za vhod velja $a_i \ge n-i$ za vsak $i$.
+Časovna zahtevnost našega algoritma bo potem $O(n^2)$,
+saj je število vozlišč enako $n$,
+število povezav pa lahko izračunamo kot
+$$
+(n - 1) + (n - 2) + \dots + 1 + 0 = \frac{n (n - 1)}{2}
+= \frac{n ^2 - n}{2} = O(n^2) .
+$$
+
+Poglejmo si delovanje algoritma na primeru $S = [1,3,5,1,3,10,6,13]$.
+Ustrezni graf $G_a$ je prikazan na sliki~\fig.
+V tabeli~\tab je prikazan potek izvajanja algoritma.
+Algoritem nam vrne optimalno pot $[1, 2, 3, 8]$, torej je $f(S) = 3$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\res{}(b)]{Predstavitev skokov z grafom}
+\end{slika}
+
+\begin{tabela}
+\begin{tabular}{cc|cc}
+$i$ & $a_i$ & $d_i$ & $p_i$ \\ \hline
+$8$ & $13$ & $0$       \\
+$7$ & $6$  & $1$ & $8$ \\
+$6$ & $10$ & $1$ & $8$ \\
+$5$ & $3$  & $1$ & $8$ \\
+$4$ & $1$  & $2$ & $5$ \\
+$3$ & $5$  & $1$ & $8$ \\
+$2$ & $3$  & $2$ & $3$ \\
+$1$ & $1$  & $3$ & $2$
+\end{tabular}
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+
 \end{odgovor}
 \end{naloga}

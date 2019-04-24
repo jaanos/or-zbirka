@@ -1,3 +1,4 @@
+
 \begin{naloga}{Janoš Vidali}{Vaje OR 30.11.2016}
 \begin{vprasanje}
 Na grafu s slike~\fig izvedi iskanje v širino.
@@ -10,6 +11,88 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 \caption{Graf za nalogi~\nal in~\nal[dfs].}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Sledili bomo naslednjemu algoritmu.
+\begin{small}
+\begin{algorithmic}
+\Function{bfs}{$G = (V, E), \visit$}
+	\For{$v \in V$}
+		\State $\visited[v] \gets \False$
+        \State $\pred[v] \gets \Null$
+	\EndFor
+	\For{$s \in V$}
+		\If{$\lnot \visited[s]$}
+			\State $\visited[s] \gets \True$
+			\State $Q \gets [s]$
+			\While{$\lnot Q.\isEmpty()$}
+				\State $u \gets Q.\pop()$
+                \State $\visit(u, \pred[u])$
+				\For{$v \in \Adj(G, u)$}
+					\If{$\lnot \visited[v]$}
+						\State $\visited[v] \gets \True$
+						\State $\pred[v] \gets u$
+						\State $Q.\append(v)$
+					\EndIf
+				\EndFor
+			\EndWhile
+		\EndIf
+	\EndFor
+\EndFunction
+\end{algorithmic}
+\end{small}
+%
+Potek zgornjega algoritma na grafu s slike~\fig
+(pri čemer za $\visit$ vzamemo $\NOp$, torej ne naredimo ničesar),
+pri čemer sledimo abecednemu vrstnemu redu vozlišč,
+je prikazan v tabeli~\tab.
+Gozd iskanja v širino je prikazan na sliki~\fig[bfs-resitev],
+iz katere je razvidno, da so drevesne povezave
+$$
+(a, b), (b, c), (a, e), (e, f), (f, i), (d, g), (d, h).
+$$
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|c}
+s & u & v & Q & \text{množica označenih vozlišč} \\ \hline
+a &   &   & [a]  & \{a\} \\
+a & a & b & [b] & \{a, b\} \\
+a & a & e & [b, e] & \{a, b, e\} \\
+a & b & c & [e, c] & \{a, b, c, e\} \\
+a & b  & e &  & \{a, b, c, e\} \\
+a & e & a & [c] & \{a, b, c, e\} \\
+a & e & b &  & \{a, b, c, e\} \\
+a & e & f & [c, f] & \{a, b, c, e, f\} \\
+a & c  & b & [f] &  \{a, b, c, e, f\} \\
+a & c & f &  &  \{a, b, c, e, f\} \\
+a & f & c &  &  \{a, b, c, e, f\} \\
+a & f  & e &  &  \{a, b, c, e, f\} \\
+a & f & i & [i] &  \{a, b, c, e, f, i\} \\
+a & i  & f & [\ ] &  \{a, b, c, e, f, i\} \\
+b & & & &  \{a, b, c, e, f, i\} \\
+c & & & &  \{a, b, c, e, f, i\} \\
+d & & & [d] &  \{a, b, c, d, e, f, i\} \\
+d &d &g &[g] &  \{a, b, c, d, e, f, g, i\} \\
+d &d &h &[g, h] &  \{a, b, c, d, e, f, g, h, i\} \\
+d &g &d &[h] &  \{a, b, c, d, e, f, g, h, i\} \\
+d &g &h & &  \{a, b, c, d, e, f, g, h, i\} \\
+d &h &d & &  \{a, b, c, d, e, f, g, h, i\} \\
+d &h &g &  [\ ]&  \{a, b, c, d, e, f, g, h, i\} \\
+e & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+f & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+g & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+h & & & &  \{a, b, c, d, e, f, g, h, i\} \\
+i & & & &  \{a, b, c, d, e, f, g, h, i\}
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+\begin{slika}
+\pgfslika[bfs-resitev]
+\podnaslov{Gozd iskanja v širino}
+\end{slika}
+
 \end{odgovor}
 \end{naloga}

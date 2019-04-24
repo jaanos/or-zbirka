@@ -8,8 +8,22 @@ zato tat ne sme oropati dveh sosednjih hiš.
 Ker je tat poslušal predmet Operacijske raziskave,
 pozna dinamično programiranje.
 Pokaži, kako naj tat določi, katere hiše naj oropa.
-
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $p_i$ največja količina denarja,
+ki jo lahko tat pridobi, če oropa $i$-to hišo.
+Določimo začetna pogoja in rekurzivne enačbe.
+\begin{align*}
+p_0 &= 0, \qquad p_1 = c_1 \\
+p_i &= \max\{p_{i-1}, p_{i-2} + c_i\} \qquad (2 \le i \le n)
+\end{align*}
+Vrednosti $p_i$ ($0 \le i \le n$) računamo naraščajoče po indeksu $n$.
+Največjo količino denarja dobimo s $p^* = p_n$.
+Da poiščemo, katere hiše se tatu izplača oropati,
+pregledamo vrednosti $p_i$ v padajočem vrstnem redu ($n \ge i \ge 1$):
+če velja $p_i > p_{i-1}$,
+naj $i$-to hišo oropa in pregled nadaljujemo pri $p_{i-2}$,
+sicer pa naj $i$-te hiše ne oropa in pregled nadaljujemo pri $p_{i-1}$.
 \end{odgovor}
 \end{naloga}
