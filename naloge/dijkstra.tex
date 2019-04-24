@@ -9,6 +9,42 @@ v grafu s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
+
 \begin{odgovor}
+Sledili bomo naslednjemu algoritmu.
+
+Potek zgornjega algoritma na grafu s slike~\fig,
+pri čemer sledimo abecednemu vrstnemu redu vozlišč,
+je prikazan v tabeli~\tab.
+
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|c}
+s & u & v & Q & \text{razdalja} \\ \hline
+A &   &   & [(A,0)]  & [0, \infty, \infty, \infty, \infty, \infty, \infty, \infty] \\
+A & A  &  B & [(B, 3)]  & [0, 3, \infty, \infty, \infty, \infty, \infty, \infty] \\
+A & A  &  F & [(B, 3), (F, 6)]  & [0, 3, \infty, \infty, \infty, 6, \infty, \infty] \\
+A & B  & C & [(F, 6), (C, 10)]  & [0, 3, 10, \infty, \infty, 6, \infty, \infty] \\
+A & B  & E & [(F, 6), (C, 10), (E, 12)]  & [0, 3, 10, \infty, 12, 6, \infty, \infty] \\
+A & F  & G & [(C, 10), (E, 12), (G, 14)]  & [0, 3, 10, \infty, 12, 6, 14, \infty] \\
+A & C  & D & [(E, 12), (G, 14), (D, 17)]  & [0, 3, 10, 17, 12, 6, 14, \infty] \\
+A & E  & D & [(D, 13), (G, 14), (D, 17)]  & [0, 3, 10, 13, 12, 6, 14, \infty] \\
+A & E  & G & [(G, 13), (D, 13), (G, 14), (D, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
+A & G  & F & [(D, 13), (G, 14), (D, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
+A & D  & B & [(G, 14), (D, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
+A & D  & H & [(G, 14), (D, 17), (H, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+A & G  & F & [(D, 17), (H, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+A & D & B & [(H, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+A & D & H & [(H, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+A & H & G & [\ ]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+
 \end{odgovor}
 \end{naloga}
