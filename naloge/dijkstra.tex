@@ -13,7 +13,27 @@ v grafu s slike~\fig.
 
 \begin{odgovor}
 Sledili bomo naslednjemu algoritmu.
-
+\begin{small}
+\begin{algorithmic}
+\Function{dijkstra}{$G = (V, E), s \in V(G), L : E(G) \rightarrow \R_{+}$}
+	\For{$v \in V$}
+		\State $razdalja[v] = \infty$
+	\EndFor
+	\State $razdalja[s] = 0$
+	\State $Q = vrsta-s-prednostjo(v, razdalja)$
+	\While{$Q ni prazna$}
+		\State$ u = odstrani-min(Q)$
+		\For{$(u, v) \in E$}
+			\If{$ razdalja[v] > razdalja[u] + L_{u, v}$}
+				\State$ razdalja[v] = razdalja[u] +  L_{u, v}$
+				\State $posodobi(Q, v)$
+			\EndIf
+		\EndFor
+	\EndWhile
+\EndFunction
+\end{algorithmic}
+\end{small}
+%
 Potek zgornjega algoritma na grafu s slike~\fig,
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
