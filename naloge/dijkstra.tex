@@ -9,6 +9,68 @@ v grafu s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
+
 \begin{odgovor}
+Sledili bomo naslednjemu algoritmu.
+Predpostavili bomo,
+da imamo na voljo podatkovno strukturo za prednostno vrsto,
+ki za vsak element hrani njegovo prioriteto (to lahko tudi spreminjamo).
+Podatkovna struktura ima metodo $\pop()$,
+ki vrne in odstrani element z najmanjšo prioriteto
+skupaj z njegovo prioriteto.
+Tukaj bodo elementi vozlišča grafa,
+prioritete pa dolžine najkrajših najdenih poti od začetnega vozlišča.
+\begin{small}
+\begin{algorithmic}
+\Function{Dijkstra}{$G = (V, E), s \in V, L : E \rightarrow \R_{+}$}
+	\State $Q \gets$ prednostna vrsta
+        s prioriteto $\infty$ za vsako vozlišče $v \in V$
+	\State $Q[s] \gets 0$
+	\While{$\lnot Q.\isEmpty()$}
+		\State $u, d_u \gets Q.\pop()$
+		\For{$v \in \Adj(G, u)$}
+			\If{$v \in Q \land Q[v] > d_u + L_{uv}$}
+				\State $Q[v] \gets d_u + L_{uv}$
+			\EndIf
+		\EndFor
+	\EndWhile
+    \State \Return $(d_v)_{v \in V}$
+\EndFunction
+\end{algorithmic}
+\end{small}
+%
+Potek zgornjega algoritma na grafu s slike~\fig,
+pri čemer sledimo abecednemu vrstnemu redu vozlišč,
+je prikazan v tabeli~\tab.
+
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|c}
+s & u & v & Q & \text{razdalje} \\ \hline
+a &   &   & [(a,0)]  & [0, \infty, \infty, \infty, \infty, \infty, \infty, \infty] \\
+a & a  &  b & [(b, 3)]  & [0, 3, \infty, \infty, \infty, \infty, \infty, \infty] \\
+a & a  &  f & [(b, 3), (f, 6)]  & [0, 3, \infty, \infty, \infty, 6, \infty, \infty] \\
+a & b  & c & [(f, 6), (c, 10)]  & [0, 3, 10, \infty, \infty, 6, \infty, \infty] \\
+a & b  & e & [(f, 6), (c, 10), (e, 12)]  & [0, 3, 10, \infty, 12, 6, \infty, \infty] \\
+a & f  & g & [(c, 10), (e, 12), (g, 14)]  & [0, 3, 10, \infty, 12, 6, 14, \infty] \\
+a & c  & d & [(e, 12), (g, 14), (d, 17)]  & [0, 3, 10, 17, 12, 6, 14, \infty] \\
+a & e  & d & [(d, 13), (g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 14, \infty] \\
+a & e  & g & [(g, 13), (d, 13), (g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
+a & g  & f & [(d, 13), (g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
+a & d  & b & [(g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
+a & d  & h & [(g, 14), (d, 17), (h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+a & g  & f & [(d, 17), (h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+a & d & b & [(h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+a & d & h & [(h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+a & h & g & [\ ]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
+
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+
 \end{odgovor}
 \end{naloga}
