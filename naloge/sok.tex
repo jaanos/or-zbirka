@@ -1,0 +1,105 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 19.4.2019}
+\begin{vprasanje}
+V manjšem podjetju so razvili nov okus sadnega soka.
+Proizvedli so ga že $100\,000$ litrov,
+ko so prejeli ponudbo multinacionalke,
+da odkupijo vso razpoložljivo količino po ceni $1 €$ na liter.
+Če se ne odločijo za odprodajo,
+bodo sok sami pakirali in ponudili na trgu po ceni $3 €$ na liter.
+Zagon pakiranja stane $1\,000 €$, pakiranje enega litra soka pa $0.5 €$.
+V podjetju ocenjujejo,
+da bo z verjetnostjo $0.7$ produkt uspešen in ga bodo vsega prodali,
+z verjetnostjo $0.3$ pa bo neuspešen in ga bodo prodali le $10\,000$ litrov.
+
+Pri podjetju imajo na voljo ravno dovolj časa,
+da pred odločitvijo pakirajo in na regionalnem trgu
+ponudijo $1\,000$ litrov soka po akcijski ceni $2.5 €$ na liter.
+Ocenjujejo,
+da bi v primeru uspeha produkta z verjetnostjo $0.8$ tudi akcija uspela
+in bi tako razprodali akcijske zaloge,
+v primeru neuspeha produkta pa bi se to zgodilo le z verjetnostjo $0.1$.
+Če akcija ne bi uspela, bi prodali le $100$ litrov soka.
+Če se po akcijski ponudbi odločijo za samostojno prodajo,
+bodo seveda morali še enkrat plačati stroške zagona pakiranja,
+v nasprotnem primeru pa bo multinacionalka
+odkupila preostalih $99\,000$ litrov še nepakiranega soka.
+\opomba{količina, prodana v akcijski ponudbi,
+je vključena v končno prodano količino.
+Če torej v akciji prodajo vseh $1\,000$ litrov soka po ceni $2.5 €$ na liter,
+ga bodo v primeru neuspeha produkta v redni prodaji
+prodali le še $9\,000$ litrov po ceni $3 €$ na liter,
+v primeru uspeha pa še $99\,000$ litrov.}
+
+\smallskip
+
+Kako naj se pri podjetju odločijo, da bo pričakovani zaslužek čim večji?
+Nariši od\-lo\-čit\-ve\-no drevo in ga uporabi pri sprejemanju odločitev.
+\end{vprasanje}
+
+\begin{odgovor}
+Če se podjetje odloči za samostojno prodajo (brez predhodne akcijske ponudbe),
+bo ob uspehu imelo
+$100\,000 \cdot (3 € - 0.5 €) - 1\,000 € = 249\,000 €$ dobička,
+ob ne\-uspe\-hu pa
+$10\,000 \cdot 3 € - 100\,000 \cdot 0.5 € - 1\,000 € = -21\,000 €$,
+torej $21\,000 €$ izgube.
+Ker je pričakovani dobiček enak
+$$
+0.7 \cdot 249\,000 € - 0.3 \cdot 21\,000 € = 168\,000 €,
+$$
+kar je več kot $100\,000 \cdot 1 € = 100\,000 €$,
+kolikor bi zaslužili ob prodaji multinacionalki,
+se podjetju v primeru, da se ne odločijo za akcijsko ponudbo,
+bolj izplača samostojna prodaja.
+
+Izračunajmo še dobičke, če se odločijo za akcijsko ponudbo:
+\odstraniprostor
+\begin{align*}
+\opis{Akcija uspe, produkt uspe}
+1\,000 \cdot 2.5 € + 99\,000 \cdot 3 € -
+100\,000 \cdot 0.5 € - 2 \cdot 1\,000 € &= 247\,500 €
+\opis{Akcija uspe, produkt ne uspe}
+1\,000 \cdot 2.5 € + 9\,000 \cdot 3 € -
+100\,000 \cdot 0.5 € - 2 \cdot 1\,000 € &= -22\,500 €
+\opis{Akcija uspe, prodajo multinacionalki}
+1\,000 \cdot (2.5 € - 0.5 €) + 99\,000 \cdot 1 € - 1\,000 € &= 100\,000 €
+\opis{Akcija ne uspe, produkt uspe}
+100 \cdot 2.5 € + 99\,900 \cdot 3 € -
+100\,000 \cdot 0.5 € - 2 \cdot 1\,000 € &= 247\,950 €
+\opis{Akcija ne uspe, produkt ne uspe}
+100 \cdot 2.5 € + 9\,900 \cdot 3 € -
+100\,000 \cdot 0.5 € - 2 \cdot 1\,000 € &= -22\,050 €
+\opis{Akcija ne uspe, prodajo multinacionalki}
+100 \cdot 2.5 € - 1\,000 \cdot 0.5 € - 1\,000 € + 99\,000 \cdot 1 €
+&= 97\,750 €
+\end{align*}
+
+Izračunajmo še verjetnosti uspeha akcije
+ter uspešnosti produkta ob vsaki napovedi.
+\begin{align*}
+P(\text{akcija uspešna}) &= 0.7 \cdot 0.8 + 0.3 \cdot 0.1 = 0.59 \\
+P(\text{akcija neuspešna}) &= 0.7 \cdot 0.2 + 0.3 \cdot 0.9 = 0.41 \\
+P(\text{produkt uspe} \;|\; \text{akcija uspešna})
+&= {0.7 \cdot 0.8 \over 0.59} = {56 \over 59} \approx 0.949 \\
+P(\text{produkt ne uspe} \;|\; \text{akcija uspešna})
+&= {0.3 \cdot 0.1 \over 0.59} = {3 \over 59} \approx 0.051 \\
+P(\text{produkt uspe} \;|\; \text{akcija neuspešna})
+&= {0.7 \cdot 0.2 \over 0.41} = {14 \over 41} \approx 0.341 \\
+P(\text{produkt ne uspe} \;|\; \text{akcija neuspešna})
+&= {0.3 \cdot 0.9 \over 0.41} = {27 \over 41} \approx 0.659
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo, da se podjetju izplača izvesti akcijo,
+saj je pričakovani dobiček v tem primeru $178\,002.5 €$.
+Če akcija uspe, naj se odločijo za samostojno prodajo,
+če pa ne uspe, pa naj zaloge prodajo multinacionalki.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}
