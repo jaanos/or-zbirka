@@ -65,20 +65,20 @@ Zapišimo celoštevilski linearni program.
 
 \item Zapišimo še dodatne omejitve.
 \odstraniprostor
-\begin{align*}
+\begin{alignat*}{2}
 \opis{Proti nasprotnikom iz $A$ ne igramo izenačeno}
-\forall i \in A: \quad y_i &\le z_i
+\forall i \in A: &&{} y_i &\le z_i
 \opis{Največ dva poraza proti nasprotnikom iz $B$}
-\sum_{i \in B} y_i &\ge |B| - 2
+&& \sum_{i \in B} y_i &\ge |B| - 2
 \opis{Če izgubimo proti $u$, dosežemo vsaj $4$ točke proti $v$ in $w$}
-4 y_u + y_v + y_w + 2 z_v + 2 z_w &\ge 4
+4 y_u + y_v + y_w &&{}+ 2 z_v + 2 z_w &\ge 4
 \opis{Največ $k$ dvobojev z več kot $t$ žetoni}
-\forall i \in \{1, \dots, n\}: \quad 0 \le r_i &\le 1, \quad r_i \in \Z \\
-\forall i \in \{1, \dots, n\}: \quad x_i &\le t + M r_i \\
-\sum_{i=1}^n r_i &\le k
+\forall i \in \{1, \dots, n\}: &&{} 0 \le r_i &\le 1, \quad r_i \in \Z \\
+\forall i \in \{1, \dots, n\}: &&{} x_i &\le t + M r_i \\
+&& \sum_{i=1}^n r_i &\le k
 \opis{Vsaj $\ell$ porazov}
-\sum_{i=1}^n y_i &\le n - \ell
-\end{align*}
+&& \sum_{i=1}^n y_i &\le n - \ell
+\end{alignat*}
 \end{enumerate}
 \end{odgovor}
 \end{naloga}
