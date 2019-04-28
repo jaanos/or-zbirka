@@ -14,5 +14,90 @@ Lahko predpostaviš, da so vsa vozlišča grafa $G$ dosegljiva iz vozlišča $s$
 Utemelji pravilnost meje za časovno zahtevnost algoritma.
 \end{vprasanje}
 \begin{odgovor}
+
+Ideja algoritma je tesno povezana z algoritmom {\sc dijkstra} iz naloge~\nal[dijkstra].
+Lahko predpostavimo, da v primeru pravilnosti vseh vhodnih razdalj, so bile te poiskane z dijkstrovim algoritmom,
+torej, če sledimo poti, ki jo je ta za nas pustil, bomo lahko preverili prav vse nastavljene razdalje v $\delta$.
+
+Zapišimo algoritem
+
+\begin{small}
+\begin{algorithmic}
+\Function{razdalje}{$G = (V, E), s, \delta$}
+	\If{$\delta_s \neq 0$}
+		\State \Return \False
+	\EndIf
+	\State $d_v \gets \infty$ za  $\forall v \in V$
+	\State $d_s \gets 0$
+	\State dosezeni$[v] \gets \False$ za $\forall v \in V$
+	\State sklad $\gets [s]$
+	\While{$\neg\isEmpty($sklad$)$}
+		\State $u \gets$ sklad.$\pop()$
+		\State dosezeni$[u] \gets \True$
+		\For{$v \in \Adj(G, u)$}
+			\If{$d_u + \ell_{uv} = \delta_v$}
+				\State $d_v \gets d_u + \ell_{uv}$
+				\If{$\neg\text{dosezeni}[v]$}
+					\State stack$.\append(v)$
+				\EndIf
+			\ElsIf{$d_u + \ell_{uv} < \delta_v$}
+				\State \Return \False
+			\EndIf
+		\EndFor
+	\EndWhile
+	\State \Return $\operatorname{all}$(dosezeni)
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+V primeru, ko je $\delta$ pravilno nastavljen, bo algoritem deloval pravilno, 
+za dokaz se lahko sklicujemo na dijkstrov algoritem in predpostavko, da so vsa vozlišča dosegljiva iz $s$.
+
+Če bo neko vozlišče $u$ v $\delta$ imelo manjšo razdaljo kot ta s katero lahko do njega pridemo iz $s$,
+potem ga algoritem ne bo označil, saj bi moral biti $u$, v primeru označitve dosegljiv s to dolžino iz $s$.
+
+Preostane nam še primer, ko ima vozlišče v $\delta$ previsoko razdaljo.
+Tu ga lahko označimo, a le če pridemo do njega z manj kot optimalno potjo, 
+torej je to vozlišče dosegljivo še iz vsaj ene druge poti.
+Pravilno delovanje algoritma v tem primeru ni povsem očitno, torej si poglejmo dokaz.
+Predpostavimo, da je bilo previsoko nastavljeno vozlišče $t$ in primer, ko smo, vključno s $t$,
+označili vsa vozlišča v grafu (sicer bo algoritem vrnil \False).
+Ker je $t$ bilo označeno smo do njega lahko prišli z neko potjo 
+$$u_1 \rightarrow u_2 \rightarrow \dots \rightarrow u_{n-1} \rightarrow u_n = t,$$
+na kateri so {\bf vsa} vozlišča nastavljena previsoko.
+Ker je $s$ nastavljen pravilno in v grafu obstaja še vsaj ena pot do $t$ in ta seka prejšnjo, je ta pot oblike
+$$s \rightarrow v_1 \rightarrow v_2 \rightarrow \dots \rightarrow v_m \rightarrow u_i,$$
+kjer $i \in {1, 2, \dots, n}$.
+Ker se pot začne v $s$ (označena pravilno) in so vsa vozlišča na njej označena po predpostavki, so nastavljena pravilno,
+torej bi morala biti napaka zaznana.\bigskip
+
+Algoritem pregleda vsako vozlišče največ enkrat in pri vsakem porabi konstantno časa pri vsakem svojem sosedu.
+Časovno zahtevnost torej lahko izračunamo kot 
+$$T(n)  = \sum_{u \in V}\left(deg_G(u) \times O(1) + O(1)\right) = O(|E|) + O(|V|) = O(|V| + |E|)).$$
+\bigskip
+
+Poglejmo si algoritem na primeru~\fig, pri čemer vzamemo $\delta_v = d_g(v)$ za $ \forall v \in V \setminus \{T\}$ in $\delta_T = 16$.
+Izvajanje je predstavljeno s tabelo~\tab.
+Na zadnjem koraku so vsa vozlišča označena, a $d_u + \ell_{uv} < \delta_v$, torej algoritem vrne $\False$.
+\begin{slika}
+\pgfslika
+\podnaslov[\res{}]{Primer}
+\end{slika}
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{cc|cccc|c}
+$u$ & $v$ & $\delta_v$ & $d_u$ & $d_v$ & $\ell_{uv}$ & dosezen$[v]$ \\ \hline
+$S$ & $U$ & $1$ & $0$ & $\infty$ & $1$ & $\False$\\
+$S$ & $V$ & $2$ & $0$ & $\infty$ & $2$ & $\False$\\
+$V$ & $Z$ & $6$ & $2$ & $\infty$ & $4$ & $\False$\\
+$Z$ & $T$ & $16$ & $6$ & $\infty$ & $10$ & $\False$\\
+$U$ & $W$ & $2$ & $1$ & $\infty$ & $1$ & $\False$\\
+$W$ & $T$ & $16$ & $2$ & $16$ & $1$ & $\True$
+\end{tabular}
+}
+\podnaslov[\res{}]{potek izvajanja algoritma {\sc razdalje}}
+\end{tabela}
+
 \end{odgovor}
 \end{naloga}
+
