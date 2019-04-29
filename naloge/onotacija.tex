@@ -12,6 +12,60 @@ da če $T$ zadošča pogoju $T(n) = 2T(\lceil n/2 \rceil) - 13$ za $n \ge 2$,
 potem je $T(n) = O(n)$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Dokažimo, da velja $(n + a)^b = \Theta(n^b)$.
+Dokazati moramo torej,
+da obstajata konstanti $c, C \in \R_+$ ter konstanta $n_0 \in \mathbb{N}$,
+tako da velja
+$$
+c \cdot n^b \leq (n + a)^b \leq C \cdot n^b
+$$
+za vsak $n > n_0$.
+Ker je $b > 0$,
+funkcija $x \mapsto x^{\frac{1}{b}}$ monotono narašča pri $x>0$,
+torej jo lahko brez škode za splošnost uporabimo na zgornji neenakosti.
+Tako dobimo
+$$
+c^{1 \over b} \cdot n \leq n + a \leq C^{1 \over b} \cdot n.
+$$
+Naj bosta $c = \frac{1}{2^b}$ in $C = 2^b$.
+Dobimo pogoja
+$$
+\frac{n}{2} \leq n + a \leq 2n .
+$$
+Ker moramo paziti, da so vsi členi znotraj neenakosti pozitivni,
+dodamo še pogoj $n + a > 0$.
+Če izberemo $n_0 = \max(-2a, a)$,
+bodo ti pogoji veljali pri vseh $n > n_0$.
+
+\item Po premisleku hitro ugotovimo, da za poljubno funkcijo $f$ to ne velja,
+saj lahko ta konkretno spremeni hitrost naraščanja funkcije $g$.
+
+Za protiprimer vzemimo $g(n) = n$ in $f(n) = \log(n)$
+ter poglejmo $\lim_{n \rightarrow \infty} (c \cdot \log(n) / n)$
+pri poljubni izbiri $c > 0$.
+Z razširitvijo funkcij na $\R$ in L'Hôpitalovim pravilom ugotovimo,
+da bo limita enaka $0$ ne glede na izbrano konstanto $c$.
+Tako $n$ ne moremo asimptotično omejiti z $O(\log(n))$.
+
+\item Rešitev naloge je klasična uporaba krovnega izreka,
+a jo enostavno rešimo tudi brez tega.
+
+Ob upoštevanju tega, da velja $T(n) < 2T(\lfloor (n+1)/2 \rfloor)$,
+razvijajmo rekurzivno zvezo do $k$-tega koraka.
+$$
+T(n) < 2T\left(\left\lfloor{n+1 \over 2}\right\rfloor\right)
+< 4T\left(\left\lfloor{n+3 \over 4}\right\rfloor\right)
+< \dots < 2^k T\left(\left\lfloor{n + 2^k - 1 \over 2^k}\right\rfloor\right)
+$$
+Ker velja $T(1) = O(1)$, naj bo $k$ tak,
+da bo veljalo $(n-1) / 2^k < 1$, torej $k = \log_2(n)$.
+Tako dobimo
+$$
+T(n) = 2^{\log_2(n)} \cdot O(1) = n \cdot O(1) = O(n).
+$$
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
