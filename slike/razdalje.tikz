@@ -1,0 +1,18 @@
+\begin{tikzpicture}[->, style=thick,scale=1]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
+
+\node[vertex] (S) at (0, 0) [label=left:$0$] {$a$};
+\node[vertex] (U) at (2, 1) [label=above:$2$] {$b$};
+\node[vertex] (V) at (2, -1) [label=below:$1$] {$c$};
+\node[vertex] (W) at (4, 1) [label=above:$6$] {$d$};
+\node[vertex] (Z) at (4, -1) [label=below:$2$] {$e$};
+\node[vertex] (T) at (6, 0) [label=right:$16$] {$f$};
+
+\draw (S) -- (U) node[above, midway, sloped] {$2$};
+\draw (S) -- (V) node[below, midway, sloped] {$1$};
+\draw (U) -- (W) node[above, midway] {$4$};
+\draw (V) -- (Z) node[below, midway] {$1$};
+\draw (W) -- (T) node[above, midway, sloped] {$10$};
+\draw (Z) -- (T) node[below, midway, sloped] {$1$};
+
+\end{tikzpicture}
