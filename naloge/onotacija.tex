@@ -16,6 +16,7 @@ potem je $T(n) = O(n)$.
 \begin{odgovor}
 \begin{enumerate}[(a)]
 \item Dokažimo, da velja $(n + a)^b = \Omega(n^b)$.
+
 Dokazati potrebujemo torej, da obstajata neki linearni funkciji $F$ in $G$, ter konstanta $n_0 \in \mathbb{N}$,
 za katere velja $$F(n)^b \leq (n + a)^b \leq G(n)^b,$$ za vsak $n > n_0$.
 Ker  je $b > 0$, je $x^{\frac{1}{b}}$ monotono naraščajoča za $x>0$,
@@ -32,6 +33,7 @@ Za dovolj visok $n$, bodo veljali vsi ti pogoji, torej za $n_0$ izberemo $\max(-
 
 \item Po premisleku hitro ugotovimo, da za poljubno funkcijo $f$ to ne velja,
 saj ta lahko konkretno spremeni hitrost naraščanja funkcije $g$.
+
 Za protiprimer vzemimo $g(n) = n$ in $f(n) = \log(n)$ in poglejmo 
 $\lim_{n \rightarrow \infty} (c \cdot \log(n) / n)$, pri poljubni izbiri $c > 0$.
 Z razširitvijo funkcij na $\mathbb{R}$ in L'Hospitalovim pravilom ugorovimo, 
@@ -39,11 +41,13 @@ da bo limita enaka 0, ne glede na izbrano konstantno $c$,
 torej $n$ v neskončnosti ne moremo omejiti z $O(\log(n))$.
 
 \item Rešitev naloge je klasična uporaba krovnega izreka, a enostavno jo rešimo tudi brez tega.
-Ker velja $T(n) < 2T(n/2 + 1) + 1$ in prišteta konstanta znotraj $T$ ne vpliva na hitrost, 
-saj lahko namesto $n$, računamo z $n - 2$, iz česar bi dobili $T(n - 2) < 2T(n/2) + 1$, 
-premiki $n$ za konstanto pa na hitrost funkcije v neskončnosti očitno ne vplivajo.
+
+Ker velja $T(n) < 2T(n/2 + 1) + 1$ in lahko namesto z $n$ računamo z $n - 2$, 
+nakar dobimo $T(n - 2) < 2T(n/2) + 1$, 
+premiki $n$ za konstanto pa na hitrost funkcije v neskončnosti ne bodo vplivali.
 Časovno zahtevnost lahko torej dobimo z uporabo $T(n) = 2T(n/2) + 1$.
-Razvijajmo rekurzivno zvezo po korakih.
+
+Razvijajmo rekurzivno zvezo do $k$-tega koraka.
 $$T(n) = 2T(n/2) + 1 = 2 (T(n/4) + 1) + 1 = \dots = 2^k T\left(n / 2^k\right) + \sum_{i=0}^{k} 2^i$$
 Privzemimo, da $T(1) = O(1)$, torej mora biti $k$ dovolj visok, da bo veljalo
 $n / 2^k = 1$, to pa bo, ko $k = \log_2(n)$.
