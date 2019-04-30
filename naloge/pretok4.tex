@@ -15,14 +15,12 @@ Postopek reševanja je prikazan na slikah~%
 \fig[pretok4a],~\fig[pretok4b],~\fig[pretok4c] in~\fig[pretok4d].
 Dobimo maksimalni pretok $5+10+8 = 8+4+3+8 = 23$.
 Če želimo povečati pretok,
-lahko povečamo kapaciteto povezave v minimalnem prerezu.
-Ta povezava mora biti edina zasičena povezava v poti od izvora do ponora.
+lahko povečamo kapaciteto take povezave v minimalnem prerezu,
+da je mogoče od njenega končnega vozlišča priti do vozlišča $T$
+po nezasičenih (ali obratnih nepraznih) povezavah.
 Na grafu s slike~\fig[pretok4d]
-je taka le povezava med najbolj zgornjima vozliščema.
-
-Pretok bi sicer lahko spremenili tako,
-da med črnimi vozlišči ni zasičenih povezav, kot na sliki~\fig[pretok4e].
-Tako bi lahko povečali kapaciteto katerekoli od označenih povezav.
+so taka vozlišča označena s sivo barvo,
+povezave, katerih kapaciteto se nam izplača povečati, pa z vijolično barvo.
 
 \begin{slika}
 \pgfslika[pretok4a]
@@ -39,10 +37,6 @@ Tako bi lahko povečali kapaciteto katerekoli od označenih povezav.
 \begin{slika}
 \pgfslika[pretok4d]
 \podnaslov{Maksimalni pretok in minimalni prerez}
-\end{slika}
-\begin{slika}
-\pgfslika[pretok4e]
-\podnaslov{Alternativna rešitev z več kandidati za povečanje kapacitete}
 \end{slika}
 \end{odgovor}
 \end{naloga}

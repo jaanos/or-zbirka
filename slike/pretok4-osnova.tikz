@@ -1,6 +1,7 @@
 \tikzstyle{every node}=[]
 \tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
 \tikzstyle{cut}=[white, fill=black]
+\tikzstyle{rev}=[fill=lightgray]
 \tikzstyle{limit}=[black, near start]
 \tikzstyle{flow}=[black, near end]
 \tikzstyle{path}=[very thick, red]

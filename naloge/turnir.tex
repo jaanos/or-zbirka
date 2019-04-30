@@ -1,0 +1,84 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 19.4.2019}
+\begin{vprasanje}
+Na turnirju poleg tebe sodeluje še $n$ igralcev,
+pri čemer se bo vsak igralec soočil z vsakim drugim igralcem v enem dvoboju.
+Vsak igralec na začetku dobi $M$ žetonov,
+za katere se (po začetni fazi zbiranja informacij) vnaprej odloči,
+kako jih bo razdelil med dvoboje.
+V dvoboju zmaga igralec z večjim številom vloženih žetonov.
+Če oba igralca vložita enako število žetonov, je izid dvoboja izenačen.
+Zmagovalec dvoboja dobi $3$ točke, poraženec $0$ točk,
+v primeru izenačenega izida pa vsak dvobojevalec dobi $1$ točko.
+Cilj vsakega igralca je zbrati čim večje število točk.
+
+\begin{enumerate}[(a)]
+\item Denimo, da za vsakega igralca izveš, kako namerava igrati.
+Naj bo torej $c_i$ število žetonov,
+ki jih bo $i$-ti nasprotnik ($1 \le i \le n$) vložil v dvoboj proti tebi.
+Svojo strategijo želiš načrtovati tako, da bi dosegel čim večje število točk.
+Zapiši celoštevilski linearni program, ki modelira ta problem.
+
+\item Celoštevilskemu linearnemu programu iz prejšnje točke dodaj omejitve,
+ki modelirajo sledeče pogoje:
+    \begin{itemize}
+    \item Proti nobenemu od nasprotnikov iz množice $A$
+    ne smeš doseči izenačenega izida.
+    \item Izgubiš lahko kvečjemu proti dvema nasprotnikoma iz množice $B$.
+    \item Če izgubiš proti nasprotniku $u$,
+    moraš proti nasprotnikoma $v$ in $w$ doseči vsaj $4$ točke.
+    \item Več kot $t$ žetonov lahko vložiš v največ $k$ dvobojev.
+    \item Izgubiti moraš vsaj $\ell$ dvobojev.
+    \end{itemize}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $x_i$ število žetonov,
+ki jih vložimo v dvoboj z $i$-tim nasprotnikom ($1 \le i \le n$).
+Poleg tega bomo uvedli še spremenljivke $y_i$ in $z_i$ ($1 \le i \le n$),
+katerih vrednosti interpretiramo kot
+\begin{align*}
+y_i &= \begin{cases}
+1, & \text{če ne izgubimo proti $i$-temu nasprotniku, in} \\
+0  & \text{sicer;}
+\end{cases}
+\shortintertext{ter}
+z_i &= \begin{cases}
+1, & \text{če premagamo $i$-tega nasprotnika, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \max &\ \sum_{i=1}^n (y_i + 2z_i) \quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: &\ & x_i &\ge 0, \quad x_i \in \Z \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le y_i &\le 1, \quad y_i \in \Z \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le z_i &\le 1, \quad z_i \in \Z
+\opis{Porabimo $M$ žetonov}
+&& \sum_{i=1}^n x_i &= M
+\opis{$y_i = 1$ natanko tedaj, ko $x_i \ge c_i$}
+\forall i \in \{1, \dots, n\}: &\ & c_i y_i &\le x_i \le c_i - 1 + M y_i
+\opis{$z_i = 1$ natanko tedaj, ko $x_i > c_i$}
+\forall i \in \{1, \dots, n\}: &\ & (c_i + 1) z_i &\le x_i \le c_i + M z_i
+\end{alignat*}
+
+\item Zapišimo še dodatne omejitve.
+\odstraniprostor
+\begin{alignat*}{2}
+\opis{Proti nasprotnikom iz $A$ ne igramo izenačeno}
+\forall i \in A: &&{} y_i &\le z_i
+\opis{Največ dva poraza proti nasprotnikom iz $B$}
+&& \sum_{i \in B} y_i &\ge |B| - 2
+\opis{Če izgubimo proti $u$, dosežemo vsaj $4$ točke proti $v$ in $w$}
+4 y_u + y_v + y_w &&{}+ 2 z_v + 2 z_w &\ge 4
+\opis{Največ $k$ dvobojev z več kot $t$ žetoni}
+\forall i \in \{1, \dots, n\}: &&{} 0 \le r_i &\le 1, \quad r_i \in \Z \\
+\forall i \in \{1, \dots, n\}: &&{} x_i &\le t + M r_i \\
+&& \sum_{i=1}^n r_i &\le k
+\opis{Vsaj $\ell$ porazov}
+&& \sum_{i=1}^n y_i &\le n - \ell
+\end{alignat*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

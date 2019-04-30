@@ -13,6 +13,94 @@ enake razdalji med vozliščema $s$ in $v$ v grafu $G$.
 Lahko predpostaviš, da so vsa vozlišča grafa $G$ dosegljiva iz vozlišča $s$.
 Utemelji pravilnost meje za časovno zahtevnost algoritma.
 \end{vprasanje}
+
 \begin{odgovor}
+Ideja algoritma je tesno povezana z algoritmom {\sc Dijkstra}
+iz naloge~\nal[dijkstra].
+Če so vse vhodne razdalje pravilne,
+lahko predpostavimo, da so bile poiskane z Dijkstrovim algoritmom.
+Če torej sledimo poti, ki jo ta opravi,
+bomo lahko preverili prav vse nastavljene razdalje $\delta_v$.
+\begin{small}
+\begin{algorithmic}
+\Function{Razdalje}{$G = (V, E), s \in V, L : E \rightarrow \R_{+},
+                     (\delta_v)_{v \in V}$}
+	\If{$\delta_s \neq 0$}
+		\State \Return \False
+	\EndIf
+    \State {\sl doseženi} $\gets$ slovar z vrednostjo $\False$
+                                  za vsak $v \in V$
+	\State $\ell \gets [s]$
+	\While{$\neg\ell.\isEmpty()$}
+		\State $u \gets \ell.\pop()$
+		\State {\sl doseženi}$[u] \gets \True$
+		\For{$v \in \Adj(G, u)$}
+			\If{$\delta_u + L_{uv} = \delta_v$}
+				\If{$\neg${\sl doseženi}$[v]$}
+					\State $\ell.\append(v)$
+				\EndIf
+			\ElsIf{$\delta_u + L_{uv} < \delta_v$}
+				\State \Return \False
+			\EndIf
+		\EndFor
+	\EndWhile
+	\State \Return $\forall v \in V :$ {\sl doseženi}$[v]$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+V primeru, ko vrednosti $\delta_v$ ustrezajo razdaljam od $s$,
+bo algoritem deloval pravilno,
+kar sledi iz pravilnosti Dijkstrovega algoritma in predpostavke,
+da so vsa vozlišča dosegljiva iz $s$.
+
+Če bo za neko vozlišče $v$ vrednost $\delta_v$ manjša od razdalje $d_G(s, v)$,
+potem algoritem vozlišča $v$ ne bo označil.
+Če pa je vrednost $\delta_v$ večja od razdalje $d_G(s, v)$,
+algoritem morda lahko označi vozlišče $v$,
+a se to lahko zgodi le, če pridemo do njega z manj kot optimalno potjo
+-- to vozlišče je torej dosegljivo še iz vsaj ene druge poti.
+Predpostavimo, da je $t$ najvišje vozlišče v drevesu najkrajših poti,
+ki ga algoritem označi, čeprav velja $\delta_t > d_G(s, t)$,
+in naj bo $r$ njegov predhodnik v drevesu.
+Ker velja $\delta_r = d_G(s, r)$,
+bo algoritem pri pregledovanju sosedov vozlišča $r$ ugotovil,
+da velja $\delta_r + L_{rt} < \delta_t$, in torej vrnil $\False$.
+
+Algoritem pregleda vsako vozlišče največ enkrat in pri vsakem njegovem sosedu porabi konstantno časa.
+Časovno zahtevnost lahko torej izračunamo kot 
+$$
+\sum_{v \in V}\left(O(1) + \deg_G(u) \cdot O(1)\right)
+= O(|V|) + O(|E|) = O(|V| + |E|).
+$$
+
+Poglejmo si, kako algoritem deluje na grafu $G = (V, E)$ s slike~\fig,
+pri čemer vzamemo $\delta_v = d_G(f, v)$ za vsak $v \in V \setminus \{f\}$
+in $\delta_f = 16$.
+Izvajanje algoritma z začetnim vozliščem $a$ je prikazano v tabeli~\tab.
+Na zadnjem koraku so vsa vozlišča označena, a velja $d_u + L_{uv} < \delta_v$,
+tako da algoritem vrne $\False$.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Primer grafa}
+\end{slika}
+
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{cc|ccc|c}
+$u$ & $v$ & $\delta_u$ &  $\delta_v$ & $L_{uv}$ & {\sl dosežen}$[v]$ \\
+\hline
+$a$ & $b$ & $0$ & $2$  & $2$  & $\False$ \\
+$a$ & $c$ & $0$ & $1$  & $1$  & $\False$ \\
+$b$ & $d$ & $2$ & $6$  & $4$  & $\False$ \\
+$c$ & $e$ & $1$ & $2$  & $1$  & $\False$ \\
+$d$ & $f$ & $6$ & $16$ & $10$ & $\False$ \\
+$e$ & $f$ & $2$ & $16$ & $1$  & $\True$
+\end{tabular}
+}
+\podnaslov{Potek izvajanja algoritma na primeru s slike~\fig}
+\end{tabela}
+
 \end{odgovor}
 \end{naloga}
