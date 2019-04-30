@@ -21,11 +21,29 @@ $(ZBIRKA).bbl: $(BIB_FILES)
 	bibtex $(ZBIRKA)
 	pdflatex $(ZBIRKA).tex
 
-pgf/%.pdf: slike/%.tikz slike/%-osnova.tikz
+pgf/%.pdf: slike/%.tikz
 	$(call pgfc,$*)
 
-pgf/%-resitev.pdf: slike/%-resitev.tikz slike/%-osnova.tikz
-	$(call pgfc,$*-resitev)
+pgf/dectree.pdf: slike/dectree.tikz slike/dectree-osnova.tikz
+	$(call pgfc,dectree)
+
+pgf/dectree-resitev.pdf: slike/dectree-resitev.tikz slike/dectree-osnova.tikz
+	$(call pgfc,dectree-resitev)
+
+pgf/dectree3.pdf: slike/dectree3.tikz slike/dectree3-osnova.tikz
+	$(call pgfc,dectree3)
+
+pgf/dectree3-resitev.pdf: slike/dectree3-resitev.tikz slike/dectree3-osnova.tikz
+	$(call pgfc,dectree3-resitev)
+
+pgf/domine.pdf: slike/domine.tikz slike/domine-osnova.tikz
+	$(call pgfc,domine)
+
+pgf/domine-resitev.pdf: slike/domine-resitev.tikz slike/domine-osnova.tikz
+	$(call pgfc,domine-resitev)
+
+pgf/pretok%.pdf: slike/pretok%.tikz slike/pretok%-osnova.tikz
+	$(call pgfc,pretok$*)
 
 pgf/pretok1%.pdf: slike/pretok1%.tikz slike/pretok1-osnova.tikz
 	$(call pgfc,pretok1$*)
