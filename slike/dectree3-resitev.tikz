@@ -1,0 +1,10 @@
+{%
+\newcommand{\lH}{60p-10}%
+\newcommand{\lJ}{-60p + 30}%
+\newcommand{\lC}{20p+10}%
+\newcommand{\pDH}{p \ge 1/12}%
+\newcommand{\pDI}{p < 1/12}%
+\newcommand{\pEJ}{p \leq 7/12}%
+\newcommand{\pEK}{p > 7/12}%
+\input{slike/dectree3-osnova.tikz}
+}
