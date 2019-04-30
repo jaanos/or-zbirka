@@ -8,9 +8,9 @@
 \node[dec] (E) at ( 0, 0) {$E$};
 \node      (F) at ( 0,-3) {$40p + 20$};
 \node      (G) at ( 0,-5) {$0$};
-\node[ran] (H) at ( 4, 5) [label=above:$\lH$] {$H$};
+\node[ran] (H) at ( 4, 5) [label=above:$\lH$] {$F$};
 \node      (I) at ( 4, 3) {$-5$};
-\node[ran] (J) at ( 4, 1) [label=above:$\lJ$] {$J$};
+\node[ran] (J) at ( 4, 1) [label=above:$\lJ$] {$G$};
 \node      (K) at ( 4,-1) {$-5$};
 \node      (N) at ( 8, 6) {$50$};
 \node      (O) at ( 8, 4) {$-10$};
