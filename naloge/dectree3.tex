@@ -22,21 +22,27 @@ G &= - 30 \cdot p + 30 \cdot (1-p) &&=  -60p + 30
 \end{alignat*}
 
 Obravnavajmo najprej odločitev v vozlišču $D$.
-Za pot k vozlišču $H$ se odločimo,
+Za pot k vozlišču $F$ se odločimo,
 če velja $60p - 10 \ge -5$ oziroma $p \ge 1/12$.
 
 Obravnavajmo sedaj še odločitev v vozlišču $E$
--- za pot k vozlišču $G$ se odločimo, če velja $-60p + 30 \ge -5$ oziroma $7/12 \ge p$.
+-- za pot k vozlišču $G$ se odločimo,
+če velja $-60p + 30 \ge -5$ oziroma $p \le 7/12$.
 
-Odločitev v vozlišču $B$ bo sledeča:
-$$p < {1 \over 12}:  0.9 \cdot (-5) + (-60p + 30) \cdot 0.1 = -1.5 - 6p$$
-$$\frac{1}{12} \leq p < \frac{7}{12} : 0.9 \cdot (60p - 10) + 0.1 \cdot (-60p + 30) = -6 + 48p$$
-$$\frac{7}{12} \leq p : 0.9 \cdot (60p - 10) + 0.1 \cdot (-5) = 9.5 + 54 p$$
+Pričakovana vrednost v vozlišču $B$ bo sledeča.
+\begin{align*}
+p &< {1 \over 12}: & 0.9 \cdot (-5) + (-60p + 30) \cdot 0.1 &= -1.5 - 6p \\
+\frac{1}{12} \leq p &\le \frac{7}{12}: &
+0.9 \cdot (60p - 10) + 0.1 \cdot (-60p + 30) &= -6 + 48p \\
+p &> \frac{7}{12}: & 0.9 \cdot (60p - 10) + 0.1 \cdot (-5) &= 9.5 + 54 p
+\end{align*}
 
-Obravnavajmo sedaj še odločitev v vozlišču $A$:
-$$0 \leq p < \frac{1}{12} : max \{ -1.5 - 6p, 20p + 10 \} = 20p + 10$$
-$$\frac{1}{12} \leq p < \frac{7}{12} : max \{ -6 + 48p, 20p + 10 \}$$
-$$p \ge \frac{7}{12} : max \{ 9.5 + 54p, 20p + 10 \}$$
+Obravnavajmo sedaj še odločitev v vozlišču $A$.
+\begin{align*}
+0 \leq p &< \frac{1}{12}: & \max \{ -1.5 - 6p, 20p + 10 \} &= 20p + 10 \\
+\frac{1}{12} \leq p &\le \frac{7}{12} : & \max \{ -6 + 48p, 20p + 10 \} \\
+p &> \frac{7}{12} : & \max \{ 9.5 + 54p, 20p + 10 \}
+\end{align*}
 
 Proces odločanja je prikazan na sliki~\fig[dectree3-resitev].
 
