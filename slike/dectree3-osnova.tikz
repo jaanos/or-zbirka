@@ -17,16 +17,16 @@
 \node      (P) at ( 8, 2) {$30$};
 \node      (Q) at ( 8, 0) {$-30$};
 
-\draw (A) -- (B) node[above, midway, sloped] {$p \ge 4/7$};;
-\draw (A) -- (C) node[below, midway, sloped] {$p < 4/7$};;
+\draw (A) -- (B) node[above, midway, sloped] {$\pAB$};
+\draw (A) -- (C) node[below, midway, sloped] {$\pAC$};
 \draw (B) -- (D) node[above, midway, sloped] {$0.9$};
 \draw (B) -- (E) node[below, midway, sloped] {$0.1$};
 \draw (C) -- (F) node[above, midway, sloped] {$0.5$};
 \draw (C) -- (G) node[below, midway, sloped] {$0.5$};
-\draw (D) -- (H) node[above, midway, sloped] {$\pDH$};;
-\draw (D) -- (I) node[below, midway, sloped] {$\pDI$};;
-\draw (E) -- (J) node[above, midway, sloped] {$\pEJ$};;
-\draw (E) -- (K) node[below, midway, sloped] {$\pEK$};;
+\draw (D) -- (H) node[above, midway, sloped] {$\pDH$};
+\draw (D) -- (I) node[below, midway, sloped] {$\pDI$};
+\draw (E) -- (J) node[above, midway, sloped] {$\pEJ$};
+\draw (E) -- (K) node[below, midway, sloped] {$\pEK$};
 \draw (H) -- (N) node[above, midway, sloped] {$p$};
 \draw (H) -- (O) node[below, midway, sloped] {$1-p$};
 \draw (J) -- (P) node[above, midway, sloped] {$1-p$};
