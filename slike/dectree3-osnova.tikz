@@ -1,0 +1,34 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{dec}=[draw,rectangle,minimum size=1cm]
+\tikzstyle{ran}=[draw,circle,minimum size=1cm]
+\node[dec] (A) at (-8,-1) {$A$};
+\node[ran] (B) at (-4, 2) {$B$};
+\node[ran] (C) at (-4,-4) [label=above:$\lC$] {$C$};
+\node[dec] (D) at ( 0, 4) {$D$};
+\node[dec] (E) at ( 0, 0) {$E$};
+\node      (F) at ( 0,-3) {$40p + 20$};
+\node      (G) at ( 0,-5) {$0$};
+\node[ran] (H) at ( 4, 5) [label=above:$\lH$] {$F$};
+\node      (I) at ( 4, 3) {$-5$};
+\node[ran] (J) at ( 4, 1) [label=above:$\lJ$] {$G$};
+\node      (K) at ( 4,-1) {$-5$};
+\node      (N) at ( 8, 6) {$50$};
+\node      (O) at ( 8, 4) {$-10$};
+\node      (P) at ( 8, 2) {$30$};
+\node      (Q) at ( 8, 0) {$-30$};
+
+\draw (A) -- (B) node[above, midway, sloped] {$\pAB$};
+\draw (A) -- (C) node[below, midway, sloped] {$\pAC$};
+\draw (B) -- (D) node[above, midway, sloped] {$0.9$};
+\draw (B) -- (E) node[below, midway, sloped] {$0.1$};
+\draw (C) -- (F) node[above, midway, sloped] {$0.5$};
+\draw (C) -- (G) node[below, midway, sloped] {$0.5$};
+\draw (D) -- (H) node[above, midway, sloped] {$\pDH$};
+\draw (D) -- (I) node[below, midway, sloped] {$\pDI$};
+\draw (E) -- (J) node[above, midway, sloped] {$\pEJ$};
+\draw (E) -- (K) node[below, midway, sloped] {$\pEK$};
+\draw (H) -- (N) node[above, midway, sloped] {$p$};
+\draw (H) -- (O) node[below, midway, sloped] {$1-p$};
+\draw (J) -- (P) node[above, midway, sloped] {$1-p$};
+\draw (J) -- (Q) node[below, midway, sloped] {$p$};
+\end{tikzpicture}
