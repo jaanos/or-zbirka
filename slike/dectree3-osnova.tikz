@@ -17,8 +17,8 @@
 \node      (P) at ( 8, 2) {$30$};
 \node      (Q) at ( 8, 0) {$-30$};
 
-\draw (A) -- (B);
-\draw (A) -- (C);
+\draw (A) -- (B) node[above, midway, sloped] {$p \ge 4/7$};;
+\draw (A) -- (C) node[below, midway, sloped] {$p < 4/7$};;
 \draw (B) -- (D) node[above, midway, sloped] {$0.9$};
 \draw (B) -- (E) node[below, midway, sloped] {$0.1$};
 \draw (C) -- (F) node[above, midway, sloped] {$0.5$};
