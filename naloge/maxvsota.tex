@@ -25,7 +25,7 @@ V_i &= \max_{j < i - 1}\left(V_j\right) + a_i
 \qquad (1 \le i \le n)
 \end{align*}
 Vidimo, da na $i$-tem koraku iščemo največjo prejšnjo nesosednjo vsoto $V_j$,
-ki ji bomo priključili element $a_i$, torej izračunamo največjo vsoto, 
+ki ji bomo priključili element $a_i$, torej izračunamo največjo vsoto,
 ki zadošča pogoju nesosednosti in vključuje člen $a_i$.
 
 Za izračun vrednosti $V_i$ moramo imeti podane že vse prejšnje $V_j$,
@@ -34,7 +34,7 @@ To dosežemo tako, da te vrednosti računamo naraščajoče z začetkom v $1$ in
 Po izračunu vseh vrednosti $V_i$ bo maksimalna vrednost iskanega problema
 enaka $V^* = \max_{1 \leq i \leq n}(V_i)$.
 
-Podamo lahko še alternativno rekurzivno zvezo za ta problem, in sicer 
+Podamo lahko še alternativno rekurzivno zvezo za ta problem, in sicer
 definirajmo $U_i$ kot največjo vsoto nesosednjih členov zaporedja,
 ki jo dobimo, če gledamo samo elemente od $1$ do $i$.
 Ta definicija se razlikuje od zgornje po tem, da dobljena vsota ne vključuje nujno elementa $a_i$.
@@ -48,7 +48,7 @@ Ideja tega rekurzivnega zapisa je podobna zgornji,
 le da se namesto iska\-nja maksimuma odločamo,
 ali bomo $i$-ti člen vključili v vsoto oziroma ga bomo izpustili.
 
-Vrstni red iskanja vrednosti $U_i$ določimo z naraščajočim zaporedjem indeksov $i$, ko $1\leq i \leq n$, 
+Vrstni red iskanja vrednosti $U_i$ določimo z naraščajočim zaporedjem indeksov $i$, ko $1\leq i \leq n$,
 saj imamo tako pred reševanjem problema $U_i$
 definirane vse predhodne vrednosti.
 Ko izračunamo vse vrednosti $U_i$,

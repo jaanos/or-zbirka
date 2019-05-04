@@ -1,0 +1,20 @@
+\begin{tikzpicture}[->, style=thick,scale=1]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
+
+\node[vertex] (a) at (0, 0) {$a$};
+\node[vertex] (b) at (2, 2) {$b$};
+\node[vertex] (c) at (4, 0) {$c$};
+
+\node[vertex] (d) at (6, 0) {$a$};
+\node[vertex] (e) at (8, 2) {$b$};
+\node[vertex] (f) at (10, 0) {$c$};
+
+\draw (a) -- (b) node[above, midway, sloped] {$2$};
+\draw (a) -- (c) [color=red] node[above, midway] {$3$};
+\draw (b) -- (c) node[above, midway, sloped] {$2$};
+
+\draw (d) -- (e) [color=red] node[above, midway, sloped] {$0$};
+\draw (d) -- (f) node[above, midway] {$1$};
+\draw (e) -- (f) [color=red] node[above, midway, sloped] {$0$};
+
+\end{tikzpicture}
