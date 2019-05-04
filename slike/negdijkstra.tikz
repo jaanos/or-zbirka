@@ -9,12 +9,12 @@
 \node[vertex] (e) at (8, 2) {$b$};
 \node[vertex] (f) at (10, 0) {$c$};
 
-\draw (a) -- (b) node[above, midway, sloped] {$2$};
-\draw (a) -- (c) [color=red] node[above, midway] {$3$};
-\draw (b) -- (c) node[above, midway, sloped] {$2$};
+\draw (a) -- (b) [color=red] node[above, midway, sloped] {$-2$};
+\draw (a) -- (c) node[above, midway] {$-3$};
+\draw (b) -- (c) [color=red] node[above, midway, sloped] {$-2$};
 
-\draw (d) -- (e) [color=red] node[above, midway, sloped] {$0$};
-\draw (d) -- (f) node[above, midway] {$1$};
-\draw (e) -- (f) [color=red] node[above, midway, sloped] {$0$};
+\draw (d) -- (e) node[above, midway, sloped] {$1$};
+\draw (d) -- (f) [color=red] node[above, midway] {$0$};
+\draw (e) -- (f) node[above, midway, sloped] {$1$};
 
 \end{tikzpicture}

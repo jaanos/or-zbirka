@@ -11,18 +11,19 @@ ki ga Dijkstrov algoritem ustvari ob vhodu $(G, \ell')$,
 je tudi drevo najkrajših poti za graf $G$ z dolžinami povezav,
 določenimi z $\ell$.
 \end{vprasanje}
-\begin{odgovor}
 
+\begin{odgovor}
 Trditev je napačna, saj z odštevanem konstantnega števila vsaki povezavi na grafu 
 nekatere poti skrajšamo za več kot druge.
 Razlog za to je, da bo konstanta odšteta na vsaki povezavi, 
-torej bodo poti, ki vsebujejo več povezav prejele večjo olajšavo.
-Da bo to jasno si poglejmo primer, 
+torej bodo poti, ki vsebujejo več povezav, prejele večjo olajšavo.
+Da bo to jasno, si poglejmo primer,
 za katerega bomo našli dve različni drevesi najkrajših poti pri utežeh $\ell$ in $\ell'$.
-Za primer grafa bomo vzeli tega s slike~\fig.
-Vidimo, da je na začetnem grafu optimalna pot $a-c$, a ker vsebuje samo eno povezavo, 
-je po odštetju števila $2$ celotna pot skrajšana za $2$, pot $a-b-c$, 
-pa se tako skrajša za $2 + 2 = 4$, torej postane optimalna.
+Za primer vzemimo graf s slike~\fig.
+Vidimo, da je na začetnem grafu optimalna pot $a \to b \to c$,
+a ker vsebuje dve povezavi,
+se po prištevanju konstante $3$ celotna pot podaljša za $6$,
+pot $a \to c$ pa se podaljša le za $3$ in tako postane optimalna.
 
 \begin{slika}
 \pgfslika
