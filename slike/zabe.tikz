@@ -1,0 +1,22 @@
+\begin{tikzpicture}[style=thick,scale=1]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
+
+\node[vertex] (a) at (0, 0) {$(0,0)$};
+\node[vertex] (b) at (2, 1) {$(2,1)$};
+\node[vertex] (c) at (4, 1) {$(4,1)$};
+\node[vertex] (d) at (2, 4) {$(2,4)$};
+\node[vertex] (e) at (7, 4) {$(7,4)$};
+\node[vertex] (f) at (1, 6) {$(1,6)$};
+\node[vertex] (g) at (5, 6) {$(5,6)$};
+\node[vertex] (h) at (3, 8) {$(3,8)$};
+\node[vertex] (i) at (8, 8) {$(8,8)$};
+
+\draw (a) -- (b) node[above, midway, sloped] {$2.24$};
+\draw (b) -- (c) node[above, midway, sloped] {$2$};
+\draw (b) -- (d) node[above, midway, sloped] {$3$};
+\draw (d) -- (f) node[above, midway, sloped] {$2.24$};
+\draw (e) -- (g) node[above, midway, sloped] {$2.83$};
+\draw (f) -- (h) node[above, midway, sloped] {$2.83$};
+\draw (g) -- (h) node[above, midway, sloped] {$2.83$};
+
+\end{tikzpicture}
