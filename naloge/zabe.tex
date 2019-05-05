@@ -25,6 +25,38 @@ $$
 pri čemer Rok sedi na lokvanju $(0, 0)$, Neli pa na $(8, 8)$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Definirajmo graf $G = (V, E)$, katerega množica vozlišč $V \subset \R^2$ je enaka vhodnemu seznamu koordinat, 
+za množico povezav $E$ pa velja $(v_i, v_j) \in E$ natanko tedaj, ko $\|v_i - v_j\|  \leq d$, za $v_i, v_j \in V$ in $v_i \neq v_j$.
+Točki sta torej povezani, če je razdalja med njima manjša od $d$, kar pomeni, da Rok lahko skoči iz ene na drugo.
+Sedaj moramo ugotoviti, če je točka, na kateri počiva Neli, dosegljiva Roku, 
+za kar pa imamo na voljo algoritma {\sc dfs} iz naloge ~\nal[dfs] in {\sc bfs} iz naloge ~\nal[bfs].
+
+Zapišimo kratek algoritem, pri čemer upoštevamo, da je $s$ list, na katerem sedi Rok, in $t$ list, na katerem sedi Neli.
+\begin{small}
+\begin{algorithmic}
+\Function{Zabe}{$G = (V, E), s, t$}
+	\State oznacen $\gets$ slovar s ključi $v \in V$ in vrednostmi $\False$
+	\Function{Visit}{$u, v$}
+		\State oznacen$[u] \gets \True$
+	\EndFunction
+	\State {\sc bfs}($G$, {\sc Visit})
+	\State \Return oznacen$[t]$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Po zgornjem opisu lahko torej povežemo dane točke v ravnini in dobimo graf $G$, prikazan na sliki~\fig. 
+Graf je seveda neusmerjen, saj smo povezave definirali s simetrično relacijo.
+Za uteži smo vzeli razdalje med točkami, a jih za rešitev naloge ne bomo potrebovali.
+Sedaj s klicem {\sc Zabe}($G, (0,0), (8,8)$) ugotovimo, da Nelino vozlišče Roku ni dosegljivo.
+\begin{slika}
+\pgfslika
+\podnaslov{Graf dopustnih skokov}
+\end{slika}
+
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
