@@ -15,6 +15,62 @@ Za vsako od naštetih metod podaj tudi njeno časovno zahtevnost
 v odvisnosti od števila vozlišč, števila povezav in stopenj vhodnih vozlišč.
 Oceni tudi prostorsko zahtevnost celotne strukture.
 \end{vprasanje}
+
 \begin{odgovor}
+Graf $G$ bomo predstavili kot matriko $G.A$, indeksirano z vozlišči,
+kar bomo implementirali s slovarjem slovarjev.
+Napišimo ustrezne metode.
+
+\begin{small}
+\begin{algorithmic}
+\Function{Init}{$G$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.A \gets$ prazen slovar
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{AddVertex}{$G, u$} \hfill časovna zahtevnost: $O(n)$
+    \State $G.A[u] \gets$ slovar z vrednostjo $0$ za vsak ključ slovarja $G.A$
+    \For{$v \in G.A$}
+        \State $G.A[v][u] \gets 0$
+    \EndFor
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{AddEdge}{$G, u, v$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.A[u][v] \gets 1$
+    \State $G.A[v][u] \gets 1$
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{DelEdge}{$G, u, v$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.A[u][v] \gets 0$
+    \State $G.A[v][u] \gets 0$
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{DelVertex}{$G, u$} \hfill časovna zahtevnost: $O(n)$
+    \State izbriši $G.A[u]$
+    \For{$v \in G.A$}
+        \State izbriši $G.A[v][u]$
+    \EndFor
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{Adj}{$G, u$} \hfill časovna zahtevnost: $O(n)$
+    \State \Return $\set{v \in G.A[u]}{G.A[u][v] = 1}$
+\EndFunction
+\end{algorithmic}
+\end{small}
+V podanih časovnih zahtevnostih $n$ predstavlja število vozlišč v grafu.
+Prostorska zahtevnost podatkovne struktura je $O(n^2)$.
+
+Opomnimo, da lahko preverjanje, ali sta dve vozlišči sosedni
+(torej če velja $v \in \Adj(G, u)$ za dani vozlišči $u, v$),
+opravimo v času $O(1)$.
 \end{odgovor}
 \end{naloga}

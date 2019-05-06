@@ -4,6 +4,26 @@ Kako moramo spremeniti strukturi
 iz nalog~\nal[matgraf] in~\nal[sosgraf],
 da bosta predstavljali digrafe?
 \end{vprasanje}
+
 \begin{odgovor}
+Strukturo iz naloge~\res[matgraf] spremenimo tako,
+da lahko hrani poljubno dvojiško matriko (torej ne nujno simetrične).
+To naredimo tako, da popravimo metodi $\AddEdge$ in $\DelEdge$,
+in sicer tako, da spreminjamo samo vrednost $G.A[u][v]$.
+Časovne zahtevnosti metod in prostorska zahtevnost strukture
+se pri tem ne spremenijo.
+
+Strukturo iz naloge~\res[matgraf] spremenimo tako,
+da relacija, določena s slo\-va\-rjem $G.E$, ni nujno simetrična.
+To naredimo tako, da popravimo metodi $\AddEdge$ in $\DelEdge$,
+in sicer tako, da spreminjamo samo množico $G.E[u]$.
+Tudi tukaj se časovne in prostorske zahtevnosti ne spremenijo.
+
+V digrafih lahko ločimo sosednost po vhodnih in izhodnih povezavah.
+V ta namen bi lahko za vsako imeli svojo metodo.
+Pri matrični predstavitvi lahko samo zamenjamo indeksa v metodi $\Adj$,
+če pa želimo ohraniti časovno zahtevnost pri predstavitvi s seznami sosedov,
+pa bi morali poleg slovarja za izhodne povezave
+hraniti še slovar za vhodne povezave.
 \end{odgovor}
 \end{naloga}

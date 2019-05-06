@@ -3,6 +3,33 @@
 Napiši algoritem, ki za vhodni graf $G$ določi, ali ima trikotnik.
 Katero podatkovno strukturo za grafe boš uporabil?
 \end{vprasanje}
+
 \begin{odgovor}
+Uporabili bomo predstavitev grafa s seznamom sosedov
+(glej nalogo~\res[sosgraf]).
+\begin{small}
+\begin{algorithmic}
+\Function{Trikotnik}{$G$}
+    \For{$u \in G.E$}
+        \For{$v \in \Adj(G, u)$}
+            \For{$w \in \Adj(G, v)$}
+                \If{$u \in \Adj(G, w)$}
+                    \State \Return $\True$
+                \EndIf
+            \EndFor
+        \EndFor
+    \EndFor
+    \Return $\False$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Da pregledamo vse pare $(u, v)$, porabimo $O(n)$ korakov,
+da obiščemo vsa vozlišča,
+in še $O(m)$ korakov, da obiščemo vse povezave.
+Tukaj je $n$ število vozlišč in $m$ število povezav grafa.
+Za vsak tak par pregledamo še sosede $w$ vozlišča $v$
+-- teh je vsakič največ $\Delta$ (največja stopnja grafa $G$).
+Nazadnje še v času $O(1)$ preverimo, ali sta vozlišči $u$ in $w$ sosedni.
+Skupna časovna zahtevnost algoritma je torej $O(n + m\Delta)$.
 \end{odgovor}
 \end{naloga}

@@ -6,6 +6,33 @@ Pravimo, da je vozlišče $v \in V$ {\em zvezda} digrafa $D$,
 in v digrafu $D$ ni drugih povezav.
 Napiši algoritem, ki poišče zvezdo danega digrafa, če ta obstaja.
 \end{vprasanje}
+
 \begin{odgovor}
+Zapišimo algoritem, ki bo vrnil zvezdo digrafa $D$, če ta obstaja,
+in $\Null$ sicer.
+\begin{small}
+\begin{algorithmic}
+\Function{Zvezda}{$D = (V, E)$}
+    \State $z \gets \Null$ \hfill začnemo brez kandidata
+    \For{$u \in V$}
+        \State $S \gets \Adj(D, u)$ \hfill sosedi vozlišča $u$
+        \If{$|S| == |V| - 1 \land u \not\in S$} \hfill ali je $u$ kandidat?
+            \If{$z \ne \Null$}
+                \State \Return $\Null$
+                    \hfill če smo že imeli kandidata, nimamo zvezde
+            \EndIf
+            \State $z \gets u$ \hfill nastavimo kandidata
+        \ElsIf{$|S| \ne 0$} \hfill nekandidati ne smejo imeti povezav
+            \State \Return $\Null$
+        \EndIf
+    \EndFor
+    \State \Return $z$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Če je digraf $D$ predstavljen kot seznam sosedov
+(glej nalogi~\res[sosgraf] in~\res[digraf]),
+pri čemer množice sosedov hranijo svojo velikost,
+bo algoritem tekel v času $O(n)$, kjer je $n$ število vozlišč.
 \end{odgovor}
 \end{naloga}

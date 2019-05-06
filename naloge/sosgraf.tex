@@ -6,6 +6,61 @@ Zapiši metode kot pri nalogi~\nal[matgraf]
 ter oceni njihovo časovno zahtevnost
 in prostorsko zahtevnost celotne strukture.
 \end{vprasanje}
+
 \begin{odgovor}
+Graf $G$ bomo predstavili kot slovar $G.E$,
+ki vsakemu vozlišču priredi množico njegovih sosedov.
+Napišimo ustrezne metode.
+
+\begin{small}
+\begin{algorithmic}
+\Function{Init}{$G$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.E \gets$ prazen slovar
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{AddVertex}{$G, u$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.E[u] \gets$ prazna množica
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{AddEdge}{$G, u, v$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.E[u].\add(v)$
+    \State $G.E[v].\add(u)$
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{DelEdge}{$G, u, v$} \hfill časovna zahtevnost: $O(1)$
+    \State $G.E[u].\remove(v)$
+    \State $G.E[v].\remove(u)$
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{DelVertex}{$G, u$} \hfill časovna zahtevnost: $O(n)$
+    \State izbriši $G.E[u]$
+    \For{$v \in G.E$}
+        \State $G.E[v].\remove(u)$
+    \EndFor
+\EndFunction
+\end{algorithmic}
+
+\begin{algorithmic}
+\Function{Adj}{$G, u$} \hfill časovna zahtevnost: $O(d_G(u))$
+    \State \Return $G.E[u]$
+\EndFunction
+\end{algorithmic}
+\end{small}
+V podanih časovnih zahtevnostih $n$ predstavlja število vozlišč v grafu,
+$d_G(u)$ pa stopnjo vozlišča $u$ v grafu $G$.
+Prostorska zahtevnost podatkovne struktura je $O(m+n)$,
+kjer $m$ predstavlja število povezav v grafu.
+
+Opomnimo, da lahko preverjanje, ali sta dve vozlišči sosedni
+(torej če velja $v \in \Adj(G, u)$ za dani vozlišči $u, v$),
+opravimo v času $O(1)$.
 \end{odgovor}
 \end{naloga}
