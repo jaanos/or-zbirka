@@ -1,8 +1,38 @@
 \begin{naloga}{?}{Vaje OR 4.5.2016}
 \begin{vprasanje}
 Zapiši algoritem, ki za vhodni graf $G$ določi njegov premer.
-
 \end{vprasanje}
+
 \begin{odgovor}
+Premer grafa je največja razdalja med dvema njegovima vozliščema.
+Poiskali ga bomo tako,
+da bomo opravili iskanje v širino iz vsakega vozlišča grafa
+(pomagali si bomo torej z algoritmom {\sc bfs} iz naloge~\res[bfs])
+ter vrnili največjo globino dobljenega drevesa.
+\begin{small}
+\begin{algorithmic}
+\Function{Premer}{$G = (V, E)$}
+    \State $D \gets 0$
+    \State $d \gets$ prazen slovar
+    \Function{Visit}{$u, v$}
+        \If{$v = \Null$}
+            \State $d[u] \gets 0$
+        \Else
+            \State $d[u] \gets d[v] + 1$
+        \EndIf
+    \EndFunction
+    \For{$v \in V$}
+        \For{$u \in V$}
+            \State $d[u] \gets \infty$
+        \EndFor
+        \State {\sc bfs}$(G, \{v\}, \visit)$
+        \State $D \gets \max\{D, \max\set{d[u]}{u \in V}\}$
+    \EndFor
+    \State \Return $D$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(n(m+n))$,
+kjer je $n$ število vozlišč in $m$ število povezav podanega grafa.
 \end{odgovor}
 \end{naloga}

@@ -16,12 +16,10 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v širino.
 Sledili bomo naslednjemu algoritmu.
 \begin{small}
 \begin{algorithmic}
-\Function{bfs}{$G = (V, E), \visit$}
-	\For{$v \in V$}
-		\State $\visited[v] \gets \False$
-        \State $\pred[v] \gets \Null$
-	\EndFor
-	\For{$s \in V$}
+\Function{bfs}{$G = (V, E), S, \visit$}
+    \State $\visited \gets$ slovar z vrednostjo $\False$ za vsak $v \in V$
+    \State $\pred \gets$ slovar z vrednostjo $\Null$ za vsak $v \in V$
+	\For{$s \in S$}
 		\If{$\lnot \visited[s]$}
 			\State $\visited[s] \gets \True$
 			\State $Q \gets [s]$
@@ -38,12 +36,15 @@ Sledili bomo naslednjemu algoritmu.
 			\EndWhile
 		\EndIf
 	\EndFor
+    \State \Return $\pred$
 \EndFunction
 \end{algorithmic}
 \end{small}
 %
 Potek zgornjega algoritma na grafu s slike~\fig
-(pri čemer za $\visit$ vzamemo $\NOp$, torej ne naredimo ničesar),
+(pri čemer za množico začetnih vozlišč $S$
+vzamemo množico vseh vozlišč $V$,
+za $\visit$ pa vzamemo $\NOp$, torej ne naredimo ničesar),
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
 Gozd iskanja v širino je prikazan na sliki~\fig[bfs-resitev],

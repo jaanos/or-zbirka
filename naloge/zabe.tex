@@ -49,7 +49,7 @@ Zapišimo kratek algoritem, pri čemer upoštevamo, da je $s$ list, na katerem s
 	\Function{Visit}{$u, v$}
 		\State {\sl označen}$[u] \gets \True$
 	\EndFunction
-	\State {\sc bfs}$(G, \visit)$
+	\State {\sc bfs}$(G, \{s\}, \visit)$
 	\State \Return {\sl označen}$[t]$
 \EndFunction
 \end{algorithmic}

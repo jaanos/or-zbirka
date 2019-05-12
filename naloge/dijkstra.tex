@@ -39,11 +39,21 @@ prioritete pa dolžine najkrajših najdenih poti od začetnega vozlišča.
 \EndFunction
 \end{algorithmic}
 \end{small}
-%
+Če za prednostno vrsto uporabimo običajen slovar,
+je časovna zahtevnost metode $\pop()$ linearna v številu elementov slovarja,
+spreminjanje vrednosti v slovarje pa se opravi v konstantnem času.
+Časovna zahtevnost zgornjega algoritma je tako $O(n^2)$,
+kjer je $n$ število vozlišč v grafu.
+
+Če pa za prednostno vrsto vzamemo kopico,
+sta časovni zahtevnosti metode $\pop()$ in spreminjanja vrednosti v kopici
+logaritemski v velikosti kopice.
+Časovna zahtevnost zgornjega algoritma je v tem primeru $O((m+n) \log n)$,
+kjer je $m$ število povezav v grafu.
+
 Potek zgornjega algoritma na grafu s slike~\fig,
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
-
 
 \begin{tabela}
 $$
@@ -64,13 +74,11 @@ a & d  & h & [(g, 14), (d, 17), (h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
 a & g  & f & [(d, 17), (h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
 a & d & b & [(h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
 a & d & h & [(h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
-a & h & g & [\ ]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
-
+a & h & g & [\ ]  & [0, 3, 10, 13, 12, 6, 13, 17]
 \end{array}
 $$
 \podnaslov{Potek izvajanja algoritma}
 \end{tabela}
-
 
 \end{odgovor}
 \end{naloga}

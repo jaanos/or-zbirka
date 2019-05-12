@@ -21,8 +21,68 @@ določi najmanjše število prevoženih kilometrov,
 ki naj jih avto zmore z enim polnjenjem,
 da bo pot od $s$ do $t$ mogoča.
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Algoritem {\sc bfs} iz naloge~\res[bfs]
+bomo uporabili na pomožnem grafu s povezavami,
+dolgimi največ $L$.
+Preiskovanje bomo začeli v vozlišču $t$,
+tako da bomo s sledenjem predhodnikom iz vozlišča $s$
+rekonstruirali iskano pot.
+\begin{small}
+\begin{algorithmic}
+\Function{ObstajaPot}{$G = (V, E), s, t, \ell : E \to \R_+, L$}
+    \State $E' \gets \set{e \in E}{\ell_e \le L}$
+    \State $G' \gets (V, E')$
+    \State $\pred \gets$ {\sc bfs}$(G', \{t\}, \NOp)$
+    \If{$s \ne t \land \pred[s] = \Null$}
+        \State \Return $\Null$
+    \EndIf
+    \State {\sl pot} $\gets [s]$
+    \State $u \gets s$
+    \While{$\pred[u] \ne \Null$}
+        \State $u \gets \pred[u]$
+        \State {\sl pot}.$\append(u)$
+    \EndWhile
+    \State \Return {\sl pot}
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(m+n)$,
+kjer je $n$ število vozlišč in $m$ število povezav podanega grafa.
+
+\item Uporabili bomo algoritem {\sc MinNajdaljšaPovezava}.
+Gre za varianto algoritma {\sc Dijkstra} iz naloge~\res[dijkstra],
+ki namesto dolžine poti za vsako vozlišče
+hrani dolžino najdaljše povezave v poti do njega.
+\begin{small}
+\begin{algorithmic}
+\Function{MinNajdaljšaPovezava}{$G = (V, E), s, t, \ell : E \rightarrow \R_{+}$}
+	\State $Q \gets$ prednostna vrsta
+        s prioriteto $\infty$ za vsako vozlišče $v \in V$
+	\State $Q[s] \gets 0$
+	\While{$\lnot Q.\isEmpty()$}
+		\State $u, d \gets Q.\pop()$
+        \If{$u = t$}
+            \State \Return $d$
+        \EndIf
+		\For{$v \in \Adj(G, u)$}
+			\If{$v \in Q \land Q[v] > \max\{d, \ell_{uv}\}$}
+				\State $Q[v] \gets \max\{d, \ell_{uv}\}$
+			\EndIf
+		\EndFor
+	\EndWhile
+    \State \Return $\infty$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Tako kot Dijkstrov algoritem
+tudi zgornji algoritem teče v času $O(m \log n)$
+(kjer je $n$ število vozlišč in $m$ število povezav podanega grafa
+-- ob predpostavki, da je graf povezan),
+če za prednostno vrsto uporabimo kopico.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

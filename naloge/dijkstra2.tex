@@ -5,6 +5,92 @@ za iskanje najkrajše poti med vozliščema $s$ in $t$ v grafu $G$,
 ki iskanje hkrati začne v vozliščih $s$ in $t$.
 Kdaj naj se iskanje konča in kako naj se poišče rešitev?
 \end{vprasanje}
+
 \begin{odgovor}
+Zapišimo algoritem, ki poišče najkrajšo pot od $s$ do $t$,
+pri čemer se preiskovanje začne v obeh koncih poti hkrati.
+Tako bomo v prednostno vrsto vsako vozlišče postavili dvakrat,
+preiskovanje pa bomo končali,
+ko bomo neko vozlišče drugič odstranili iz vrste.
+Iskana pot bo šla bodisi skozi to vozlišče,
+bodisi po povezavi med vozliščema,
+ki smo ju odstranili iz vrste po tem,
+ko sta bili doseženi iz različnih koncev iskane poti.
+\begin{small}
+\begin{algorithmic}
+\Function{Dijkstra2}{$G = (V, E), s, t, L : E \rightarrow \R_{+}$}
+	\State $Q \gets$ prednostna vrsta
+        s prioriteto $\infty$ za $(v, 0)$ in $(v, 1)$
+        za vsako vozlišče $v \in V$
+	\State $d_0 \gets$ prazen slovar
+	\State $d_1 \gets$ prazen slovar
+    \State $\pred_0 \gets$ slovar z vrednostjo $\Null$ za vsak $v \in V$
+	\State $\pred_1 \gets$ slovar z vrednostjo $\Null$ za vsak $v \in V$
+	\State $Q[s, 0] \gets 0$
+	\State $Q[t, 1] \gets 0$
+    \State $(u, i), r \gets Q.\pop()$ \hfill vzamemo prvo vozlišče iz vrste
+	\While{$(u, 1-i) \in Q$} \hfill nadaljujemo, če je vozlišče še v vrsti
+        \State $d_i[u] \gets r$ \hfill zapomnimo si razdaljo
+		\For{$v \in \Adj(G, u)$} \hfill posodobimo razdalje sosedom
+			\If{$(v, i) \in Q \land Q[v, i] > d_i[u] + L_{uv}$}
+				\State $Q[v, i] \gets d_i[u] + L_{uv}$
+                \State $\pred_i[v] \gets u$
+			\EndIf
+		\EndFor
+        \If{$Q.\isEmpty()$} \hfill če je vrsta prazna, ni poti od $s$ do $t$
+            \State \Return $(\infty, \Null)$
+        \EndIf
+        \State $(u, i), r \gets Q.\pop()$ \hfill vzamemo naslednje vozlišče
+	\EndWhile
+    \State $r, u \gets \min(\{(r + d_{1-i}[u], u)\} \cup
+                            \set{(d_i[v] + Q[v, 1-i], v)}{v \in d_i})$
+        \hfill poiščemo vozlišče,
+    \State $v \gets u$ \hfill preko katerega poteka najkrajša pot
+    \State {\sl pot}$_0 \gets [u]$
+    \While{$\pred_0[u] \ne \Null$} \hfill rekonstruiramo del poti od $s$
+        \State $u \gets \pred_0[u]$
+        \State {\sl pot}$_0.\append(u)$
+    \EndWhile
+    \State {\sl pot}$_0.\reverse()$
+    \State {\sl pot}$_1 \gets []$
+    \While{$\pred_1[v] \ne \Null$} \hfill rekonstruiramo del poti do $t$
+        \State $v \gets \pred_1[v]$
+        \State {\sl pot}$_1.\append(v)$
+    \EndWhile
+    \State \Return ($r$, {\sl pot}$_0 +${\sl pot}$_1$)
+\EndFunction
+\end{algorithmic}
+\end{small}
+Pokažimo, da algoritem deluje pravilno.
+Naj bosta $S$ in $T$ množici vozlišč,
+ki jih algoritem ob izteku prve zanke {\bf while} doseže iz $s$ oziroma $t$
+(tj., odstrani ustrezni vnos v $Q$)
+-- do teh vozlišč torej poznamo dolžino najkrajše poti od $s$ oziroma do $t$.
+V preseku množic $S$ in $T$ je natanko eno vozlišče, in sicer $u$.
+Za vsako vozlišče $v \not\in S \cup T$
+velja $d_G(s, v) \ge d_G(s, u)$ in $d_G(v, t) \ge d_G(u, t)$,
+tako da če najkrajša pot od $s$ do $t$ vsebuje vozlišče $v$,
+obstaja tudi najkrajša pot, ki vsebuje vozlišče $u$.
+Tako vidimo, da najkrajša pot med $s$ in $t$ bodisi vsebuje vozlišče $u$,
+bodisi vsebuje povezavo s krajiščema v $S$ in $T$.
+
+Če najkrajša pot med $s$ in $t$ bodisi vsebuje vozlišče $u$,
+potem algoritem očitno pravilno najde najkrajšo pot.
+Denimo sedaj, da najkrajša pot med $s$ in $t$ vsebuje povezavo $vw$,
+kjer je $v \in S$ in $w \in T$.
+Očitno tudi najkrajši poti od $s$ do $w$ in od $v$ do $t$
+vsebujeta povezavo $vw$
+(sicer bi obstajala krajša pot od $s$ do $t$ preko $v$ ali $w$),
+zato ob izteku prve zanke {\bf while}
+velja $d_G(s, w) = Q[w, 0]$ in $d_G(v, t) = Q[v, 1]$.
+Tako algoritem obravnava najkrajšo pot
+od $s$ do $t$ preko vozlišča $v$ ali $w$
+in zato pravilno najde najkrajšo pot.
+
+Tako kot Dijkstrov algoritem
+tudi zgornji algoritem teče v času $O(m \log n)$
+(kjer je $n$ število vozlišč in $m$ število povezav podanega grafa
+-- ob predpostavki, da je graf povezan),
+če za prednostno vrsto uporabimo kopico.
 \end{odgovor}
 \end{naloga}
