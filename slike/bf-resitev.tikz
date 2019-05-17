@@ -1,0 +1,27 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+
+\node[vertex] (A) at ( 0, 6) [label=left:$0$] {$a$};
+\node[vertex] (B) at ( 0, 4) [label=left:$3$] {$b$};
+\node[vertex] (C) at (-2, 2) [label=left:$10$] {$c$};
+\node[vertex] (D) at (-2, 0) [label=left:$3$] {$d$};
+\node[vertex] (E) at ( 2, 2) [label=right:$12$] {$e$};
+\node[vertex] (F) at (-2,-6) [label=left:$1$] {$f$};
+\node[vertex] (G) at (-2,-4) [label=left:$2$] {$g$};
+\node[vertex] (H) at (-2,-2) [label=left:$7$] {$h$};
+
+\draw[->] (A) -- (B)
+    node [right, midway] {$3$};
+\draw[->] (B) -- (C)
+    node [above, midway, sloped] {$7$};
+\draw[->] (B) -- (E)
+    node [above, midway, sloped] {$9$};
+\draw[->] (C) -- (D)
+    node [left, midway] {$-7$};
+\draw[->] (D) -- (H)
+    node [left, midway] {$4$};
+\draw[->] (H) -- (G)
+    node [left, midway] {$-5$};
+\draw[->] (G) -- (F)
+    node [left, midway] {$-1$};
+\end{tikzpicture}

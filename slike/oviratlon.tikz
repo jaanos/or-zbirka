@@ -1,15 +1,15 @@
 \begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
 
-\node[vertex] (S) at (-5, 0) [label=above:$s$] {};
-\node[vertex] (A) at (-1, 3) {};
-\node[vertex] (B) at (-1, 1) {};
-\node[vertex] (C) at (-1,-1) {};
-\node[vertex] (D) at (-1,-3) {};
-\node[vertex] (E) at ( 2, 2) {};
-\node[vertex] (F) at ( 2,-2) {};
-\node[vertex] (G) at ( 4, 0) {};
-\node[vertex] (T) at ( 6, 0) [label=above:$t$] {};
+\node[vertex] (S) at (-5, 0) {$s$};
+\node[vertex] (A) at (-1, 3) {$a$};
+\node[vertex] (B) at (-1, 1) {$b$};
+\node[vertex] (C) at (-1,-1) {$c$};
+\node[vertex] (D) at (-1,-3) {$d$};
+\node[vertex] (E) at ( 2, 2) {$e$};
+\node[vertex] (F) at ( 2,-2) {$f$};
+\node[vertex] (G) at ( 4, 0) {$g$};
+\node[vertex] (T) at ( 6, 0) {$t$};
 
 \draw[->] (S) -- (A)
     node [above, midway, sloped] {$10$};

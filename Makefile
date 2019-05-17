@@ -24,6 +24,9 @@ $(ZBIRKA).bbl: $(BIB_FILES)
 pgf/%.pdf: slike/%.tikz
 	$(call pgfc,$*)
 
+pgf/bf.pdf: slike/bf.tikz slike/dijkstra-bf-osnova.tikz
+	$(call pgfc,bf)
+
 pgf/dectree.pdf: slike/dectree.tikz slike/dectree-osnova.tikz
 	$(call pgfc,dectree)
 
@@ -35,6 +38,9 @@ pgf/dectree3.pdf: slike/dectree3.tikz slike/dectree3-osnova.tikz
 
 pgf/dectree3-resitev.pdf: slike/dectree3-resitev.tikz slike/dectree3-osnova.tikz
 	$(call pgfc,dectree3-resitev)
+
+pgf/dijkstra.pdf: slike/dijkstra.tikz slike/dijkstra-bf-osnova.tikz
+	$(call pgfc,dijkstra)
 
 pgf/domine.pdf: slike/domine.tikz slike/domine-osnova.tikz
 	$(call pgfc,domine)

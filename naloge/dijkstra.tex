@@ -24,18 +24,22 @@ prioritete pa dolžine najkrajših najdenih poti od začetnega vozlišča.
 \begin{small}
 \begin{algorithmic}
 \Function{Dijkstra}{$G = (V, E), s \in V, L : E \rightarrow \R_{+}$}
+    \State $d \gets$ slovar z vrednostjo $\infty$ za vsako vozlišče $v \in V$
+    \State $\pred \gets$ slovar z vrednostjo $\Null$
+        za vsako vozlišče $v \in V$
 	\State $Q \gets$ prednostna vrsta
         s prioriteto $\infty$ za vsako vozlišče $v \in V$
 	\State $Q[s] \gets 0$
 	\While{$\lnot Q.\isEmpty()$}
-		\State $u, d_u \gets Q.\pop()$
+		\State $u, d[u] \gets Q.\pop()$
 		\For{$v \in \Adj(G, u)$}
-			\If{$v \in Q \land Q[v] > d_u + L_{uv}$}
-				\State $Q[v] \gets d_u + L_{uv}$
+			\If{$v \in Q \land Q[v] > d[u] + L_{uv}$}
+				\State $Q[v] \gets d[u] + L_{uv}$
+                \State $\pred[v] \gets u$
 			\EndIf
 		\EndFor
 	\EndWhile
-    \State \Return $(d_v)_{v \in V}$
+    \State \Return $(d, \pred)$
 \EndFunction
 \end{algorithmic}
 \end{small}
@@ -54,31 +58,36 @@ kjer je $m$ število povezav v grafu.
 Potek zgornjega algoritma na grafu s slike~\fig,
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
+Drevo najkrajših poti je prikazano na sliki~\fig[dijkstra-resitev].
 
 \begin{tabela}
 $$
-\begin{array}{c|c|c|c|c}
-s & u & v & Q & \text{razdalje} \\ \hline
-a &   &   & [(a,0)]  & [0, \infty, \infty, \infty, \infty, \infty, \infty, \infty] \\
-a & a  &  b & [(b, 3)]  & [0, 3, \infty, \infty, \infty, \infty, \infty, \infty] \\
-a & a  &  f & [(b, 3), (f, 6)]  & [0, 3, \infty, \infty, \infty, 6, \infty, \infty] \\
-a & b  & c & [(f, 6), (c, 10)]  & [0, 3, 10, \infty, \infty, 6, \infty, \infty] \\
-a & b  & e & [(f, 6), (c, 10), (e, 12)]  & [0, 3, 10, \infty, 12, 6, \infty, \infty] \\
-a & f  & g & [(c, 10), (e, 12), (g, 14)]  & [0, 3, 10, \infty, 12, 6, 14, \infty] \\
-a & c  & d & [(e, 12), (g, 14), (d, 17)]  & [0, 3, 10, 17, 12, 6, 14, \infty] \\
-a & e  & d & [(d, 13), (g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 14, \infty] \\
-a & e  & g & [(g, 13), (d, 13), (g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
-a & g  & f & [(d, 13), (g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
-a & d  & b & [(g, 14), (d, 17)]  & [0, 3, 10, 13, 12, 6, 13, \infty] \\
-a & d  & h & [(g, 14), (d, 17), (h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
-a & g  & f & [(d, 17), (h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
-a & d & b & [(h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
-a & d & h & [(h, 17)]  & [0, 3, 10, 13, 12, 6, 13, 17] \\
-a & h & g & [\ ]  & [0, 3, 10, 13, 12, 6, 13, 17]
+\begin{array}{c|c|c|c}
+u & v & Q & \text{razdalje in predhodniki} \\ \hline
+  &   & [(a,0)]  & [0, \infty, \infty, \infty, \infty, \infty, \infty, \infty] \\
+a & b & [(b, 3)]  & [0, 3_a, \infty, \infty, \infty, \infty, \infty, \infty] \\
+a & f & [(b, 3), (f, 6)]  & [0, 3_a, \infty, \infty, \infty, 6_a, \infty, \infty] \\
+b & c & [(f, 6), (c, 10)]  & [0, 3_a, 10_b, \infty, \infty, 6_a, \infty, \infty] \\
+b & e & [(f, 6), (c, 10), (e, 12)]  & [0, 3_a, 10_b, \infty, 12_b, 6_a, \infty, \infty] \\
+f & g & [(c, 10), (e, 12), (g, 14)]  & [0, 3_a, 10_b, \infty, 12_b, 6_a, 14_g, \infty] \\
+c & d & [(e, 12), (g, 14), (d, 17)]  & [0, 3_a, 10_b, 17_c, 12_b, 6_a, 14_g, \infty] \\
+e & d & [(d, 13), (g, 14), (d, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 14_g, \infty] \\
+e & g & [(g, 13), (d, 13), (g, 14), (d, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, \infty] \\
+g & f & [(d, 13), (g, 14), (d, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, \infty] \\
+d & b & [(g, 14), (d, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, \infty] \\
+d & h & [(g, 14), (d, 17), (h, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, 17_d] \\
+g & f & [(d, 17), (h, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, 17_d] \\
+d & b & [(h, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, 17_d] \\
+d & h & [(h, 17)]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, 17_d] \\
+h & g & [\ ]  & [0, 3_a, 10_b, 13_e, 12_b, 6_a, 13_e, 17_d]
 \end{array}
 $$
 \podnaslov{Potek izvajanja algoritma}
 \end{tabela}
 
+\begin{slika}
+\pgfslika[dijkstra-resitev]
+\podnaslov{Drevo najkrajših poti}
+\end{slika}
 \end{odgovor}
 \end{naloga}

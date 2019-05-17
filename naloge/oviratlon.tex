@@ -9,10 +9,10 @@ Uteži na povezavah nam predstavljajo,
 na koliko načinov jih lahko prečkamo.
 
 \begin{enumerate}[(a)]
-\item Reši nalogo za graf s slike~\fig.
-
 \item Zapiši algoritem, ki reši dani problem.
 Kakšna je njegova časovna zahtevnost?
+
+\item Reši nalogo za graf s slike~\fig.
 \end{enumerate}
 
 \begin{slika}
@@ -20,6 +20,58 @@ Kakšna je njegova časovna zahtevnost?
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Algoritem deluje podobno kot algoritem {\sc NajkrajšaPot}
+iz naloge~\res[topo]{}(b),
+le da vsakič prišteje število možnih poti iz trenutnega vozlišča.
+Pri tem sledi topološki ureditvi,
+ki jo izračuna z algoritmom {\sc Topo} iz naloge~\res[topo]{}(a).
+\begin{small}
+\begin{algorithmic}
+\Function{ŠteviloPoti}{$G = (V, E), s, t, L : E \to \R$}
+\State $C \gets$ slovar z vrednostjo $0$ za vsako vozlišče $v \in V$
+\State $C[s] \gets 1$
+\For{$u \in$ {\sc Topo}$(G)$}
+    \For{$v \in \Adj(G, u)$}
+        \State $C[v] \gets C[v] + C[u] \cdot L_{uv}$
+    \EndFor
+\EndFor
+\State \Return $C[t]$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(m + n)$,
+kjer je $n$ število vozlišč in $m$ število povezav grafa.
+
+\item Potek izvajanja algoritma na grafu s slike~\fig
+je prikazan v tabeli~\tab.
+Pri tem je uporabljena topološka ureditev vozlišč
+$[s, a, b, d, c, e, f, g, t]$.
+Od vozlišča $s$ do vozlišča $t$ je mogoče priti na $58\,000$ načinov.
+\end{enumerate}
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c}
+u & v & L_{uv} & C[s, a, b, c, d, e, f, g, t] \\ \hline
+  &   &        & [1, 0, 0, 0, 0, 0, 0, 0, 0] \\
+s & a &     10 & [1, 10, 0, 0, 0, 0, 0, 0, 0] \\
+s & b &     10 & [1, 10, 10, 0, 0, 0, 0, 0, 0] \\
+s & c &     10 & [1, 10, 10, 10, 0, 0, 0, 0, 0] \\
+s & d &     10 & [1, 10, 10, 10, 10, 0, 0, 0, 0] \\
+a & b &      5 & [1, 10, 60, 10, 10, 0, 0, 0, 0] \\
+a & e &      5 & [1, 10, 60, 10, 10, 50, 0, 0, 0] \\
+b & e &      2 & [1, 10, 60, 10, 10, 170, 0, 0, 0] \\
+d & c &      5 & [1, 10, 60, 60, 10, 170, 0, 0, 0] \\
+c & f &      2 & [1, 10, 60, 60, 10, 170, 120, 0, 0] \\
+e & g &     10 & [1, 10, 60, 60, 10, 170, 120, 1\,700, 0] \\
+f & g &     10 & [1, 10, 60, 60, 10, 170, 120, 2\,900, 0] \\
+g & t &     10 & [1, 10, 60, 60, 10, 170, 120, 2\,900, 58\,000]
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

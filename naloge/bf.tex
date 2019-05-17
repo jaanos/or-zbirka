@@ -9,6 +9,101 @@ v grafu s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Sledili bomo naslednjemu algoritmu.
+\begin{small}
+\begin{algorithmic}
+\Function{BellmanFord}{$G = (V, E), s \in V, L : E \to \R$}
+    \State $d \gets$ slovar z vrednostjo $\infty$ za vsako vozlišče $v \in V$
+    \State $\pred \gets$ slovar z vrednostjo $\Null$
+        za vsako vozlišče $v \in V$
+    \State $d[s] \gets 0$
+    \State $i \gets 0$
+    \State $B \gets \True$
+    \While{$B$}
+        \State $i \gets i+1$
+        \If{$i > |V|$}
+            \State \Return graf ima negativen cikel
+        \EndIf
+        \State $B \gets \False$
+        \For{$uv \in E$}
+            \If{$d[v] > d[u] + L_{uv}$}
+                \State $d[v] \gets d[u] + L_{uv}$
+                \State $\pred[v] \gets u$
+                \State $B \gets \True$
+            \EndIf
+        \EndFor
+    \EndWhile
+    \State \Return $(d, \pred)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+V $i$-tem obhodu zanke {\bf while}
+slovar $d$ vsebuje dolžine tistih najkrajših poti
+od $s$ do vsakega drugega vozlišča,
+ki vsebujejo največ $i$ povezav.
+Če graf nima negativnih ciklov,
+je v vsaki najkrajši poti največ $n-1$ povezav
+(kjer je $n$ število vozlišč)
+in zato algoritem konča najkasneje po $n$-tem obhodu zanke {\bf while}.
+V nasprotnem primeru obstaja najkrajša pot z neskončno povezavami,
+kar algoritem zazna ob vstopu v $(n+1)$-vi obhod zanke.
+Časovna zahtevnost algoritma je tako $O(mn)$,
+kjer je $m$ število povezav grafa.
+
+Potek zgornjega algoritma na grafu s slike~\fig je prikazan v tabeli~\tab.
+Drevo najkrajših poti je prikazano na sliki~\fig[bf-resitev].
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|c|c}
+i & B & u & v & L_{uv} & \text{razdalje in predhodniki} \\ \hline
+  & \True  &   &   &    & [0, \infty, \infty, \infty, \infty, \infty, \infty, \infty] \\ \hline
+1 & \True  & a & b &  3 & [0, 3_a, \infty, \infty, \infty, \infty, \infty, \infty] \\
+1 & \True  & a & f &  6 & [0, 3_a, \infty, \infty, \infty, 6_a, \infty, \infty] \\
+1 & \True  & b & c &  7 & [0, 3_a, 10_b, \infty, \infty, 6_a, \infty, \infty] \\
+1 & \True  & b & e &  9 & [0, 3_a, 10_b, \infty, 12_b, 6_a, \infty, \infty] \\
+1 & \True  & c & d & -7 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, \infty, \infty] \\
+1 & \True  & d & b &  9 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, \infty, \infty] \\
+1 & \True  & d & h &  4 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, \infty, 7_d] \\
+1 & \True  & e & d &  1 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, \infty, 7_d] \\
+1 & \True  & e & g &  1 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 13_e, 7_d] \\
+1 & \True  & f & g &  8 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 13_e, 7_d] \\
+1 & \True  & g & f & -1 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 13_e, 7_d] \\
+1 & \True  & h & g & -5 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\ \hline
+2 & \False & a & b &  3 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & a & f &  6 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & b & c &  7 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & b & e &  9 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & c & d & -7 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & d & b &  9 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & d & h &  4 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & e & d &  1 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & e & g &  1 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \False & f & g &  8 & [0, 3_a, 10_b, 3_c, 12_b, 6_a, 2_h, 7_d] \\
+2 & \True  & g & f & -1 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+2 & \True  & h & g & -5 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\ \hline
+3 & \False & a & b &  3 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & a & f &  6 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & b & c &  7 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & b & e &  9 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & c & d & -7 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & d & b &  9 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & d & h &  4 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & e & d &  1 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & e & g &  1 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & f & g &  8 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & g & f & -1 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d] \\
+3 & \False & h & g & -5 & [0, 3_a, 10_b, 3_c, 12_b, 1_g, 2_h, 7_d]
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+\begin{slika}
+\pgfslika[bf-resitev]
+\podnaslov{Drevo najkrajših poti}
+\end{slika}
 \end{odgovor}
 \end{naloga}

@@ -41,7 +41,6 @@ ki bo uporabil algoritem {\sc dfs} iz naloge~\nal[dfs].
 Njegova ideja je, da padajoče uredimo vozlišča po njihovih pooznakah
 in tako dobimo inverzno topološko ureditev.
 To dosežemo tako, da po popolni obdelavi vozlišča tega postavimo na sklad.
-
 \begin{small}
 \begin{algorithmic}
 \Function{Topo}{$G = (V, E)$}
@@ -55,18 +54,20 @@ To dosežemo tako, da po popolni obdelavi vozlišča tega postavimo na sklad.
 \EndFunction
 \end{algorithmic}
 \end{small}
+Časovna zahtevnost algoritma je $O(m + n)$,
+kjer je $n$ število vozlišč in $m$ število povezav grafa.
 
 Klic {\sc Topo}$(G)$ nam vrne ureditev vozlišč $[g, a, h, b, c, f, d, e]$.
 
 \item Tukaj bomo uporabili rezultat iz prejšnje točke
 in osnoven koncept dinamičnega programiranja.
 
-Označimo z $\ell(u, v)$ utež povezave $u \rightarrow v$.
+Označimo z $L_{uv}$ utež povezave $u \rightarrow v$.
 Naj $d_G(u)$ predstavlja najkrajšo razdaljo
 od izbranega vozlišča $s$ do vozlišča $u$.
 \begin{align*}
 d_G(s) &= 0 \\
-d_G(u) &= \min_{v \rightarrow u}(d_G(v) + \ell(v, u))
+d_G(u) &= \min_{v \rightarrow u}(d_G(v) + L_{vu})
 \qquad (u \in V \setminus \{s\})
 \end{align*}
 Da bomo imeli vse potrebne $d_G(v)$ definirane pred izračunom $d_G(u)$,
@@ -81,23 +82,22 @@ bomo uporabili seznam predhodnikov,
 ki bo nakazoval, katero vozlišče smo izbrali za predhodnika.
 \begin{align*}
 \pred(s) &= \Null \\
-\pred(u) &= \argmin_{v \rightarrow u}(d_G(v) + \ell(v, u))
+\pred(u) &= \argmin_{v \rightarrow u}(d_G(v) + L_{vu})
 \qquad (u \in V \setminus \{s\})
 \end{align*}
 Na koncu dobimo pot tako,
 da sledimo predhodnikom podanega končnega vozlišča $t$,
 dokler ne pridemo do $s$.
-
 \begin{small}
 \begin{algorithmic}
-\Function{NajkrajšaPot}{$G = (V, E), s, t$}
+\Function{NajkrajšaPot}{$G = (V, E), s, t, L : E \to \R$}
 	\State $d_G \gets$ slovar z vrednostjo $\infty$ za vsako vozlišče $v \in V$
 	\State $d_G[s] \gets 0$
 	\State $\pred \gets$ slovar z vrednostjo $\Null$ za vsako vozlišče $v \in V$
 	\For{$u \in$ {\sc Topo}$(G)$}
 		\For{$v \in \Adj(G, u)$}
-			\If{$d_G[v] > d_G[u] + \ell(u, v)$}
-				\State $d_G[v] \gets d_G[u] + \ell(u, v)$
+			\If{$d_G[v] > d_G[u] + L_{uv}$}
+				\State $d_G[v] \gets d_G[u] + L_{uv}$
 				\State $\pred[v] \gets u$
 			\EndIf
 		\EndFor
@@ -113,6 +113,8 @@ dokler ne pridemo do $s$.
 \EndFunction 
 \end{algorithmic}
 \end{small}
+Časovna zahtevnost algoritma je $O(m + n)$,
+kjer je $n$ število vozlišč in $m$ število povezav grafa.
 
 Klic {\sc NajkrajšaPot}$(G, g, e)$
 vrne razdaljo od vozlišča $g$ do vozlišča $e$
@@ -135,7 +137,8 @@ Prav tako bi se lahko ustavili, ko dosežemo vozlišče $t$.
 \item Uporabimo algoritem {\sc NajdaljšaPot},
 ki deluje na enak način kot {\sc NajkrajšaPot},
 le da namesto $\infty$ vzame v $d_G$ za začetne vrednosti $-\infty$,
-v zanki pa na vsakem koraku preverja pogoj $d_G[v] < d_G[u] + \ell(u, v)$.
+v zanki pa na vsakem koraku preverja pogoj $d_G[v] < d_G[u] + L_{uv}$.
+Časovna zahtevnost algoritma tako ostane enaka.
 Klic {\sc NajdaljšaPot}$(G, g, e)$ vrne pot $[g, h, b, c, d, e]$ dolžine $24$.
 Potek izvajanja algoritma je prikazan v tabeli~\tab[topo-najdaljsa].
 \end{enumerate}
@@ -145,7 +148,7 @@ Potek izvajanja algoritma je prikazan v tabeli~\tab[topo-najdaljsa].
 \makebox[\textwidth][c]{
 \begin{tabular}{c|c|rcrcl|cccccccc|c}
 \multicolumn{7}{c}{} & \multicolumn{8}{c}{$d_G$} \\
-$u$ & $v$ & $d_G(v)$ &$>$& $d_G(u)$ &$+$& $\ell(u, v)$ & $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ & $h$ & $\pred[v]$ \\ \hline
+$u$ & $v$ & $d_G(v)$ &$>$& $d_G(u)$ &$+$& $L_{uv}$ & $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ & $h$ & $\pred[v]$ \\ \hline
 $g$ & $a$ & $\infty$ &$>$& $0$ &$+$& $(-1)$ & $-1$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $0$ & $\infty$ & $g$\\
 $g$ & $d$ & $\infty$ &$>$& $0$ &$+$& $6$ & $-1$ & $\infty$ & $\infty$ & $6$ & $\infty$ & $\infty$ & $0$ & $\infty$ & $g$\\
 $g$ & $f$ & $\infty$ &$>$& $0$ &$+$& $6$ & $-1$ & $\infty$ & $\infty$ & $6$ & $\infty$ & $6$ & $0$ & $\infty$ & $g$\\
@@ -170,7 +173,7 @@ $d$ & $e$ & $-1$ &$>$& $-1$ &$+$& $7$ & $-1$ & $1$ & $-3$ & $-1$ & $-1$ & $3$ & 
 \makebox[\textwidth][c]{
 \begin{tabular}{c|c|rcrcl|cccccccc|c}
 \multicolumn{7}{c}{} & \multicolumn{8}{c}{$d_G$} \\
-$u$ & $v$ & $d_G(v)$ &$<$& $d_G(u)$ &$+$& $\ell(u, v)$ & $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ & $h$ & $\pred[v] $\\ \hline
+$u$ & $v$ & $d_G(v)$ &$<$& $d_G(u)$ &$+$& $L_{uv}$ & $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ & $h$ & $\pred[v] $\\ \hline
 $g$ & $a$ & $-\infty$ &$<$& $0$ &$+$& $(-1)$ & $-1$ & $-\infty$ & $-\infty$ & $-\infty$ & $-\infty$ & $-\infty$ & $0$ & $-\infty$ & $g$\\
 $g$ & $d$ & $-\infty$ &$<$& $0$ &$+$& $6$ & $-1$ & $-\infty$ & $-\infty$ & $6$ & $-\infty$ & $-\infty$ & $0$ & $-\infty$ & $g$\\
 $g$ & $f$ & $-\infty$ &$<$& $0$ &$+$& $6$ & $-1$ & $-\infty$ & $-\infty$ & $6$ & $-\infty$ & $6$ & $0$ & $-\infty$ & $g$\\
