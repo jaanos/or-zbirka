@@ -7,37 +7,24 @@ ter pove, ali obstaja cikel v $G$, ki vsebuje povezavo $e$.
 
 \begin{odgovor}
 Naj bo $e = (s, t)$. 
-Naloga nas potem sprašuje, če obstaja pot od $t$ do $s$, 
-saj bomo v tem primeru očitno dobili cikel, ki vsebuje $e$.
-Ideja algoritma bo torej uporabiti koncept {\sc dfs} algoritma iz naloge~\nal[Dfs], z začetkom v $t$ 
-in preveriti, če smo prišli z njim do $s$.
-
+Če preverimo obstoj poti od $s$ do $t$, ki ne vključuje povezave $e$, 
+bomo s tem rešili nalogo, saj takšna pot obstaja natanko tedaj, 
+ko je v grafu cikel, ki vsebuje povezavo $e$.
+Ideja bo torej uporabiti {\sc dfs} algoritem iz naloge~\nal[Dfs]
+na grafu $G \setminus \{e\}$, z začetkom v $s$
+in tako preveriti, če lahko pridemo do $t$.
 \begin{small}
 \begin{algorithmic}
 \Function{Cikel}{$G = (V, E)$, $e = (s, t)$}
+	\State $G' \gets G \setminus \{e\}$
 	\State označeni $\gets$ slovar s ključi $v \in V$ in vrednostmi $\False$
-	\State sklad $\gets [t]$
-	\While{$\length$(sklad) $> 0$}
-		\State $u \gets sklad.\pop()$
-		\If{$\neg$ označeni$[u]$}
-			\State označeni$[u] \gets \True$
-			\For{$v \in \Adj(G, u)$}
-				\If{$\neg$ označeni$[v]$}
-					\State sklad.$\append(v)$
-					\If{$v = s$}
-						\State \Return $\True$
-					\EndIf
-				\EndIf
-			\EndFor
-		\EndIf
-	\EndWhile
-	\State \Return $\False$
+	\Function{Visit}{$u, v$}
+		\State označeni$[u] \gets \True$
+	\EndFunction
+	\State {\sc dfs}($G', \{s\}, {\sc Visit}, \NOp$)
+	\State \Return označeni$[t]$
 \EndFunction
 \end{algorithmic}
 \end{small}
-Pripomnimo, da algoritem deluje pravilno za usmerjene grafe, 
-pri neusmerjenih pa moramo paziti, 
-da ne uporabimo povezave $t \rightarrow s$, 
-torej moramo pri pregledu sosedov vozlišča $t$ $s$ ignorirati.
 \end{odgovor}
 \end{naloga}
