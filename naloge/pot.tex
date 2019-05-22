@@ -19,6 +19,72 @@ Na povezavah so napisani stroški prevozov med krajema
 pri vozliščih pa stroški prenočitve v kraju.
 \end{enumerate}
 \end{vprasanje}
+
+
+
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Imamo neusmerjen utežen graf. Problem bi bilo najlažje reševati s prilagojenim Dijkstrovim algoritmom, kjer bi dodali še uteži na vozliščih.
+
+\item Potek samega reševanja problema je prikazan v tabeli ~\tab. Cena poti od LJ do BX je 150. Pot pa je sledeča: LJ - WI - BN - LU - BX.
+\end{enumerate}
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+u & v & Q & d[BX], o[BX] &   d[AM], o[AM] &  d[BL], o[BL] &  d[PR], o[PR] &  d[BS], o[BS] &  d[PA], o[PA] & d[LU], o[LU] &  d[BN], o[BN] & d[WI], o[WI] &  d[BU], o[BU] &  d[MO], o[MO] &  d[VE], o[VE] &  d[LJ], o[LJ] &  d[ZG], o[ZG] \\ \hline
+ & & [(LJ, 0)] & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & \infty, None & 0, None & \infty, None \\ \hline
+LJ &VE & [(VE, 35)] & & & & & & & & & & & & 35, LJ & & \\ \hline
+LJ & WI & [(WI, 33), (VE, 35)] & & & & & & & & & 33, LJ & & & & & \\ \hline
+LJ & ZG & [(ZG, 20), (WI, 33), (VE, 35)] & & & & & & & & & & & & & & 20, LJ\\ \hline
+LJ & BU & [(ZG, 20), (BU, 25),  (WI, 33), (VE, 35)] & & & & & & & & & & 25, LJ & & & & \\ \hline
+ZG & LJ & [(BU, 25),  (WI, 33), (VE, 35)] & & & & & & & & & & & & & & \\ \hline
+ZG & BU & [(BU, 25),  (WI, 33), (VE, 35)] & & & & & & & & & & & & & & \\ \hline
+BU & LJ & [(WI, 33), (VE, 35)] & & & & & & & & & & & & & & \\ \hline
+BU & ZG & [(WI, 33), (VE, 35)] & & & & & & & & & & & & & & \\ \hline
+BU & WI & [(WI, 33), (VE, 35)] & & & & & & & & & & & & & & \\ \hline
+BU & BS & [(WI, 33), (VE, 35), (BS, 40)] & & & & & 40, BU & & & & & & & & & \\ \hline
+WI & LJ & [(VE, 35), (BS, 40)] & & & & & & & & & & & & & & \\ \hline
+WI & BU & [(VE, 35), (BS, 40)] & & & & & & & & & & & & & & \\ \hline
+WI & BS & [(VE, 35), (BS, 40)] & & & & & & & & & & & & & & \\ \hline
+WI & PR & [(VE, 35), (BS, 40), (PR, 53)] & & & & 53, WI & & & & & & & & & & \\ \hline
+WI & BN & [(VE, 35), (BS, 40), (PR, 53), (BN, 68)] & & & & & & & & 68, WI & & & & & & \\ \hline
+VE & LJ & [(BS, 40), (PR, 53), (BN, 68)] & & & & & & & & & & & & & & \\ \hline
+VE & MO & [(BS, 40), (PR, 53), (BN, 68), (MO, 79)] & & & & & & & & & & & 79, VE & & & \\ \hline
+BS & BU & [(PR, 53), (BN, 68), (MO, 79)] & & & & & & & & & & & & & & \\ \hline
+BS & WI & [(PR, 53), (BN, 68), (MO, 79)] & & & & & & & & & & & & & & \\ \hline
+BS & PR & [(PR, 53), (BN, 68), (MO, 79)] & & & & & & & & & & & & & & \\ \hline
+PR & BS & [(BN, 68), (MO, 79)] & & & & & & & & & & & & & & \\ \hline
+PR & WI & [(BN, 68), (MO, 79)] & & & & & & & & & & & & & & \\ \hline
+PR & BL & [(BN, 68), (MO, 79), (BL, 83)] & & & 83, PR & & & & & & & & & & & \\ \hline
+BN & WI & [(MO, 79), (BL, 83)] & & & & & & & & & & & & & & \\ \hline
+BN & MO & [(MO, 79), (BL, 83)] & & & & & & & & & & & & & & \\ \hline
+BN & LU & [(MO, 79), (BL, 83), (LU, 101)] & & & & & & & 101, BN & & & & & & & \\ \hline
+MO & VE & [(BL, 83), (LU, 101)] & & & & & & & & & & & & & & \\ \hline
+MO & BN & [(BL, 83), (LU, 101)] & & & & & & & & & & & & & & \\ \hline
+MO & PA & [(BL, 83), (LU, 101), (PA, 133)] & & & & & & 133, MO & & & & & & & & \\ \hline
+BL & PR & [(LU, 101), (PA, 133)] & & & & & & & & & & & & & & \\ \hline
+BL & AM & [(LU, 101), (AM, 127), (PA, 133)] & & 127, BL & & & & & & & & & & & & \\ \hline
+LU & BN & [(AM, 127), (PA, 133)] & & & & & & & & & & & & & & \\ \hline
+LU & AM & [(AM, 127), (PA, 133)] & & & & & & & & & & & & & & \\ \hline
+LU & BX & [(AM, 127), (PA, 133), (BX, 150)] & 150, LU & & & & & & & & & & & & & \\ \hline
+LU & PA & [(AM, 127), (PA, 133), (BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+AM & BL & [(PA, 133), (BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+AM & LU & [(PA, 133), (BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+AM & BX & [(PA, 133), (BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+PA & MO & [(BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+PA & LU & [(BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+PA & BX & [(BX, 150)] &  & & & & & & & & & & & & & \\ \hline
+BX & AM & [\ ] & & & & & & & & & & & & & & \\ \hline
+BX & LU & [\ ] &  & & & & & & & & & & & & & \\ \hline
+BX & PA & [\ ] &  & & & & & & & & & & & & & \\ \hline
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+
+
+
 \end{odgovor}
 \end{naloga}
