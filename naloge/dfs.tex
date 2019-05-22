@@ -11,7 +11,7 @@ Za vsako povezavo določi, ali se nahaja v drevesu iskanja v globino.
 Sledili bomo naslednjemu algoritmu.
 \begin{small}
 \begin{algorithmic}
-\Function{dfs}{$G = (V, E), \previsit, \postvisit$}
+\Function{dfs}{$G = (V, E), S, \previsit, \postvisit$}
 	\For{$v \in V$}
 		\State $\visited[v] \gets \False$
 	\EndFor
@@ -26,7 +26,7 @@ Sledili bomo naslednjemu algoritmu.
 		\EndFor
         \State $\postvisit(v, w)$
     \EndFunction
-	\For{$v \in V$}
+	\For{$v \in S$}
 		\State {\sc Razišči}$(v, \Null)$
 	\EndFor
 \EndFunction
@@ -38,7 +38,9 @@ poleg tega pa algoritem opravi
 še $O(n)$ klicev funkcij $\previsit$ in $\postvisit$.
 
 Potek zgornjega algoritma na grafu s slike~\fig[bfs]
-(pri čemer za $\previsit$ in $\postvisit$ vzamemo $\NOp$,
+(pri čemer za množico za\-čet\-nih vozlišč $S$
+vzamemo množico vseh vozlišč $V$,
+za $\previsit$ in $\postvisit$ pa vzamemo $\NOp$,
 torej ne naredimo ničesar),
 pri čemer sledimo abecednemu vrstnemu redu vozlišč,
 je prikazan v tabeli~\tab.
