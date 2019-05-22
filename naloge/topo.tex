@@ -48,7 +48,7 @@ To dosežemo tako, da po popolni obdelavi vozlišča tega postavimo na sklad.
 	\Function{Postvisit}{$u, v$}
 		\State {\sl toposklad}$.\append(u)$
 	\EndFunction
-	\State {\sc dfs}$(G, \NOp, \postvisit)$
+	\State {\sc dfs}$(G, V, \NOp, \postvisit)$
 	\State {\sl toposklad}$.\reverse()$
 	\State \Return {\sl toposklad}
 \EndFunction
