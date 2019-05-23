@@ -10,19 +10,19 @@ Naj bo $e = (s, t)$.
 Če preverimo obstoj poti od $s$ do $t$, ki ne vključuje povezave $e$, 
 bomo s tem rešili nalogo, saj takšna pot obstaja natanko tedaj, 
 ko je v grafu cikel, ki vsebuje povezavo $e$.
-Ideja bo torej uporabiti {\sc dfs} algoritem iz naloge~\nal[Dfs]
-na grafu $G \setminus \{e\}$, z začetkom v $s$
-in tako preveriti, če lahko pridemo do $t$.
+Ideja bo torej uporabiti {\sc dfs} algoritem iz naloge~\nal[dfs]
+na grafu $G \setminus \{e\}$ z začetkom v $s$ in tako preveriti,
+če lahko pridemo do $t$.
 \begin{small}
 \begin{algorithmic}
 \Function{Cikel}{$G = (V, E)$, $e = (s, t)$}
 	\State $G' \gets G \setminus \{e\}$
-	\State označeni $\gets$ slovar s ključi $v \in V$ in vrednostmi $\False$
+	\State {\sl označeni} $\gets$ slovar s ključi $v \in V$ in vrednostmi $\False$
 	\Function{Visit}{$u, v$}
-		\State označeni$[u] \gets \True$
+		\State {\sl označeni}$[u] \gets \True$
 	\EndFunction
-	\State {\sc dfs}($G', \{s\}, {\sc Visit}, \NOp$)
-	\State \Return označeni$[t]$
+	\State {\sc dfs}($G', \{s\}, \text{\sc Visit}, \NOp$)
+	\State \Return {\sl označeni}$[t]$
 \EndFunction
 \end{algorithmic}
 \end{small}
