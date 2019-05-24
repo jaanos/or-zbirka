@@ -34,5 +34,68 @@ Verjetnosti za graf s slike~\fig ni potrebno računati.
 \end{slika}
 \end{vprasanje}
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Topološko ureditev dobimo z uporabo algoritma iz naloge~\nal[topo].
+Dobimo $[s, b, a, d, h, e, c, f, i, g, t]$. 
+Graf v tej ureditvi si lahko ogledamo na sliki ~\fig[dag_res].
+\begin{slika}
+\pgfslika[dag_res]
+\podnaslov[\res{}(a)]{Predstavitev topološko urejenega grafa}
+\end{slika}
+
+\item Najkrajše razdalje do vsakega vozlišča $v \in V$, 
+$d_v$  bomo poiskali s pomočjo dinamičnega programiranja in rekurzivne zveze
+\begin{align*}
+d_v &= \min\{d_v,  d_u + \ell_{uv}| \text{ za } u \rightarrow v\} \\
+d_s &= 0,
+\end{align*}
+Vrednosti $d_v$ bomo pridobivali po vstnem redu, ki ga določa topološka ureditev.
+\begin{small}
+\begin{algorithmic}
+\Function{dagRazdalje}{$G = (V, E), \ell, s, t$}
+	\State topo $\gets$ {\sc Topo}$(G)$
+	\State $D \gets$ slovar s ključi $v \in V$ in vrednostmi $\infty$
+	\State $D[s] \gets 0$
+	\For{$u \in$ topo}
+		\For{$v \in \Adj(G, u)$}
+			\State $D[v] \gets \min(D[v], D[u] + \ell_{uv})$
+		\EndFor
+	\EndFor
+	\State \Return $D[t]$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Po klicu {\sc dagRazdalje}($G, \ell, s, t$) dobimo 11.
+
+\item Ker se algoritem odloča neodvisno od svojih prejšnjih odločitev so vsi dogodki neodvisni.
+Verjetnost, da pridemo do vozlišča $v$ bo vsota vseh možnih 
+verjetnosti dogodkov potovanja po (različnih) poteh, ki se končajo v $v$.
+Verjetnost potovanja po določeni poti pa bo produkt verjetnosti potovanja po vsaki vsebujoči povezavi.
+Za verjetnosti $q_v$ v dag grafu torej velja naslednja zveza
+\begin{align*}
+q_v &= \sum_{u \rightarrow v}p_{uv} q_u \\
+q_s &= 1.
+\end{align*}
+Spet bomo iskali vrednosti $q_v$ po topološkem vrstnem redu.
+\begin{small}
+\begin{algorithmic}
+\Function{dagVerjetnosti}{$G, s$}
+	\State topo $\gets$ {\sc Topo}$(G)$
+	\State $q_v \gets 0$ za $v \in V \setminus \{s\}$
+	\State $q_s \gets 1$
+	\For{$u \in$ topo}
+		\For{$v \rightarrow u$}
+			\State $q_v = q_v + q_u p_{uv}$
+		\EndFor
+	\EndFor
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(m)$, 
+saj gremo po vsaki povezavi preko vsakega vozlišča enkrat, 
+pri čemer pa moramo seveda paziti, da ne izračunamo vsote, 
+s katero je definirana $p_{uv}$ vsakič v notranjii zanki, 
+saj jo lahko raje vsak obhod enkrat v zunanji.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
