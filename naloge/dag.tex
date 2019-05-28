@@ -5,7 +5,7 @@ Dan je utežen usmerjen acikličen graf s slike~\fig.
 \begin{enumerate}[(a)]
 \item Poišči topološko ureditev grafa s slike~\fig.
 
-\item Poišči najcenejšo pot od vozlišča $S$ do vozlišča $T$
+\item Poišči najcenejšo pot od vozlišča $s$ do vozlišča $t$
 v grafu s slike~\fig.
 
 \item Naj bo $G = (V, E)$ usmerjen acikličen graf
@@ -33,6 +33,85 @@ Verjetnosti za graf s slike~\fig ni potrebno računati.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Topološko ureditev dobimo z uporabo algoritma {\sc Topo}
+iz naloge~\res[topo]{}(a).
+Dobimo $[s, b, a, d, h, e, c, f, i, g, t]$. 
+Graf v tej ureditvi si lahko ogledamo na sliki~\fig[dag-resitev].
+
+\item Najkrajšo pot od vozlišča $s$ do vozlišča $t$
+lahko izračunamo z algoritmom {\sc NajkrajšaPot} iz naloge~\res[topo]{}(b).
+Ta nam vrne pot $s - a - d - h - i - t$ dolžine $11$.
+Delovanje algoritma si lahko ogledamo v tabeli~\tab.
+
+\begin{tabela}
+\begin{tabular}{cc|cc}
+$u$ & $v$ & $\pred[v]$ & $d_G[v]$ \\ \hline
+$ s$ & $a$ & $s$ & $2$ \\
+$ s$ & $b$ & $s$ & $3$ \\
+$ s$ & $c$ & $s$ & $5$ \\
+$ b$ & $a$ & $s$ & $2$ \\
+$ b$ & $c$ & $s$ & $5$ \\
+$ b$ & $e$ & $b$ & $9$ \\
+$ b$ & $f$ & $b$ & $7$ \\
+$ a$ & $d$ & $a$ & $8$ \\
+$ d$ & $e$ & $b$ & $9$ \\
+$ d$ & $g$ & $d$ & $14$ \\
+$ d$ & $h$ & $d$ & $9$ \\
+$ h$ & $e$ & $b$ & $9$ \\
+$ h$ & $g$ & $d$ & $14$ \\
+$ h$ & $i$ & $h$ & $10$ \\
+$ h$ & $t$ & $h$ & $12$ \\
+$ e$ & $c$ & $s$ & $5$ \\
+$ e$ & $f$ & $b$ & $7$ \\
+$ e$ & $g$ & $e$ & $13$ \\
+$ g$ & $t$ & $h$ & $12$ \\
+$ c$ & $f$ & $b$ & $7$ \\
+$ f$ & $i$ & $h$ & $10$ \\
+$ i$ & $t$ & $i$ & $11$ \\
+\end{tabular}
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma {\sc NajkrajšaPot}}
+\end{tabela}
+
+\item Ker se algoritem odloča neodvisno od svojih prejšnjih odločitev,
+so vsi dogodki neodvisni.
+Verjetnost, da pridemo do vozlišča $v$,
+bo vsota verjetnosti vseh dogodkov potovanja po (različnih) poteh,
+ki se končajo v $v$.
+Verjetnost potovanja po določeni poti pa bo produkt verjetnosti potovanja po vsaki vsebujoči povezavi.
+Za verjetnosti $q_v$ v usmerjenem acikličnem grafu torej velja zveza
+\begin{align*}
+q_v &= \sum_{u \rightarrow v}p_{uv} q_u \\
+q_s &= 1.
+\end{align*}
+Vrednosti $q_v$ bomo iskali po topološkem vrstnem redu.
+\begin{small}
+\begin{algorithmic}
+\Function{dagVerjetnosti}{$G = (V, E), s, \ell : E \to \R_+$}
+	\State $q \gets$ slovar z vrednostjo $0$ za vsako vozlišče $v \in V$
+	\State $q[s] \gets 1$
+	\For{$u \in$ {\sc Topo}$(G)$}
+        \State $p \gets \sum_{w \in \Adj_G(u)} \ell_{uw}$
+		\For{$v \in \Adj_G(u)$}
+			\State $q[v] \gets q[v] + q[u] \ell_{uv} / p$
+		\EndFor
+	\EndFor
+    \State \Return $q$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(m)$, 
+saj gremo po vsaki povezavi preko vsakega vozlišča enkrat, 
+pri čemer pa moramo seveda poskrbeti,
+da vsote v števcu definicije vrednosti $p_{uv}$ ne računamo vsakič sproti,
+pač pa to storimo pred posodabljanjem verjetnosti sosedom vozlišča $u$.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika[dag-resitev]
+\podnaslov[\res{}(a)]{Predstavitev topološko urejenega grafa}
+\end{slika}
 \end{odgovor}
 \end{naloga}

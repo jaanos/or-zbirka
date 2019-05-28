@@ -1,0 +1,48 @@
+\begin{tikzpicture}[->,style=thick,scale=0.8]
+\tikzstyle{vertex}=[draw, fill=white, inner sep=0pt, minimum size=6mm]
+\small
+\node [vertex, circle] (s) at (0, 0) {$s$};
+\node [vertex, circle] (b) at (1.5, 0) {$b$};
+\node [vertex, circle] (a) at (3, 0) {$a$};
+\node [vertex, circle] (d) at (4.5, 0) {$d$};
+\node [vertex, circle] (h) at (6, 0) {$h$};
+\node [vertex, circle] (e) at (7.5, 0) {$e$};
+\node [vertex, circle] (c) at (9, 0) {$c$};
+\node [vertex, circle] (f) at (10.5, 0) {$f$};
+\node [vertex, circle] (i) at (12, 0) {$i$};
+\node [vertex, circle] (g) at (13.5, 0) {$g$};
+\node [vertex, circle] (t) at (15, 0) {$t$};
+
+\draw (s) to [bend right=45] node [midway, below] {2} (a);
+\draw (s) to [] node [midway, above] {3} (b);
+\draw (s) to [bend left=45] node [midway, above] {5} (c);
+
+\draw (a) to [] node [midway, above] {6} (d);
+
+\draw (b) to [] node [midway, above] {4} (a);
+\draw (b) to [bend left=45] node [midway, below] {6} (c);
+\draw (b) to [bend right=45] node [midway, below] {6} (e);
+\draw (b) to [bend right=65] node [midway, below] {4} (f);
+
+\draw (c) to [] node [midway, above] {2} (f);
+
+\draw (d) to [bend left=45] node [midway, above] {3} (e);
+\draw (d) to [bend right=45] node [near end, below, sloped] {6} (g);
+\draw (d) to [] node [midway, above] {1} (h);
+
+\draw (e) to [] node [midway, above] {2} (c);
+\draw (e) to [bend right=45] node [near start, above, sloped] {4} (f);
+\draw (e) to [bend left=45] node [midway, below] {4} (g);
+
+\draw (f) to [] node [midway, above] {5} (i);
+
+\draw (g) to [] node [midway, above] {4} (t);
+
+\draw (h) to [] node [midway, above] {1} (e);
+\draw (h) to [bend left=45] node [midway, above] {5} (g);
+\draw (h) to [bend right=40] node [near start, below, sloped] {1} (i);
+\draw (h) to [bend left=55] node [midway, above] {3} (t);
+
+\draw (i) to [bend right=45] node [midway, below] {1} (t);
+
+\end{tikzpicture}
