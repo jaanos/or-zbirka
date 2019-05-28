@@ -22,19 +22,88 @@ Pri kateri fazi naj pomaga, da bo čas gradnje čim krajši?
 faza & opis & trajanje & pogoj &
 min.~trajanje & cena za dan manj \\
 \hline
-A & gradnja kleti & 10 dni & / & 7 dni & 200 \\
-B & gradnja pritličja & 6 dni & A & 5 dni & 100 \\
-C & gradnja prvega nadstropja & 7 dni & B, F & 5 dni & 150 \\
-D & gradnja strehe & 8 dni & C, E & 6 dni & 160 \\
-E & gradnja desnega podpornega stebra & 13 dni & A & 9 dni & 250 \\
-F & gradnja glavnega podpornega stebra & 14 dni & / & 11 dni & 240 \\
-G & gradnja baročnega stolpa pred hišo & 30 dni & / & 25 dni & 300 \\
+$a$ & gradnja kleti & 10 dni & / & 7 dni & 200 \\
+$b$ & gradnja pritličja & 6 dni & $a$ & 5 dni & 100 \\
+$c$ & gradnja prvega nadstropja & 7 dni & $b, f$ & 5 dni & 150 \\
+$d$ & gradnja strehe & 8 dni & $c, e$ & 6 dni & 160 \\
+$e$ & gradnja desnega podpornega stebra & 13 dni & $a$ & 9 dni & 250 \\
+$f$ & gradnja glavnega podpornega stebra & 14 dni & / & 11 dni & 240 \\
+$g$ & gradnja baročnega stolpa pred hišo & 30 dni & / & 25 dni & 300 \\
 \end{tabular}
 }
 \caption{Podatki za nalogi~\nal (prvi štirje stolpci)
 in~\nal[brezzobec-pert].}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt predstavimo z usmerjenim acikličnim grafom $G = (V, E)$,
+kjer vozlišča predstavljajo opravila,
+posebej pa dodamo še začetno vozlišče $s$ in končno vozlišče $t$.
+Opravilo $u$ povežemo z opravilom $v$,
+če je $u$ pogoj za začetek opravila $v$.
+Poleg tega vozlišče $s$ povežemo z opravili, ki nimajo predpogojev;
+opravila, ki niso predpogoj za katero drugo opravilo,
+pa povežemo z vozliščem $t$.
+Povezave iz opravila $u$ utežimo s trajanjem opravila $u$,
+na povezave iz $s$ pa postavimo utež $0$.
+
+Na grafu $G$ uporabimo algoritem {\sc NajdaljšaPot} iz naloge~\res[topo]{}(c)
+z začetkom v $s$ in tako za vsako opravilo dobimo najzgodnejši čas,
+ko ga lahko začnemo.
+Dolžina najdaljše poti do vozlišča $t$
+predstavlja najkrajše možno trajanje ce\-lot\-ne\-ga projekta.
+Nato na obratnem grafu $G' = (V, E')$,
+kjer je $E' = \set{vu}{uv \in E}$ množica obratnih povezav z enakimi utežmi,
+še enkrat uporabimo algoritem {\sc NajdaljšaPot}, tokrat z začetkom v $t$,
+in dobljene razdalje odštejemo od najkrajšega možnega trajanja projekta.
+Tako za vsako opravilo dobimo še najpoznejši možen čas začetka,
+da se celotno trajanje projekta ne poveča.
+Pri kritičnih opravilih sta oba časa enaka.
+
+Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev $s, a, f, g, b, e, c, d, e$.
+V tabeli~\tab[brezzobec-resitev] so podani rezultati,
+dobljeni z zgornjim postopkom.
+Vidimo, da je najkrajše trajanje projekta $31$ dni,
+kritična opravila pa so $a, e, d$.
+
+\item Opazimo, da vsa kritična opravila ležijo na isti poti od $s$ do $t$.
+Imamo torej natanko eno kritično pot $s - a - e - d - t$.
+
+\item Iz tabele~\tab[brezzobec-resitev] je razvidno,
+da je najmanj kritično opravilo $f$,
+saj ga lahko brez podaljševanja celotnega trajanja podaljšamo za $4$ dni,
+kar je več kot katerokoli drugo opravilo.
+
+\item Skrajšati želimo katero od kritičnih opravil,
+saj sicer ne bomo skrajšali celotnega trajanja projekta.
+Ker ima pot $s - g - t$ dolžino $30$ dni,
+bomo lahko celotno trajanje skrajšali za največ $1$ dan.
+Izplača se nam torej skrajšati katerega od kritičnih opravil,
+ki traja vsaj $10$ dni -- taki sta $a$ in $e$.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika
+\podnaslov{Graf odvisnosti med opravili}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{brezzobec-resitev}
+$$
+\begin{array}{r|ccccccccc}
+& s & a & f & g & b & e & c & d & t \\ \hline
+\text{najzgodnejši začetek} &
+0 & 0_s & 0_s & 0_s & 10_a & 10_a & 16_b & 23_e & 31_d \\
+\text{najpoznejši začetek} &
+0_a & 0_e & 4_c & 1_t & 12_c & 10_d & 18_d & 23_t & 31 \\
+\text{razlika} &
+0 & 0^* & 4 & 1 & 2 & 0^* & 2 & 0^* & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

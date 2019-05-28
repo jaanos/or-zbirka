@@ -15,8 +15,8 @@ Dan je usmerjen acikličen graf s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
-\begin{odgovor}
 
+\begin{odgovor}
 \begin{enumerate}[(a)]
 \item Upoštevamo, da je graf $G = (V, E)$ acikličen,
 torej za vsaki vozlišči $u, v \in V$ velja
@@ -85,12 +85,12 @@ ki bo nakazoval, katero vozlišče smo izbrali za predhodnika.
 \pred(u) &= \argmin_{v \rightarrow u}(d_G(v) + L_{vu})
 \qquad (u \in V \setminus \{s\})
 \end{align*}
-Na koncu dobimo pot tako,
-da sledimo predhodnikom podanega končnega vozlišča $t$,
-dokler ne pridemo do $s$.
+Zapišimo algoritem, ki poišče razdalje od $s$ do ostalih vozlišč.
+Poleg razdalj bo za vsako vozlišče povedal še,
+iz katerega vozlišča smo prišli do njega.
 \begin{small}
 \begin{algorithmic}
-\Function{NajkrajšaPot}{$G = (V, E), s, t, L : E \to \R$}
+\Function{NajkrajšaPot}{$G = (V, E), s, L : E \to \R$}
 	\State $d_G \gets$ slovar z vrednostjo $\infty$ za vsako vozlišče $v \in V$
 	\State $d_G[s] \gets 0$
 	\State $\pred \gets$ slovar z vrednostjo $\Null$ za vsako vozlišče $v \in V$
@@ -102,6 +102,19 @@ dokler ne pridemo do $s$.
 			\EndIf
 		\EndFor
 	\EndFor
+    \State \Return $(d_G, \pred)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(m + n)$,
+kjer je $n$ število vozlišč in $m$ število povezav grafa.
+
+Če želimo rekonstruirati pot,
+sledimo predhodnikom podanega končnega vozlišča $t$,
+dokler ne pridemo do $s$.
+\begin{small}
+\begin{algorithmic}
+\Function{RekonstruirajPot}{$d_G, \pred, t$}
     \State $u \gets t$
 	\State {\sl pot} $\gets [t]$
 	\While{$\pred[u] \ne \Null$}
@@ -109,19 +122,18 @@ dokler ne pridemo do $s$.
 		\State {\sl pot}$.\append(u)$
 	\EndWhile
     \State {\sl pot}$.\reverse()$
-	\State \Return ($d_G[t]$, {\sl pot})
-\EndFunction 
+	\State \Return {\sl pot}
+\EndFunction
 \end{algorithmic}
 \end{small}
-Časovna zahtevnost algoritma je $O(m + n)$,
-kjer je $n$ število vozlišč in $m$ število povezav grafa.
-
-Klic {\sc NajkrajšaPot}$(G, g, e)$
-vrne razdaljo od vozlišča $g$ do vozlišča $e$
-ter seznam vozlišč, skozi katera je algoritem potoval,
-da je opravil to pot -- to so $[g, a, b, e]$.
-Dolžina najkrajše poti je $-1$.
+Klic {\sc NajkrajšaPot}$(G, g, L)$ vrne seznam $d_G$
+z razdaljami od vozlišča $g$ do ostalih vozlišč grafa
+in seznam $\pred$ s prednikom vsakega vozlišča v najkrajši poti od $g$.
 Potek izvajanja algoritma je prikazan v tabeli~\tab[topo-najkrajsa].
+Klic {\sc RekonstruirajPot}$(d_G, \pred, e)$
+nato vrne seznam vozlišč, skozi katera je algoritem potoval,
+da je opravil pot od $g$ do $e$ -- to so $[g, a, b, e]$.
+Dolžino te poti lahko preberemo kot $d_G[e] = -1$.
 
 Pripomnimo, da algoritem deluje pravilno
 ne glede na položaj začetnega vozlišča $s$ v topološki ureditvi.
@@ -139,7 +151,9 @@ ki deluje na enak način kot {\sc NajkrajšaPot},
 le da namesto $\infty$ vzame v $d_G$ za začetne vrednosti $-\infty$,
 v zanki pa na vsakem koraku preverja pogoj $d_G[v] < d_G[u] + L_{uv}$.
 Časovna zahtevnost algoritma tako ostane enaka.
-Klic {\sc NajdaljšaPot}$(G, g, e)$ vrne pot $[g, h, b, c, d, e]$ dolžine $24$.
+Klic {\sc RekonstruirajPot}$(d_G, \pred, e)$,
+kjer je $d_G, \pred$ izhod klica {\sc NajdaljšaPot}$(G, g, L)$,
+vrne pot $[g, h, b, c, d, e]$ dolžine $24$.
 Potek izvajanja algoritma je prikazan v tabeli~\tab[topo-najdaljsa].
 \end{enumerate}
 
