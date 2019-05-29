@@ -8,8 +8,8 @@ Identificirali so pet nalog, ki so opisane v tabeli~\tab.
 Če del ne bodo končali v roku $11$ tednov,
 bodo morali plačati pogodbeno kazen v višini $500\,000 €$.
 \begin{enumerate}[(a)]
-\item Topološko uredi ustrezni graf in ga nariši.
 \item Za vsako opravilo določi pričakovano trajanje in varianco.
+\item Topološko uredi ustrezni graf in ga nariši.
 \item Določi pričakovano kritično pot ter trajanje izvedbe.
 \item Oceni verjetnost, da se bo projekt zaključil v $11$ tednih.
 Naj se podjetje prijavi na razpis?
@@ -21,16 +21,75 @@ Naj se podjetje prijavi na razpis?
 naloga & najkrajše trajanje & najbolj verjetno trajanje
 & najdaljše trajanje & predhodna opravila \\
 \hline
-A & $3$ tedni & $4$ tedni  & $5$ tednov & / \\
-B & $2$ tedna & $2$ tedna  & $2$ tedna  & A \\
-C & $3$ tedni & $5$ tednov & $6$ tednov & B \\
-D & $1$ teden & $3$ tedni  & $5$ tednov & A \\
-E & $2$ tedna & $3$ tedni  & $5$ tednov & B, D
+$a$ & $3$ tedni & $4$ tedni  & $5$ tednov & / \\
+$b$ & $2$ tedna & $2$ tedna  & $2$ tedna  & $a$ \\
+$c$ & $3$ tedni & $5$ tednov & $6$ tednov & $b$ \\
+$d$ & $1$ teden & $3$ tedni  & $5$ tednov & $a$ \\
+$e$ & $2$ tedna & $3$ tedni  & $5$ tednov & $b, d$
 \end{tabular}
 }
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Pričakovana trajanja in variance
+so prikazane v tabeli~\tab[viadukt-resitev].
+
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev $s, b, d, c, e, t$.
+
+\item V tabeli~\tab[viadukt-resitev]
+so podani pričakovani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje priprave ne podaljša.
+Pričakovano trajanje projekta je torej $\mu = 10.83$ tednov,
+kritična pot pa je $s - a - b - c - t$.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti.
+$$
+\sigma = \sqrt{{1 \over 9} + 0 + {1 \over 4}} = 0.601
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 11$ tednov.
+$$
+P(X \le 11) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(0.277) = 0.609
+$$
+Ob predpostavki,
+da bodo dela zaključena in bodo tako prejeli izplačilo $250\,000 €$,
+je pričakovan dobiček enak
+$$
+250\,000 € - (1 - P(X \le 11)) \cdot 500\,000 € = 54\,622.18 € .
+$$
+Ker je pričakovani dobiček pozitiven, se podjetju izplača prijaviti na razpis.
+\end{enumerate}
+%
+\begin{tabela}
+\setlabel{viadukt-resitev}
+$$
+\begin{array}{r|ccccccc}
+& s & a & b & d & c & e & t \\ \hline
+\text{pričakovano trajanje} &
+& 4 & 2 & 3 & {29 \over 6} & {19 \over 6} & \\
+\text{varianca} &
+& {1 \over 9} & 0 & {4 \over 9} & {1 \over 4} & {1 \over 4} & \\ \hline
+\text{najzgodnejši začetek} &
+0 & 0_s & 4_a & 4_a & 6_b & 7_d & 10.83_c \\
+\text{najpoznejši začetek} &
+0_a & 0_b & 4_c & 4.67_e & 6_t & 7.67_t & 10.83 \\
+\text{razlika} &
+0 & 0^* & 0^* & 0.67 & 0^* & 0.67 & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
 \end{odgovor}
 \end{naloga}

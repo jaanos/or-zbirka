@@ -1,0 +1,21 @@
+\begin{tikzpicture}[style=thick,scale=1]
+\tikzstyle{every node}=[]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
+
+\node[vertex] (S) at (-4, 0) {$s$};
+\node[vertex] (A) at (-2, 0) {$a$};
+\node[vertex] (B) at ( 0, 1) {$b$};
+\node[vertex] (C) at ( 2, 1) {$c$};
+\node[vertex] (D) at ( 0,-1) {$d$};
+\node[vertex] (E) at ( 2,-1) {$e$};
+\node[vertex] (T) at ( 4, 0) {$t$};
+
+\draw[->,red] (S) -- (A) node[midway, above] {$0$};
+\draw[->,red] (A) -- (B) node[midway, above, sloped] {$4$};
+\draw[->] (A) -- (D) node[midway, below, sloped] {$4$};
+\draw[->,red] (B) -- (C) node[midway, above] {$2$};
+\draw[->] (B) -- (E) node[midway, above, sloped] {$2$};
+\draw[->,red] (C) -- (T) node[midway, above, sloped] {$4.83$};
+\draw[->] (D) -- (E) node[midway, below] {$3$};
+\draw[->] (E) -- (T) node[midway, below, sloped] {$3.17$};
+\end{tikzpicture}

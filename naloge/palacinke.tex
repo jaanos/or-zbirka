@@ -12,20 +12,61 @@ je opisana v tabeli~\tab.
 \begin{tabular}{c|l|c|c}
 & aktivnost & trajanje & predhodna opravila \\
 \hline
-A & nakup moke, jajc in mleka & 5 min & C \\
-B & rezanje sira & 3 min & / \\
-C & vožnja do trgovine & 5 min & / \\
-D & čiščenje mešalnika & 2 min & E \\
-E & mešanje sestavin & 5 min & A \\
-F & pečenje prve palačinke & 2 min & E \\
-G & mazanje prve palačinke z marmelado & 1 min & F, J \\
-H & pečenje palačinke (s sirom) & 3 min & B, F \\
-I & pomivanje posode & 8 min & G, H \\
-J & odpiranje marmelade & 1 min & / \\
+$a$ & nakup moke, jajc in mleka & 5 min & $c$ \\
+$b$ & rezanje sira & 3 min & / \\
+$c$ & vožnja do trgovine & 5 min & / \\
+$d$ & čiščenje mešalnika & 2 min & $e$ \\
+$e$ & mešanje sestavin & 5 min & $a$ \\
+$f$ & pečenje prve palačinke & 2 min & $e$ \\
+$g$ & mazanje prve palačinke z marmelado & 1 min & $f, j$ \\
+$h$ & pečenje palačinke (s sirom) & 3 min & $b, f$ \\
+$i$ & pomivanje posode & 8 min & $g, h$ \\
+$j$ & odpiranje marmelade & 1 min & / \\
 \end{tabular}
 \caption{Podatki za nalogi~\nal in~\nal[palacinke2].}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev
+$s, b, c, j, a, e, d, f, g, h, i, t$.
+
+\item V tabeli~\tab[brezzobec-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje priprave ne podaljša.
+Priprava bo torej trajala najmanj $28$ minut,
+edina kritična pot pa je $s - c - a - e - f - h - i - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[brezzobec-resitev] je razvidno,
+da je najmanj kritično opravilo $j$,
+saj lahko njegovo trajanje podaljšamo za $18$ minut,
+ne da bi vplivali na trajanje celotnega projekta.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{palacinke-resitev}
+$$
+\begin{array}{r|cccccccccccc}
+& s & b & c & j & a & e & d & f & g & h & i & t \\ \hline
+\text{najprej} &
+0 & 0_s & 0_s & 0_s & 5_b & 10_a & 15_e & 15_e & 17_f & 17_f & 20_h & 28_i \\
+\text{najkasneje} &
+0_c & 14_h & 0_a & 18_g & 5_e & 10_f & 26_t & 15_h & 19_i & 17_i & 20_t & 28 \\
+\text{razlika} &
+0 & 14 & 0^* & 18 & 0^* & 0^* & 11 & 0^* & 2 & 0^* & 0^* & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
