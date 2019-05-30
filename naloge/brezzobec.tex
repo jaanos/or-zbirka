@@ -67,22 +67,24 @@ iz katerega je razvidna topološka ureditev $s, a, f, g, b, e, c, d, t$.
 V tabeli~\tab[brezzobec-resitev] so podani rezultati,
 dobljeni z zgornjim postopkom.
 Vidimo, da je najkrajše trajanje projekta $31$ dni,
-kritična opravila pa so $a, e, d$.
+kritična opravila pa so $a, b, c, d, e$.
 
-\item Opazimo, da vsa kritična opravila ležijo na isti poti od $s$ do $t$.
-Imamo torej natanko eno kritično pot $s - a - e - d - t$.
+\item Opazimo, da vsa kritična opravila ležijo na dveh poteh od $s$ do $t$.
+Kritično poti sta torej $s - a - e - d - t$ in $s - a - b - c - d - t$.
 
 \item Iz tabele~\tab[brezzobec-resitev] je razvidno,
 da je najmanj kritično opravilo $f$,
-saj ga lahko brez podaljševanja celotnega trajanja podaljšamo za $4$ dni,
+saj ga lahko brez podaljševanja celotnega trajanja podaljšamo za $2$ dni,
 kar je več kot katerokoli drugo opravilo.
 
 \item Skrajšati želimo katero od kritičnih opravil,
+ki leži na obeh kritičnih poteh (taki sta $a$ in $d$),
 saj sicer ne bomo skrajšali celotnega trajanja projekta.
 Ker ima pot $s - g - t$ dolžino $30$ dni,
 bomo lahko celotno trajanje skrajšali za največ $1$ dan.
-Izplača se nam torej skrajšati katerega od kritičnih opravil,
-ki traja vsaj $10$ dni -- taki sta $a$ in $e$.
+To lahko dosežemo, če skrajšamo opravilo $a$,
+ki bo tako namesto $10$ trajalo $9$ dni,
+skupaj pa bo projekt trajal $30$ dni.
 \end{enumerate}
 %
 \begin{slika}
@@ -96,11 +98,11 @@ $$
 \begin{array}{r|ccccccccc}
 & s & a & f & g & b & e & c & d & t \\ \hline
 \text{najzgodnejši začetek} &
-0 & 0_s & 0_s & 0_s & 10_a & 10_a & 16_b & 23_e & 31_d \\
+0 & 0_s & 0_s & 0_s & 10_a & 10_a & 16_b & 23_{c,e} & 31_d \\
 \text{najpoznejši začetek} &
-0_a & 0_e & 4_c & 1_t & 12_c & 10_d & 18_d & 23_t & 31 \\
+0_a & 0_e & 2_c & 1_t & 10_c & 10_d & 16_d & 23_t & 31 \\
 \text{razlika} &
-0 & 0^* & 4 & 1 & 2 & 0^* & 2 & 0^* & 0
+0 & 0^* & 2 & 1 & 0^* & 0^* & 0^* & 0^* & 0
 \end{array}
 $$
 \podnaslov{Razporejanje opravil}

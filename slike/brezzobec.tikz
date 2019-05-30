@@ -15,10 +15,10 @@
 \draw[->,red] (S) -- (A) node[midway, above] {$0$};
 \draw[->] (S) -- (F) node[midway, above, sloped] {$0$};
 \draw[->] (S) -- (G) node[midway, below, sloped] {$0$};
-\draw[->] (A) -- (B) node[midway, below] {$10$};
+\draw[->,red] (A) -- (B) node[midway, below] {$10$};
 \draw[->,red] (A) -- (E) node[midway, above, sloped] {$10$};
-\draw[->] (B) -- (C) node[midway, above] {$6$};
-\draw[->] (C) -- (D) node[midway, below] {$5$};
+\draw[->,red] (B) -- (C) node[midway, above] {$6$};
+\draw[->,red] (C) -- (D) node[midway, below] {$7$};
 \draw[->,red] (D) -- (T) node[midway, above] {$8$};
 \draw[->,red] (E) -- (D) node[midway, above, sloped] {$13$};
 \draw[->] (F) -- (C) node[midway, below, sloped] {$14$};
