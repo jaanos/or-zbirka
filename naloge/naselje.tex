@@ -1,0 +1,42 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 3.6.2019}
+\begin{vprasanje}
+Izdelati želimo terminski plan za izgradnjo manjšega stanovanjskega naselja.
+V tabeli~\tab so zbrana opravila pri gradnji.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in čas izdelave.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje izvedbe.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo grad\-nja trajala manj kot $180$ dni.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+$a$ & pridobitev gradbenega dovoljenja   & /      & 14 dni & 14 dni & 23 dni \\
+$b$ & pridobitev uporabnega dovoljenja   & $f, g$ & 18 dni & 21 dni & 30 dni \\
+$c$ & izgradnja komunalne infrastrukture & $a$    & 40 dni & 45 dni & 59 dni \\
+$d$ & postavitev temeljev                & $a, i$ & 28 dni & 37 dni & 46 dni \\
+$e$ & izgradnja podpornega zidu          & $a$    &  7 dni &  8 dni & 12 dni \\
+$f$ & izgradnja severne stolpnice        & $c, d$ & 63 dni & 78 dni & 99 dni \\
+$g$ & izgradnja južne stolpnice          & $d, e$ & 75 dni & 84 dni & 99 dni \\
+$h$ & izgradnja otroškega igrišča        & $a, i$ & 20 dni & 29 dni & 29 dni \\
+$i$ & odstranitev rastja                 & /      & 19 dni & 22 dni & 25 dni
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}

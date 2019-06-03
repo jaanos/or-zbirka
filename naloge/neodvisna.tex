@@ -1,0 +1,54 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 3.6.2019}
+\begin{vprasanje}
+{\em Neodvisna množica} vozlišč grafa $G = (V, E)$
+je taka množica $S \subseteq V$,
+da sta poljubni vozlišči iz množice $S$ nesosedni v $G$,
+torej $uv \not\in E$ za vsaka $u, v \in S$.
+
+Dano je drevo $T = (V, E)$ in uteži vozlišč $c_v$ ($v \in V$).
+V drevesu $T$ želimo najti {\em najtežjo neodvisno množico}
+-- torej tako množico vozlišč $S \subseteq V$,
+ki maksimizira vsoto njihovih uteži, torej vrednost $\sum_{u \in S} c_u$.
+
+\begin{enumerate}[(a)]
+\item Denimo, da je drevo $T$ podano kot neusmerjen graf,
+predstavljen s seznami sosedov.
+Razloži, kako lahko sestaviš tabelo $\pred$,
+ki za vsako vozlišče $v \in V$ določa njegovega prednika,
+če za koren izbereš vozlišče $r \in V$.
+Koren $r$ je lahko izbran poljubno, zanj pa velja $\pred[r] = \Null$.
+Kako iz seznamov sosedov in tabele $\pred$ ugotovimo,
+katera vozlišča so neposredni nasledniki danega vozlišča v drevesu?
+
+\item Napiši rekurzivne enačbe za reševanje problema
+najtežje neodvisne množice v drevesu $T$.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
+Predpostaviš lahko,
+da imaš poleg seznamov sosedov in uteži vozlišč drevesa $T$
+na voljo tudi tabelo $\pred$ kot v točki (a).
+\namig{za vsako vozlišče uporabi dve spremenljivki
+-- eno za primer, ko je vozlišče izbrano, in eno za primer, ko ni.}
+
+\item Natančno opiši postopek (z besedami ali psevdokodo),
+ki iz zgoraj izračunanih vred\-no\-sti
+sestavi najtežjo neodvisno množico v $T$.
+
+\item Oceni časovno zahtevnost algoritma iz točk (b) in (c).
+
+\item S svojim algoritmom poišči najtežjo neodvisno množico
+na drevesu s slike~\fig.
+Iz re\-šit\-ve naj bo jasno, kako poteka izvajanje algoritma.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov[\nal{}(e)]{Drevo}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\end{odgovor}
+\end{naloga}
