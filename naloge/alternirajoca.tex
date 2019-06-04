@@ -32,5 +32,62 @@ Iz rešitve naj bo jasno, kako poteka izvajanje algoritma.
 \end{vprasanje}
 
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Definirali bomo usmerjen graf $G' = (V', E')$,
+kjer je
+\begin{align*}
+V' &= \{s, t\} \cup \set{v_A, v_B}{v \in V \setminus \{s, t\}}
+\quad \text{in} \\
+E' &= \set{u_X v_Y}{uv \in X \setminus Y, \ X, Y \in \{A, B\}, \ u, v \not\in \{s, t\}} \\
+   &\cup \set{s v_Y}{sv \in E \setminus Y, \ Y \in \{A, B\}, \ v \not\in \{s, t\}} \\
+   &\cup \set{u_X t}{ut \in X, \ X \in \{A, B\}, \ u \not\in \{s, t\}} \\
+   &\cup \set{st}{st \in E} .
+\end{align*}
+Cene povezav ohranimo -- velja torej
+\begin{align*}
+L'_{u_X v_Y} &= L_{uv} & (u_X v_Y &\in E'), \\
+L'_{s v_Y} &= L_{sv} & (s v_Y &\in E'), \\
+L'_{u_X t} &= L_{ut} & (u_X t &\in E'), \\
+L'_{st} &= L_{ut} & (s t &\in E').
+\end{align*}
+Z Dijkstrovim algoritmom lahko
+poiščemo najkrajšo pot od $s$ do $t$ v grafu $G'$,
+ki bo oblike $s - w^{(1)}_{X_1} - w^{(2)}_{X_2} - \dots - w^{(k)}_{X_k} - t$,
+kjer velja $X_i \in \{A, B\}$ ($1 \le i \le k$)
+in $X_{i+1} \ne X_i = X_{i+2}$ ($1 \le i \le k-2$).
+Iz te poti lahko izluščimo najkrajšo alternirajočo pot
+$s - w^{(1)} - w^{(2)} - \dots - w^{(k)} - t$ v grafu $G$.
+
+Graf $G'$ ima $2n-2$ vozlišč in $m$ povezav,
+kjer je $n$ število vozlišč in $m$ število povezav v grafu $G$.
+Če v Dijkstrovem algoritmu za prednostno vrsto uporabimo kopico,
+je časovna zahtevnost algoritma tako $O(m \log n)$.
+
+\item Potek izvajanja Dijkstrovega algoritma na pomožnem grafu $G'$
+je prikazan v tabeli~\tab.
+Najkrajša pot v grafu $G'$ je $s - w_A - r_B - t$ dolžine $10$,
+kar ustreza najkrajši alternirajoči poti $s - w - r - t$ v grafu $G$.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{c|cccccccccc}
+\text{Trenutno vozlišče} &
+s & r_A & r_B & u_A & u_B & v_A & v_B & w_A & w_B & t \\ \hline
+& 0 & \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty \\
+s & 0 & \infty & 4_s & 10_s & \infty & \infty & \infty & 1_s & \infty & 12_s \\
+w_A & 0 & \infty & 3_{w_A} & 10_s & \infty & \infty & 2_{w_A} & 1_s & \infty & 12_s \\
+v_B & 0 & 4_{v_B} & 3_{w_A} & 10_s & \infty & \infty & 2_{w_A} & 1_s & \infty & 12_s \\
+r_B & 0 & 4_{v_B} & 3_{w_A} & 10_s & \infty & 5_{r_B} & 2_{w_A} & 1_s & \infty & 10_{r_B} \\
+r_A & 0 & 4_{v_B} & 3_{w_A} & 10_s & \infty & 5_{r_B} & 2_{w_A} & 1_s & 6_{r_A} & 10_{r_B} \\
+v_A & 0 & 4_{v_B} & 3_{w_A} & 10_s & 7_{v_A} & 5_{r_B} & 2_{w_A} & 1_s & 6_{r_A} & 10_{r_B} \\
+w_B & 0 & 4_{v_B} & 3_{w_A} & 9_{w_B} & 7_{v_A} & 5_{r_B} & 2_{w_A} & 1_s & 6_{r_A} & 10_{r_B} \\
+u_B & 0 & 4_{v_B} & 3_{w_A} & 9_{w_B} & 7_{v_A} & 5_{r_B} & 2_{w_A} & 1_s & 6_{r_A} & 10_{r_B} \\
+u_A & 0 & 4_{v_B} & 3_{w_A} & 9_{w_B} & 7_{v_A} & 5_{r_B} & 2_{w_A} & 1_s & 6_{r_A} & 10_{r_B} \\
+t & 0 & 4_{v_B} & 3_{w_A} & 9_{w_B} & 7_{v_A} & 5_{r_B} & 2_{w_A} & 1_s & 6_{r_A} & 10_{r_B} \\
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek reševanja}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

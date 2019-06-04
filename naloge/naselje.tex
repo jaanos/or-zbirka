@@ -38,5 +38,58 @@ $i$ & odstranitev rastja                 & /      & 19 dni & 22 dni & 25 dni
 \end{vprasanje}
 
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev $s, a, i, c, d, e, h, f, g, b, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[naselje-resitev].
+
+\item V tabeli~\tab[naselje-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje gradnje ne podaljša.
+Pričakovano trajanje gradnje je torej $\mu = 166$ dni,
+edina kritična pot pa je $s - i - d - g - b - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[naselje-resitev] je razvidno,
+da je najmanj kritično opravilo $h$,
+saj lahko njegovo trajanje
+podaljšamo za $116.5$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti.
+$$
+\sigma = \sqrt{4 + 9 + 2.25 + 1} = 4.03
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 180$ dni.
+$$
+P(X \le 180) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(3.473) = 0.9997
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{naselje-resitev}
+$$
+\begin{array}{c|ccccccccccc}
+& s & a & i & c & d & e & h & f & g & b & t \\ \hline
+\text{pričakovano} && 15.5 & 22 & 46.5 & 37 & 8.5 & 79 & 85 & 27.5 & 22 \\
+\text{varianca} && 2.25 & 4 & 10.03 & 9 & 0.69 & 36 & 16 & 2.25 & 1 \\
+\hline
+\text{najprej} & 0 & 0_s & 0_s & 15.5_a & 22_i & 15.5_a & 22_i & 62_c & 59_d & 144_g & 166_b \\
+\text{najkasneje} & 0_i & 3_c & 0_d & 18.5_f & 22_g & 50.5_g & 138.5_t & 65_b & 59_b & 144_t & 166 \\
+\text{razlika} & 0 & 3 & 0^* & 3 & 0^* & 35 & 116.5 & 3 & 0^* & 0^* & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

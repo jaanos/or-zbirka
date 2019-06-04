@@ -33,5 +33,30 @@ Izračunaj tudi pričakovano količino proizvedene čokolade.
 \end{vprasanje}
 
 \begin{odgovor}
+Izračunajmo verjetnosti za potek servisa
+in stanje strojev po izvedenem servisu.
+\begin{alignat*}{2}
+P(\text{servis poteka gladko}) &= 0.9 \cdot 0.4 + 0.2 \cdot 0.6 &&= 0.48 \\
+P(\text{servis se zavleče}) &= 0.1 \cdot 0.4 + 0.8 \cdot 0.6 &&= 0.52 \\
+P(\text{stroji v dobrem stanju} \;|\; \text{servis poteka gladko}) &=
+{0.9 \cdot 0.4 + 0.2 \cdot 0.6 \cdot 0.7 \over 0.48} &&= 0.925 \\
+P(\text{stroji v slabem stanju} \;|\; \text{servis poteka gladko}) &=
+{0.2 \cdot 0.6 \cdot 0.3 \over 0.48} &&= 0.075 \\
+P(\text{stroji v dobrem stanju} \;|\; \text{servis se zavleče}) &=
+{0.1 \cdot 0.4 + 0.8 \cdot 0.6 \cdot 0.5 \over 0.52} &&\approx 0.538 \\
+P(\text{stroji v slabem stanju} \;|\; \text{servis se zavleče}) &=
+{0.8 \cdot 0.6 \cdot 0.5 \over 0.52} &&\approx 0.462
+\end{alignat*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo, da se podjetju izplača opraviti servis,
+pričakovana količina proizvedene čokolade pa je tedaj $46\,532$ kg.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

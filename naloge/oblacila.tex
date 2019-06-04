@@ -26,5 +26,30 @@ Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 \end{vprasanje}
 
 \begin{odgovor}
+Za $i$-to kolekcijo $(1 \le i \le n)$
+bomo uvedli spremenljivki $x_i$ in $y_i$,
+kjer je $x_i$ število kupljenih izvodov $i$-te kolekcije,
+vrednost $y_i$ pa interpretiramo kot
+$$
+y_i = \begin{cases}
+1, & \text{kupimo vsaj en izvod $i$-te kolekcije, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \max &\ \sum_{i=1}^n ((d_i - c_i) x_i + e_i y_i) &&\quad \text{p.p.}
+\opis{Omejitev števila izvodov}
+\forall i \in \{1, \dots, n\}: && 0 \le x_i &\le k_i, &&\quad x_i \in \Z \\
+\forall i \in \{1, \dots, n\}: && 0 \le y_i &\le 1, &&\quad y_i \in \Z
+\opis{Povezava med $x_i$ in $y_i$}
+\forall i \in \{1, \dots, n\}: && y_i \le x_i &\le k_i y_i
+\opis{Omejitev kapitala za nakup}
+&& \sum_{i=1}^n c_i x_i &\le C
+\opis{Omejitev števila proizvajalcev}
+&& \sum_{i=1}^n y_i &\le K
+\opis{Omejitev proizvajalca $p$}
+&& x_q + x_r - x_p &\le (k_q + k_r) (1 - y_p)
+\end{alignat*}
 \end{odgovor}
 \end{naloga}

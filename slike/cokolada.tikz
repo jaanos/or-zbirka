@@ -1,0 +1,28 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
+\tikzstyle{pick}=[double, very thick]
+\node[dec] (A) at (-6,-1) [label=left:{$46\,532$ kg}] {};
+\node[ran] (B) at (-2, 2) [label=135:{$46\,532$ kg}] {};
+\node[ran] (C) at (-2,-4) [label=225:{$36\,800$ kg}] {};
+\node[ran] (D) at ( 2, 4) [label=135:{$65\,275$ kg}] {};
+\node[ran] (E) at ( 2, 0) [label=225:{$29\,230.77$ kg}] {};
+\node      (F) at ( 2,-3) {$80\,000$ kg};
+\node      (G) at ( 2,-5) {$8\,000$ kg};
+\node      (H) at ( 7, 5) {$70\,000$ kg};
+\node      (I) at ( 7, 3) {$7\,000$ kg};
+\node      (J) at ( 7, 1) {$50\,000$ kg};
+\node      (K) at ( 7,-1) {$5\,000$ kg};
+
+\draw[pick] (A) -- (B) node[above, midway, sloped] {opravijo servis};
+\draw (A) -- (C) node[below, midway, sloped] {ne opravijo servisa};
+\draw (B) -- (D) node[above, midway, sloped] {gladko: $0.48$};
+\draw (B) -- (E) node[below, midway, sloped] {težave: $0.52$};
+\draw (C) -- (F) node[above, midway, sloped] {dobro stanje: $0.4$};
+\draw (C) -- (G) node[below, midway, sloped] {slabo stanje: $0.6$};
+\draw (D) -- (H) node[above, midway, sloped] {dobro stanje: $0.925$};
+\draw (D) -- (I) node[below, midway, sloped] {slabo stanje: $0.075$};
+\draw (E) -- (J) node[above, midway, sloped] {dobro stanje: $0.538$};
+\draw (E) -- (K) node[below, midway, sloped] {slabo stanje: $0.462$};
+\end{tikzpicture}

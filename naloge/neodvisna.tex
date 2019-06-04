@@ -13,11 +13,11 @@ ki maksimizira vsoto njihovih uteži, torej vrednost $\sum_{u \in S} c_u$.
 \begin{enumerate}[(a)]
 \item Denimo, da je drevo $T$ podano kot neusmerjen graf,
 predstavljen s seznami sosedov.
-Razloži, kako lahko sestaviš tabelo $\pred$,
+Razloži, kako lahko sestaviš slovar $\pred$,
 ki za vsako vozlišče $v \in V$ določa njegovega prednika,
 če za koren izbereš vozlišče $r \in V$.
 Koren $r$ je lahko izbran poljubno, zanj pa velja $\pred[r] = \Null$.
-Kako iz seznamov sosedov in tabele $\pred$ ugotovimo,
+Kako iz seznamov sosedov in slovarja $\pred$ ugotovimo,
 katera vozlišča so neposredni nasledniki danega vozlišča v drevesu?
 
 \item Napiši rekurzivne enačbe za reševanje problema
@@ -26,7 +26,7 @@ Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
 v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
 Predpostaviš lahko,
 da imaš poleg seznamov sosedov in uteži vozlišč drevesa $T$
-na voljo tudi tabelo $\pred$ kot v točki (a).
+na voljo tudi slovar $\pred$ kot v točki (a).
 \namig{za vsako vozlišče uporabi dve spremenljivki
 -- eno za primer, ko je vozlišče izbrano, in eno za primer, ko ni.}
 
@@ -50,5 +50,91 @@ Iz re\-šit\-ve naj bo jasno, kako poteka izvajanje algoritma.
 \end{vprasanje}
 
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Algoritem {\sc bfs} iz naloge~\res[bfs] vrne želeni slovar.
+Ker lahko koren poljubno izberemo,
+lahko slovar $\pred$ dobimo s klicem {\sc bfs}$(T, V, \NOp)$.
+Neposredni nasledniki vozlišča $u$ v drevesu $T$
+so tisti njegovi sosedi $v \in \Adj(T, u)$,
+za katere velja $v \ne \pred[u]$.
+
+\item Naj bosta $x_u$ in $y_u$ teži najtežje neodvisne množice $S$
+v poddrevesu s korenom $u$ (glede na slovar $\pred$),
+za katero velja $u \in S$ oziroma $u \not\in S$.
+Potem velja
+\begin{align*}
+x_u &= c_u + \!\!\!\!\sum_{\substack{v \sim u \\ v \ne \pred[u]}}\!\!\!\! y_v
+\qquad \text{in} \\
+y_u &= \sum_{\substack{v \sim u \\ v \ne \pred[u]}}\!\!\!\! \max\{x_x, y_v\} .
+\end{align*}
+Vrednosti $x_u$ in $y_u$ računamo od listov v smeri proti korenu $r$
+(tj., v topološki ureditvi glede na $\pred$).
+Težo najtežje neodvisne množice dobimo kot $c^* = \max\{x_r, y_r\}$.
+
+\item Da iz vrednosti $x_u$ in $y_u$ ($u \in V$)
+izluščimo najtežjo neodvisno množico $S$ v drevesu $T$,
+se sprehodimo od korena proti listom (npr. z iskanjem v širino)
+in posamezno vozlišče $u$ dodamo v množico $S$,
+če njegov prednik ni v $S$ in velja $x_u \ge y_u$.
+\begin{small}
+\begin{algorithmic}
+\Function{NajtežjaNeodvisnaMnožica}%
+        {$T = (V, E), r, (x_u)_{u \in V}, (y_u)_{u \in V}$}
+    \State $S \gets$ prazna množica
+    \Function{Visit}{$u, v$}
+        \If{$v \not\in S \land x_u \ge y_u$}
+            \State $S.\add(u)$
+        \EndIf
+    \EndFunction
+    \State {\sc bfs}$(T, \{r\}, \visit)$
+    \State \Return $S$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Naj bo $n$ število vozlišč drevesa $T$.
+Potem ima $T$ natanko $n-1$ povezav.
+Za izračun najtežje neodvisne množice naredimo tri preglede v širino,
+pri čemer v vsakem vozlišču porabimo konstantno mnogo časa.
+Časovna zahtevnost celotnega algoritma je torej $O(n)$.
+
+\item Izračunajmo vrednosti $x_u$ in $y_u$ ($u \in V$),
+če za koren vzamemo vozlišče $a$.
+\begin{alignat*}{4}
+x_i &&&= 9 &\qquad y_i &&&= 0 \\
+x_j &&&= 4 &\qquad y_j &&&= 0 \\
+x_k &&&= 2 &\qquad y_k &&&= 0 \\
+x_d &&&= 1 &\qquad y_d &&&= 0 \\
+x_e &= 1+0+0 &&= 1 &\qquad
+y_e &= \max\{\underline{9}, 0\} + \max\{\underline{4}, 0\} &&= 13 \\
+x_f &&&= 4 &\qquad y_f &&&= 0 \\
+x_g &= 8+0 &&= 8 &\qquad
+y_g &= \max\{\underline{2}, 0\} &&= 2 \\
+x_h &&&= 4 &\qquad y_h &&&= 0 \\
+x_b &= 1+0+13+0 &&= 14 &\qquad y_b &= \max\{\underline{1}, 0\}
++ \max\{1, \underline{13}\} + \max\{\underline{4}, 0\} &&= 18 \\
+x_c &= 9+2+0 &&= 11 &\qquad
+y_c &= \max\{\underline{8}, 0\} + \max\{\underline{4}, 0\} &&= 12 \\
+x_a &= 8+18+12 &&= 38 &\qquad
+y_a &= \max\{14, \underline{18}\} + \max\{11, \underline{12}\} &&= 30
+\end{alignat*}
+Teža najtežje neodvisne množice $S$ je torej $c^* = \max\{x_a, y_a\} = 38$.
+Poglejmo, katera vozlišča so v množici $S$.
+\begin{align*}
+c^* &= x_a \\
+x_a &= c_a + y_b + y_c && a \in S \\
+y_b &= x_d + y_e + x_f && b \not\in S \\
+y_c &= x_g + x_h && c \not\in S \\
+x_d &= c_d && d \in S \\
+y_e &= x_i + x_j && e \not\in S \\
+x_f &= c_f && f \in S \\
+x_g &= c_g + y_k && g \in S \\
+x_h &= c_h && h \in S \\
+x_i &= c_i && i \in S \\
+x_j &= c_j && j \in S \\
+y_k &= 0 && k \not\in S
+\end{align*}
+Najtežja neodvisna množica je torej $S = \{a, d, f, g, h, i, j\}$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
