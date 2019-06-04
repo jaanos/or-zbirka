@@ -59,13 +59,13 @@ ne da bi vplivali na trajanje celotnega projekta.
 
 \item Izračunajmo standardni odklon trajanja pričakovane kritične poti.
 $$
-\sigma = \sqrt{4 + 9 + 2.25 + 1} = 4.03
+\sigma = \sqrt{1 + 9 + 16 + 4} = 5.477
 $$
 Naj bo $X$ slučajna spremenljivka,
 ki meri čas izvajanja pričakovane kritične poti.
 Izračunajmo verjetnost končanja v roku $T = 180$ dni.
 $$
-P(X \le 180) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(3.473) = 0.9997
+P(X \le 180) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(2.556) = 0.9947
 $$
 \end{enumerate}
 %
@@ -81,8 +81,8 @@ $$
 $$
 \begin{array}{c|ccccccccccc}
 & s & a & i & c & d & e & h & f & g & b & t \\ \hline
-\text{pričakovano} && 15.5 & 22 & 46.5 & 37 & 8.5 & 79 & 85 & 27.5 & 22 \\
-\text{varianca} && 2.25 & 4 & 10.03 & 9 & 0.69 & 36 & 16 & 2.25 & 1 \\
+\text{pričakovano} && 15.5 & 22 & 46.5 & 37 & 8.5 & 27.5 & 79 & 85 & 22 \\
+\text{varianca} && 2.25 & 1 & 10.03 & 9 & 0.69 & 2.25 & 36 & 16 & 4 \\
 \hline
 \text{najprej} & 0 & 0_s & 0_s & 15.5_a & 22_i & 15.5_a & 22_i & 62_c & 59_d & 144_g & 166_b \\
 \text{najkasneje} & 0_i & 3_c & 0_d & 18.5_f & 22_g & 50.5_g & 138.5_t & 65_b & 59_b & 144_t & 166 \\
