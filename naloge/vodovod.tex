@@ -1,0 +1,109 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 19.6.2019}
+\begin{vprasanje}
+Za novo postavljeno obrtno cono želimo napeljati vodovodno omrežje.
+Imamo $n$ delavnic v ravni vrsti,
+za $i$-to delavnico pa imamo podano porabo vode $p_i$.
+Iz javnega vodovoda bodo napeljali cev,
+preko katere bo priteklo dovolj vode za vseh $n$ delavnic,
+mi pa želimo postaviti razdelilnike,
+ki bodo poskrbeli za ustrezno razdelitev vode med delavnice.
+Vsak razdelilnik ima eno vhodno cev in dve izhodni,
+vsaka od njiju pa bo pripeljala vodo do zaporednih delavnic
+(po potrebi preko nadaljnjih razdelilnikov).
+Cena postavitve razdelilnika je sorazmerna porabi delavnic, ki jim služi.
+Razdelilnike želimo postaviti tako, da bo skupna cena čim manjša.
+\primer{razdelilnik, ki služi delavnicam od $i$ do $j$
+(če $i > 1$ ali $j < n$,
+je voda do njega pritekla preko predhodnih razdelilnikov),
+lahko vodo razdeli na cevi,
+ki služita delavnicam od $i$ do $k$ in od $k+1$ do $j$ za nek $k$
+($i \le k < j$).
+Cena postavitve takega razdelilnika je $\sum_{h=i}^j p_h$.
+Če je $i < k$ oziroma $k+1 < j$, so potrebni še nadaljnji razdelilniki.}
+
+\begin{enumerate}[(a)]
+\item Naj bo $c_i = \sum_{h=1}^i p_h$ ($0 \le i \le n$).
+Zapiši rekurzivne enačbe za čim učinkovitejši izračun teh vrednosti.
+
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
+Kakšna je časovna zahtevnost algoritma?
+\namig{pomagaj si z vrednostmi $c_i$ iz prejšnje točke.}
+
+\item S pomočjo rekurzivnih enačb reši zgornji problem za $n = 6$ in
+$$
+(p_i)_{i=1}^6 = (4, 19, 17, 7, 5, 9).
+$$
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Zapišimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+c_0 &= 0 \\
+c_i &= c_{i-1} + p_i \quad (1 \le i \le n)
+\end{align*}
+Vrednosti $c_i$ ($0 \le i \le n$) računamo naraščajoče po indeksu $i$,
+za izračun pa porabimo $O(n)$ časa.
+
+\item Naj bo $x_{ij}$ ($1 \le i \le j \le n$) cena postavitve razdelilnikov,
+ki razdelijo vodo za delavnice od $i$ do $j$.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+x_{ii} &= 0 && (1 \le i \le n) \\
+x_{ij} &= c_j - c_{i-1} + \min\set{x_{ik} + x_{k+1,j}}{i \le k < j}
+&& (1 \le i < j \le n)
+\end{align*}
+Vrednosti $x_{ij}$ ($1 \le i \le j \le n$)
+računamo naraščajoče po razliki $j-i$,
+nato pa še naraščajoče po indeksu $i$.
+Optimalno rešitev dobimo kot $x^* = x_{1n}$.
+Časovna zahtevnost izračuna je $O(n^3)$.
+
+\item Najprej izračunajmo vrednosti $c_i$ ($1 \le i \le 6$).
+\begin{alignat*}{3}
+c_1 &=\ &  0 &+  4 &&=  4 \\
+c_2 &=\ &  4 &+ 19 &&= 23 \\
+c_3 &=\ & 23 &+ 17 &&= 40 \\
+c_4 &=\ & 40 &+  7 &&= 47 \\
+c_5 &=\ & 47 &+  5 &&= 52 \\
+c_6 &=\ & 52 &+  9 &&= 61
+\end{alignat*}
+Sedaj izračunajmo še vrednosti $x_{ij}$ ($1 \le i < j \le 6$).
+\begin{alignat*}{4}
+x_{12} &=\ &{} 23 &-  0 &&+ 0 + 0 &&= 23 \\
+x_{23} &=\ &{} 40 &-  4 &&+ 0 + 0 &&= 36 \\
+x_{34} &=\ &{} 47 &- 23 &&+ 0 + 0 &&= 24 \\
+x_{45} &=\ &{} 52 &- 40 &&+ 0 + 0 &&= 12 \\
+x_{56} &=\ &{} 61 &- 47 &&+ 0 + 0 &&= 14 \\
+x_{13} &=\ &{} 40 &-  0 &&+ \min\{0+36, \underline{23+0}\} &&= 63 \\
+x_{24} &=\ &{} 47 &-  4 &&+ \min\{\underline{0+24}, 36+0\} &&= 67 \\
+x_{35} &=\ &{} 52 &- 23 &&+ \min\{\underline{0+12}, 24+0\} &&= 41 \\
+x_{46} &=\ &{} 61 &- 40 &&+ \min\{0+14, \underline{12+0}\} &&= 33 \\
+x_{14} &=\ &{} 47 &-  0 &&+ \min\{0+67, \underline{23+24}, 63+0\} &&= 94 \\
+x_{25} &=\ &{} 52 &-  4 &&+ \min\{\underline{0+41}, 36+12, 67+0\} &&= 89 \\
+x_{36} &=\ &{} 61 &- 23 &&+ \min\{\underline{0+33}, 24+14, 41+0\} &&= 71 \\
+x_{15} &=\ &{} 52 &-  0 &&+ \min\{0+89, \underline{23+41}, 63+12, 94+0\} &&= 116 \\
+x_{26} &=\ &{} 61 &-  4 &&+ \min\{0+71, \underline{36+33}, 67+14, 89+0\} &&= 126 \\
+x_{16} &=\ &{} 61 &-  0 &&+ \min\{0+126, \underline{23+71}, 63+33, 94+14, 116+0\} &&= 155
+\end{alignat*}
+Cena postavitve razdelilnikov je torej $x^* = x_{16} = 155$.
+Poglejmo, kako naj jih postavimo.
+\begin{align*}
+x_{16} &= c_6 - c_0 + x_{12} + x_{36} & \text{delimo na $1, 2$ in $3$ do $6$} \\
+x_{12} &= c_2 - c_0 + x_{11} + x_{22} & \text{delimo na $1$ in $2$} \\
+x_{36} &= c_6 - c_2 + x_{33} + x_{46} & \text{delimo na $3$ in $4$ do $6$} \\
+x_{46} &= c_6 - c_3 + x_{45} + x_{66} & \text{delimo na $4, 5$ in $6$} \\
+x_{45} &= c_5 - c_3 + x_{44} + x_{55} & \text{delimo na $4$ in $5$}
+\end{align*}
+%
+Postavitev je prikazana na sliki~\fig.
+\begin{slika}
+\pgfslika
+\podnaslov{Postavitev razdelilnikov}
+\end{slika}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
