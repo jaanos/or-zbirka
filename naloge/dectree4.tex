@@ -1,0 +1,65 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 19.6.2019}
+\begin{vprasanje}
+Dano je odločitveno drevo s slike~\fig,
+pri čemer velja $0 \le p \le 1/2$.
+Pričakovano vred\-nost želimo minimizirati.
+Poišči optimalne odločitve in pričakovano vrednost
+v odvisnosti od vrednosti parametra $p$.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Odločitveno drevo}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Izračunajmo najprej pričakovane vrednosti v vozliščih $F$ in $G$
+odločitvenega drevesa s slike~\fig.
+\begin{alignat*}{2}
+F &= 160 \cdot p + 40 \cdot (1-p) &&= 120 p + 40 \\
+G &= 120 \cdot 2p + 20 \cdot (1-2p) &&= 200 p + 20
+\end{alignat*}
+
+Obravnavajmo najprej odločitev v vozlišču $D$.
+Za pot k vozlišču $F$ se odločimo,
+če velja $120p + 40 < 60$ oziroma $p < 1/6$.
+
+Obravnavajmo sedaj še odločitev v vozlišču $E$.
+Za pot k vozlišču $G$ se odločimo,
+če velja $200p + 20 < 50$ oziroma $p < 3/20$.
+
+Pričakovana vrednost v vozlišču $B$ bo sledeča.
+\begin{align*}
+p &< {1 \over 6}: & 0.7 \cdot (120p + 40) + 0.3 \cdot (100p + 30) &= 114p + 37
+\\
+p &\ge {1 \over 6}: & 0.7 \cdot 60 + 0.3 \cdot (100p + 30) &= 30p + 51
+\end{align*}
+
+Izračunajmo še pričakovano vrednost v vozlišču $C$.
+\begin{align*}
+p &< {3 \over 20}: & 0.6 \cdot (200p + 20) + 0.4 \cdot 70 &= 120p + 40
+\\
+p &\ge {3 \over 20}: & 0.6 \cdot 50 + 0.4 \cdot 70 &= 58
+\end{align*}
+
+Nazadnje obravnavajmo še odločitev v vozlišču $A$.
+\begin{align*}
+0 \le p &< {3 \over 20}: & \min \{ 114p + 37, 120p + 40 \} &= 114p + 37 \\
+{3 \over 20} \le p &< {1 \over 6} : & \min \{ 114p + 37, 58 \} &= 114p + 37 \\
+{1 \over 6} \le p &\le {1 \over 2} : & \min \{ 30p + 51, 58 \} &= \begin{cases}
+30p + 51 & p < {7 \over 30} \\
+58 & p \ge {7 \over 30}
+\end{cases}
+\end{align*}
+
+Proces odločanja je prikazan na sliki~\fig[dectree4-resitev].
+Ker velja ${7 \over 30} > {3 \over 20}$, opazimo,
+da v primeru $p \ge {7 \over 30}$ iz vozlišča $E$
+nikoli ne izberemo poti proti vozlišču $G$.
+%
+\begin{slika}
+\pgfslika[dectree4-resitev]
+\podnaslov[\res v odvisnosti od vrednosti parametra $p$]{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}

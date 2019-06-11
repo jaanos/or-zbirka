@@ -1,0 +1,10 @@
+\newcommand{\lH}{}%
+\newcommand{\lJ}{}%
+\newcommand{\pAB}{}%
+\newcommand{\pAC}{}%
+\newcommand{\pDH}{}%
+\newcommand{\pDI}{}%
+\newcommand{\pFJ}{}%
+\newcommand{\pFK}{}%
+\newcommand{\stChoose}{}%
+\input{slike/dectree4-osnova.tikz}

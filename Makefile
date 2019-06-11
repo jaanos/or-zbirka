@@ -39,6 +39,12 @@ pgf/dectree3.pdf: slike/dectree3.tikz slike/dectree3-osnova.tikz
 pgf/dectree3-resitev.pdf: slike/dectree3-resitev.tikz slike/dectree3-osnova.tikz
 	$(call pgfc,dectree3-resitev)
 
+pgf/dectree4.pdf: slike/dectree4.tikz slike/dectree4-osnova.tikz
+	$(call pgfc,dectree4)
+
+pgf/dectree4-resitev.pdf: slike/dectree4-resitev.tikz slike/dectree4-osnova.tikz
+	$(call pgfc,dectree4-resitev)
+
 pgf/dijkstra.pdf: slike/dijkstra.tikz slike/dijkstra-bf-osnova.tikz
 	$(call pgfc,dijkstra)
 

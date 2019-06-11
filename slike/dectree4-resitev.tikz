@@ -1,0 +1,12 @@
+{%
+\newcommand{\lH}{120p + 40}%
+\newcommand{\lJ}{200p + 20}%
+\newcommand{\pAB}{p < 7/30}%
+\newcommand{\pAC}{p \ge 7/30}%
+\newcommand{\pDH}{p < 1/6}%
+\newcommand{\pDI}{p \ge 1/6}%
+\newcommand{\pFJ}{p < 3/20}%
+\newcommand{\pFK}{p \ge 3/20}%
+\newcommand{\stChoose}{double}%
+\input{slike/dectree4-osnova.tikz}
+}
