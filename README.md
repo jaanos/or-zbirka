@@ -69,7 +69,7 @@ kjer so podane tudi smernice za pisanje.
 
 ## Prispevki
 
-Trenutno zbirka obsega 217 nalog,
+Trenutno zbirka obsega 221 nalog,
 od katerih večina še nima rešitev.
 Tako so trenutno zaželeni prispevki
 v obliki rešitev nalog in raznih popravkov
