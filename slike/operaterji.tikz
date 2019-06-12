@@ -1,0 +1,34 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\tikzstyle{weight}=[midway]
+\tikzstyle{edge}=[]
+\tikzstyle{colour}=[black]
+\tikzstyle{minsize}=[minimum size=6mm]
+\small
+\tikzstyle{every node}=[]
+\tikzstyle{vertex}=[draw, colour, rectangle, fill=white, inner sep=1ex, minsize]
+
+\node[vertex] (br) at (xyz polar cs:angle=  0,radius=0) {\sl brez};
+\node[vertex] (bt) at (xyz polar cs:angle= 90,radius=2) [label=above:$15$] {\em Bobitel};
+\node[vertex] (sf) at (xyz polar cs:angle=150,radius=4) [label=above:$10$] {\em Sodafon};
+\node[vertex] (re) at (xyz polar cs:angle=210,radius=2) [label=below:$0$] {\em Rega};
+\node[vertex] (fm) at (xyz polar cs:angle=270,radius=4) [label=below:$30$] {\em Fenmobil};
+\node[vertex] (z0) at (xyz polar cs:angle=330,radius=2) [label=below:$5$] {\em $Z^0$};
+\node[vertex] (tj) at (xyz polar cs:angle= 30,radius=4) [label=above:$20$] {\em TeleJanez};
+
+
+\draw[edge,->] (br) -- (bt) node[left, midway] {$65$};
+\draw[edge,->] (br) -- (sf) node[above, midway, sloped] {$85$};
+\draw[edge,->] (br) -- (re) node[above, midway, sloped] {$95$};
+\draw[edge,->] (br) -- (fm) node[right, near start] {$50$};
+\draw[edge,->] (br) -- (z0) node[above, midway, sloped] {$60$};
+\draw[edge,->] (br) -- (tj) node[above, midway, sloped] {$45$};
+\draw[edge,->] (bt) -- (sf) node[above, midway] {$10$};
+\draw[edge,->] (sf) -- (re) node[above, midway, sloped] {$-5$};
+\draw[edge,->] (re) -- (fm) node[above, midway, sloped] {$-15$};
+\draw[edge,->] (fm) -- (z0) node[above, midway, sloped] {$-10$};
+\draw[edge,->] (z0) -- (tj) node[above, midway, sloped] {$5$};
+\draw[edge,->] (tj) -- (bt) node[above, midway] {$0$};
+\draw[edge,->] (sf) to[bend left=25] node[above, midway] {$20$} (tj);
+\draw[edge,->] (tj) to[bend left=25] node[below, midway, sloped] {$-20$} (fm);
+\draw[edge,->] (fm) to[bend left=25] node[below, midway, sloped] {$5$} (sf);
+\end{tikzpicture}

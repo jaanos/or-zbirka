@@ -1,0 +1,114 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 19.6.2019}
+\begin{vprasanje}
+Trg mobilne telefonije je zelo konkurenčen,
+zato si mobilni operaterji na vse kriplje
+prizadevajo pridobiti stranke svojih konkurentov.
+Tako zelo, da lahko v nekaterih primerih
+stranka s prehodom h konkurentu celo zasluži.
+Da pa vendarle operaterji sami ne bi imeli prevelike izgube,
+stranke zadržujejo z različnimi vezavami,
+poleg tega pa novim strankam
+(tistim, ki še niso imele mobilnega telefona)
+krepko zaračunajo priklop.
+
+Stanje trga zberemo v utežen usmerjen graf $G = (V, E)$,
+kjer vozlišča pred\-stav\-lja\-jo operaterje,
+utež $L_{uv}$ povezave $uv \in E$
+pomeni strošek prehoda od operaterja $u$ k operaterju $v$,
+utež $c_v$ vozlišča $v \in V$ pa pomeni strošek,
+ki nastane tekom trajanja vezave pri operaterju $v$
+(ko preidemo k operaterju $v$, imamo torej $c_v$ dodatnih stroškov).
+Če povezave $uv$ ni v grafu, potem neposreden prehod od $u$ k $v$ ni mogoč.
+Uteži vozlišč so nenegativne,
+uteži povezav pa so lahko tudi negativne (tj., če ob prehodu zaslužimo).
+Poiskati želimo najcenejše zaporedje prehodov med operaterji
+(tj., tako, pri katerem imamo najmanj stroškov),
+če začnemo pri operaterju $s$ in končamo pri operaterju $t$.
+
+\begin{enumerate}[(a)]
+\item Predlagaj čim bolj učinkovit algoritem za reševanje zgornjega problema.
+Kak\-šna je njegova časovna zahtevnost?
+Lahko predpostaviš, da velja $c_s = c_t = 0$.
+
+\item Denimo, da trenutno še nimamo mobilnega telefona.
+Naši izračuni kažejo,
+da je dolgoročno najugodnejša ponudba operaterja {\em Rega},
+tako da bi radi s čim manjšimi stroški postali njihov naročnik.
+S pomočjo algoritma iz točke (a)
+poišči ustrezno zaporedje prehodov na grafu s slike~\fig.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Za dani graf $G = (V, E)$, vozlišči $s, t \in V$,
+uteži povezav $L_{uv}$ ($uv \in E$) in uteži vozlišč $c_v$ ($v \in V$)
+bomo izračunali nove uteži povezav $\ell_{uv} = L_{uv} + c_v$ ($uv \in E$),
+ki predstavljajo skupen strošek prehoda od operaterja $u$ k operaterju $v$.
+Ker so te uteži še vedno lahko tudi negativne,
+bomo v grafu $G$ poiskali najkrajšo pot od $s$ do $t$
+s pomočjo Bellman-Fordovega algoritma,
+ki teče v času $O(mn)$,
+kjer je $n$ število vozlišč in $m$ število povezav grafa $G$.
+
+\item Najprej izračunajmo nove uteži povezav.
+\begin{alignat*}{3}
+\ell_{\text{{\sl brez}, {\em Bobitel}}}       &=\ &  65 &+ 15 &&= 80 \\
+\ell_{\text{{\sl brez}, {\em Sodafon}}}       &=\ &  85 &+ 10 &&= 95 \\
+\ell_{\text{{\sl brez}, {\em Rega}}}          &=\ &  95 &+  0 &&= 95 \\
+\ell_{\text{{\sl brez}, {\em Fenmobil}}}      &=\ &  50 &+ 30 &&= 80 \\
+\ell_{\text{{\sl brez}, {\em $Z^0$}}}         &=\ &  60 &+  5 &&= 65 \\
+\ell_{\text{{\sl brez}, {\em TeleJanez}}}     &=\ &  45 &+ 20 &&= 65 \\
+\ell_{\text{{\em Bobitel}, {\em Sodafon}}}    &=\ &  10 &+ 10 &&= 20 \\
+\ell_{\text{{\em Sodafon}, {\em Rega}}}       &=\ &  -5 &+  0 &&= -5 \\
+\ell_{\text{{\em Rega}, {\em Fenmobil}}}      &=\ & -15 &+ 30 &&= 15 \\
+\ell_{\text{{\em Fenmobil}, {\em $Z^0$}}}     &=\ & -10 &+  5 &&= -5 \\
+\ell_{\text{{\em $Z^0$}, {\em TeleJanez}}}    &=\ &   5 &+ 20 &&= 25 \\
+\ell_{\text{{\em TeleJanez}, {\em Bobitel}}}  &=\ &   0 &+ 15 &&= 15 \\
+\ell_{\text{{\em TeleJanez}, {\em Fenmobil}}} &=\ & -20 &+ 30 &&= 10 \\
+\ell_{\text{{\em Fenmobil}, {\em Sodafon}}}   &=\ &   5 &+ 10 &&= 15 \\
+\ell_{\text{{\em Sodafon}, {\em TeleJanez}}}  &=\ &  20 &+ 20 &&= 40
+\end{alignat*}
+Za izračun najcenejše poti od vozlišča {\sl brez} do vozlišča {\em Rega}
+bomo sledili algoritmu {\sc BellmanFord} iz naloge~\res[bf],
+pri čemer bomo upoštevali vrstni red povezav iz zgornjega seznama.
+Strnjen potek algoritma
+(samo koraki, kjer se katera od razdalj spremeni)
+je prikazan v tabeli~\tab.
+Za najcenejše zaporedje prehodov med operaterji tako dobimo
+{\em TeleJanez}, {\em Fenmobil}, {\em Sodafon}, {\em Rega},
+skupni strošek pa je $75$.
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|ccc|ccccccc}
+$i$ & $u$ & $v$ & $\ell_{uv}$ &
+{\sl brez} & {\em Bobitel} & {\em Sodafon} & {\em Rega} &
+{\em Fenmobil} & {\em $Z^0$} & {\em TeleJanez} \\ \hline
+1 & {\sl brez} & {ostali} && $0$ &
+$80_{\text{\sl brez}}$ & $95_{\text{\sl brez}}$ & $95_{\text{\sl brez}}$ &
+$80_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ \\
+1 & {\em Sodafon} & {\em Rega} & $-5$ & $0$ &
+$80_{\text{\sl brez}}$ & $95_{\text{\sl brez}}$ & $90_{\text{\em Sodafon}}$ &
+$80_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ \\
+1 & {\em TeleJanez} & {\em Fenmobil} & $10$ & $0$ &
+$80_{\text{\sl brez}}$ & $95_{\text{\sl brez}}$ & $90_{\text{\em Sodafon}}$ &
+$75_{\text{\em TeleJanez}}$ & $65_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ \\
+1 & {\em Fenmobil} & {\em Sodafon} & $10$ & $0$ &
+$80_{\text{\sl brez}}$ & $90_{\text{\em Fenmobil}}$ & $90_{\text{\em Sodafon}}$ &
+$75_{\text{\em TeleJanez}}$ & $65_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ \\
+2 & {\em Sodafon} & {\em Rega} & $-5$ & $0$ &
+$80_{\text{\sl brez}}$ & $90_{\text{\em Fenmobil}}$ & $85_{\text{\em Sodafon}}$ &
+$75_{\text{\em TeleJanez}}$ & $65_{\text{\sl brez}}$ & $65_{\text{\sl brez}}$ \\
+\end{tabular}
+}
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
