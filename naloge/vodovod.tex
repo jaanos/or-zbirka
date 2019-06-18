@@ -12,14 +12,18 @@ vsaka od njiju pa bo pripeljala vodo do zaporednih delavnic
 (po potrebi preko nadaljnjih razdelilnikov).
 Cena postavitve razdelilnika je sorazmerna porabi delavnic, ki jim služi.
 Razdelilnike želimo postaviti tako, da bo skupna cena čim manjša.
-\primer{razdelilnik, ki služi delavnicam od $i$ do $j$
-(če $i > 1$ ali $j < n$,
-je voda do njega pritekla preko predhodnih razdelilnikov),
-lahko vodo razdeli na cevi,
-ki služita delavnicam od $i$ do $k$ in od $k+1$ do $j$ za nek $k$
-($i \le k < j$).
-Cena postavitve takega razdelilnika je $\sum_{h=i}^j p_h$.
-Če je $i < k$ oziroma $k+1 < j$, so potrebni še nadaljnji razdelilniki.}
+\primer{na sliki~\fig
+je prikazana možna postavitev razdelilnikov za tri delavnice.
+Odločimo se lahko,
+ali bomo najprej razdelili vodo delavnici $1$ in delavnicama $2, 3$,
+ali pa bomo vodo peljali naprej do delavnic $1, 2$ in do delavnice $3$
+(ne moremo pa deliti na delavnici $1, 3$ in delavnico $2$).
+Če se odločimo za prvi primer,
+potem do delavnice $1$ ne potrebujemo drugih razdelilnikov,
+še enega pa moramo postaviti, da razdelimo vodo do delavnic $2$ in $3$.
+Cena postavitve prvega razdelilnika je tako $p_1 + p_2 + p_3$
+(ne glede na odločitev),
+za drugega pa je v tem primeru cena $p_2 + p_3$.}
 
 \begin{enumerate}[(a)]
 \item Naj bo $c_i = \sum_{h=1}^i p_h$ ($0 \le i \le n$).
@@ -36,6 +40,11 @@ $$
 (p_i)_{i=1}^6 = (4, 19, 17, 7, 5, 9).
 $$
 \end{enumerate}
+%
+\begin{slika}
+\pgfslika
+\podnaslov{Primer postavitve razdelilnikov}
+\end{slika}
 \end{vprasanje}
 
 \begin{odgovor}
@@ -99,10 +108,10 @@ x_{46} &= c_6 - c_3 + x_{45} + x_{66} & \text{delimo na $4, 5$ in $6$} \\
 x_{45} &= c_5 - c_3 + x_{44} + x_{55} & \text{delimo na $4$ in $5$}
 \end{align*}
 %
-Postavitev je prikazana na sliki~\fig.
+Postavitev je prikazana na sliki~\fig[vodovod-resitev].
 \begin{slika}
-\pgfslika
-\podnaslov{Postavitev razdelilnikov}
+\pgfslika[vodovod-resitev]
+\podnaslov[\res{}(c)]{Postavitev razdelilnikov}
 \end{slika}
 \end{enumerate}
 \end{odgovor}
