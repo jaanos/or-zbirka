@@ -50,6 +50,47 @@ Azerbajdžan  & 6 &  7 &  9 &  8 &  0 & 1 & 0 &  0 \\
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $d_{ij}$ dobiček, ki ga tovarna na stopnji $j$ prinese v državi $i$,
+ter $n_{ij}$ trenutno število tovarn na stopnji $j$ v državi $i$.
+Definirajmo še množice
+\begin{align*}
+\text{EU} &= \{\text{AT}, \text{SI}, \text{IT}, \text{HU}, \text{HR}\}, \\
+\overline{\text{EU}} &= \{\text{IR}, \text{IQ}, \text{AF}, \text{TM},
+                          \text{PK}, \text{AM}, \text{AZ}\} \quad \text{in} \\
+D &= \text{EU} \cup \overline{\text{EU}}
+\end{align*}
+(tj., države označujemo s kodami ISO 3166-1 alpha-2).
+Za državo $i \in D$ in stopnjo razvoja $j$ ($1 \le j \le 3$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost bo enaka številu tovarn na stopnji $j$ v državi $i$,
+ki jih nadgradimo do stopnje $j+1$.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \max & \sum_{i \in D} \sum_{j=1}^3 (d_{i,j+1} - d_{ij}) x_{ij}
+\quad \text{p.p.} \\
+\forall i \in D \ \forall j \in \{1, 2, 3\} : &\ & 0 \le x_{ij} &\le n_{ij},
+\quad x_{ij} \in \Z
+\opis{Nadgradimo največ $15$ tovarn}
+&& \sum_{i \in D} \sum_{j=1}^3 x_{ij} &\le 15
+\opis{V vsaki državi nadgradimo največ $3$ tovarne}
+\forall i \in D : &\ & \sum_{j=1}^3 x_{ij} &\le 3
+\opis{Slovenija ima več tovarn stopnje $4$ kot Hrvaška}
+&& n_{\text{SI},4} + x_{\text{SI},3}
+&\ge n_{\text{HR},4} + x_{\text{HR},3} + 1
+\opis{Slovenija ima več tovarn stopnje $3$ kot Italija}
+&& n_{\text{SI},3} + x_{\text{SI},2} - x_{\text{SI},3}
+&\ge n_{\text{IT},3} + x_{\text{IT},2} - x_{\text{IT},3} + 1
+\opis{Nadgradenj v EU vsaj toliko kot izven EU}
+&& \sum_{i \in \text{EU}} \sum_{j=1}^3 x_{ij}
+&\ge \sum_{i \in \overline{\text{EU}}} \sum_{j=1}^3 x_{ij}
+\opis{Pogoj za Azerbajdžan in Armenijo}
+&& x_{\text{AM},1} &\ge n_{\text{AM},1} (x_{\text{AZ},2} - x_{\text{AM},3})
+\opis{Iran ima vsaj toliko tovarn stopnje $4$ kot EU}
+&& \sum_{i \in \text{EU}} (n_{i,4} + x_{i,3})
+&\le n_{\text{IR},4} + x_{\text{IR},3}
+\end{alignat*}
 \end{odgovor}
 \end{naloga}

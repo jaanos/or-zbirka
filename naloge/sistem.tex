@@ -11,6 +11,24 @@ ne pa recimo operacije invertiranja matrike $A$
 
 Kakšna je časovna zahtevnost tvojega algoritma?
 \end{vprasanje}
+
 \begin{odgovor}
+Napišemo si matriko $A$, jo pomnožimo z $x$,
+in v $i$-ti vrstici izrazimo $x_i$ iz enačb $Ax = b$.
+Opazimo, da so vse vrednosti, ki jih rabimo za izračun $x_i$, že poračunane.
+To je natanko reševanje sistema enačb z Gaussovo eliminacijo,
+ki je bila za nas že vnaprej narejena,
+ko smo kot vhod dobili zgornje trikotno matriko.
+\begin{small}
+\begin{algorithmic}
+\Require{$A \in \Z^{n \times n}$ zgornje trikotna matrika
+z neničelnimi vrednostmi na diagonali, $b \in \Z^n$}
+\For{$i = n, n-1, \dots, 1$}
+    \State $x_i \gets (b_i - \sum_{j=i+1}^n A_{ij} x_j) / A_{ii}$
+\EndFor
+\State \Return $(x_i)_{i=1}^n$
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(n^2)$.
 \end{odgovor}
 \end{naloga}
