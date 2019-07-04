@@ -18,6 +18,31 @@ da zložimo škatli z volumnoma $2$ in $3$ znotraj škatle z volumnom $6$
 ter škatlo z volumnom $8$ znotraj največje škatle.
 Ta razporeditev ima skupni volumen $6 + 9 = 15$.
 \end{vprasanje}
+
 \begin{odgovor}
+Za škatli $i$ in $j$ ($1 \le i, j \le n$) bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{če $i$-to škatlo postavimo v $j$-to škatlo, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Ker želimo minimizirati volumen škatel, ki jih ne zložimo v večje škatle,
+lahko mak\-si\-mi\-zi\-ra\-mo volumen škatel, ki jih zložimo v večje škatle.
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max \ \sum_{i=1}^n \sum_{j=1}^n v_i x_{ij} && \text{p.p.} \\
+\forall i, j \in \{1, \dots, n\}: &\ & 0 \le x_{ij} &\le 1,
+\quad x_{ij} \in \Z
+\opis{Škatle ne moremo postaviti vase}
+\forall i \in \{1, \dots, n\}: &\ & x_{ii} &= 0
+\opis{Vsako škatlo lahko postavimo v največ eno večjo škatlo}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^n x_{ij} &\le 1
+\opis{Omejitev na volumnu škatle}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^n v_i x_{ij} &\le v_j
+\opis{Škatle, ki vsebuje drugo škatlo, ne moremo postaviti v večjo škatlo}
+\forall i, j, k \in \{1, \dots, n\}: &\ & x_{ij} + x_{jk} &\le 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}

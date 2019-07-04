@@ -7,6 +7,22 @@ med vsoto elementov v $S_1$ in $S_2$ čim manjša.
 S pomočjo dinamičnega programiranja opiši postopek,
 ki izračuna minimalno vrednost te razlike.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $v_{ij}$ največja vsota števil izmed $a_1, a_2, \dots, a_i$,
+ki ne preseže vrednosti $j$.
+Definirajmo še $s = \left\lfloor {1 \over 2} \sum_{i=1}^n a_i \right\rfloor$
+(tj., največja možna vrednost za $\min\{\sum S_1, \sum S_2\}$).
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+v_{00} &= v_{i0} = v_{0j} = 0 && (1 \le i \le n, 1 \le j \le s) \\
+v_{ij} &= \max(\{v_{i-1, j}\} \cup \set{a_i + v_{i-1, j-a_i}}{a_i \le j})
+&& (1 \le i \le n, 1 \le j \le s)
+\end{align*}
+Vrednosti $v_{ij}$ računamo v leksikografskem vrstnem redu indeksov
+(npr.~najprej naraščajoče po $i$, nato pa naraščajoče po $j$).
+Optimalna vrednost $v^* = v_{ns}$ nam pove največjo vrednost za $\sum S_1$
+(brez škode za splošnost lahko predpostavimo, da ta ne preseže $\sum S_2$);
+razliko dobimo kot $\sum_{i=1}^n a_i - 2v^*$.
 \end{odgovor}
 \end{naloga}
