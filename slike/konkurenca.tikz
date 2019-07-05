@@ -1,0 +1,58 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm, inner sep=0pt]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm, inner sep=0pt]
+\tikzstyle{pick}=[double, very thick]
+\node[dec] (A) at (-8,-1) [label=above:$3\,100 €$] {};
+\node[ran] (B) at (-4, 2) [label=above:$3\,100 €$] {};
+\node[dec] (C) at (-4,-4) [label=below:$2\,000 €$] {};
+\node[dec] (D) at ( 0, 5) [label=above:$6\,454.55 €$] {};
+\node[dec] (E) at ( 0, 0) [label=below:$-1\,000 €$] {};
+\node      (F) at ( 0,-3) {$0 €$};
+\node[ran] (G) at ( 0,-4) [label=below:$2\,000 €$] {};
+\node[ran] (H) at ( 0,-6) [label=below:$-2\,500 €$] {};
+\node      (I) at ( 4, 6) {$-1\,000 €$};
+\node[ran] (J) at ( 4, 5) [label=below:$6\,454.55 €$] {};
+\node[ran] (K) at ( 4, 3) [label=left:$-4\,636.36 €$] {};
+\node      (L) at ( 4, 1) {$-1\,000 €$};
+\node[ran] (M) at ( 4, 0) [label=below:$-5\,666.67 €$] {};
+\node[ran] (N) at ( 4,-2) [label=left:$-2\,111.11 €$] {};
+\node      (O) at ( 4,-3) {$20\,000 €$};
+\node      (P) at ( 4,-4) {$-10\,000 €$};
+\node      (Q) at ( 4,-5) {$20\,000 €$};
+\node      (R) at ( 4,-6) {$-5\,000 €$};
+\node      (S) at ( 8, 6) {$19\,000 €$};
+\node      (T) at ( 8, 5) {$-11\,000 €$};
+\node      (U) at ( 8, 4) {$19\,000 €$};
+\node      (V) at ( 8, 3) {$-6\,000 €$};
+\node      (W) at ( 8, 1) {$19\,000 €$};
+\node      (X) at ( 8, 0) {$-11\,000 €$};
+\node      (Y) at ( 8,-1) {$19\,000 €$};
+\node      (Z) at ( 8,-2) {$-6\,000 €$};
+
+\draw[pick] (A) -- (B) node[above, midway, sloped] {mnenje};
+\draw (A) -- (C) node[below, midway, sloped] {brez mnenja};
+\draw (B) -- (D) node[above, midway, sloped] {za prvo: $0.55$};
+\draw (B) -- (E) node[below, midway, sloped] {za drugo: $0.45$};
+\draw (C) -- (F) node[above, midway, sloped] {ne kupi};
+\draw[pick] (C) -- (G) node[below, midway] {kupi prvo};
+\draw (C) -- (H) node[below, midway, sloped] {kupi drugo};
+\draw (D) -- (I) node[above, midway, sloped] {ne kupi};
+\draw[pick] (D) -- (J) node[below, midway] {kupi prvo};
+\draw (D) -- (K) node[below, midway, sloped] {kupi drugo};
+\draw[pick] (E) -- (L) node[above, midway, sloped] {ne kupi};
+\draw (E) -- (M) node[below, midway] {kupi prvo};
+\draw (E) -- (N) node[below, midway, sloped] {kupi drugo};
+\draw (G) -- (O) node[above, midway, sloped] {uspešno: $0.4$};
+\draw (G) -- (P) node[below, midway] {neuspešno: $0.6$};
+\draw (H) -- (Q) node[above, midway, sloped] {uspešno: $0.1$};
+\draw (H) -- (R) node[below, midway] {neuspešno: $0.9$};
+\draw (J) -- (S) node[above, midway, sloped] {uspešno: $0.582$};
+\draw (J) -- (T) node[below, midway] {neuspešno: $0.418$};
+\draw (K) -- (U) node[above, midway, sloped] {uspešno: $0.055$};
+\draw (K) -- (V) node[below, midway] {neuspešno: $0.945$};
+\draw (M) -- (W) node[above, midway, sloped] {uspešno: $0.178$};
+\draw (M) -- (X) node[below, midway] {neuspešno: $0.822$};
+\draw (N) -- (Y) node[above, midway, sloped] {uspešno: $0.156$};
+\draw (N) -- (Z) node[below, midway] {neuspešno: $0.844$};
+\end{tikzpicture}

@@ -49,6 +49,39 @@ Napiši tak celoštevilski linearni program
 ki bo Janezu drugo leto pomagal pri prodaji vina,
 tako da bo njegov zaslužek kar največji.
 \end{vprasanje}
+
 \begin{odgovor}
+Uporabili bomo oznake sort in kupcev iz naloge~\res[vinar],
+poleg tega pa naj $n_A$ pomeni število flaškonov sorte $A$,
+ki jih imamo na voljo.
+Za vsako sorto $i \in I$ in kupca $j \in J$
+bomo uvedli spremenljivko $x_{ij}$,
+ki pove, koliko flaškonov sorte $i$ prodamo kupcu $j$.
+Zapišimo celoštevilski linearni program.
+\begin{align*}
+\max &\ \sum_{j \in J} (12 x_{RM,j} + 8 x_{LR,j} + 15 x_{RR,j})
+\quad \text{p.p.} \\
+\forall i \in I \ \forall j \in J: \ x_{ij} &\ge 0, \quad x_{ij} \in \Z
+\opis{Omejitve za sorte}
+\sum_{j \in J} x_{RM,j} &\le 200 \\
+\sum_{j \in J} x_{LR,j} &\le 1\,000 \\
+\sum_{j \in J} x_{RR,j} &\le 5000
+\opis{Omejitve za stranke}
+\sum_{i \in I} x_{i,K} &\le 1\,500 \\
+\sum_{i \in I} x_{i,L} &\le 500 \\
+\sum_{i \in I} x_{i,O} &\le 100 \\
+\sum_{i \in I} x_{i,Z} &\le 50
+\opis{Omejitvi barov}
+12 x_{RM,K} + 8 x_{LR,K} + 15 x_{RR,K}
+&\le \sum_{j \in \{O, Z\}} (12 x_{RM,j} + 8 x_{LR,j} + 15 x_{RR,j}) \\
+12 x_{RM,L} + 8 x_{LR,L} + 15 x_{RR,L}
+&\le \sum_{j \in \{O, Z\}} (12 x_{RM,j} + 8 x_{LR,j} + 15 x_{RR,j})
+\opis{Želje glede sort}
+x_{RM,Z} + x_{RR,Z} &\ge 50 \\
+x_{RM,O} + x_{LR,O} &= 0 \\
+x_{RR,O} &\ge 50
+\opis{Ženin pogoj}
+n_A - \sum_{j \in J} x_{Aj} &\ge x_{AB} + x_{AC}
+\end{align*}
 \end{odgovor}
 \end{naloga}

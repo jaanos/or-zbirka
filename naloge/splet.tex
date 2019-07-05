@@ -16,24 +16,66 @@ ne da bi vplivali na trajanje izdelave.
 \begin{tabular}{c|l|c|c}
 opravilo & opis & trajanje & pogoji \\
 \hline
-A & natančna opredelitev funkcionalnosti & 15 dni & / \\
-B & programiranje uporabniškega vmesnika & 40 dni & K \\
-C & programiranje skrbniškega vmesnika & 25 dni & A, M \\
-D & programiranje strežniškega dela & 30 dni & A, M \\
-E & integracija uporabniškega vmesnika s strežnikom & 20 dni & B, D \\
-F & alfa testiranje & 20 dni & C, E \\
-G & beta testiranje & 30 dni & F, H \\
-H & pridobivanje testnih uporabnikov & 45 dni & A \\
-I & vnos zadnjih popravkov & 10 dni & G \\
-J & izdelava uporabniške dokumentacije & 35 dni & B \\
-K & dizajniranje uporabniškega vmesnika & 15 dni & A \\
-L & nabava računalniške opreme & 20 dni & / \\
-M & postavitev strežnikov & 10 dni & L \\
+$a$ & natančna opredelitev funkcionalnosti & 15 dni & / \\
+$b$ & programiranje uporabniškega vmesnika & 40 dni & $k$ \\
+$c$ & programiranje skrbniškega vmesnika & 25 dni & $a, m$ \\
+$d$ & programiranje strežniškega dela & 30 dni & $a, m$ \\
+$e$ & integracija uporabniškega vmesnika s strežnikom & 20 dni & $b, d$ \\
+$f$ & alfa testiranje & 20 dni & $c, e$ \\
+$g$ & beta testiranje & 30 dni & $f, h$ \\
+$h$ & pridobivanje testnih uporabnikov & 45 dni & $a$ \\
+$i$ & vnos zadnjih popravkov & 10 dni & $g$ \\
+$j$ & izdelava uporabniške dokumentacije & 35 dni & $b$ \\
+$k$ & dizajniranje uporabniškega vmesnika & 15 dni & $a$ \\
+$\ell$ & nabava računalniške opreme & 20 dni & / \\
+$m$ & postavitev strežnikov & 10 dni & $\ell$ \\
 \end{tabular}
 }
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev
+$s, a, \ell, h, k, m, b, d, c, j, e, f, g, i, t$.
+
+\item V tabeli~\tab[splet-resitev] so podani
+najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje projekta ne podaljša.
+Izdelava bo torej trajala $150$ dni,
+edina kritična pot pa je $s - a - k - b - e - f - g - i - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[splet-resitev] je razvidno,
+da je najmanj kritično opravilo $h$,
+saj lahko njegovo trajanje podaljšamo za $50$ dni,
+ne da bi vplivali na trajanje celotnega projekta.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{splet-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|ccccccccccccccc}
+& $s$ & $a$ & $\ell$ & $h$ & $k$ & $m$ & $b$ & $d$
+& $c$ & $j$ & $e$ & $f$ & $g$ & $i$ & $t$ \\ \hline
+najprej & $0$ & $0_s$ & $0_s$ & $15_a$ & $15_a$ & $20_\ell$ & $30_k$ & $30_m$
+& $30_m$ & $70_b$ & $70_b$ & $90_e$ & $110_f$ & $140_g$ & $150_i$ \\
+najkasneje & $0_a$ & $0_k$ & $10_m$ & $65_g$ & $15_b$ & $30_d$ & $30_e$
+& $40_e$ & $65_f$ & $115_t$ & $70_f$ & $90_g$ & $110_i$ & $140_t$ & $150$ \\
+razlika & $0$ & $0^*$ & $10$ & $50$ & $0^*$ & $10$ & $0^*$ & $10$ & $35$
+& $45$ & $0^*$ & $0^*$ & $0^*$ & $0^*$ & $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

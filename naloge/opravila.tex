@@ -17,6 +17,52 @@ Minimizirati želimo čas dokončanja zadnjega stroja.
 
 Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 \end{vprasanje}
+
 \begin{odgovor}
+Za stroj $i$ ($1 \le i \le n$) bomo uvedli spremenljivko $x_i$,
+dodatno za opravilo $j$ in časovno enoto $h$ ($1 \le h, j \le m$)
+pa še spremenljivko $y_{ijh}$.
+Njihove vrednosti interpretiramo kot
+\begin{align*}
+x_i &= \begin{cases}
+1, & \text{če stroj $i$ izvede vsaj eno opravilo, in} \\
+0  & \text{sicer;}
+\end{cases} \\
+\text{ter} \quad
+y_{ijh} &= \begin{cases}
+1, & \text{če stroj $i$ izvede opravilo $j$ v časovni enoti $h$, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Dodatno bomo uvedli še spremenljivko $t$,
+katere vrednost bo enaka časovni enoti dokončanja zadnjega stroja.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \min &\ t & \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le x_i &\le 1, & x_i &\in \Z \\
+\forall i \in \{1, \dots, n\} \ \forall j, h \in \{1, \dots, m\}:
+&\ & 0 \le y_{ijh} &\le 1, & y_{ijh} &\in \Z
+\opis{Vsako opravilo se izvede natanko enkrat}
+\forall j \in \{1, \dots, m\}: &\ & \sum_{i=1}^n \sum_{h=1}^m y_{ijh} &= 1
+\opis{Vsako stroj lahko hkrati opravlja največ eno opravilo}
+\forall i \in \{1, \dots, n\} \ \forall h \in \{1, \dots, m\}:
+&\ & \sum_{j=1}^m y_{ijh} &\le 1
+\opis{Omejitev stroškov obratovanja}
+\forall i \in \{1, \dots, n\}:
+&\ & \sum_{j=1}^m \sum_{h=1}^m y_{ijh} &\le m x_i \\
+&& \sum_{i=1}^n c_i x_i &\le C
+\opis{Vrstni red opravil}
+\forall (j, k) \in P:
+&\ & \sum_{i=1}^n \sum_{h=1}^m h (y_{ikh} - y_{ijh}) &\ge 1
+\opis{Hkratnost opravil}
+\forall (j, k) \in S \ \forall h \in \{1, \dots, m\}:
+&\ & \sum_{i=1}^n (y_{ijh} + y_{ikh}) &\le 1
+\opis{Omejitev hkrati aktivnih strojev}
+\forall h \in \{1, \dots, m\}: &\ & \sum_{i=1}^n \sum_{j=1}^m y_{ijh} &\le A
+\opis{Omejitev časa dokončanja}
+\forall i \in \{1, \dots, n\} \ \forall j, h \in \{1, \dots, m\}:
+&\ & h y_{ijh} &\le t
+\end{alignat*}
 \end{odgovor}
 \end{naloga}

@@ -28,6 +28,54 @@ bo seveda odvisno od števila dobrih kroglic pri prvem naročilu.)
 v drugi seriji pa stroški naročila ostanejo $300 €$?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bodo $s_{ij}$ pričakovani stroški, ki bodo nastali,
+če Stekelce pri $i$-tem naročilu ($i = 1, 2$)
+potrebuje še $j$ kroglic ($j = 0, 1, 2$).
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+s_{22} &= \min\left(\{k\} \cup
+    \set{z_2 + cx + (p + x(1-p)) p^{x-1} k}{x \ge 2, x \in \Z}\right) \\
+s_{21} &= \min\left(\{k\} \cup
+    \set{z_2 + cx + p^x k}{x \ge 1, x \in \Z}\right) \\
+s_{12} &= \min\left(\{s_{22}\} \cup
+    \set{z_1 + cx + p^x s_{22} + x(1-p) p^{x-1} s_{21}}%
+        {x \ge 1, x \in \Z}\right)
+\end{align*}
+Tukaj $c$ predstavlja ceno posamezne kroglice,
+$z_i$ ($i = 1, 2$) stroške zagona izdelave pri $i$-tem naročilu,
+$k$ kazen ob neizstavitvi naročila,
+in $p$ verjetnost, da bo posamezna kroglica neuporabna.
+Pričakovani stroški so $s^* = s_{12}$.
+
+Izračunajmo zgornje vrednosti
+pri $c = 100 €$, $z_1 = z_2 = 300 €$, $k = 800 €$ in $p = 0.5$.
+Opazimo, da imajo izrazi na desni natanko en lokalni minimum (za $x \in \R$),
+tako da zadostuje obravnavati le tiste vrednosti $x$,
+kjer vrednost izraza še pada.
+\begin{alignat*}{2}
+s_{22} &= \min\{800 €, 1\,100 €, 1\,000 €, 950 €, 950 €, \dots\} &&= 800 € \\
+s_{21} &= \min\{800 €, 800 €, 700 €, 700 €, \dots\} &&= 700 € \\
+s_{12} &= \min\{800 €, 1\,150 €, 1\,050 €, 962.5 €, 925 €, 934.375 €, \dots\}
+&&= 800 €
+\end{alignat*}
+Kroglic se ji torej ne izplača naročati,
+saj bo do najmanjših pričakovanih stroškov prišlo,
+če enostavno plača kazen.
+
+\item Rekurzivne enačbe iz prejšnje točke rešimo še za primer,
+ko velja $z_1 = 150 €$.
+Ker so ostali parametri nespremenjeni,
+zadostuje, da znova izračunamo le vrednost $s_{12}$.
+$$
+s_{12} = \min\{800 €, 1\,000 €, 900 €, 812.5 €, 775 €, 784.375 €, \dots\}
+= 775 €
+$$
+Pri prvem naročilu naj torej naroči $4$ kroglice.
+Če bo le ena uporabna, naj drugič naroči še $2$ ali $3$ kroglice,
+če pa nobena ne bo uporabna, naj plača kazen.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

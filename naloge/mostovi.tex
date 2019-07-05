@@ -14,6 +14,23 @@ Formuliraj problem kot celoštevilski linearni program.
 \podnaslov{Otoki}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Glede na to, da imamo v vsaki vrstici in stolpcu samo po dva otoka,
+bomo v vsakem od njih zgradili največ dva mostova med otokoma.
+Za $i = 1, 2, 3$ bomo torej definirali spremenljivki $x_i$ in $y_i$,
+ki povesta, koliko mostov bomo zgradili v $i$-ti vrstici oziroma stolpcu.
+Zapišimo linearne omejitve.
+\begin{alignat*}{3}
+\forall i \in \{1, 2, 3\}: &\ & 0 \le x_i &\le 2, &\quad& x_i \in \Z \\
+\forall i \in \{1, 2, 3\}: &\ & 0 \le y_i &\le 2, &\quad& y_i \in \Z \\
+&& x_1 + y_1 &= 2 \\
+&& x_1 + y_2 &= 1 \\
+&& x_2 + y_2 &= 3 \\
+&& x_2 + y_3 &= 3 \\
+&& x_3 + y_1 &= 3 \\
+&& x_3 + y_3 &= 2
+\end{alignat*}
+Ciljna funkcija tukaj ni pomembna -- zanima nas samo dopustna rešitev.
 \end{odgovor}
 \end{naloga}

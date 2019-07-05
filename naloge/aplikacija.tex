@@ -24,6 +24,40 @@ pri podatkih $m = 15$, $a_1 = 4$, $n_1 = 3$, $k_1 = 1.5$,
 $a_2 = 3$, $n_2 = 4$, $k_2 = 2$, $a_3 = 2$, $n_3 = 0.4$ in $k_3 = 0.3$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Za izračun pričakovanega dobička
+bomo definirali funkcije $v_i(z)$ ($i = 1, 2, 3$).
+Zapišimo njihove definicije.
+\begin{align*}
+v_1(z) &= n_1 + k_1 z \\
+v_2(z) &= \max\set{v_1(z-y) + n_2 + k_2 y}{a_2 \le y \le z - a_1} \\
+v_3(z) &= \max\set{v_2(z-y) \cdot (n_3 + k_3 y)}{a_3 \le y \le z - a_1 - a_2}
+\end{align*}
+Pričakovani dobiček dobimo tako, da izračunamo $v_3(m)$.
+
+\item Vstavimo podatke v zgornje formule.
+\begin{align*}
+v_1(z)  &= 3 + 1.5 z \\[2mm]
+v_2(z)  &= \max\set{3 + 1.5 (z-y) + 4 + 2y}{3 \le y \le z - 4} \\
+        &= \max\set{7 + 1.5 z + 0.5 y}{3 \le y \le z - 4} \\
+        &= 5 + 2z \qquad (z \ge 7) \\[2mm]
+v_3(15) &= \max\set{(5 + 2(15-y)) \cdot (0.4 + 0.3 y)}{2 \le y \le 8} \\
+        &= \max\set{-0.6 y^2 + 9.7 y + 14}{2 \le y \le 8}
+\end{align*}
+Naj bo $f(y) = -0.6 y^2 + 9.7 y + 14$
+-- gre za kvadraten polinom z negativnim vodilnim členom,
+tako da ima maksimum tam, kjer je odvod ničeln.
+\begin{align*}
+0 = f'(y) &= -1.2 y + 9.7 \\
+y &= 9.7/1.2 > 8
+\end{align*}
+Opazimo torej, da maksimum leži desno od intervala $[2, 8]$,
+kar pomeni, da velja $v_3(15) = f(8) = 53.6$.
+Podjetje bo torej maksimiziralo pričakovani dobiček na $53.8$ milijonov evrov,
+če dodeli $8$ milijonov evrov marketingu,
+$3$ milijone evrov oblikovalcem in $4$ milijone evrov razvijalcem.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

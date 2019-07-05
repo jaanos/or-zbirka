@@ -52,6 +52,67 @@ Nariši odločitveno drevo
 in odločitve sprejmi na podlagi izračunanih verjetnosti.
 Pričakovani dobiček tudi izračunaj.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $A$ dogodek, da nasprotnik na začetku vloži $10$ žetonov,
+$B_n$ dogodek, da odgovorimo z $n$ žetoni ($n \in \{0, 10, 20\}$),
+$C$ dogodek, da nasprotnik za tem izenači,
+in $D$ dogodek, da dobimo igro.
+Izračunajmo ustrezne pogojne verjetnosti.
+\begin{alignat*}{2}
+P(A) &= 0.6 \cdot 0.3 + 0.4 \cdot 0.8 &&= 0.5 \\
+P(\overline{A}) &= 0.6 \cdot 0.7 + 0.4 \cdot 0.2 &&= 0.5 \\
+P(C \;|\; A \cap B_{20})
+&= {0.6 \cdot 0.3 \cdot 0.1 + 0.4 \cdot 0.8 \cdot 0.8 \over 0.5} &&= 0.548 \\
+P(\overline{C} \;|\; A \cap B_{20})
+&= {0.6 \cdot 0.3 \cdot 0.9 + 0.4 \cdot 0.8 \cdot 0.2 \over 0.5} &&= 0.452 \\
+P(C \;|\; \overline{A} \cap B_{10})
+&= {0.6 \cdot 0.7 \cdot 0.2 + 0.4 \cdot 0.2 \cdot 0.7 \over 0.5} &&= 0.28 \\
+P(\overline{C} \;|\; \overline{A} \cap B_{10})
+&= {0.6 \cdot 0.7 \cdot 0.8 + 0.4 \cdot 0.2 \cdot 0.3 \over 0.5} &&= 0.72 \\
+P(C \;|\; \overline{A} \cap B_{20})
+&= {0.6 \cdot 0.7 \cdot 0.1 + 0.4 \cdot 0.2 \cdot 0.8 \over 0.5} &&= 0.212 \\
+P(\overline{C} \;|\; \overline{A} \cap B_{20})
+&= {0.6 \cdot 0.7 \cdot 0.9 + 0.4 \cdot 0.2 \cdot 0.2 \over 0.5} &&= 0.788 \\
+P(D \;|\; A \cap B_{10})
+&= {0.6 \cdot 0.3 \cdot 0.8 + 0.4 \cdot 0.8 \cdot 0.1 \over 0.5} &&= 0.352 \\
+P(\overline{D} \;|\; A \cap B_{10})
+&= {0.6 \cdot 0.3 \cdot 0.2 + 0.4 \cdot 0.8 \cdot 0.9 \over 0.5} &&= 0.648 \\
+P(D \;|\; A \cap B_{20} \cap C)
+&= {0.6 \cdot 0.3 \cdot 0.1 \cdot 0.8 + 0.4 \cdot 0.8 \cdot 0.8 \cdot 0.1
+\over 0.5 \cdot 0.548} &&\approx 0.146 \\
+P(\overline{D} \;|\; A \cap B_{20} \cap C)
+&= {0.6 \cdot 0.3 \cdot 0.1 \cdot 0.2 + 0.4 \cdot 0.8 \cdot 0.8 \cdot 0.9
+\over 0.5 \cdot 0.548} &&\approx 0.854 \\
+P(D \;|\; \overline{A} \cap B_0)
+&= {0.6 \cdot 0.7 \cdot 0.8 + 0.4 \cdot 0.2 \cdot 0.1 \over 0.5} &&= 0.688 \\
+P(\overline{D} \;|\; \overline{A} \cap B_0)
+&= {0.6 \cdot 0.7 \cdot 0.2 + 0.4 \cdot 0.2 \cdot 0.9 \over 0.5} &&= 0.312 \\
+P(D \;|\; \overline{A} \cap B_{10} \cap C)
+&= {0.6 \cdot 0.7 \cdot 0.2 \cdot 0.8 + 0.4 \cdot 0.2 \cdot 0.7 \cdot 0.1
+\over 0.5 \cdot 0.28} &&= 0.52 \\
+P(\overline{D} \;|\; \overline{A} \cap B_{10} \cap C)
+&= {0.6 \cdot 0.7 \cdot 0.2 \cdot 0.2 + 0.4 \cdot 0.2 \cdot 0.7 \cdot 0.9
+\over 0.5 \cdot 0.28} &&= 0.48 \\
+P(D \;|\; \overline{A} \cap B_{20} \cap C)
+&= {0.6 \cdot 0.7 \cdot 0.1 \cdot 0.8 + 0.4 \cdot 0.2 \cdot 0.8 \cdot 0.1
+\over 0.5 \cdot 0.212} &&\approx 0.377 \\
+P(\overline{D} \;|\; \overline{A} \cap B_{20} \cap C)
+&= {0.6 \cdot 0.7 \cdot 0.1 \cdot 0.2 + 0.4 \cdot 0.2 \cdot 0.8 \cdot 0.9
+\over 0.5 \cdot 0.212} &&\approx 0.623
+\end{alignat*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo, da se nam v vsakem primeru izplača višati za $10$ žetonov
+(tj., če nasprotnik na začetku vloži $10$ žetonov,
+odgovorimo z $20$ žetoni).
+Pričakovani dobiček je $10.364$ žetonov.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

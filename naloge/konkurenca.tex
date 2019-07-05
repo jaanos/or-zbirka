@@ -33,6 +33,35 @@ Nariši od\-lo\-čit\-ve\-no drevo
 in odločitve sprejmi na podlagi izračunanih verjetnosti.
 Pričakovani dobiček tudi izračunaj.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $A$ dogodek, da izvedenec pripiše večje možnosti prvemu podjetju,
+ter $B_1$, $B_2$ in $B_0$ dogodki,
+da uspe prvo, drugo oziroma nobeno podjetje.
+Izračunajmo verjetnosti za mnenje izvedenca
+ter uspešnosti podjetij v odvisnosti od njega.
+\begin{alignat*}{3}
+P(A) &= 0.4 \cdot 0.8 \,+&\, 0.1 \cdot 0.3 &\,+\,& 0.5 \cdot 0.4 &= 0.55 \\
+P(\overline{A}) &= 0.4 \cdot 0.2 \,+&\, 0.1 \cdot 0.7 &\,+\,& 0.5 \cdot 0.6 &= 0.45 \\
+P(B_0 \;|\; A) &=&{} {0.5 \cdot 0.4 \over 0.55} &&&= {4 \over 11} \\
+P(B_1 \;|\; A) &=&{} {0.4 \cdot 0.8 \over 0.55} &&&= {32 \over 55} \\
+P(B_2 \;|\; A) &=&{} {0.1 \cdot 0.3 \over 0.55} &&&= {3 \over 55} \\
+P(B_0 \;|\; \overline{A}) &=&{} {0.5 \cdot 0.6 \over 0.45} &&&= {2 \over 3} \\
+P(B_1 \;|\; \overline{A}) &=&{} {0.4 \cdot 0.2 \over 0.45} &&&= {8 \over 45} \\
+P(B_2 \;|\; \overline{A}) &=&{} {0.1 \cdot 0.7 \over 0.45} &&&= {7 \over 45}
+\end{alignat*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Odločimo se torej za mnenje izvedenca
+-- če je to naklonjeno prvemu podjetju, kupimo njegove delnice,
+sicer pa ne kupimo ničesar.
+Pričakovan dobiček je $3\,100 €$.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

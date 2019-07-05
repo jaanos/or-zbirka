@@ -33,10 +33,48 @@ Posamezen posnetek lahko seveda naložimo tudi na več krajevnih strežnikov,
 ali pa na nobenega (v tem primeru bo poslan iz glavnega strežnika).
 
 Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
-\namig{pri določitvi latence ponudnika za dan posnetek
-si pomagaj s spremenljivko, ki šteje strežnike z latenco,
-ki ne presega izračunane latence.}
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsak strežnik $h$ ($0 \le h \le k$),
+ponudnika $i$ ($1 \le i \le m$) in posnetek $j$ ($1 \le j \le n$)
+bomo uvedli spremenljivko $x_{hij}$,
+za strežnik $h$ ($1 \le h \le k$) in posnetek $j$ ($1 \le j \le n$)
+pa dodatno še spremenljivko $y_{hj}$.
+Njihove vrednosti interpretiramo kot
+\begin{align*}
+x_{hij} &= \begin{cases}
+1, & \text{ponudniku $i$ pošiljamo posnetek $j$ iz strežnika $h$, in} \\
+0  & \text{sicer;}
+\end{cases} \\
+\text{ter} \quad
+y_{hj} &= \begin{cases}
+1, & \text{posnetek $j$ naložimo na strežnik $h$, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+\min\ \sum_{h=0}^k \sum_{i=1}^m \sum_{j=1}^n r_{ij} \ell_{hi} x_{hij}
+&\quad \text{p.p.} \\
+\forall h \in \{0, \dots, k\} \ \forall i \in \{1, \dots, m\}
+\ \forall j \in \{1, \dots, n\}:
+&\ & 0 \le x_{hij} &\le 1, & x_{hij} &\in \Z \\
+\forall h \in \{1, \dots, k\} \ \forall j \in \{1, \dots, n\}:
+&\ & 0 \le y_{hj} &\le 1, & y_{hj} &\in \Z
+\opis{Omejitev prostora}
+\forall h \in \{1, \dots, k\}: &\ & \sum_{j=1}^n s_j y_{hj} &\le c_h
+\opis{Za dostavo mora biti posnetek prisoten na strežniku}
+\forall h \in \{0, \dots, k\} \ \forall i \in \{1, \dots, m\}
+\ \forall j \in \{1, \dots, n\}: &\ & x_{hij} &\le y_{hj}
+\opis{Strežnika za posnetek ne uporabimo,
+če se nahaja na strežniku z manjšo latenco}
+\forall h, t \in \{0, \dots, k\} \ \forall i \in \{1, \dots, m\}
+\ \forall j \in \{1, \dots, n\}:
+&\ & (\ell_{hi} - \ell_{ti}) (x_{hij} + y_{tj}) &\le 1
+\opis{Vsak posnetek pošiljamo ponudniku iz natanko enega strežnika}
+\forall h \in \{0, \dots, k\} \ \forall j \in \{1, \dots, n\}:
+&\ & \sum_{i=1}^m x_{hij} &= 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}

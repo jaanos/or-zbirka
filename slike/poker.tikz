@@ -1,0 +1,56 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm, inner sep=0pt]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm, inner sep=0pt]
+\tikzstyle{pick}=[double, very thick]
+\node[ran] (A) at (-8, 0) [label=above:$10.364$] {};
+\node[dec] (B) at (-4, 3) [label=above:$22.048$] {};
+\node[dec] (C) at (-4,-3) [label=below:$-1.32$] {};
+\node[ran] (D) at ( 0, 5) [label=above:$11.28$] {};
+\node[ran] (E) at ( 0, 3) [label=above:$22.048$] {};
+\node[ran] (F) at ( 0, 1) [label=below:$21.04$] {};
+\node      (G) at ( 0,-1) {$-30$};
+\node[ran] (H) at ( 0,-3) [label=below:$-11.84$] {};
+\node[ran] (I) at ( 0,-5) [label=below:$-1.32$] {};
+\node      (J) at ( 4, 5) {$30$};
+\node      (K) at ( 4, 4) {$-30$};
+\node      (L) at ( 4, 3) {$30$};
+\node[ran] (M) at ( 4, 2) [label=below:$1.6$] {};
+\node      (N) at ( 4, 1) {$30$};
+\node[ran] (O) at ( 4, 0) [label=below:$-12.264$] {};
+\node      (P) at ( 4,-2) {$40$};
+\node      (Q) at ( 4,-3) {$-40$};
+\node      (R) at ( 4,-4) {$40$};
+\node[ran] (S) at ( 4,-5) [label=below:$-35.401$] {};
+\node      (T) at ( 8, 3) {$40$};
+\node      (U) at ( 8, 2) {$-40$};
+\node      (V) at ( 8, 1) {$50$};
+\node      (W) at ( 8, 0) {$-50$};
+\node      (X) at ( 8,-4) {$50$};
+\node      (Y) at ( 8,-5) {$-50$};
+
+\draw (A) -- (B) node[above, midway, sloped] {ne vloži: $0.5$};
+\draw (A) -- (C) node[below, midway, sloped] {viša $10$: $0.5$};
+\draw (B) -- (D) node[above, midway, sloped] {ne vložimo};
+\draw[pick] (B) -- (E) node[above, midway] {višamo $10$};
+\draw (B) -- (F) node[below, midway, sloped] {višamo $20$};
+\draw (C) -- (G) node[above, midway, sloped] {odstopimo};
+\draw (C) -- (H) node[below, midway] {izenačimo};
+\draw[pick] (C) -- (I) node[below, midway, sloped] {višamo $10$};
+\draw (D) -- (J) node[above, midway] {zmagamo: $0.688$};
+\draw (D) -- (K) node[below, midway, sloped] {izgubimo: $0.312$};
+\draw (E) -- (L) node[above, midway, sloped] {odstopi: $0.72$};
+\draw (E) -- (M) node[below, midway, sloped] {izenači: $0.28$};
+\draw (F) -- (N) node[above, midway] {odstopi: $0.788$};
+\draw (F) -- (O) node[below, midway, sloped] {izenači: $0.212$};
+\draw (H) -- (P) node[above, midway, sloped] {zmagamo: $0.352$};
+\draw (H) -- (Q) node[below, midway] {izgubimo: $0.648$};
+\draw (I) -- (R) node[above, midway, sloped] {odstopi: $0.452$};
+\draw (I) -- (S) node[below, midway] {izenači: $0.548$};
+\draw (M) -- (T) node[above, midway, sloped] {zmagamo: $0.52$};
+\draw (M) -- (U) node[below, midway] {izbugimo: $0.48$};
+\draw (O) -- (V) node[above, midway, sloped] {zmagamo: $0.377$};
+\draw (O) -- (W) node[below, midway] {izgubimo: $0.623$};
+\draw (S) -- (X) node[above, midway, sloped] {zmagamo: $0.146$};
+\draw (S) -- (Y) node[below, midway] {izgubimo: $0.854$};
+\end{tikzpicture}
