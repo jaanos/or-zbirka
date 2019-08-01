@@ -27,6 +27,7 @@ ali pa bo masko imelo sosednje križišče.
     \end{itemize}
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
 Za vsako križišče oziroma vozlišče grafa $G = (V, E)$ želimo vedeti, ali bo na njem plinska maska.
 Za vsako vozlišče $v \in V$ bomo uvedli spremenljivko $x_{v}$,
@@ -43,14 +44,14 @@ Zapišimo celoštevilski linearni program.
 \forall v \in V: &\ &
 0 \le x_{v} &\le 1, \quad x_{v} \in \Z
 \opis{Vsako križišče ima masko ali pa jo ima eno izmed njegovih sosedov}
-x_{v} + \sum_{vu \in E}x_{u} \geq 1
-\opis{V križiišču $s$ je maska, v vozlišču $t$ pa ne}
+x_{v} + \sum_{u: vu \in E}x_{u} \geq 1
+\opis{V križišču $s$ je maska, v vozlišču $t$ pa ne}
 x_{s} = 1 \\
 x_{t} = 0
 \opis{Največ 2 izmed križišč $s_1, \dots, s_k$ imata masko}
 \sum_{i=1}^{k} x_{s_i} \leq 2
 \opis{Če je v križišču $v_1$ maska, v križišču $v_2$ pa ne, je maska vsaj v enem izmed križišč $v_3$ in $v_4$}
-y_v = | x_v - 1 | \\
+y_v = 1 - x_v \\
 1/2*(x_{v_1} + y_{v_2}) \leq 1/2 + x_{v_3} + x_{v_4}
 \end{alignat*}
 \end{odgovor}
