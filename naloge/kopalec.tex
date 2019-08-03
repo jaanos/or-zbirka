@@ -34,6 +34,51 @@ bo prodal bazen $a$ in nadgradil bazen $b$.
 Zato ga gospod Kopalec ne bo prodajal, niti nadgrajeval.
 \end{itemize}
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsak bazen želimo vedeti, v kakšnem stanju bo po koncu petletnega obdobja.
+Za $i$-ti bazen ($1 \le i \le 20$) bomo uvedli spremenljivki $x_i$ in $y_i$,
+katerih vrednosti interpretiramo kot
+\begin{align*}
+x_i &= \begin{cases}
+1, & \text{če se $i$-ti bazen nadgradi, in} \\
+0  & \text{sicer,}
+\end{cases} \\
+\text{ter} \quad
+y_i &= \begin{cases}
+1, & \text{če se $i$-ti bazen proda, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\max \ \sum_{i=1}^{20} x_i && \text{p.p.} \\
+\forall i \in \{1, \dots, 20\}: &\ &
+0 \le x_i &\le 1, \quad x_i \in \Z \\
+\forall i \in \{1, \dots, 20\}: &\ &
+0 \le y_i &\le 1, \quad y_i \in \Z
+\opis{Že nadgrajeni bazeni}
+\forall i \in \{1, 2, 3\}: &\ & x_i &= 1
+\opis{Nadgrajeni bazeni se ne prodajajo}
+\forall i \in \{1, \dots, 20\}: &\ & x_i + y_i &\le 1
+\opis{Nadgradi se največ dvakrat toliko bazenov, kot se jih proda}
+&& \sum_{i=4}^{20} x_i &\le 2 \sum_{i=1}^{20} y_i
+\opis{Če se nadgradi bazen $8$, se tudi $11$ in $14$,
+bazen $15$ pa ostane v Kopalčevi lasti}
+&& 3 x_8 + y_{15} &\le x_{14} + x_{11} + 1
+\opis{Če bazeni od $15$ do $20$ ostanejo v Kopalčevi lasti,
+se bazeni od $4$ do $7$ ne nadgradijo}
+&& \sum_{i=4}^7 x_i &\le 4 \sum_{i=15}^{20} y_i
+\opis{Bazen $a$ se proda, bazen $b$ pa nadgradi}
+&& x_a &= 1 \\
+&& y_b &= 1
+\opis{Bazen $c$ ostane v nespremenjenem stanju}
+&& x_c &= \begin{cases}
+1, & \text{če $c \in \{1, 2, 3\}$, in} \\
+0  & \text{sicer}
+\end{cases} \\
+&& y_c &= 0
+\end{alignat*}
+Ker je $c$ konstanta, je tudi predzadnja omejitev linearna.
 \end{odgovor}
 \end{naloga}
