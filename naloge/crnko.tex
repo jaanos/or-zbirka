@@ -35,24 +35,31 @@ katere vrednost interpretiramo kot
 $$
 x_{v} = \begin{cases}
 1, & \text{če bo na $v$-tem vozlišču plinska maska, in} \\
-0,  & \text{sicer.}
+0  & \text{sicer.}
 \end{cases}
 $$
-Zapišimo celoštevilski linearni program.
-\begin{alignat*}{2}
-\min \ \sum_{v \in V}x_{v} && \text{p.p.} \\
-\forall v \in V: &\ &
-0 \le x_{v} &\le 1, \quad x_{v} \in \Z
+
+\begin{enumerate}[(a)]
+\item Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \min & \sum_{v \in V}x_{v} && \text{p.p.} \\
+\forall v \in V: &\ & 0 \le x_{v} &\le 1, & x_{v} &\in \Z
 \opis{Vsako križišče ima masko ali pa jo ima eno izmed njegovih sosedov}
-x_{v} + \sum_{u: vu \in E}x_{u} \geq 1
-\opis{V križišču $s$ je maska, v vozlišču $t$ pa ne}
-x_{s} = 1 \\
-x_{t} = 0
+\forall v \in V: &\ & x_{v} + \sum_{uv \in E}x_{u} &\geq 1
+\shortintertext{\item Dodajmo še omejitve za podane pogoje.}
+% BUG: \opis doda prazno vrstico
+\shortintertext{\small\needspace{2\baselineskip}%
+%\opis{
+V križišču $s$ je maska, v križišču $t$ pa ne%
+:%
+}
+&& x_{s} &= 1 \\
+&& x_{t} &= 0
 \opis{Največ 2 izmed križišč $s_1, \dots, s_k$ imata masko}
-\sum_{i=1}^{k} x_{s_i} \leq 2
+&& \sum_{i=1}^{k} x_{s_i} &\leq 2
 \opis{Če je v križišču $v_1$ maska, v križišču $v_2$ pa ne, je maska vsaj v enem izmed križišč $v_3$ in $v_4$}
-y_v = 1 - x_v \\
-1/2*(x_{v_1} + y_{v_2}) \leq 1/2 + x_{v_3} + x_{v_4}
+&& x_{v_1} - x_{v_2} &\le x_{v_3} + x_{v_4}
 \end{alignat*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
