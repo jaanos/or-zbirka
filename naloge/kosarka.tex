@@ -24,6 +24,39 @@ Pri izbiri mora selektor upoštevati naslednje pogoje:
 \end{itemize}
 Formuliraj problem kot celoštevilski linearni program.
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsakega igralca želimo vedeti, ali bo član začetne postave. Igralcem po vrsti
+dodelimo števila od 1 do 8.
+Za $i$-tega igralca ($1 \le i \le 8$) bomo uvedli spremenljivko $x_{i}$,
+katere vrednost interpretiramo kot
+$$
+x_{i} = \begin{cases}
+1, & \text{če bo na $i$-ti igralec v začetni postavi, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{multline*}
+\begin{alignedat}{3}
+\max \quad 213x_1 &+ 208x_2 &&+ 203x_3 &&+ 192x_4 \\
+     + 196x_5 &+ 197x_6 &&+ 200x_7 &&+ 195x_8
+\quad \text{p.p.}
+\end{alignedat} \\
+\begin{alignedat}{2}
+\forall i \in \{1, \dots, 8\}: &\ &
+0 \le x_i &\le 1, \quad x_i \in \Z
+\opis{V postavi je pet članov}
+&& \sum_{i=1}^8 x_i &= 5
+\opis{V postavi so zastopane vse pozicije, od tega natanko en center}
+&& x_1 + x_2 &= 1 \\
+&& x_3 + x_4 + x_5 &\ge 1 \\
+&& x_6 + x_7 + x_8 &\ge 1
+\opis{V postavi je ali Ciril ali Filip}
+&& x_3 + x_6 &= 1
+\opis{Če začne Borut ali David, Hugo ostane v rezervi}
+&& x_2 + x_4 + 2x_8 &\leq 2
+\end{alignedat}
+\end{multline*}
 \end{odgovor}
 \end{naloga}
