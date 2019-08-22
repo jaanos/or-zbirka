@@ -1,0 +1,41 @@
+\begin{tikzpicture}[style=thick,scale=1.2]
+\tikzstyle{vertex}=[draw, circle, fill=white, minimum size=4mm]
+\small
+\node[vertex] (S) at (-2, 0) {$s$};
+\node[vertex] (A) at (-2, 2) {$a$};
+\node[vertex] (B) at ( 0, 2) {$b$};
+\node[vertex] (C) at ( 2, 2) {$c$};
+\node[vertex] (D) at (-1, 1) {$d$};
+\node[vertex] (E) at ( 1, 1) {$e$};
+\node[vertex] (F) at (-1,-1) {$f$};
+\node[vertex] (G) at ( 1,-1) {$g$};
+\node[vertex] (H) at (-2,-2) {$h$};
+\node[vertex] (I) at ( 0,-2) {$i$};
+\node[vertex] (J) at ( 2,-2) {$j$};
+\node[vertex] (T) at ( 2, 0) {$t$};
+
+\draw (S) -- (A) node[midway, left] {$0.9$};
+\draw (S) -- (D) node[midway, above, sloped] {$0.8$};
+\draw (S) -- (F) node[midway, below, sloped] {$0.5$};
+\draw (S) -- (H) node[midway, left] {$0.8$};
+\draw (A) -- (B) node[midway, above] {$0.7$};
+\draw (A) -- (D) node[midway, above, sloped] {$1$};
+\draw (B) -- (C) node[midway, above] {$0.8$};
+\draw (B) -- (D) node[midway, below, sloped] {$0.6$};
+\draw (B) -- (E) node[midway, below, sloped] {$0.9$};
+\draw (C) -- (E) node[midway, above, sloped] {$0.7$};
+\draw (C) -- (T) node[midway, right] {$1$};
+\draw (D) -- (E) node[midway, below] {$0.6$};
+\draw (D) -- (F) node[midway, right] {$0.9$};
+\draw (E) -- (G) node[midway, left] {$1$};
+\draw (E) -- (T) node[midway, above, sloped] {$0.9$};
+\draw (F) -- (G) node[midway, above] {$1$};
+\draw (F) -- (H) node[midway, below, sloped] {$0.7$};
+\draw (F) -- (I) node[midway, above, sloped] {$1$};
+\draw (G) -- (I) node[midway, above, sloped] {$0.8$};
+\draw (G) -- (J) node[midway, below, sloped] {$1$};
+\draw (G) -- (T) node[midway, below, sloped] {$0.8$};
+\draw (H) -- (I) node[midway, below] {$0.9$};
+\draw (I) -- (J) node[midway, below] {$0.9$};
+\draw (J) -- (T) node[midway, right] {$0.7$};
+\end{tikzpicture}

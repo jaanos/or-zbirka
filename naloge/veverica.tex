@@ -1,0 +1,73 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 27.8.2019}
+\begin{vprasanje}
+V gozdu živi veverica, ki rada skače med drevesi.
+Za vsak par dreves v gozdu je izračunala ve\-rjet\-nost,
+da bo skok med njima uspešen
+(verjetnosti so med seboj neodvisne).
+Veverica se trenutno nahaja na drevesu $s$,
+rada pa bi prišla do drevesa $t$ s takim zaporedjem skokov,
+da bo verjetnost, da bodo vsi skoki uspešni, čim večja.
+
+\begin{enumerate}[(a)]
+\item Predstavi problem v jeziku grafov
+in predlagaj čim bolj učinkovit algoritem za reševanje zgornjega problema.
+Kak\-šna je njegova časovna zahtevnost?
+
+\item S pomočjo zgornjega algoritma poišči ustrezno pot
+od $s$ do $t$ na grafu s slike~\fig.
+Če med dvema vozliščema ni povezave,
+je verjetnost uspešnega skoka enaka $0$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Gozd lahko predstavimo kot poln graf,
+kjer vsakemu drevesu ustreza eno vozlišče,
+povezava med vozliščema pa je utežena z verjetnostjo,
+da bo skok med drevesoma uspešen.
+Na takem grafu lahko izvedemo algoritem {\sc DijkstraProb}
+iz naloge~\res[zaklad]
+in tako dobimo najvarnejše poti od vozlišča $s$ do vseh ostalih vozlišč.
+Časovna zahtevnost algoritma, kjer za prednostno vrsto uporabimo slovar,
+je $O(n^2)$, kjer je $n$ število dreves.
+
+Povezave s ceno $0$ lahko izločimo iz grafa.
+Če je takih povezav veliko,
+se morda bolj izplača v algoritmu za prednostno vrsto uporabiti kopico,
+saj tako dosežemo časovno zahtevnost $O(m \log n)$,
+kjer je $m$ število povezav v grafu
+(tj., število parov dreves z neničelno verjetnostjo uspešnosti skoka).
+
+\item Potek izvajanja zgoraj opisanega algoritma je prikazan v tabeli~\tab,
+iz katere razberemo,
+da je najvarnejša pot $s - a - d - f - g - e - t$,
+z verjetnostjo, da vsi skoki uspejo, enako $0.729$.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{cccccccccccc}
+s & a & b & c & d & e & f & g & h & i & j & t \\ \hline
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+* & 0.9_s &&& 0.8_s && 0.5_s && 0.8_s &&& \\
+& * & 0.63_a && 0.9_a &&&&&&& \\
+&&&& * & 0.54_d & 0.81_d &&&&& \\
+&&&&&& * & 0.81_f && 0.81_f && \\
+&&&&& 0.81_g && * &&& 0.81_g & 0.648_g \\
+&& 0.729_e & 0.567_e && * &&&&&& 0.729_e \\
+&&&&&&&&& * && \\
+&&&&&&&&&& * & \\
+&& * & 0.5832_b &&&&&&&& \\
+&&&&&&&&&&& * \\
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
