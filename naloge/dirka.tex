@@ -1,0 +1,98 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 27.8.2019}
+\begin{vprasanje}
+Izdelati želimo terminski plan
+za pripravo in izvedbo kolesarske dirke po Sloveniji.
+V tabeli~\tab so zbrana opravila pri projektu.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in čas izdelave.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje izvedbe.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo projekt trajal manj kot $55$ dni.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+$a$ & določitev trase                   & /         & 24 dni & 30 dni & 36 dni \\
+$b$ & priprava trase za kronometer      & $a$       &  5 dni &  6 dni & 10 dni \\
+$c$ & priprava trase za gorsko etapo    & $a$       & 20 dni & 20 dni & 26 dni \\
+$d$ & priprava trase za zaključno etapo & $a$       &  6 dni &  7 dni &  8 dni \\
+$e$ & pridobivanje tujih udeležencev    & $a$       & 16 dni & 17 dni & 21 dni \\
+$f$ & izvedba regionalnih kvalifikacij  & /         & 15 dni & 18 dni & 24 dni \\
+$g$ & izvedba kronometra                & $b, e, f$ &  1 dan &  1 dan &  1 dan \\
+$h$ & izvedba gorske etape              & $c, g$    &  1 dan &  1 dan &  1 dan \\
+$i$ & izvedba zaključne etape           & $d, h$    &  1 dan &  1 dan &  1 dan \\
+$j$ & priprava zaključne prireditve     & $e, f$    &  4 dni &  5 dni &  6 dni
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev
+$s, a, f, b, c, d, e, g, j, h, i, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[dirka-resitev].
+
+\item V tabeli~\tab[dirka-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje projekta ne podaljša.
+Pričakovano trajanje projekta je torej $\mu = 53$ dni,
+edina kritična pot pa je $s - a - c - h - i - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[dirka-resitev] je razvidno,
+da je najmanj kritično opravilo $f$,
+saj lahko njegovo trajanje
+podaljšamo za $31.5$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti.
+$$
+\sigma = \sqrt{4 + 1 + 0 + 0} = 2.236
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 55$ dni.
+$$
+P(X \le 55) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(0.894) = 0.8144
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{dirka-resitev}
+$$
+\begin{array}{c|cccccccccccc}
+& s & a & f & b & c & d & e & g & j & h & i & t \\ \hline
+\text{pričakovano} && 30 & 18.5 & 6.5 & 21 & 7 & 17.5 & 1 & 5 & 1 & 1 \\
+\text{varianca} && 4 & 2.25 & 0.69 & 1 & 0.11 & 0.69 & 0 & 0.11 & 0 & 0 \\
+\hline
+\text{najprej} & 0 & 0_s & 0_s & 30_a & 30_a & 30_a & 30_a & 47.5_e & 47.5_e & 51_c & 52_h & 53_i \\
+\text{najkasneje} & 0_a & 0_c & 31.5_g & 43.5_g & 30_h & 45_i & 30.5_j & 50_h & 48_t & 51_i & 52_t & 53 \\
+\text{razlika} & 0 & 0^* & 31.5 & 13.5 & 0^* & 15 & 0.5 & 2.5 & 0.5 & 0^* & 0^* & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
