@@ -1,0 +1,78 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 27.8.2019}
+\begin{vprasanje}
+Glasbeni festival bo trajal $m$ dni,
+vsak dan pa bo nastopilo $k$ glasbenih skupin.
+Organizator izbira nastopajoče izmed $n$ glasbenih skupin
+(kjer je $n > km$).
+Na voljo ima $M$ evrov za plačilo glasbenikom,
+pri čemer $i$-ta skupina ($1 \le i \le n$)
+računa $m_i$ evrov za nastop,
+pripeljala pa bo $a_{ij}$ obiskovalcev,
+če bo nastopila $j$-ta po vrsti v dnevu ($1 \le j \le k$).
+Vsaka skupina lahko seveda nastopi samo enkrat,
+prav tako naenkrat nastopa samo ena skupina.
+V posameznem dnevu se skupine zvrstijo glede na njihovo ceno
+(tj., zadnja nastopa skupina, ki največ računa),
+organizator pa želi zagotoviti,
+da bo vsak dan festivala prišlo vsaj toliko ljudi kot prejšnji dan.
+
+Skupina $r$ pogojuje svoj nastop s tem,
+da skupina $s$ ne nastopa na festivalu.
+Skupina $t$ bo nastopila samo kot glavna skupina
+(tj., zadnja v posameznem dnevu),
+razen če nastopi neposredno pred skupino $u$
+(lahko predpostaviš, da velja $m_t \le m_u$)
+-- ali pa sploh ne bo nastopila.
+Skupini $v$ in $w$ ne smeta nastopati na isti dan,
+saj se njuni oboževalci med seboj ne marajo.
+
+Organizator želi določiti spored tako,
+da bo na festival prišlo čim več ljudi.
+Zapiši celoštevilski linearni program, ki modelira opisani problem.
+\end{vprasanje}
+
+\begin{odgovor}
+Za $h$-ti dan ($1 \le h \le m$),
+$i$-to skupino ($1 \le i \le n$) in $j$-ti termin ($1 \le j \le k$)
+bomo uvedli spremenljivko $x_{hij}$,
+katere vrednost interpretiramo kot
+$$
+x_{hij} = \begin{cases}
+1, & \text{$i$-ta skupina nastopi $j$-ta v $h$-tem dnevu festivala, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{align*}
+\max\ \sum_{h=1}^m \sum_{i=1}^n \sum_{j=1}^k a_{ij} x_{hij}
+\quad \text{p.p.} \\
+\forall h \in \{1, \dots, m\} \ \forall i \in \{1, \dots, n\} \
+\forall j \in \{1, \dots, j\} : \\[-1mm]
+0 \le x_{hij} &\le 1, \quad x_{hij} \in \Z
+\opis{Vsaka skupina nastopi največ enkrat}
+\forall i \in \{1, \dots, n\} : \\[-1mm]
+\sum_{h=1}^m \sum_{j=1}^k x_{hij} &\le 1
+\opis{Naenkrat nastopa ena skupina}
+\forall h \in \{1, \dots, m\} \ \forall j \in \{1, \dots, k\} : \\[-1mm]
+\sum_{i=1}^n x_{hij} &= 1
+\opis{Omejitev plačila}
+\sum_{h=1}^m \sum_{i=1}^n \sum_{j=1}^k m_i x_{hij} &\le M
+\opis{Vrstni red v dnevu}
+\forall h \in \{1, \dots, m\} \ \forall j \in \{2, \dots, k\} : \\[-1mm]
+\sum_{i=1}^n m_i (x_{hij} - x_{h,i,j-1}) &\ge 0
+\opis{Razporeditev po dnevih}
+\forall h \in \{2, \dots, n\} : \\[-1mm]
+\sum_{i=1}^n \sum_{j=1}^k a_{ij} (x_{hij} - x_{h-1,i,j}) &\ge 0
+\opis{$r$ ne nastopa, če nastopa $s$}
+\sum_{h=1}^m \sum_{j=1}^k (x_{hrj} + x_{hsj}) &\le 1
+\opis{$t$ ne nastopa, če ni zadnja ali pred $u$}
+\forall h \in \{1, \dots, m\} : \\[-1mm]
+\sum_{j=1}^{k-1} x_{htj} \le
+\sum_{j=2}^k j x_{huj} - \sum_{j=1}^{k-1} j x_{htj}
+&\le k - (k-1) \sum_{j=1}^{k-1} x_{htj}
+\opis{$v$ in $w$ ne nastopata na isti dan}
+\forall h \in \{1, \dots, m\} : \\[-1mm]
+\sum_{j=1}^k (x_{hvj} + x_{hwj}) &\le 1
+\end{align*}
+\end{odgovor}
+\end{naloga}
