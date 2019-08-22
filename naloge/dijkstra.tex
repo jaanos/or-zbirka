@@ -29,6 +29,7 @@ prioritete pa dolžine najkrajših najdenih poti od začetnega vozlišča.
         za vsako vozlišče $v \in V$
 	\State $Q \gets$ prednostna vrsta
         s prioriteto $\infty$ za vsako vozlišče $v \in V$
+        (na vrhu je vozlišče z najmanjšo prioriteto)
 	\State $Q[s] \gets 0$
 	\While{$\lnot Q.\isEmpty()$}
 		\State $u, d[u] \gets Q.\pop()$

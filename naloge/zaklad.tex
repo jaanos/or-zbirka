@@ -32,6 +32,85 @@ Zadostovalo bo, če verjetnosti računaš na $3$ decimalke natančno.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Iz danega neusmerjenega grafa $G = (V, E)$
+in funkcije uteži vozlišč $c : V \to [0, 1]$
+bomo konstruirali usmerjen graf $G' = (V, E')$,
+kjer je $E' = \set{uv, vu}{uv \in E}$
+(tj., vsako neusmerjeno povezavo iz $G$
+nadomestimo z nasprotno usmerjenima povezavama med krajiščema),
+in funkcijo uteži povezav $L : E' \to [0, 1]$ s predpisom $L(uv) = c(u)$
+(tj., cena povezave je enaka ceni začetnega vozlišča v $G$).
+Na grafu $G'$ s funkcijo uteži povezav $L$
+nato poženemo varianto algoritma {\sc Dijkstra} iz naloge~\res[dijkstra].
+\begin{small}
+\begin{algorithmic}
+\Function{DijkstraProb}{$G = (V, E), s \in V, L : E \rightarrow [0, 1]$}
+    \State $d \gets$ slovar z vrednostjo $0$ za vsako vozlišče $v \in V$
+    \State $\pred \gets$ slovar z vrednostjo $\Null$
+        za vsako vozlišče $v \in V$
+	\State $Q \gets$ prednostna vrsta
+        s prioriteto $0$ za vsako vozlišče $v \in V$
+        (na vrhu je vozlišče z največjo prioriteto)
+	\State $Q[s] \gets 1$
+	\While{$\lnot Q.\isEmpty()$}
+		\State $u, d[u] \gets Q.\pop()$
+		\For{$v \in \Adj(G, u)$}
+			\If{$v \in Q \land Q[v] < d[u] \cdot L_{uv}$}
+				\State $Q[v] \gets d[u] \cdot L_{uv}$
+                \State $\pred[v] \gets u$
+			\EndIf
+		\EndFor
+	\EndWhile
+    \State \Return $(d, \pred)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+V primerjavi z algoritmom {\sc Dijkstra}
+smo torej zamenjali seštevanje z množenjem in obrnili primerjave,
+poleg tega pa smo še ustrezno spremenili začetne vrednosti.
+Preslikava $x \mapsto -\log x$ pošlje uteži na interval $[0, \infty]$,
+pri čemer se urejenost obrne, množenje se pa nadomesti s seštevanjem
+-- zgornji algoritem je torej ekvivalenten
+algoritmu {\sc Dijkstra} s tako preslikanimi utežmi,
+in ima tako isto časovno zahtevnost
+(tj., $O(n^2)$, če za prednostno vrsto uporabimo običajen slovar,
+in $O(m \log n)$, če za prednostno vrsto vzamemo kopico,
+kjer je $n$ število vozlišč in $m$ število povezav v grafu).
+
+\item Potek izvajanja zgornjega algoritma je prikazan v tabeli~\tab,
+iz katere razberemo,
+da je najvarnejša pot LA -- SF -- RE -- SLC -- DE -- KC -- SL -- CH,
+z verjetnostjo, da nas ne oropajo, enako $0.31752$.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\small
+\begin{tabular}{cccccccccccccccc}
+LA & SF & PH & LV & RE & EP & AQ & DE & SLC & DA & OC & KC & OM & ME & SL & CH \\ \hline
+$1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
+* & $1_{\text{LA}}$ & $1_{\text{LA}}$ & $1_{\text{LA}}$ &&&&&&&&&&&& \\
+& * &&& $1_{\text{SF}}$ &&&&&&&&&&& \\
+&& * &&& $0.8_{\text{PH}}$ & $0.8_{\text{PH}}$ &&&&&&&&& \\
+&&& * &&&& $0.5_{\text{LV}}$ & $0.5_{\text{LV}}$ &&&&&&& \\
+&&&& * &&&& $0.7_{\text{RE}}$ &&&&&&& \\
+&&&&& * &&&& $0.48_{\text{EP}}$ &&&&&& \\
+&&&&&& * & $0.56_{\text{AQ}}$ &&& $0.56_{\text{AQ}}$ &&&&& \\
+&&&&&&& $0.63_{\text{SLC}}$ & * &&&&&&& \\
+&&&&&&& * &&&& $0.504_{\text{DE}}$ & $0.504_{\text{DE}}$ &&& \\
+&&&&&&&&&& * &&& $0.336_{\text{OC}}$ && \\
+&&&&&&&&&&& * &&& $0.3528_{\text{KC}}$ & \\
+&&&&&&&&&&&& * &&& $0.2016_{\text{OM}}$ \\
+&&&&&&&&& * &&&& $0.384_{\text{DA}}$ && \\
+&&&&&&&&&&&&& * && \\
+&&&&&&&&&&&&&& * & $0.31752_{\text{SL}}$ \\
+&&&&&&&&&&&&&&& *
+\end{tabular}
+}
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
