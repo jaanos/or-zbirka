@@ -14,7 +14,7 @@ kjer je $a_{ij} = 1$, če je $ij \in E$, in $a_{ij} = 0$ sicer.
     \For{$j = 1, \dots, n$}
         \For{$k = 1, \dots, n$}
             \For{$\ell = 1, \dots, n$}
-                \If{$a_{ij} = a_{jk} = a_{j\ell} = 1 \land \ell = i$}
+                \If{$a_{ij} = a_{jk} = a_{k\ell} = 1 \land \ell = i$}
                     \State \Return \True
                 \EndIf
             \EndFor
@@ -32,6 +32,46 @@ Koliko korakov naredi tvoj algoritem v najboljšem
 in koliko v najslabšem primeru?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Algoritem deluje pravilno,
+saj za vsako urejeno četverico vozlišč preveri,
+ali so ta zaporedoma povezana ter ali je začetno vozlišče enako končnemu,
+in se ustavi, ko naleti na četverico, ki ustreza tem pogojem
+-- torej na trikotnik.
+Časovna zahtevnost je $O(n^4)$.
+
+\item Zapišimo učinkovitejši algoritem.
+\begin{small}
+\begin{algorithmic}
+\For{$i = 1, \dots, n$}
+    \For{$j = 1, \dots, n$}
+        \If{$a_{ij} = 1$}
+            \For{$k = 1, \dots, n$}
+                \If{$a_{jk} = a_{ki} = 1$}
+                    \State \Return \True
+                \EndIf
+            \EndFor
+        \EndIf
+    \EndFor
+\EndFor
+\State \Return \False
+\end{algorithmic}
+\end{small}
+Zgornji algoritem reši problem v času $O(n^3)$.
+
+V najboljšem primeru, torej ko obstaja usmerjen trikotnik $(1, 2, 3)$
+(ignorirali bomo primere, ko ima graf največ dve vozlišči),
+algoritem enkrat vstopi v zunanjo zanko in dvakrat v srednjo
+-- pri drugem vstopu v srednjo zanko nato še trikrat vstopi v notranjo zanko.
+Ocenimo torej, da v tem primeru algoritem opravi $6$ korakov.
+
+V najslabšem primeru usmerjenega trikotnika ni in se tako vse zanke iztečejo.
+Algoritem bo $n$-krat vstopil v zunanjo zanko, $n^2$-krat v srednjo zanko,
+za vsako povezavo pa bo še $n$-krat vstopil v notranjo zanko.
+V tem primeru torej algoritem opravi $n + n^2 + mn$ korakov,
+kjer je $m$ število povezav v grafu.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
