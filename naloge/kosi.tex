@@ -72,6 +72,47 @@ Približno koliko časa potrebuje za izvajanje
 na vhodih velikosti $n = 50\,000$?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Opazimo, da ima algoritem tri dele,
+ki se razlikujejo le po tem, katera števka v številih se obravnava.
+Vsakič se števila iz tabele $s$ dodajo v ustrezno vrsto,
+nato pa se vsebina vrst zlepi
+(po vrsti po indeksih tabele $T$)
+v novo vsebino tabele $T$.
+Zapisali bomo torej vsebino vrst po vsaki od zunanjih zank,
+vsebino tabele $s$ po sledeči zanki pa lahko razberemo.
+\begin{small}
+\begin{align*}
+\text{zadnje:} &\ [100, 200, 980, 100], [], [], [], [], [145], [146, 486], [367, 257], [], [359, 359, 909] \\
+\text{srednje:} &\ [100, 200, 100, 909], [], [], [], [145, 146], [257, 359, 359], [367], [], [980, 486], [] \\
+\text{prve:} &\ [], [100, 100, 145, 146], [200, 257], [359, 359, 367], [486], [], [], [], [], [909, 980]
+\end{align*}
+\end{small}
+Algoritem torej vrne tabelo
+$$
+[100, 100, 145, 146, 200, 257, 359, 359, 367, 486, 909, 980] .
+$$
+
+\item Časovna zahtevnost algoritma je $O(n)$
+-- notranje zanke namreč naredijo konstantno število korakov.
+
+\item Algoritem uredi vhodno tabelo po velikosti in jo vrne.
+Pri tem upošteva dejstvo,
+da je mogoče trimestna števila predstaviti
+s končnim številom simbolov iz končne abecede
+in tako doseže časovno zahtevnost,
+ki je boljša od $\Omega(n \log n)$
+(t.i.~{\em bucket sort}).
+
+\item Ker algoritem teče v linearnem času,
+bo čas izvajanja premo sorazmeren z velikostjo vhoda.
+Pri vhodu velikosti $n = 50\,000$ torej pričakujemo,
+da bo algoritem potreboval približno
+$$
+{50\,000 \over 10\,000} \cdot 0.25 \operatorname{s} = 1.25 \operatorname{s} .
+$$
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
