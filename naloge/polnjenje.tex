@@ -8,6 +8,7 @@ Predmete želimo postaviti v koše tako, da porabimo čim manj košev,
 pri čemer noben koš ne vsebuje predmetov skupne velikosti več kot $V$.
 Na primer, če $V = 10$ ter $s_1 = 4$, $s_2 = 5$ in $s_3 = 7$,
 lahko to storimo z dvema košema, medtem ko z enim samim košem to ni mogoče.
+Zapiši celoštevilski linearni program, ki modelira opisani problem.
 
 \begin{enumerate}[(a)]
 \item Zapiši celoštevilski linearni program, ki modelira zgornji problem.
@@ -22,6 +23,36 @@ Dopolni zgornji celoštevilski linearni program tako,
 da bo vključeval te ome\-jit\-ve.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Očitno je, da bomo uporabili največ $n$ košev,
+saj lahko vsak predmet postavimo v svoj koš.
+Zato bomo za $i$-ti predmet in $j$-ti koš ($1 \le i, j \le n$)
+uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1, & \text{$i$-ti predmet postavimo v $j$-ti koš, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$,
+ki bo štela število uporabljenih košev.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \min &\ t &\quad \text{p.p.} \\
+\forall i, j \in \{1, \dots, n\}: &\ & 0 \le x_{ij} &\le 1 & x_{ij} &\in \Z \\
+&& 0 \le t &\le 1 & t &\in \Z
+\opis{Omejitev velikosti košev}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^n s_i x_{ij} &\le V
+\opis{Štetje košev}
+\forall i, j \in \{1, \dots, n\}: &\ & j x_{ij} &\le t
+\intertext{\item Dodajmo še zahtevano omejitev.}
+\forall (h, i) \in L \ \forall j \in \{1, \dots n\}: &\ &
+x_{hj} + x_{ij} &\le 1
+\end{alignat*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
