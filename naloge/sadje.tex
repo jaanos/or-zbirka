@@ -22,6 +22,49 @@ Lahko predpostavljaš, da so vse cene pozitivne.
 
 Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 \end{vprasanje}
+
 \begin{odgovor}
+Za $i$-tega trgovca ($1 \le i \le n$)
+bomo uvedli spremenljivke $x_i$, $y_i$ in $z_i$,
+pri čemer sta $x_i$ in $y_i$ število zabojev avokadov oziroma banan,
+ki jih distributer proda $i$-temu trgovcu,
+in $z_i$ število voženj tovornjakov,
+ki bodo sadje dostavili do $i$-tega trgovca.
+Poleg tega bomo uvedli še spremenljivki $u$ in $v$,
+ki ju interpretiramo kot
+\begin{align*}
+u &= \begin{cases}
+1, & \text{trgovec $p$ kupi avokade, in} \\
+0  & \text{sicer;}
+\end{cases} \\
+\text{ter} \quad
+v &= \begin{cases}
+1, & \text{trgovec $p$ kupi banane, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+\max \ \sum_{i=1}^n (a_i x_i + b_i y_i - d_i z_i) && \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le x_i &\le 1, & x_i &\in \Z \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le y_i &\le 1, & y_i &\in \Z \\
+\forall i \in \{1, \dots, n\}: &\ & 0 \le z_i &\le 1, & z_i &\in \Z \\
+&& 0 \le u &\le 1, & u &\in \Z \\
+&& 0 \le v &\le 1, & v &\in \Z
+\opis{Skupno število zabojev}
+\forall i \in \{1, \dots, n\}: &\ & x_i &\le A \\
+\forall i \in \{1, \dots, n\}: &\ & y_i &\le B
+\opis{Omejitev porabe trgovca}
+\forall i \in \{1, \dots, n\}: &\ & a_i x_i + b_i y_i &\le c_i
+\opis{Število tovornjakov}
+\forall i \in \{1, \dots, n\}: &\ & x_i + y_i &\le K z_i
+\opis{Trgovec $p$ ne kupi obojega}
+&& x_p &\le A u \\
+&& y_p &\le B v \\
+&& u + v &\le 1
+\opis{Trgovec $q$ kupi avokade, če jih tudi $r$}
+&& x_r &\le A x_q
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
