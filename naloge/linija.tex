@@ -20,6 +20,54 @@ Podjetje želi določiti linijo tako, da bo obiskala čim več postaj.
 Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 \namig{poskrbi, da linija nima ciklov.}
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $m$ število vozlišč grafa $G$.
+Očitno bo linija obiskala največ $m$ postaj,
+zato bomo za postajališče $u \in V$ in $i \in \{1, \dots, m\}$
+uvedli spremenljivko $x_{ui}$,
+za vsako povezavo $uv \in E$ pa še spremenljivko $y_{uv}$.
+Njihove vrednosti interpretiramo kot
+\begin{align*}
+x_{ui} &= \begin{cases}
+1; & \text{postajališče $u$ obiščemo $i$-to po vrsti, in} \\
+0  & \text{sicer;}
+\end{cases} \\
+\text{ter} \quad
+y_{uv} &= \begin{cases}
+1; & \text{postajališči $u$ in $v$ obiščemo zaporedoma, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \max &\ \sum_{u \in V} \sum_{i=1}^n x_{ui} & \text{p.p.} \\
+\forall u \in V \ \forall i \in \{1, \dots, m\}: &\ &
+0 \le x_{ui} &\le 1, &\quad x_{ui} &= \Z \\
+\forall uv \in E: &\ &
+0 \le y_{uv} &\le 1, &\quad y_{uv} &= \Z
+\opis{Vsako postajališče obiščemo največ enkrat}
+\forall u \in V: &\ & \sum_{i=1}^m x_{ui} &\le 1
+\opis{Naenkrat obiščemo največ eno postajališče}
+\forall i \in \{1, \dots, m\}: &\ & \sum_{u \in V} x_{ui} &\le 1
+\opis{Indeksov ne izpuščamo}
+\forall i \in \{2, \dots, m\}: &\ &
+\sum_{u \in V} x_{ui} &\le \sum_{u \in V} x_{u,i-1}
+\opis{Nesosedna postajališča niso zaporedna}
+\forall uv \not\in E \ \forall i \in \{2, \dots, m\}: &\ &
+x_{u,i-1} + x_{ui} + x_{v,i-1} + x_{vi} &\le 1
+\opis{Začnemo v postajališču $p_1$}
+&& x_{p_1,1} &= 1
+\opis{Postajališča iz seznama si sledijo v podanem vrstnem redu}
+\forall i \in \{1, \dots, m\} \ \forall j \in \{2, \dots, n\}: &\ &
+x_{p_{j-1},i} &\le \sum_{h=i+1}^m x_{p_j,h}
+\opis{Končamo v postajališču $p_n$}
+\forall i \in \{1, \dots, m\}: &\ &
+(m-i) x_{p_n,i} + \sum_{u \in V} \sum_{h=i+1}^m x_{uh} &\le m-i
+\opis{Časovna omejitev}
+\forall uv \in E \ \forall i \in \{2, \dots, m\}: &\ &
+x_{u,i-1} + x_{ui} + x_{v,i-1} + x_{vi} &\le y_{uv} + 1 \\
+&& \sum_{uv \in E} c_{uv} y_{uv} &\le T
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
