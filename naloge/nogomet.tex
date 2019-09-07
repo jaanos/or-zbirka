@@ -27,6 +27,47 @@ Doseči želimo, da bo kvaliteta kluba čim večja
 
 Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
 \end{vprasanje}
+
 \begin{odgovor}
+Za igralca $i \in A$ in $j$-ti klub ($1 \le j \le n$)
+bomo uvedli spremenljivko $x_{ij}$,
+za igralca $i \in B$ pa spremenljivko $y_i$.
+Njihove vrednosti interpretiramo kot
+\begin{align*}
+x_{ij} &= \begin{cases}
+1; & \text{igralca $i$ prodamo $j$-temu klubu, in} \\
+0  & \text{sicer;}
+\end{cases} \\
+\text{ter} \quad
+y_i &= \begin{cases}
+1; & \text{odkupimo ogralca $i$} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+\max &\ & \sum_{i \in B} q_i y_i - \sum_{i \in A} \sum_{j=1}^n q_i x_{ij}
+&& \text{p.p.} \\
+\forall i \in A \ \forall j \in \{1, \dots, n\}: &\ &
+0 \le x_{ij} &\le 1, &\quad x_{ij} &\in \Z \\
+\forall i \in B: &\ & 0 \le y_i &\le 1, &\quad y &\in \Z
+\opis{Vsakega igralca prodamo največ enemu klubu}
+\forall i \in A: &\ & \sum_{j=1}^n x_{ij} &\le 1
+\opis{Omejitev stroškov}
+&& \sum_{i \in B} r_i y_i - \sum_{i \in A} \sum_{j=1}^n p_{ij} x_{ij} &\le S
+\opis{Skupno število igralcev}
+&& \sum_{i \in B} y_i - \sum_{i \in A} \sum_{j=1}^n x_{ij} &= 0
+\opis{Število igralcev za vsako pozicijo}
+-1 &\le& \sum_{i \in B \cap G} y_i
+- \sum_{i \in A \cap G} \sum_{j=1}^n x_{ij} &\le 1 \\
+-1 &\le& \sum_{i \in B \cap D} y_i
+- \sum_{i \in A \cap D} \sum_{j=1}^n x_{ij} &\le 1 \\
+-1 &\le& \sum_{i \in B \cap M} y_i
+- \sum_{i \in A \cap M} \sum_{j=1}^n x_{ij} &\le 1 \\
+-1 &\le& \sum_{i \in B \cap F} y_i
+- \sum_{i \in A \cap F} \sum_{j=1}^n x_{ij} &\le 1
+\opis{Igralca $a$ in $b$ gresta v isti klub}
+\forall j \in \{1, \dots, n\}: &\ & x_{aj} &= x_{bj}
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
