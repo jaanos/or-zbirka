@@ -1,18 +1,36 @@
 \begin{naloga}{Jernej Azarija}{Izpit OR 12.5.2016}
 \begin{vprasanje}
 Dan je enostaven graf $G = (V, E)$
-in funkcija uteži na povezavah $w : E \to \R_{>0}$.
+in funkcija uteži na povezavah $t : E \to \R_{>0}$.
 Podmnožici $M \subseteq E$ pravimo {\em prirejanje},
 če za vsaki različni povezavi $e, e' \in M$ velja $e \cap e' = \emptyset$
 (tj., nobeni dve povezavi iz $M$ nimata skupnega krajišča).
 Prirejanje $M$ je {\em maksimalno},
 če ne obstaja tako prirejanje $M'$, da velja $M \subset M'$.
 {\em Teža} prirejanja $M$ je vsota uteži njegovih povezav,
-torej $\sum_{e \in M} w(e)$.
+torej $\sum_{e \in M} t(e)$.
 
 Formuliraj celoštevilski linearni program,
 ki za dani vhodni graf $G$ poišče maksimalno prirejanje najmanjše teže.
 \end{vprasanje}
+
 \begin{odgovor}
+Za povezavo $uv \in E$ bomo uvedli spremenljivko $x_{uv}$,
+katere vrednost interpretiramo kot
+$$
+x_{uv} = \begin{cases}
+1; & uv \in M, \\
+0; & uv \not\in M.
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min &\ \sum_{uv \in E} w(uv) x_{uv} \quad \text{p.p.} \\
+\forall uv \in E: &\ & 0 \le x_{uv} &\le 1, \quad x_{uv} \in \Z
+\opis{Vsako vozlišče je krajišče največ ene povezave iz $M$}
+\forall u \in V: &\ & \sum_{uv \in E} x_{uv} &\le 1
+\opis{Za vsako povezavo obstaja povezava v $M$ s skupnim krajiščem}
+\forall uv \in E: &\ & \sum_{uw \in E} x_{uw} + \sum_{vw \in E} x_{vw} &\ge 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
