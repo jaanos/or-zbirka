@@ -22,10 +22,46 @@ to pa nam zaračuna fiksno ceno na najetega delavca
 (za ustrezna plačila delavcem bodo tako poskrbeli oni).
 Minimizirati želimo torej število najetih delavcev.
 Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
-\namig{rešitev celoštevilskega linearnega programa
-naj eksplicitno določi vrstni red,
-v katerem bo posamezen delavec izvajal naloge.}
 \end{vprasanje}
+
 \begin{odgovor}
+Očitno bomo potrebovali največ $n$ delavcev,
+zato bomo za $h$-tega delavca ($1 \le h \le n$),
+$i$-to nalogo ($1 \le i \le n$)
+in $k$-to časovno enoto ($1 \le k \le T$)
+uvedli spremenljivko $x_{hik}$,
+katere vrednost interpretiramo kot
+$$
+x_{hik} = \begin{cases}
+1; &
+\text{$h$-ti delavec začne izvajati $i$-to nalogo v $k$-ti časovni enoti, in}
+\\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $r$,
+ki šteje število delavcev.
+
+Zapišimo celoštevilski linearni program,
+pri čemer uporabimo oznako $T_i = T-t_i+1$
+za zadnji možen čas začetka $i$-te naloge.
+\begin{alignat*}{3}
+&& \min &\ r & \text{p.p.} \\
+\forall h, i \in \{1, \dots, n\} \ \forall k \in \{1, \dots, T\}: &\ &
+0 \le x_{hik} &\le 1, &\quad x_{hik} &\in \Z \\
+&& r &\ge 0, &\quad r &\in \Z
+\opis{Vsako nalogo opravi natanko en delavec in jo pravočasno konča}
+\forall i \in \{1, \dots, n\}: &\ &
+\sum_{h=1}^n \sum_{k=1}^{T_i} x_{hik} &= 1
+\opis{Vsak delavec lahko hkrati izvaja samo eno nalogo}
+\forall h, i \in \{1, \dots, n\} \ \forall k \in \{1, \dots, T_i\}: &\ &
+(t_i-2) x_{hik} + \sum_{j=1}^n \sum_{\ell=k}^{k+t_i-1} x_{hj\ell} &\le t_i-1
+\opis{Vrstni red opravljanja nalog}
+\forall (i, j) \in S \ \forall k \in \{1, \dots, T_i\}: &\ &
+\sum_{h=1}^n \left(x_{hik} - \sum_{\ell=k+t_i}^{T_j} x_{hj\ell}\right) &\le 0
+\opis{Štetje delavcev}
+\forall h, i \in \{1, \dots, n\} \ \forall k \in \{1, \dots, T\}: &\ &
+h x_{hik} &\le r
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
