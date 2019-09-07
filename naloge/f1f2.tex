@@ -2,7 +2,7 @@
 \begin{vprasanje}
 Zapiši naslednji problem kot celoštevilski linearni program.
 \begin{align*}
-\min & f_1(x_1) + f_2(x_2) \quad \text{p.p.} \\
+\min &\ f_1(x_1) + f_2(x_2) \quad \text{p.p.} \\
 f_1(x_1) &= \begin{cases}
             0         & \text{če $x_1 = 0$, in} \\
             10 + 5x_1 & \text{če $x_1 > 0$}
@@ -11,10 +11,36 @@ f_2(x_2) &= \begin{cases}
             0         & \text{če $x_2 = 0$, in} \\
             20 + 4x_2 & \text{če $x_2 > 0$}
             \end{cases} \\
-100x_1 + 150x_2 &\le 10\,000 \\
+100x_1 + 150x_2 &\ge 10\,000 \\
 x_1, x_2 &\ge 0
 \end{align*}
 \end{vprasanje}
+
 \begin{odgovor}
+Opazimo, da želimo imeti čim nižji vrednosti $f_1(x_1)$ in $f_2(x_2)$,
+zato bo zadostovalo,
+da za ustrezni spremenljivki $f_1$ in $f_2$ podamo spodnje meje.
+Prav tako opazimo,
+da bo za optimalno rešitev zagotovo veljalo
+$x_1 \le 100$ in $x_2 \le {200 \over 3}$.
+Tako bomo uvedli še spremenljivki $y_i$ ($i = 1, 2$),
+katerih vrednosti interpretiramo kot
+$$
+y_i = \begin{cases}
+1; & x_i > 0, \\
+0; & x_i = 0.
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min &\ f_1 + f_2 &\quad \text{p.p.} \\
+0 \le y_1, y_2 &\le 1, &\quad y_1, y_2 &\in \Z \\
+f_1, f_2, x_1, x_2 &\ge 0 \\
+x_1 &\le 100 y_1 \\
+3 x_2 &\le 200 y_2 \\
+f_1 &\ge 5 x_1 + 10 y_1 \\
+f_2 &\ge 4 x_2 + 20 y_2 \\
+100 x_1 + 150 x_2 &\ge 10\,000
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
