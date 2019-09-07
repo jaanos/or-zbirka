@@ -13,6 +13,42 @@ Dodatno formuliraj še naslednja pogoja:
 \item Na vsaj enem tovornjaku tovor ne sme presegati mase $M$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Za $i$-ti predmet ($1 \le i \le n$) in $j$-ti tovornjak ($1 \le j \le 5$)
+bomo uvedli spremenljivki $x_{ij}$ in $y_j$,
+katerih vrednosti interpretiramo kot
+\begin{align*}
+x_{ij} &= \begin{cases}
+1; & \text{$i$-ti predmet naložimo na $j$-ti tovornjak, in} \\
+0  & \text{sicer;} \\
+\end{cases} \\
+\text{ter} \quad
+y_j &= \begin{cases}
+1; & \text{tovor na $j$-tem tovornjaku ne presega mase $M$, in} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Poleg tega bomo uvedli še spremenljivko $t$,
+ki bo predstavljala obremenitev najbolj obremenjenega tovornjaka.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \min &\ t &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, 5\}: &\ &
+0 \le x_{ij} &\le 1, &\quad x_{ij} &\in \Z \\
+\forall j \in \{1, \dots, 5\}: &\ & 0 \le y_j &\le 1, &\quad y_j &\in \Z
+\opis{Vsak predmet naložimo na en tovornjak}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^5 x_{ij} &= 1
+\opis{Največja obremenitev}
+\forall j \in \{1, \dots, 5\}: &\ & \sum_{i=1}^n m_i x_{ij} &\le t
+\intertext{Zapišimo še dodatna pogoja.}
+\opis{(a) Tovor na prvem tovornjaku ne presega mase $M$}
+&& \sum_{i=1}^n m_i x_{1j} &\le M
+\opis{(b) Na vsaj enem tovornjaku tovor ne presega mase $M$}
+\forall j \in \{1, \dots, 5\}: &\ &
+\sum_{i=1}^n m_i (x_{ij} + y_j - 1) &\le M y_j \\
+&& \sum_{j=1}^5 y_j &\ge 1
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
