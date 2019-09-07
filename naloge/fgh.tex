@@ -2,7 +2,7 @@
 \begin{vprasanje}
 Zapiši naslednji problem kot celoštevilski linearni program.
 \begin{align*}
-\min & f(x) + g(y) + h(z) \quad \text{p.p.} \\
+\min &\ f(x) + g(y) + h(z) \quad \text{p.p.} \\
 f(x) &= \begin{cases}
         10      & \text{če $x = 0$, in} \\
         10 + 5x & \text{če $x > 0$}
@@ -22,6 +22,49 @@ x + y + z &\ge 100 \\
 x, y, z &\ge 0, \quad x, y, z \in \Z
 \end{align*}
 \end{vprasanje}
+
 \begin{odgovor}
+Opazimo, da želimo imeti čim nižje vrednosti $f(x), g(y), h(z)$,
+zato bo zadostovalo,
+da za ustrezne spremenljivke $f, g, h$ podamo spodnje meje.
+Prav tako opazimo,
+da bo za optimalno rešitev zagotovo veljalo $x, y, z \le 100$.
+Tako bomo uvedli še spremenljivke $t, u, v, w$,
+katerih vrednosti interpretiramo kot
+\begin{align*}
+t &= \begin{cases}
+1; & z > 0, \\
+0; & z = 0;
+\end{cases} &
+u &= \begin{cases}
+1; & x \ge 5, \\
+0; & x < 5;
+\end{cases} \\
+v &= \begin{cases}
+1; & y \ge 5, \\
+0; & y < 5;
+\end{cases} &
+\text{ter} \quad
+w &= \begin{cases}
+1; & z \ge 5, \\
+0; & z < 5.
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min &\ f + g + h &\quad \text{p.p.} \\
+f, g, h, x, y, z &\ge 0, &\quad f, g, h, x, y, z &\in \Z \\
+0 \le t, u, v, w &\le 1, &\quad t, u, v, w &\in \Z \\
+f &= 10 + 5x \\
+g &\ge 10 \\
+g &\ge 5 + 5y \\
+z &\le 100t \\
+h &\ge 8 + 2t + 4z \\
+x + y + z &\ge 100 \\
+x &\ge 5u \\
+y &\ge 5v \\
+z &\ge 5w \\
+u + v + w &\ge 2
+\end{alignat*}
 \end{odgovor}
 \end{naloga}
