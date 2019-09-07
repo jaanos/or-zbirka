@@ -66,6 +66,50 @@ Pri pisanju celoštevilskih linearnih programov si lahko pomagaš z oznakami:
 \podnaslov{Primer delno odprtega polja}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Za vsako odprto celico $s \in {\mathcal O}$
+naj $a_s$ označuje številko v celici $s$,
+tj., število min v celicah iz množice $N(s)$.
+Za vsako zaprto celico $t \in {\mathcal Z}$ bomo uvedli spremenljivko $x_t$,
+katere vrednost interpretiramo kot
+$$
+x_t = \begin{cases}
+1; & \text{v celici $t$ je mina, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Najprej zapišimo omejitve, ki jih bomo vseskozi upoštevali.
+\begin{alignat*}{2}
+\forall t \in {\mathcal Z}: &\ & 0 \le x_t &\le 1, \quad x_t \in \Z \\
+\forall s \in {\mathcal O}: &\ &
+\sum_{t \in N(s) \setminus {\mathcal O}} x_t &= a_s
+\end{alignat*}
+
+\begin{enumerate}[(a)]
+\item Začetnim omejitvam dodamo še
+$$
+\sum_{t \in {\mathcal Z}} x_t = p .
+$$
+Zanima nas le obstoj dopustne rešitve,
+zato ciljna funkcija ni pomembna.
+
+\item Pri začetnih omejitvah uporabimo ciljno funkcijo
+$$
+\max \ \sum_{t \in {\mathcal Z}} x_t .
+$$
+
+\item Za vsako zaprto celico $r \in {\mathcal Z}$
+poiščemo dopustno rešitev celoštevilskega linearnega programa
+z začetnimi omejitvami
+(in še omejitvijo iz točke (a), če poznamo skupno število min)
+in ciljno funkcijo
+$$
+\min x_r .
+$$
+Če je celoštevilski linearni program dopusten
+z vrednostjo ciljne funkcije enako $1$,
+potem celica $r$ nujno vsebuje mino.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
