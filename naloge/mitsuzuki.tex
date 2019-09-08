@@ -21,8 +21,46 @@ Poleg tega naročilo pošiljke stane Mitsuzuki $500 €$,
 letni stroški skladiščenja vsakega zvočnika pa znašajo $20\%$ njegove cene.
 Koliko zvočnikov naj vsakič naročijo
 in kakšni so skupni stroški naročil za naslednje leto?
-
 \end{vprasanje}
+
 \begin{odgovor}
+V tovarni bodo naročili $\nu = 20\,000$ zvočnikov,
+pri čemer jih posamezno naročilo stane $K = 500 €$.
+Pri naročilu velikosti vsaj $n_i$
+je cena posameznega zvočnika enaka $c_i$,
+cena skladiščenja pa je $s_i = 0.2 \cdot c_i$ ($1 \le i \le 5$),
+pri čemer imamo
+$$
+\begin{array}{rrrrrrl}
+(n_i)_{i=1}^5 = ( & 1, & 2\,000, & 5\,000, & 8\,000, & 20\,000 )
+&\quad \text{in} \\
+(c_i)_{i=1}^5 = ( & 150 €, & 135 €, & 125 €, & 120 €, & 115 € ) & .
+\end{array}
+$$
+Ker zvočnikov ne proizvajajo sami in primanjkljaj ni dovoljen,
+velja $\lambda = p = \infty$ in torej $\alpha = \nu$, $\beta = 1$.
+
+Naj bo $M_i$ optimalna velikost naročila,
+če lahko zvočnike kupujemo po ceni $c_i$ ($1 \le i \le 5$).
+\begin{gather*}
+M_i = \sqrt{2K \alpha \over s_i \beta} \\
+(M_i)_{i=1}^5 = (816.497, 860.663, 894.427, 912.871, 932.505)
+\end{gather*}
+Opazimo, da $M_i \ge n_i$ velja samo pri $i = 1$.
+Za velikost optimalnega naročila $M^*_i$ po ceni $c_i$
+torej velja $M^*_1 = M_1$ in $M^*_i = n_i$ ($2 \le i \le 5$).
+Za naročila velikosti $M^*_i$ ($1 \le i \le 5$)
+izračunajmo skupne stroške naročanja in skladiščenja $S_i$.
+\begin{gather*}
+S_i = {M^*_i s_i \over 2} + K {\nu \over M^*_i} + \nu c_i \\
+(S_i)_{i=1}^5 = (3\,024\,495, 2\,732\,000, 2\,564\,000, 2\,496\,250, 2\,530\,500)
+\end{gather*}
+Opazimo, da najmanjše stroške dosežemo,
+če naročamo po $M^* = M^*_4 = 8\,000$ zvočnikov po ceni $c^* = c_4 = 120 €$.
+Izračunajmo še interval naročanja.
+$$
+\tau^* = {M^* \over \nu} = {8\,000 \over 20\,000} = 0.4
+$$
+Naročamo torej na $0.4$ leta oziroma na $146$ dni.
 \end{odgovor}
 \end{naloga}
