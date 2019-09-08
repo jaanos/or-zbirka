@@ -10,8 +10,45 @@ Kako velika naj bodo naročila?
 \item Kaj pa, če dovolimo primanjkljaj,
 ki nas stane $2 €$ na teden za vsako škatlo?
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+Imamo sledeče podatke (pri časovni enoti $1$ teden).
+\begin{align*}
+\nu &= 600 &
+K &= 25 € \\
+c &= 3 € &
+s &= 0.05 €
+\end{align*}
+Ker artiklov ne proizvajamo
+(tj., ob dostavi imamo na voljo celotno količino naročila),
+vzamemo $\lambda = \infty$ in torej $\alpha = \nu$.
+
+\begin{enumerate}[(a)]
+\item Ker primanjkljaj ni dovoljen, vzamemo $p = \infty$ in torej $\beta = 1$.
+S temi podatki poračunamo optimalni interval naročanja $\tau^*$
+in optimalno velikost naročila $M^*$.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{50 \over 30} &&\approx 1.291 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{30\,000 \over 0.05} &&\approx 774.597
+\end{alignat*}
+Optimalni interval naročanja je torej $1.291$ tedna oziroma $9.037$ dni,
+vsakič naj pa trgovina naroči okoli $775$ škatel toaletnega papirja.
+
+\item Vzamemo $p = 2 €$ in torej $\beta = 1 + s/p = 1.025$.
+Izračunajmo optimalni interval naročanja in optimalno vrednost naročila
+še v tem primeru.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{51.25 \over 30} &&\approx 1.307 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{30\,000 \over 0.05125} &&\approx 765.092
+\end{alignat*}
+Optimalni interval naročanja je v tem primeru torej $1.307$ tedna
+oziroma $9.149$ dni,
+vsakič naj pa trgovina naroči okoli $765$ škatel toaletnega papirja.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
