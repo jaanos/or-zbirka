@@ -8,7 +8,7 @@ primanjkljaj za en kos pa jih stane $50 €$ na mesec.
 
 \begin{enumerate}[(a)]
 \item Kako pogosto naj v trgovini naročajo sedežne garniture,
-da bodo stroški čim manjši.
+da bodo stroški čim manjši?
 Kako veliko skladišče morajo imeti?
 Izračunaj tudi enotske stroške.
 
@@ -26,6 +26,74 @@ Ali se jim ga splača uporabiti?
 in poišči optimalen interval naročanja pri fiksni velikosti skladišča.}
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Imamo sledeče podatke (pri časovni enoti $1$ mesec).
+\begin{align*}
+\nu &= 20 &
+K &= 750 € \\
+s &= 10 € &
+p &= 50 €
+\end{align*}
+Pri teh podatkih izračunajmo še
+$$
+\beta = 1 + {s \over p} = 1 + {10 \over 50} = 1.2 .
+$$
+Ker artiklov ne proizvajamo
+(tj., ob dostavi imamo na voljo celotno količino naročila),
+vzamemo $\lambda = \infty$ in torej $\alpha = \nu$.
+
+\begin{enumerate}[(a)]
+\item Izračunajmo optimalno dolžino cikla $\tau^*$,
+največjo zalogo $M^*$ in enotske stroške $S^*$.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{1\,800 \over 200} &&= 3 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{30\,000 \over 12} &&= 50 \\
+S^* &= \sqrt{2Ks \alpha \over \beta}
+&&= \sqrt{300\,000 \over 1.2} € &&= 500 €
+\end{alignat*}
+Optimalna dolžina cikla je torej $3$ mesece,
+pri tem pa mora trgovina imeti skladišče za $50$ sedežnih garnitur.
+Mesečni stroški nabave in skladiščenja so $60 €$.
+
+\item Izračunajmo še največji primanjkljaj $m^*$ in velikost naročila $q^*$.
+\begin{alignat*}{3}
+m^* &= \tau^* \alpha - M^* &&= 3 \cdot 20 - 50 &&= 10 \\
+q^* &= \tau^* \nu &&= 3 \cdot 20 &&= 60
+\end{alignat*}
+
+\item Drugo skladišče lahko hrani $n' = 40$ sedežnih garnitur,
+mesečni strošek hrambe enega kosa pa je $s' = 6 €$.
+Najprej preverimo,
+kakšna bi bila optimalna velikost skladišča pri takih stroških.
+\begin{alignat*}{3}
+\beta' &= 1 + {s' \over p} &&= 1 + {6 \over 50} &&= 1.12 \\
+M' &= \sqrt{2K \alpha \over s' \beta'}
+&&= \sqrt{30\,000 \over 6.72} &&\approx 66.815
+\end{alignat*}
+Ker je $M' > n'$,
+zapišimo formulo za enotske stroške za primer,
+ko imamo v skladišču največ $n'$ kosov.
+$$
+S' = {2K \alpha + (s'+p) n'^2 \over 2 \alpha \tau'}
++ p \left({\alpha \tau' \over 2} - n'\right)
+= 500 € \cdot \tau' - 2\,000 € + {2\,990 € \over \tau'}
+$$
+Ker iščemo dolžino intervala, kjer dosežemo minimalne stroške, poiščimo,
+kje ima odvod zgornjega izraza po $\tau'$ ničlo za $\tau' > 0$.
+\begin{align*}
+0 € &= 500 € - {2\,990 € \over \tau'^2} \\
+\tau' &= \sqrt{2\,990 \over 500} \approx 2.445
+\end{align*}
+Optimalna dolžina cikla ob uporabi drugega skladišča je torej $2.445$ meseca.
+Vstavimo v zgornjo formulo, da dobimo mesečne stroške.
+$$
+S' = 500 € \cdot 2.445 - 2\,000 € + {2\,990 € \over 2.445} \approx 445.404 €
+$$
+Ker so stroški nižji kot pri prvem skladišču,
+se trgovini izplača sprejeti ponudbo.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
