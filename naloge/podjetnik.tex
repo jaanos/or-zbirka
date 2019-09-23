@@ -33,8 +33,8 @@ Razpisni pogoji zahtevajo,
 da se za potrebo kontrole kvalitete izdela vsaj $1\,000$ izdelkov,
 od katerih komisija izbere $20$ za dejansko kontrolo,
 z ostalimi pa lahko prijavitelj prosto razpolaga.
-Če podjetnik zmaga, bo dobil nagrado v višini $k$ evrov,
-pri čemer $k \in [1\,000, 5\,000]$ še ni znan,
+Če podjetnik zmaga, bo dobil nagrado v višini $k$,
+pri čemer $k \in [1\,000 €, 5\,000 €]$ še ni znan,
 poleg tega pa si obeta tudi $20\%$ povečanje
 pričakovanega števila prodanih kosov (v vseh zgoraj omenjenih pogojih).
 Če ne zmaga, se pričakovanja ne spremenijo.
@@ -46,6 +46,112 @@ Naj se podjetnik prijavi na razpis?
 Nariši odločitveno drevo in odločitve sprejmi v odvisnosti od parametra $k$!
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Izračunajmo pričakovane dobičke pri različnih pogojih:
+\begin{align*}
+% BUG: \opis doda prazno vrstico
+\shortintertext{\small\needspace{2\baselineskip}%
+%\opis{
+Izdela $500$, prodaja po $50€$, tržno zanimiv%
+:%
+}
+-10\,000 € + 500 \cdot 50 € &= 15\,000 €
+\opis{Izdela $500$, prodaja po $50€$, tržno nezanimiv}
+-10\,000 € + 250 \cdot 50 € &= 2\,500 €
+\opis{Izdela $500$, prodaja po $60€$, tržno zanimiv}
+-10\,000 € + 500 \cdot 60 € &= 20\,000 €
+\opis{Izdela $500$, prodaja po $60€$, tržno nezanimiv}
+-10\,000 € + 100 \cdot 60 € &= -4\,000 €
+\opis{Izdela $1\,000$, prodaja po $50€$, tržno zanimiv}
+-18\,000 € + 650 \cdot 50 € &= 14\,500 €
+\opis{Izdela $1\,000$, prodaja po $50€$, tržno nezanimiv}
+-18\,000 € + 250 \cdot 50 € &= -5\,500 €
+\opis{Izdela $1\,000$, prodaja po $60€$, tržno zanimiv}
+-18\,000 € + 550 \cdot 60 € &= 15\,000 €
+\opis{Izdela $1\,000$, prodaja po $60€$, tržno nezanimiv}
+-18\,000 € + 100 \cdot 60 € &= -12\,000 €
+\end{align*}
+Odločitveno drevo je prikazano na sliki~\fig[podjetnik-a].
+Podjetnik naj se odloči, da naroči izdelavo $500$ izdelkov,
+te pa prodaja po ceni $60 €$.
+Pričakovani dobiček je tedaj $15\,200 €$.
+
+\item Najprej določimo verjetnosti, ki jih bomo potrebovali za odločitev.
+\begin{align*}
+P(\text{zmaga}) = 0.6 \cdot 0.8 + 0.1 \cdot 0.2 &= 0.5 \\
+P(\text{ne zmaga}) = 0.4 \cdot 0.8 + 0.9 \cdot 0.2 &= 0.5 \\
+P(\text{zanimiv} \mid \text{zmaga}) = {0.6 \cdot 0.8 \over 0.5} &= 0.96 \\
+P(\text{ni zanimiv} \mid \text{zmaga}) = {0.1 \cdot 0.2 \over 0.5} &= 0.04 \\
+P(\text{zanimiv} \mid \text{ne zmaga}) = {0.4 \cdot 0.8 \over 0.5} &= 0.64 \\
+P(\text{ni zanimiv} \mid \text{ne zmaga}) = {0.9 \cdot 0.2 \over 0.5} &= 0.36
+\end{align*}
+Sedaj izračunajmo pričakovane dobičke
+pri različnih pogojih po zmagi na razpisu.
+Opazimo, da v nobenem pogoju pričakovano število prodanih izdelkov
+ne bo preseglo količine $980$ izdelkov,
+kolikor jih ostane po kontroli kvalitete.
+Če ne zmaga na razpisu,
+so pričakovani dobički enaki tistim iz točke (a) pri izdelavi $1\,000$ kosov.
+\begin{align*}
+% BUG: \opis doda prazno vrstico
+\shortintertext{\small\needspace{2\baselineskip}%
+%\opis{
+Zmaga, prodaja po $50€$, tržno zanimiv%
+:%
+}
+-18\,000 € + 650 \cdot 50 € \cdot 1.2 + k &= 21\,000 € + k
+\opis{Zmaga, prodaja po $50€$, tržno nezanimiv}
+-18\,000 € + 250 \cdot 50 € \cdot 1.2 + k &= -3\,000 € + k
+\opis{Zmaga, prodaja po $60€$, tržno zanimiv}
+-18\,000 € + 550 \cdot 60 € \cdot 1.2 + k &= 21\,600 € + k
+\opis{Zmaga, prodaja po $60€$, tržno nezanimiv}
+-18\,000 € + 100 \cdot 60 € \cdot 1.2 + k &= -10\,800 € + k
+\end{align*}
+Z zgornjimi podatki lahko narišemo
+odločitveno drevo s slike~\fig[podjetnik-b].
+Izračunajmo pričakovane dobičke v vozliščih $E, F, G, H$.
+\begin{alignat*}{3}
+E &=&\, 0.96 \cdot (21\,000 € + k) &+ 0.04 \cdot (-3\,000 € + k)
+&&= 20\,040 € + k \\
+F &=&\, 0.96 \cdot (21\,600 € + k) &+ 0.04 \cdot (-10\,800 € + k)
+&&= 20\,304 € + k \\
+G &=&\, 0.64 \cdot 14\,500 € &- 0.36 \cdot 5\,500 € &&= 7\,300 € \\
+H &=&\, 0.64 \cdot 15\,000 € &- 0.36 \cdot 12\,000 € &&= 5\,280 €
+\intertext{%
+Očitno je v vozlišču $C$ ugodnejša pot k vozlišču $F$,
+v vozlišču $D$ pa je ugodnejša pot k vozlišču $G$
+-- velja torej $C = 20\,304 € + k$ in $D = 7\,300 €$.
+Sedaj lahko izračunamo še pričakovano vrednost v vozlišču $B$.
+}
+B &=&\, 0.5 \cdot (20\,304 € + k) &+ 0.5 \cdot 7\,300 €
+&&= 13\,802 € + {k \over 2}
+\end{alignat*}
+Podjetnik naj se torej prijav na razpis,
+če velja $13\,802 € + k/2 \ge 15\,200 €$ oziroma $k \ge 2\,796 €$.
+Če nato zmaga na razpisu, naj izdelke prodaja po ceni $60 €$,
+v nasprotnem primeru pa naj jih prodaja po ceni $50 €$.
+Pričakovani dobiček je tedaj
+$13\,802 € + k/2 \in [15\,200 €, 16\,302 €]$.
+
+Če velja $k < 2\,796 €$, naj se podjetnik ne prijavi na razpis.
+Tako kot v točki (a) naj naroči izdelavo $500$ izdelkov,
+te pa prodaja po ceni $60 €$.
+Pričakovani dobiček je tedaj $15\,200 €$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika[podjetnik-a]
+\podnaslov[\res{}(a)]{Odločitveno drevo}
+\end{slika}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[podjetnik-b]
+}
+\podnaslov[\res{}(b) v odvisnosti od vrednosti parametra $k$]%
+{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}
