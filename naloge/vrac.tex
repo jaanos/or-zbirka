@@ -45,6 +45,51 @@ Glej sliko~\fig za shemo možnih poti.
 \podnaslov{Shema možnih poti}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Če se odločimo za pot okoli gorovja, bomo porabili $12$ ur,
+če se pa odločimo za pot čez prelaz, bomo porabili $6$, $10$ oziroma $14$ ur,
+če je ta čist, delno zasnežen oziroma neprevozen.
+Če se pred tem odločimo za obisk vrača, se čas potovanja podaljša za eno uro.
+
+Pričakovano število ur potovanja,
+če ne obiščemo vrača in se odločimo za pot čez prelaz,
+je enako
+$$
+0.2 \cdot 6 + 0.1 \cdot 10 + 0.7 \cdot 14 = 12 ,
+$$
+kar je ravno enako kot pot okoli gorovja.
+
+Izračunajmo še verjetnosti za primer, da se odločimo za obisk vrača.
+\begin{align*}
+P(\text{mir}) = 0.9 \cdot 0.2 + 0.5 \cdot 0.1 + 0.1 \cdot 0.7
+&= {3 \over 10} \\
+P(\text{vojna}) = 0.1 \cdot 0.2 + 0.5 \cdot 0.1 + 0.9 \cdot 0.7
+&= {7 \over 10} \\
+P(\text{čist} \mid \text{mir}) = {0.9 \cdot 0.2 \over 3/10} &= {3 \over 5} \\
+P(\text{delno zasnežen} \mid \text{mir}) = {0.5 \cdot 0.1 \over 3/10}
+&= {1 \over 6} \\
+P(\text{neprevozen} \mid \text{mir}) = {0.1 \cdot 0.7 \over 3/10}
+&= {7 \over 30} \\
+P(\text{čist} \mid \text{vojna}) = {0.1 \cdot 0.2 \over 7/10}
+&= {1 \over 35} \\
+P(\text{delno zasnežen} \mid \text{vojna}) = {0.5 \cdot 0.1 \over 7/10}
+&= {1 \over 14} \\
+P(\text{neprevozen} \mid \text{vojna}) = {0.9 \cdot 0.7 \over 7/10}
+&= {9 \over 10}
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig[vrac-resitev].
+Opazimo,
+da se nam izplača iti k vraču ter se odločiti za pot čez prelaz,
+če nam pove, da na gori vlada mir,
+in za pot okoli gorovja v nasprotnem primeru.
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[vrac-resitev]
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}
