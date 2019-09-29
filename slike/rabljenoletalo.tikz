@@ -1,0 +1,46 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
+\tikzstyle{pick}=[double, very thick]
+\node[dec] (A) at (-8, 0) [label=right:$162\,000 €$] {};
+\node[dec] (B) at (-4.5, 3) [label=135:$137\,000 €$] {};
+\node[ran] (C) at (-4.5,-3) [label=225:$162\,000 €$] {};
+\node[ran] (D) at (-1, 4) [label=above:$137\,000 €$] {};
+\node      (E) at (-1, 2) {$0 €$};
+\node[dec] (F) at (-1,-1) [label=above:$409\,512.20 €$] {};
+\node[dec] (G) at (-1,-6) [label=below:$-10\,000 €$] {};
+\node      (H) at ( 4, 6) {$830\,000 €$};
+\node      (I) at ( 4, 4) {$170\,000 €$};
+\node      (J) at ( 4, 2) {$-160\,000 €$};
+\node[ran] (K) at ( 3, 0) [label=below:$409\,512.20 €$] {};
+\node      (L) at ( 3,-2) {$-10\,000 €$};
+\node[ran] (M) at ( 3,-5) [label=below:$-69\,322.03 €$] {};
+\node      (N) at ( 3,-7) {$-10\,000 €$};
+\node      (O) at ( 8, 2) {$820\,000 €$};
+\node      (P) at ( 8, 0) {$160\,000 €$};
+\node      (Q) at ( 8,-2) {$-170\,000 €$};
+\node      (R) at ( 8,-3) {$820\,000 €$};
+\node      (S) at ( 8,-5) {$160\,000 €$};
+\node      (T) at ( 8,-7) {$-170\,000 €$};
+
+\draw (A) -- (B) node[above, midway, sloped] {brez mnenja};
+\draw[pick] (A) -- (C) node[below, midway, sloped] {z mnenjem};
+\draw[pick] (B) -- (D) node[above, midway, sloped] {nabavimo};
+\draw (B) -- (E) node[below, midway, sloped] {ne nabavimo};
+\draw (C) -- (F) node[above, midway, sloped] {ugodno: $0.41$};
+\draw (C) -- (G) node[below, midway, sloped] {neugodno: $0.59$};
+\draw (D) -- (H) node[above, midway, sloped] {odlično: $0.2$};
+\draw (D) -- (I) node[above, pos=0.6] {zadovoljivo: $0.3$};
+\draw (D) -- (J) node[below, midway, sloped] {slabo: $0.5$};
+\draw[pick] (F) -- (K) node[above, midway, sloped] {nabavimo};
+\draw (F) -- (L) node[below, midway, sloped] {ne nabavimo};
+\draw (G) -- (M) node[above, midway, sloped] {nabavimo};
+\draw[pick] (G) -- (N) node[above, midway, sloped] {ne nabavimo};
+\draw (K) -- (O) node[above, midway, sloped] {odlično: $0.439$};
+\draw (K) -- (P) node[above, pos=0.6] {zadovoljivo: $0.439$};
+\draw (K) -- (Q) node[below, midway, sloped] {slabo: $0.122$};
+\draw (M) -- (R) node[above, midway, sloped] {odlično: $0.034$};
+\draw (M) -- (S) node[above, pos=0.6] {zadovoljivo: $0.203$};
+\draw (M) -- (T) node[below, midway, sloped] {slabo: $0.763$};
+\end{tikzpicture}

@@ -24,8 +24,55 @@ neugodno & 0.1 & 0.4 & 0.9
 \end{center}
 Kako naj se vodstvo družbe odloči?
 \end{enumerate}
-
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Imamo eno samo odločitev -- ali naj nabavimo letalo.
+Če ga ne nabavimo, imamo $0 €$ dobička,
+če pa ga, pa preidemo v stanje,
+v katerem imamo z verjetnostjo $0.2$
+dobiček $1\,000\,000 € - 170\,000 € = 830\,000 €$,
+z verjetnostjo $0.3$ dobiček $340\,000 € - 170\,000 € = 170\,000 €$,
+z verjetnostjo $0.5$ pa dobiček $10\,000 € - 170\,000 € = -160\,000 €$.
+V tem primeru je pričakovani dobiček enak
+$$
+0.2 \cdot 830\,000 € + 0.3 \cdot 170\,000 € - 0.5 \cdot 160\,000 €
+= 137\,000 € .
+$$
+Letalski družbi se torej nabava letala izplača,
+pri tem pa pričakuje dobiček $137\,000 €$.
+
+\item Izračunajmo verjetnosti za primer, da naročimo izvedensko mnenje.
+\begin{align*}
+P(\text{ugodno}) = 0.9 \cdot 0.2 + 0.6 \cdot 0.3 + 0.1 \cdot 0.5 &= 0.41 \\
+P(\text{neugodno}) = 0.1 \cdot 0.2 + 0.4 \cdot 0.3 + 0.9 \cdot 0.5 &= 0.59 \\
+P(\text{odlično} \mid \text{ugodno}) = {0.9 \cdot 0.2 \over 0.41}
+&\approx 0.439 \\
+P(\text{zadovoljivo} \mid \text{ugodno}) = {0.6 \cdot 0.3 \over 0.41}
+&\approx 0.439 \\
+P(\text{slabo} \mid \text{ugodno}) = {0.1 \cdot 0.5 \over 0.41}
+&\approx 0.122 \\
+P(\text{odlično} \mid \text{neugodno}) = {0.1 \cdot 0.2 \over 0.59}
+&\approx 0.034 \\
+P(\text{zadovoljivo} \mid \text{neugodno}) = {0.4 \cdot 0.3 \over 0.59}
+&\approx 0.203 \\
+P(\text{slabo} \mid \text{neugodno}) = {0.9 \cdot 0.5 \over 0.59}
+&\approx 0.763
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo,
+da se nam izplača naročiti izvedensko mnenje,
+ter letalo nabaviti, če je to ugodno,
+in ga ne nabaviti, če mnenje ni ugodno.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}
