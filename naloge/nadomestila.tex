@@ -19,6 +19,121 @@ Ker ni zunanjega financiranja, lahko naš zaslužek pridobimo le iz nadomestil.
 Uporabi kak znan algoritem za delitev pod temi pogoji in razloži,
 kako si pridobiš kar največji dobiček.
 \end{vprasanje}
+
 \begin{odgovor}
+Najprej z madžarsko metodo z utežmi poiščemo tako razdelitev predmetov,
+da bo skupna cena čim večja.
+\begin{alignat*}{2}
+\begin{bmatrix}
+11 &  9 & 19 & 14 & 11 \\
+ 4 & 10 & 15 & 20 & 12 \\
+ 6 &  5 &  5 & 17 & 9  \\
+20 & 23 &  6 &  3 & 18 \\
+10 & 18 & 23 &  9 & 10
+\end{bmatrix}
+&\to
+\begin{bmatrix}
+ 8 & 10 &  0 &  5 &  8 \\
+16 & 10 &  5 &  0 &  8 \\
+11 & 12 & 12 &  0 &  8 \\
+ 3 &  0 & 17 & 20 &  5 \\
+13 &  5 &  0 & 14 & 13
+\end{bmatrix}
+&&\to
+\begin{bmatrix}
+ 5 & 10 & \underline{ 0} & \underline{ 5} & 3 \\
+13 & 10 & \underline{ 5} & \underline{ 0} & 3 \\
+ 8 & 12 & \underline{12} & \underline{ 0} & 3 \\
+\underline{0} & \underline{0} & \underline{\underline{17}}
+& \underline{\underline{20}} & \underline{0} \\
+10 &  5 & \underline{ 0} & \underline{14} & 8
+\end{bmatrix}
+\to \\ \to
+\begin{bmatrix}
+ 2 & 7 & \underline{ 0} & \underline{ 5} & \underline{0} \\
+10 & 7 & \underline{ 5} & \underline{ 0} & \underline{0} \\
+ 5 & 9 & \underline{12} & \underline{ 0} & \underline{0} \\
+\underline{0} & \underline{0} & \underline{\underline{20}}
+& \underline{\underline{23}} & \underline{\underline{0}} \\
+ 7 & 2 & \underline{ 0} & \underline{14} & \underline{5}
+\end{bmatrix}
+&\to
+\begin{bmatrix}
+\underline{0} & 5 &  0 &  5 & 0 \\
+ 8 & 5 &  5 & \underline{0} & 0 \\
+ 3 & 7 & 12 &  0 & \underline{0} \\
+ 0 & \underline{0} & 22 & 25 & 2 \\
+ 5 & 0 & \underline{0} & 14 & 5
+\end{bmatrix}
+&&\Rightarrow
+\begin{bmatrix}
+\underline{11} &  9 & 19 & 14 & 11 \\
+ 4 & 10 & 15 & \underline{20} & 12 \\
+ 6 &  5 &  5 & 17 & \underline{9} \\
+20 & \underline{23} &  6 &  3 & 18 \\
+10 & 18 & \underline{23} &  9 & 10
+\end{bmatrix}
+\end{alignat*}
+Dobimo razdelitev predmetov s skupno ceno $86$.
+
+Da bomo predmete razdelili brez zavisti,
+bomo osebi $j$ ($1 \le j \le 5$) dodelili popust $d_j$.
+Smatramo, da oseba $i$ zavida osebi $j$ ($1 \le i, j \le 5$),
+če je razlika med vrednostjo dodeljenega predmeta po cenitvi osebe $i$
+in plačano vrednostjo večja pri osebi $j$ kot pri osebi $i$.
+Definirajmo torej
+$$
+a_{ij} = b_{ij} - b_{jj} + d_j
+\quad (1 \le i, j \le 5),
+$$
+kjer je $b_{ij}$ cenitev predmeta, dodeljenega osebi $j$, s strani osebe $i$.
+Opazimo, da velja $a_{jj} = d_j$ ($1 \le j \le 5$).
+Iščemo matriko $A = (a_{ij})_{i,j=1}^5$
+z minimalno vsoto diagonalnih elementov,
+za katero velja $a_{ij} \le a_{ii}$ ($1 \le i, j \le 5$).
+
+Postopali bomo tako, da bomo na začetku popuste nastavili na $0$,
+nato pa za osebi $i, j$ z $a_{ij} > a_{ii}$
+povečali popust osebe $i$ za $a_{ij} - a_{ii}$ in postopek ponavljali,
+dokler zavisti več ne bo.
+\begin{align*}
+\begin{bmatrix}
+ \mathbf{0} &  -6 & \underline{2} & -14 &  -4 \\
+-7 &   \mathbf{0} & \underline{3} & -13 &  -8 \\
+-5 &  -3 & \mathbf{0} & -18 & -18 \\
+\underline{9} & -17 & \underline{9} &   \mathbf{0} & -17 \\
+-1 & -11 & \underline{1} &  -5 &   \mathbf{0}
+\end{bmatrix}
+&\to
+\begin{bmatrix}
+ \mathbf{2} &  -3 & 2 & -5 &  -3 \\
+-5 &   \mathbf{3} & 3 & -4 &  -7 \\
+-3 &   0 & \mathbf{0} & -9 & -17 \\
+\underline{11} & -14 & 9 &  \mathbf{9} & -16 \\
+ 1 &  -8 & 1 &  \underline{4} &   \mathbf{1}
+\end{bmatrix}
+\to \\ \to
+\begin{bmatrix}
+ \mathbf{2} &  -3 & 2 & -3 &   0 \\
+-5 &   \mathbf{3} & 3 & -2 &  -4 \\
+-3 &   0 & \mathbf{0} & -7 & -14 \\
+11 & -14 & 9 &  \mathbf{11} & -13 \\
+ 1 &  -8 & 1 &  \underline{6} &   \mathbf{4}
+\end{bmatrix}
+&\to
+\begin{bmatrix}
+ \mathbf{2} &  -3 & 2 & -3 &   2 \\
+-5 &   \mathbf{3} & 3 & -2 &  -2 \\
+-3 &   0 & \mathbf{0} & -7 & -12 \\
+11 & -14 & 9 &  \mathbf{11} & -11 \\
+ 1 &  -8 & 1 &  6 &   \mathbf{6}
+\end{bmatrix}
+\end{align*}
+Prvi osebi bomo torej dali prvi predmet po ceni $11 - 2 = 9$,
+drugi osebi četrti predmet po ceni $20 - 3 = 17$,
+tretji osebi peti predmet po ceni $9 - 0 = 9$,
+četrti osebi drugi predmet po ceni $23 - 11 = 12$,
+peti osebi pa tretji predmet po ceni $23 - 6 = 17$.
+Skupni zaslužek iz nadomestil je tako $64$.
 \end{odgovor}
 \end{naloga}
