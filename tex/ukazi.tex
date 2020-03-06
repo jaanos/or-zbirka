@@ -63,8 +63,8 @@
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
 \newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\addcontentsline{toc}{subsubsection}{Naloga \thenaloga}\noindent {\bf Naloga}}{\bigskip}
-\newenvironment{slika}[1][t]{\setlabel{\thislabel}\begin{figure}[#1]\centering}{\label{fig:\curlabel}\end{figure}}
-\newenvironment{tabela}[1][t]{\setlabel{\thislabel}\begin{table}[#1]\centering}{\label{tab:\curlabel}\end{table}}
+\newenvironment{slika}[1][t!]{\setlabel{\thislabel}\begin{figure}[#1]\centering}{\label{fig:\curlabel}\end{figure}}
+\newenvironment{tabela}[1][t!]{\setlabel{\thislabel}\begin{table}[#1]\centering}{\label{tab:\curlabel}\end{table}}
 \newcommand{\setlabel}[1]{\grenewcommand{\curlabel}{\taoznaka{#1}}}
 \newcommand{\pgfslika}[1][]{\setlabel{#1}\leavevmode\beginpgfgraphicnamed{pgf/\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
 \newcommand{\oznaka}[1]{\if\relax\detokenize{#1}\relax\grenewcommand{\thislabel}{\thenaloga}\else\grenewcommand{\thislabel}{#1}\fi\grenewcommand{\curlabel}{\thislabel}}
