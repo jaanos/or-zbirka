@@ -60,6 +60,12 @@ pgf/domine.pdf: slike/domine.tikz slike/domine-osnova.tikz
 pgf/domine-resitev.pdf: slike/domine-resitev.tikz slike/domine-osnova.tikz
 	$(call pgfc,domine-resitev)
 
+pgf/minmaxpretok.pdf: slike/minmaxpretok.tikz slike/minmaxpretok-osnova.tikz
+	$(call pgfc,minmaxpretok)
+
+pgf/minmaxpretok%.pdf: slike/minmaxpretok%.tikz slike/minmaxpretok-osnova.tikz
+	$(call pgfc,minmaxpretok$*)
+
 pgf/pretok%.pdf: slike/pretok%.tikz slike/pretok%-osnova.tikz
 	$(call pgfc,pretok$*)
 

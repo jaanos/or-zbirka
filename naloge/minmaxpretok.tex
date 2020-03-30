@@ -1,6 +1,6 @@
 \begin{naloga}{Alen Orbanić}{Kolokvij OR 19.11.2009}
 \begin{vprasanje}
-Poišči minimalno vrednost parametra $a$,
+Poišči minimalno vrednost parametra $\alpha$,
 da bo pretok skozi omrežje s slike~\fig maksimalen.
 Utemelji izbiro.
 
@@ -9,6 +9,43 @@ Utemelji izbiro.
 \podnaslov{Omrežje}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Predpostavimo, da je vrednost parametra $\alpha$ dovolj velika,
+da ne vpliva na pretok skozi omrežje.
+Ob tej predpostavki poiščemo maksimalni pretok
+-- postopek reševanja je prikazan na slikah~%
+\fig[minmaxpretok-resitev1],~\fig[minmaxpretok-resitev2],~%
+\fig[minmaxpretok-resitev3] in~\fig[minmaxpretok-resitev4].
+Dobimo maksimalni pretok $10+2+4 = 2+9+5 = 16$,
+najmanjša vrednost $\alpha$, pri kateri ga lahko dosežemo,
+pa bo enaka najmanjšemu možnemu pretoku po povezavi $b \to c$.
+Ta pretok bi lahko zmanjšali,
+če bi našli cikel iz premih povezav z neničelnimi pretoki
+in nezasičenih nasprotnih povezav,
+ki vsebuje povezavo $b \to c$.
+Toda iz slike~\fig[minmaxpretok-resitev4] vidimo,
+da lahko iz vozlišča $c$
+nadaljujemo le kot $c \to t \to c$ ali $c \to e \to t \to c$
+in tako ne moremo doseči vozlišča $b$.
+Pretoka po povezavi $b \to c$ torej ni mogoče zmanjšati,
+tako da je iskana vrednost enaka $\alpha = 7$.
+
+\begin{slika}
+\pgfslika[minmaxpretok-resitev1]
+\podnaslov{Prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[minmaxpretok-resitev2]
+\podnaslov{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[minmaxpretok-resitev3]
+\podnaslov{Tretji korak}
+\end{slika}
+\begin{slika}
+\pgfslika[minmaxpretok-resitev4]
+\podnaslov{Maksimalni pretok in minimalni prerez}
+\end{slika}
 \end{odgovor}
 \end{naloga}
