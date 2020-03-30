@@ -38,6 +38,7 @@ Uporabljajo se sledeči paketi za LaTeX:
 * `mathtools`
 * `microtype`
 * `needspace`
+* [`omrezja`](https://github.com/jaanos/omrezja)
 * `pgflibraryshapes`
 * `tabularx`
 * `tikz`

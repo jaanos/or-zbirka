@@ -41,7 +41,7 @@ in tako delate popravke v lokalnih datotekah
 Najprej s klikom na **Fork** desno zgoraj naredite svojo kopijo repozitorija,
 nato pa jo klonirajte k sebi, npr.
 ```bash
-git clone https://github.com/jaanos/or-zbirka.git
+git clone --recursive https://github.com/jaanos/or-zbirka.git
 ```
 Seveda tukaj zamenjajte `jaanos` s svojim uporabniškim imenom.
 
@@ -52,11 +52,39 @@ da si nastavite tudi prvotni repozitorij za potrebe sinhronizacije:
 ```bash
 git remote add upstream https://github.com/jaanos/or-zbirka.git
 ```
-Pred začetkom dela si sinhronizirajte vejo `master`.
+Če kloniranje repozitorija ni bilo izvedeno z možnostjo `--recursive`,
+bo potrebno inicializirati podmodul s paketom
+[`omrezja`](https://github.com/jaanos/omrezja).
+```bash
+git submodule init
+git submodule update
+```
+Da bo paket `omrezja` na voljo pri prevajanju,
+bo potrebno poskrbeti za datoteko `omrezja.sty` v vrhnji mapi repozitorija.
+Na sistemih, ki to podpirajo (Linux, Mac),
+bo najbolje narediti simbolično povezavo:
+```bash
+ln -s omrezja/omrezja.sty
+```
+Če se pri sinhronizaciji posodobi različica podmodula,
+ga bo treba posodobiti:
+```bash
+git submodule update
+```
+V primeru, da je bila narejena simbolična povezava,
+se bo tako pri prevajanju uporabila aktualna različica paketa.
+V nasprotnem primeru bo potrebno datoteko `omrezja.sty`
+po vsaki posodobitvi skopirati v vrhnjo mapo repozitorija, npr.
+```bash
+cp omrezja/omrezja.sty .
+```
+
+Preden začnete z delom, si sinhronizirajte vejo `master`.
 ```bash
 git checkout master
 git pull upstream master
 ```
+
 Sedaj naredite novo vejo in začnite delati na njej.
 ```bash
 git checkout -b resitev-naloge-1.8

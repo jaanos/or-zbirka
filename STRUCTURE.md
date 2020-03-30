@@ -7,6 +7,9 @@ Zbirka nalog se generira iz sledečih datotek:
     predloga za [testiranje](#testiranje)
 * [`reference.bib`](reference.bib): bibliografija v obliki BibTeX
 * [`slovene.bdf`](slovene.bdf): slovenski prevodi za `babelbib`
+* [`omrezja.sty`](https://github.com/jaanos/omrezja):
+    knjižnica za risanje omrežij
+    (potrebna je [ročna nastavitev](CONTRIBUTING.md#večji-popravki))
 * [`tex/`](tex/): pomožne datoteke (uvoz paketov, definicije funkcij)
 * [`naloge/`](naloge/): datoteke z [nalogami](#naloge)
 * [`slike/`](slike/): datoteke s [slikami](#slike)
@@ -56,7 +59,7 @@ Sliko v nalogo vključimo tako:
 ```
 Okolje `slika` ima neobvezen argument za postavitev -
 gre za neobvezen parameter k LaTeXovemu okolju `figure`
-s privzeto vrednostjo `t` (tj., slika se postavi na vrh strani).
+s privzeto vrednostjo `t!` (tj., slika se postavi na vrh strani).
 
 Ukaz `\pgfslika` vključi sliko v datoteki `.tikz` z imenom,
 podanim z neobveznim argumentom
@@ -97,7 +100,7 @@ na katere je možno sklicevanje, npr.
 \end{tabela}
 ```
 Okolje `tabela` deluje podobno kot okolje `slika` -
-neobvezni argument za postavitev (s privzeto vrednostjo `t`)
+neobvezni argument za postavitev (s privzeto vrednostjo `t!`)
 se poda k LaTeXovemu okolju `table`.
 Na tabelo se [sklicujemo](#sklicevanje) z imenom trenutne naloge,
 lahko pa znotraj okolja `tabela`
