@@ -1,7 +1,7 @@
 \begin{naloga}{?}{Vaje OM 23.4.2014}
 \begin{vprasanje}
 Poišči maksimalni pretok in minimalni prerez na grafu s slike~\fig
-v odvisnosti od parametra $a$.
+v odvisnosti od parametra $\alpha$.
 
 \begin{slika}
 \pgfslika
@@ -10,41 +10,46 @@ v odvisnosti od parametra $a$.
 \end{vprasanje}
 
 \begin{odgovor}
-Najprej poiščemo maksimalni pretok za $a = 0$
-(tj., brez povezave s parametrom).
-Dobimo maksimalni pretok $0+3 = 3+0+0 = 3$, glej sliko~\fig[pretok3a].
+Najprej poiščemo maksimalni pretok za $\alpha = 0$
+(tj., brez povezave s parametrom), glej sliko~\fig[pretok3a].
+Dobimo maksimalni pretok $0+3 = 3+0+0 = 3$, glej sliko~\fig[pretok3b].
 
 Za $a > 0$ poiščemo povečujočo pot.
-Če je $0 < a \le 3$,
-povečamo pretok po povečujoči poti za $a$
-in tako dobimo maksimalen pretok $p^* = a+3$ ($3 < p^* \le 6$),
-saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig[pretok3b].
-V nasprotnem primeru ($a > 3$) pretok povečamo za $3$
+Če je $0 < \alpha \le 3$,
+povečamo pretok po povečujoči poti za $\alpha$
+in tako dobimo maksimalen pretok $p^* = \alpha+3$ ($3 < p^* \le 6$),
+saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig[pretok3c].
+V nasprotnem primeru ($\alpha > 3$) pretok povečamo za $3$
 in poiščemo novo povečujočo pot.
 
-Če je $3 < a \le 5$, povečamo pretok po povečujoči poti za $a-3$
-in tako dobimo maksimalen pretok $p^* = a+3$ ($6 < p^* \le 8$),
-saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig[pretok3c].
-V nasprotnem primeru ($a > 5$) pretok povečamo za $2$.
+Če je $3 < \alpha \le 5$, povečamo pretok po povečujoči poti za $\alpha-3$
+in tako dobimo maksimalen pretok $p^* = \alpha+3$ ($6 < p^* \le 8$),
+saj sta obe povezavi iz izvora zasičeni, glej sliko~\fig[pretok3d].
+V nasprotnem primeru ($\alpha > 5$) pretok povečamo za $2$.
 
-Za $a > 5$ dobimo maksimalni pretok $5+3 = 3+2+3 = 8$,
-glej sliko~\fig[pretok3d].
+Za $\alpha > 5$ dobimo maksimalni pretok $5+3 = 3+2+3 = 8$,
+glej sliko~\fig[pretok3e].
 
 \begin{slika}
 \pgfslika[pretok3a]
-\podnaslov{Maksimalni pretok pri $a = 0$}
+\podnaslov{Prvi korak}
 \end{slika}
 \begin{slika}
 \pgfslika[pretok3b]
-\podnaslov{Maksimalni pretok pri $0 < a \le 3$}
+\podnaslov{Maksimalni pretok pri $\alpha = 0$ in drugi korak pri $\alpha > 0$}
 \end{slika}
 \begin{slika}
 \pgfslika[pretok3c]
-\podnaslov{Maksimalni pretok pri $3 < a \le 5$}
+\podnaslov{Maksimalni pretok pri $0 < \alpha = \beta \le 3$
+in tretji korak pri $\alpha > \beta = 3$}
 \end{slika}
 \begin{slika}
 \pgfslika[pretok3d]
-\podnaslov{Maksimalni pretok pri $a > 5$}
+\podnaslov{Maksimalni pretok pri $3 < \alpha \le 5$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretok3e]
+\podnaslov{Maksimalni pretok pri $\alpha > 5$}
 \end{slika}
 \end{odgovor}
 \end{naloga}

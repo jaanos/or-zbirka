@@ -1,90 +1,38 @@
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
-\tikzstyle{cut}=[white, fill=black]
-\tikzstyle{rev}=[fill=lightgray]
-\tikzstyle{limit}=[black, near start]
-\tikzstyle{flow}=[black, near end]
-\tikzstyle{path}=[very thick, red]
+\NewEnviron{pretok@pretok4}{
+    \vozlisce*{s}{-10,0}
+    \vozlisce{a}{-6, 6}
+    \vozlisce{b}{-6, 0}
+    \vozlisce{c}{-6,-6}
+    \vozlisce{d}{-2, 3}
+    \vozlisce{e}{-2,-3}
+    \vozlisce{f}{ 2,-3}
+    \vozlisce{g}{ 6, 6}
+    \vozlisce{h}{ 6, 3}
+    \vozlisce{i}{ 6, 0}
+    \vozlisce{j}{ 6,-6}
+    \vozlisce*{t}{10, 0}
 
-\node[vertex,va] (na) at (-10,0) {$S$};
-\node[vertex,vb] (nb) at (-6, 6) {};
-\node[vertex,vc] (nc) at (-6, 0) {};
-\node[vertex,vd] (nd) at (-6,-6) {};
-\node[vertex,ve] (ne) at ( 6, 6) {};
-\node[vertex,vf] (nf) at (-2, 3) {};
-\node[vertex,vg] (ng) at (-2,-3) {};
-\node[vertex,vh] (nh) at ( 6, 3) {};
-\node[vertex,vi] (ni) at ( 2,-3) {};
-\node[vertex,vj] (nj) at ( 6, 0) {};
-\node[vertex,vk] (nk) at ( 6,-6) {};
-\node[vertex,vl] (nl) at (10, 0) {$T$};
-
-\draw[->,eab] (na) -- (nb)
-    node[limit, above, sloped] {$\Lab$}
-    node[flow, above, sloped] {$\Fab$};
-\draw[->,eac] (na) -- (nc)
-    node[limit, above] {$\Lac$}
-    node[flow, above] {$\Fac$};
-\draw[->,ead] (na) -- (nd)
-    node[limit, below, sloped] {$\Lad$}
-    node[flow, below, sloped] {$\Fad$};
-\draw[->,ebe] (nb) -- (ne)
-    node[limit, above] {$\Lbe$}
-    node[flow, above] {$\Fbe$};
-\draw[->,ecb] (nc) -- (nb)
-    node[limit, left] {$\Lcb$}
-    node[flow, left] {$\Fcb$};
-\draw[->,ecd] (nc) -- (nd)
-    node[limit, left] {$\Lcd$}
-    node[flow, left] {$\Fcd$};
-\draw[->,ecf] (nc) -- (nf)
-    node[limit, below, sloped] {$\Lcf$}
-    node[flow, below, sloped] {$\Fcf$};
-\draw[->,ecg] (nc) -- (ng)
-    node[limit, below, sloped] {$\Lcg$}
-    node[flow, below, sloped] {$\Fcg$};
-\draw[->,edg] (nd) -- (ng)
-    node[limit, below, sloped] {$\Ldg$}
-    node[flow, below, sloped] {$\Fdg$};
-\draw[->,edk] (nd) -- (nk)
-    node[limit, below] {$\Ldk$}
-    node[flow, below] {$\Fdk$};
-\draw[->,eel] (ne) -- (nl)
-    node[limit, above, sloped] {$\Lel$}
-    node[flow, above, sloped] {$\Fel$};
-\draw[->,efb] (nf) -- (nb)
-    node[limit, above, sloped] {$\Lfb$}
-    node[flow, above, sloped] {$\Ffb$};
-\draw[->,efh] (nf) -- (nh)
-    node[limit, above] {$\Lfh$}
-    node[flow, above] {$\Ffh$};
-\draw[->,efi] (nf) -- (ni)
-    node[limit, below, sloped] {$\Lfi$}
-    node[flow, below, sloped] {$\Ffi$};
-\draw[->,egi] (ng) -- (ni)
-    node[limit, below] {$\Lgi$}
-    node[flow, below] {$\Fgi$};
-\draw[->,ehe] (nh) -- (ne)
-    node[limit, left] {$\Lhe$}
-    node[flow, left] {$\Fhe$};
-\draw[->,ehl] (nh) -- (nl)
-    node[limit, below, sloped] {$\Lhl$}
-    node[flow, below, sloped] {$\Fhl$};
-\draw[->,eij] (ni) -- (nj)
-    node[limit, above, sloped] {$\Lij$}
-    node[flow, above, sloped] {$\Fij$};
-\draw[->,eik] (ni) -- (nk)
-    node[limit, below, sloped] {$\Lik$}
-    node[flow, below, sloped] {$\Fik$};
-\draw[->,ejh] (nj) -- (nh)
-    node[limit, left] {$\Ljh$}
-    node[flow, left] {$\Fjh$};
-\draw[->,ejl] (nj) -- (nl)
-    node[limit, below, sloped] {$\Ljl$}
-    node[flow, below, sloped] {$\Fjl$};
-\draw[->,ekj] (nk) -- (nj)
-    node[limit, left] {$\Lkj$}
-    node[flow, left] {$\Fkj$};
-\draw[->,ekl] (nk) -- (nl)
-    node[limit, below, sloped] {$\Lkl$}
-    node[flow, below, sloped] {$\Fkl$};
+    \povezava{s}{a}{8}[sloped]{above}
+    \povezava{s}{b}{12}{above}
+    \povezava{s}{c}{20}[sloped]{below}
+    \povezava{a}{g}{5}{above}
+    \povezava{b}{a}{5}{left}
+    \povezava{b}{c}{5}{left}
+    \povezava{b}{d}{7}[sloped]{below}
+    \povezava{b}{e}{3}[sloped]{below}
+    \povezava{c}{e}{10}[sloped]{below}
+    \povezava{c}{j}{6}{below}
+    \povezava{g}{t}{10}[sloped]{above}
+    \povezava{d}{a}{2}[sloped]{above}
+    \povezava{d}{h}{3}{above}
+    \povezava{d}{f}{8}[sloped]{below}
+    \povezava{e}{f}{8}{below}
+    \povezava{h}{g}{3}{left}
+    \povezava{h}{t}{4}[sloped]{below}
+    \povezava{f}{i}{10}[sloped]{above}
+    \povezava{f}{j}{2}[sloped]{below}
+    \povezava{i}{h}{7}{left}
+    \povezava{i}{t}{3}[sloped]{below}
+    \povezava{j}{i}{4}{left}
+    \povezava{j}{t}{8}[sloped]{below}
+}

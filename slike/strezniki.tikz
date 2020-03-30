@@ -1,36 +1,36 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\NewEnviron{pretok@strezniki}{
+    \vozlisce*{s}{-6, 0}
+    \vozlisce{a}{-2,-3}
+    \vozlisce{b}{-2,-1}
+    \vozlisce{c}{-2, 1}
+    \vozlisce{d}{-2, 3}
+    \vozlisce{e}{ 2,-3}
+    \vozlisce{f}{ 2,-1}
+    \vozlisce{g}{ 2, 1}
+    \vozlisce{h}{ 2, 3}
+    \vozlisce{i}{ 6,-1}
+    \vozlisce*{t}{ 6, 1}
 
-\node[vertex] (s) at (-6, 0) [label=left:$s$] {};
-\node[vertex] (a) at (-2,-3) {};
-\node[vertex] (b) at (-2,-1) {};
-\node[vertex] (c) at (-2, 1) {};
-\node[vertex] (d) at (-2, 3) {};
-\node[vertex] (e) at ( 2,-3) {};
-\node[vertex] (f) at ( 2,-1) {};
-\node[vertex] (g) at ( 2, 1) {};
-\node[vertex] (h) at ( 2, 3) {};
-\node[vertex] (i) at ( 6,-1) {};
-\node[vertex] (t) at ( 6, 1) [label=right:$t$] {};
+    \povezava{s}{a}{}[sloped]{below}[bend right=20]
+    \povezava{s}{b}{}[sloped]{below}
+    \povezava{s}{c}{}[sloped]{above}
+    \povezava{s}{d}{}[sloped]{above}[bend left=20]
+    \povezava{a}{e}{}{below}
+    \povezava{a}{f}{}[sloped]{above}
+    \povezava{b}{f}{}{below}
+    \povezava{c}{d}{}{left}
+    \povezava{c}{f}{}[sloped]{above}
+    \povezava{d}{g}{}[sloped]{below}
+    \povezava{d}{h}{}{above}
+    \povezava{e}{f}{}{left}
+    \povezava{e}{i}{}[sloped]{below}
+    \povezava{f}{i}{}{above}
+    \povezava{g}{h}{}{left}
+    \povezava{g}{i}{}[sloped]{below}
+    \povezava{g}{t}{}{above}
+    \povezava{h}{t}{}[sloped]{above}
+    \povezava{i}{t}{}{right}
+}
 
-\draw[->] (s) -- (a);
-\draw[->] (s) -- (b);
-\draw[->] (s) -- (c);
-\draw[->] (s) -- (d);
-\draw[->] (a) -- (e);
-\draw[->] (a) -- (f);
-\draw[->] (b) -- (f);
-\draw[->] (c) -- (d);
-\draw[->] (c) -- (f);
-\draw[->] (d) -- (g);
-\draw[->] (d) -- (h);
-\draw[->] (e) -- (f);
-\draw[->] (e) -- (i);
-\draw[->] (f) -- (i);
-\draw[->] (g) -- (h);
-\draw[->] (g) -- (i);
-\draw[->] (g) -- (t);
-\draw[->] (h) -- (t);
-\draw[->] (i) -- (t);
-
-\end{tikzpicture}
+\begin{pretok*}[scale=1.2]{strezniki}
+\end{pretok*}

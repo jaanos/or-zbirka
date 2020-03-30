@@ -1,25 +1,26 @@
-\begin{tikzpicture}[style=thick,scale=0.8]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+\NewEnviron{pretok@greedyflow}{
+    \vozlisce*{s}{-2, 0}
+    \vozlisce*{t}{ 4, 0}
+    \vozlisce{u}{ 0, 2}
+    \vozlisce{v}{-4, 0}
+    \vozlisce{w}{ 0,-2}
+    \vozlisce{x}{ 0, 4}
+    \vozlisce{y}{ 2, 0}
+    \vozlisce{z}{ 0,-4}
 
-\node[vertex] (s) at (-2, 0) {$s$};
-\node[vertex] (t) at ( 4, 0) {$t$};
-\node[vertex] (u) at ( 0, 2) {$u$};
-\node[vertex] (v) at (-4, 0) {$v$};
-\node[vertex] (w) at ( 0,-2) {$w$};
-\node[vertex] (x) at ( 0, 4) {$x$};
-\node[vertex] (y) at ( 2, 0) {$y$};
-\node[vertex] (z) at ( 0,-4) {$z$};
+    \povezava{s}{u}{7}[sloped]{above}
+    \povezava{s}{v}{2}{above}
+    \povezava{u}{x}{3}{right}
+    \povezava{u}{y}{3}[sloped]{above}
+    \povezava{v}{x}{1}[sloped]{above}
+    \povezava{v}{z}{3}[sloped]{below}
+    \povezava{w}{s}{3}[sloped]{below}
+    \povezava{w}{z}{4}{left}
+    \povezava{x}{t}{5}[sloped]{above}
+    \povezava{y}{t}{3}{below}
+    \povezava{y}{w}{3}[sloped]{below}
+    \povezava{z}{t}{4}[sloped]{below}
+}
 
-\draw[->] (s) -- (u) node [midway, above, sloped] {$7$};
-\draw[->] (s) -- (v) node [midway, above] {$2$};
-\draw[->] (u) -- (x) node [midway, right] {$3$};
-\draw[->] (u) -- (y) node [midway, above, sloped] {$3$};
-\draw[->] (v) -- (x) node [midway, above, sloped] {$1$};
-\draw[->] (v) -- (z) node [midway, below, sloped] {$3$};
-\draw[->] (w) -- (s) node [midway, below, sloped] {$3$};
-\draw[->] (w) -- (z) node [midway, left] {$4$};
-\draw[->] (x) -- (t) node [midway, above, sloped] {$5$};
-\draw[->] (y) -- (t) node [midway, below] {$3$};
-\draw[->] (y) -- (w) node [midway, below, sloped] {$3$};
-\draw[->] (z) -- (t) node [midway, below, sloped] {$4$};
-\end{tikzpicture}
+\begin{pretok*}[scale=1.2]{greedyflow}
+\end{pretok*}

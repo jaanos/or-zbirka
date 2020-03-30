@@ -1,88 +1,35 @@
-{%
-\newcommand{\Lab}{3}%
-\newcommand{\Lac}{5}%
-\newcommand{\Lad}{12}%
-\newcommand{\Lbe}{0}%
-\newcommand{\Lcb}{5}%
-\newcommand{\Lcd}{5}%
-\newcommand{\Lcf}{0}%
-\newcommand{\Lcg}{3}%
-\newcommand{\Ldg}{8}%
-\newcommand{\Ldk}{0}%
-\newcommand{\Lel}{5}%
-\newcommand{\Lfb}{2}%
-\newcommand{\Lfh}{3}%
-\newcommand{\Lfi}{1}%
-\newcommand{\Lgi}{6}%
-\newcommand{\Lhe}{3}%
-\newcommand{\Lhl}{0}%
-\newcommand{\Lij}{3}%
-\newcommand{\Lik}{0}%
-\newcommand{\Ljh}{3}%
-\newcommand{\Ljl}{0}%
-\newcommand{\Lkj}{4}%
-\newcommand{\Lkl}{0}%
-\newcommand{\Fab}{5}%
-\newcommand{\Fac}{7}%
-\newcommand{\Fad}{8}%
-\newcommand{\Fbe}{5}%
-\newcommand{\Fcb}{0}%
-\newcommand{\Fcd}{0}%
-\newcommand{\Fcf}{7}%
-\newcommand{\Fcg}{0}%
-\newcommand{\Fdg}{2}%
-\newcommand{\Fdk}{6}%
-\newcommand{\Fel}{5}%
-\newcommand{\Ffb}{0}%
-\newcommand{\Ffh}{0}%
-\newcommand{\Ffi}{7}%
-\newcommand{\Fgi}{2}%
-\newcommand{\Fhe}{0}%
-\newcommand{\Fhl}{4}%
-\newcommand{\Fij}{7}%
-\newcommand{\Fik}{2}%
-\newcommand{\Fjh}{4}%
-\newcommand{\Fjl}{3}%
-\newcommand{\Fkj}{0}%
-\newcommand{\Fkl}{8}%
-\begin{tikzpicture}[style=thick,scale=0.63]
-\tikzstyle{va}=[cut]
-\tikzstyle{vb}=[cut]
-\tikzstyle{vc}=[cut]
-\tikzstyle{vd}=[cut]
-\tikzstyle{ve}=[cut]
-\tikzstyle{vf}=[cut]
-\tikzstyle{vg}=[cut]
-\tikzstyle{vh}=[cut]
-\tikzstyle{vi}=[cut]
-\tikzstyle{vj}=[cut]
-\tikzstyle{vk}=[]
-\tikzstyle{vl}=[]
-\tikzstyle{eab}=[]
-\tikzstyle{eac}=[path]
-\tikzstyle{ead}=[]
-\tikzstyle{ebe}=[dashed]
-\tikzstyle{ecb}=[]
-\tikzstyle{ecd}=[]
-\tikzstyle{ecf}=[dashed]
-\tikzstyle{ecg}=[path]
-\tikzstyle{edg}=[]
-\tikzstyle{edk}=[dashed]
-\tikzstyle{eel}=[path]
-\tikzstyle{efb}=[]
-\tikzstyle{efh}=[]
-\tikzstyle{efi}=[]
-\tikzstyle{egi}=[path]
-\tikzstyle{ehe}=[path]
-\tikzstyle{ehl}=[dashed]
-\tikzstyle{eij}=[path]
-\tikzstyle{eik}=[dashed]
-\tikzstyle{ejh}=[path]
-\tikzstyle{ejl}=[dashed]
-\tikzstyle{ekj}=[]
-\tikzstyle{ekl}=[dashed]
-
 \input{slike/pretok4-osnova.tikz}
 
-\end{tikzpicture}
-}
+\begin{pretok*}[scale=0.9]{pretok4}
+    \nicle
+    \kolicina*{s}{b}[5]{7}[red]
+    \kolicina*{b}{e}[3]{0}[red]
+    \kolicina*{e}{f}[6]{2}[red]
+    \kolicina*{f}{i}[3]{7}[red]
+    \kolicina*{i}{h}[3]{4}[red]
+    \kolicina*{h}{g}[3]{0}[red]
+    \kolicina*{g}{t}[5]{5}[red]
+    \kolicina{b}{d}[0]{7}[zasicena]
+    \kolicina{d}{f}[1]{7}
+    \kolicina{i}{t}[0]{3}[zasicena]
+    \kolicina{s}{c}[12]{8}
+    \kolicina{c}{e}[8]{2}
+    \kolicina{f}{j}[0]{2}[zasicena]
+    \kolicina{j}{t}[0]{8}[zasicena]
+    \kolicina{s}{a}[3]{5}
+    \kolicina{a}{g}[0]{5}[zasicena]
+    \kolicina{h}{t}[0]{4}[zasicena]
+    \kolicina{c}{j}[0]{6}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

@@ -1,22 +1,23 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+\NewEnviron{pretok@terminali}{
+    \vozlisce{f}{-5, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 2, 2}
+    \vozlisce{c}{-2, 0}
+    \vozlisce{d}{-2,-2}
+    \vozlisce{e}{ 2,-2}
 
-\node[vertex] (F) at (-5, 0) {$F$};
-\node[vertex] (A) at (-2, 2) {$A$};
-\node[vertex] (B) at ( 2, 2) {$B$};
-\node[vertex] (C) at (-2, 0) {$C$};
-\node[vertex] (D) at (-2,-2) {$D$};
-\node[vertex] (E) at ( 2,-2) {$E$};
+    \povezava{a}{b}{5}{above}
+    \povezava{a}{c}{4}{left}
+    \povezava{b}{c}{5}[sloped]{above}
+    \povezava{c}{d}{3}{left}
+    \povezava{c}{e}{3}[sloped]{above}
+    \povezava{c}{f}{2}{above}
+    \povezava{d}{b}{3}[sloped]{below}[bend right=20]
+    \povezava{d}{e}{3}{below}
+    \povezava{e}{b}{6}{right}
+    \povezava{f}{a}{10}[sloped]{above}
+    \povezava{f}{d}{4}[sloped]{below}
+}
 
-\draw[->] (A) -- (B) node [above, midway] {$5$};
-\draw[->] (A) -- (C) node [left, midway] {$4$};
-\draw[->] (B) -- (C) node [above, midway, sloped] {$5$};
-\draw[->] (C) -- (D) node [left, midway] {$3$};
-\draw[->] (C) -- (E) node [above, near end, sloped] {$3$};
-\draw[->] (C) -- (F) node [above, midway] {$2$};
-\draw[->] (D) -- (B) node [below, near end, sloped] {$3$};
-\draw[->] (D) -- (E) node [below, midway] {$3$};
-\draw[->] (E) -- (B) node [right, midway] {$6$};
-\draw[->] (F) -- (A) node [above, midway, sloped] {$10$};
-\draw[->] (F) -- (D) node [below, midway, sloped] {$4$};
-\end{tikzpicture}
+\begin{pretok*}[scale=1.5]{terminali}
+\end{pretok*}

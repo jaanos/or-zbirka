@@ -1,48 +1,31 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\NewEnviron{pretok@rovi}{
+    \vozlisce*{a}{-3,-2}
+    \vozlisce{b}{-6, 0}
+    \vozlisce{c}{-3, 0}
+    \vozlisce{d}{-3, 2}
+    \vozlisce{e}{ 3,-2}
+    \vozlisce{f}{ 3, 0}
+    \vozlisce{g}{ 3, 2}
+    \vozlisce*{z}{ 6, 0}
 
-\node[vertex] (A) at (-3,-2) [label=below:$A$] {};
-\node[vertex] (B) at (-6, 0) {};
-\node[vertex] (C) at (-3, 0) {};
-\node[vertex] (D) at (-3, 2) {};
-\node[vertex] (E) at ( 3,-2) {};
-\node[vertex] (F) at ( 3, 0) {};
-\node[vertex] (G) at ( 3, 2) {};
-\node[vertex] (Z) at ( 6, 0) [label=right:$\check{Z}$] {};
+    \povezava{a}{c}{2}{left}
+    \povezava{a}{e}{5}{below}
+    \povezava{a}{f}{4}[sloped]{below}
+    \povezava{b}{a}{10}[sloped]{below}
+    \povezava{b}{c}{2}{above}
+    \povezava{b}{d}{1}[sloped]{above}
+    \povezava{c}{e}{2}[sloped]{below}
+    \povezava{c}{f}{x}{above}
+    \povezava{c}{g}{7}[sloped]{above}
+    \povezava{d}{c}{4}{left}
+    \povezava{d}{g}{2}{above}
+    \povezava{e}{f}{5}{right}
+    \povezava{e}{z}{1}[sloped]{below}
+    \povezava{f}{d}{y}[sloped]{above}
+    \povezava{f}{g}{2}{right}
+    \povezava{f}{z}{2}{above}
+    \povezava{g}{z}{11}[sloped]{above}
+}
 
-\draw[->] (A) -- (C)
-    node [left, midway] {$2$};
-\draw[->] (A) -- (E)
-    node [below, midway] {$5$};
-\draw[->] (A) -- (F)
-    node [below, near end, sloped] {$4$};
-\draw[->] (B) -- (A)
-    node [below, midway, sloped] {$10$};
-\draw[->] (B) -- (C)
-    node [above, midway] {$2$};
-\draw[->] (B) -- (D)
-    node [above, midway, sloped] {$1$};
-\draw[->] (C) -- (E)
-    node [below, near start, sloped] {$2$};
-\draw[->] (C) -- (F)
-    node [above, midway] {$x$};
-\draw[->] (C) -- (G)
-    node [above, near start, sloped] {$7$};
-\draw[->] (D) -- (C)
-    node [left, midway] {$4$};
-\draw[->] (D) -- (G)
-    node [above, midway] {$2$};
-\draw[->] (E) -- (F)
-    node [right, midway] {$5$};
-\draw[->] (E) -- (Z)
-    node [below, midway, sloped] {$1$};
-\draw[->] (F) -- (D)
-    node [above, near start, sloped] {$y$};
-\draw[->] (F) -- (G)
-    node [right, midway] {$2$};
-\draw[->] (F) -- (Z)
-    node [above, midway] {$2$};
-\draw[->] (G) -- (Z)
-    node [above, midway, sloped] {$11$};
-
-\end{tikzpicture}
+\begin{pretok*}[scale=1.2]{rovi}
+\end{pretok*}

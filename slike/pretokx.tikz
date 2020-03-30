@@ -1,20 +1,21 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+\NewEnviron{pretok@pretokx}{
+    \vozlisce*{s}{-5, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 2, 2}
+    \vozlisce{c}{-2,-2}
+    \vozlisce{d}{ 2,-2}
+    \vozlisce*{t}{ 5, 0}
 
-\node[vertex] (s) at (-5, 0) {$s$};
-\node[vertex] (a) at (-2, 2) {$a$};
-\node[vertex] (b) at ( 2, 2) {$b$};
-\node[vertex] (c) at (-2,-2) {$c$};
-\node[vertex] (d) at ( 2,-2) {$d$};
-\node[vertex] (t) at ( 5, 0) {$t$};
+    \povezava{s}{a}{2}[sloped]{above}
+    \povezava{s}{c}{5}[sloped]{above}
+    \povezava{a}{b}{x}{above}
+    \povezava{a}{c}{3}{left}
+    \povezava{b}{c}{1}[sloped]{above}
+    \povezava{b}{t}{5}[sloped]{above}
+    \povezava{c}{d}{5}{below}
+    \povezava{d}{b}{1}{right}
+    \povezava{d}{t}{2}[sloped]{below}
+}
 
-\draw[->] (s) -- (a) node [above, midway, sloped] {$2$};
-\draw[->] (s) -- (c) node [above, midway, sloped] {$5$};
-\draw[->] (a) -- (b) node [above, midway] {$x$};
-\draw[->] (a) -- (c) node [left, midway] {$3$};
-\draw[->] (b) -- (c) node [above, midway, sloped] {$1$};
-\draw[->] (b) -- (t) node [above, midway, sloped] {$5$};
-\draw[->] (c) -- (d) node [below, midway] {$5$};
-\draw[->] (d) -- (b) node [right, midway] {$1$};
-\draw[->] (d) -- (t) node [below, midway, sloped] {$2$};
-\end{tikzpicture}
+\begin{pretok*}[scale=1.2]{pretokx}
+\end{pretok*}

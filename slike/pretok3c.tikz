@@ -1,37 +1,18 @@
-{%
-\newcommand{\Lab}{a-3}%
-\newcommand{\Lac}{0}%
-\newcommand{\Lbd}{3}%
-\newcommand{\Lbe}{1}%
-\newcommand{\Lcd}{2}%
-\newcommand{\Lcf}{1}%
-\newcommand{\Ldf}{2}%
-\newcommand{\Lef}{0}%
-\newcommand{\Fab}{3}%
-\newcommand{\Fac}{3}%
-\newcommand{\Fbd}{0}%
-\newcommand{\Fbe}{3}%
-\newcommand{\Fcd}{0}%
-\newcommand{\Fcf}{3}%
-\newcommand{\Fdf}{0}%
-\newcommand{\Fef}{3}%
-\begin{tikzpicture}[style=thick,scale=0.63]
-\tikzstyle{va}=[cut]
-\tikzstyle{vb}=[cut]
-\tikzstyle{vc}=[]
-\tikzstyle{vd}=[cut]
-\tikzstyle{ve}=[cut]
-\tikzstyle{vf}=[]
-\tikzstyle{eab}=[path]
-\tikzstyle{eac}=[dashed]
-\tikzstyle{ebd}=[path]
-\tikzstyle{ebe}=[]
-\tikzstyle{ecd}=[]
-\tikzstyle{ecf}=[]
-\tikzstyle{edf}=[path]
-\tikzstyle{eef}=[dashed]
-
 \input{slike/pretok3-osnova.tikz}
 
-\end{tikzpicture}
-}
+\begin{pretok*}[scale=0.9]{pretok3}
+    \nicle
+    \kolicina*{s}{a}[\alpha-\beta]{\beta}[prerez,red]
+    \kolicina*{a}{c}[3]{0}[red]
+    \kolicina*{c}{t}[2]{0}[red]
+    \kolicina{a}{d}[4-\beta]{\beta}
+    \kolicina{d}{t}[3-\beta]{\beta}
+    \kolicina{s}{b}[0]{3}[zasicena]
+    \kolicina{b}{t}[1]{3}
+
+    \dosezeno{s}
+    \dosezeno{a}[pogojno]
+    \dosezeno{c}[pogojno]
+    \dosezeno{d}[pogojno]
+    \dosezeno{t}[pogojno]
+\end{pretok*}

@@ -1,121 +1,41 @@
-{%
-\newcommand{\Lab}{5}%
-\newcommand{\Lac}{3}%
-\newcommand{\Lad}{5}%
-\newcommand{\Lae}{5}%
-\newcommand{\Lbf}{3}%
-\newcommand{\Lcb}{6}%
-\newcommand{\Lcg}{0}%
-\newcommand{\Ldc}{3}%
-\newcommand{\Ldh}{5}%
-\newcommand{\Led}{6}%
-\newcommand{\Lei}{4}%
-\newcommand{\Lfg}{2}%
-\newcommand{\Lfj}{7}%
-\newcommand{\Lgh}{4}%
-\newcommand{\Lgk}{0}%
-\newcommand{\Lhi}{1}%
-\newcommand{\Lhl}{0}%
-\newcommand{\Lim}{2}%
-\newcommand{\Ljn}{0}%
-\newcommand{\Lkj}{1}%
-\newcommand{\Lko}{5}%
-\newcommand{\Llk}{10}%
-\newcommand{\Llp}{0}%
-\newcommand{\Lml}{0}%
-\newcommand{\Lmq}{0}%
-\newcommand{\Lno}{5}%
-\newcommand{\Lnr}{11}%
-\newcommand{\Lop}{6}%
-\newcommand{\Lor}{0}%
-\newcommand{\Lpq}{6}%
-\newcommand{\Lpr}{4}%
-\newcommand{\Lqr}{7}%
-\newcommand{\Tab}{2}%
-\newcommand{\Tac}{3}%
-\newcommand{\Tad}{2}%
-\newcommand{\Tae}{3}%
-\newcommand{\Tbf}{2}%
-\newcommand{\Tcb}{0}%
-\newcommand{\Tcg}{3}%
-\newcommand{\Tdc}{0}%
-\newcommand{\Tdh}{2}%
-\newcommand{\Ted}{0}%
-\newcommand{\Tei}{3}%
-\newcommand{\Tfg}{1}%
-\newcommand{\Tfj}{1}%
-\newcommand{\Tgh}{0}%
-\newcommand{\Tgk}{4}%
-\newcommand{\Thi}{0}%
-\newcommand{\Thl}{2}%
-\newcommand{\Tim}{3}%
-\newcommand{\Tjn}{1}%
-\newcommand{\Tkj}{0}%
-\newcommand{\Tko}{4}%
-\newcommand{\Tlk}{0}%
-\newcommand{\Tlp}{4}%
-\newcommand{\Tml}{2}%
-\newcommand{\Tmq}{1}%
-\newcommand{\Tno}{0}%
-\newcommand{\Tnr}{1}%
-\newcommand{\Top}{0}%
-\newcommand{\Tor}{4}%
-\newcommand{\Tpq}{0}%
-\newcommand{\Tpr}{4}%
-\newcommand{\Tqr}{1}%
-\begin{tikzpicture}[style=thick,scale=0.63]
-\tikzstyle{va}=[cut]
-\tikzstyle{vb}=[cut]
-\tikzstyle{vc}=[cut]
-\tikzstyle{vd}=[cut]
-\tikzstyle{ve}=[cut]
-\tikzstyle{vf}=[cut]
-\tikzstyle{vg}=[cut]
-\tikzstyle{vh}=[cut]
-\tikzstyle{vi}=[cut]
-\tikzstyle{vj}=[cut]
-\tikzstyle{vk}=[]
-\tikzstyle{vl}=[]
-\tikzstyle{vm}=[cut]
-\tikzstyle{vn}=[]
-\tikzstyle{vo}=[]
-\tikzstyle{vp}=[]
-\tikzstyle{vq}=[]
-\tikzstyle{vr}=[]
-\tikzstyle{eab}=[]
-\tikzstyle{eac}=[]
-\tikzstyle{ead}=[]
-\tikzstyle{eae}=[]
-\tikzstyle{ebf}=[]
-\tikzstyle{ecb}=[thin]
-\tikzstyle{ecg}=[dashed]
-\tikzstyle{edc}=[thin]
-\tikzstyle{edh}=[]
-\tikzstyle{eed}=[thin]
-\tikzstyle{eei}=[]
-\tikzstyle{efg}=[]
-\tikzstyle{efj}=[]
-\tikzstyle{egh}=[thin]
-\tikzstyle{egk}=[dashed, blue]
-\tikzstyle{ehi}=[thin]
-\tikzstyle{ehl}=[dashed, blue]
-\tikzstyle{eim}=[]
-\tikzstyle{ejn}=[dashed, blue]
-\tikzstyle{ekj}=[thin, blue]
-\tikzstyle{eko}=[]
-\tikzstyle{elk}=[thin]
-\tikzstyle{elp}=[dashed]
-\tikzstyle{eml}=[dashed, blue]
-\tikzstyle{emq}=[dashed, blue]
-\tikzstyle{eno}=[thin]
-\tikzstyle{enr}=[]
-\tikzstyle{eop}=[thin]
-\tikzstyle{eor}=[dashed]
-\tikzstyle{epq}=[thin]
-\tikzstyle{epr}=[]
-\tikzstyle{eqr}=[]
-
 \input{slike/pretok2-osnova.tikz}
 
-\end{tikzpicture}
-}
+\begin{pretok*}[scale=0.9]{pretok2}
+    \nicle
+    \kolicina{s}{a}[5]{2}
+    \kolicina{a}{e}[3]{2}
+    \kolicina{e}{f}[2]{1}
+    \kolicina{f}{j}[0]{4}[prerez]
+    \kolicina{j}{n}[5]{4}
+    \kolicina{n}{t}[0]{4}[zasicena]
+    \kolicina{s}{d}[5]{3}
+    \kolicina{d}{h}[4]{3}
+    \kolicina{h}{l}[2]{3}
+    \kolicina{l}{k}[0]{2}[prerez]
+    \kolicina{k}{o}[0]{4}[zasicena]
+    \kolicina{o}{t}[4]{4}
+    \kolicina{e}{i}[7]{1}
+    \kolicina{i}{m}[0]{1}[prerez]
+    \kolicina{m}{t}[11]{1}
+    \kolicina{s}{b}[3]{3}
+    \kolicina{b}{f}[0]{3}[zasicena]
+    \kolicina{s}{c}[5]{2}
+    \kolicina{c}{g}[5]{2}
+    \kolicina{g}{k}[0]{2}[prerez]
+    \kolicina{l}{p}[0]{1}[prerez]
+    \kolicina{p}{t}[7]{1}
+
+    \nasprotna{j}{i}
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{l}
+\end{pretok*}

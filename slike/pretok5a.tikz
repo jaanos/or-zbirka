@@ -1,79 +1,29 @@
-{%
-\newcommand{\Lab}{5}%
-\newcommand{\Lac}{\infty}%
-\newcommand{\Lad}{13}%
-\newcommand{\Lbe}{\infty}%
-\newcommand{\Lbf}{\infty}%
-\newcommand{\Lcb}{\infty}%
-\newcommand{\Lcd}{21}%
-\newcommand{\Ldf}{9}%
-\newcommand{\Ldh}{\infty}%
-\newcommand{\Lef}{\infty}%
-\newcommand{\Leg}{5}%
-\newcommand{\Lfi}{23}%
-\newcommand{\Lgi}{3}%
-\newcommand{\Lhi}{\infty}%
-\newcommand{\Lij}{\infty}%
-\newcommand{\Lik}{16}%
-\newcommand{\Ljg}{11}%
-\newcommand{\Ljl}{\infty}%
-\newcommand{\Lkh}{\infty}%
-\newcommand{\Lkl}{\infty}%
-\newcommand{\Fab}{0}%
-\newcommand{\Fac}{0}%
-\newcommand{\Fad}{0}%
-\newcommand{\Fbe}{0}%
-\newcommand{\Fbf}{0}%
-\newcommand{\Fcb}{0}%
-\newcommand{\Fcd}{0}%
-\newcommand{\Fdf}{0}%
-\newcommand{\Fdh}{0}%
-\newcommand{\Fef}{0}%
-\newcommand{\Feg}{0}%
-\newcommand{\Ffi}{0}%
-\newcommand{\Fgi}{0}%
-\newcommand{\Fhi}{0}%
-\newcommand{\Fij}{0}%
-\newcommand{\Fik}{0}%
-\newcommand{\Fjg}{0}%
-\newcommand{\Fjl}{0}%
-\newcommand{\Fkh}{0}%
-\newcommand{\Fkl}{0}%
-\begin{tikzpicture}[style=thick,scale=0.63]
-\tikzstyle{va}=[cut]
-\tikzstyle{vb}=[cut]
-\tikzstyle{vc}=[cut]
-\tikzstyle{vd}=[cut]
-\tikzstyle{ve}=[cut]
-\tikzstyle{vf}=[cut]
-\tikzstyle{vg}=[cut]
-\tikzstyle{vh}=[cut]
-\tikzstyle{vi}=[cut]
-\tikzstyle{vj}=[cut]
-\tikzstyle{vk}=[cut]
-\tikzstyle{vl}=[]
-\tikzstyle{eab}=[]
-\tikzstyle{eac}=[path]
-\tikzstyle{ead}=[path, green]
-\tikzstyle{ebe}=[]
-\tikzstyle{ebf}=[path]
-\tikzstyle{ecb}=[path]
-\tikzstyle{ecd}=[]
-\tikzstyle{edf}=[]
-\tikzstyle{edh}=[path, green]
-\tikzstyle{eef}=[]
-\tikzstyle{eeg}=[]
-\tikzstyle{efi}=[path]
-\tikzstyle{egi}=[]
-\tikzstyle{ehi}=[path, green]
-\tikzstyle{eij}=[path]
-\tikzstyle{eik}=[path, green]
-\tikzstyle{ejg}=[]
-\tikzstyle{ejl}=[path]
-\tikzstyle{ekh}=[]
-\tikzstyle{ekl}=[path, green]
-
 \input{slike/pretok5-osnova.tikz}
 
-\end{tikzpicture}
-}
+\begin{pretok*}[scale=0.9]{pretok5}
+    \nicle
+    \kolicina*{s}{b}[\infty]{0}[red]
+    \kolicina*{b}{a}[\infty]{0}[red]
+    \kolicina*{a}{e}[\infty]{0}[red]
+    \kolicina*{e}{g}[23]{0}[red]
+    \kolicina*{g}{i}[\infty]{0}[red]
+    \kolicina*{i}{t}[\infty]{0}[red]
+    \kolicina*{s}{c}[13]{0}[green]
+    \kolicina*{c}{h}[\infty]{0}[green]
+    \kolicina*{h}{g}[\infty]{0}[green]
+    \kolicina*{g}{j}[16]{0}[green]
+    \kolicina*{j}{t}[\infty]{0}[green]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{j}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

@@ -1,70 +1,26 @@
-{%
-\newcommand{\Lab}{1}%
-\newcommand{\Lac}{1}%
-\newcommand{\Lad}{1}%
-\newcommand{\Lbc}{2}%
-\newcommand{\Lbf}{4}%
-\newcommand{\Lcd}{5}%
-\newcommand{\Lde}{3}%
-\newcommand{\Ldg}{0}%
-\newcommand{\Leb}{10}%
-\newcommand{\Lec}{10}%
-\newcommand{\Lef}{3}%
-\newcommand{\Lei}{0}%
-\newcommand{\Lfh}{2}%
-\newcommand{\Lfi}{0}%
-\newcommand{\Lge}{8}%
-\newcommand{\Lgi}{3}%
-\newcommand{\Lhb}{3}%
-\newcommand{\Lhi}{4}%
-\newcommand{\Fab}{5}%
-\newcommand{\Fac}{2}%
-\newcommand{\Fad}{1}%
-\newcommand{\Fbc}{0}%
-\newcommand{\Fbf}{5}%
-\newcommand{\Fcd}{2}%
-\newcommand{\Fde}{2}%
-\newcommand{\Fdg}{1}%
-\newcommand{\Feb}{0}%
-\newcommand{\Fec}{0}%
-\newcommand{\Fef}{0}%
-\newcommand{\Fei}{2}%
-\newcommand{\Ffh}{0}%
-\newcommand{\Ffi}{5}%
-\newcommand{\Fge}{0}%
-\newcommand{\Fgi}{1}%
-\newcommand{\Fhb}{0}%
-\newcommand{\Fhi}{0}%
-\begin{tikzpicture}[style=thick,scale=0.63]
-\tikzstyle{va}=[cut]
-\tikzstyle{vb}=[cut]
-\tikzstyle{vc}=[cut]
-\tikzstyle{vd}=[cut]
-\tikzstyle{ve}=[cut]
-\tikzstyle{vf}=[cut]
-\tikzstyle{vg}=[]
-\tikzstyle{vh}=[cut]
-\tikzstyle{vi}=[]
-\tikzstyle{eab}=[path]
-\tikzstyle{eac}=[]
-\tikzstyle{ead}=[]
-\tikzstyle{ebc}=[]
-\tikzstyle{ebf}=[path]
-\tikzstyle{ecd}=[]
-\tikzstyle{ede}=[]
-\tikzstyle{edg}=[dashed]
-\tikzstyle{eeb}=[]
-\tikzstyle{eec}=[]
-\tikzstyle{eef}=[]
-\tikzstyle{eei}=[dashed]
-\tikzstyle{efh}=[path]
-\tikzstyle{efi}=[dashed]
-\tikzstyle{ege}=[]
-\tikzstyle{egi}=[]
-\tikzstyle{ehb}=[]
-\tikzstyle{ehi}=[path]
-
 \input{slike/pretok1-osnova.tikz}
 
-\end{tikzpicture}
-}
+\begin{pretok*}[scale=0.9]{pretok1}
+    \nicle
+    \kolicina*{s}{a}[1]{5}[red]
+    \kolicina*{a}{e}[4]{5}[red]
+    \kolicina*{e}{g}[2]{0}[red]
+    \kolicina*{g}{t}[4]{0}[red]
+    \kolicina{e}{t}[0]{5}[zasicena]
+    \kolicina{s}{b}[1]{2}
+    \kolicina{b}{c}[5]{2}
+    \kolicina{c}{d}[3]{2}
+    \kolicina{d}{t}[0]{2}[zasicena]
+    \kolicina{s}{c}[1]{1}
+    \kolicina{c}{f}[0]{1}[zasicena]
+    \kolicina{f}{t}[3]{1}
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{g}
+    \dosezeno{t}[pogojno]
+\end{pretok*}
