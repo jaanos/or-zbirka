@@ -1,0 +1,20 @@
+\input{slike/pretokx-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{pretokx}
+    \nicle
+    \kolicina*{s}{c}[4]{1}[red]
+    \kolicina*{a}{c}[1]{2}[red]
+    \kolicina*{a}{b}[x]{0}[red]
+    \kolicina*{b}{t}[4]{1}[red]
+    \kolicina{s}{a}[0]{2}[zasicena]
+    \kolicina{c}{d}[2]{3}
+    \kolicina{d}{b}[0]{1}[zasicena]
+    \kolicina{d}{t}[0]{2}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{c}
+    \dosezeno{a}
+    \dosezeno{d}
+    \dosezeno{b}[pogojno]
+    \dosezeno{t}[pogojno]
+\end{pretok*}
