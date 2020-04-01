@@ -86,3 +86,9 @@ pgf/pretok5%.pdf: slike/pretok5%.tikz slike/pretok5-osnova.tikz
 
 pgf/pretokx%.pdf: slike/pretokx%.tikz slike/pretokx-osnova.tikz
 	$(call pgfc,pretokx$*)
+
+pgf/terminali.pdf: slike/terminali.tikz slike/terminali-osnova.tikz
+	$(call pgfc,terminali)
+
+pgf/terminali%.pdf: slike/terminali%.tikz slike/terminali-osnova.tikz
+	$(call pgfc,terminali$*)

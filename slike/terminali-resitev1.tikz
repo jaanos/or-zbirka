@@ -1,0 +1,16 @@
+\input{slike/terminali-osnova.tikz}
+
+\begin{pretok*}[scale=1.5]{terminali}
+    \nicle
+    \kolicina*{f}{a}[10]{0}[red]
+    \kolicina*{a}{b}[5]{0}[red]
+    \kolicina*{f}{d}[4]{0}[green]
+    \kolicina*{d}{b}[3]{0}[green]
+
+    \dosezeno{f}
+    \dosezeno{a}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{b}[pogojno]
+\end{pretok*}
