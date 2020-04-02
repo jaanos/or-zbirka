@@ -1,26 +1,4 @@
-\NewEnviron{pretok@greedyflow}{
-    \vozlisce*{s}{-2, 0}
-    \vozlisce*{t}{ 4, 0}
-    \vozlisce{u}{ 0, 2}
-    \vozlisce{v}{-4, 0}
-    \vozlisce{w}{ 0,-2}
-    \vozlisce{x}{ 0, 4}
-    \vozlisce{y}{ 2, 0}
-    \vozlisce{z}{ 0,-4}
-
-    \povezava{s}{u}{7}[sloped]{above}
-    \povezava{s}{v}{2}{above}
-    \povezava{u}{x}{3}{right}
-    \povezava{u}{y}{3}[sloped]{above}
-    \povezava{v}{x}{1}[sloped]{above}
-    \povezava{v}{z}{3}[sloped]{below}
-    \povezava{w}{s}{3}[sloped]{below}
-    \povezava{w}{z}{4}{left}
-    \povezava{x}{t}{5}[sloped]{above}
-    \povezava{y}{t}{3}{below}
-    \povezava{y}{w}{3}[sloped]{below}
-    \povezava{z}{t}{4}[sloped]{below}
-}
+\input{slike/greedyflow-osnova.tikz}
 
 \begin{pretok*}[scale=1.2]{greedyflow}
 \end{pretok*}

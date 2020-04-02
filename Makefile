@@ -60,6 +60,12 @@ pgf/domine.pdf: slike/domine.tikz slike/domine-osnova.tikz
 pgf/domine-resitev.pdf: slike/domine-resitev.tikz slike/domine-osnova.tikz
 	$(call pgfc,domine-resitev)
 
+pgf/greedyflow.pdf: slike/greedyflow.tikz slike/greedyflow-osnova.tikz
+	$(call pgfc,greedyflow)
+
+pgf/greedyflow-resitev.pdf: slike/greedyflow-resitev.tikz slike/greedyflow-osnova.tikz
+	$(call pgfc,greedyflow-resitev)
+
 pgf/minmaxpretok.pdf: slike/minmaxpretok.tikz slike/minmaxpretok-osnova.tikz
 	$(call pgfc,minmaxpretok)
 

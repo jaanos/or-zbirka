@@ -1,0 +1,23 @@
+\NewEnviron{pretok@greedyflow-primer}{
+    \vozlisce*{s}{-2, 0}
+    \vozlisce{a}{ 0, 2}
+    \vozlisce{b}{ 0,-2}
+    \vozlisce*{t}{ 2, 0}
+
+    \povezava{s}{a}{1}[sloped]{above}
+    \povezava{s}{b}{1}[sloped]{below}
+    \povezava{a}{b}{1}{left}
+    \povezava{a}{t}{1}[sloped]{above}
+    \povezava{b}{t}{1}[sloped]{below}
+}
+
+\begin{pretok*}[scale=1.2]{greedyflow-primer}
+    \nicle
+    \kolicina{s}{a}[0]{1}[prerez,red]
+    \kolicina{s}{b}[0]{1}[prerez]
+    \kolicina{a}{t}[0]{1}[zasicena]
+    \kolicina{b}{t}[0]{1}[zasicena,red]
+    \kolicina{a}{b}[1]{0}[red]
+
+    \dosezeno{s}
+\end{pretok*}
