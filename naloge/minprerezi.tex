@@ -4,13 +4,27 @@
 \item Poišči usmerjen graf $G$, vozlišči $s$, $t$ in kapacitete povezav,
 da bo imel $G$ natanko en minimalen $(s, t)$-prerez.
 
-\item Poišči usmerjen graf $G$, vozlišči $s$, $t$ in kapacitete povezav,
-da bo imel $G$ več minimalnih $(s, t)$-prerezov.
+\item Poišči usmerjen graf $G'$, vozlišči $s$, $t$ in kapacitete povezav,
+da bo imel $G'$ več minimalnih $(s, t)$-prerezov.
 
 \item Poišči usmerjen graf $G_n$, vozlišči $s$, $t$ in kapacitete povezav,
 da bo imel $G_n$ natanko $n$ minimalnih $(s, t)$-prerezov.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Za naravno število $n$ naj bo $G_n = (V_n, E_n)$
+usmerjena pot od $s$ do $t$ z $n$ povezavami,
+tj.,
+\begin{align*}
+V_n &= \{s = v_0, v_1, \dots, v_n = t\} \quad \text{in} \\
+E_n &= \set{v_{i-1} \to v_i}{1 \le i \le n},
+\end{align*}
+kjer imajo vse povezave kapaciteto $1$.
+Maksimalni pretok v takem omrežju je tako $1$,
+vsaka povezava pa sama sestavlja minimalen prerez.
+Tako graf $G_n$ ustreza zahtevi iz točke (c).
+Za točko (a) lahko vzamemo $G = G_1$,
+za točko (b) pa $G' = G_n$ za katerikoli $n \ge 2$.
 \end{odgovor}
 \end{naloga}
