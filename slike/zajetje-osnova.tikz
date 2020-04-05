@@ -1,0 +1,46 @@
+\NewEnviron{pretok@zajetje}{
+    \vozlisce*{s}{-7, 0}
+    \vozlisce{a}{-2, 4}
+    \vozlisce{b}{-2, 2}
+    \vozlisce{c}{-2, 1}
+    \vozlisce{d}{-2,-1}
+    \vozlisce{e}{-2,-2}
+    \vozlisce{f}{-2,-4}
+    \vozlisce{g}{ 0, 4}
+    \vozlisce{h}{ 0, 2}
+    \vozlisce{i}{ 0, 1}
+    \vozlisce{j}{ 0,-1}
+    \vozlisce{k}{ 0,-2}
+    \vozlisce{l}{ 0,-4}
+    \vozlisce{m}{ 5, 0}
+    \vozlisce*{t}{ 7, 0}
+
+    \povezava{s}{a}{10}[sloped]{above}[bend left=40]
+    \povezava{s}{b}{10}[sloped]{above}[bend left=20]
+    \povezava{s}{c}{10}[sloped]{above}
+    \povezava{s}{d}{10}[sloped]{below}
+    \povezava{s}{e}{10}[sloped]{below}[bend right=20]
+    \povezava{s}{f}{10}[sloped]{below}[bend right=40]
+    \povezava{a}{b}{5}{left}[bend right=15]
+    \povezava{a}{g}{5}{above}
+    \povezava{b}{g}{\alpha_1}[sloped]{above}
+    \povezava{b}{h}{5}{below}
+    \povezava{c}{d}{5}{left}[bend right=15]
+    \povezava{c}{i}{5}{above}
+    \povezava{d}{i}{\alpha_2}[sloped]{above}
+    \povezava{d}{j}{5}{below}
+    \povezava{e}{f}{5}{left}[bend right=15]
+    \povezava{e}{k}{5}{above}
+    \povezava{f}{k}{\alpha_3}[sloped]{above}
+    \povezava{f}{l}{5}{below}
+    \povezava{g}{h}{5}{right}[bend left=15]
+    \povezava{g}{m}{10}[sloped]{above}[bend left=40]
+    \povezava{h}{m}{10}[sloped]{above}[bend left=20]
+    \povezava{i}{j}{5}{right}[bend left=15]
+    \povezava{i}{m}{10}[sloped]{above}
+    \povezava{j}{m}{10}[sloped]{below}
+    \povezava{k}{l}{5}{right}[bend left=15]
+    \povezava{k}{m}{10}[sloped]{below}[bend right=20]
+    \povezava{l}{m}{10}[sloped]{below}[bend right=40]
+    \povezava{m}{t}{50}{above}
+}

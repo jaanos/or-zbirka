@@ -101,3 +101,9 @@ pgf/terminali.pdf: slike/terminali.tikz slike/terminali-osnova.tikz
 
 pgf/terminali%.pdf: slike/terminali%.tikz slike/terminali-osnova.tikz
 	$(call pgfc,terminali$*)
+
+pgf/zajetje.pdf: slike/zajetje.tikz slike/zajetje-osnova.tikz
+	$(call pgfc,zajetje)
+
+pgf/zajetje%.pdf: slike/zajetje%.tikz slike/zajetje-osnova.tikz
+	$(call pgfc,zajetje$*)
