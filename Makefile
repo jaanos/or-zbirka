@@ -66,6 +66,9 @@ pgf/greedyflow.pdf: slike/greedyflow.tikz slike/greedyflow-osnova.tikz
 pgf/greedyflow-resitev.pdf: slike/greedyflow-resitev.tikz slike/greedyflow-osnova.tikz
 	$(call pgfc,greedyflow-resitev)
 
+pgf/kri%.pdf: slike/kri%.tikz slike/kri-osnova.tikz
+	$(call pgfc,kri$*)
+
 pgf/minmaxpretok.pdf: slike/minmaxpretok.tikz slike/minmaxpretok-osnova.tikz
 	$(call pgfc,minmaxpretok)
 

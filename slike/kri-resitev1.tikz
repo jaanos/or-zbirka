@@ -1,0 +1,28 @@
+\input{slike/kri-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{kri}
+    \nicle
+    \kolicina*{s}{k_A}{0}[red]
+    \kolicina*{k_A}{o_A}{0}[red]
+    \kolicina*{o_A}{t}{0}[red]
+    \kolicina*{s}{k_O}{0}[green]
+    \kolicina*{k_O}{o_O}{0}[green]
+    \kolicina*{o_O}{t}{0}[green]
+    \kolicina*{s}{k_{AB}}{0}[blue]
+    \kolicina*{k_{AB}}{o_{AB}}{0}[blue]
+    \kolicina*{o_{AB}}{t}{0}[blue]
+    \kolicina*{s}{k_B}{0}[magenta]
+    \kolicina*{k_B}{o_B}{0}[magenta]
+    \kolicina*{o_B}{t}{0}[magenta]
+
+    \dosezeno{s}
+    \dosezeno{k_A}
+    \dosezeno{k_O}
+    \dosezeno{k_{AB}}
+    \dosezeno{k_B}
+    \dosezeno{o_A}
+    \dosezeno{o_O}
+    \dosezeno{o_{AB}}
+    \dosezeno{o_B}
+    \dosezeno{t}[pogojno]
+\end{pretok*}
