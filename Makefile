@@ -54,6 +54,9 @@ pgf/dectree4-resitev.pdf: slike/dectree4-resitev.tikz slike/dectree4-osnova.tikz
 pgf/dijkstra.pdf: slike/dijkstra.tikz slike/dijkstra-bf-osnova.tikz
 	$(call pgfc,dijkstra)
 
+pgf/divjizur%.pdf: slike/divjizur%.tikz slike/divjizur-osnova.tikz
+	$(call pgfc,divjizur$*)
+
 pgf/domine.pdf: slike/domine.tikz slike/domine-osnova.tikz
 	$(call pgfc,domine)
 

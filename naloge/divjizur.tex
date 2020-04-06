@@ -1,11 +1,11 @@
 \begin{naloga}{Bašić, Gajser}{Kolokvij OR 5.4.2012}
 \begin{vprasanje}
 Na divjem žuru matematikov se je zbralo $n$ ljudi.
-Organizator je priskrbel $s$ različnih vrst sendvičev,
+Organizator je priskrbel $p$ različnih vrst sendvičev,
 a ne v neomejenih količinah.
-Na voljo imajo $u_i$ sendvičev sorte $i$ ($1 \le i \le s$).
-Prav tako imajo na voljo $p$ različnih sokov;
-$w_i$ predstavlja število sokov sorte $i$ ($1 \le i \le p$).
+Na voljo imajo $u_i$ sendvičev sorte $i$ ($1 \le i \le p$).
+Prav tako imajo na voljo $q$ različnih sokov;
+$v_j$ predstavlja število sokov sorte $i$ ($1 \le j \le q$).
 Za vsakega udeleženca zabave je znano,
 katere sokove in sendviče ima rad.
 
@@ -24,7 +24,7 @@ reši nalogo za naslednje konkretne podatke:
 Vrsta soka & Količina & \quad & Vrsta sendviča & Količina \\
 \cline{1-2} \cline{4-5}
 Ananas          & 1 && Pohanček & 1 \\
-Črni ribez      & 1 && Šoferski & 1 \\
+Črni ribez      & 1 && Šoferski & 2 \\
 Rdeča pomaranča & 2 && Kraški   & 2 \\
 Jagoda          & 2 && Vegi     & 1 \\
 Borovnica       & 2
@@ -43,6 +43,55 @@ Patrik  & borovnica, jagoda             & kraški, vegi
 \end{center}
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Sestavimo omrežje $G = (V, E)$, kjer je množica vozlišč
+$$
+V = \{s, t\} \cup \set{w_i}{1 \le i \le p}
+    \cup \set{x_j}{1 \le j \le q} \cup \set{y_k, z_k}{1 \le k \le n},
+$$
+v množici povezav $E$ pa imamo povezave
+$s \to w_i$ s kapaciteto $u_i$ ($1 \le i \le p$),
+$s \to x_j$ s kapaciteto $v_j$ ($1 \le j \le q$),
+$w_i \to y_k$ s kapaciteto $1$, če je osebi $k$ všeč sendvič $i$,
+$x_j \to z_k$ s kapaciteto $1$, če je osebi $k$ všeč sok $j$,
+ter $y_k \to t$ in $z_k \to t$ s kapaciteto $1$ ($1 \le k \le n$).
+Želena razdelitev hrane in pijače obstaja natanko tedaj,
+ko so v dobljenem maksimalnem pretoku
+vse povezave $y_k \to t$ in $z_k \to t$ ($1 \le k \le n$) zasičene.
+
+\item Ustrezno omrežje je prikazano na sliki~\fig[divjizur-resitev1],
+kjer je prikazana tudi začetna izbira povečujočih poti
+za Ford-Fulkersonov algoritem.
+Oznake v indeksih voz\-lišč ustrezajo prvim črkam
+v imenih sendvičev, sokov in oseb (brez strešic na šumnikih).
+Nadaljevanje postopka je prikazano na sliki~\fig[divjizur-resitev2],
+maksimalni pretok pa je prikazan na sliki~\fig[divjizur-resitev3].
+Ker v dobljenem maksimalnem pretoku povezava $y_M \to t$ ni zasičena,
+sledi, da ne obstaja želena razdelitev sendvičev.
+Ker so pa vse povezave $x_j \to z_k$ zasičene
+($j \in \{A, B, C, J, R\}$, $k \in \{B, D, J, M, P, S\}$),
+sledi, da želena razdelitev sokov obstaja.
+\end{enumerate}
+
+\begin{slika}[p]
+\makebox[\textwidth][c]{
+\pgfslika[divjizur-resitev1]
+}
+\podnaslov[\res{}(b)]{Omrežje in prvi korak}
+\end{slika}
+\begin{slika}[p]
+\makebox[\textwidth][c]{
+\pgfslika[divjizur-resitev2]
+}
+\podnaslov[\res{}(b)]{Drugi korak}
+\end{slika}
+\begin{slika}[p]
+\makebox[\textwidth][c]{
+\pgfslika[divjizur-resitev3]
+}
+\podnaslov[\res{}(b)]{Maksimalni prerez in minimalni pretok}
+\end{slika}
 \end{odgovor}
 \end{naloga}
