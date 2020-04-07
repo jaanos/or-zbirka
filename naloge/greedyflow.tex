@@ -7,24 +7,24 @@ naj za iskanje maksimalnega pretoka na omrežju s končnimi kapacitetami
 uporabijo naslednji algoritem:
 \begin{small}
 \begin{algorithmic}
-\Function{Greedyflow}{$G = (V, E), c, s, t$}
-    \State $f \gets$ slovar z vrednostjo $0$ za vsako povezavo iz $E$
+\Function{Greedyflow}{$G = (V, E), C, s, t$}
+    \State $F \gets$ slovar z vrednostjo $0$ za vsako povezavo iz $E$
     \For{$e \in E$}
-        \State $f[e] \gets 0$
+        \State $F[e] \gets 0$
     \EndFor
     \While{obstaja pot od $s$ do $t$}
         \State $P \gets$ poljubna pot od $s$ do $t$
         \State $\gamma \gets$ minimalna kapaciteta povezav poti $P$
         \For{$e \in P$}
-            \State $f[e] \gets f[e] + \gamma$
-            \If{$c[e] = \gamma$}
+            \State $F[e] \gets F[e] + \gamma$
+            \If{$C[e] = \gamma$}
                 \State odstrani $e$ iz $G$
             \Else
-                \State $c[e] \gets c[e] - \gamma$
+                \State $C[e] \gets C[e] - \gamma$
             \EndIf
         \EndFor
     \EndWhile
-    \State \Return $f$
+    \State \Return $F$
 \EndFunction
 \end{algorithmic}
 \end{small}
@@ -68,7 +68,7 @@ potem vse povezave iz te poti odstrani in tako ne najde druge povečujoče poti.
 \item Za vsako omrežje obstaja izbira poti,
 da bo algoritem {\sc Greedyflow} dal maksimalni pretok.
 Zapišimo postopek, ki za dani graf $G = (V, E)$,
-slovar kapacitet povezav $c$ in vozlišči $s, t \in V$
+slovar kapacitet povezav $C$ in vozlišči $s, t \in V$
 vrne ustrezno zaporedje poti skupaj s povečanjem pretoka,
 ki ga prinese posamezna pot.
 V postopku bomo uporabili dvostrano vrsto ({\em double-ended queue}),
@@ -77,41 +77,42 @@ $\push(x)$ (dodajanje $x$ na začetek) in $\pop()$ (odstranjevanje z začetka).
 
 \begin{small}
 \begin{algorithmic}
-\Function{ZaporedjePoti}{$G = (V, E), c, s, t$}
+\Function{ZaporedjePoti}{$G = (V, E), C, s, t$}
     \State $Q \gets$ prazna dvostrana vrsta
     \If{$s = t$} \hfill če je izvor enak ponoru,
-        \State $Q.\append((s, \infty))$ \hfill lahko prepeljemo poljubno količino
+        \State $Q.\append((s, \infty))$
+            \hfill lahko prepeljemo poljubno količino
         \State \Return $Q$
     \EndIf
-    \State $C \gets$
-        minimalni $(s, t)$-prerez omrežja $G$ s kapacitetami povezav $c$
+    \State $M \gets$
+        minimalni $(s, t)$-prerez omrežja $G$ s kapacitetami povezav $C$
     \State $S, T \gets$ množici z
         $V = S \cup T$, $S \cap T = \emptyset$, $s \in S$ in $t \in T$,
-        določeni s prerezom $C$
+        določeni s prerezom $M$
     \State $G_s, G_t \gets$ podgrafa grafa $G$,
         inducirana z množico vozlišč $S$ oziroma $T$
-    \For{$e = u \to v \in C$}
-        \State $Q_s \gets \text{\sc{ZaporedjePoti}}(G_s, c, s, u)$
-            \hfill rekurzivna klica dobita kopijo $c$,
-        \State $Q_t \gets \text{\sc{ZaporedjePoti}}(G_t, c, v, t)$
+    \For{$e = u \to v \in M$}
+        \State $Q_s \gets \text{\sc{ZaporedjePoti}}(G_s, C, s, u)$
+            \hfill rekurzivna klica dobita kopijo $C$,
+        \State $Q_t \gets \text{\sc{ZaporedjePoti}}(G_t, C, v, t)$
             \hfill tako da ostane slovar nespremenjen
-        \While{$c[e] > 0$}
+        \While{$C[e] > 0$}
             \State $P_s, \gamma_s \gets Q_s.\pop()$
             \State $P_t, \gamma_t \gets Q_t.\pop()$
             \State $\gamma \gets \min\{\gamma_s, c[e], \gamma_t\}$
             \For{$e_s \in P_s$} \hfill popravimo povezave v $G_s$
-                \If{$c[e_s] = \gamma$}
+                \If{$C[e_s] = \gamma$}
                     \State odstrani $e_s$ iz $G_s$
                 \Else
-                    \State $c[e_s] \gets c[e_s] - \gamma$
+                    \State $C[e_s] \gets C[e_s] - \gamma$
                 \EndIf
             \EndFor
-            \State $c[e] \gets c[e] - \gamma$
+            \State $C[e] \gets C[e] - \gamma$
             \For{$e_t \in P_t$} \hfill popravimo povezave v $G_t$
-                \If{$c[e_t] = \gamma$}
+                \If{$C[e_t] = \gamma$}
                     \State odstrani $e_t$ iz $G_t$
                 \Else
-                    \State $c[e_t] \gets c[e_t] - \gamma$
+                    \State $C[e_t] \gets C[e_t] - \gamma$
                 \EndIf
             \EndFor
             \State $Q.\append((P_s \| e \| P_t, \gamma))$
@@ -149,7 +150,7 @@ Obravnava povezave $e$ se zaključi, ko se ta zasiti
 se pa ob predpostavki,
 da rekurzivni klici vračajo ustrez\-na zaporedja,
 tudi predhodno ne izpraznijo.
-Postopek se nato nadaljuje z naslednjo povezavo iz $C$.
+Postopek se nato nadaljuje z naslednjo povezavo iz $M$.
 Ker se zaporedji poti za podomrežji ponovno izračunata,
 najdene poti ne bodo vsebovale predhodno odstranjenih povezav.
 Do robnega primera pride, ko je izvor enak ponoru

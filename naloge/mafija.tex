@@ -65,10 +65,10 @@ Zapišimo želeni algoritem.
            \cup&{} \set{v_{1j} \to t, v_{nj} \to t}{2 \le j \le m-1} \\
            \cup&{} \set{v_{ij} \to t}{i \in \{1, n\}, j \in \{1, m\}}
         \end{aligned}$
-    \State $c \gets$ slovar kapacitet z vrednostjo $1$ za vsako povezavo iz $E$
-    \State $f \gets$ {\sc FordFulkerson}$(G = (E, V), c, s, t)$
+    \State $C \gets$ slovar kapacitet z vrednostjo $1$ za vsako povezavo iz $E$
+    \State $F \gets$ {\sc FordFulkerson}$(G = (E, V), C, s, t)$
         \hfill vrne slovar pretokov za vsak $e \in E$
-    \If{$\exists (i, j) \in L: f[s \to u_{ij}] < 1$}
+    \If{$\exists (i, j) \in L: F[s \to u_{ij}] < 1$}
         \State \Return {\em Izvedba ni možna --
             ni mogoče zagotoviti disjunktnih izhodnih poti}
     \EndIf
@@ -79,7 +79,7 @@ Zapišimo želeni algoritem.
         \While{$x \ne t$}
             \State $P.\append((i, j))$
             \State $i', j' \gets$ indeksa, da je $x = u_{i'j'}$
-            \State $x' \gets$ vozlišče, da je $f[v_{i'j'} \to x'] = 1$
+            \State $x' \gets$ vozlišče, da je $F[v_{i'j'} \to x'] = 1$
             \State $x, i, j \gets x', i', j'$
         \EndWhile
         \State $S.\append(P)$
