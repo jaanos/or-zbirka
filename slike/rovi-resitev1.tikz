@@ -1,0 +1,19 @@
+\input{slike/rovi-resitev-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{rovi-resitev}
+    \nicle
+    \kolicina*{a}{f}{0}[red]
+    \kolicina*{f}{z}{0}[red]
+    \kolicina*{a}{c}{0}[green]
+    \kolicina*{c}{g}{0}[green]
+    \kolicina*{g}{z}{0}[green]
+    \kolicina{e}{z}{0}[prazna, zasicena]
+
+    \dosezeno{a}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{z}[pogojno]
+\end{pretok*}

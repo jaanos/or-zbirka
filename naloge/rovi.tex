@@ -7,7 +7,7 @@ ki letos poteka na trasi, prikazani na sliki~\fig.
 Udeleženci začnejo v točki $a$ in končajo v točki $z$,
 zmeraj pa tečejo le v smeri povezav.
 Vsakemu škratu posebej pot določijo organizatorji,
-zaradi dobre pripravljenosti pa lahko pričakujemo,
+zaradi dobre pri\-prav\-lje\-no\-sti pa lahko pričakujemo,
 da bodo vsi prišli do cilja.
 Ker so škratje zelo težki,
 je med tekom po rovu nevarnost, da se le-ta poruši.
@@ -40,6 +40,59 @@ Napiši, kako naj organizatorji v tem primeru pripravijo poti za škrate
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Delali bomo z omrežjem,
+v katerem je kapaciteta povezav za $1$ manjša od nosilnosti ustreznega rova.
+
+\begin{enumerate}[(a)]
+\item Začetno omrežje je prikazano na sliki~\fig[rovi-resitev1],
+kjer sta prikazani tudi povečujoči poti
+$a \to f \to z$ in $a \to c \to g \to z$ s kapaciteto $1$.
+Naslednji dve poti,
+$a \to e \to f \to g \to z$ in $a \to f \to d \to g \to z$,
+prav tako s kapaciteto $1$,
+sta prikazani na sliki~\fig[rovi-resitev2].
+Tako dobimo omrežje s slike~\fig[rovi-resitev3],
+iz katerega je razvidno, da je maksimalni pretok $4$.
+Organizatorji lahko torej po trasi spustijo $4$ škrate,
+npr. po vsaki od prej omenjenih poti po enega.
+
+\item Iz slike~\fig[rovi-resitev3] je razvidno,
+da gre povezava $c \to f$ v nasprotni smeri minimalnega prereza,
+tako da s povečevanjem njene kapacitete ne bomo povečali maksimalnega pretoka,
+medtem ko je povezava $f \to d$ v minimalnem prerezu.
+Za primer $y > 2$ je prikazana je povečujoča pot
+$a \to e \to f \to d \to c \to g \to z$,
+po kateri lahko pretok povečamo za največ $3$.
+
+Dobljeno omrežje za primer $y \ge 5$ je prikazano na sliki~\fig[rovi-resitev4].
+Opazimo,
+da lahko v primeru $y = 5$ v prikazanem minimalnem prerezu
+povezavi $d \to c$ in $d \to g$ nadomestimo s povezavo $f \to d$.
+Tako vidimo, da se nam vrednost $y$ izplača povečati na največ $5$
+-- ker je bila predhodna vrednost enaka $2$,
+to ustreza $30$ dnem dela.
+Tedaj bodo organizatorji lahko spustili še $3$ škrate po prej omenjeni poti,
+s čimer bodo lahko število udeležencev povečali na $7$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika[rovi-resitev1]
+\podnaslov[\res{}(a)]{Omrežje in prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[rovi-resitev2]
+\podnaslov[\res{}(a)]{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[rovi-resitev3]
+\podnaslov[\res{}(a) ter povečuječa pot pri $y > 2$]%
+    {Maksimalni pretok in minimalni prerez}
+\end{slika}
+\begin{slika}
+\pgfslika[rovi-resitev4]
+\podnaslov[\res{}(b)]{Maksimalni pretok in minimalni prerez}
+\end{slika}
 \end{odgovor}
 \end{naloga}

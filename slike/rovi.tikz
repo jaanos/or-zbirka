@@ -1,31 +1,21 @@
-\NewEnviron{pretok@rovi}{
-    \vozlisce*{a}{-3,-2}
-    \vozlisce{b}{-6, 0}
-    \vozlisce{c}{-3, 0}
-    \vozlisce{d}{-3, 2}
-    \vozlisce{e}{ 3,-2}
-    \vozlisce{f}{ 3, 0}
-    \vozlisce{g}{ 3, 2}
-    \vozlisce*{z}{ 6, 0}
-
-    \povezava{a}{c}{2}{left}
-    \povezava{a}{e}{5}{below}
-    \povezava{a}{f}{4}[sloped]{below}
-    \povezava{b}{a}{10}[sloped]{below}
-    \povezava{b}{c}{2}{above}
-    \povezava{b}{d}{1}[sloped]{above}
-    \povezava{c}{e}{2}[sloped]{below}
-    \povezava{c}{f}{x}{above}
-    \povezava{c}{g}{7}[sloped]{above}
-    \povezava{d}{c}{4}{left}
-    \povezava{d}{g}{2}{above}
-    \povezava{e}{f}{5}{right}
-    \povezava{e}{z}{1}[sloped]{below}
-    \povezava{f}{d}{y}[sloped]{above}
-    \povezava{f}{g}{2}{right}
-    \povezava{f}{z}{2}{above}
-    \povezava{g}{z}{11}[sloped]{above}
-}
+\input{slike/rovi-osnova.tikz}
 
 \begin{pretok*}[scale=1.2]{rovi}
+    \cena{a}{c}{2}
+    \cena{a}{e}{5}
+    \cena{a}{f}{4}
+    \cena{b}{a}{10}
+    \cena{b}{c}{2}
+    \cena{b}{d}{1}
+    \cena{c}{e}{2}
+    \cena{c}{f}{x}
+    \cena{c}{g}{7}
+    \cena{d}{c}{4}
+    \cena{d}{g}{2}
+    \cena{e}{f}{5}
+    \cena{e}{z}{1}
+    \cena{f}{d}{y}
+    \cena{f}{g}{2}
+    \cena{f}{z}{2}
+    \cena{g}{z}{11}
 \end{pretok*}

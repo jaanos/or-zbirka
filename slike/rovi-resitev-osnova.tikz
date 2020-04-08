@@ -1,0 +1,9 @@
+\input{slike/rovi-osnova.tikz}
+
+\NewEnviron{pretok@rovi-resitev}{
+    \kolicina{b}{d}{0}[prazna, zasicena]
+    \kolicina{c}{f}{0}[prazna, zasicena]
+
+    \begin{pretok@rovi}
+    \end{pretok@rovi}
+}

@@ -1,0 +1,28 @@
+\NewEnviron{pretok@rovi}{
+    \vozlisce*{a}{-3,-2}
+    \vozlisce{b}{-6, 0}
+    \vozlisce{c}{-3, 0}
+    \vozlisce{d}{-3, 2}
+    \vozlisce{e}{ 3,-2}
+    \vozlisce{f}{ 3, 0}
+    \vozlisce{g}{ 3, 2}
+    \vozlisce*{z}{ 6, 0}
+
+    \povezava{a}{c}{1}{left}
+    \povezava{a}{e}{4}{below}
+    \povezava{a}{f}{3}[sloped]{below}
+    \povezava{b}{a}{9}[sloped]{below}
+    \povezava{b}{c}{1}{above}
+    \povezava{b}{d}{0}[sloped]{above}
+    \povezava{c}{e}{1}[sloped]{below}
+    \povezava{c}{f}{x-1}{above}
+    \povezava{c}{g}{6}[sloped]{above}
+    \povezava{d}{c}{3}{left}
+    \povezava{d}{g}{1}{above}
+    \povezava{e}{f}{4}{right}
+    \povezava{e}{z}{0}[sloped]{below}
+    \povezava{f}{d}{y-1}[sloped]{above}
+    \povezava{f}{g}{1}{right}
+    \povezava{f}{z}{1}{above}
+    \povezava{g}{z}{10}[sloped]{above}
+}
