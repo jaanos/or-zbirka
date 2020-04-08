@@ -1,0 +1,33 @@
+\input{slike/strezniki-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{strezniki-resitev}
+    \nicle
+    \kolicina{s}{u_d}{1}
+    \kolicina{u_d}{v_d}[0]{1}[prerez]
+    \kolicina{v_d}{u_h}{1}
+    \kolicina{u_h}{v_h}[0]{1}[zasicena]
+    \kolicina{v_h}{t}{1}
+    \kolicina{s}{u_a}{1}
+    \kolicina{u_a}{v_a}[0]{1}[zasicena]
+    \kolicina{v_a}{u_e}{1}
+    \kolicina{u_e}{v_e}[0]{1}[zasicena]
+    \kolicina{v_e}{u_i}{1}
+    \kolicina{u_i}{v_i}[0]{1}[prerez]
+    \kolicina{v_i}{t}{1}
+
+    \nasprotna{v_g}{u_i}
+
+    \dosezeno{s}
+    \dosezeno{u_a}
+    \dosezeno{u_b}
+    \dosezeno{u_c}
+    \dosezeno{u_d}
+    \dosezeno{u_e}
+    \dosezeno{u_f}
+    \dosezeno{u_i}
+    \dosezeno{v_a}
+    \dosezeno{v_b}
+    \dosezeno{v_c}
+    \dosezeno{v_e}
+    \dosezeno{v_f}
+\end{pretok*}

@@ -105,6 +105,9 @@ pgf/rovi.pdf: slike/rovi.tikz slike/rovi-osnova.tikz
 pgf/rovi%.pdf: slike/rovi%.tikz slike/rovi-resitev-osnova.tikz slike/rovi-osnova.tikz
 	$(call pgfc,rovi$*)
 
+pgf/strezniki%.pdf: slike/strezniki%.tikz slike/strezniki-osnova.tikz
+	$(call pgfc,strezniki$*)
+
 pgf/terminali.pdf: slike/terminali.tikz slike/terminali-osnova.tikz
 	$(call pgfc,terminali)
 

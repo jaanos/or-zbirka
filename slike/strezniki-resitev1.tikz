@@ -1,0 +1,38 @@
+\input{slike/strezniki-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{strezniki-resitev}
+    \nicle
+    \kolicina*{s}{u_d}{0}[red]
+    \kolicina*{u_d}{v_d}{0}[red]
+    \kolicina*{v_d}{u_h}{0}[red]
+    \kolicina*{u_h}{v_h}{0}[red]
+    \kolicina*{v_h}{t}{0}[red]
+    \kolicina*{s}{u_a}{0}[green]
+    \kolicina*{u_a}{v_a}{0}[green]
+    \kolicina*{v_a}{u_e}{0}[green]
+    \kolicina*{u_e}{v_e}{0}[green]
+    \kolicina*{v_e}{u_i}{0}[green]
+    \kolicina*{u_i}{v_i}{0}[green]
+    \kolicina*{v_i}{t}{0}[green]
+
+    \dosezeno{s}
+    \dosezeno{u_a}
+    \dosezeno{u_b}
+    \dosezeno{u_c}
+    \dosezeno{u_d}
+    \dosezeno{u_e}
+    \dosezeno{u_f}
+    \dosezeno{u_g}
+    \dosezeno{u_h}
+    \dosezeno{u_i}
+    \dosezeno{v_a}
+    \dosezeno{v_b}
+    \dosezeno{v_c}
+    \dosezeno{v_d}
+    \dosezeno{v_e}
+    \dosezeno{v_f}
+    \dosezeno{v_g}
+    \dosezeno{v_h}
+    \dosezeno{v_i}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

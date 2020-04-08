@@ -1,0 +1,51 @@
+\NewEnviron{pretok@strezniki-resitev}{
+    \vozlisce*{s}{-7, 0}
+    \vozlisce{u_a}{-3,-3}
+    \vozlisce{u_b}{-3,-1}
+    \vozlisce{u_c}{-3, 1}
+    \vozlisce{u_d}{-3, 3}
+    \vozlisce{u_e}{ 1,-3}
+    \vozlisce{u_f}{ 1,-1}
+    \vozlisce{u_g}{ 1, 1}
+    \vozlisce{u_h}{ 1, 3}
+    \vozlisce{u_i}{ 5,-1}
+    \vozlisce{v_a}{-1,-3}
+    \vozlisce{v_b}{-1,-1}
+    \vozlisce{v_c}{-1, 1}
+    \vozlisce{v_d}{-1, 3}
+    \vozlisce{v_e}{ 3,-3}
+    \vozlisce{v_f}{ 3,-1}
+    \vozlisce{v_g}{ 3, 1}
+    \vozlisce{v_h}{ 3, 3}
+    \vozlisce{v_i}{ 7,-1}
+    \vozlisce*{t}{ 7, 1}
+
+    \povezava{s}{u_a}{\infty}[sloped]{below}[bend right=20]
+    \povezava{s}{u_b}{\infty}[sloped]{below}
+    \povezava{s}{u_c}{\infty}[sloped]{above}
+    \povezava{s}{u_d}{\infty}[sloped]{above}[bend left=20]
+    \povezava{v_a}{u_e}{\infty}{below}
+    \povezava{v_a}{u_f}{\infty}[sloped]{above}
+    \povezava{v_b}{u_f}{\infty}{above}
+    \povezava{v_c}{u_d}{\infty}[sloped]{below}
+    \povezava{v_c}{u_f}{\infty}[sloped]{above}
+    \povezava{v_d}{u_g}{\infty}[sloped]{below}
+    \povezava{v_d}{u_h}{\infty}{above}
+    \povezava{v_e}{u_f}{\infty}[sloped]{above}
+    \povezava{v_e}{u_i}{\infty}[sloped]{below}
+    \povezava{v_f}{u_i}{\infty}{below}
+    \povezava{v_g}{u_h}{\infty}[sloped]{above}
+    \povezava{v_g}{u_i}{\infty}[sloped]{below}
+    \povezava{v_g}{t}{\infty}{below}
+    \povezava{v_h}{t}{\infty}[sloped]{above}
+    \povezava{v_i}{t}{\infty}{right}
+    \povezava{u_a}{v_a}{1}{below}
+    \povezava{u_b}{v_b}{1}{above}
+    \povezava{u_c}{v_c}{1}{below}
+    \povezava{u_d}{v_d}{1}{above}
+    \povezava{u_e}{v_e}{1}{below}
+    \povezava{u_f}{v_f}{1}{above}
+    \povezava{u_g}{v_g}{1}{below}
+    \povezava{u_h}{v_h}{1}{above}
+    \povezava{u_i}{v_i}{1}{below}
+}
