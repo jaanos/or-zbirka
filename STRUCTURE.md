@@ -147,7 +147,7 @@ Tukaj je še nekaj napotkov za pisanje rešitev.
   - Za prazno vrednost se uporablja `\Null`,
     za funkcijo, ki ne naredi ničesar, pa `\NOp`.
   - Definirani so tudi ukazi za pogoste operacije na podatkovnih strukturah:
-    `\length`, `\isEmpty`, `\append`, `\pop`, `\reverse`.
+    `\length`, `\isEmpty`, `\append`, `\pop`, `\push`, `\reverse`.
   - Grafi se v specifikaciji vhoda algoritma navajajo
     v obliki *G* = (*V*, *E*) -
     potem se lahko v algoritmu sklicujemo na množici *V* in *E*.
