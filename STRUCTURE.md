@@ -2,22 +2,22 @@
 
 Zbirka nalog se generira iz sledečih datotek:
 
-* [`or-zbirka.tex`](or-zbirka.tex): glavna datoteka zbirke
-* [`test.tex.template`](test.tex.template):
+* [`or-zbirka.tex`](https://github.com/jaanos/or-zbirka/blob/master/or-zbirka.tex): glavna datoteka zbirke
+* [`test.tex.template`](https://github.com/jaanos/or-zbirka/blob/master/test.tex.template):
     predloga za [testiranje](#testiranje)
-* [`reference.bib`](reference.bib): bibliografija v obliki BibTeX
-* [`slovene.bdf`](slovene.bdf): slovenski prevodi za `babelbib`
+* [`reference.bib`](https://github.com/jaanos/or-zbirka/blob/master/reference.bib): bibliografija v obliki BibTeX
+* [`slovene.bdf`](https://github.com/jaanos/or-zbirka/blob/master/slovene.bdf): slovenski prevodi za `babelbib`
 * [`omrezja.sty`](https://github.com/jaanos/omrezja):
     knjižnica za risanje omrežij
     (potrebna je [ročna nastavitev](CONTRIBUTING.md#večji-popravki))
-* [`tex/`](tex/): pomožne datoteke (uvoz paketov, definicije funkcij)
-* [`naloge/`](naloge/): datoteke z [nalogami](#naloge)
-* [`slike/`](slike/): datoteke s [slikami](#slike)
+* [`tex/`](https://github.com/jaanos/or-zbirka/blob/master/tex/): pomožne datoteke (uvoz paketov, definicije funkcij)
+* [`naloge/`](https://github.com/jaanos/or-zbirka/blob/master/naloge/): datoteke z [nalogami](#naloge)
+* [`slike/`](https://github.com/jaanos/or-zbirka/blob/master/slike/): datoteke s [slikami](#slike)
 * [`pgf/`](pgf/): mapa za prevedene slike
 
 ## Naloge
 
-V mapi [`naloge/`](naloge/) se nahajajo naloge, vsaka v svoji datoteki.
+V mapi [`naloge/`](https://github.com/jaanos/or-zbirka/blob/master/naloge/) se nahajajo naloge, vsaka v svoji datoteki.
 Vsaka naloga ima sledečo strukturo:
 ```LaTeX
 \begin{naloga}[Naslov]{Avtor}{Vir}
@@ -33,15 +33,15 @@ Besedilo rešitve
 Ime datoteke z nalogo (brez končnice `.tex`) je tudi ime,
 s katerim je mogoče [sklicevanje](#sklicevanje) na nalogo
 ter njeno rešitev, slike in tabele.
-Razporeditev nalog po poglavjih je določena z datotekami v mapi [`tex/`](tex/)
-(datoteka [`tex/seznam.tex`](tex/seznam.tex) določa poglavja).
+Razporeditev nalog po poglavjih je določena z datotekami v mapi [`tex/`](https://github.com/jaanos/or-zbirka/blob/master/tex/)
+(datoteka [`tex/seznam.tex`](https://github.com/jaanos/or-zbirka/blob/master/tex/seznam.tex) določa poglavja).
 
 Kot je razvidno iz zgornjega primera,
 je naslov pri nalogi neobvezen in se ga lahko izpusti.
 
 ## Slike
 
-V mapi [`slike/`](slike/) so zbrane slike,
+V mapi [`slike/`](https://github.com/jaanos/or-zbirka/blob/master/slike/) so zbrane slike,
 večinoma opisane v jeziku PGF/Ti*k*Z.
 V večini primerov je ime datoteke s sliko (brez končnice `.tikz`)
 enako imenu naloge, ki ji pripada.
@@ -84,7 +84,7 @@ je mogoče osnovno sliko imeti v svoji datoteki,
 ki naj pa vsebuje besedo `osnova` (npr. `slike/naloga-osnova.tikz`).
 Tako datoteko se lahko vključi z ukazom `\input`.
 V primeru dodajanja take datoteke
-je potrebno še posodobiti [`Makefile`](Makefile),
+je potrebno še posodobiti [`Makefile`](https://github.com/jaanos/or-zbirka/blob/master/Makefile),
 da se zabeleži ustrezna odvisnost med datotekami.
 
 ## Tabele
@@ -163,7 +163,7 @@ Zaradi velike količine slik je prevajanje zbirke dolgotrajen proces
 (možno ga je sicer skrajšati s predhodnim prevajanjem slik,
 glej [`pgf/README.md`](pgf/README.md)).
 V ta namen je v repozitoriju datoteka
-[`test.tex.template`](test.tex.template),
+[`test.tex.template`](https://github.com/jaanos/or-zbirka/blob/master/test.tex.template),
 ki služi kot predloga za testiranje posamezne naloge.
 Te datoteke ne spreminjamo, pač pa jo lahko skopiramo v `test.tex`
 (vnos v `.gitignore` bo preprečil njeno dodajanje na git)
