@@ -108,12 +108,12 @@ Po predpostavki velja $a_k \le a_i$ ($1 \le k \le j$) in $a_i > a_j$.
 Poglejmo, kaj se dogaja ob klicih ukazov $A.\reverseStart$.
 $$
 \begin{array}{rrrrrrrrrrr}
-& a_1, & \dots, & a_{j-1}, & a_j, & a_{j+1}, & \dots, & a_{i-1}, & a_i, & a_{i+1}, & \dots
-\shortintertext{\small $A.\reverseStart(i-1)$:}
-& a_{i-1}, & \dots, & a_{j+1}, & a_j, & a_{j-1}, & \dots, & a_1, & a_i, & a_{i+1}, & \dots
-\shortintertext{\small $A.\reverseStart(i-j)$:}
-& a_j, & a_{j+1}, & \dots, & a_{i-1}, & a_{j-1}, & \dots, & a_1, & a_i, & a_{i+1}, & \dots
-\shortintertext{\small $A.\reverseStart(i)$:}
+& a_1, & \dots, & a_{j-1}, & a_j, & a_{j+1}, & \dots, & a_{i-1}, & a_i, & a_{i+1}, & \dots \\
+\multicolumn{11}{l}{A.\reverseStart(i-1):} \\
+& a_{i-1}, & \dots, & a_{j+1}, & a_j, & a_{j-1}, & \dots, & a_1, & a_i, & a_{i+1}, & \dots \\
+\multicolumn{11}{l}{A.\reverseStart(i-j):} \\
+& a_j, & a_{j+1}, & \dots, & a_{i-1}, & a_{j-1}, & \dots, & a_1, & a_i, & a_{i+1}, & \dots \\
+\multicolumn{11}{l}{A.\reverseStart(i):} \\
 & a_i, & a_1, & \dots, & a_{j-1}, & a_{i-1}, & \dots, & a_{j+1}, & a_j, & a_{i+1}, & \dots \\
 = & b_1, & b_2, & \dots, & b_j, & b_{j+1}, & \dots, & b_{i-1}, & b_i, & b_{i+1}, & \dots
 \end{array}
