@@ -45,7 +45,7 @@ Uporabljajo se sledeči paketi za LaTeX:
 * `wasysym`
 * `xspace`
 
-Glavna datoteka zbirke je [`or-zbirka.tex`]().
+Glavna datoteka zbirke je [`or-zbirka.tex`](https://github.com/jaanos/or-zbirka/blob/master/or-zbirka.tex).
 Za prevedbo v datoteko PDF lahko tako uporabimo `pdflatex`:
 ```bash
 pdflatex or-zbirka.tex
@@ -59,7 +59,7 @@ Nato ponovno prevedemo zbirko s `pdflatex`.
 
 Ker zbirka obsega veliko slik,
 je prevajanje v PDF lahko dolgotrajno.
-V ta namen je pripravljena datoteka [`Makefile`](Makefile),
+V ta namen je pripravljena datoteka [`Makefile`](https://github.com/jaanos/or-zbirka/blob/master/Makefile),
 ki s pomočjo orodja [GNU Make](https://www.gnu.org/software/make/)
 poskrbi za predhodno prevedbo slik,
 zaradi česar se poročilo hitreje prevaja.
