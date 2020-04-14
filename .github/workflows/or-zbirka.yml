@@ -1,4 +1,4 @@
-name: Prevedi zbirko
+name: PDF
 on:
   push:
     branches:
