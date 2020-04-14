@@ -1,6 +1,6 @@
 # Zbirka nalog iz Operacijskih raziskav
 
-[![](https://github.com/jaanos/or-zbirka/workflows/Prevedi%20zbirko/badge.svg) **Prenesi zadnjo različico**](https://jaanos.github.io/or-zbirka/or-zbirka.pdf)
+[![](https://github.com/jaanos/or-zbirka/workflows/PDF/badge.svg) **Prenesi zadnjo različico**](https://jaanos.github.io/or-zbirka/or-zbirka.pdf)
 
 Ta zbirka nalog obsega naloge z vaj, kolokvijev in izpitov
 pri predmetu Operacijske raziskave od š.l. 2009/10 naprej.
