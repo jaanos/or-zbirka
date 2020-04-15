@@ -1,0 +1,26 @@
+name: PR
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kloniraj git repozitorij
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Dodaj povezavo do paketa omrezja
+        run: |
+          cd $GITHUB_WORKSPACE
+          ln -s omrezja/omrezja.sty
+      - name: Prevedi zbirko
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: or-zbirka.tex
+      - name: Naloži PDF
+        uses: actions/upload-artifact@v1
+        with:
+          name: or-zbirka
+          path: or-zbirka.pdf
