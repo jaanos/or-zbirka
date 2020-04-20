@@ -25,6 +25,75 @@ Druga možnost pa je, da pregleda vseh $10$ izdelkov.
 Katera odločitev tovarni povzroči manj stroškov?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Definirajmo spremenljivke in izpišimo znane podatke.
+\begin{align*}
+X &\dots \text{strošek} \\
+C &\dots \text{izberemo pokvarjen izdelek} \\
+D_i &\dots \text{imamo $i$ pokvarenih izdelkov} \\
+E &\dots \text{tovarna pregleda vseh $10$ izdelkov} \\
+F &\dots \text{tovarna ne pregleda nobenega izdelka} \\
+G &\dots \text{tovarna pregleda naključen izdelek}
+\end{align*}
+\begin{align*}
+p_1 &= 0.7 & p_2 &= 0.2 & p_3 &= 0.1
+\end{align*}
+
+\begin{enumerate}[(a)]
+\item Izračunajmo, koliko tovarno stane,
+da pregleda vse izdelke in popravi po\-kva\-rje\-ne.
+Vemo, da podjetje plača $45 € \cdot 10$ za $10$ pregledov.
+\begin{alignat*}{3}
+E(X \mid E \land D_1) &= 450 € + 350 € &&=&\ 800 € \\
+E(X \mid E \land D_2) &= 450 € + 350 € \cdot 2 &&=&\ 1\,150 € \\
+E(X \mid E \land D_3) &= 450 € + 350 € \cdot 3 &&=&\ 1\,500 €
+\end{alignat*}
+Pričakovani strošek, če podjetje pregleda vseh $10$ izdelkov, je torej
+$$
+E(X \mid E) = 0.7 \cdot 800 € + 0.2 \cdot 1\,150 € + 0.1 \cdot 1\,500 € = 940 €
+$$
+Sedaj si poglejmo še, koliko znaša pričakovani strošek,
+če tovarna ne pregleda nobenega izdelka.
+$$
+E(X \mid F) = 0.7 \cdot 350 € + 0.2 \cdot 2 \cdot 350 € + 0.1 \cdot 3 \cdot 350 € = 490 €
+$$
+Če dobljena stroška primerjamo, lahko vidimo,
+da ima podjetje manjši strošek, če ne pregleda nobenega dobavljenega izdelka.
+
+\item Strošek za pregled vseh komponent je enak kot v primeru (a),
+in sicer $940 €$.
+Izračunajmo še pričakovani strošek,
+če tovarna naključno pregleda eno komponento.
+Problem ločimo na tri dele:
+imamo en, dva ali tri pokvarjene izdelke.
+Vsakega od teh primerov ločimo še na dva dela:
+ali izberemo pokvarjen izdelek ali ne.
+\begin{alignat*}{3}
+E(X \mid G \land C \land D_1) &&&=&\ 45 € \\
+E(X \mid G \land \overline{C} \land D_1) &= 45 € + 350 € &&=&\ 395 € \\
+E(X \mid G \land D_1) &= \frac{1}{10} \cdot 45 € + \frac{9}{10} \cdot 395 €
+&&=&\ 360 € \\[1ex]
+E(X \mid G \land C \land D_2) &= 45 € + 350 € &&=&\ 395 € \\
+E(X \mid G \land \overline{C} \land D_2) &= 45 € + 350 € \cdot 2 &&=&\ 745 € \\
+E(X \mid G \land D_2) &= \frac{2}{10} \cdot 395 € + \frac{8}{10} \cdot 745 €
+&&=&\ 675 € \\[1ex]
+E(X \mid G \land C \land D_3) &= 45 € + 350 € \cdot 2 &&=&\ 745 € \\
+E(X \mid G \land \overline{C} \land D_3) &= 45 € + 350 € \cdot 3 &&=&\ 1\,095 € \\
+E(X \mid G \land D_3) &= \frac{3}{10} \cdot 745 € + \frac{7}{10} \cdot 1\,095 €
+&&=&\ 990 €
+\end{alignat*}
+
+Sedaj lahko izračunamo pričakovani strošek,
+če tovarna izbere naključen izdelek,
+ga pregleda in po potrebi popravi:
+$$
+E(X \mid G) = 0.7 \cdot 360 € + 0.2 \cdot 675 € + 0.1 \cdot 990 € = 486 €
+$$
+
+Vidimo, da velja $E(X \mid G) < E(X \mid E)$,
+zato je za tovarno bolje, da izbere eno naključno komponento za pregled,
+kot če pregleda vseh $10$ komponent.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
