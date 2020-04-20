@@ -26,58 +26,59 @@ Zakaj?
 \end{vprasanje}
 \begin{odgovor}
 
-Definiramo si spremenljivke, ki jih bomo potrebovali in izpišemo znane podatke.
-\begin{itemize}
-\item[] $X$ \dots zaslužek
-\item[] $A$ \dots recept uspe
-\item[] $B$ \dots prosijo za nasvet
-\item[] $C$ \dots svetujejo ugodno
-\item[] $D$ \dots sami proizvajajo
-\end{itemize}
-\begin{align*}
-&P(A) = \frac{2}{5} && P(\neg A) = \frac{3}{5}\\
-&P(C|A) = \frac{3}{4} & &P(C|\neg A) = \frac{1}{2}\\
-&P(\neg C|A) = \frac{1}{4} & &P(\neg C| \neg A) = \frac{1}{2}
-\end{align*}
-Izračunajmo verjetnosti, ki jih bomo v nalogi potrebovali.
-\begin{align*}
-&P(C) = P(C|A) P(A) + P(C|\neg A) P(\neg A) =\frac{3}{4}\cdot \frac{2}{5} + \frac{1}{2}\cdot \frac{3}{5} = \frac{3}{5}\\
-&P(A|C) = \frac{P(C|A)P(A)}{P(C)} = \frac{3}{4}\cdot \frac{2}{5}\cdot \frac{5}{3}=\frac{1}{2}\\
-&P(\neg A|C) = \frac{P(C|\neg A)P(\neg A)}{P(C)} = \frac{1}{2}\cdot \frac{3}{5}\cdot \frac{5}{3} = \frac{1}{2}
-\end{align*}
+    Definiramo si spremenljivke, ki jih bomo potrebovali in izpišemo znane podatke.
+    \begin{align*}
+    X &\dots \text{zaslužek}\\
+    A &\dots \text{recept uspe}\\
+    B &\dots \text{prosijo za nasvet}\\
+    C &\dots \text{svetujejo ugodno}\\
+    D &\dots \text{sami proizvajajo}
+    \end{align*}
+    \begin{align*}
+    P(A) &= \frac{2}{5} & P(\neg A)& = \frac{3}{5}\\
+    P(C|A)& = \frac{3}{4}  &P(C|\neg A) &= \frac{1}{2}\\
+    P(\neg C|A) &= \frac{1}{4}  &P(\neg C| \neg A) &= \frac{1}{2}
+    \end{align*}
+    Izračunajmo verjetnosti in pričakovane vrednosti, ki jih nato vpišemo v odločitveno drevo.
+    $$
+    P(C) = P(C|A) P(A) + P(C|\neg A) P(\neg A) =\frac{3}{4}\cdot \frac{2}{5} + \frac{1}{2}\cdot \frac{3}{5} = \frac{3}{5}
+    $$
+    \begin{alignat*}{2}
+    P(A|C) &= \frac{P(C|A)P(A)}{P(C)} &&= \frac{3}{4}\cdot \frac{2}{5}\cdot \frac{5}{3}=\frac{1}{2}\\
+    P(\neg A|C) &= \frac{P(C|\neg A)P(\neg A)}{P(C)} &&= \frac{1}{2}\cdot \frac{3}{5}\cdot \frac{5}{3}= \frac{1}{2}
+    \end{alignat*}
+    
+    \begin{align*}
+    E(X \mid D \text{ in }\neg B \text{ in } A) &= 2\, 490\, 000 € & P(A \mid \neg B) &= 0.4\\
+    E(X \mid D \text{ in } \neg B \text{ in } \neg A) &= 240\, 000 € & P(\neg A \mid B)& = 0.6 \\
+    E(X \mid \neg D \text{ in } \neg B) &= 15 \, 002 €
+    \end{align*}
+    
+    \begin{align*}
+    E(X \mid B \text{ in }C \text{ in } A) &=2\,455\, 000 € & P(A \mid B \text{ in } C) &= 0.5\\
+    E(X \mid B \text{ in }C \text{ in }\neg A) &=205\, 000 € & P(\neg A \mid B \text{ in } C) &= 0.5\\
+    E(X \mid \neg D \text{ in } B \text{ in } C) &= -19\, 998 €
+    \end{align*}
+    
+    \begin{align*}
+    E(X \mid B \text{ in } \neg C \text{ in } A) &=2\, 455\, 000 € & P(A \mid B \text{ in } \neg C) &= 0.5\\
+    E(X \mid B \text{ in } \neg C \text{ in }\neg A) &=205\, 000 € & P(\neg A \mid B \text{ in } \neg C) &= 0.5\\
+    E(X \mid \neg D \text{ in } B \text{ in } \neg C) &= -19\, 998 €
+    \end{align*}
+    
+    %%%%%%odločitveno drevo
+    
+    Ko s pomočjo odločitvenega drevesa s slike~\fig izračunamo preostale pričakovane vrednosti, lahko vidimo, da
+    $$
+     E(X|B) > E(X|\neg B) ,
+    $$
+    zato je za kavarno bolje, da prosi za nasvet in se ne glede na napoved odloči za proizvodnjo.
 
-\begin{itemize}
-\item[kavarna ne prosi za svetovanje]
-Če se kavarna odloči za proizvodjo in recept uspe, zasluži $2\; 490 \; 000$, kar se zgodi z verjetnostji $0,4$. Sicer zasluži $240 \; 000$. Če se kavarna odloči, da bo recept raje prodala zasluži $15 \; 002$. Pričakovan zaslužek, če se tovarna odloči za proizvodnjo je
-$$
-E(X|D) = 0,4 \cdot 2 \;490 \;000 + 0,6 \cdot 240 \; 000 = 1\;140\;000
-$$
-Če pa se kavarna odloči, da bo recept prodala, zasluži $15 \; 002$. Ker je to manj, kot pa pričakovan zaslužek, če se odloči za proizvodnjo, bo kavarna v primeru, da ne prosi za nasvet odloči, da so začela sama proizvajati.
-$$
-E(X|\neg B) = 1\;140\;000
-$$
-
-\item[kavarna prosi za svetovanje]
-\item[svetujejo ugodno]
-Izračunajmo sedaj $E(X|B \text{ in } C)$. Če se ne odloči za proizvodnjo, je njen zaslužek $-19\;998$. Če se kavarna odloči za proizvodnjo in uspe, zasluži $2\;455000$. To se zgodi z verjetnostjo $P(A|C) = \frac{1}{2}$. Z enako verjetnostjo recept ne uspe in kavarna zasluži le $205\;000$. Pričakovan zaslužek je torej enak 
-$$
-E(X|B \text{ in } C) = \frac{1}{2} \cdot 2\;455\;000 + \frac{1}{2} \cdot 205\;000 = 1\;330\;000
-$$
-Kar je več, kot pa če tovarna ne proizvaja sama. Zato je $E(X|D \text{ in } B)= 1\;330\;000$
-
-\item[ne svetujejo ugodno]
-Zaslužki v tem primeru so enaki, kot če kavarna prosi za nasvet in svetujejo ugodno. Prav tako verjetnosti, ki smo jih izračunali zgoraj. Zato je $E(X|B \text{ in } \neg C) = 1\;330\;000$.
-
-\end{itemize}
-Sedaj lahko izračunamo pričakovan dobiček, če se kavarna odloči, da bo prosila za nasvet.
-$$
-E(X|B) = \frac{3}{5}\cdot  1\;330\;000 + \frac{2}{5} \cdot 1\;330\;000 = 1\;330\;000
-$$
-
-Vidimo, da velja
-$$
- E(X|B) > E(X|\neg B) ,
-$$
-zato je za kavarno bolje, da prosi za nasvet in se ne glede na napoved odloči za proizvodnjo.
+    \begin{slika}
+        \makebox[\textwidth][c]{
+            \pgfslika
+        }
+        \podnaslov{Odločitveno drevo}
+    \end{slika}
 \end{odgovor}
 \end{naloga}
