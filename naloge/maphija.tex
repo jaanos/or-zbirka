@@ -24,6 +24,77 @@ Neugodno & ${1 \over 4}$ & ${1 \over 2}$
 Kako naj se kavarna {\em ma$\phi$ja} odloči?
 Zakaj?
 \end{vprasanje}
+
 \begin{odgovor}
+Definirajmo spremenljivke, ki jih bomo potrebovali,
+in izpišimo znane podatke.
+\begin{align*}
+X &\dots \text{zaslužek}\\
+A &\dots \text{recept uspe}\\
+B &\dots \text{prosijo za nasvet}\\
+C &\dots \text{ugodno mnenje}\\
+D &\dots \text{sami proizvajajo}
+\end{align*}
+\begin{align*}
+P(A) &= \frac{2}{5} &
+P(\overline{A}) &= \frac{3}{5} \\
+P(C \mid A)& = \frac{3}{4} &
+P(C \mid \overline{A}) &= \frac{1}{2} \\
+P(\overline{C} \mid A) &= \frac{1}{4} &
+P(\overline{C} \mid \overline{A}) &= \frac{1}{2}
+\end{align*}
+Izračunajmo verjetnosti in pričakovane vrednosti,
+ki jih nato vpišemo v od\-lo\-čit\-ve\-no drevo.
+\begin{alignat*}{3}
+P(C) &= P(C \mid A) P(A) + P(C \mid \overline{A}) P(\overline{A})
+&&= \frac{3}{4}\cdot \frac{2}{5} + \frac{1}{2}\cdot \frac{3}{5}
+&&= \frac{3}{5} \\
+P(\overline{C}) &= P(\overline{C} \mid A) P(A) + P(\overline{C} \mid \overline{A}) P(\overline{A})
+&&= \frac{1}{4}\cdot \frac{2}{5} + \frac{1}{2}\cdot \frac{3}{5}
+&&= \frac{2}{5} \\
+P(A \mid C) &= \frac{P(C \mid A) P(A)}{P(C)}
+&&= {3/4 \cdot 2/5 \over 3/5} &&= \frac{1}{2} \\
+P(\overline{A} \mid C) &= \frac{P(C \mid \overline{A})P(\overline{A})}{P(C)}
+&&= {1/2 \cdot 3/5 \over 3/5} &&= \frac{1}{2} \\
+P(A \mid \overline{C}) &= \frac{P(\overline{C} \mid A) P(A)}{P(\overline{C})}
+&&= {1/4 \cdot 2/5 \over 2/5} &&= \frac{1}{4} \\
+P(\overline{A} \mid \overline{C}) &= \frac{P(\overline{C} \mid \overline{A})P(\overline{A})}{P(\overline{C})}
+&&= {1/2 \cdot 3/5 \over 2/5} &&= \frac{3}{4}
+\end{alignat*}
+
+\begin{align*}
+E(X \mid D \land \overline{B} \land A) &= 2\,490\,000 € &
+P(A \mid \overline{B}) &= 0.4 \\
+E(X \mid D \land \overline{B} \land \overline{A}) &= 240\,000 € &
+P(\overline{A} \mid \overline{B})& = 0.6 \\
+E(X \mid \overline{D} \land \overline{B}) &= 15\,002 € \\[1ex]
+E(X \mid B \land C \land A) &=2\,455\,000 € &
+P(A \mid B \land C) &= 0.5 \\
+E(X \mid B \land C \land \overline{A}) &=205\,000 € &
+P(\overline{A} \mid B \land C) &= 0.5 \\
+E(X \mid \overline{D} \land B \land C) &= -19\,998 € \\[1ex]
+E(X \mid B \land \overline{C} \land A) &=2\,455\,000 € &
+P(A \mid B \land \overline{C}) &= 0.25 \\
+E(X \mid B \land \overline{C} \land \overline{A}) &=205\,000 € &
+P(\overline{A} \mid B \land \overline{C}) &= 0.75 \\
+E(X \mid \overline{D} \land B \land \overline{C}) &= -19\,998 €
+\end{align*}
+
+
+Ko s pomočjo odločitvenega drevesa s slike~\fig
+izračunamo preostale pričakovane vrednosti,
+lahko vidimo, da velja
+$$
+E(X \mid B) < E(X \mid \overline{B}) ,
+$$
+zato je za kavarno ugodneje,
+da ne prosi za nasvet in se odloči za proizvodnjo.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}
