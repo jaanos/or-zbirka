@@ -4,8 +4,34 @@ V škatli so štirje ponarejeni kovanci, vredni $0 €$,
 in en zlat kovanec, vreden $100 €$.
 Na slepo lahko izbereš po en kovanec,
 pri čemer moraš za vsako izbiranje plačati $30 €$.
-Določi povprečen profit, ki ga dosežeš pri igranju te igre.
+Določi pričakovani profit, ki ga dosežeš pri igranju te igre.
 \end{vprasanje}
+
 \begin{odgovor}
+Očitno se nam po uspešnem poskusu ne izplača več poskušati.
+Tako naj slučajni spremenljivki $X_i$ in $Y_i$ ($0 \le i \le 4$)
+predstavljata profit v primerih,
+ko se odločimo za $(i+1)$-ti poskus
+oziroma se odločimo končati igro po $i$ poskusih,
+ob predpostavki, da so bili prejšnji poskusi neuspešni.
+Imamo torej
+\begin{align*}
+E(X_i) &= {1 \over 5-i} \cdot (70 € - i \cdot 30 €)
+    + {4-i \over 5-i} \cdot \max\{E(X_{i+1}), E(Y_{i+1})\}
+\quad \text{in} \\
+E(Y_i) &= -i \cdot 30 € .
+\end{align*}
+Izračunajmo ustrezne vrednosti.
+\begin{align*}
+E(X_4) &= -50 € & E(Y_4) &= -120 € \\
+E(X_3) &= -35 € & E(Y_3) &= -90 € \\
+E(X_2) &= -20 € & E(Y_2) &= -60 € \\
+E(X_1) &=  -5 € & E(Y_1) &= -30 € \\
+E(X_0) &=  10 € & E(Y_0) &=   0 €
+\end{align*}
+Vidimo, da za vse $i$ ($0 \le i \le 4$) velja $E(X_{i+1}) > E(Y_{i+1})$,
+kar pomeni, da je optimalna strategija taka,
+da igramo, dokler ne dobimo zlatnika.
+Pričakovani profit je potem $10 €$.
 \end{odgovor}
 \end{naloga}
