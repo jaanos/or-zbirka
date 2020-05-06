@@ -2,7 +2,8 @@
 \begin{vprasanje}
 Ljubo prodaja časopise po centru Ljubljane.
 Vsak dan se mora odločiti, koliko časopisov naj naroči.
-Za vsak naročen časopis plača $0.8 €$, iztrži pa $1 €$.
+Za vsak naročen časopis plača $0.8 €$,
+za vsak prodan časopis pa iztrži $1 €$.
 Za neprodane časopise ne dobi povrnjenega denarja.
 Vsak dan je verjetnost, da bo imel $i$ kupcev, enaka $p_i$,
 kjer je $p_6 = 0.1$, $p_7 = 0.2$, $p_8 = 0.3$, $p_9 = 0.3$ in $p_{10} = 0.1$.
@@ -12,6 +13,28 @@ kjer je $p_6 = 0.1$, $p_7 = 0.2$, $p_8 = 0.3$, $p_9 = 0.3$ in $p_{10} = 0.1$.
 ko časopis izide petindvajsetkrat?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj slučajna spremenljivka $X$ predstavlja dnevni zaslužek,
+$n$ pa naj bo število naročenih časopisov.
+Izračunajmo pričakovane zaslužke v odvisnosti od $n$.
+\begin{alignat*}{2}
+E(X \mid n \le 6) &= n \cdot 1 € - n \cdot 0.8 € &&\le 1.2 € \\
+E(X \mid n = 7) &= (0.1 \cdot 6 + 0.9 \cdot 7) \cdot 1 €
+    - 7 \cdot 0.8 € &&= 1.3 € \\
+E(X \mid n = 8) &= (0.1 \cdot 6 + 0.2 \cdot 7 + 0.7 \cdot 8) \cdot 1 €
+    - 8 \cdot 0.8 € &&= 1.2 € \\
+E(X \mid n = 9) &= (0.1 \cdot 6 + 0.2 \cdot 7 + 0.3 \cdot 8 + 0.4 \cdot 9)
+    \cdot 1 € - 9 \cdot 0.8 € &&= 0.8 € \\
+E(X \mid n \ge 10) &= (0.1 \cdot 6 + 0.2 \cdot 7 + 0.3 \cdot 8 + 0.3 \cdot 9
+    + 0.1 \cdot 10) \cdot 1 € - n \cdot 0.8 € &&\le 0.1 € \\
+\end{alignat*}
+Ljubo bo torej imel največji pričakovani zaslužek $1.3 €$ na dan,
+če vsakič naroči $7$ časopisov.
+
+\item V mesecu lahko pri naročilu $7$ časopisov vsak dan, ko ta izide,
+pričakuje zaslužek $25 \cdot 1.3 € = 32.5 €$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
