@@ -45,9 +45,9 @@ p_1 &= 0.7 & p_2 &= 0.2 & p_3 &= 0.1
 da pregleda vse izdelke in popravi po\-kva\-rje\-ne.
 Vemo, da podjetje plača $45 € \cdot 10$ za $10$ pregledov.
 \begin{alignat*}{3}
-E(X \mid E \land D_1) &= 450 € + 350 € &&=&\ 800 € \\
-E(X \mid E \land D_2) &= 450 € + 350 € \cdot 2 &&=&\ 1\,150 € \\
-E(X \mid E \land D_3) &= 450 € + 350 € \cdot 3 &&=&\ 1\,500 €
+E(X \mid E \cap D_1) &= 450 € + 350 € &&=&\ 800 € \\
+E(X \mid E \cap D_2) &= 450 € + 350 € \cdot 2 &&=&\ 1\,150 € \\
+E(X \mid E \cap D_3) &= 450 € + 350 € \cdot 3 &&=&\ 1\,500 €
 \end{alignat*}
 Pričakovani strošek, če podjetje pregleda vseh $10$ izdelkov, je torej
 $$
@@ -70,17 +70,17 @@ imamo en, dva ali tri pokvarjene izdelke.
 Vsakega od teh primerov ločimo še na dva dela:
 ali izberemo pokvarjen izdelek ali ne.
 \begin{alignat*}{3}
-E(X \mid G \land C \land D_1) &&&=&\ 45 € \\
-E(X \mid G \land \overline{C} \land D_1) &= 45 € + 350 € &&=&\ 395 € \\
-E(X \mid G \land D_1) &= \frac{1}{10} \cdot 45 € + \frac{9}{10} \cdot 395 €
+E(X \mid G \cap C \cap D_1) &&&=&\ 45 € \\
+E(X \mid G \cap \overline{C} \cap D_1) &= 45 € + 350 € &&=&\ 395 € \\
+E(X \mid G \cap D_1) &= \frac{1}{10} \cdot 45 € + \frac{9}{10} \cdot 395 €
 &&=&\ 360 € \\[1ex]
-E(X \mid G \land C \land D_2) &= 45 € + 350 € &&=&\ 395 € \\
-E(X \mid G \land \overline{C} \land D_2) &= 45 € + 350 € \cdot 2 &&=&\ 745 € \\
-E(X \mid G \land D_2) &= \frac{2}{10} \cdot 395 € + \frac{8}{10} \cdot 745 €
+E(X \mid G \cap C \cap D_2) &= 45 € + 350 € &&=&\ 395 € \\
+E(X \mid G \cap \overline{C} \cap D_2) &= 45 € + 350 € \cdot 2 &&=&\ 745 € \\
+E(X \mid G \cap D_2) &= \frac{2}{10} \cdot 395 € + \frac{8}{10} \cdot 745 €
 &&=&\ 675 € \\[1ex]
-E(X \mid G \land C \land D_3) &= 45 € + 350 € \cdot 2 &&=&\ 745 € \\
-E(X \mid G \land \overline{C} \land D_3) &= 45 € + 350 € \cdot 3 &&=&\ 1\,095 € \\
-E(X \mid G \land D_3) &= \frac{3}{10} \cdot 745 € + \frac{7}{10} \cdot 1\,095 €
+E(X \mid G \cap C \cap D_3) &= 45 € + 350 € \cdot 2 &&=&\ 745 € \\
+E(X \mid G \cap \overline{C} \cap D_3) &= 45 € + 350 € \cdot 3 &&=&\ 1\,095 € \\
+E(X \mid G \cap D_3) &= \frac{3}{10} \cdot 745 € + \frac{7}{10} \cdot 1\,095 €
 &&=&\ 990 €
 \end{alignat*}
 
