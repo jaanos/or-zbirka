@@ -20,6 +20,29 @@ Za vsakega potnika, ki bo moral menjati let,
 ima LunaAirways $400$ denot stroškov.
 Koliko kart naj proda LunaAirways, če želi maksimizirati pričakovani dobiček?
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $X_k$ ($100 \le k \le 105$) pričakovani dobiček v denotah,
+če družba LunaAirways proda $k$ kart.
+\begin{alignat*}{2}
+E(X_{100}) &= 100 \cdot 300 &&= 30\,000 \\
+E(X_{101}) &= 101 \cdot 300 - 0.2 \cdot 400 &&= 30\,220\\
+E(X_{102}) &= 102 \cdot 300 - 0.2 \cdot (2+1) \cdot 400 &&= 30\,360\\
+E(X_{103}) &= 103 \cdot 300 - 0.2 \cdot (3+2+1) \cdot 400 &&= 30\,420\\
+E(X_{104}) &= 104 \cdot 300 - 0.2 \cdot (4+3+2+1) \cdot 400 &&= 30\,400\\
+E(X_{105}) &= 105 \cdot 300 - (0.2 \cdot (5+4+3+2) + 0.1) \cdot 400 &&= 30\,340
+\end{alignat*}
+Podrobneje si poglejmo primer, ko družba proda $103$ karte.
+Najprej izračunamo, kolikšen dobiček ustvarimo s prodajo $103$ kart,
+nato pa upoštevamo, da z ve\-rjet\-nost\-jo $0.2$ nikogar ne zagrabi strah,
+torej pridejo na potovanje vsi $103$ ljudje,
+in bodo morali sedaj trije ljudje zamenjati let.
+Podoben razmislek naredimo tudi za primere,
+če strah zagrabi enega ali dva človeka
+-- takrat bosta morala let zamenjati dva oziroma en človek.
+Ker se vsi trije primeri zgodijo z isto verjetnostjo,
+smo to verjetnost lahko izpostavili.
+
+Družba naj torej za maksimizacijo svojega dobička proda $103$ karte.
 \end{odgovor}
 \end{naloga}
