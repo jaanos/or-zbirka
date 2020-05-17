@@ -22,6 +22,28 @@ imajo $1\,400$ denot stroškov.
 Koliko kart naj organizatorji olimpijskih iger prodajo,
 če želijo maksimizirati pričakovani dobiček?
 \end{vprasanje}
+
 \begin{odgovor}
+    Naj bo $X_k$ ($1000 \le k \le 1005$) pričakovani dobiček v denotah,
+    če organizatorji olimpijskih iger prodajo $k$ kart.
+    \begin{alignat*}{2}
+    E(X_{1000}) &= 1\,000 \cdot 1\,000 &&= 1\,000\,000 \\
+    E(X_{1001}) &= 1\,001 \cdot 1\,000 - 0.01 \cdot 1\,400 &&= 1\,000\,986 \\
+    E(X_{1002}) &= 1\,002 \cdot 1\,000 - (0.01 \cdot 2 + 0.19) \cdot 1\,400 &&= 1\,001\,706 \\
+    E(X_{1003}) &= 1\,003 \cdot 1\,000 - (0.01 \cdot 3 + 0.19 \cdot 2 + 0.3) \cdot 1\,400 &&= 1\,002\,006 \\
+    E(X_{1004}) &= 1\,004 \cdot 1\,000 - (0.01 \cdot 4 + 0.19 \cdot 3 + 0.3 \cdot 2 + 0.4) \cdot 1\,400 &&= 1\,001\,746 \\
+    E(X_{1005}) &= 1\,005 \cdot 1\,000 - (0.01 \cdot 5 + 0.19 \cdot 4 + 0.3 \cdot 3 + 0.4 \cdot 2 + 0.05) \cdot 1\,400 &&= 1\,001\,416 \\
+    \end{alignat*}
+    Podrobneje si poglejmo primer, ko organizatorji prodajo $1\,003$ karte.
+    Najprej izračunamo, kolikšen dobiček ustvarijo s prodajo $1\,003$ kart,
+    nato upoštevamo, da z ve\-rjet\-nost\-jo $0.01$ na tekmo pridejo
+    vsi imetniki kart, naprej upoštevamo da z ve\-rjet\-nost\-jo $0.19$ na tekmo
+    pride $1\,002$ imetnikov kart, ter da z ve\-rjet\-nost\-jo $0.3$ na tekmo pride
+    $1\,001$ imetnikov kart.
+    Torej bodo morali organizatorji zagotoviti sedež v VIP sekciji dvorane za tri oziroma dva
+    oziroma enega človeka, za vsakega pa bodo imeli $1\,400$ denot stroškov.
+
+    Organizatorji olimpijskih iger naj torej za maksimizacijo svojega dobička prodajo $1003$ karte.
 \end{odgovor}
+
 \end{naloga}
