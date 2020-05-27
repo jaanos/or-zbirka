@@ -1,0 +1,69 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 4.6.2020}
+\begin{vprasanje}
+Dana je matrika $A$ dimenzij $m \times n$.
+Iščemo tako zaporedje skokov po matriki,
+pri čemer začnemo levo zgoraj in končamo desno spodaj,
+v vsakem koraku pa skočimo za vsaj eno mesto desno ali dol,
+pri katerem je vsota obiskanih mest čim več\-ja.
+Drugače povedano,
+iščemo tako zaporedje indeksov $(i_1, j_1), (i_2, j_2), \dots (i_k, j_k)$
+(za nek $k \ge 1$),
+za katere velja $(i_1, j_1) = (1, 1)$, $(i_k, j_k) = (m, n)$ in
+$(i_h < i_{h+1} \land j_h = j_{h+1}) \lor (i_h = i_{h+1} \land j_h < j_{h+1})$
+za vse $h$ ($2 \le h \le k$),
+ki maksimizira vsoto $\sum_{h=1}^k A_{i_h, j_h}$.
+Primer je podan na sliki~\fig.
+
+\begin{enumerate}[(a)]
+\item Zapiši začetne pogoje in rekurzivne enačbe
+za reševanje opisanega problema
+ter določi, v kakšnem vrstnem redu računamo spremenljivke
+in kako dobimo maksimalno vsoto.
+Kakšna je časovna zahtevnost algoritma, ki sledi iz rekurzivnih enačb?
+\item Reši problem za matriko s slike~\fig z uporabo rekurzivnih enačb.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\caption{Primer matrike dimenzij $4 \times 4$ za nalogo~\nal
+skupaj z dopustno (ne nujno optimalno!) rešitvijo.
+Vsota obiskanih mest je v tem primeru $0 + 7 + 2 + (-2) + 0 = 7$.}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ največja vsota,
+ki jo lahko dosežemo z zaporedjem skokov od $A_{11}$ do $A_{ij}$.
+Določimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+p_{11} &= A_{11} \\
+p_{1j} &= A_{1j} + \max\set{p_{1 \ell}}{1 \le \ell \le j-1}
+& (2 &\le j \le n) \\
+p_{i1} &= A_{i1} + \max\set{p_{\ell 1}}{1 \le \ell \le i-1}
+& (2 &\le i \le m) \\
+p_{ij} &= A_{ij} + \max(\set{p_{i \ell}}{1 \le \ell \le j-1}
+                   \cup \set{p_{\ell j}}{1 \le \ell \le i-1})
+& (2 &\le i \le m, \\[-1mm]
+&& 2 &\le j \le n)
+\end{align*}
+Vrednosti $p_{ij}$ računamo v leksikografskem vrstnem redu indeksov
+(npr.~najprej naraščajoče po $i$, nato pa naraščajoče po $j$).
+Maksimalno vsoto ob\-iska\-nih mest dobimo kot $p^* = p_{mn}$.
+Rekurzivne enačbe lahko rešimo v času $O(mn(m+n))$.
+
+\item Matrika vrednosti $(p_{ij})_{i,j=1}^4$
+je prikazana na sliki~\fig[matskoki-resitev],
+pri čemer je pri vsaki vred\-no\-sti puščica od tiste vrednosti,
+ki je bila uporabljena pri njenem izračunu.
+Z rdečo barvo je prikazano zaporedje
+$(1, 1), (1, 2), (1, 4), (2, 4), (4, 4)$
+z največjo vsoto $p^* = 9$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika[matskoki-resitev]
+\podnaslov[\res{}(b)]{Reševanje in optimalna rešitev}
+\end{slika}
+\end{odgovor}
+\end{naloga}
