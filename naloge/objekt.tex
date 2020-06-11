@@ -31,6 +31,43 @@ J & betoniranje plošče  & 2 dni & C, E, F \\
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev
+$s, a, g, h, c, e, i, f, j, d, b, t$.
+
+\item V tabeli~\tab[objekt-resitev] so podani
+najzgodnejši in najpoznejši začetki opravil,
+da se celotno trajanje projekta ne podaljša.
+Izdelava objekta bo torej trajala $17$ dni,
+edina kritična pot pa je $s - a - e - d - b - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[objekt-resitev] je razvidno,
+da je najmanj kritično opravilo $g$.
+
+\end{enumerate}     
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+% 
+\begin{tabela}
+\setlabel{objekt-resitev}
+$$
+\begin{array}{c|cccccccccccc}
+& s & a & g & h & c & e & i & f & j & d & b & t \\ \hline
+\text{najprej} & 0 & 0_s & 0_s & 0_s & 1_h & 4_a & 6_c & 12_i & 14_f & 8_e & 14_d & 17_b \\
+\text{najkasneje} & 0_a & 0_e & 2_e & 1_c & 2_i & 4_d & 7_f & 13_j & 15_t & 8_b & 14_t & 17 \\
+\text{razlika} & 0 & 0 & 2 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
