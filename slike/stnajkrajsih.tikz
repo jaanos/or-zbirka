@@ -1,0 +1,17 @@
+\begin{tikzpicture}[style=thick,scale=0.8]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
+\small
+\node[vertex] (f) at (xyz polar cs:angle=  0,radius=0) {$f$};
+\node[vertex] (c) at (xyz polar cs:angle= 60,radius=2) {$c$};
+\node[vertex] (g) at (xyz polar cs:angle=  0,radius=2) {$g$};
+\node[vertex] (a) at ($2*(c)$) {$a$};
+\node[vertex] (b) at ($(c) - (g)$) {$b$};
+\node[vertex] (d) at ($(c) + (g)$) {$d$};
+\node[vertex] (e) at ($-1*(g)$) {$e$};
+\node[vertex] (h) at ($-1*(c)$) {$h$};
+\node[vertex] (i) at ($-1*(b)$) {$i$};
+
+\draw (c) -- (f) -- (e) -- (b) -- (c) -- (a) -- (d) -- (c) -- (g) -- (d);
+\draw (e) -- (h) -- (i) -- (f) -- (g) -- (i);
+
+\end{tikzpicture}

@@ -1,0 +1,37 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{vertex}=[draw, minimum width=7mm, minimum height=5mm]
+\matrix (m) [matrix of nodes, left delimiter={[}, right delimiter={]}, row sep=2mm, column sep=2mm] {
+    \node[vertex] (11) {$0$}; &
+    \node[vertex] (12) {$2$}; &
+    \node[vertex] (13) {$-5$}; &
+    \node[vertex] (14) {$1$}; \\
+    \node[vertex] (21) {$-6$}; &
+    \node[vertex] (22) {$-7$}; &
+    \node[vertex] (23) {$-8$}; &
+    \node[vertex] (24) {$9$}; \\
+    \node[vertex] (31) {$7$}; &
+    \node[vertex] (32) {$9$}; &
+    \node[vertex] (33) {$1$}; &
+    \node[vertex] (34) {$7$}; \\
+    \node[vertex] (41) {$0$}; &
+    \node[vertex] (42) {$2$}; &
+    \node[vertex] (43) {$8$}; &
+    \node[vertex] (44) {$9$}; \\
+};
+
+\draw[->,red] (11.north) to[bend left=20] (12.north);
+\draw[->] (12.north) to[bend left=20] (13.north);
+\draw[->,red] (12.north) to[bend left=30] (14.north);
+\draw[->] (11.west) to[bend right=20] (21.west);
+\draw[->] (12.west) to[bend right=20] (22.west);
+\draw[->] (13.east) to[bend left=20] (23.east);
+\draw[->,red] (14.east) to[bend left=20] (24.east);
+\draw[->] (11.west) to[bend right=30] (31.west);
+\draw[->] (31.south) to[bend right=20] (32.south);
+\draw[->] (32.south) to[bend right=20] (33.south);
+\draw[->] (24.east) to[bend left=20] (34.east);
+\draw[->] (31.west) to[bend right=20] (41.west);
+\draw[->] (32.west) to[bend right=20] (42.west);
+\draw[->] (42.south) to[bend right=20] (43.south);
+\draw[->,red] (24.east) to[bend left=30] (44.east);
+\end{tikzpicture}

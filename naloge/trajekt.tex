@@ -1,0 +1,59 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 4.6.2020}
+\begin{vprasanje}
+Na trajektu stoji $200$ avtomobilov, vozovnica pa stane $35 €$.
+Pri družbi, ki upravlja trajekt,
+se lahko odločijo prodati $200$, $201$, $202$ ali $203$ vozovnice.
+Naj bo $p_i$ ve\-rjet\-nost,
+da $i$ avtomobilov z vozovnicami ne pride do trajekta
+(tj., $p_0$ je verjetnost, da vsi pridejo):
+$$
+\begin{array}{c|cccc}
+i & 0 & 1 & 2 & 3 \\ \hline
+p_i & 0.3 & 0.4 & 0.2 & 0.1
+\end{array}
+$$
+Z vsakim avtomobilom, ki pride do trajekta in se ne more vkrcati,
+ima družba $60 €$ stroškov (skupaj torej $25 €$ izgube).
+
+\begin{enumerate}[(a)]
+\item Koliko vozovnic naj proda družba, da bo imela čim večji dobiček?
+\item Na trajektu je na voljo še eno mesto, ki pa ni najbolj varno%
+\footnote{Seveda bo to mesto ostalo prazno, če bo to mogoče.}
+-- avtomobil, ki se pelje na njem,
+bo z verjetnostjo $0.001$
+(neodvisno od ostalih dejavnikov)
+med potjo padel v morje.
+V tem primeru ima družba dodatnih $40\,000 €$ stroškov.
+Ali se družbi izplača uporabiti to mesto?
+Koliko vozovnic naj tedaj proda?
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $X_k$ ($200 \le k \le 203$) dobiček,
+če družba proda $k$ vozovnic.
+\begin{alignat*}{2}
+E(X_{200}) &= 200 \cdot 35 € &&= 7\,000 € \\
+E(X_{201}) &= 201 \cdot 35 € - 0.3 \cdot 60 € &&= 7\,017 € \\
+E(X_{202}) &= 202 \cdot 35 € - (0.3 \cdot 2 + 0.4) \cdot 60 € &&= 7\,010 € \\
+E(X_{203}) &= 203 \cdot 35 € - (0.3 \cdot 3 + 0.4 \cdot 2 + 0.2) \cdot 60 € &&= 6\,991 €
+\end{alignat*}
+
+Vidimo, da se družbi najbolj izplača prodati $201$ vozovnico.
+
+\item Naj bo $Y_k$ ($200 \le k \le 203$) dobiček,
+če družba proda $k$ vozovnic, pri čemer lahko uporabi tudi dodatno mesto.
+\begin{alignat*}{2}
+E(Y_{200}) &= 200 \cdot 35 € &&= 7\,000 € \\
+E(Y_{201}) &= 201 \cdot 35 € - 0.3 \cdot 0.001 \cdot 40\,000 € &&= 7\,023 € \\
+E(Y_{202}) &= 202 \cdot 35 € - 0.3 \cdot 60 € - 0.7 \cdot 0.001 \cdot 40\,000 € &&= 7\,024 € \\
+E(Y_{203}) &= 203 \cdot 35 € - (0.3 \cdot 2 + 0.4) \cdot 60 € - 0.9 \cdot 0.001 \cdot 40\,000 € &&= 7\,009 €
+\end{alignat*}
+
+Največji pričakovan dobiček je dosežen pri prodaji $202$ vozovnic.
+Ker je ta večji kot v primeru, ko se dodatno mesto ne uporabi,
+se družbi torej to mesto izplača uporabiti.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
