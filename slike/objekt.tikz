@@ -34,7 +34,4 @@
 \draw[->, red] (B) -- (T) node[midway, above, sloped] {$3$};
 \draw[->] (J) -- (T) node[midway, below, sloped] {$2$};
 
-
-
-
 \end{tikzpicture}
