@@ -3,21 +3,21 @@
 \tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
 \tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
 \tikzstyle{pick}=[double, very thick]
-\node[dec] (A) at (-8,-1) [label=right:$7,65 G$] {};
-\node[ran] (B) at (-4, 2) [label=135:$7,65 G$] {};
-\node[ran] (C) at (-4,-6) [label=225:$5,68 G$] {};
+\node[dec] (A) at (-8,-1) [label=right:$7.65 G$] {};
+\node[ran] (B) at (-4, 2) [label=135:$7.65 G$] {};
+\node[ran] (C) at (-4,-6) [label=225:$5.68 G$] {};
 \node      (D) at (-4, -9) {$5 G};
 \node[dec] (E) at ( 0, 4) [label=225:$9 G$] {};
 \node[dec] (F) at ( 0, 0) [label=225:$3 G$] {};
 \node[dec] (G) at ( 0,-4) [label=225:$7 G$] {};
 \node[dec] (H) at ( 0, -8) [label=225:$3 G$] {};
-\node[ran] (I) at ( 4, 5) [label=225:$14,33 G$] {};
+\node[ran] (I) at ( 4, 5) [label=225:$14.33 G$] {};
 \node      (J) at ( 4, 3) {$9 G};
-\node[ran] (Y) at ( 4, 1) [label=225:$3,2 G$] {};
+\node[ran] (Y) at ( 4, 1) [label=225:$3.2 G$] {};
 \node      (K) at ( 4,-1) {$3 G$};
-\node[ran] (L) at ( 4,-3) [label=225:$7,6 G$] {};
+\node[ran] (L) at ( 4,-3) [label=225:$7.6 G$] {};
 \node      (M) at ( 4,-5) {$7 G$};
-\node[ran] (N) at ( 4, -7) [label=225:$4,4 G$];
+\node[ran] (N) at ( 4, -7) [label=225:$4.4 G$];
 \node      (O) at ( 4, -9) {$4 G$};
 \node      (P) at ( 8, 6) {$17$};
 \node      (R) at ( 8, 4) {$5$};
@@ -31,10 +31,10 @@
 \draw[pick] (A) -- (B) node[above, midway, sloped] {kupi 2 kg};
 \draw (A) -- (C) node[below, midway, sloped] {kupi 1 kg};
 \draw (A) -- (D) node[below, midway, sloped] {kupi 0 kg};
-\draw (B) -- (E) node[above, midway, sloped] {uspe: $0,4$};
-\draw (B) -- (F) node[below, midway, sloped] {neuspe: $0,6};
-\draw (C) -- (G) node[above, midway, sloped] {uspe: $0,4$};
-\draw (C) -- (H) node[below, midway, sloped] {neuspe: $0,6};
+\draw (B) -- (E) node[above, midway, sloped] {uspe: $0.4$};
+\draw (B) -- (F) node[below, midway, sloped] {neuspe: $0.6};
+\draw (C) -- (G) node[above, midway, sloped] {uspe: $0.4$};
+\draw (C) -- (H) node[below, midway, sloped] {neuspe: $0.6};
 \draw[pick] (E) -- (I) node[above, midway, sloped] {kupi 4 kg};
 \draw (E) -- (J) node[below, midway, sloped] {kupi 0 kg};
 \draw[pick] (F) -- (Y) node[above, midway, sloped] {kupi 1 kg};
@@ -43,13 +43,13 @@
 \draw (G) -- (M) node[below, midway, sloped] {kupi 0 kg};
 \draw[pick] (H) -- (N) node[above, midway, sloped] {kupi 2 kg};
 \draw (H) -- (O) node[below, midway, sloped] {kupi 0 kg};
-\draw (I) -- (P) node[above, midway, sloped] {uspe: $0,4$};
-\draw (I) -- (R) node[below, midway, sloped] {neuspe: $0,6};
-\draw (Y) -- (S) node[above, midway, sloped] {uspe: $0,4$};
-\draw (Y) -- (T) node[below, midway, sloped] {neuspe: $0,6};
-\draw (L) -- (U) node[above, midway, sloped] {uspe: $0,4$};
-\draw (L) -- (V) node[below, midway, sloped] {neuspe: $0,6};
-\draw (N) -- (Z) node[above, midway, sloped] {uspe: $0,4$};
-\draw (N) -- (X) node[below, midway, sloped] {neuspe: $0,6};
+\draw (I) -- (P) node[above, midway, sloped] {uspe: $0.4$};
+\draw (I) -- (R) node[below, midway, sloped] {neuspe: $0.6};
+\draw (Y) -- (S) node[above, midway, sloped] {uspe: $0.4$};
+\draw (Y) -- (T) node[below, midway, sloped] {neuspe: $0.6};
+\draw (L) -- (U) node[above, midway, sloped] {uspe: $0.4$};
+\draw (L) -- (V) node[below, midway, sloped] {neuspe: $0.6};
+\draw (N) -- (Z) node[above, midway, sloped] {uspe: $0.4$};
+\draw (N) -- (X) node[below, midway, sloped] {neuspe: $0.6};
 
 \end{tikzpicture}
