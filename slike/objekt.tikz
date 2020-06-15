@@ -25,7 +25,7 @@
 \draw[->] (H) -- (C) node[midway, above, sloped] {$1$};
 \draw[->, red] (E) -- (D) node[midway, above, sloped] {$4$};
 \draw[->] (E) -- (J) node[midway, above, sloped] {$4$};
-\draw[->] (C) -- (J) node[midway, above, sloped] {$5$};
+\draw[->] (C) to[bend left=10] node[midway, below, sloped] {$5$} (J);
 \draw[->] (C) -- (I) node[midway, below, sloped] {$5$};
 \draw[->, red] (D) -- (B) node[midway, above, sloped] {$6$};
 \draw[->] (I) -- (F) node[midway, above, sloped] {$6$};
