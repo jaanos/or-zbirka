@@ -1,0 +1,24 @@
+\NewEnviron{pretok@minmaxpretok}{
+    \vozlisce*{s}{-5, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 2, 2}
+    \vozlisce{c}{-2, 0}
+    \vozlisce{d}{-2,-2}
+    \vozlisce{e}{ 2,-2}
+    \vozlisce*{t}{ 5, 0}
+
+    \povezava{s}{a}{10}[sloped]{above}
+    \povezava{s}{c}{2}{above}
+    \povezava{s}{d}{4}[sloped]{below}
+    \povezava{a}{b}{8}{above}
+    \povezava{a}{c}{2}{right}
+    \povezava{b}{c}{\alpha}[sloped]{above}
+    \povezava{b}{t}{2}[sloped]{above}
+    \povezava{c}{d}{3}{left}
+    \povezava{c}{e}{3}[sloped]{above}
+    \povezava{c}{t}{10}{above}
+    \povezava{d}{b}{7}[sloped]{below}[bend right=20]
+    \povezava{d}{e}{3}{below}
+    \povezava{e}{b}{6}{right}
+    \povezava{e}{t}{5}[sloped]{below}
+}

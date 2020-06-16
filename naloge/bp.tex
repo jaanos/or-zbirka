@@ -9,9 +9,9 @@ za mašenje vrtin s pomočjo jedrskih eksplozij pod vodstvom
 prof.~dr.~Mikhaila Razturoviča Totalkova.
 Vodstvo BP ocenjuje, da bo ekipa dr.~Totalkova
 z verjetnostjo $p = 3/7$ uspešno zamašila vrtino.
-Tako bo podjetje imelo sicer samo $2.8$ milijarde USD dobička,
+Tako bo podjetje imelo sicer samo $2.8$ milijarde \$ dobička,
 sicer pa bi zaradi upada dobička in povzročene škode
-utrpeli izgubo $700$ milijonov USD.
+utrpeli izgubo $700$ milijonov \$.
 
 \begin{enumerate}[(a)]
 \item Modeliraj problem v okviru teorije odločanja (stanja, odločitve).
@@ -19,14 +19,14 @@ Kakšno odločitev svetuješ vodstvu BP?
 Kako je odločitev odvisna od verjetnosti $p$?
 Nariši graf, ki prikazuje optimalni pričakovani dobiček v odvisnosti od $p$.
 
-\item Za dodatnih $90\,000$ USD lahko podjetje BP naroči študijo
+\item Za dodatnih $90\,000$ \$ lahko podjetje BP naroči študijo
 pri kitajskem ljudskem inštitutu za naftne vrtine iz mesta Lanzhou,
 ki ocenjuje uspešnost rizičnih projektov,
-in bi ocenilo, ali bo ekipa dr.~Totalkov uspešna.
+in bi ocenilo, ali bo ekipa dr.~Totalkova uspešna.
 Statistični povzetek uspešnosti raziskav inštituta v preteklosti je naslednji:
 \begin{center}
 \begin{tabular}{l|cc}
-$P(\text{rez.~raziskave} \;|\; \text{rez.~prov})$ &
+$P(\text{rez.~raziskave} \;|\; \text{rez.~projekta})$ &
 \multicolumn{2}{c}{Rezultat raziskave inštituta} \\
 Rezultat projekta & pozitiven & negativen \\ \hline
 uspešen   &  $7/9$ & $2/9$ \\
@@ -41,6 +41,73 @@ ali naj podjetje naroči raziskavo in če jo,
 kako naj se odloči glede mašenja vrtine.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Imamo eno samo odločitev
+-- ali naj izvedemo mašenje po metodi dr.~Totalkova.
+Če ga ne izvedemo, je dobiček $0 \$$,
+če pa ga, pa preidemo v stanje,
+v katerem imamo z verjetnostjo $p$ dobiček $2\,800 \MD$,
+z verjetnostjo $1-p$ pa $-700 \MD$.
+V tem primeru je pričakovani dobiček enak
+$$
+p \cdot 2\,800 \MD - (1-p) \cdot 700 \MD
+=  p \cdot 3\,500 \MD - 700 \MD .
+$$
+Za $p < 1/5$ torej pričakujemo izgubo
+in se podjetju mašenja ne izplača izvesti,
+sicer pa podjetje pričakuje dobiček, tako da se izvedba mašenja izplača.
+Graf pričakovanega dobička je prikazan na sliki~\fig[bp-graf].
+Pri podani vrednosti $p = 3/7$ se podjetju torej izplača izvesti mašenje,
+pri čemer pričakuje dobiček $800 \MD$.
+
+\item EVPI izračunamo tako,
+da od pričakovanega dobička pri znanem izidu
+odštejemo pričakovani dobiček pri neznanem izidu:
+$$
+\EVPI = 3/7 \cdot 2\,800 \MD + 4/7 \cdot 0 \MD - 800 \MD = 400 \MD
+$$
+Ker je EVPI večji od cene dodatnega testiranja, izračunajmo še EVE.
+Najprej določimo verjetnosti:
+\begin{align*}
+P(\text{raziskava pozitivna}) =
+{7 \over 9} \cdot {3 \over 7} + {1 \over 3} \cdot {4 \over 7}
+&= {11 \over 21} \\
+P(\text{raziskava negativna}) =
+{2 \over 9} \cdot {3 \over 7} + {2 \over 3} \cdot {4 \over 7}
+&= {10 \over 21} \\
+P(\text{uspešen projekt} \mid \text{raziskava pozitivna}) =
+{7/9 \cdot 3/7 \over 11/21} &= {7 \over 11} \\
+P(\text{neuspešen projekt} \mid \text{raziskava pozitivna}) =
+{1/3 \cdot 4/7 \over 11/21} &= {4 \over 11} \\
+P(\text{uspešen projekt} \mid \text{raziskava negativna}) =
+{2/9 \cdot 3/7 \over 10/21} &= {1 \over 5} \\
+P(\text{neuspešen projekt} \mid \text{raziskava negativna}) =
+{2/3 \cdot 4/7 \over 10/21} &= {4 \over 5}
+\end{align*}
+Sedaj lahko izračunamo EVE:
+\begin{multline*}
+\EVE = (7/11 \cdot 2\,800 \MD - 4/11 \cdot 700 \MD) \cdot 11/21 + \\
+(1/5 \cdot 0 \MD + 4/5 \cdot 0 \MD) \cdot 10/21 - 800 \MD = 0 \MD
+\end{multline*}
+Ker je EVE manjši od cene raziskave, se zanjo ne odločimo.
+
+\item Odločitveno drevo je prikazano na sliki~\fig[bp-drevo].
+Za raziskavo se ne bomo odločili,
+pač pa bomo poskusili zamašiti vrtino po metodi dr.~Totalkova.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika[bp-graf]
+\podnaslov[\res{}(a)]{Graf pričakovanega dobička}
+\end{slika}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[bp-drevo]
+}
+\podnaslov[\res{}(c)]{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

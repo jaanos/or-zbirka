@@ -3,7 +3,7 @@
 Marta izdeluje nakit iz školjk v delavnici,
 ki jo najema v bližini ljubljanske tržnice,
 in ga prodaja po vnaprej dogovorjeni ceni.
-Povpraševanje je 10 kosov na teden,
+Povpraševanje je $10$ kosov na teden,
 stroški skladiščenja so $0.2 €$ za kos na teden.
 Zagonski stroški izdelovanja nakita so $150 €$.
 Marta lahko na teden izdela $12.5$ kosa nakita.
@@ -12,6 +12,41 @@ pri čemer jo ta stane $0.8 €$ za kos nakita na teden.
 Kako naj Marta organizira proizvodnjo in skladiščenje,
 da bo imela čim manj stroškov?
 \end{vprasanje}
+
 \begin{odgovor}
+Imamo sledeče podatke (pri časovni enoti $1$ teden).
+\begin{align*}
+\nu &= 10 \\
+s &= 0.2 € \\
+K &= 150 € \\
+\lambda &= 12.5 \\
+p &= 0.8 €
+\end{align*}
+
+Izračunajmo optimalno dolžino cikla $\tau^*$
+in največjo zalogo $M^*$.
+\begin{alignat*}{3}
+\alpha &= \nu \left(1 - {\nu \over \lambda}\right)
+&&= 10 \cdot (1 - 0.8) &&= 2 \\
+\beta &= 1 + {s \over p}
+&&= 1 + {0.2 \over 0.8} &&= 1.25 \\
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{375 \over 0.4} &&\approx 30.619 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{600 \over 0.25} &&\approx 48.990
+\end{alignat*}
+Optimalna dolžina cikla je torej približno $30.619$ tednov,
+pri tem pa Marta potrebuje skladišče za $49$ kosov nakita.
+
+Izračunajmo še število izdelanih kosov nakita $q^*$,
+trajanje proizvodnje $t^*$ in največji primanjkljaj $m^*$ v posameznem ciklu.
+\begin{alignat*}{3}
+q^* &= \tau^* \nu &&\approx 30.619 \cdot 10 &&\approx 306.186 \\
+t^* &= {q^* \over \lambda} &&\approx {306.186 \over 12.5} &&\approx 24.495 \\
+m^* &= \tau^* \alpha - M^* &&\approx 30.619 \cdot 2 - 48.990 &&\approx 12.247
+\end{alignat*}
+V vsakem intervalu torej Marta izdela okoli $306$ kosov nakita,
+pri čemer izdelovanje traja približno $24.495$ tednov,
+primanjkljaj pa ne preseže $13$ kosov nakita.
 \end{odgovor}
 \end{naloga}

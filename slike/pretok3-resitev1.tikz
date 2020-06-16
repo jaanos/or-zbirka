@@ -1,0 +1,12 @@
+\input{slike/pretok3-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok3}
+    \nicle
+    \kolicina*{s}{b}[3]{0}[red]
+    \kolicina*{b}{t}[4]{0}[red]
+
+    \dosezeno{s}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

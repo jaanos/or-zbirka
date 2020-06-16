@@ -1,0 +1,44 @@
+\input{slike/pretok2-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok2}
+    \nicle
+    \kolicina*{s}{a}[7]{0}[red]
+    \kolicina*{a}{e}[5]{0}[red]
+    \kolicina*{e}{i}[8]{0}[red]
+    \kolicina*{i}{m}[1]{0}[red]
+    \kolicina*{m}{t}[12]{0}[red]
+    \kolicina*{s}{b}[6]{0}[green]
+    \kolicina*{b}{f}[3]{0}[green]
+    \kolicina*{f}{j}[4]{0}[green]
+    \kolicina*{j}{n}[9]{0}[green]
+    \kolicina*{n}{t}[4]{0}[green]
+    \kolicina*{s}{c}[7]{0}[blue]
+    \kolicina*{c}{g}[7]{0}[blue]
+    \kolicina*{g}{k}[2]{0}[blue]
+    \kolicina*{k}{o}[4]{0}[blue]
+    \kolicina*{o}{t}[8]{0}[blue]
+    \kolicina*{s}{d}[8]{0}[magenta]
+    \kolicina*{d}{h}[7]{0}[magenta]
+    \kolicina*{h}{l}[5]{0}[magenta]
+    \kolicina*{l}{p}[1]{0}[magenta]
+    \kolicina*{p}{t}[8]{0}[magenta]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{j}
+    \dosezeno{k}
+    \dosezeno{l}
+    \dosezeno{m}
+    \dosezeno{n}
+    \dosezeno{o}
+    \dosezeno{p}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

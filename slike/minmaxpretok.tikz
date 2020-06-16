@@ -1,26 +1,4 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+\input{slike/minmaxpretok-osnova.tikz}
 
-\node[vertex] (s) at (-5, 0) {$s$};
-\node[vertex] (A) at (-2, 2) {$A$};
-\node[vertex] (B) at ( 2, 2) {$B$};
-\node[vertex] (C) at (-2, 0) {$C$};
-\node[vertex] (D) at (-2,-2) {$D$};
-\node[vertex] (E) at ( 2,-2) {$E$};
-\node[vertex] (t) at ( 5, 0) {$t$};
-
-\draw[->] (s) -- (A) node [above, midway, sloped] {$10$};
-\draw[->] (s) -- (C) node [above, midway] {$2$};
-\draw[->] (s) -- (D) node [below, midway, sloped] {$4$};
-\draw[->] (A) -- (B) node [above, midway] {$8$};
-\draw[->] (A) -- (C) node [right, midway] {$2$};
-\draw[->] (B) -- (C) node [above, midway, sloped] {$a$};
-\draw[->] (B) -- (t) node [above, midway, sloped] {$2$};
-\draw[->] (C) -- (D) node [left, midway] {$3$};
-\draw[->] (C) -- (E) node [above, near end, sloped] {$3$};
-\draw[->] (C) -- (t) node [above, near end] {$10$};
-\draw[->] (D) -- (B) node [below, near end, sloped] {$7$};
-\draw[->] (D) -- (E) node [below, midway] {$3$};
-\draw[->] (E) -- (B) node [right, near start] {$6$};
-\draw[->] (E) -- (t) node [below, midway, sloped] {$5$};
-\end{tikzpicture}
+\begin{pretok*}[scale=1.5]{minmaxpretok}
+\end{pretok*}

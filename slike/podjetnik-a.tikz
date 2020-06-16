@@ -1,0 +1,38 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
+\tikzstyle{pick}=[double, very thick]
+\node[dec] (A) at (-6, 0) [label=above:$15\,200 €$] {};
+\node[dec] (B) at (-2, 2) [label=above:$15\,200 €$] {};
+\node      (C) at (-2, 0) {$0 €$};
+\node[dec] (D) at (-2,-2) [label=below:$10\,500 €$] {};
+\node[ran] (E) at ( 2, 4) [label=above:$12\,500 €$] {};
+\node[ran] (F) at ( 2, 2) [label=above:$15\,200 €$] {};
+\node[ran] (G) at ( 2,-2) [label=below:$10\,500 €$] {};
+\node[ran] (H) at ( 2,-4) [label=below:$9\,600 €$] {};
+\node      (I) at ( 6, 4) {$15\,000 €$};
+\node      (J) at ( 6, 3) {$2\,500 €$};
+\node      (K) at ( 6, 2) {$20\,000 €$};
+\node      (L) at ( 6, 1) {$-4\,000 €$};
+\node      (M) at ( 6,-1) {$14\,500 €$};
+\node      (N) at ( 6,-2) {$-5\,500 €$};
+\node      (O) at ( 6,-3) {$15\,000 €$};
+\node      (P) at ( 6,-4) {$-12\,000 €$};
+
+\draw[pick] (A) -- (B) node[above, midway, sloped] {izdela $500$};
+\draw (A) -- (C) node[above, midway] {izdela $0$};
+\draw (A) -- (D) node[below, midway, sloped] {izdela $1\,000$};
+\draw (B) -- (E) node[above, midway, sloped] {prodaja po $50€$};
+\draw[pick] (B) -- (F) node[below, midway] {prodaja po $60€$};
+\draw[pick] (D) -- (G) node[above, midway] {prodaja po $50€$};
+\draw (D) -- (H) node[below, midway, sloped] {prodaja po $60€$};
+\draw (E) -- (I) node[above, midway] {zanimiv: $0.8$};
+\draw (E) -- (J) node[below, midway, sloped] {nezanimiv: $0.2$};
+\draw (F) -- (K) node[above, midway] {zanimiv: $0.8$};
+\draw (F) -- (L) node[below, midway, sloped] {nezanimiv: $0.2$};
+\draw (G) -- (M) node[above, midway, sloped] {zanimiv: $0.8$};
+\draw (G) -- (N) node[below, midway] {nezanimiv: $0.2$};
+\draw (H) -- (O) node[above, midway, sloped] {zanimiv: $0.8$};
+\draw (H) -- (P) node[below, midway] {nezanimiv: $0.2$};
+\end{tikzpicture}

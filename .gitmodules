@@ -1,0 +1,3 @@
+[submodule "omrezja"]
+	path = omrezja
+	url = https://github.com/jaanos/omrezja.git

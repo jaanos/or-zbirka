@@ -16,6 +16,25 @@ pri čemer morajo biti izpolnjeni pogoji:
 \end{itemize}
 Problem formuliraj kot celoštevilski linearni program.
 \end{vprasanje}
+
 \begin{odgovor}
+Za $i \in \{1, \dots, n\}$ bomo uvedli spremenljivko $x_i$,
+katere vrednost interpretiramo kot
+$$
+x_i = \begin{cases}
+1; & a_i \in L, \\
+0; & a_i \not\in L.
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{align*}
+\max &\ \sum_{i=1}^n x_i (a_i)^2 \quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: \ 0 \le x_i &\le 1, \quad x_i \in \Z \\
+x_1 + x_2 &\le 1 \\
+x_3 + x_5 - x_7 &\le 1 \\
+(n-4) x_4 + \sum_{i=1}^n x_i &\le n \\
+\sum_{\substack{i=1 \\ a_i > 0}}^n x_i
+&\ge \sum_{\substack{i=1 \\ a_i < 0}}^n x_i + 1
+\end{align*}
 \end{odgovor}
 \end{naloga}

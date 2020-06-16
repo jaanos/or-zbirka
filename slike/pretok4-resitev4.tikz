@@ -1,0 +1,37 @@
+\input{slike/pretok4-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok4}
+    \nicle
+    \kolicina{s}{b}[2]{10}
+    \kolicina{b}{e}[0]{3}[zasicena]
+    \kolicina{e}{f}[3]{5}
+    \kolicina{f}{i}[0]{10}[zasicena]
+    \kolicina{i}{h}[0]{7}[zasicena]
+    \kolicina{h}{g}[0]{3}[prerez,magenta]
+    \kolicina{g}{t}[2]{8}
+    \kolicina{b}{d}[0]{7}[zasicena]
+    \kolicina{d}{f}[1]{7}
+    \kolicina{i}{t}[0]{3}[prerez,magenta]
+    \kolicina{s}{c}[12]{8}
+    \kolicina{c}{e}[8]{2}
+    \kolicina{f}{j}[0]{2}[prerez]
+    \kolicina{j}{t}[0]{8}[zasicena]
+    \kolicina{s}{a}[3]{5}
+    \kolicina{a}{g}[0]{5}[prerez,magenta]
+    \kolicina{h}{t}[0]{4}[prerez,magenta]
+    \kolicina{c}{j}[0]{6}[prerez]
+
+    \nasprotna{j}{i}
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}[pogojno]
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

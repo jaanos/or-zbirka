@@ -1,0 +1,25 @@
+\input{slike/pretok1-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok1}
+    \nicle
+    \kolicina*{s}{a}[6]{0}[red]
+    \kolicina*{a}{e}[9]{0}[red]
+    \kolicina*{e}{t}[5]{0}[red]
+    \kolicina*{s}{b}[3]{0}[green]
+    \kolicina*{b}{c}[7]{0}[green]
+    \kolicina*{c}{d}[5]{0}[green]
+    \kolicina*{d}{t}[2]{0}[green]
+    \kolicina*{s}{c}[2]{0}[blue]
+    \kolicina*{c}{f}[1]{0}[blue]
+    \kolicina*{f}{t}[4]{0}[blue]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

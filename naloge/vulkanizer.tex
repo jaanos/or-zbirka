@@ -23,6 +23,67 @@ da bodo stroški čim manjši?
 Izračunaj tudi enotske stroške in določi največji primanjkljaj.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Imamo sledeče podatke (pri časovni enoti $1$ teden).
+\begin{align*}
+\nu &= 60 &
+\lambda &= 90 \\
+K &= 180 € &
+s &= 0.5 €
+\end{align*}
+Pri teh podatkih izračunajmo še
+$$
+\alpha = \nu \left(1 - {\nu \over \lambda}\right)
+= 60 \cdot \left(1 - {2 \over 3}\right) = 20 .
+$$
+
+\begin{enumerate}[(a)]
+\item Če primanjkljaja ne dovolimo, imamo $p = \infty$ in torej $\beta = 1$.
+Izračunajmo optimalno dolžino cikla $\tau^*$,
+največjo zalogo $M^*$ in enotske stroške $S^*$.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{360 \over 10} &&= 6 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{7\,200 \over 0.5} &&= 120 \\
+S^* &= \sqrt{2Ks \alpha \over \beta}
+&&= \sqrt{3\,600} € &&= 60 €
+\end{alignat*}
+Optimalna dolžina cikla je torej $6$ tednov,
+pri tem pa mora vulkanizer imeti skladišče za $120$ pnevmatik.
+Tedenski stroški proizvodnje in skladiščenja so $60 €$.
+
+\item Izračunajmo še trajanje proizvodnje $t^*$
+in število izdelanih pnevmatik $q^*$ v posameznem ciklu.
+\begin{alignat*}{3}
+t^* &= {M^* \over \lambda - \nu} &&= {120 \over 30} &&= 4 \\
+q^* &= \tau^* \nu = t^* \lambda &&= 6 \cdot 60 &&= 360
+\end{alignat*}
+Proizvodnja torej traja $4$ tedne,
+skupno pa v tem času izdela $360$ pnevmatik.
+
+\item Vzamemo $p = 2 €$ in torej $\beta = 1 + s/p = 1.25$.
+Izračunajmo optimalno dolžino cikla,
+potrebno velikost skladišča in enotske stroške še v tem primeru.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{450 \over 10} &&\approx 6.708 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{7\,200 \over 0.625} &&\approx 107.331 \\
+S^* &= \sqrt{2Ks \alpha \over \beta}
+&&= \sqrt{3\,600 \over 1.25} € &&\approx 53.666 €
+\end{alignat*}
+Optimalni interval naročanja je v tem primeru torej $6.708$ tednov,
+pri tem pa mora vulkanizer imeti skladišče za $108$ pnevmatik.
+Tedenski stroški pro\-iz\-vod\-nje in skladiščenja so $53.666 €$.
+
+Izračunajmo še največji primanjkljaj $m^*$ v posameznem ciklu.
+$$
+m^* = \tau^* \alpha - M^* \approx 6.708 \cdot 20 - 107.331 \approx 26.833
+$$
+Največji primanjkljaj torej ne preseže $27$ pnevmatik.
+\end{enumerate}
+
 \end{odgovor}
 \end{naloga}

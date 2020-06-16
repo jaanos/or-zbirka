@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=4]
+\small
+
+\draw[->] (-0.2,0) -- (1.1,0) node[right] {$p$};
+\draw[->] (0,-0.2) -- (0,1.1) node[above] {dobiček};
+
+\draw[thick] (0,0) -- (1/5,0) -- (1,1) {};
+
+\draw[dashed] (1/5,-0.03) -- (1/5,0.03) node[below, at start] {$1/5$};
+\draw[dashed] (3/7,-0.03) -- (3/7,2/7+0.03) node[below, at start] {$3/7$};
+\draw[dashed] (1,-0.03) -- (1,1.03) node[below, at start] {$1$};
+
+\draw[dashed] (-0.03,2/7) -- (3/7+0.03,2/7) node[left, at start] {$800 \MD$};
+\draw[dashed] (-0.03,1) -- (1.03,1) node[left, at start] {$2\,800 \MD$};
+
+\end{tikzpicture}

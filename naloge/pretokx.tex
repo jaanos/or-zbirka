@@ -7,8 +7,8 @@ Parameter $x$ je poljubno nenegativno število.
 \begin{enumerate}[(a)]
 \item Kakšno je pridruženo omrežje,
 če začnemo z ničelnim $(s, t)$-tokom
-in ga najprej povečamo vzdolž povečujoče poti $s-a-c-d-t$
-ter nato še vzdolž povečujoče poti $s-c-d-b-t$?
+in ga najprej povečamo vzdolž povečujoče poti $s \to a \to c \to d \to t$
+ter nato še vzdolž povečujoče poti $s \to c \to d \to b \to t$?
 
 \item Poišči maksimalni $(s, t)$-tok in minimalni $(s, t)$-prerez.
 
@@ -23,6 +23,53 @@ Odgovor je načeloma odvisen od vred\-no\-sti parametra $x$.
 \podnaslov{Omrežje}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item V poti $s \to a \to c \to d \to t$
+nas najbolj omejujeta povezavi $s \to a$ in $d \to t$ s kapaciteto $2$,
+v poti $s \to c \to d \to b \to t$ pa povezava $d \to b$ s kapaciteto $1$.
+Ker ima edina skupna povezava $c \to d$ kapaciteto $5$,
+bo skupen pretok po povečanju po teh dveh poteh enak $3$.
+Pridruženo omrežje je prikazano na sliki~\fig[pretokx-resitev1].
+
+\item Na omrežju s slike~\fig[pretokx-resitev1]
+je $s \to c \gets a \to b \to t$ edina možna povečujoča pot.
+Pri $0 \le x < 2$ nas s količino $x$ najbolj omejuje povezava $a \to b$
+-- tedaj dobimo maksimalni pretok $3 \le 3+x < 5$
+in minimalni prerez $\{a \to b, d \to b, d \to t\}$,
+glej sliko~\fig[pretokx-resitev2].
+
+Pri $x \ge 2$ nas s količino $2$ najbolj omejuje povezava $c \gets a$
+-- tedaj dobimo maksimalni pretok $5$
+in minimalni prerez $\{s \to a, d \to b, d \to t\}$,
+glej sliko~\fig[pretokx-resitev3].
+
+\item Iz slik~\fig[pretokx-resitev2] in~\fig[pretokx-resitev3] je razvidno,
+da lahko po poti $s \to c \to d$ povečamo pretok za največ $2$,
+tako da lahko s povečanjem kapacitete povezave $d \to t$ za $1$
+za toliko povečamo maksimalni pretok omrežja.
+Ker lahko tudi po povezavi $b \to t$ povečamo pretok za vsaj $2$,
+enako dosežemo tudi s povečanjem kapacitete povezave $d \to b$ za $1$.
+
+Ker lahko po povezavah $s \to a$ in $c \gets a$
+povečamo pretok v vozlišče $a$ za največ $2-x$,
+sledi, da lahko s povečanjem kapacitete povezave $a \to b$ za $1$
+za toliko povečamo maksimalni pretok omrežja le v primeru,
+kadar velja $0 \le x \le 1$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika[pretokx-resitev1]
+\podnaslov[\res{}(a) in povečujoča pot pri $x > 0$]{Pridruženo omrežje}
+\end{slika}
+\begin{slika}
+\pgfslika[pretokx-resitev2]
+\podnaslov[\res{}(b)]{Maksimalni pretok pri $0 \le x < 2$}
+\end{slika}
+\begin{slika}
+\pgfslika[pretokx-resitev3]
+\podnaslov[\res{}(b)]{Maksimalni pretok pri $x \ge 2$}
+\end{slika}
 \end{odgovor}
 \end{naloga}

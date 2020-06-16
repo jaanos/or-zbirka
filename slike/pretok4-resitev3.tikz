@@ -1,0 +1,35 @@
+\input{slike/pretok4-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok4}
+    \nicle
+    \kolicina*{s}{b}[5]{7}[red]
+    \kolicina*{b}{e}[3]{0}[red]
+    \kolicina*{e}{f}[6]{2}[red]
+    \kolicina*{f}{i}[3]{7}[red]
+    \kolicina*{i}{h}[3]{4}[red]
+    \kolicina*{h}{g}[3]{0}[red]
+    \kolicina*{g}{t}[5]{5}[red]
+    \kolicina{b}{d}[0]{7}[zasicena]
+    \kolicina{d}{f}[1]{7}
+    \kolicina{i}{t}[0]{3}[zasicena]
+    \kolicina{s}{c}[12]{8}
+    \kolicina{c}{e}[8]{2}
+    \kolicina{f}{j}[0]{2}[zasicena]
+    \kolicina{j}{t}[0]{8}[zasicena]
+    \kolicina{s}{a}[3]{5}
+    \kolicina{a}{g}[0]{5}[zasicena]
+    \kolicina{h}{t}[0]{4}[zasicena]
+    \kolicina{c}{j}[0]{6}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

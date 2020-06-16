@@ -14,6 +14,41 @@ Problem formuliraj kot celoštevilski linearni program.
 da morata biti števili $1$ in $2$ sosednji.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Za $i, j \in \{1, \dots, n\}$ bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1; & \text{na $i$-to mesto postavimo število $j$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo za $i \in \{1, \dots, n\}$ uvedli še spremenljivko $y_i$,
+ki bo predstavljala manjšo od vsot števil
+strogo levo in strogo desno od $i$-tega mesta.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \max &\ \sum_{i=1}^n y_i &\quad \text{p.p.} \\
+\forall i, j \in \{1, \dots, n\}: &\ &
+0 \le x_{ij} &\le 1, & x_{ij} &\in \Z \\
+\forall i \in \{1, \dots, n\}: &\ &
+y_i &\ge 0, & y_i &\in \Z
+\opis{Vsako število postavimo na eno mesto}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^n x_{ij} &= 1
+\opis{Na vsako mesto postavimo eno število}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{i=1}^n x_{ij} &= 1
+\opis{Dobitek ob izbiri $i$-tega mesta}
+\forall i \in \{1, \dots, n\}: &\ &
+\sum_{h=1}^{i-1} \sum_{j=1}^n j x_{hj} &\ge y_i \\
+\forall i \in \{1, \dots, n\}: &\ &
+\sum_{h=i+1}^n \sum_{j=1}^n j x_{hj} &\ge y_i
+\intertext{\item Dodajmo še pogoj, da sta števili $1$ in $2$ sosednji.}
+&& -1 \le \sum_{i=1}^n i (x_{i1} - x_{i2}) &\le 1
+\end{alignat*}
+
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

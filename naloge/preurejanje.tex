@@ -46,6 +46,48 @@ da algoritem naredi najmanjše število primerjav?
 Kolikšno je v tem primeru to število?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Primer vhoda, ki ga algoritem ne uredi pravilno, je $[2, 3, 1]$.
+V prvem obhodu algoritem najprej primerja $2$ in $3$ ter ju ne zamenja,
+nato pa še zamenja $3$ in $1$.
+Ker je v obhodu opravil samo eno zamenjavo,
+se algoritem ustavi in vrne seznam $[2, 1, 3]$.
+
+Primer lahko posplošimo na sezname $A[1 \dots n]$ poljubne dolžine,
+za katere velja $A[i-1] \le A[i]$ ($2 \le i \le n-1$) in $A[n] < A[n-2]$.
+Tako kot v prejšnjem primeru algoritem zamenja le zadnja dva elementa,
+kar pa ne zadostuje za pravilno ureditev.
+
+\item Zapišimo opisani algoritem.
+\begin{small}
+\begin{algorithmic}
+\Require{$A[1 \dots n]$ seznam števil}
+\State $k \gets 2$
+\While{$k \ge 2$}
+    \State $k \gets 0$
+    \For{$i = 2, \dots, n$}
+        \If{$A[i-1] > A[i]$}
+            \State $A[i-1], A[i] \gets A[i], A[i-1]$
+            \State $k \gets k+1$
+        \EndIf
+    \EndFor
+\EndWhile
+\State \Return $A$
+\end{algorithmic}
+\end{small}
+Prepričamo se lahko,
+da po $j$-tem obhodu zunanje zanke zadnjih $j$ elementov na mestu.
+V najslabšem primeru algoritem torej opravi $O(n^2)$ korakov,
+kar tudi dosežemo, če na vhod dobi padajoče urejen seznam.
+Časovna zahtevnost algoritma je torej $O(n^2)$.
+
+\item Število primerjav je odvisno od števila obhodov zanke {\bf while}.
+En sam obhod dosežemo pri že urejenih seznamih in pri primerih iz točke (a).
+V tem primeru algoritem opravi $n$ primerjav elementov seznama $A$
+in dve primerjavi pri vstopu v zanko {\bf while}
+(pri zadnji se zanka konča).
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

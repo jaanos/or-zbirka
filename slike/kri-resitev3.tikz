@@ -1,0 +1,29 @@
+\input{slike/kri-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{kri}
+    \nicle
+    \kolicina{s}{k_A}[2]{44}
+    \kolicina{k_A}{o_{AB}}{5}
+    \kolicina{o_{AB}}{t}[0]{50}[prerez]
+    \kolicina{s}{k_O}[0]{45}[prerez]
+    \kolicina{k_O}{o_B}{3}
+    \kolicina{o_B}{t}[1]{37}
+    \kolicina{k_A}{o_A}{39}
+    \kolicina{o_A}{t}[0]{39}[prerez]
+    \kolicina{k_O}{o_O}{42}
+    \kolicina{o_O}{t}[0]{42}[zasicena]
+    \kolicina{s}{k_{AB}}[0]{45}[zasicena]
+    \kolicina{k_{AB}}{o_{AB}}{45}
+    \kolicina{s}{k_B}[0]{34}[prerez]
+    \kolicina{k_B}{o_B}{34}
+
+    \nasprotna{k_O}{o_A}
+    \nasprotna{k_O}{o_{AB}}
+    \nasprotna{k_B}{o_{AB}}
+
+    \dosezeno{s}
+    \dosezeno{k_A}
+    \dosezeno{k_{AB}}
+    \dosezeno{o_A}
+    \dosezeno{o_{AB}}
+\end{pretok*}

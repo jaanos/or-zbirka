@@ -1,23 +1,23 @@
 \begin{naloga}{Bašić, Gajser}{Kolokvij OR 5.4.2012}
 \begin{vprasanje}
-Iz zajetja $O$ želimo preko treh čistilnih postaj
+Iz zajetja $s$ želimo preko treh čistilnih postaj
 (vsako predstavljajo $4$ vozlišča)
-napeljati vodo do tovarne $T$.
+napeljati vodo do tovarne $t$.
 Opravka imamo z vodovodnim omrežjem,
 pred\-stav\-lje\-nim z grafom na sliki~\fig.
 Na povezavah so kapacitete cevi (v litrih na sekundo),
-cevi z oznakami $a_1$, $a_2$ in $a_3$ pa še niso zgrajene.
+cevi z oznakami $\alpha_1$, $\alpha_2$ in $\alpha_3$ pa še niso zgrajene.
 
 \begin{enumerate}[(a)]
 \item Koliko vode lahko po danem omrežju dobi tovarna na sekundo?
 
 \item Trenutni dotok vode v tovarno za potrebe proizvodnje ni dovolj velik,
 zato razmišljajo o izgradnji novih cevi.
-Možne lokacije novih cevi so $a_1$, $a_2$ in $a_3$.
+Možne lokacije novih cevi so $\alpha_1$, $\alpha_2$ in $\alpha_3$.
 Uprava tovarne se je odločila,
 da bodo s postavitvijo novih cevi na nekaterih možnih lokacijah
 povečali pretok kar največ, kot je mogoče.
-Cev kapacitete $k$ stane $k \cdot 100 €$.
+Cev kapacitete $K$ stane $K \cdot 100 €$.
 Za inštalacijo ene cevi morajo plačati dodatnih $10\,000 €$.
 Koliko najmanj jih bo stal projekt?
 \end{enumerate}
@@ -29,6 +29,45 @@ Koliko najmanj jih bo stal projekt?
 \podnaslov{Omrežje}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Po vsaki od poti $s \to a \to g \to m \to t$,
+$s \to b \to h \to m \to t$, $s \to c \to i \to m \to t$
+$s \to d \to j \to m \to t$, $s \to e \to k \to m \to t$
+in $s \to f \to \ell \to m \to t$ lahko povečamo pretok za $5$.
+Skupni pretok je torej $30$, glej sliko~\fig[zajetje-resitev1].
+
+\item Na sliki~\fig[zajetje-resitev2] vidimo,
+kako lahko povečujemo pretok skozi čistilne naprave ob predpostavki,
+da so vrednosti $\alpha_i$ ($i \in \{1, 2, 3\}$) dovolj velike.
+Prva povečujoča pot je speljana skozi postajo $\{a, b, g, h\}$
+-- po njej lahko pretok povečamo za največ $5$.
+Druga povečujoča pot je speljana skozi postajo $\{c, d, i, j\}$
+-- po njej lahko pretok prav tako povečamo za največ $5$.
+Maksimalen pretok skozi čistilno postajo je prikazan za $\{e, f, k, \ell\}$.
+Tako lahko skozi posamezno postajo pretok povečamo za največ $10$.
+
+Iz slike~\fig[zajetje-resitev1] je razvidno,
+da lahko pretok čez povezavo $m \to t$ povečamo za največ $20$.
+Tako bomo postavili cevi skupne kapacitete $20$,
+kar nas bo stalo $20 \cdot 100 € = 2\,000 €$.
+To lahko dosežemo z inštalacijo dveh cevi kapacitete $10$,
+kar nas dodatno stane $2 \cdot 10\,000 € = 20\,000 €$.
+Skupna cena projekta je torej $22\,000 €$.
+\end{enumerate}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[zajetje-resitev1]
+}
+\podnaslov[\res{}(a)]{Maksimalni pretok in minimalni prerez}
+\end{slika}
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[zajetje-resitev2]
+}
+\podnaslov[\res{}(b)]{Povečevanje pretokov}
+\end{slika}
 \end{odgovor}
 \end{naloga}

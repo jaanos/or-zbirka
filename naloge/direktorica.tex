@@ -30,6 +30,71 @@ Izračunaj EVE in nariši odločitveno drevo.
 Kakšno odločitev svetuješ direktorici banke?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Imamo eno samo odločitev
+-- ali naj podjetju odobrimo posojilo.
+Če ga ne odobrimo, imamo $0 €$ dobička,
+če pa ga, preidemo v stanje,
+v katerem imamo z verjetnostjo $0.3$ dobiček v višini $20\,000 €$,
+z verjetnostjo $0.5$ dobiček v višini $10\,000 €$
+in z verjetnostjo $0.2$ dobiček v višini $-15\,000 €$.
+V tem primeru je pričakovani dobiček enak
+$$
+0.3 \cdot 20\,000 € + 0.5 \cdot 10\,000 € - 0.2 \cdot 15\,000 € = 8\,000 € .
+$$
+Direktorici torej svetujemo, naj odobri posojilo,
+saj bo tedaj pričakovala dobiček $8\,000 €$.
+
+Izračunajmo še EVPI.
+Tukaj upoštevamo, da posojilo odobrimo, če bo to prineslo dobiček.
+$$
+\EVPI = 0.3 \cdot 20\,000 € + 0.5 \cdot 10\,000 € + 0.2 \cdot 0 € = 11\,000 €
+$$
+
+\item Izračunajmo verjetnosti za primer,
+da direktorica naroči test.
+\begin{align*}
+P(\text{test pozitiven}) =
+{2 \over 5} \cdot 0.3 + {1 \over 10} \cdot 0.5 + {1 \over 10} \cdot 0.2
+&= 0.19 \\
+P(\text{test nevtralen}) =
+{2 \over 5} \cdot 0.3 + {1 \over 2} \cdot 0.5 + {2 \over 5} \cdot 0.2
+&= 0.45 \\
+P(\text{test negativen}) =
+{1 \over 5} \cdot 0.3 + {2 \over 5} \cdot 0.5 + {1 \over 2} \cdot 0.2
+&= 0.36 \\
+P(\text{podjetje uspešno} \mid \text{test pozitiven}) =
+{2/5 \cdot 0.3 \over 0.19} &\approx 0.632 \\
+P(\text{podjetje povprečno uspešno} \mid \text{test pozitiven}) =
+{1/10 \cdot 0.5 \over 0.19} &\approx 0.263 \\
+P(\text{podjetje neuspešno} \mid \text{test pozitiven}) =
+{1/10 \cdot 0.2 \over 0.19} &\approx 0.105 \\
+P(\text{podjetje uspešno} \mid \text{test nevtralen}) =
+{2/5 \cdot 0.3 \over 0.45} &\approx 0.267 \\
+P(\text{podjetje povprečno uspešno} \mid \text{test nevtralen}) =
+{1/2 \cdot 0.5 \over 0.45} &\approx 0.556 \\
+P(\text{podjetje neuspešno} \mid \text{test nevtralen}) =
+{2/5 \cdot 0.2 \over 0.45} &\approx 0.178 \\
+P(\text{podjetje uspešno} \mid \text{test negativen}) =
+{1/5 \cdot 0.3 \over 0.36} &\approx 0.167 \\
+P(\text{podjetje povprečno uspešno} \mid \text{test negativen}) =
+{2/5 \cdot 0.5 \over 0.36} &\approx 0.556 \\
+P(\text{podjetje neuspešno} \mid \text{test negativen}) =
+{1/2 \cdot 0.2 \over 0.36} &\approx 0.278
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo, da se direktorici ne izplača naročiti testa,
+saj ji ta ne da zadostne informacije za morebitno spremembo odločitve.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

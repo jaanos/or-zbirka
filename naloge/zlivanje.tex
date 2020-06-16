@@ -15,6 +15,30 @@ ter vrne urejen seznam števil iz $A$ in $B$ dolžine $m+n$ v času $O(m+n)$.
 Psevdokode algoritma {\sc Zlij} ni potrebno pisati.
 Utemelji, da je časovna zahtevnosti tvojega algoritma res $O(n \log n)$.
 \end{vprasanje}
+
 \begin{odgovor}
+Zapišimo algoritem.
+\begin{small}
+\begin{algorithmic}
+\Function{Zlivanje}{$S[0 \dots n-1]$ seznam števil}
+    \If{$S.\length() \le 1$}
+        \State \Return $S$
+    \EndIf
+    \State $k \gets \left\lfloor {n \over 3} \right\rfloor$
+    \State $\ell \gets \left\lfloor {2n \over 3} \right\rfloor$
+    \State $A \gets \text{\sc Zlivanje}(S[0 \dots k-1])$
+    \State $B \gets \text{\sc Zlivanje}(S[k \dots \ell-1])$
+    \State $C \gets \text{\sc Zlij}(A, B)$
+    \State $D \gets \text{\sc Zlivanje}(S[\ell \dots n-1])$
+    \State $E \gets \text{\sc Zlij}(C, D)$
+    \State \Return $E$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovno zahtevnost algoritma lahko opišemo z rekurzivno zvezo
+$$
+T(n) = 3T\left({n \over 3}\right) + O(n) .
+$$
+Po krovnem izreku je časovna zahtevnost algoritma $T(n) = O(n \log n)$.
 \end{odgovor}
 \end{naloga}

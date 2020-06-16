@@ -1,0 +1,56 @@
+\input{slike/divjizur-osnova.tikz}
+
+\begin{pretok*}{divjizur}
+    \nicle
+    \kolicina*{s}{w_P}{0}[red]
+    \kolicina*{w_P}{y_D}{0}[red]
+    \kolicina*{y_D}{t}{0}[red]
+    \kolicina*{s}{w_S}{0}[green]
+    \kolicina*{w_S}{y_B}{0}[green]
+    \kolicina*{y_B}{t}{0}[green]
+    \kolicina*{s}{w_K}{0}[blue]
+    \kolicina*{w_K}{y_J}{0}[blue]
+    \kolicina*{y_J}{t}{0}[blue]
+    \kolicina*{s}{w_V}{0}[yellow]
+    \kolicina*{w_V}{y_S}{0}[yellow]
+    \kolicina*{y_S}{t}{0}[yellow]
+    \kolicina*{s}{x_R}{0}[magenta]
+    \kolicina*{x_R}{z_M}{0}[magenta]
+    \kolicina*{z_M}{t}{0}[magenta]
+    \kolicina*{s}{x_A}{0}[cyan]
+    \kolicina*{x_A}{z_D}{0}[cyan]
+    \kolicina*{z_D}{t}{0}[cyan]
+    \kolicina*{s}{x_C}{0}[brown]
+    \kolicina*{x_C}{z_J}{0}[brown]
+    \kolicina*{z_J}{t}{0}[brown]
+    \kolicina*{s}{x_J}{0}[pink]
+    \kolicina*{x_J}{z_B}{0}[pink]
+    \kolicina*{z_B}{t}{0}[pink]
+    \kolicina*{s}{x_B}{0}[gray]
+    \kolicina*{x_B}{z_S}{0}[gray]
+    \kolicina*{z_S}{t}{0}[gray]
+
+    \dosezeno{s}
+    \dosezeno{w_P}
+    \dosezeno{w_S}
+    \dosezeno{w_V}
+    \dosezeno{w_K}
+    \dosezeno{x_R}
+    \dosezeno{x_A}
+    \dosezeno{x_C}
+    \dosezeno{x_J}
+    \dosezeno{x_B}
+    \dosezeno{y_D}
+    \dosezeno{y_B}
+    \dosezeno{y_S}
+    \dosezeno{y_M}
+    \dosezeno{y_J}
+    \dosezeno{y_P}
+    \dosezeno{z_M}
+    \dosezeno{z_D}
+    \dosezeno{z_J}
+    \dosezeno{z_B}
+    \dosezeno{z_S}
+    \dosezeno{z_P}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

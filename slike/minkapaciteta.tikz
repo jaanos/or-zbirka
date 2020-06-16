@@ -1,0 +1,19 @@
+\NewEnviron{pretok@minkapaciteta}{
+    \vozlisce*{s}{-4, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 0, 0}
+    \vozlisce*{t}{ 4, 0}
+
+    \povezava{s}{a}{2}[sloped]{above}
+    \povezava{s}{b}{1}{below}
+    \povezava{a}{b}{2}[sloped]{above}
+    \povezava{b}{t}{2}{above}
+}
+
+\begin{pretok*}{minkapaciteta}
+    \kolicina{b}{t}{}[prerez]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+\end{pretok*}

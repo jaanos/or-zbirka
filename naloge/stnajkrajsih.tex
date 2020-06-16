@@ -1,0 +1,98 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 4.6.2020}
+\begin{vprasanje}
+Dana sta neutežen neusmerjen graf $G = (V, E)$
+z $n$ vozlišči in $m$ povezavami
+ter vozlišče $s \in V$.
+Za vsako vozlišče $v \in V$ nas zanima,
+koliko najkrajših poti od $s$ do $v$ je v grafu $G$
+(tj., koliko je takšnih poti od $s$ do $v$,
+katerih dolžina je enaka razdalji med $s$ in $v$ v grafu $G$).
+
+\begin{enumerate}[(a)]
+\item Čim bolj natančno opiši algoritem,
+ki reši zgornji problem v času $O(m)$.
+
+\item Uporabi svoj algoritem,
+da za vsako vozlišče v grafu s slike~\fig
+poiščeš število najkrajših poti od vozlišča $i$.
+Natančno zabeleži, kaj se zgodi v vsakem koraku algoritma.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Pomagali si bomo z iskanjem v širino.
+Zapišimo algoritem, ki kliče funkcijo {\sc bfs} iz naloge~\res[bfs].
+\begin{small}
+\begin{algorithmic}
+\Function{ŠteviloNajkrajših}{$G = (V, E), s$}
+	\State {\sl število} $\gets$ slovar s ključi $v \in V$
+                                 in vrednostmi $0$
+	\State {\sl globina} $\gets$ slovar s ključi $v \in V$
+                                 in vrednostmi $\infty$
+    \State {\sl število}$[s] \gets 1$
+    \State {\sl globina}$[s] \gets 0$
+	\Function{Visit}{$u, v$}
+        \For{$w \in \Adj(G, u)$}
+            \If{{\sl globina}$[w] = \infty$}
+                \State {\sl globina}$[w] \gets$ {\sl globina}$[u] + 1$
+            \EndIf
+            \If{{\sl globina}$[w] =$ {\sl globina}$[u] + 1$}
+                \State {\sl število}$[w] \gets$ {\sl število}$[w] +$ {\sl število}$[u]$
+            \EndIf
+        \EndFor
+	\EndFunction
+	\State {\sc bfs}$(G, \{s\}, \visit)$
+	\State \Return {\sl globina}
+\EndFunction
+\end{algorithmic}
+\end{small}
+Vidimo,
+da s klicanjem funkcije {\sc Visit} na vsakem vozlišču
+vsako povezavo obravnavamo največ dvakrat,
+tako da je časovna zahtevnost algoritma $O(m)$.
+
+\item Potek izvajanja algoritma je prikazan v tabeli~\tab,
+pri čemer je bil upoštevan abecedni vrstni red
+obiskovanja sosedov posameznega vozlišča.
+Končni rezultat lahko preberemo iz zadnje vrstice tabele.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{c|ccccccccc|ccccccccc}
+& \multicolumn{9}{c|}{\text{\sl globina}}
+& \multicolumn{9}{c}{\text{\sl število}} \\
+u & a & b & c & d & e & f & g & h & i & a & b & c & d & e & f & g & h & i \\
+\hline
+& \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty & 0
+& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+i & \infty & \infty & \infty & \infty & \infty & 1 & 1 & 1 & 0
+& 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+f & \infty & \infty & 2 & \infty & 2 & 1 & 1 & 1 & 0
+& 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+g & \infty & \infty & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 0 & 0 & 2 & 1 & 1 & 1 & 1 & 1 & 1 \\
+h & \infty & \infty & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 0 & 0 & 2 & 1 & 2 & 1 & 1 & 1 & 1 \\
+c & 3 & 3 & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 2 & 2 & 2 & 1 & 2 & 1 & 1 & 1 & 1 \\
+e & 3 & 3 & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 2 & 4 & 2 & 1 & 2 & 1 & 1 & 1 & 1 \\
+d & 3 & 3 & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 3 & 4 & 2 & 1 & 2 & 1 & 1 & 1 & 1 \\
+a & 3 & 3 & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 3 & 4 & 2 & 1 & 2 & 1 & 1 & 1 & 1 \\
+b & 3 & 3 & 2 & 2 & 2 & 1 & 1 & 1 & 0
+& 3 & 4 & 2 & 1 & 2 & 1 & 1 & 1 & 1
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

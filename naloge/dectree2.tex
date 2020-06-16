@@ -11,6 +11,60 @@ v odvisnosti od vrednosti parametra $p$.
 \podnaslov{Odločitveno drevo}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Izračunajmo najprej pričakovane vrednosti
+v vozliščih $F$, $G$ in $H$ odločitvenega drevesa s slike~\fig.
+\begin{alignat*}{2}
+F &= 25 \cdot 2p - 10 \cdot (1-2p) &&= 70p - 10 \\
+G &= 50 \cdot p - 10 \cdot (1-p) &&= 60p - 10 \\
+H &= 30 \cdot 4p - 30 \cdot (1-4p) &&= 240p - 30
+\end{alignat*}
+Obravnavajmo najprej odločitve v vozliščih $C$, $D$ in $E$.
+Za pot od vozlišča $C$ k vozlišču $F$ se odločimo,
+če velja $70p - 10 \ge 0$ oziroma $p \ge 1/7$.
+Za pot od vozlišča $D$ k vozlišču $G$ se odločimo,
+če velja $60p - 10 \ge -5$ oziroma $p \ge 1/12$.
+Za pot od vozlišča $E$ k vozlišču $H$ se odločimo,
+če velja $240p - 30 \ge -5$ oziroma $p \ge 5/48$.
+Sedaj lahko izračunamo pričakovano vrednost v vozlišču $B$
+v odvisnosti od parametra $p$.
+\begin{alignat*}{4}
+0 &\le p < {1 \over 12} &\quad&\Rightarrow\quad
+& B &= 0.6 \cdot (-5) + 0.4 \cdot (-5) &&= -5 \\
+{1 \over 12} &\le p < {5 \over 48} &\quad&\Rightarrow\quad
+& B &= 0.6 \cdot (60p - 10) + 0.4 \cdot (-5) &&= 36p - 8 \\
+{5 \over 48} &\le p \le {1 \over 4} &\quad&\Rightarrow\quad
+& B &= 0.6 \cdot (60p - 10) + 0.4 \cdot (240p - 30) &&= 132p - 18
+\end{alignat*}
+Obravnavajmo sedaj še odločitev v vozlišču $A$
+-- za pot k vozlišču $B$ se odločimo, če velja:
+\begin{alignat*}{4}
+0 &\le p < {1 \over 12}: &\quad -5 &\ge 0 &\quad&\Rightarrow\quad &&\bot \\
+{1 \over 12} &\le p < {5 \over 48}: &\quad 36p - 8 &\ge 0
+&\quad&\Rightarrow\quad &&\bot \\
+{5 \over 48} &\le p < {1 \over 7}: &\quad 132p - 18 &\ge 0
+&\quad&\Rightarrow\quad & {3 \over 22} &\le p < {1 \over 7} \\
+{1 \over 7} &\le p \le {1 \over 4}: &\quad 132p - 18 &\ge 70p - 10
+&\quad&\Rightarrow\quad & {1 \over 7} &\le p \le {1 \over 4}
+\end{alignat*}
+Odločamo se torej po sledečem pravilu.
+\begin{itemize}
+\item Če je $0 \le p < 3/22$,
+se odločimo za pot preko vozlišča $C$ v list z vrednostjo $0$.
+\item Če je $1/7 \le p < 3/22$,
+se odločimo za pot preko vozlišča $B$.
+    \begin{itemize}
+    \item Če pridemo v vozlišče $D$, se odločimo za pot preko vozlišča $G$.
+    \item Če pridemo v vozlišče $E$, se odločimo za pot preko vozlišča $H$.
+    \end{itemize}
+Pričakovana vrednost je $132p - 18 \in [0, 15]$.
+\end{itemize}
+Proces odločanja je prikazan na sliki~\fig[dectree2-resitev].
+
+\begin{slika}
+\pgfslika[dectree2-resitev]
+\podnaslov[\res v odvisnosti od vrednosti parametra $p$]{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

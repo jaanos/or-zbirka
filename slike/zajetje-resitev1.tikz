@@ -1,0 +1,35 @@
+\input{slike/zajetje-osnova.tikz}
+
+\begin{pretok*}[scale=1.3]{zajetje}
+    \nicle
+    \kolicina{s}{a}[5]{5}
+    \kolicina{s}{b}[5]{5}
+    \kolicina{s}{c}[5]{5}
+    \kolicina{s}{d}[5]{5}
+    \kolicina{s}{e}[5]{5}
+    \kolicina{s}{f}[5]{5}
+    \kolicina{a}{g}[0]{5}[prerez]
+    \kolicina{b}{h}[0]{5}[prerez]
+    \kolicina{c}{i}[0]{5}[prerez]
+    \kolicina{d}{j}[0]{5}[prerez]
+    \kolicina{e}{k}[0]{5}[prerez]
+    \kolicina{f}{l}[0]{5}[prerez]
+    \kolicina{b}{g}{0}[prerez]
+    \kolicina{d}{i}{0}[prerez]
+    \kolicina{f}{k}{0}[prerez]
+    \kolicina{g}{m}[5]{5}
+    \kolicina{h}{m}[5]{5}
+    \kolicina{i}{m}[5]{5}
+    \kolicina{j}{m}[5]{5}
+    \kolicina{k}{m}[5]{5}
+    \kolicina{l}{m}[5]{5}
+    \kolicina{m}{t}[20]{30}
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+\end{pretok*}

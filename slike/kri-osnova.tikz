@@ -1,0 +1,32 @@
+\NewEnviron{pretok@kri}{
+    \tikzstyle{vozlisce pretoka}=[vozlisce, minimum size=7mm]
+
+    \vozlisce*{s}{-5, 0}
+    \vozlisce{k_A}{-2, 3}
+    \vozlisce{k_O}{-2, 1}
+    \vozlisce{k_{AB}}{-2,-1}
+    \vozlisce{k_B}{-2,-3}
+    \vozlisce{o_A}{ 2, 3}
+    \vozlisce{o_O}{ 2, 1}
+    \vozlisce{o_{AB}}{ 2,-1}
+    \vozlisce{o_B}{ 2,-3}
+    \vozlisce*{t}{ 5, 0}
+
+    \povezava{s}{k_A}{46}[sloped]{above}[bend left=15]
+    \povezava{s}{k_O}{45}[sloped]{above}
+    \povezava{s}{k_{AB}}{45}[sloped]{below}
+    \povezava{s}{k_B}{34}[sloped]{below}[bend right=15]
+    \povezava{k_O}{o_O}{\infty}{above}
+    \povezava{k_O}{o_A}{\infty}[sloped]{above}
+    \povezava{k_O}{o_B}{\infty}[sloped]{below}[bend right=10]
+    \povezava{k_O}{o_{AB}}{\infty}[sloped]{above}
+    \povezava{k_A}{o_A}{\infty}{above}
+    \povezava{k_A}{o_{AB}}{\infty}[sloped]{above}[bend left=10]
+    \povezava{k_B}{o_B}{\infty}{below}
+    \povezava{k_B}{o_{AB}}{\infty}[sloped]{below}
+    \povezava{k_{AB}}{o_{AB}}{\infty}{below}
+    \povezava{o_A}{t}{39}[sloped]{above}[bend left=15]
+    \povezava{o_O}{t}{42}[sloped]{above}
+    \povezava{o_{AB}}{t}{50}[sloped]{below}
+    \povezava{o_B}{t}{38}[sloped]{below}[bend right=15]
+}

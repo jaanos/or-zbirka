@@ -34,6 +34,40 @@ Pokaži, da se pri klicu $H(G, u, v)$ (kjer je $u \in V \setminus \{v\}$)
 zadnja vrstica funkcije $H$ izvede $\Theta((n-2)!)$-krat.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Algoritem vrne $\True$ natanko tedaj,
+ko v gafu $G$ obstaja Hamiltonova pot med vozliščema $u$ in $v$.
+Trditev bomo dokazali z indukcijo.
+
+Za graf z dvema vozliščema algoritem vrne \True natanko tedaj,
+ko sta vozlišči povezani,
+torej, ko obstaja Hamiltonova pot.
+Denimo, da je zgornja trditev pravilna za grafe z $n \ge 2$ vozlišči.
+Če algoritem na vhod dobi graf z $n+1$ vozlišči, potem vrne \True,
+če obstaja vozlišče $w$,
+ki je sosednje vozlišču $u$ in različno od vozlišča $v$,
+tako da v grafu $G - u$ (z $n$ vozlišči)
+obstaja Hamiltonova pot od $w$ do $v$.
+Če je to res, potem v grafu $G$ obstaja Hamiltonova pot od $u$ do $v$.
+Po indukciji trditev velja za vse grafe.
+
+\item Spet bomo uporabili indukcijo.
+Pri $n = 2$ prvi pogoj ni resničen,
+v zanko pa ne vstopimo, tako da se zadnja vrstica izvede enkrat.
+Denimo, da se pri grafih z $n-1$ vozlišči ($n \ge 3$)
+zadnja vrstica izvede $\Theta((n-3)!)$-krat,
+in obravnavajmo primer, ko ima graf $G$ natanko $n$ vozlišč.
+Ker ima vozlišče $u$ natanko $n-2$ sosedov
+in ker vozlišče $v$ ni krajišče nobene Hamiltonove poti,
+se v zanki izvede $n-2$ rekurzivnih klicev
+na grafu $G-u$ z $n-1$ vozlišči in isto lastnostjo kot $G$.
+Po izteku zanke se nato izvede še zadnja vrstica.
+Skupno število izvedb zadnje vrstice je tako
+$$
+1 + (n-2) \Theta((n-3)!) = \Theta((n-2)!) .
+$$
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

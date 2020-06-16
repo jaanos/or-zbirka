@@ -1,0 +1,34 @@
+\input{slike/pretok5-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok5}
+    \nicle
+    \kolicina*{s}{a}[5]{0}[red]
+    \kolicina*{a}{d}[\infty]{0}[red]
+    \kolicina*{d}{f}[5]{0}[red]
+    \kolicina*{f}{g}[3]{0}[red]
+    \kolicina*{g}{j}[3]{13}[red]
+    \kolicina*{j}{t}[\infty]{13}[red]
+    \kolicina*{s}{b}[\infty]{23}[green]
+    \kolicina*{b}{c}[21]{0}[green]
+    \kolicina*{c}{h}[\infty]{13}[green]
+    \kolicina*{h}{g}[\infty]{13}[green]
+    \kolicina*{g}{i}[\infty]{23}[green]
+    \kolicina*{i}{t}[\infty]{23}[green]
+    \kolicina{b}{a}[\infty]{23}
+    \kolicina{a}{e}[\infty]{23}
+    \kolicina{e}{g}[0]{23}[zasicena]
+    \kolicina{s}{c}[0]{13}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+    \dosezeno{g}
+    \dosezeno{h}
+    \dosezeno{i}
+    \dosezeno{j}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

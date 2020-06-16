@@ -45,6 +45,103 @@ Njegova časovna zahtevnost ne sme biti slabša
 od časovne zahtevnosti algoritma dr.~Kaczyńskega.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Algoritem kliče ukaz $A.\reverseStart$ $O(n^2)$-krat.
+Ker se ta izvede v kon\-stant\-nem času,
+je torej časovna zahtevnost algoritma $O(n^2)$.
+
+\item Izpišimo stanje ``tabele'' po vsakem klicu ukaza $A.\reverseStart$.
+$$
+\begin{array}{cc|cc|c|c}
+i & j & A[i] & A[j] & A.\reverseStart(j) & A.\reverseStart(i) \\ \hline
+5 & 1 & 15 &  5 && \\
+  & 2 &    &  9 && \\
+  & 3 &    & 12 && \\
+  & 4 &    &  7 && \\ \hline
+4 & 1 &  7 &  5 && \\
+  & 2 &    &  9 & [9, 5, 12, 7, 15] & [7, 12, 5, 9, 15] \\
+  & 3 &  9 &  5 && \\ \hline
+3 & 1 &  5 &  7 & [7, 12, 5, 9, 15] & [5, 12, 7, 9, 15] \\
+  & 2 &  7 & 12 & [12, 7, 5, 9, 15] & [5, 7, 12, 9, 15] \\ \hline
+2 & 1 &  7 &  5 &&
+\end{array}
+$$
+Vidimo, da po koncu algoritma ``tabela'' ni urejena,
+torej algoritem ne deluje pravilno.
+
+\item Da bomo dobili algoritem, ki bo pravilno urejal, bomo poskrbeli,
+da po obhodu notranje zanke pri indeksih $i$ in $j$
+velja $A[k] \le A[i]$ za vse $k \le j$.
+Tako bomo dosegli,
+da po obhodu zunanje zanke vrednost $A[i]$ ni manjša od svojih predhodnikov,
+kar bo privedlo do urejenosti ob izteku zanke.
+V notranji zanki bo torej treba poskrbeti,
+da vrednost $A[j]$ pride na $i$-to mesto,
+elementi med $j$-tim in $i$-tim pa ostanejo v tem intervalu
+(ne nujno na istem mestu).
+\begin{small}
+\begin{algorithmic}
+\State $n \gets A.\length()$
+\For{$i = n, \dots, 2$}
+    \For{$j = 1, \dots, i-1$}
+        \If{$A[j] > A[i]$}
+            \State $A.\reverseStart(i-1)$
+            \State $A.\reverseStart(i-j)$
+            \State $A.\reverseStart(i)$
+        \EndIf
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{small}
+Algoritem še vedno teče v času $O(n^2)$.
+
+Da se prepričamo, da algoritem deluje pravilno,
+dokažimo, da velja zgoraj omenjena invarianta za notranjo zanko.
+Predpostavimo torej, da velja $A[k] \le A[i]$ za vse $k < j$.
+Če velja tudi $A[j] \le A[i]$, potem se ne zgodi nič in invarianta drži.
+V nasprotnem primeru označimo z $a_h$ ($1 \le h \le n$)
+vrednost $A[i]$ ob vstopu v obhod zanke,
+in z $b_h$ ($1 \le h \le n$) vrednost $A[i]$ ob izstopu iz obhoda zanke.
+Po predpostavki velja $a_k \le a_i$ ($1 \le k \le j$) in $a_i > a_j$.
+Poglejmo, kaj se dogaja ob klicih ukazov $A.\reverseStart$.
+$$
+\begin{array}{rrrrrrrrrrr}
+& a_1, & \dots, & a_{j-1}, & a_j, & a_{j+1}, & \dots, & a_{i-1}, & a_i, & a_{i+1}, & \dots \\
+\multicolumn{11}{l}{A.\reverseStart(i-1):} \\
+& a_{i-1}, & \dots, & a_{j+1}, & a_j, & a_{j-1}, & \dots, & a_1, & a_i, & a_{i+1}, & \dots \\
+\multicolumn{11}{l}{A.\reverseStart(i-j):} \\
+& a_j, & a_{j+1}, & \dots, & a_{i-1}, & a_{j-1}, & \dots, & a_1, & a_i, & a_{i+1}, & \dots \\
+\multicolumn{11}{l}{A.\reverseStart(i):} \\
+& a_i, & a_1, & \dots, & a_{j-1}, & a_{i-1}, & \dots, & a_{j+1}, & a_j, & a_{i+1}, & \dots \\
+= & b_1, & b_2, & \dots, & b_j, & b_{j+1}, & \dots, & b_{i-1}, & b_i, & b_{i+1}, & \dots
+\end{array}
+$$
+Opazimo,
+da velja $b_i = a_j > a_i = b_1$
+in $b_i = a_j \ge a_{k-1} = b_k$ ($2 \le k \le j$).
+Zančna invarianta torej drži.
+
+Preizkusimo algoritem še na primeru iz točke (b).
+
+\makebox[\textwidth][c]{
+\begin{tabular}{cc|cc|c|c|c}
+$i$ & $j$ & $A[i]$ & $A[j]$ & $A.\reverseStart(i-1)$ & $A.\reverseStart(i-j)$ & $A.\reverseStart(i)$ \\ \hline
+5 & 1 & 15 &  5 &&& \\
+  & 2 &    &  9 &&& \\
+  & 3 &    & 12 &&& \\
+  & 4 &    &  7 &&& \\ \hline
+4 & 1 &  7 &  5 &&& \\
+  & 2 &    &  9 & [12, 9, 5, 7, 15] & [9, 12, 5, 7, 15] & [7, 5, 12, 9, 15] \\
+  & 3 &  9 & 12 & [12, 5, 7, 9, 15] & [12, 5, 7, 9, 15] & [9, 7, 5, 12, 15] \\ \hline
+3 & 1 &  5 &  9 & [7, 9, 5, 12, 15] & [9, 7, 5, 12, 15] & [5, 7, 9, 12, 15] \\
+  & 2 &  9 &  7 &&& \\ \hline
+2 & 1 &  7 &  5 &&&
+\end{tabular}
+}
+
+Vidimo, da algoritem na tem primeru res deluje pravilno.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

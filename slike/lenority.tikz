@@ -1,0 +1,79 @@
+\NewEnviron{pretok@lenority}{
+    \vozlisce*{s}{-6, 0}
+    \vozlisce{u_6}{-2, 4}
+    \vozlisce{u_4}{-2, 3}
+    \vozlisce{u_8}{-2, 2}
+    \vozlisce{u_1}{-2, 1}
+    \vozlisce{u_2}{-2, 0}
+    \vozlisce{u_3}{-2,-1}
+    \vozlisce{u_9}{-2,-2}
+    \vozlisce{u_5}{-2,-3}
+    \vozlisce{u_7}{-2,-4}
+    \vozlisce{v_1}{ 2, 4}
+    \vozlisce{v_6}{ 2, 3}
+    \vozlisce{v_2}{ 2, 2}
+    \vozlisce{v_4}{ 2, 1}
+    \vozlisce{v_3}{ 2, 0}
+    \vozlisce{v_8}{ 2,-1}
+    \vozlisce{v_5}{ 2,-2}
+    \vozlisce{v_7}{ 2,-3}
+    \vozlisce{v_9}{ 2,-4}
+    \vozlisce*{t}{ 6, 0}
+
+    \povezava{s}{u_6}{1}[sloped]{above}[bend left=45]
+    \povezava{s}{u_4}{1}[sloped]{above}[bend left=30]
+    \povezava{s}{u_8}{1}[sloped]{above}[bend left=20]
+    \povezava{s}{u_1}{1}[sloped]{above}[bend left=10]
+    \povezava{s}{u_2}{1}{above}
+    \povezava{s}{u_3}{1}[sloped]{below}[bend right=10]
+    \povezava{s}{u_9}{1}[sloped]{below}[bend right=20]
+    \povezava{s}{u_5}{1}[sloped]{below}[bend right=30]
+    \povezava{s}{u_7}{1}[sloped]{below}[bend right=45]
+    \povezava{u_1}{v_2}{1}[sloped]{above}
+    \povezava{u_1}{v_4}{1}{below}
+    \povezava{u_2}{v_3}{1}{above}
+    \povezava{u_2}{v_8}{1}[sloped]{below}
+    \povezava{u_3}{v_5}{1}[sloped]{above}
+    \povezava{u_4}{v_6}{1}{above}
+    \povezava{u_5}{v_7}{1}{below}
+    \povezava{u_8}{v_6}{1}[sloped]{below}
+    \povezava{u_9}{v_5}{1}{below}
+    \povezava{v_1}{t}{1}[sloped]{above}[bend left=45]
+    \povezava{v_6}{t}{1}[sloped]{above}[bend left=30]
+    \povezava{v_2}{t}{1}[sloped]{above}[bend left=20]
+    \povezava{v_4}{t}{1}[sloped]{above}[bend left=10]
+    \povezava{v_3}{t}{1}{below}
+    \povezava{v_8}{t}{1}[sloped]{below}[bend right=10]
+    \povezava{v_5}{t}{1}[sloped]{below}[bend right=20]
+    \povezava{v_7}{t}{1}[sloped]{below}[bend right=30]
+    \povezava{v_9}{t}{1}[sloped]{below}[bend right=45]
+}
+
+\begin{pretok*}[scale=1.2]{lenority}
+    \nicle
+    \kolicina{s}{u_4}[0]{1}[zasicena]
+    \kolicina{s}{u_1}[0]{1}[prerez]
+    \kolicina{s}{u_2}[0]{1}[prerez]
+    \kolicina{s}{u_9}[0]{1}[zasicena]
+    \kolicina{s}{u_5}[0]{1}[prerez]
+    \kolicina{u_4}{v_6}[0]{1}[zasicena]
+    \kolicina{u_1}{v_4}[0]{1}[zasicena]
+    \kolicina{u_2}{v_3}[0]{1}[zasicena]
+    \kolicina{u_9}{v_5}[0]{1}[zasicena]
+    \kolicina{u_5}{v_7}[0]{1}[zasicena]
+    \kolicina{v_6}{t}[0]{1}[prerez]
+    \kolicina{v_4}{t}[0]{1}[zasicena]
+    \kolicina{v_3}{t}[0]{1}[zasicena]
+    \kolicina{v_5}{t}[0]{1}[prerez]
+    \kolicina{v_7}{t}[0]{1}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{u_6}
+    \dosezeno{u_8}
+    \dosezeno{u_3}
+    \dosezeno{u_7}
+    \dosezeno{v_6}
+    \dosezeno{v_5}
+    \dosezeno{u_4}
+    \dosezeno{u_9}
+\end{pretok*}

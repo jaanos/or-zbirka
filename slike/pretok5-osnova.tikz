@@ -1,80 +1,35 @@
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
-\tikzstyle{cut}=[white, fill=black]
-\tikzstyle{limit}=[black, near start]
-\tikzstyle{flow}=[black, near end]
-\tikzstyle{path}=[very thick, red]
+\NewEnviron{pretok@pretok5}{
+    \vozlisce*{s}{-8, 0}
+    \vozlisce{a}{-4, 4}
+    \vozlisce{b}{-4, 0}
+    \vozlisce{c}{-4,-4}
+    \vozlisce{d}{ 0, 4}
+    \vozlisce{e}{ 0, 0}
+    \vozlisce{f}{ 4, 4}
+    \vozlisce{g}{ 4, 0}
+    \vozlisce{h}{ 4,-4}
+    \vozlisce{i}{ 8, 4}
+    \vozlisce{j}{ 8,-4}
+    \vozlisce*{t}{ 8, 0}
 
-\node[vertex,va] (na) at (-8, 0) {$S$};
-\node[vertex,vb] (nb) at (-4, 4) {};
-\node[vertex,vc] (nc) at (-4, 0) {};
-\node[vertex,vd] (nd) at (-4,-4) {};
-\node[vertex,ve] (ne) at ( 0, 4) {};
-\node[vertex,vf] (nf) at ( 0, 0) {};
-\node[vertex,vg] (ng) at ( 4, 4) {};
-\node[vertex,vh] (nh) at ( 4,-4) {};
-\node[vertex,vi] (ni) at ( 4, 0) {};
-\node[vertex,vj] (nj) at ( 8, 4) {};
-\node[vertex,vk] (nk) at ( 8,-4) {};
-\node[vertex,vl] (nl) at ( 8, 0) {$T$};
-
-\draw[->,eab] (na) -- (nb)
-    node[limit, above, sloped] {$\Lab$}
-    node[flow, above, sloped] {$\Fab$};
-\draw[->,eac] (na) -- (nc)
-    node[limit, above] {$\Lac$}
-    node[flow, above] {$\Fac$};
-\draw[->,ead] (na) -- (nd)
-    node[limit, below, sloped] {$\Lad$}
-    node[flow, below, sloped] {$\Fad$};
-\draw[->,ebe] (nb) -- (ne)
-    node[limit, above] {$\Lbe$}
-    node[flow, above] {$\Fbe$};
-\draw[->,ebf] (nb) -- (nf)
-    node[limit, below, sloped] {$\Lbf$}
-    node[flow, below, sloped] {$\Fbf$};
-\draw[->,ecb] (nc) -- (nb)
-    node[limit, left] {$\Lcb$}
-    node[flow, left] {$\Fcb$};
-\draw[->,ecd] (nc) -- (nd)
-    node[limit, left] {$\Lcd$}
-    node[flow, left] {$\Fcd$};
-\draw[->,edf] (nd) -- (nf)
-    node[limit, above, sloped] {$\Ldf$}
-    node[flow, above, sloped] {$\Fdf$};
-\draw[->,edh] (nd) -- (nh)
-    node[limit, below] {$\Ldh$}
-    node[flow, below] {$\Fdh$};
-\draw[->,eef] (ne) -- (nf)
-    node[limit, right] {$\Lef$}
-    node[flow, right] {$\Fef$};
-\draw[->,eeg] (ne) -- (ng)
-    node[limit, above] {$\Leg$}
-    node[flow, above] {$\Feg$};
-\draw[->,efi] (nf) -- (ni)
-    node[limit, below] {$\Lfi$}
-    node[flow, below] {$\Ffi$};
-\draw[->,egi] (ng) -- (ni)
-    node[limit, left] {$\Lgi$}
-    node[flow, left] {$\Fgi$};
-\draw[->,ehi] (nh) -- (ni)
-    node[limit, left] {$\Lhi$}
-    node[flow, left] {$\Fhi$};
-\draw[->,eij] (ni) -- (nj)
-    node[limit, below, sloped] {$\Lij$}
-    node[flow, below, sloped] {$\Fij$};
-\draw[->,eik] (ni) -- (nk)
-    node[limit, above, sloped] {$\Lik$}
-    node[flow, above, sloped] {$\Fik$};
-\draw[->,ejg] (nj) -- (ng)
-    node[limit, above] {$\Ljg$}
-    node[flow, above] {$\Fjg$};
-\draw[->,ejl] (nj) -- (nl)
-    node[limit, right] {$\Ljl$}
-    node[flow, right] {$\Fjl$};
-\draw[->,ekh] (nk) -- (nh)
-    node[limit, below] {$\Lkh$}
-    node[flow, below] {$\Fkh$};
-\draw[->,ekl] (nk) -- (nl)
-    node[limit, right] {$\Lkl$}
-    node[flow, right] {$\Fkl$};
+    \povezava{s}{a}{5}[sloped]{above}
+    \povezava{s}{b}{\infty}{above}
+    \povezava{s}{c}{13}[sloped]{below}
+    \povezava{a}{d}{\infty}{above}
+    \povezava{a}{e}{\infty}[sloped]{below}
+    \povezava{b}{a}{\infty}{left}
+    \povezava{b}{c}{21}{left}
+    \povezava{c}{e}{9}[sloped]{above}
+    \povezava{c}{h}{\infty}{below}
+    \povezava{d}{e}{\infty}{right}
+    \povezava{d}{f}{5}{above}
+    \povezava{e}{g}{23}{below}
+    \povezava{f}{g}{3}{left}
+    \povezava{h}{g}{\infty}{left}
+    \povezava{g}{i}{\infty}[sloped]{below}
+    \povezava{g}{j}{16}[sloped]{above}
+    \povezava{i}{f}{11}{above}
+    \povezava{i}{t}{\infty}{right}
+    \povezava{j}{h}{\infty}{below}
+    \povezava{j}{t}{\infty}{right}
+}

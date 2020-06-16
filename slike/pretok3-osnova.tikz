@@ -1,38 +1,17 @@
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
-\tikzstyle{cut}=[white, fill=black]
-\tikzstyle{limit}=[black, near start]
-\tikzstyle{flow}=[black, near end]
-\tikzstyle{path}=[very thick, red]
+\NewEnviron{pretok@pretok3}{
+    \vozlisce*{s}{-6, 0}
+    \vozlisce{a}{-2, 3}
+    \vozlisce{b}{-2,-3}
+    \vozlisce{c}{ 2, 0}
+    \vozlisce{d}{ 6, 3}
+    \vozlisce*{t}{ 6,-3}
 
-\node[vertex,va] (na) at (-6, 0) {$S$};
-\node[vertex,vb] (nb) at (-2, 3) {};
-\node[vertex,vc] (nc) at (-2,-3) {};
-\node[vertex,vd] (nd) at ( 2, 0) {};
-\node[vertex,ve] (ne) at ( 6, 3) {};
-\node[vertex,vf] (nf) at ( 6,-3) {$T$};
-
-\draw[->,eab] (na) -- (nb)
-    node[limit, above, sloped] {$\Lab$}
-    node[flow, above, sloped] {$\Fab$};
-\draw[->,eac] (na) -- (nc)
-    node[limit, below, sloped] {$\Lac$}
-    node[flow, below, sloped] {$\Fac$};
-\draw[->,ebd] (nb) -- (nd)
-    node[limit, above, sloped] {$\Lbd$}
-    node[flow, above, sloped] {$\Fbd$};
-\draw[->,ebe] (nb) -- (ne)
-    node[limit, above] {$\Lbe$}
-    node[flow, above] {$\Fbe$};
-\draw[->,ecd] (nc) -- (nd)
-    node[limit, below, sloped] {$\Lcd$}
-    node[flow, below, sloped] {$\Fcd$};
-\draw[->,ecf] (nc) -- (nf)
-    node[limit, below] {$\Lcf$}
-    node[flow, below] {$\Fcf$};
-\draw[->,edf] (nd) -- (nf)
-    node[limit, above, sloped] {$\Ldf$}
-    node[flow, above, sloped] {$\Fdf$};
-\draw[->,eef] (ne) -- (nf)
-    node[limit, right] {$\Lef$}
-    node[flow, right] {$\Fef$};
+    \povezava{s}{a}{\alpha}[sloped]{above}
+    \povezava{s}{b}{3}[sloped]{below}
+    \povezava{a}{c}{3}[sloped]{below}
+    \povezava{a}{d}{4}{above}
+    \povezava{b}{c}{2}[sloped]{below}
+    \povezava{b}{t}{4}{below}
+    \povezava{c}{t}{2}[sloped]{above}
+    \povezava{d}{t}{3}{right}
+}

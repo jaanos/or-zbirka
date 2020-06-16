@@ -1,0 +1,46 @@
+\begin{tikzpicture}[style=thick,scale=0.9]
+\small
+\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
+\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
+\tikzstyle{pick}=[double, very thick]
+\node[dec] (A) at (-8, 0) [label=above:$11.96$] {};
+\node[dec] (B) at (-4, 2) [label=above:$12$] {};
+\node[ran] (C) at (-4,-2) [label=below:$11.96$] {};
+\node[ran] (D) at (-1, 3) [label=above:$12$] {};
+\node      (E) at (-1, 1) {$12$};
+\node[dec] (F) at (-1, 0) [label=below:$9.53$] {};
+\node[dec] (G) at (-1,-3) [label=below:$13$] {};
+\node      (H) at ( 4, 4) {$6$};
+\node      (I) at ( 4, 3) {$10$};
+\node      (J) at ( 4, 2) {$14$};
+\node[ran] (K) at ( 3, 1) [label=below:$9.53$] {};
+\node      (L) at ( 3,-1) {$13$};
+\node[ran] (M) at ( 3,-2) [label=below:$14.49$] {};
+\node      (N) at ( 3,-4) {$13$};
+\node      (O) at ( 8, 2) {$7$};
+\node      (P) at ( 8, 1) {$11$};
+\node      (Q) at ( 8, 0) {$15$};
+\node      (R) at ( 8,-1) {$7$};
+\node      (S) at ( 8,-2) {$11$};
+\node      (T) at ( 8,-3) {$15$};
+
+\draw (A) -- (B) node[above, midway, sloped] {ne gremo k vraču};
+\draw[pick] (A) -- (C) node[below, midway, sloped] {gremo k vraču};
+\draw (B) -- (D) node[above, midway, sloped] {prelaz};
+\draw (B) -- (E) node[below, midway, sloped] {okoli};
+\draw (C) -- (F) node[above, midway, sloped] {mir: $3/10$};
+\draw (C) -- (G) node[below, midway, sloped] {vojna: $7/10$};
+\draw (D) -- (H) node[above, midway, sloped] {čist: $1/5$};
+\draw (D) -- (I) node[above, near end] {zasnežen: $1/10$};
+\draw (D) -- (J) node[below, midway, sloped] {neprevozen: $7/10$};
+\draw[pick] (F) -- (K) node[above, midway, sloped] {prelaz};
+\draw (F) -- (L) node[below, midway, sloped] {okoli};
+\draw (G) -- (M) node[above, midway, sloped] {prelaz};
+\draw[pick] (G) -- (N) node[below, midway, sloped] {okoli};
+\draw (K) -- (O) node[above, midway, sloped] {čist: $3/5$};
+\draw (K) -- (P) node[above, near end] {zasnežen: $1/6$};
+\draw (K) -- (Q) node[below, midway, sloped] {neprevozen: $7/30$};
+\draw (M) -- (R) node[above, midway, sloped] {čist: $1/35$};
+\draw (M) -- (S) node[above, near end] {zasnežen: $1/14$};
+\draw (M) -- (T) node[below, midway, sloped] {neprevozen: $9/10$};
+\end{tikzpicture}

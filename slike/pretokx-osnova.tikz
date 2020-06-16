@@ -1,0 +1,18 @@
+\NewEnviron{pretok@pretokx}{
+    \vozlisce*{s}{-5, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 2, 2}
+    \vozlisce{c}{-2,-2}
+    \vozlisce{d}{ 2,-2}
+    \vozlisce*{t}{ 5, 0}
+
+    \povezava{s}{a}{2}[sloped]{above}
+    \povezava{s}{c}{5}[sloped]{below}
+    \povezava{a}{b}{x}{above}
+    \povezava{a}{c}{3}{left}
+    \povezava{b}{c}{1}[sloped]{above}
+    \povezava{b}{t}{5}[sloped]{above}
+    \povezava{c}{d}{5}{below}
+    \povezava{d}{b}{1}{right}
+    \povezava{d}{t}{2}[sloped]{below}
+}

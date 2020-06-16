@@ -1,0 +1,44 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 18.5.2020}
+\begin{vprasanje}
+Določi skupne, proste, varnostne in neodvisne rezerve
+opravil iz naloge~\nal[palacinke].
+\end{vprasanje}
+
+\begin{odgovor}
+Skupna rezerva opravila je največji čas,
+za katerega lahko zamaknemo končanje opravila,
+ne da bi s tem vplivali na čas končanja projekta.
+Izračunamo jo kot minimalno razliko najkasnejšega začetka naslednika
+in najzgodnejšega konca predhodnika,
+od katere odštejemo trajanje opravila.
+Skupne rezerve računamo pri določitvi kritičnih in najmanj kritičnih opravil
+ter so za nalogo~\nal[palacinke]
+prikazane v vrstici ``razlika'' tabele~\tab[palacinke-resitev].
+
+Prosta rezerva opravila je največji čas,
+za katerega lahko zamaknemo končanje opravila,
+če z nasledniki začnemo ob najzgodnejšem možnem času.
+Izračunamo jo kot minimalno razliko najzgodnejšega začetka naslednika
+in najzgodnejšega konca predhodnika,
+od katere odštejemo trajanje opravila.
+
+Varnostna rezerva opravila je največji čas,
+za katerega lahko zamaknemo končanje opravila,
+ne da bi s tem vplivali na čas končanja projekta,
+če s predhodniki končamo ob najkasnejšem možnem času.
+Izračunamo jo kot minimalno razliko najkasnejšega začetka naslednika
+in najkasnejšega konca predhodnika,
+od katere odštejemo trajanje opravila.
+
+Neodvisna rezerva opravila je največji čas,
+za katerega lahko zamaknemo končanje opravila,
+če z nasledniki začnemo ob najzgodnejšem možnem času
+in s predhodniki končamo ob najkasnejšem možnem času.
+Izračunamo jo kot minimalno razliko najzgodnejšega začetka naslednika
+in najkasnejšega konca predhodnika,
+od katere odštejemo trajanje opravila.
+
+Tudi proste, varnostne in neodvisne rezerve opravil iz naloge~\nal[palacinke]
+so prikazane v tabeli~\tab[palacinke-resitev].
+\end{odgovor}
+\end{naloga}

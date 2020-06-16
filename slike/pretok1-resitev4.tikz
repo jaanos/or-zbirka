@@ -1,0 +1,28 @@
+\input{slike/pretok1-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok1}
+    \nicle
+    \kolicina{s}{a}[0]{6}[zasicena]
+    \kolicina{s}{b}[1]{2}
+    \kolicina{s}{c}[0]{2}[zasicena]
+    \kolicina{a}{e}[3]{6}
+    \kolicina{b}{c}[5]{2}
+    \kolicina{c}{d}[2]{3}
+    \kolicina{c}{f}[0]{1}[prerez]
+    \kolicina{d}{e}[2]{1}
+    \kolicina{d}{t}[0]{2}[prerez]
+    \kolicina{e}{g}[0]{2}[prerez]
+    \kolicina{e}{t}[0]{5}[prerez]
+    \kolicina{f}{t}[3]{1}
+    \kolicina{g}{t}[2]{2}
+
+    \nasprotna{f}{d}
+    \nasprotna{g}{a}
+
+    \dosezeno{s}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{a}
+    \dosezeno{e}
+\end{pretok*}

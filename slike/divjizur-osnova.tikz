@@ -1,0 +1,75 @@
+\NewEnviron{pretok@divjizur}{
+    \tikzstyle{vozlisce pretoka}=[vozlisce, minimum size=7mm]
+
+    \vozlisce*{s}{-11, 0}
+    \vozlisce{w_P}{-3, 11}
+    \vozlisce{w_S}{-3, 9}
+    \vozlisce{w_V}{-3, 5}
+    \vozlisce{w_K}{-3, 3}
+    \vozlisce{x_R}{-3,-1}
+    \vozlisce{x_A}{-3,-3}
+    \vozlisce{x_C}{-3,-5}
+    \vozlisce{x_J}{-3,-7}
+    \vozlisce{x_B}{-3,-9}
+    \vozlisce{y_D}{ 3, 11}
+    \vozlisce{y_B}{ 3, 9}
+    \vozlisce{y_S}{ 3, 7}
+    \vozlisce{y_M}{ 3, 5}
+    \vozlisce{y_J}{ 3, 3}
+    \vozlisce{y_P}{ 3, 1}
+    \vozlisce{z_M}{ 3,-1}
+    \vozlisce{z_D}{ 3,-3}
+    \vozlisce{z_J}{ 3,-5}
+    \vozlisce{z_B}{ 3,-7}
+    \vozlisce{z_S}{ 3,-9}
+    \vozlisce{z_P}{ 3,-11}
+    \vozlisce*{t}{ 11, 0}
+
+    \povezava{s}{w_P}{1}[sloped]{above}[bend left=40]
+    \povezava{s}{w_S}{2}[sloped]{above}[bend left=32]
+    \povezava{s}{w_V}{1}[sloped]{above}[bend left=16]
+    \povezava{s}{w_K}{2}[sloped]{above}[bend left=8]
+    \povezava{s}{x_R}{2}[sloped]{below}
+    \povezava{s}{x_A}{1}[sloped]{below}[bend right=8]
+    \povezava{s}{x_C}{1}[sloped]{below}[bend right=16]
+    \povezava{s}{x_J}{2}[sloped]{below}[bend right=24]
+    \povezava{s}{x_B}{2}[sloped]{below}[bend right=32]
+    \povezava{w_P}{y_D}{1}{above}
+    \povezava{w_P}{y_B}{1}[sloped]{above}
+    \povezava{w_S}{y_D}{1}[sloped]{above}
+    \povezava{w_S}{y_B}{1}{above}
+    \povezava{w_K}{y_J}{1}{below}
+    \povezava{w_K}{y_M}{1}[sloped]{below}[bend left=15]
+    \povezava{w_K}{y_P}{1}[sloped]{below}[bend right=15]
+    \povezava{w_V}{y_J}{1}[sloped]{above}[bend right=5]
+    \povezava{w_V}{y_B}{1}[sloped]{above}[bend left=10]
+    \povezava{w_V}{y_M}{1}{above}
+    \povezava{w_V}{y_S}{1}[sloped]{above}[bend left=5]
+    \povezava{w_V}{y_P}{1}[sloped]{below}[bend right=10]
+    \povezava{x_A}{z_D}{1}{above}
+    \povezava{x_A}{z_J}{1}[sloped]{above}[bend left=1]
+    \povezava{x_A}{z_M}{1}[sloped]{above}[bend right=1]
+    \povezava{x_C}{z_J}{1}{above}
+    \povezava{x_C}{z_B}{1}[sloped]{below}[bend left=5]
+    \povezava{x_C}{z_S}{1}[sloped]{below}[bend left=5]
+    \povezava{x_R}{z_M}{1}{above}
+    \povezava{x_J}{z_D}{1}[sloped]{above}[bend left=14]
+    \povezava{x_J}{z_J}{1}[sloped]{below}[bend right=3]
+    \povezava{x_J}{z_B}{1}{below}
+    \povezava{x_J}{z_S}{1}[sloped]{below}[bend right=1]
+    \povezava{x_J}{z_P}{1}[sloped]{below}[bend right=12]
+    \povezava{x_B}{z_S}{1}{below}
+    \povezava{x_B}{z_P}{1}[sloped]{below}[bend right=15]
+    \povezava{y_D}{t}{1}[sloped]{above}[bend left=40]
+    \povezava{y_B}{t}{1}[sloped]{above}[bend left=32]
+    \povezava{y_S}{t}{1}[sloped]{above}[bend left=24]
+    \povezava{y_M}{t}{1}[sloped]{above}[bend left=16]
+    \povezava{y_J}{t}{1}[sloped]{above}[bend left=8]
+    \povezava{y_P}{t}{1}[sloped]{above}
+    \povezava{z_M}{t}{1}[sloped]{below}
+    \povezava{z_D}{t}{1}[sloped]{below}[bend right=8]
+    \povezava{z_J}{t}{1}[sloped]{below}[bend right=16]
+    \povezava{z_B}{t}{1}[sloped]{below}[bend right=24]
+    \povezava{z_S}{t}{1}[sloped]{below}[bend right=32]
+    \povezava{z_P}{t}{1}[sloped]{below}[bend right=40]
+}

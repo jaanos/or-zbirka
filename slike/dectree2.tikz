@@ -1,38 +1,15 @@
-\begin{tikzpicture}[style=thick,scale=0.6]
-\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
-\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
-\node[dec] (A) at (-8,-1) {};
-\node[ran] (B) at (-4, 2) {};
-\node[dec] (C) at (-4,-4) {};
-\node[dec] (D) at ( 0, 4) {};
-\node[dec] (E) at ( 0, 0) {};
-\node[ran] (F) at ( 0,-3) {};
-\node      (G) at ( 0,-5) {$0$};
-\node[ran] (H) at ( 4, 5) {};
-\node      (I) at ( 4, 3) {$-5$};
-\node[ran] (J) at ( 4, 1) {};
-\node      (K) at ( 4,-1) {$-5$};
-\node      (L) at ( 4,-2) {$25$};
-\node      (M) at ( 4,-4) {$-10$};
-\node      (N) at ( 8, 6) {$50$};
-\node      (O) at ( 8, 4) {$-10$};
-\node      (P) at ( 8, 2) {$30$};
-\node      (Q) at ( 8, 0) {$-30$};
-
-\draw (A) -- (B);
-\draw (A) -- (C);
-\draw (B) -- (D) node[above, midway, sloped] {$0.6$};
-\draw (B) -- (E) node[below, midway, sloped] {$0.4$};
-\draw (C) -- (F);
-\draw (C) -- (G);
-\draw (D) -- (H);
-\draw (D) -- (I);
-\draw (E) -- (J);
-\draw (E) -- (K);
-\draw (F) -- (L) node[above, midway, sloped] {$2p$};
-\draw (F) -- (M) node[below, midway, sloped] {$1-2p$};
-\draw (H) -- (N) node[above, midway, sloped] {$p$};
-\draw (H) -- (O) node[below, midway, sloped] {$1-p$};
-\draw (J) -- (P) node[above, midway, sloped] {$4p$};
-\draw (J) -- (Q) node[below, midway, sloped] {$1-4p$};
-\end{tikzpicture}
+{%
+\newcommand{\lF}{}%
+\newcommand{\lH}{}%
+\newcommand{\lJ}{}%
+\newcommand{\pAB}{}%
+\newcommand{\pAC}{}%
+\newcommand{\pCF}{}%
+\newcommand{\pCG}{}%
+\newcommand{\pDH}{}%
+\newcommand{\pDI}{}%
+\newcommand{\pEJ}{}%
+\newcommand{\pEK}{}%
+\newcommand{\pick}{}%
+\input{slike/dectree2-osnova.tikz}
+}

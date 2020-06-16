@@ -22,7 +22,7 @@ Rope je mogoče izvesti, če:
 \item so vse lokacije bank različne
 (dve ekipi ne smeta na isti dan oropati iste banke), in
 \item za vsako lokacijo obstaja pot, ki pelje ven iz centra,
-tako da nobeni dve poti ne gresta vzdolž iste ulice
+tako da nobeni dve poti ne gresta vzdolž iste ulice ali čez isto križišče
 (s tem poskušamo preprečiti, da bi se roparji medsebojno zaleteli;
 smer vožnje pri tem ni pomembna).
 \end{itemize}
@@ -45,6 +45,66 @@ lahko dobimo na primer poti, podane na sliki~\fig.
 \podnaslov{Shema ulic in bank ter primer izhoda}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Zapišimo želeni algoritem.
+\begin{small}
+\begin{algorithmic}
+\Function{NačrtRopov}{$n, m, L$}
+    \If{kateri od vnosov v $L$ se ponovi}
+        \State \Return {\em Izvedba ni možna -- lokacije bank niso vse različne}
+    \EndIf
+    \State $V \gets \{s, t\}
+              \cup \set{u_{ij}, v_{ij}}{1 \le i \le n, 1 \le j \le m}$
+    \State $\begin{aligned}
+        E \gets&{} \set{s \to u_{ij}}{(i, j) \in L} \\
+           \cup&{} \set{u_{ij} \to v_{ij}}{1 \le i \le n, 1 \le j \le m} \\
+           \cup&{} \set{v_{ij} \to u_{i-1, j}, v_{i-1, j} \to u_{ij}}{2 \le i \le n, 1 \le j \le m} \\
+           \cup&{} \set{v_{ij} \to u_{i, j-1}, v_{i, j-1} \to u_{ij}}{1 \le i \le n, 2 \le j \le m} \\
+           \cup&{} \set{v_{i1} \to t, v_{im} \to t}{2 \le i \le n-1} \\
+           \cup&{} \set{v_{1j} \to t, v_{nj} \to t}{2 \le j \le m-1} \\
+           \cup&{} \set{v_{ij} \to t}{i \in \{1, n\}, j \in \{1, m\}}
+        \end{aligned}$
+    \State $C \gets$ slovar kapacitet z vrednostjo $1$ za vsako povezavo iz $E$
+    \State $F \gets$ {\sc FordFulkerson}$(G = (E, V), C, s, t)$
+        \hfill vrne slovar pretokov za vsak $e \in E$
+    \If{$\exists (i, j) \in L: F[s \to u_{ij}] < 1$}
+        \State \Return {\em Izvedba ni možna --
+            ni mogoče zagotoviti disjunktnih izhodnih poti}
+    \EndIf
+    \State $S \gets$ prazen seznam
+    \For{$(i, j) \in L$} \hfill sestavimo poti
+        \State $P \gets$ prazen seznam
+        \State $x \gets u_{ij}$
+        \While{$x \ne t$}
+            \State $P.\append((i, j))$
+            \State $i', j' \gets$ indeksa, da je $x = u_{i'j'}$
+            \State $x' \gets$ vozlišče, da je $F[v_{i'j'} \to x'] = 1$
+            \State $x, i, j \gets x', i', j'$
+        \EndWhile
+        \State $S.\append(P)$
+    \EndFor
+    \State \Return $S$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Algoritem sestavi usmerjen graf,
+v katerem je križišče na lokaciji $(i, j)$
+pred\-stav\-lje\-no s povezavo $u_{ij} \to v_{ij}$,
+med sosednjima križiščema $(i, j)$ in $(i', j')$
+pa sta povezavi $v_{ij} \to u_{i'j'}$ in $v_{i'j'} \to u_{ij}$.
+Poleg tega so v grafu še povezave od izvora $s$ do vozlišča $u_{ij}$
+za vsako banko na križišču $(i, j)$,
+ki jo želijo oropati,
+in povezave $v_{ij}$ do ponora $t$ za vsako križišče $(i, j)$ na robu centra.
+Ker imajo vse povezave kapaciteto $1$,
+bo mogoče skozi vsako križišče potovati največ enkrat
+-- tako bo mogoče tudi vsako ulico uporabiti največ enkrat.
+Maksimalen pretok bo $|L|$
+(ali ekvivalentno,
+pretok po povezavi $s \to u_{ij}$ bo $1$ za vsak $(i, j) \in L$)
+natanko tedaj,
+ko je mogoče za vsako banko najti pot iz centra,
+ne da bi se te poti srečale v kakšnem križišču.
 \end{odgovor}
 \end{naloga}

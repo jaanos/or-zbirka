@@ -1,0 +1,30 @@
+\input{slike/pretok5-osnova.tikz}
+
+\begin{pretok*}[scale=0.9]{pretok5}
+    \nicle
+    \kolicina{s}{a}[2]{3}
+    \kolicina{a}{d}[\infty]{3}
+    \kolicina{d}{f}[2]{3}
+    \kolicina{f}{g}[0]{3}[prerez]
+    \kolicina{g}{j}[0]{16}[zasicena]
+    \kolicina{j}{t}[\infty]{16}
+    \kolicina{s}{b}[\infty]{44}
+    \kolicina{b}{c}[0]{21}[prerez]
+    \kolicina{c}{h}[\infty]{34}
+    \kolicina{h}{g}[\infty]{34}
+    \kolicina{g}{i}[\infty]{44}
+    \kolicina{i}{t}[\infty]{44}
+    \kolicina{b}{a}[\infty]{23}
+    \kolicina{a}{e}[\infty]{23}
+    \kolicina{e}{g}[0]{23}[prerez]
+    \kolicina{s}{c}[0]{13}[prerez]
+
+    \nasprotna{e}{c}
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{f}
+\end{pretok*}

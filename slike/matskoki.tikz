@@ -1,0 +1,26 @@
+\begin{tikzpicture}[style=thick,scale=0.7]
+\tikzstyle{vertex}=[minimum width=7mm, minimum height=5mm]
+\matrix (m) [matrix of nodes, left delimiter={[}, right delimiter={]}, row sep=1mm, column sep=1mm] {
+    \node[vertex, draw] (11) {$0$}; &
+    \node[vertex] (12) {$2$}; &
+    \node[vertex] (13) {$-7$}; &
+    \node[vertex] (14) {$-1$}; \\
+    \node[vertex] (21) {$-6$}; &
+    \node[vertex] (22) {$-9$}; &
+    \node[vertex] (23) {$-3$}; &
+    \node[vertex] (24) {$8$}; \\
+    \node[vertex, draw] (31) {$7$}; &
+    \node[vertex, draw] (32) {$2$}; &
+    \node[vertex] (33) {$-8$}; &
+    \node[vertex, draw] (34) {$-2$}; \\
+    \node[vertex] (41) {$-7$}; &
+    \node[vertex] (42) {$-7$}; &
+    \node[vertex] (43) {$6$}; &
+    \node[vertex, draw] (44) {$0$}; \\
+};
+
+\draw[->] (11.west) to[bend right=40] (31.west);
+\draw[->] (31.south) to[bend right=40] (32.south);
+\draw[->] (32.north) to[bend left=20] (34.north);
+\draw[->] (34.east) to[bend left=40] (44.east);
+\end{tikzpicture}

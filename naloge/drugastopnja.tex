@@ -28,6 +28,48 @@ negativen & $1/20$ & $9/10$
 Ali naj se študent prijavi na dodatno testiranje?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Študent ima eno samo odločitev -- ali naj nadaljuje študij.
+Če ga ne nadaljuje, ima $0 €$ dobička,
+če pa ga, pa preide v stanje,
+v katerem ima z verjetnostjo $0.8$ dobiček $200\,000 €$,
+z verjetnostjo $0.2$ pa $-40\,000 €$.
+V tem primeru je pričakovani dobiček enak
+$$
+0.8 \cdot 200\,000 € - 0.2 \cdot 40\,000 € = 152\,000 € .
+$$
+Študentu se torej nadaljevanje študija izplača,
+pri tem pa pričakuje dobiček $152\,000 €$.
+
+\item Izračunajmo verjetnosti za primer,
+da se študent odloči za testiranje.
+\begin{align*}
+P(\text{test pozitiven}) =
+{19 \over 20} \cdot 0.8 + {1 \over 10} \cdot 0.2 &= 0.78 \\
+P(\text{test negativen}) =
+{1 \over 20} \cdot 0.8 + {9 \over 10} \cdot 0.2 &= 0.22 \\
+P(\text{uspešen študij} \mid \text{test pozitiven}) =
+{19/20 \cdot 0.8 \over 0.78} &\approx 0.974 \\
+P(\text{neuspešen študij} \mid \text{test pozitiven}) =
+{1/10 \cdot 0.2 \over 0.78} &\approx 0.026 \\
+P(\text{uspešen študij} \mid \text{test negativen}) =
+{1/20 \cdot 0.8 \over 0.22} &\approx 0.182 \\
+P(\text{neuspešen študij} \mid \text{test negativen}) =
+{9/10 \cdot 0.2 \over 0.22} &\approx 0.818
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo, da se študentu ne izplača prijaviti na testiranje,
+saj mu to ne da zadostne informacije za morebitno spremembo odločitve.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

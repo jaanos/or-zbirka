@@ -1,122 +1,53 @@
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
-\tikzstyle{cut}=[white, fill=black]
-\tikzstyle{limit}=[black, near start]
-\tikzstyle{flow}=[black, near end]
-\tikzstyle{path}=[very thick, red]
+\NewEnviron{pretok@pretok2}{
+    \vozlisce*{s}{-10, 0}
+    \vozlisce{a}{ -6, 4.5}
+    \vozlisce{b}{ -6, 1.5}
+    \vozlisce{c}{ -6,-1.5}
+    \vozlisce{d}{ -6,-4.5}
+    \vozlisce{e}{ -2, 4.5}
+    \vozlisce{f}{ -2, 1.5}
+    \vozlisce{g}{ -2,-1.5}
+    \vozlisce{h}{ -2,-4.5}
+    \vozlisce{i}{  2, 4.5}
+    \vozlisce{j}{  2, 1.5}
+    \vozlisce{k}{  2,-1.5}
+    \vozlisce{l}{  2,-4.5}
+    \vozlisce{m}{  6, 4.5}
+    \vozlisce{n}{  6, 1.5}
+    \vozlisce{o}{  6,-1.5}
+    \vozlisce{p}{  6,-4.5}
+    \vozlisce*{t}{ 10, 0}
 
-\node[vertex,va] (na) at (-10, 0) {$S$};
-\node[vertex,vb] (nb) at (-6, 4.5) {};
-\node[vertex,vc] (nc) at (-6, 1.5) {};
-\node[vertex,vd] (nd) at (-6,-1.5) {};
-\node[vertex,ve] (ne) at (-6,-4.5) {};
-\node[vertex,vf] (nf) at (-2, 4.5) {};
-\node[vertex,vg] (ng) at (-2, 1.5) {};
-\node[vertex,vh] (nh) at (-2,-1.5) {};
-\node[vertex,vi] (ni) at (-2,-4.5) {};
-\node[vertex,vj] (nj) at ( 2, 4.5) {};
-\node[vertex,vk] (nk) at ( 2, 1.5) {};
-\node[vertex,vl] (nl) at ( 2,-1.5) {};
-\node[vertex,vm] (nm) at ( 2,-4.5) {};
-\node[vertex,vn] (nn) at ( 6, 4.5) {};
-\node[vertex,vo] (no) at ( 6, 1.5) {};
-\node[vertex,vp] (np) at ( 6,-1.5) {};
-\node[vertex,vq] (nq) at ( 6,-4.5) {};
-\node[vertex,vr] (nr) at (10, 0) {$T$};
-
-\draw[->,eab] (na) -- (nb)
-    node[limit, above, sloped] {$\Lab$}
-    node[flow, above, sloped] {$\Tab$};
-\draw[->,eac] (na) -- (nc)
-    node[limit, above, sloped] {$\Lac$}
-    node[flow, above, sloped] {$\Tac$};
-\draw[->,ead] (na) -- (nd)
-    node[limit, below, sloped] {$\Lad$}
-    node[flow, below, sloped] {$\Tad$};
-\draw[->,eae] (na) -- (ne)
-    node[limit, below, sloped] {$\Lae$}
-    node[flow, below, sloped] {$\Tae$};
-\draw[->,ebf] (nb) -- (nf)
-    node[limit, above] {$\Lbf$}
-    node[flow, above] {$\Tbf$};
-\draw[->,ecb] (nc) -- (nb)
-    node[limit, right] {$\Lcb$}
-    node[flow, right] {$\Tcb$};
-\draw[->,ecg] (nc) -- (ng)
-    node[limit, below] {$\Lcg$}
-    node[flow, below] {$\Tcg$};
-\draw[->,edc] (nd) -- (nc)
-    node[limit, left] {$\Ldc$}
-    node[flow, left] {$\Tdc$};
-\draw[->,edh] (nd) -- (nh)
-    node[limit, above] {$\Ldh$}
-    node[flow, above] {$\Tdh$};
-\draw[->,eed] (ne) -- (nd)
-    node[limit, right] {$\Led$}
-    node[flow, right] {$\Ted$};
-\draw[->,eei] (ne) -- (ni)
-    node[limit, below] {$\Lei$}
-    node[flow, below] {$\Tei$};
-\draw[->,efg] (nf) -- (ng)
-    node[limit, left] {$\Lfg$}
-    node[flow, left] {$\Tfg$};
-\draw[->,efj] (nf) -- (nj)
-    node[limit, above] {$\Lfj$}
-    node[flow, above] {$\Tfj$};
-\draw[->,egh] (ng) -- (nh)
-    node[limit, right] {$\Lgh$}
-    node[flow, right] {$\Tgh$};
-\draw[->,egk] (ng) -- (nk)
-    node[limit, above] {$\Lgk$}
-    node[flow, above] {$\Tgk$};
-\draw[->,ehi] (nh) -- (ni)
-    node[limit, left] {$\Lhi$}
-    node[flow, left] {$\Thi$};
-\draw[->,ehl] (nh) -- (nl)
-    node[limit, below] {$\Lhl$}
-    node[flow, below] {$\Thl$};
-\draw[->,eim] (ni) -- (nm)
-    node[limit, below] {$\Lim$}
-    node[flow, below] {$\Tim$};
-\draw[->,ejn] (nj) -- (nn)
-    node[limit, above] {$\Ljn$}
-    node[flow, above] {$\Tjn$};
-\draw[->,ekj] (nk) -- (nj)
-    node[limit, right] {$\Lkj$}
-    node[flow, right] {$\Tkj$};
-\draw[->,eko] (nk) -- (no)
-    node[limit, below] {$\Lko$}
-    node[flow, below] {$\Tko$};
-\draw[->,elk] (nl) -- (nk)
-    node[limit, left] {$\Llk$}
-    node[flow, left] {$\Tlk$};
-\draw[->,elp] (nl) -- (np)
-    node[limit, above] {$\Llp$}
-    node[flow, above] {$\Tlp$};
-\draw[->,eml] (nm) -- (nl)
-    node[limit, right] {$\Lml$}
-    node[flow, right] {$\Tml$};
-\draw[->,emq] (nm) -- (nq)
-    node[limit, below] {$\Lmq$}
-    node[flow, below] {$\Tmq$};
-\draw[->,eno] (nn) -- (no)
-    node[limit, left] {$\Lno$}
-    node[flow, left] {$\Tno$};
-\draw[->,enr] (nn) -- (nr)
-    node[limit, above, sloped] {$\Lnr$}
-    node[flow, above, sloped] {$\Tnr$};
-\draw[->,eop] (no) -- (np)
-    node[limit, right] {$\Lop$}
-    node[flow, right] {$\Top$};
-\draw[->,eor] (no) -- (nr)
-    node[limit, above, sloped] {$\Lor$}
-    node[flow, above, sloped] {$\Tor$};
-\draw[->,epq] (np) -- (nq)
-    node[limit, left] {$\Lpq$}
-    node[flow, left] {$\Tpq$};
-\draw[->,epr] (np) -- (nr)
-    node[limit, below, sloped] {$\Lpr$}
-    node[flow, below, sloped] {$\Tpr$};
-\draw[->,eqr] (nq) -- (nr)
-    node[limit, below, sloped] {$\Lqr$}
-    node[flow, below, sloped] {$\Tqr$};
+    \povezava{s}{a}{7}[sloped]{above}[bend left=15]
+    \povezava{s}{b}{6}[sloped]{above}
+    \povezava{s}{c}{7}[sloped]{below}
+    \povezava{s}{d}{8}[sloped]{below}[bend right=15]
+    \povezava{a}{e}{5}{above}
+    \povezava{b}{a}{6}{right}
+    \povezava{b}{f}{3}{below}
+    \povezava{c}{b}{3}{left}
+    \povezava{c}{g}{7}{above}
+    \povezava{d}{c}{6}{right}
+    \povezava{d}{h}{7}{below}
+    \povezava{e}{f}{3}{left}
+    \povezava{e}{i}{8}{above}
+    \povezava{f}{g}{4}{right}
+    \povezava{f}{j}{4}{above}
+    \povezava{g}{h}{1}{left}
+    \povezava{g}{k}{2}{below}
+    \povezava{h}{l}{5}{below}
+    \povezava{i}{m}{1}{above}
+    \povezava{j}{i}{1}{right}
+    \povezava{j}{n}{9}{below}
+    \povezava{k}{j}{10}{left}
+    \povezava{k}{o}{4}{above}
+    \povezava{l}{k}{2}{right}
+    \povezava{l}{p}{1}{below}
+    \povezava{m}{n}{5}{left}
+    \povezava{m}{t}{12}[sloped]{above}[bend left=15]
+    \povezava{n}{o}{6}{right}
+    \povezava{n}{t}{4}[sloped]{above}
+    \povezava{o}{p}{6}{left}
+    \povezava{o}{t}{8}[sloped]{below}
+    \povezava{p}{t}{8}[sloped]{below}[bend right=15]
+}

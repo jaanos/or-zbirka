@@ -13,6 +13,38 @@ in ga uporabi na grafu s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $G = (V, E)$ graf, ki predstavlja naše omrežje,
+pri čemer velja $s, t \in V$.
+Definirajmo omrežje $G' = (V', E')$, kjer je
+\begin{align*}
+V' &= \{s = v_s, t = u_t\} \cup \set{u_x, v_x}{x \in V \setminus \{s, t\}}
+\quad \text{in} \\
+E' &= \set{v_x \to u_y}{x \to y \in E}
+ \cup \set{u_x \to v_x}{x \in V \setminus \{s, t\}},
+\end{align*}
+povezave $v_x \to u_y$ ($x \to y \in E$) imajo kapaciteto $\infty$,
+povezave $u_x \to v_x$ ($x \in V \setminus \{s, t\}$) pa imajo kapaciteto $1$.
+Maksimalni pretok v omrežju ustreza številu strežnikov,
+ki jih moramo onemogočiti, da prekinemo komunikacijo od $s$ do $t$,
+minimalni prerez pa vsebuje povezave $u_x \to v_x$ za tiste strežnike $x$,
+ki jih moramo onemogočiti.
+
+Omrežje za graf s slike~\fig je prikazano na sliki~\fig[strezniki-resitev1],
+kjer sta prikazani tudi povečujoči poti,
+s katerima pridemo do maksimalnega pretoka $2$ in minimalnega prereza,
+prikazanega na sliki~\fig[strezniki-resitev2].
+Iz slike je razvidno, da moramo za prekinitev komunikacije od $s$ do $t$
+onemogočiti strežnika $d$ in $i$.
+
+\begin{slika}
+\pgfslika[strezniki-resitev1]
+\podnaslov{Omrežje in povečuječe poti}
+\end{slika}
+\begin{slika}
+\pgfslika[strezniki-resitev2]
+\podnaslov{Maksimalni pretok in minimalni prerez}
+\end{slika}
 \end{odgovor}
 \end{naloga}

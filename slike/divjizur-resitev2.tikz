@@ -1,0 +1,57 @@
+\input{slike/divjizur-osnova.tikz}
+
+\begin{pretok*}{divjizur}
+    \nicle
+    \kolicina*{s}{w_K}[1]{1}[red]
+    \kolicina*{w_K}{y_P}{0}[red]
+    \kolicina*{y_P}{t}{0}[red]
+    \kolicina*{s}{x_B}[1]{1}[green]
+    \kolicina*{x_B}{z_P}{0}[green]
+    \kolicina*{z_P}{t}{0}[green]
+    \kolicina{s}{w_P}[0]{1}[zasicena]
+    \kolicina{w_P}{y_D}[0]{1}[zasicena]
+    \kolicina{y_D}{t}[0]{1}[zasicena]
+    \kolicina{s}{w_S}[1]{1}
+    \kolicina{w_S}{y_B}[0]{1}[zasicena]
+    \kolicina{y_B}{t}[0]{1}[zasicena]
+    \kolicina{w_K}{y_J}[0]{1}[zasicena]
+    \kolicina{y_J}{t}[0]{1}[zasicena]
+    \kolicina{s}{w_V}[0]{1}[zasicena]
+    \kolicina{w_V}{y_S}[0]{1}[zasicena]
+    \kolicina{y_S}{t}[0]{1}[zasicena]
+    \kolicina{s}{x_R}[1]{1}
+    \kolicina{x_R}{z_M}[0]{1}[zasicena]
+    \kolicina{z_M}{t}[0]{1}[zasicena]
+    \kolicina{s}{x_A}[0]{1}[zasicena]
+    \kolicina{x_A}{z_D}[0]{1}[zasicena]
+    \kolicina{z_D}{t}[0]{1}[zasicena]
+    \kolicina{s}{x_C}[0]{1}[zasicena]
+    \kolicina{x_C}{z_J}[0]{1}[zasicena]
+    \kolicina{z_J}{t}[0]{1}[zasicena]
+    \kolicina{s}{x_J}[1]{1}
+    \kolicina{x_J}{z_B}[0]{1}[zasicena]
+    \kolicina{z_B}{t}[0]{1}[zasicena]
+    \kolicina{x_B}{z_S}[0]{1}[zasicena]
+    \kolicina{z_S}{t}[0]{1}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{w_S}
+    \dosezeno{w_K}
+    \dosezeno{x_R}
+    \dosezeno{x_J}
+    \dosezeno{x_B}
+    \dosezeno{y_D}
+    \dosezeno{y_M}
+    \dosezeno{y_P}
+    \dosezeno{z_D}
+    \dosezeno{z_J}
+    \dosezeno{z_S}
+    \dosezeno{z_P}
+    \dosezeno{w_P}
+    \dosezeno{x_A}
+    \dosezeno{x_C}
+    \dosezeno{y_B}
+    \dosezeno{z_M}
+    \dosezeno{z_B}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

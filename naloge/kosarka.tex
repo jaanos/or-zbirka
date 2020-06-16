@@ -37,13 +37,13 @@ x_{i} = \begin{cases}
 \end{cases}
 $$
 Zapišimo celoštevilski linearni program.
-\begin{multline*}
-\begin{alignedat}{3}
+\begin{alignat*}{2}
+\shortintertext{
+$\quad \begin{alignedat}{3}
 \max \quad 213x_1 &+ 208x_2 &&+ 203x_3 &&+ 192x_4 \\
      + 196x_5 &+ 197x_6 &&+ 200x_7 &&+ 195x_8
 \quad \text{p.p.}
-\end{alignedat} \\
-\begin{alignedat}{2}
+\end{alignedat}$}
 \forall i \in \{1, \dots, 8\}: &\ &
 0 \le x_i &\le 1, \quad x_i \in \Z
 \opis{V postavi je pet članov}
@@ -56,7 +56,6 @@ Zapišimo celoštevilski linearni program.
 && x_3 + x_6 &= 1
 \opis{Če začne Borut ali David, Hugo ostane v rezervi}
 && x_2 + x_4 + 2x_8 &\leq 2
-\end{alignedat}
-\end{multline*}
+\end{alignat*}
 \end{odgovor}
 \end{naloga}

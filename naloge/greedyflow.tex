@@ -7,23 +7,24 @@ naj za iskanje maksimalnega pretoka na omrežju s končnimi kapacitetami
 uporabijo naslednji algoritem:
 \begin{small}
 \begin{algorithmic}
-\Function{Greedyflow}{$G = (V, E), u, s, t$}
+\Function{Greedyflow}{$G = (V, E), C, s, t$}
+    \State $F \gets$ slovar z vrednostjo $0$ za vsako povezavo iz $E$
     \For{$e \in E$}
-        \State $f(e) \gets 0$
+        \State $F[e] \gets 0$
     \EndFor
     \While{obstaja pot od $s$ do $t$}
         \State $P \gets$ poljubna pot od $s$ do $t$
         \State $\gamma \gets$ minimalna kapaciteta povezav poti $P$
         \For{$e \in P$}
-            \State $f(e) \gets f(e) + \gamma$
-            \If{$u(e) = \gamma$}
+            \State $F[e] \gets F[e] + \gamma$
+            \If{$C[e] = \gamma$}
                 \State odstrani $e$ iz $G$
             \Else
-                \State $u(e) \gets u(e) - \gamma$
+                \State $C[e] \gets C[e] - \gamma$
             \EndIf
         \EndFor
     \EndWhile
-    \State \Return $f$
+    \State \Return $F$
 \EndFunction
 \end{algorithmic}
 \end{small}
@@ -45,9 +46,146 @@ ki ga vrne algoritem {\sc Greedyflow}, lahko poljubno velika.
 
 \begin{slika}
 \pgfslika
-\podnaslov{Graf}
+\podnaslov[\nal{}(a)]{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Pravilno rešitev dobimo,
+če algoritem zaporedoma izbere povečujoče poti $s \to u \to y \to t$
+(pretok $3$, odstranita se povezavi $u \to y$ in $y \to t$),
+$s \to u \to x \to t$ (pretok $3$, odstrani se povezava $u \to x$
+in $s \to v \to z \to t$ (pretok $2$, odstrani se povezava $s \to v$).
+Dobimo maksimalni pretok $3+3+2 = 8$, glej sliko~\fig[greedyflow-resitev].
+
+\item Na sliki~\fig[greedyflow-primer]
+je prikazano omrežje z maksimalnim pretokom $1+1 = 2$.
+Če algoritem {\sc Greedyflow} na tem omrežju
+v prvem koraku izbere pot $s \to a \to b \to t$ z minimalno kapaciteto $1$,
+potem vse povezave iz te poti odstrani in tako ne najde druge povečujoče poti.
+
+\item Za vsako omrežje obstaja izbira poti,
+da bo algoritem {\sc Greedyflow} dal maksimalni pretok.
+Zapišimo postopek, ki za dani graf $G = (V, E)$,
+slovar kapacitet povezav $C$ in vozlišči $s, t \in V$
+vrne ustrezno zaporedje poti skupaj s povečanjem pretoka,
+ki ga prinese posamezna pot.
+V postopku bomo uporabili dvostrano vrsto ({\em double-ended queue}),
+na kateri bomo uporabili metode $\append(x)$ (dodajanje $x$ na konec),
+$\push(x)$ (dodajanje $x$ na začetek) in $\pop()$ (odstranjevanje z začetka).
+
+\begin{small}
+\begin{algorithmic}
+\Function{ZaporedjePoti}{$G = (V, E), C, s, t$}
+    \State $Q \gets$ prazna dvostrana vrsta
+    \If{$s = t$} \hfill če je izvor enak ponoru,
+        \State $Q.\append((s, \infty))$
+            \hfill lahko prepeljemo poljubno količino
+        \State \Return $Q$
+    \EndIf
+    \State $M \gets$
+        minimalni $(s, t)$-prerez omrežja $G$ s kapacitetami povezav $C$
+    \State $S, T \gets$ množici z
+        $V = S \cup T$, $S \cap T = \emptyset$, $s \in S$ in $t \in T$,
+        določeni s prerezom $M$
+    \State $G_s, G_t \gets$ podgrafa grafa $G$,
+        inducirana z množico vozlišč $S$ oziroma $T$
+    \For{$e = u \to v \in M$}
+        \State $Q_s \gets \text{\sc{ZaporedjePoti}}(G_s, C, s, u)$
+            \hfill rekurzivna klica dobita kopijo $C$,
+        \State $Q_t \gets \text{\sc{ZaporedjePoti}}(G_t, C, v, t)$
+            \hfill tako da ostane slovar nespremenjen
+        \While{$C[e] > 0$}
+            \State $P_s, \gamma_s \gets Q_s.\pop()$
+            \State $P_t, \gamma_t \gets Q_t.\pop()$
+            \State $\gamma \gets \min\{\gamma_s, c[e], \gamma_t\}$
+            \For{$e_s \in P_s$} \hfill popravimo povezave v $G_s$
+                \If{$C[e_s] = \gamma$}
+                    \State odstrani $e_s$ iz $G_s$
+                \Else
+                    \State $C[e_s] \gets C[e_s] - \gamma$
+                \EndIf
+            \EndFor
+            \State $C[e] \gets C[e] - \gamma$
+            \For{$e_t \in P_t$} \hfill popravimo povezave v $G_t$
+                \If{$C[e_t] = \gamma$}
+                    \State odstrani $e_t$ iz $G_t$
+                \Else
+                    \State $C[e_t] \gets C[e_t] - \gamma$
+                \EndIf
+            \EndFor
+            \State $Q.\append((P_s \| e \| P_t, \gamma))$
+                \hfill dodamo novo pot v $G$
+            \If{$\gamma < \gamma_s$}
+                    \hfill če nobene povezave v $P_s$ ne zasitimo,
+                \State $Q_s.\push((P_s, \gamma_s - \gamma))$
+                    \hfill jo vrnemo na začetek vrste
+            \EndIf \hfill z zmanjšano kapaciteto
+            \If{$\gamma < \gamma_t$} \hfill podobno še za $P_t$
+                \State $Q_t.\push((P_t, \gamma_t - \gamma))$
+            \EndIf
+        \EndWhile
+    \EndFor
+    \State \Return $Q$ \hfill vrnemo vrsto poti v $G$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Algoritem deluje rekurzivno,
+pri čemer si pomaga z izračunom minimalnega prereza omrežja,
+ki tako graf razdeli na dva dela.
+Za vsako povezavo $e = u \to v$ iz prereza
+se tako izračunata ustrezni zaporedji poti (kot vrsti)
+za pretok od $s$ do $u$ oziroma od $v$ do $t$ v ustreznem podomrežju.
+Zaporedje poti za omrežje $G$ se potem dopolnjuje tako,
+da se preko povezave $e$ združita poti z vrha obeh vrst,
+pri čemer se lahko pot vrne na vrh vrste,
+če se nobena povezava ne zasiti;
+ko se pa katera od povezav zasiti, se odstrani iz ustreznega grafa.
+Ker tak postopek posnema obnašanje algoritma {\sc Greedyflow},
+se nikoli ne zgodi, da bi sestavili pot,
+ki vsebuje katero že odstranjeno povezavo.
+Obravnava povezave $e$ se zaključi, ko se ta zasiti
+-- tedaj vrsti poti v ustreznih podomrežjih nista nujno prazni,
+se pa ob predpostavki,
+da rekurzivni klici vračajo ustrez\-na zaporedja,
+tudi predhodno ne izpraznijo.
+Postopek se nato nadaljuje z naslednjo povezavo iz $M$.
+Ker se zaporedji poti za podomrežji ponovno izračunata,
+najdene poti ne bodo vsebovale predhodno odstranjenih povezav.
+Do robnega primera pride, ko je izvor enak ponoru
+-- to se zgodi v rekurzivnih klicih,
+ki obravnavajo povezavo iz minimalnega prereza s krajiščem $s$ oziroma $t$.
+Ker je v tem primeru zaporedje poti ustrezno,
+lahko po indukciji sklepamo, da algoritem deluje pravilno.
+
+\item Naj bo $G_n = (V_n, E_n)$ $(n \ge 2)$ omrežje, kjer je
+\begin{align*}
+V_n &= \{s, t\} \cup \set{a_i, b_i}{1 \le i \le n} \quad \text{in} \\
+E_n &= \set{s \to a_i, a_i \to b_i, b_i \to t}{1 \le i \le n}
+  \cup \set{b_i \to a_{i+1}}{1 \le i \le n-1},
+\end{align*}
+pri čemer imajo vse povezave kapaciteto $1$.
+Maksimalen pretok $n$ dobimo tako,
+da peljemo količino $1$ po poteh $s \to a_i \to b_i \to t$ ($1 \le i \le n$)
+-- minimalni prerez tedaj sestoji iz povezav $s \to a_i$ ($1 \le i \le n$).
+Če pa v prvem koraku algoritma {\sc Greedyflow} izberemo pot
+$$
+s \to a_1 \to b_1 \to a_2 \to b_2 \to \cdots \to a_n \to b_n \to t,
+$$
+postanejo vse povezave v tej poti zasičene in se zato odstranijo iz grafa,
+zaradi česar algoritem druge povečujoče poti ne najde
+in tako konča s pretokom $1$.
+Tako dobimo razliko $n-1$ in razmerje $n$ za poljubno velik $n$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika[greedyflow-resitev]
+\podnaslov[\res{}(a)]{Maksimalni pretok in minimalni prerez}
+\end{slika}
+\begin{slika}
+\pgfslika[greedyflow-primer]
+\podnaslov[\res{}(b)]{Primer omrežja in povečujoče poti}
+\end{slika}
 \end{odgovor}
 \end{naloga}

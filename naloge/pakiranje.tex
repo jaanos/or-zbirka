@@ -11,6 +11,50 @@ pravimo {\em mavrično pakirno število} in ga označimo s $\chi_p(G)$.
 Napiši celoštevilski linearni program,
 ki za dani graf $G$ izračuna $\chi_p(G)$.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $n$ število vozlišč grafa $G$.
+Očitno bomo lahko množico njegovih vozlišč razbili na največ $n$ podmnožic,
+zato bomo za vozlišče $u \in V$ in $i \in \{1, \dots, n\}$
+uvedli spremenljivko $x_{ui}$,
+katere vrednost interpretiramo kot
+$$
+x_{ui} = \begin{cases}
+1; & u \in V_i, \\
+0; & u \not\in V_i.
+\end{cases}
+$$
+Poleg tega bomo za vozlišči $u, v \in V$ uvedli še spremenljivko $y_{uv}$,
+ki bo pred\-stav\-lja\-la razdaljo med njima.
+Nazadnje bomo uvedli še spremenljivko $t$, ki bo štela,
+koliko podmnožic potrebujemo.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \min &\ t &\quad \text{p.p.} \\
+\forall u \in V \ \forall i \in \{1, \dots, n\}: &\ &
+0 \le x_{ui} &\le 1, & x_{ui} &\in \Z \\
+\forall u, v \in V: &\ & y_{uv} &\ge 0, & y_{uv} &\in \Z \\
+&& t &\ge 0, & t &\in \Z
+\opis{Vsako vozlišče postavimo v eno podmnožico}
+\forall u \in V: &\ & \sum_{i=1}^n x_{ui} &= 1
+\opis{Štetje podmnožic}
+\forall u \in V \ \forall i \in \{1, \dots, n\}: &\ & i x_{ui} &\le t
+\opis{Razdalje v podmnožicah}
+\forall u, v \in V, \ u \ne v: &\ &
+(i+1) (x_{ui} + x_{vi} - 1) &\le y_{uv}
+\opis{Razdalje med vozlišči}
+\forall u \in V: &\ & y_{uu} &= 0 \\
+\forall u \in V \ \forall vw \in E: &\ & -1 \le y_{uv} - y_{uw} &\le 1
+\end{alignat*}
+Mavrično pakirno število $\chi_p(G)$ dobimo kot vrednost ciljne funckije
+zgornjega celoštevilskega linearnega programa.
+
+Opomnimo,
+da vrednosti $y_{uv}$ v dopustnih rešitvah zgornjega programa
+ne predstavljajo nujno dejanskih razdalj med vozlišči
+-- velja le $y_{uv} \le d_G(u, v)$.
+Ker pa za $u, v \in V_i$ velja $y_{uv} \ge i+1$,
+sledi $d_G(u, v) \ge i+1$, kar ustreza pogojem naloge.
 \end{odgovor}
 \end{naloga}

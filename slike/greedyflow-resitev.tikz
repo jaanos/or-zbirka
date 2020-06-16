@@ -1,0 +1,18 @@
+\input{slike/greedyflow-osnova.tikz}
+
+\begin{pretok*}[scale=1.2]{greedyflow}
+    \nicle
+    \kolicina{s}{u}[1]{6}
+    \kolicina{s}{v}[0]{2}[prerez]
+    \kolicina{u}{x}[0]{3}[prerez]
+    \kolicina{u}{y}[0]{3}[prerez]
+    \kolicina{v}{z}[1]{2}
+    \kolicina{x}{t}[2]{3}
+    \kolicina{y}{t}[0]{3}[zasicena]
+    \kolicina{z}{t}[2]{2}
+
+    \nasprotna{w}{s}
+
+    \dosezeno{s}
+    \dosezeno{u}
+\end{pretok*}

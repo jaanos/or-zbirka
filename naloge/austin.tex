@@ -4,6 +4,25 @@ S pomočjo Austinovega postopka opiši postopek,
 ki prvemu igralcu zagotovi točno četrtino celote
 in drugemu igralcu točno tri četrtine celote.
 \end{vprasanje}
+
 \begin{odgovor}
+Celoto predstavimo z intervalom $[0, 1)$.
+Prvi igralec izbere vrednosti
+$a_1, a_2, a_3$ ($0 =: a_0 < a_1 < a_2 < a_3 < a_4 := 1$) tako,
+da intervali $[0, a_1)$, $[a_1, a_2)$, $[a_2, a_3)$ in $[a_3, 1)$
+po njegovi cenitvi predstavljajo četrtino celote.
+Drugi igralec izbere indeks $i \in \{1, 2, 3\}$,
+tako da po njegovi cenitvi eden od intervalov
+$[a_{i-1}, a_i)$ in $[a_i, a_{i-1})$ predstavlja vsaj četrtino celote,
+drugi pa največ četrtino celote.
+Prvi igralec sedaj določi nepadajoči zvezni funkciji $f, g: [0, 1] \to \R$,
+za kateri velja $f(0) = a_{i-1}$, $f(1) = g(0) = a_i$ in $g(1) = a_{i+1}$,
+ter interval $[f(x), g(x))$ za vsak $x \in [0, 1]$ predstavlja četrtino celote
+po cenitvi prvega igralca.
+Drugi igralec nato izbere tak $x \in [0, 1]$,
+da interval $[f(x), g(x))$ predstavlja četrtino celote tudi po njegovi cenitvi
+(tak $x$ obstaja po izreku o vmesnih vrednostih).
+Prvi igralec tako dobi $[f(x), g(x))$,
+drugi igralec pa $[0, f(x)) \cup [g(x), 1)$.
 \end{odgovor}
 \end{naloga}

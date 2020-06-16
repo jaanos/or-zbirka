@@ -1,4 +1,4 @@
-\begin{naloga}{Jernej Azarija}{Izpit OR 24.5.2016}
+\begin{naloga}{Jernej Azarija}{Izpit OR 29.8.2016}
 \begin{vprasanje}
 Naj bo $G = (V, E)$ enostaven graf.
 Barvanju vozlišč grafa $c_k : V \to \{1, 2, \dots, k\}$
@@ -9,7 +9,7 @@ pravimo {\em $k$-uravnoteženo barvanje},
 potem velja $c_k(u) \ne c_k(v)$.
 \item Za vsaka $i, j \in \{1, 2, \dots, k\}$ velja
 $$
-\Big| |\set{v \in V}{c_k(v) = i}| - |\set{v \in V}{c_k(v) = h}| \Big|
+\Big| |\set{v \in V}{c_k(v) = i}| - |\set{v \in V}{c_k(v) = j}| \Big|
 \le 1
 $$
 -- tj., število vozlišč, pobarvanih z barvama $i$ in $j$,
@@ -21,6 +21,32 @@ Predpostaviš lahko, da je tudi $k$ vhodni podatek.
 Koliko pogojev in koliko spremenljivk
 ima dobljeni celoštevilski linearni program?
 \end{vprasanje}
+
 \begin{odgovor}
+Za vozlišče $u \in V$ in $i$-to barvo ($1 \le i \le k$)
+bomo uvedli spremenljivko $x_{ui}$,
+katere vrednost interpretiramo kot
+$$
+x_{ui} = \begin{cases}
+1; & \text{vozlišče $u$ pobarvamo z barvo $i$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo omejitve za celoštevilski linearni program.
+Ker nas zanima le obstoj dopustne rešitve, ciljna funkcija ni pomembna.
+\begin{alignat*}{2}
+\forall u \in V \ \forall i \in \{1, \dots, k\}: &\ &
+0 \le x_{ui} &\le 1, \quad x_{ui} \in \Z
+\opis{Vsako vozlišče pobarvamo z eno barvo}
+\forall u \in V: &\ & \sum_{i=1}^k x_{ui} &= 1
+\opis{Sosedni vozlišči nimata iste barve}
+\forall uv \in E \ \forall i \in \{1, \dots, k\}: &\ & x_{ui} + x_{vi} &\le 1
+\opis{Število vozlišč dveh različnih barv se razlikuje za največ $1$}
+\forall i, j \in \{1, \dots, k\}, \ i < j: &\ &
+-1 \le \sum_{u \in V} (x_{ui} - x_{uj}) &\le 1
+\end{alignat*}
+Naj bo $n$ število vozlišč in $m$ število povezav grafa $G$.
+Potem ima zgornji celoštevilski linearni program
+$nk$ celoštevilskih spremenljivk in $2nk + n + mk + k(k-1)$ pogojev.
 \end{odgovor}
 \end{naloga}

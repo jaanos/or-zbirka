@@ -5,18 +5,18 @@ med letališkimi terminali skupaj s prepustnostmi (v $1\,000$ ljudeh na uro).
 
 \begin{enumerate}[(a)]
 \item Načrtovalce zanima,
-koliko največ potnikov na uro lahko preide med terminaloma $F$ in $B$.
+koliko največ potnikov na uro lahko preide od terminala $f$ do terminala $b$.
 Predlagaj ustrezen algoritem in ga izvedi na grafu.
 
 \item V izrednih razmerah dva terminala proglasijo za vstopna
 (na njih letala le pristajajo),
 ostale terminale pa za izstopne (letala le vzletajo).
 Tako morajo potniki nujno prehajati od vstopnih k izstopnim terminalom.
-Strateška odločitev je, da je vstopni terminal $F$,
+Strateška odločitev je, da je vstopni terminal $f$,
 zaradi redundance pa želijo, da bi bila vstopna terminala dva.
 Ostali terminali so torej izstopni.
-Katerega izmed terminalov (poleg $F$) se splača še proglasiti za vstopnega,
-da bo pretočnost med vhodnimi in izhodnimi terminali kar največja?
+Katerega izmed terminalov (poleg $f$) se splača še proglasiti za vstopnega,
+da bo pretočnost med vstopnimi in izstopnimi terminali kar največja?
 \end{enumerate}
 
 \begin{slika}
@@ -24,6 +24,34 @@ da bo pretočnost med vhodnimi in izhodnimi terminali kar največja?
 \podnaslov{Omrežje}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item S Ford-Fulkersonovim algoritmom poiščemo maksimalni $(f, b)$-tok
+na omrež\-ju s slike~\fig.
+Postopek reševanja je prikazan na slikah~%
+\fig[terminali-resitev1],~\fig[terminali-resitev2] in~\fig[terminali-resitev3].
+Dobimo maksimalni pretok $8+3 = 5+3+3 = 11$.
+
+\item Zadostuje, da poiščemo tak par terminalov,
+ki maksimizira vsoto kapacitet izstopnih povezav
+(brez morebitnih povezav med izbranima terminaloma).
+Če je eden od izbranih vstopnih terminalov $f$,
+potem največjo skupno kapaciteto $20$ dosežemo,
+če za drugi vstopni terminal izberemo $c$ ali $e$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika[terminali-resitev1]
+\podnaslov[\res{}(a)]{Prvi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[terminali-resitev2]
+\podnaslov[\res{}(a)]{Drugi korak}
+\end{slika}
+\begin{slika}
+\pgfslika[terminali-resitev3]
+\podnaslov[\res{}(a)]{Maksimalni pretok in minimalni prerez}
+\end{slika}
 \end{odgovor}
 \end{naloga}

@@ -1,0 +1,25 @@
+\input{slike/minmaxpretok-osnova.tikz}
+
+\begin{pretok*}[scale=1.5]{minmaxpretok}
+    \nicle
+    \kolicina*{s}{a}[6]{4}[red]
+    \kolicina*{a}{b}[6]{2}[red]
+    \kolicina*{b}{c}[\alpha-1]{1}[red]
+    \kolicina*{c}{t}[7]{3}[red]
+    \kolicina{a}{c}[0]{2}[zasicena]
+    \kolicina{c}{e}[1]{2}
+    \kolicina{e}{t}[0]{5}[zasicena]
+    \kolicina{s}{d}[0]{4}[zasicena]
+    \kolicina{d}{b}[6]{1}
+    \kolicina{b}{t}[0]{2}[zasicena]
+    \kolicina{s}{c}[0]{2}[zasicena]
+    \kolicina{d}{e}[0]{3}[zasicena]
+
+    \dosezeno{s}
+    \dosezeno{a}
+    \dosezeno{b}
+    \dosezeno{c}
+    \dosezeno{d}
+    \dosezeno{e}
+    \dosezeno{t}[pogojno]
+\end{pretok*}

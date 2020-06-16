@@ -1,5 +1,7 @@
 # Zbirka nalog iz Operacijskih raziskav
 
+[![](https://github.com/jaanos/or-zbirka/workflows/PDF/badge.svg) **Prenesi zadnjo različico**](https://jaanos.github.io/or-zbirka/pdf/or-zbirka.pdf)
+
 Ta zbirka nalog obsega naloge z vaj, kolokvijev in izpitov
 pri predmetu Operacijske raziskave od š.l. 2009/10 naprej.
 Rešitve so še v pripravi.
@@ -38,13 +40,14 @@ Uporabljajo se sledeči paketi za LaTeX:
 * `mathtools`
 * `microtype`
 * `needspace`
+* [`omrezja`](https://github.com/jaanos/omrezja)
 * `pgflibraryshapes`
 * `tabularx`
 * `tikz`
 * `wasysym`
 * `xspace`
 
-Glavna datoteka zbirke je [`or-zbirka.tex`]().
+Glavna datoteka zbirke je [`or-zbirka.tex`](https://github.com/jaanos/or-zbirka/blob/master/or-zbirka.tex).
 Za prevedbo v datoteko PDF lahko tako uporabimo `pdflatex`:
 ```bash
 pdflatex or-zbirka.tex
@@ -58,7 +61,7 @@ Nato ponovno prevedemo zbirko s `pdflatex`.
 
 Ker zbirka obsega veliko slik,
 je prevajanje v PDF lahko dolgotrajno.
-V ta namen je pripravljena datoteka [`Makefile`](Makefile),
+V ta namen je pripravljena datoteka [`Makefile`](https://github.com/jaanos/or-zbirka/blob/master/Makefile),
 ki s pomočjo orodja [GNU Make](https://www.gnu.org/software/make/)
 poskrbi za predhodno prevedbo slik,
 zaradi česar se poročilo hitreje prevaja.
@@ -69,8 +72,8 @@ kjer so podane tudi smernice za pisanje.
 
 ## Prispevki
 
-Trenutno zbirka obsega 221 nalog,
-od katerih slaba polovica še nima rešitev.
+Trenutno zbirka obsega 226 nalog,
+od katerih slaba četrtina še nima rešitev.
 Tako so trenutno zaželeni prispevki
 v obliki rešitev nalog in raznih popravkov
 (vsebinskih, slovničnih ali tipkarskih).

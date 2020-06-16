@@ -16,7 +16,8 @@ Definirajmo še $s = \left\lfloor {1 \over 2} \sum_{i=1}^n a_i \right\rfloor$
 Določimo začetne pogoje in rekurzivne enačbe.
 \begin{align*}
 v_{00} &= v_{i0} = v_{0j} = 0 && (1 \le i \le n, 1 \le j \le s) \\
-v_{ij} &= \max(\{v_{i-1, j}\} \cup \set{a_i + v_{i-1, j-a_i}}{a_i \le j})
+v_{ij} &= \max\left(\{v_{i-1, j}\}
+                    \cup \set{a_i + v_{i-1, j-a_i}}{a_i \le j}\right)
 && (1 \le i \le n, 1 \le j \le s)
 \end{align*}
 Vrednosti $v_{ij}$ računamo v leksikografskem vrstnem redu indeksov

@@ -15,4 +15,5 @@ __pycache__
 *.xls
 *.zip
 .DS_Store
+omrezja.sty
 test.tex

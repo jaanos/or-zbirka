@@ -1,4 +1,4 @@
-\begin{naloga}{Alen Orbanić}{Kolokvij OR 5.2.2010}
+\begin{naloga}{Alen Orbanić}{Izpit OR 5.2.2010}
 \begin{vprasanje}
 Na univerzi v mestu Lenority so asistenti res nekoliko razvajeni
 in imajo močen sindikat.
@@ -34,6 +34,60 @@ ki so podani z intervali $(7, 8)$, $(8, 9)$, $(9, 10)$, $(8, 12)$,
 $(10, 13)$, $(12, 15)$, $(13, 15)$, $(9, 12)$, $(7, 10)$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Predpostavimo,
+da so intervali podani kot pari celih števil $(a_i, b_i)$ z $a_i < b_i$
+($1 \le i \le n$).
+
+\begin{enumerate}[(a)]
+\item Naj bo $G = (V, E)$ usmerjen graf
+z množico vozlišč $V = \{1, 2, \dots, n\}$
+in povezavo $i \to j$ ($i, j \in V$) natanko tedaj,
+ko velja $b_i = a_j$.
+Ker za vsak $i \in V$ velja $a_i < b_i$, je graf $G$ acikličen.
+Naša optimizacijska naloga je poiskati čim manjše število usmerjenih poti,
+ki pokrijejo vsako vozlišče grafa $G$ natanko enkrat.
+Pri tem dovoljujemo tudi poti dolžine $0$
+-- ta pokrijejo natanko eno vozlišče.
+Vsaka taka pot torej ustreza zaporedju terminov,
+ki jih bo pazil posamezen asistent.
+
+\item Definirajmo omrežje $G' = (V', E')$,
+kjer je
+\begin{align*}
+V' &= \{s, t\} \cup \set{u_i, v_i}{i \in V}, \\
+E' &= \set{s \to u_i, v_i \to t}{i \in V}
+ \cup \set{u_i \to v_j}{i \to j \in E},
+\end{align*}
+vse povezave pa imajo kapaciteto $1$.
+
+Denimo,
+da imamo celoštevilsko rešitev problema maksimalnega pretoka
+od vozlišča $s$ do vozlišča $t$ v omrežju $G'$
+-- ker so kapacitete cela števila,
+nam Ford-Fulkersonov algoritem zagotavlja njen obstoj.
+Ker gre vsaka enota pretoka čez natanko eno povezavo $u_i \to v_j$,
+ki ustreza povezavi $i \to j$ v grafu $G$,
+skupni pretok $f$ ustreza dopustni rešitvi problema iz prejšnje točke
+z vsoto dolžin poti enako $f$
+-- število poti je torej $n-f$.
+Tako maksimalni pretok ustreza optimalni rešitvi.
+
+\item Na sliki~\fig je prikazan maksimalen pretok
+za omrežje iz prejšnje točke pri danih podatkih,
+pri čemer so podani intervali oštevilčeni od $1$ do $9$.
+Najdeni maksimalni pretok $f^* = 5$
+torej ustreza dodelitvi terminov štirim asistentom:
+prvi pazi v terminih $(7, 8)$, $(8, 12)$ in $(12, 15)$,
+drugi v terminih $(8, 9)$ in $(9, 10)$,
+tretji v terminih $(7, 10)$, $(10, 13)$ in $(13, 15)$,
+četrti pa v terminu $(9, 12)$.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\res{}(c)]{Maksimalni pretok in minimalni prerez}
+\end{slika}
 \end{odgovor}
 \end{naloga}

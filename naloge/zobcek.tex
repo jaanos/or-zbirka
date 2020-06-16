@@ -58,6 +58,81 @@ Ema    & Győr, Budimpešta, Szeged
 \end{center}
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item
+Naj bo $v[i][j]$ ($1 \le i \le 2n$, $1 \le j \le n$)
+$j$-ta preferenca $i$-tega vodiča,
+$d[j][i]$ ($1 \le i \le 2n$, $1 \le j \le n$)
+rang $i$-tega vodiča pri preferencah agencije za $j$-to destinacijo.
+Uporabili bomo varianto Gale-Shapleyevega algoritma,
+ki bo vsaki destinaciji dodelila dva vodiča.
+
+\begin{small}
+\begin{algorithmic}
+\Function{StabilnaDodelitev}%
+{$v[1 \dots 2n][1 \dots n], d[1 \dots n][1 \dots 2n]$}
+    \State $Q \gets [1, 2, \dots, 2n]$
+    \State $k \gets$ seznam dolžine $2n$ z vrednostmi $1$
+    \State $M \gets$ matrika velikosti $n \times 2$ z vrednostmi $\Null$
+    \While{$\lnot Q.\isEmpty()$}
+        \State $i \gets Q.\pop()$
+        \State $j \gets v[k[i]]$
+        \State $k[i] \gets k[i] + 1$
+        \State $i' \gets M[j][2]$
+        \If{$i' = \Null \lor d[i] < d[i']$}
+            \If{$d[i] < d[M[j][1]]$}
+                \State $M[j][2] \gets M[j][1]$
+                \State $M[j][1] \gets i$
+            \Else
+                \State $M[j][2] \gets i$
+            \EndIf
+            \If{$i' \ne \Null$}
+                \State $Q.\append(i')$
+            \EndIf
+        \Else
+            \State $Q.\append(i)$
+        \EndIf
+    \EndWhile
+    \State \Return $M$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Ker se vsak od $2n$ vodičev v vrsto $Q$ doda največ $n$-krat,
+algoritem teče v času $O(n^2)$.
+
+\item Izvedba algoritma {\sc StabilnaDodelitev} pri danih podatkih
+je prikazana v tabeli~\tab.
+Budimpešto torej dodelimo Beli in Črtu,
+Győr Corini in Emi, Szeged pa Anisi in Dani.
+\end{enumerate}
+
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cccccc|ccc}
+$Q$ & \multicolumn{6}{c|}{$k$} & \multicolumn{3}{c}{$M$} \\
+& A & B & C & Č & D & E & Budimpešta & Győr & Szeged \\ \hline
+[A, B, C, Č, D, E] & 1 & 1 & 1 & 1 & 1 & 1
+& [\Null, \Null{}] & [\Null, \Null{}] & [\Null, \Null{}] \\{}
+[B, C, Č, D, E] & 2 & 1 & 1 & 1 & 1 & 1
+& [\Null, \Null{}] & [\Null, \Null{}] & [A, \Null{}] \\{}
+[C, Č, D, E] & 2 & 2 & 1 & 1 & 1 & 1
+& [B, \Null{}] & [\Null, \Null{}] & [A, \Null{}] \\{}
+[Č, D, E] & 2 & 2 & 2 & 1 & 1 & 1
+& [B, \Null{}] & [C, \Null{}] & [A, \Null{}] \\{}
+[D, E] & 2 & 2 & 2 & 2 & 1 & 1
+& [B, Č] & [C, \Null{}] & [A, \Null{}] \\{}
+[E, D] & 2 & 2 & 2 & 2 & 2 & 1
+& [B, Č] & [C, \Null{}] & [A, \Null{}] \\{}
+[D] & 2 & 2 & 2 & 2 & 2 & 2
+& [B, Č] & [C, E] & [A, \Null{}] \\{}
+[] & 2 & 2 & 2 & 2 & 3 & 2
+& [B, Č] & [C, E] & [A, D]
+\end{tabular}
+}
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

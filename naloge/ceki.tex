@@ -3,12 +3,12 @@
 Podjetje dobiva po pošti čeke iz celotne Evrope.
 Čas potovanja čeka je odvisen od kraja, od koder je bil ček poslan,
 in od kraja, kamor ček potuje.
-Na primer, ček, poslan iz Vzhodne Evrope v Berlin, v povprečju potuje 5 dni
+Na primer, ček, poslan iz vzhodne Evrope v Berlin, v povprečju potuje 5 dni
 -- podjetje mora torej čakati 5 dni,
 preden lahko ček unovči in razpolaga z denarjem.
-Iz Severne Evrope je v povprečju dnevno poslanih za $70\,000 €$ čekov,
-iz Zahodne Evrope za $50\,000 €$, iz Vzhodne $60\,000 €$,
-iz Južne pa $40\,000 €$.
+Iz severne Evrope je v povprečju dnevno poslanih za $70\,000 €$ čekov,
+iz zahodne Evrope za $50\,000 €$, iz vzhodne $60\,000 €$,
+iz južne pa $40\,000 €$.
 Podjetje želi obračunavati čeke kar se da hitro,
 saj izgubi $20\%$ vrednosti čeka na letni ravni.
 Podjetje lahko postavi podružnice (in s tem poštne predale)
@@ -24,12 +24,57 @@ Vzhodna Evropa & 8 & 5 & 2 & 5 \\
 Južna Evropa   & 8 & 5 & 5 & 2
 \end{tabular}
 \end{center}
-Primer: če Severna Evropa pošilja čeke v Budimpešto,
+Primer: če severna Evropa pošilja čeke v Budimpešto,
 bo v obtoku v pov\-preč\-ju za $560\,000 €$ ($= 8 \cdot 70\,000 €$) čekov,
 kar z $20\%$ izgubo pomeni $112\,000 €$ izgube na letni ravni.
 Zanima nas, kje naj podjetje postavi podružnice, da bodo stroški čim manjši.
 Zastavi nalogo kot celoštevilski linearni program.
 \end{vprasanje}
+
 \begin{odgovor}
+Za del Evrope $i \in D$,
+kjer je $D = \{S, Z, V, J\}$ (severna, zahodna, vzhodna, južna Evropa),
+in kraj $j \in K$,
+kjer je $K = \{\text{Lon}, \text{Ber}, \text{Bud}, \text{Mad}\}$
+(London, Berlin, Budimpešta, Madrid)
+bomo uvedli spremenljivko $x_{ij}$,
+za kraj $j \in K$ pa še spremenljivko $y_j$.
+Njihove vrednosti interpretiramo kot
+\begin{align*}
+x_{ij} &= \begin{cases}
+1; & \text{iz dela $i$ pošiljamo čeke v mesto $j$, in} \\
+0  & \text{sicer;}
+\end{cases} \\
+\text{ter} \quad
+y_j &= \begin{cases}
+1; & \text{odpremo podružnico v mestu $j$} \\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program,
+pri čemer bomo stroške računali v enotah po $1\,000 €$.
+\begin{gather*}
+\begin{alignedat}{4}
+\min \ 50 \sum_{j \in K} y_j
+ &+  28 x_{S,\text{Lon}} &&+ 84 x_{S,\text{Ber}}
+&&+ 112 x_{S,\text{Bud}} &&+ 84 x_{S,\text{Mad}} \\[-3.6mm]
+ &+  60 x_{Z,\text{Lon}} &&+ 20 x_{Z,\text{Ber}}
+&&+  50 x_{Z,\text{Bud}} &&+ 50 x_{Z,\text{Mad}} \\
+ &+  96 x_{V,\text{Lon}} &&+ 60 x_{V,\text{Ber}}
+&&+  24 x_{V,\text{Bud}} &&+ 60 x_{V,\text{Mad}} \\
+ &+  64 x_{J,\text{Lon}} &&+ 40 x_{J,\text{Ber}}
+&&+  40 x_{J,\text{Bud}} &&+ 16 x_{J,\text{Mad}} \quad \text{p.p.}
+\end{alignedat} \\
+\begin{alignedat}{3}
+\qquad\qquad\qquad
+\forall i \in D \ \forall j \in K: &\ &
+0 \le x_{ij} &\le 1, & x_{ij} &\in \Z \\
+\forall j \in K: &\ & 0 \le y_j &\le 1, & y_j &\in \Z
+\opis{Iz posameznega dela pošiljamo v eno podružnico}
+\forall i \in D: &\ & \sum_{j \in K} x_{ij} &= 1
+\opis{Če nekam pošiljamo, odpremo podružnico}
+\forall j \in K: &\ & \sum_{i \in D} x_{ij} &\le 4 y_j
+\end{alignedat}
+\end{gather*}
 \end{odgovor}
 \end{naloga}
