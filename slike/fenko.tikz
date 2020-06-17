@@ -11,7 +11,7 @@
 \node[dec] (F) at ( 0, 0) [label=above:$3$ G, kupi $1$ kg] {};
 \node[dec] (G) at ( 0,-4) [label=above:$7$ G, kupi $3$ kg] {};
 \node[dec] (H) at ( 0, -8) [label=above:$3$ G, kupi $2$ kg] {};
-\node[ran] (I) at ( 4, 5) label=[above:$9.8$ G] {};
+\node[ran] (I) at ( 4, 5) [label=above:$9.8$ G] {};
 \node      (J) at ( 4, 3) {$9$ G};
 \node[ran] (Y) at ( 4, 1) [label=above:$3.2$ G] {};
 \node      (K) at ( 4,-1) {$3$ G};
