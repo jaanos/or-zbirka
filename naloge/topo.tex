@@ -114,7 +114,7 @@ sledimo predhodnikom podanega končnega vozlišča $t$,
 dokler ne pridemo do $s$.
 \begin{small}
 \begin{algorithmic}
-\Function{RekonstruirajPot}{$d_G, \pred, t$}
+\Function{RekonstruirajPot}{$\pred, t$}
     \State $u \gets t$
 	\State {\sl pot} $\gets [t]$
 	\While{$\pred[u] \ne \Null$}
@@ -130,9 +130,10 @@ Klic {\sc NajkrajšaPot}$(G, g, L)$ vrne seznam $d_G$
 z razdaljami od vozlišča $g$ do ostalih vozlišč grafa
 in seznam $\pred$ s prednikom vsakega vozlišča v najkrajši poti od $g$.
 Potek izvajanja algoritma je prikazan v tabeli~\tab[topo-najkrajsa].
-Klic {\sc RekonstruirajPot}$(d_G, \pred, e)$
-nato vrne seznam vozlišč, skozi katera je algoritem potoval,
-da je opravil pot od $g$ do $e$ -- to so $[g, a, b, e]$.
+Seznam vozlišč, skozi katera je algoritem potoval,
+da je opravil pot od $g$ do $e$,
+nato dobimo s klicem {\sc RekonstruirajPot}$(\pred, e)$
+-- to so $[g, a, b, e]$.
 Dolžino te poti lahko preberemo kot $d_G[e] = -1$.
 
 Pripomnimo, da algoritem deluje pravilno
@@ -151,7 +152,7 @@ ki deluje na enak način kot {\sc NajkrajšaPot},
 le da namesto $\infty$ vzame v $d_G$ za začetne vrednosti $-\infty$,
 v zanki pa na vsakem koraku preverja pogoj $d_G[v] < d_G[u] + L_{uv}$.
 Časovna zahtevnost algoritma tako ostane enaka.
-Klic {\sc RekonstruirajPot}$(d_G, \pred, e)$,
+Klic {\sc RekonstruirajPot}$(\pred, e)$,
 kjer je $d_G, \pred$ izhod klica {\sc NajdaljšaPot}$(G, g, L)$,
 vrne pot $[g, h, b, c, d, e]$ dolžine $24$.
 Potek izvajanja algoritma je prikazan v tabeli~\tab[topo-najdaljsa].
