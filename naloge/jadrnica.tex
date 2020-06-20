@@ -1,0 +1,91 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 22.6.2020}
+\begin{vprasanje}
+Večja skupina prijateljev želi preživeti počitnice na jadrnici.
+Ker pa je na sami jadrnici le manjše število ležišč,
+so se odločili, da bodo prenočevali na kopnem vzdolž poti
+(vključno z začetnim in končnim krajem).
+Sestavili so usmerjen acikličen graf $G = (V, E)$
+z $n$ vozlišči in $m$ povezavami,
+v katerem vozlišča predstavljajo kraje, kjer se lahko ustavijo,
+vozlišči $u, v \in V$ pa sta povezani z usmerjeno povezavo $uv \in E$,
+če lahko v enem dnevu plujejo od kraja $u$ do kraja $v$.
+Začetna in končna točka poti sta predstavljeni z vozliščema $s, t \in V$.
+Poleg tega za vsako vozlišče $u \in V$ poznajo še število $k_u$,
+ki predstavlja, koliko oseb lahko prespi v kraju $u$.
+Sestaviti želijo tako pot od $s$ do $t$,
+da bo lahko na jadrnici potovalo čim več prijateljev
+(tj., maksimizirati želijo minimalno vrednost $k_u$
+vseh obiskanih krajev $u$ na poti).
+Dolžina poti pri tem ni pomembna.
+
+\begin{enumerate}[(a)]
+\item Natančno opiši čim učinkovitejši algoritem (z besedami ali psevdokodo)
+za reševanje zgornjega problema
+in določi njegovo časovno zahtevnost.
+\item Uporabi svoj algoritem,
+da v grafu $G = (V, E)$ s slike~\fig poiščeš tako pot od KP do DU,
+da bo lahko na jadrnici potovalo čim večje število prijateljev.
+Vrednosti $k_u$ ($u \in V$) so zapisane ob vsakem vozlišču.
+Natančno zabeleži, kaj se zgodi v vsakem koraku algoritma.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\nal{}(b)]{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Zgledovali se bomo po algoritmu {\sc NajkrajšaPot} iz naloge~\res[topo].
+Zapišimo algoritem,
+ki kliče funkciji {\sc Topo} in {\sc RekonstruirajPot} iz iste naloge,
+poleg tega pa kliče tudi funkcijo {\sc AdjIn},
+ki vrne množico vozlišč v podanem usmerjenem grafu
+s povezavo do podanega vozlišča.
+\begin{small}
+\begin{algorithmic}
+\Function{Jadrnica}{$G = (V, E), s, t, (k_u)_{u \in V}$}
+	\State $c \gets$ slovar z vrednostjo $-\infty$ za vsako vozlišče $v \in V$
+	\State $\pred \gets$ slovar z vrednostjo $\Null$ za vsako vozlišče $v \in V$
+	\For{$u \in$ {\sc Topo}$(G)$}
+		\For{$v \in$ {\sc AdjIn}$(G, u)$}
+			\If{$c[v] > c[u]$}
+				\State $c[v] \gets c[u]$
+				\State $\pred[v] \gets u$
+			\EndIf
+		\EndFor
+        \If{$c[u] > k_u$}
+            \State $c[u] \gets k_u$
+        \EndIf
+	\EndFor
+    \State \Return {\sc RekonstruirajPot}$(\pred, t)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Algoritem opravi topološko urejanje grafa,
+nato vsako povezavo pregleda enkrat,
+nazadnje pa opravi še obratni prehod po najdeni poti,
+tako da je njegova časovna zahtevnost $O(m)$.
+
+\item Graf s slike~\fig ima topološko ureditev
+KP, PU, RI, ML, ZD, DO, ŠI, ST, HV, DU.
+Izračunane vrednosti v tabelah $c$ in {\sl pred} v algoritmu iz točke (a)
+so prikazane v tabeli~\tab,
+iz katere je razvidno,
+da gre lahko na jadrnico največ $15$ prijateljev,
+kar je mogoče doseči z izbiro poti
+KP -- PU -- ZD -- DO -- HV -- DU.
+\end{enumerate}
+%
+\begin{tabela}
+\begin{tabular}{cccccccccc}
+KP & PU & RI & ML & ZD & DO & ŠI & ST & HV & DU \\
+\hline
+$20$ & $18_\text{KP}$ & $14_\text{PU}$ & $12_\text{PU}$ & $16_\text{PU}$ &
+$15_\text{ZD}$ & $13_\text{ZD}$ & $13_\text{ŠI}$ & $15_\text{DO}$ & $15_\text{HV}$
+\end{tabular}
+\podnaslov[\res{}(b)]{Izračunane vrednosti v algoritmu}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
