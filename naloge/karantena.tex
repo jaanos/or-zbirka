@@ -1,0 +1,66 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 22.6.2020}
+\begin{vprasanje}
+Iz kriznih žarišč COVID-19 po svetu se na Kitajsko vrača $n$ strokovnjakov,
+ki jih želijo oblasti razporediti po $m$ karantenskih centrih
+s kapacitetami $k_1, k_2, \dots, k_m$,
+pri čemer velja $\sum_{h=1}^m k_h \ge n$.
+S pomočjo naprednih tehnologij so za vsak par strokovnjakov
+$i, j \in \{1, 2, \dots, n\}$
+izračunali verjetnost $p_{ij} \in [0, 1]$,
+da je prišlo do prenosa virusa med $i$ in $j$
+(lahko predpostaviš,
+da za vsaka $i, j$ velja $p_{ij} = p_{ji}$ ter $p_{ii} = 0$).
+Poiskati želijo tako razporeditev,
+da bo vsota vrednosti $p_{ij}$ vseh parov $(i, j)$,
+ki bodo nastanjeni v istem karantenskem centru,
+čim manjša.
+
+Pri tem imajo nekaj omejitev.
+Identificirali so množico $A$ strokovnjakov, ki so se nahajali na območjih,
+kjer je prišlo do mutacije virusa
+-- ti ne smejo biti nastanjeni skupaj s strokovnjaki izven množice $A$
+(lahko so pa člani množice $A$ nastanjeni po različnih centrih).
+Poleg tega so sestavili množico $B$ parov strokovnjakov v bližnjem sorodstvu
+-- za vsak par $(i, j) \in B$ velja,
+da mora biti nastanjen v istem centru.
+
+Zapiši celoštevilski linearni program, ki modelira opisani problem.
+\namig{uporabi spremenljivke, ki za par oseb povedo,
+ali se nastanita v nekem centru.}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $h$-ti center ($1 \le h \le m$)
+ter $i$-tega in $j$-tega strokovnjaka ($1 \le i, j \le n$)
+bomo uvedli spremenljivko $x_{hij}$,
+katere vrednost interpretiramo kot
+$$
+x_{hij} = \begin{cases}
+1, & \text{$i$-ti in $j$-ti strokovnjak sta oba nastanjena} \\[-1mm]
+   & \text{v $h$-tem karantenskem centru, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Informacija o tem, ali je $i$-ti strokovnjak nastanjen v $h$-tem centru,
+hrani spremenljivka $x_{hii}$ ($1 \le h \le m$, $1 \le i \le n$).
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+\min &\ & \sum_{h=1}^m \sum_{i=1}^n \sum_{j=1}^n p_{ij} x_{hij}
+&& \text{p.p.} \\
+\forall h \in \{1, \dots, m\} \ \forall i, j \in \{1, \dots, n\}: &\ &
+0 \le x_{hij} &\le 1, & x_{hij} &\in \Z
+\opis{Vsak strokovnjak je nastanjen v natanko enem centru}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{h=1}^m x_{hii} &= 1
+\opis{Kapacitete centrov}
+\forall h \in \{1, \dots, m\}: &\ & \sum_{i=1}^n x_{hii} &\le k_h
+\opis{Povezava med $x_{hii}$ in $x_{hij}$}
+\forall h \in \{1, \dots, m\} \ \forall i, j \in \{1, \dots, n\}: &\ &
+2 x_{hij} \le x_{hii} + x_{hjj} &\le x_{hij} + 1
+\opis{Območja z mutacijo}
+\forall i \in A \ \forall j \not\in A: &\ & \sum_{h=1}^m x_{hij} &= 0
+\opis{Sorodniki}
+\forall (i, j) \in B: &\ & \sum_{h=1}^m x_{hij} &= 1
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
