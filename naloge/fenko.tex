@@ -40,39 +40,59 @@ ali se mu ponoči granodiorit spremeni v zlato ali ne.
 \end{vprasanje}
 
 \begin{odgovor}
-Najprej uvedemo spremenljivke X, Y_i in Z_i, s katerimi bomo računali v nadaljevanju.
- \begin{align*} 
- X &\dots \text{število guldov po drugi noči} \\ 
- Y_i &\dots \text{število guldov pred $i$-to nočjo ($i \in \{1, 2\}$)} \\ 
- Z_i &\dots \text{kilogrami granodiorita pred $i$-to nočjo ($i \in \{1, 2\}$)} \\ 
- \end{align*} 
+Najprej uvedemo slučajne spremenljivke $X$, $Y_i$ in $Z_i$ ($i \in \{1, 2\}$),
+s katerimi bomo računali v nadaljevanju.
+\begin{align*}
+X &\dots \text{število guldov po drugi noči} \\
+Y_i &\dots \text{število guldov pred $i$-to nočjo} & (i &\in \{1, 2\}) \\
+Z_i &\dots \text{kilogrami granodiorita pred $i$-to nočjo} & (i &\in \{1, 2\})
+\end{align*}
 
-Odločitev pred drugo nočjo bomo obravnavali glede na število guldov, ki jih imamo na voljo po prvi noči.
-\begin{alignat*}{2}
-E(X \mid  Y_2 = k-2x, Z_2 = x) &= 0.4 \cdot (k - 2x + 4x) + 0.6 \cdot (k - 2x + x) &&= k + 0.2x \\
-\end{alignat*}
-K tu predstavlja število guldov po prvi noči, x pa število kilogramov kupljenega granodiorita pred drugo nočjo. Ker je k + 0.2x večji od k, vedno kupi maksimalno količino granodiorita.
-Ne glede na izid iz prve noči torej vemo, da po prvi noči kupi maksimalno število granodiorita.
-Obravanavamo štiri primere
-V prvi noči kupi $2$ kg granodiorita in uspe, ter proda zlato, ima torej $9$ guldov, s katerimi kupi $4$ kg granodiorita en guld pa mu ostane
-V prvi noči kupi $2$ kg granodiorita in ne uspe, ter proda granodiorit, ima torej $3$ gulde, s katerimi kupi $1$ kg granodiorita en guld pa mu ostane
-V prvi noči kupi $1$ kg granodiorita in uspe, ter proda zlato, ima torej $7$ guldov, s katerimi kupi $3$ kg granodiorita en guld pa mu ostane
-V prvi noči kupi $1$ kg granodiorita in ne uspe, ter proda granodiorit, ima torej $4$ gulde, s katerimi kupi $2$ kg granodiorita
+Odločitev pred drugo nočjo bomo obravnavali glede na število guldov,
+ki jih imamo na voljo po prvi noči.
+$$
+E(X \mid  Y_2 = k-2x, Z_2 = x) = 0.4 \cdot (k - 2x + 4x) + 0.6 \cdot (k - 2x + x) = k + 0.2x
+$$
+Spremenljivka $k$ tu predstavlja število guldov po prvi noči,
+$x$ pa število kilogramov kupljenega granodiorita pred drugo nočjo.
+Ker je $k + 0.2x$ večji od $k$,
+Fenko vedno kupi maksimalno količino granodiorita.
+Ne glede na izid iz prve noči torej vemo,
+da po prvi noči kupi maksimalno število granodiorita.
 
+Obravanavamo torej štiri primere.
+Če v prvi noči kupi $2$ kg granodiorita ter izdelava uspe in proda zlato,
+ima torej $k = 9$ guldov, s katerimi kupi $x = 4$ kg granodiorita,
+en guld pa mu ostane;
+če izdelava ne uspe, potem proda granodiorit in ima torej $k = 3$ gulde,
+s katerimi kupi $x = 1$ kg granodiorita, en guld pa mu ostane.
+Če pa v prvi noči kupi $1$ kg granodiorita ter izdelava uspe in proda zlato,
+ima torej $k = 7$ guldov, s katerimi kupi $x = 3$ kg granodiorita,
+en guld pa mu ostane;
+če izdelava ne uspe, potem proda granodiorit in ima torej $k = 4$ gulde,
+s katerimi kupi $x = 2$ kg granodiorita.
 \begin{alignat*}{2}
 E(X \mid  Y_2 = 1, Z_2 = 4) &= 0.4 \cdot 17 + 0.6 \cdot 5 &&= 9.8 \\
 E(X \mid  Y_2 = 1, Z_2 = 1) &= 0.4 \cdot 5 + 0.6 \cdot 2 &&= 3.2 \\
 E(X \mid  Y_2 = 1, Z_2 = 3) &= 0.4 \cdot 13 + 0.6 \cdot 4 &&= 7.6 \\
-E(X \mid  Y_2 = 0, Z_2 = 2) &= 0.4 \cdot 8 + 0.6 \cdot 2 &&= 4.4 \\
+E(X \mid  Y_2 = 0, Z_2 = 2) &= 0.4 \cdot 8 + 0.6 \cdot 2 &&= 4.4
 \end{alignat*}
-Izračunamo pričakovne vrednosti še za prvo noč, obravnavali bomo dva primera, v prvem kupi $2$ kg granodiorita, v drugem pa $1$ kg granodiorita.
+Izračunajmo pričakovne vrednosti še za prvo noč.
+Obravnavali bomo dva primera:
+v prvem kupi $2$ kg granodiorita, v drugem pa $1$ kg granodiorita.
 \begin{alignat*}{2}
 E(X \mid  Y_1 = 1, Z_1 = 2) &= 0.4 \cdot 9.8 + 0.6 \cdot 3.2 &&= 5.84 \\
-E(X \mid  Y_1 = 3, Z_1 = 1) &= 0.4 \cdot 7.6 + 0.6 \cdot 4.4 &&= 5.68 \\
+E(X \mid  Y_1 = 3, Z_1 = 1) &= 0.4 \cdot 7.6 + 0.6 \cdot 4.4 &&= 5.68
 \end{alignat*}
 
-Na začetku bo torej kupil $2$ kg granodiorita, za kar bo porabil $4$ gulde, ter oba nastavil prvo noč. Če uspe, bo pridobil $20$ g zlata, ki jih proda in kupi $4$ kg granodiorita, ki jih nastavi drugo noč.
-Če mu prvo noč ne uspe, potem proda granodiorit za $2$ gulda, ter kupi $1$ kg granodiorita, ki ga nastavi drugo noč.
+Na začetku bo torej kupil $2$ kg granodiorita, za kar bo porabil $4$ gulde,
+ter oba nastavil prvo noč.
+Če uspe, bo pridobil $20$ g zlata, ki jih proda,
+in kupi $4$ kg granodiorita, ki jih nastavi drugo noč.
+Če mu prvo noč ne uspe,
+potem proda granodiorit za $2$ gulda ter kupi $1$ kg svežega granodiorita,
+ki ga nastavi drugo noč.
+Celoten proces odločanja je prikazan na sliki~\fig.
 
 \begin{slika}
 \makebox[\textwidth][c]{

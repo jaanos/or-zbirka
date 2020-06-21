@@ -3,9 +3,9 @@
 \tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
 \tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
 \tikzstyle{pick}=[double, very thick]
-\node[dec] (A) at (-8,-2) [label=above:$5.84$ G] {};
+\node[dec] (A) at (-8,-2) [label=left:$5.84$ G] {};
 \node[ran] (B) at (-4, 2) [label=above:$5.84$ G] {};
-\node[ran] (C) at (-4,-6) [label=above:$5.68$ G] {};
+\node[ran] (C) at (-4,-6) [label=below:$5.68$ G] {};
 \node      (D) at (-4,-2) {$5$ G};
 \node[dec] (E) at ( 0, 4) [label=above:$9$ G] {};
 \node[dec] (F) at ( 0, 0) [label=above:$3$ G] {};
