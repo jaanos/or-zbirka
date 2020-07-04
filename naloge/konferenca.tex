@@ -38,6 +38,61 @@ K & Planiranje poti za ostale govorce & A, J & 9 dni & 12 dni & 18 dni \\
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev $S, A, H, C, D, J, I, K, E, G, F, B, T$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[konferenca-resitev].
+
+\item V tabeli~\tab[konferenca-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje gradnje ne podaljša.
+Pričakovano trajanje gradnje je torej $\mu = 57$ dni,
+edina kritična pot pa je $S - H - J - E - F - B - T$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[konferenca-resitev] je razvidno,
+da je najmanj kritično opravilo $I$,
+saj lahko njegovo trajanje
+podaljšamo za $29$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti.
+$$
+\sigma = \sqrt{4 + 1 + 0 + 2.25 + 2.25} = 3.082
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 55$ dni.
+$$
+P(X \le 55) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(-0.6489) = 0.2578
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{konferenca-resitev}
+$$
+\begin{array}{c|ccccccccccccc}
+& S & A & H & C & D & J & I & K & E & G & F & B & T \\ \hline
+\text{pričakovano} && 14 & 8.5 & 6 & 14.5 & 15.5 & 14 & 12.5 & 8 & 27.5 & 4 & 21 \\
+\text{varianca} && 4 & 2.25 & 1 & 6.25 & 2.25 & 1 & 2.25 & 1 & 2.25 & 0 & 4  \\
+\hline
+\text{najprej} & 0 & 0_S & 0_S & 14_A & 14_A & 8.5_H & 14_A & 24_J & 24_J & 28.5_D & 32_E & 36_F & 57_B \\
+\text{najkasneje} & 0_H & 1_D & 0_J & 18_E & 15_G & 8.5_E & 43_T & 44.5_T & 24_F & 29.5_T & 32_B & 36_T & 57 \\
+\text{razlika} & 0 & 1 & 0^* & 4 & 1 & 0^* & 29 & 20.5 & 0^* & 1 & 0^* & 0^* & 0 \\
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+
 \end{odgovor}
 \end{naloga}
