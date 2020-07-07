@@ -22,22 +22,79 @@ da bo izvedba trajala manj kot $55$ dni.
 \begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
 & Opravilo & Pogoji & Minimalno trajanje
 & Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
-A & Izbira lokacije & / & 10 dni & 13 dni & 22 dni \\
-B & Rezervacija sob za goste & F & 13 dni & 22 dni & 25 dni \\
-C & Dogovarjanje za cene hotelskih sob & A & 3 dni & 6 dni & 9 dni \\
-D & Naročilo hrane in pijače & A & 6 dni & 15 dni & 21 dni \\
-E & Priprava letakov & C, J & 5 dni & 8 dni & 11 dni \\
-F & Pošiljanje letakov & E & 4 dni & 4 dni & 4 dni \\
-G & Priprava zbornika s povzetki & D, J & 22 dni & 28 dni & 31 dni \\
-H & Določitev glavnega govorca & / & 5 dni & 8 dni & 14 dni \\
-I & Planiranje poti za glavnega govorca & A, H & 11 dni & 14 dni & 17 dni \\
-J & Določitev ostalih govorcev & H & 12 dni & 15 dni & 21 dni \\
-K & Planiranje poti za ostale govorce & A, J & 9 dni & 12 dni & 18 dni \\
+$a$ & Izbira lokacije & / & 10 dni & 13 dni & 22 dni \\
+$b$ & Rezervacija sob za goste & $f$ & 13 dni & 22 dni & 25 dni \\
+$c$ & Dogovarjanje za cene hotelskih sob & $a$ & 3 dni & 6 dni & 9 dni \\
+$d$ & Naročilo hrane in pijače & $a$ & 6 dni & 15 dni & 21 dni \\
+$e$ & Priprava letakov & $c, j$ & 5 dni & 8 dni & 11 dni \\
+$f$ & Pošiljanje letakov & $e$ & 4 dni & 4 dni & 4 dni \\
+$g$ & Priprava zbornika s povzetki & $d, j$ & 22 dni & 28 dni & 31 dni \\
+$h$ & Določitev glavnega govorca & / & 5 dni & 8 dni & 14 dni \\
+$i$ & Planiranje poti za glavnega govorca & $a, h$ & 11 dni & 14 dni & 17 dni \\
+$j$ & Določitev ostalih govorcev & $h$ & 12 dni & 15 dni & 21 dni \\
+$k$ & Planiranje poti za ostale govorce & $a, j$ & 9 dni & 12 dni & 18 dni
 \end{tabular}
 }
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je raz\-vid\-na topološka ureditev
+$s, a, h, c, d, j, i, k, e, g, f, b, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[konferenca-resitev].
+
+\item V tabeli~\tab[konferenca-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje gradnje ne podaljša.
+Pričakovano trajanje gradnje je torej $\mu = 57$ dni,
+edina kritična pot pa je $s - h - j - e - f - b - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[konferenca-resitev] je razvidno,
+da je najmanj kritično opravilo $i$,
+saj lahko njegovo trajanje
+podaljšamo za $29$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Variance trajanj opravil so prikazane v tabeli~\tab[konferenca-resitev].
+Izračunajmo standardni odklon trajanja pričakovane kritične poti.
+$$
+\sigma = \sqrt{4 + 1 + 0 + 2.25 + 2.25} = 3.082
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 55$ dni.
+$$
+P(X \le 55) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(-0.6489) = 0.2578
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{konferenca-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|ccccccccccccc}
+& $s$& $a$& $h$& $c$& $d$& $j$& $i$& $k$& $e$& $g$& $f$& $b$& $t$ \\ \hline
+\text{pričakovano} && $14$& $8.5$& $6$& $14.5$& $15.5$& $14$& $12.5$& $8$& $27.5$& $4$& $21$ \\
+\text{varianca} && $4$& $2.25$& $1$& $6.25$& $2.25$& $1$& $2.25$& $1$& $2.25$& $0$& $4$ \\
+\hline
+\text{najprej} & $0$& $0_s$& $0_s$& $14_a$& $14_a$& $8.5_h$& $14_a$& $24_j$& $24_j$& $28.5_d$& $32_e$& $36_f$& $57_b$ \\
+\text{najkasneje} & $0_h$& $1_d$& $0_j$& $18_e$& $15_g$& $8.5_e$& $43_t$& $44.5_t$& $24_f$& $29.5_t$& $32_b$& $36_t$& $57$ \\
+\text{razlika} & $0$& $1$& $0^*$& $4$& $1$& $0^*$& $29$& $20.5$& $0^*$& $1$& $0^*$& $0^*$& $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+
 \end{odgovor}
 \end{naloga}
