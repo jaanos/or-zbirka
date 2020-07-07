@@ -1,0 +1,78 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 22.6.2020}
+\begin{vprasanje}
+V šiviljski delavnici so začeli proizvajati zaščitne maske.
+Vsak dan lahko izdelajo $400$ mask, prodajo pa jih $300$.
+Cena zagona proizvodnje je $240 €$,
+cena skladiščenja ene maske za en dan pa je $0.1 €$.
+
+\begin{enumerate}[(a)]
+\item Denimo, da primanjkljaj ni dovoljen.
+Kako pogosto naj zaženejo proizvodnjo in koliko časa naj ta teče?
+Koliko mask naj izdelajo v posameznem ciklu
+ter kako veliko skladišče potrebujejo?
+
+\item Obravnavajmo še primer, ko dovolimo primanjkljaj,
+ki nas stane $0.4 €$ na dan za eno masko.
+Izračunaj podatke iz prejšnje točke še za ta primer.
+Kolikšen je največji dovoljeni primanjklaj?
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+Imamo sledeče podatke (pri časovni enoti $1$ dan).
+\begin{align*}
+\nu &= 300 &
+K &= 240 € \\
+\lambda &= 400 &
+s &= 0.1 €
+\end{align*}
+Pri teh podatkih izračunajmo še
+$$
+\alpha = \nu \left(1 - {\nu \over \lambda}\right) = 300 \cdot {1 \over 4} = 75 .
+$$
+
+\begin{enumerate}[(a)]
+\item Ker primanjkljaj ni dovoljen,
+vzamemo $p = \infty$ in torej $\beta = 1$.
+Izračunajmo optimalno dolžino cikla $\tau^*$,
+največjo zalogo $M^*$, trajanje proizvodnje $t^*$
+ter število izdelanih mask $q^*$ v posameznem ciklu.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{480 \over 7.5} &&= 8 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{36\,000 \over 0.1} &&= 600 \\
+t^* &= {M^* \over \lambda - \nu}
+&&= {600 \over 100} &&= 6 \\
+q^* &= \tau^* \nu = t^* \lambda
+&&= 8 \cdot 300 &&= 2\,400
+\end{alignat*}
+Optimalna dolžina cikla je torej $8$ dni, od tega proizvodnja teče $6$ dni.
+V tem času proizvedejo $2\,400$ mask,
+v skladišču pa mora biti prostora za $600$ mask.
+
+\item Sedaj imamo $p = 0.4 €$ in torej $\beta = 1 + s/p = 1.25$.
+Izračunajmo optimalno dolžino cikla $\tau^*$,
+največjo zalogo $M^*$, največji primanjkljaj $m^*$,
+trajanje pro\-iz\-vod\-nje $t^*$
+ter število izdelanih mask $q^*$ v posameznem ciklu.
+\begin{alignat*}{3}
+\tau^* &= \sqrt{2K \beta \over s \alpha}
+&&= \sqrt{600 \over 7.5} &&\approx 8.944 \\
+M^* &= \sqrt{2K \alpha \over s \beta}
+&&= \sqrt{36\,000 \over 0.125} &&\approx 536.656 \\
+m^* &= \tau^* \alpha - M^*
+&&\approx 670.820 - 536.656 &&\approx 134.164 \\
+t^* &= {M^* + m^* \over \lambda - \nu}
+&&\approx {670.820 \over 100} &&= 6.708 \\
+q^* &= \tau^* \nu
+&&\approx 8.944 \cdot 300 &&= 2\,683.282
+\end{alignat*}
+V tem primeru je torej optimalna dolžina cikla $8.944$ dni,
+od tega proizvodnja teče $6.708$ dni.
+V tem času proizvedejo približno $2\,683$ mask,
+v skladišču pa mora biti prostora za $537$ mask.
+Največji primanjkljaj ne preseže $135$ mask.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

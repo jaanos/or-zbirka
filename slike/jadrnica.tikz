@@ -1,0 +1,34 @@
+\begin{tikzpicture}[style=thick,scale=0.4]
+\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
+\small
+\node[vertex] (KP) at (-15,1) [label=above:$20$] {KP};
+\node[vertex] (PU) at (-9,-1) [label=below:$18$] {PU};
+\node[vertex] (RI) at (-9, 3) [label=above:$14$] {RI};
+\node[vertex] (ML) at (-5,-1) [label=above:$12$] {ML};
+\node[vertex] (ZD) at (-1, 3) [label=above:$16$] {ZD};
+\node[vertex] (DO) at (-1,-1) [label=below:$15$] {DO};
+\node[vertex] (ŠI) at ( 5, 1) [label=above:$13$] {ŠI};
+\node[vertex] (ST) at ( 9, 1) [label=above:$17$] {ST};
+\node[vertex] (HV) at (11,-1) [label=below:$19$] {HV};
+\node[vertex] (DU) at (15,-1) [label=above:$20$] {DU};
+
+\draw[->] (KP) -- (PU);
+\draw[->] (KP) to[bend right=50] (ML);
+\draw[->] (PU) -- (RI);
+\draw[->] (PU) -- (ML);
+\draw[->] (PU) -- (ZD);
+\draw[->] (RI) -- (ML);
+\draw[->] (RI) -- (ZD);
+\draw[->] (ML) -- (ZD);
+\draw[->] (ML) -- (DO);
+\draw[->] (ZD) -- (DO);
+\draw[->] (ZD) -- (ŠI);
+\draw[->] (DO) -- (ŠI);
+\draw[->] (DO) -- (HV);
+\draw[->] (ŠI) -- (ST);
+\draw[->] (ŠI) -- (HV);
+\draw[->] (ST) -- (HV);
+\draw[->] (ST) -- (DU);
+\draw[->] (HV) -- (DU);
+
+\end{tikzpicture}
