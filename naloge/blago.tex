@@ -4,10 +4,10 @@
 Imamo pravokoten kos blaga dimenzij $m \times n$,
 kjer sta $m$ in $n$ pozitivni celi števili,
 ter seznam $k$ izdelkov,
-pri čemer potrebujemo za izdelek $i$
-pravokoten kos blaga dimenzij $a_i \times b_i$
-($a_i, b_i$ sta pozitivni celi števili),
-ki ga prodamo za ceno $c_i > 0$.
+pri čemer potrebujemo za izdelek $h$
+pravokoten kos blaga dimenzij $a_h \times b_h$
+($a_h, b_h$ sta pozitivni celi števili),
+ki ga prodamo za ceno $c_h > 0$.
 Imamo stroj, ki lahko poljuben kos blaga razreže na dva dela
 bodisi vodoravno, bodisi navpično.
 Začetni kos blaga želimo razrezati tako,
@@ -15,14 +15,33 @@ da bomo lahko naredili izdelke,
 ki nam bodo prinašali čim večji dobiček.
 Pri tem smemo izdelati poljubno število kosov posameznega izdelka.
 Kose blaga lahko seveda tudi obračamo
-(tj., za izdelek $i$ lahko narežemo kos velikosti
-$a_i \times b_i$ ali $b_i \times a_i$).
+(tj., za izdelek $h$ lahko narežemo kos velikosti
+$a_h \times b_h$ ali $b_h \times a_h$).
 
 Zapiši rekurzivne enačbe za reševanje danega problema.
 Razloži, kaj predstavljajo spremenljivke,
 v kakšnem vrstnem redu jih računamo,
 ter kako dobimo optimalno rešitev.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $p_{ij}$ največji dobiček,
+ki ga lahko iztržimo z rezanjem kosa blaga dimenzij $i \times j$
+($1 \le i \le m$, $1 \le j \le n$).
+Določimo rekurzivne enačbe.
+\begin{alignat*}{3}
+p_{ij} &= \max
+& \big( &{} \set{c_h}{1 \le h \le k \land (a_h, b_h) \in \{(i, j), (j, i)\}\}} \\
+&& \cup &{} \set{p_{\ell j} + p_{i-\ell, j}}{1 \le \ell \le i/2} \\
+&& \cup &{} \set{p_{i \ell} + p_{i, j-\ell}}{1 \le \ell \le j/2} \cup \{0\}\big)
+\end{alignat*}
+Prva množica tukaj obravnava primere, ko imamo kos blaga želene velikosti,
+naslednji dve pa obravnavata vodoravne oziroma navpićne reze.
+Zadnja množica poskrbi, da je vrednost $p_{11}$ definirana tudi v primeru,
+ko nam kos blaga velikosti $1 \times 1$ ne prinese dobička.
+
+Vrednosti $p_{ij}$ računamo v leksikografskem vrstnem redu indeksov
+(npr.~najprej naraščajoče po $i$, nato pa naraščajoče po $j$).
+Maksimalni dobiček dobimo kot $p^* = p_{mn}$.
 \end{odgovor}
 \end{naloga}
