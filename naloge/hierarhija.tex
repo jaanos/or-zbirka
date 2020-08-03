@@ -10,17 +10,49 @@ Predpostavimo tudi, da so že urejeni hierarhično,
 tj., delavec $d_i$ je podrejen delavcem $d_{i+1}, d_{i+2}, \dots, d_n$.
 Vsak delavec se boji prvih nekaj delavcev, ki so mu podrejeni,
 da bi ga prehiteli v hierarhiji.
-Naj bo $k_i \in \N_0$ stopnja ogroženosti delavca $d_i$ ($1 \le i \le n$).
+Naj bo $k_i \in \{0, 1, \dots, i-1\}$
+stopnja ogroženosti delavca $d_i$ ($1 \le i \le n$).
 Stopnja ogroženosti nam pove,
 koliko delavcev, ki so podrejeni delavcu $d_i$, se ta delavec ``boji''.
 Z drugimi besedami,
-delavec $d_i$ se boji delavcev $d_{i_1}, d_{i-2}, \dots, d_{i-k_i}$.
+delavec $d_i$ se boji delavcev $d_{i-1}, d_{i-2}, \dots, d_{i-k_i}$.
 
 Z dinamičnim programiranjem poišči tako največjo skupino delavcev,
 da se nihče v tej skupini ne bo bal drugega iz te skupine.
 Dovolj je zapisati rekurzivno enačbo z začetnimi pogoji.
 Kako lahko izvemo, kateri delavci so v tej (največji) skupini?
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $p_i$ velikost največje skupine delavcev izmed $d_1, d_2, \dots, d_i$,
+da se nihče v tej skupini ne bo bal drugega v tej skupini.
+Določimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+p_0 &= 0 \\
+p_i &= \max\{p_{i-1}, p_{i-k_i-1} + 1\} \quad (1 \le i \le n)
+\end{align*}
+Vrednosti $p_i$ računamo naraščajoče glede na indeks $i$.
+Maksimalno velikost skupine dobimo kot $p^* = p_n$.
+
+Iskano skupino lahko iz vrednosti
+$k_i$ ($1 \le i \le n$) in $p_i$ ($1 \le i \le n$)
+rekonstruiramo s sledečim algoritmom.
+\begin{small}
+\begin{algorithmic}
+\Function{RekonstruirajSkupino}{$(k_i)_{i=1}^n, (p_i)_{i=1}^n$}
+	\State $S \gets$ prazna množica
+	\State $i \gets n$
+	\While{$i > 0$}
+		\If{$p_i = p_{i-1}$} \hfill upoštevamo $p_0 = 0$
+			\State $i \gets i-1$
+		\Else
+			\State $S.\add(i)$
+			\State $i \gets i-k_i-1$
+		\EndIf
+	\EndWhile
+	\State \Return $S$
+\EndFunction
+\end{algorithmic}
+\end{small}
 \end{odgovor}
 \end{naloga}
