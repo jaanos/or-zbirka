@@ -37,7 +37,7 @@ da izračunamo
 \begin{align*}
 j_1 &= 1 \\
 j_i &= \begin{cases}
-j_{i-1} & p_{ij} < p_{i,j+1}, \text{in} \\
+j_{i-1} & p_{i,j_{i-1}} \ge p_{i,j_{i-1}+1}, \text{in} \\
 j_{i-1} + 1 & \text{sicer}
 \end{cases}
 & (2 \le i \le n)
