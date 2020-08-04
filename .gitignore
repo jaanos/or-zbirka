@@ -12,6 +12,7 @@ __pycache__
 *.snm
 *.synctex.gz
 *.toc
+*.txss
 *.xls
 *.zip
 .DS_Store
