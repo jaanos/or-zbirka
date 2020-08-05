@@ -3,14 +3,14 @@
 Dan je številski trikotnik
 $$
 \begin{array}{ccccccccc}
-                &&&& a_{1,1} \\
-            &&& a_{2,1} && a_{2,2} \\
-        && a_{3,1} && a_{3,2} && a_{3,3} \\
+                &&&& a_{11} \\
+            &&& a_{21} && a_{22} \\
+        && a_{31} && a_{32} && a_{33} \\
      & \iddots && \vdots && \vdots && \ddots \\
-a_{n,1} && a_{n,2} && \cdots && a_{n,n-1} && a_{n,n}
+a_{n1} && a_{n2} && \cdots && a_{n,n-1} && a_{nn}
 \end{array} ,
 $$
-kjer so $a_{i,j} \in \Z$.
+kjer so $a_{ij} \in \Z$.
 {\em Spust} v takem trikotniku je pot od vrha do dna
 -- t.j., zaporedje $(a_{i, j_i})_{i=1}^n$,
 kjer je $j_1 = 1$ in $j_i \in \{j_{i-1}, j_{i-1}+1\}$
@@ -21,6 +21,27 @@ Teža spusta je vsota števil, po katerih poteka spust
 S pomočjo dinamičnega programiranja opiši postopek,
 ki poišče najtežji spust v danem številskem trikotniku.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $p_{ij}$ največja teža spusta v trikotniku z vrhom v $a_{ij}$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{nj} &= a_{nj} && (1 \le j \le n) \\
+p_{ij} &= a_{ij} + \max\{p_{i+1,j}, p_{i+1,j+1}\} && (1 \le j \le i \le n-1)
+\end{align*}
+Vrednosti $p_{ij}$ računamo
+v padajočem leksikografskem vrstnem redu glede na $(i, j)$.
+Težo najtežega spusta dobimo kot $p^* = p_{11}$.
+Sam spust $(a_{i, j_i})_{i=1}^n$ lahko dobimo tako,
+da izračunamo
+\begin{align*}
+j_1 &= 1 \\
+j_i &= \begin{cases}
+j_{i-1} & p_{i,j_{i-1}} \ge p_{i,j_{i-1}+1}, \text{in} \\
+j_{i-1} + 1 & \text{sicer}
+\end{cases}
+& (2 \le i \le n)
+\end{align*}
+v naraščajočem vrstnem redu glede na indeks $i$.
 \end{odgovor}
 \end{naloga}

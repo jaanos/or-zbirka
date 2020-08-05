@@ -11,6 +11,25 @@ Denimo, da začne igralec $A$.
 S pomočjo dinamičnega programiranja določi maksimalni znesek,
 ki ga $A$ lahko doseže, če tudi drugi igralec igra optimalno.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bosta $p_{ij}$ in $q_{ij}$ največji oziroma najmanjši znesek,
+ki ga lahko doseže igralec $A$ iz zaporedja $c_i, c_{i+1}, \dots, c_j$,
+če je na potezi igralec $A$ oziroma igralec $B$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{ii} &= c_i && (1 \le i \le n) \\
+q_{ii} &= 0 && (1 \le i \le n) \\
+q_{i,i+1} &= 0 && (1 \le i \le n-1) \\
+p_{ij} &= \max\{c_i + q_{i+1,j}, c_j + q_{i,j-1}\} && (1 \le i < j \le n) \\
+q_{ij} &= \min\{p_{i+2,j}, p_{i+1,j-1}, p_{i,j-2}\} && (1 \le i \le j-2 \le n-2)
+\end{align*}
+Vrednosti $p_{ij}$ in $q_{ij}$ računamo
+v leksikografskem vrstnem redu glede na $(j-i, i)$
+-- pravzaprav zadostuje,
+da izračunamo vrednosti $p_{ij}$ z $j-i \equiv n-1 \pmod{3}$
+in vrednosti $q_{ij}$ z $j-i \equiv n-2 \pmod{3}$.
+Maksimalni znesek igralca $A$ ob optimalni igri igralca $B$
+dobimo kot $p^* = p_{1n}$.
 \end{odgovor}
 \end{naloga}

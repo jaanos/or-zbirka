@@ -28,11 +28,84 @@ $$
 
 \begin{enumerate}[(a)]
 \item Napiši rekurzivne enačbe za računanje $N(A)$.
-
 \item Napiši algoritem za računanje $N(A)$
 s časovno zahtevnostjo največ $O(n^4)$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{hik}$ število stolpcev
+v največji strnjeni podmatriki s samimi enicami
+z vrsticami od $h$-te do $i$-te vrstice matrike $A$,
+katere zadnji stolpec je $k$-ti stolpec matrike $A$.
+Poleg tega naj bo $s_{ij}$ vsota prvih $i$ komponent (tj., število enic)
+v $j$-tem stolpcu matrike $A$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+s_{0j}  &= 0 & (1 &\le j \le n) \\
+s_{ij}  &= A_{ij} + s_{i-1,j} & (1 &\le i, j \le n) \\
+p_{hi0} &= 0 & (1 &\le h \le i \le n) \\
+p_{hik} &= \begin{cases}
+p_{h,i,k-1} + 1 & s_{ik} - s_{h-1,k} = i-h+1, \text{in} \\
+0 & \text{sicer}
+\end{cases} &
+(1 &\le h \le i \le n, \\[-5mm]
+&& 1 &\le k \le n)
+\end{align*}
+Najprej za vsak $j$ ($1 \le j \le n$)
+izračunamo vrednosti $s_{ij}$ naraščajoče po indeksu $i$,
+nato pa za vsaka $h$ in $i$ ($1 \le h \le i \le n$)
+izračunamo vrednosti $p_{hik}$ naraščajoče po indeksu $k$.
+Največjo velikost strnjene podmatrike samih enic dobimo kot
+$$
+N(A) = \max\set{(i-h+1) p_{hik}}{1 \le h \le i \le m, \ 0 \le k \le n} .
+$$
+
+\item Zapišimo algoritem,
+ki bo vrnil velikost največje strnjene podmatrike samih enic skupaj s paroma,
+ki določata prvo in zadnjo vrstico oziroma stolpec.
+Za razliko od zgornjih rekurzivnih enačb
+bo tukaj $p_{hik}$ označeval velikost matrike in ne samo števila stolpcev.
+\begin{small}
+\begin{algorithmic}
+\Function{Enice}{$A \in \{0, 1\}^{n \times n}$}
+	\For{$j = 1, \dots, n$} \hfill računanje $s_{ij}$
+		\State $s_{0j} \gets 0$ \hfill začetni pogoj
+		\For{$i = 1, \dots, n$}
+			\State $s_{ij} \gets A_{ij} + s_{i-1,j}$ \hfill rekurzivna enačba
+		\EndFor
+	\EndFor
+	\State $p^*, h^*, i^*, j^*, k^* \gets 0, 0, 0, 0, 0$
+		\hfill ničelna rešitev
+	\For{$h = 1, \dots, n$} \hfill računanje $p_{hik}$
+		\For{$i = h, \dots, n$}
+			\State $\ell \gets i - h + 1$ \hfill število vrstic
+			\State $p_{hi0} \gets 0$ \hfill začetni pogoj
+			\State $j \gets 1$ \hfill podmatriko začenjamo s prvim stolpcem
+			\For{$k = 1, \dots, n$}
+				\If{$s_{ik} - s_{h-1,k} = \ell$} \hfill preverimo, ali imamo
+					\State $p_{hik} \gets p_{h,i,k-1} + \ell$
+						\hfill v trenutnem stolpcu same enice
+					\If{$p_{hik} > p^*$}
+							\hfill preverimo, ali imamo boljšo rešitev
+						\State $p^*, h^*, i^*, j^*, k^* \gets p_{hik}, h, i, j, k$
+					\EndIf
+				\Else \hfill če nimamo samih enic, bomo naslednjo
+					\State $j \gets k+1$
+						\hfill podmatriko začeli v naslednjem stolpcu
+					\State $p_{hik} \gets 0$
+				\EndIf
+			\EndFor
+		\EndFor
+	\EndFor
+	\State \Return $p^*, (h^*, i^*), (j^*, k^*)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Za računanje $s_{ij}$ potrebujemo $O(n^2)$ korakov,
+za računanje $p_{hik}$ pa $O(n^3)$ korakov.
+Skupna časovna zahtevnost algoritma je torej $O(n^3)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

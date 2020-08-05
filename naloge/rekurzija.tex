@@ -2,13 +2,58 @@
 \begin{vprasanje}
 Dana je rekurzija
 $$
-c_{i,j} = \min_{i \le k \le j} \left(c_{i-1,k} + \sum_{u=i}^k a_{i,u}\right),
-\quad c_{0,j} = c_{i,0} = 1 ,
+c_{ij} = \min_{i \le k \le j} \left(c_{i-1,k} + \sum_{u=i}^k a_{iu}\right),
+\quad c_{0j} = 1 , \quad (1 \le i \le j \le n)
 $$
-kjer je $A = (a_{i,j})_{i,j=1}^n$ matrika realnih števil.
+kjer je $A = (a_{ij})_{i,j=1}^n$ matrika realnih števil.
 Pokaži in zelo natančno utemelji,
-da lahko izračunaš $c_{n,n}$ v času $O(n^3)$.
+da lahko izračunaš $c_{nn}$ v času $O(n^3)$.
 \end{vprasanje}
+
 \begin{odgovor}
+Zapišimo začetne pogoje in rekurzivne enačbe za reševanje danega problema.
+\begin{align*}
+b_{ii} &= a_{ii} && (1 \le i \le n) \\
+b_{ij} &= a_{ij} + b_{i,j-1} && (1 \le i < j \le n) \\[1ex]
+c_{0j} &= 1 && (1 \le j \le n) \\
+c_{ii} &= c_{i-1,i} + b_{ii} && (1 \le i \le n) \\
+c_{ij} &= \min\{c_{i,j-1}, c_{i-1,j} + b_{ij}\} && (1 \le i < j \le n)
+\end{align*}
+Pokažimo, da zgornje enačbe ustrezajo podani rekurziji.
+Najprej dokažimo, da velja
+$$
+b_{ij} = \sum_{u=i}^j a_{iu} .
+$$
+Zgornja enakost očitno velja za $j = i$.
+Denimo, da velja tudi za $j = j_0 \ge i$.
+Potem velja
+$$
+b_{i,j_0+1} = a_{i,j_0+1} + b_{ij_0} = a_{i,j_0+1} + \sum_{u=i}^{j_0} a_{iu}
+= \sum_{u=i}^{j_0+1} a_{iu} ,
+$$
+tako da po indukciji zgornja trditev velja za vse $j \ge i$.
+Nadalje dokažimo, da velja
+$$
+c_{ij} = \min\set{c_{i-1,k} + b_{ik}}{i \le k \le j} .
+$$
+Zgornja enakost spet očitno velja za $j = i$.
+Denimo, da velja tudi za $j = j_0 \ge i$.
+Potem velja
+\begin{align*}
+c_{i,j_0+1} &= \min\{c_{ij_0}, c_{i-1,j_0+1} + b_{i,j_0+1}\} \\
+&= \min\{\min\set{c_{i-1,k} + b_{ik}}{i \le k \le j_0}, c_{i-1,j_0+1} + b_{i,j_0+1}\} \\
+&= \min\set{c_{i-1,k} + b_{ik}}{i \le k \le j_0+1} ,
+\end{align*}
+tako da po indukciji zgornja trditev velja za vse $j \ge i$.
+Tako velja
+$$
+c_{ij} = \min\set{c_{i-1,k} + \sum_{u=i}^k a_{iu}}{i \le k \le j} .
+$$
+Vrednost $c_{nn}$ je tako mogoče izračunati tako,
+da izračunamo vrednosti $b_{ij}$ in $c_{ij}$
+za vsak par $(i, j)$ z $1 \le i \le j \le n$
+v leksikografskem vrstnem redu.
+Ker je mogoče vsako vrednost izračunati v konstantnem času,
+je mogoče celoten izračun opraviti v času $O(n^2)$.
 \end{odgovor}
 \end{naloga}
