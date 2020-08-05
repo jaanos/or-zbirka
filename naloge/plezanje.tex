@@ -5,14 +5,14 @@ Vsak odsek te gore ima prirejeno težavnost od $-4$ do $4$.
 Goro lahko ponazorimo s številskim trikotnikom
 $$
 \begin{array}{ccccccccc}
-                &&&& a_{1,1} \\
-            &&& a_{2,1} && a_{2,2} \\
-        && a_{3,1} && a_{3,2} && a_{3,3} \\
+                &&&& a_{11} \\
+            &&& a_{21} && a_{22} \\
+        && a_{31} && a_{32} && a_{33} \\
      & \iddots && \vdots && \vdots && \ddots \\
-a_{n,1} && a_{n,2} && \cdots && a_{n,n-1} && a_{n,n}
+a_{n1} && a_{n2} && \cdots && a_{n,n-1} && a_{nn}
 \end{array} ,
 $$
-kjer so $a_{i,j} \in \{-4, -3, \dots, 3, 4\}$ težavnosti odsekov.
+kjer so $a_{ij} \in \{-4, -3, \dots, 3, 4\}$ težavnosti odsekov.
 {\em Veljavna pot} v takem trikotniku je pot od vznožja do vrha,
 ki gre zmeraj desno navzgor ali levo navzgor
 -- t.j., zaporedje $(a_{n-i, j_i})_{i=0}^{n-1}$,
@@ -37,6 +37,73 @@ Opiši, kako lahko najdemo najtežjo veljavno pot za Mirka,
 oz.~mu povemo, da s svojim znanjem ne more priti do vrha po veljavni poti!
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Definirajmo
+$$
+a'_{ij} = \begin{cases}
+-\infty & a_{ij} = 4, \text{in} \\
+a_{ij} & \text{sicer} .
+\end{cases} \quad (1 \le j \le i \le n)
+$$
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ največja teža za Marina veljavne poti
+od vznožja do $a_{ij}$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{nj} &= a'_{nj} & (1 \le j \le n) \\
+p_{ij} &= a'_{ij} + \max\{p_{i+1,j}, p_{i+1,j+1}\} & (1 \le j \le i \le n-1)
+\end{align*}
+Vrednosti $p_{ij}$ računamo
+v padajočem leksikografskem vrstnem redu glede na $(i, j)$.
+Če Marin s svojim znanjem ne more priti do vrha po veljavni poti,
+potem velja $p_{11} = -\infty$,
+sicer pa težo najtežje veljavne poti dobimo kot $p^* = p_{11}$.
+Samo pot $(a_{n-i, j_i})_{i=0}^{n-1}$ lahko dobimo tako,
+da izračunamo
+\begin{align*}
+j_{n-1} &= 1 \\
+j_i &= \begin{cases}
+j_{i+1} & p_{n-i,j_{i+1}} \ge p_{n-i,j_{i+1}+1}, \text{in} \\
+j_{i+1} + 1 & \text{sicer}
+\end{cases}
+& (0 \le i \le n-2)
+\end{align*}
+v padajočem vrstnem redu glede na indeks $i$.
+
+\item Naj bosta $q_{ij}$ in $r_{ij}$
+največji teži za Mirka veljavne poti od vznožja do $a_{ij}$,
+če dovolimo $a_{ij} = 4$ oziroma če tega ne dovolimo.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+q_{nj} &= a_{nj} & (1 \le j \le n) \\
+r_{nj} &= a'_{nj} & (1 \le j \le n) \\
+q_{ij} &= a_{ij} + \max\{r_{i+1,j}, r_{i+1,j+1}\} & (1 \le j \le i \le n-1) \\
+r_{ij} &= a'_{ij} + \max\{q_{i+1,j}, q_{i+1,j+1}, r_{i+1,j}, r_{i+1,j+1}\}
+& (1 \le j \le i \le n-1)
+\end{align*}
+Vrednosti $q_{ij}$ in $r_{ij}$ računamo
+v padajočem leksikografskem vrstnem redu glede na $(i, j)$.
+Če Mirko s svojim znanjem ne more priti do vrha po veljavni poti,
+potem velja $q_{11} = r_{11} = -\infty$,
+sicer pa težo najtežje veljavne poti
+dobimo kot $q^* = \max\{q_{11}, r_{11}\}$.
+Samo pot $(a_{n-i, j_i})_{i=0}^{n-1}$ lahko dobimo tako,
+da izračunamo
+\begin{multline*}
+\begin{aligned}
+j_{n-1} &= 1 \\
+j_i &= \begin{cases}
+j_{i+1} & a_{n-i-1,j_{i+1}} < 4 \land {} \\[-1mm]
+&\quad r_{n-i-1,j_{i+1}} - a_{n-i-1,j_{i+1}} \in \{q_{n-i,j_{i+1}}, r_{n-i,j_{i+1}}\}, \\
+j_{i+1} & a_{n-i-1,j_{i+1}} = 4 \land r_{n-i,j_{i+1}} \ge r_{n-i,j_{i+1}+1},
+\text{in} \\
+j_{i+1} + 1 & \text{sicer}
+\end{cases}
+\end{aligned} \\
+(0 \le i \le n-2)
+\end{multline*}
+v padajočem vrstnem redu glede na indeks $i$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
