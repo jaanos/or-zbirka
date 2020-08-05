@@ -13,9 +13,9 @@ lihe oziroma sode dolžine zaporedja celih števil $a_1, a_2, \dots a_i$,
 ki se končata z elementom $a_i$.
 Določimo rekurzivne enačbe.
 \begin{align*}
-p_i &= 1 + \max\left(\set{q_j}{1 \le j \le i-1 \land a_j > a_i} \cup \{0\}\right)
+p_i &= 1 + \max\left(\set{q_j}{1 \le j \le i-1 \land a_j < a_i} \cup \{0\}\right)
 && (1 \le i \le n) \\
-q_i &= \max\left(\set{1 + p_j}{1 \le j \le i-1 \land a_j < a_i} \cup \{0\}\right)
+q_i &= \max\left(\set{1 + p_j}{1 \le j \le i-1 \land a_j > a_i} \cup \{0\}\right)
 && (1 \le i \le n)
 \end{align*}
 Vrednosti $p_i$ in $q_i$ računamo naraščajoče glede na indeks $i$.
@@ -26,9 +26,9 @@ Algoritem, ki sledi iz zgornjih enačb, poišče rešitev v času $O(n^2)$.
 Časovno zahtevnost je mogoče sicer nekoliko izboljšati.
 Opazimo namreč, da v $i$-tem koraku
 iščemo največji taki vrednosti $q_j$ in $p_j$ ($j < i$),
-za kateri je vrednost $a_j$ večja oziroma manjša od trenutne vrednosti $a_j$.
+za kateri je vrednost $a_j$ manjša oziroma večja od trenutne vrednosti $a_i$.
 Če torej za vsako možno vrednost $p_i$ in $q_i$
-hranimo najmanjšo oziroma največjo vrednost $a_i$,
+hranimo največjo oziroma najmanjšo vrednost $a_i$,
 pri kateri je ta dosežena,
 lahko omejimo število korakov pri izračunu posamezne vrednosti
 na dolžino najdaljšega oscilirajočega podzaporedja.
@@ -36,31 +36,31 @@ na dolžino najdaljšega oscilirajočega podzaporedja.
 \begin{algorithmic}
 \Function{OscilirajočePodzaporedje}{$(a_i)_{i=1}^n$}
 	\State $r \gets$ prazen slovar največjih in najmanjših koncev podzaporedij
-	\State $r[-1] \gets -\infty$ \hfill pogoji za ustavitev iskanja
-	\State $r[0] \gets \infty$ \hfill prejšnjega člena podzaporedja
+	\State $r[-1] \gets \infty$ \hfill pogoji za ustavitev iskanja
+	\State $r[0] \gets -\infty$ \hfill prejšnjega člena podzaporedja
 	\State $r[1] \gets a_1$ \hfill začetni pogoji
 	\State $p^* \gets p_1 \gets 1$
 	\State $q^* \gets q_1 \gets 0$
 	\For{$i = 2, 3, \dots, n$}
-		\State $r[i] \gets -(-1)^i \cdot \infty$
+		\State $r[i] \gets (-1)^i \cdot \infty$
 			\hfill začetna vrednost za največjo možno dolžino
 		\State $h \gets q^*$ \hfill računanje $p_i$
-		\While{$r[h] \le a_i$} \hfill iskanje največjega $q_j$
+		\While{$r[h] \ge a_i$} \hfill iskanje največjega $q_j$
 			\State $h \gets h - 2$ \hfill $h$ ostane sod
 		\EndWhile
 		\State $p_i \gets h + 1$
-		\If{$a_i < r[p_i]$} \hfill posodobitev vrednosti za $p_i$
+		\If{$a_i > r[p_i]$} \hfill posodobitev vrednosti za $p_i$
 			\State $r[p_i] \gets a_i$
 		\EndIf
 		\If{$p_i > p^*$} \hfill posodobitev največje lihe dolžine
 			\State $p^* \gets p_i$
 		\EndIf
 		\State $h \gets p^*$ \hfill računanje $q_i$
-		\While{$r[h] \ge a_i$} \hfill iskanje največjega $p_j$
+		\While{$r[h] \le a_i$} \hfill iskanje največjega $p_j$
 			\State $h \gets h - 2$ \hfill $h$ ostane lih
 		\EndWhile
 		\State $q_i \gets h + 1$
-		\If{$a_i > r[q_i]$} \hfill posodobitev vrednosti za $q_i$
+		\If{$a_i < r[q_i]$} \hfill posodobitev vrednosti za $q_i$
 			\State $r[q_i] \gets a_i$
 		\EndIf
 		\If{$q_i > q^*$} \hfill posodobitev največje sode dolžine
