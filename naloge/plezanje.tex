@@ -51,8 +51,8 @@ $$
 od vznožja do $a_{ij}$.
 Določimo začetne pogoje in rekurzivne enačbe.
 \begin{align*}
-p_{nj} &= a'_{nj} & (1 \le j \le n) \\
-p_{ij} &= a'_{ij} + \max\{p_{i+1,j}, p_{i+1,j+1}\} & (1 \le j \le i \le n-1)
+p_{nj} &= a'_{nj} && (1 \le j \le n) \\
+p_{ij} &= a'_{ij} + \max\{p_{i+1,j}, p_{i+1,j+1}\} && (1 \le j \le i \le n-1)
 \end{align*}
 Vrednosti $p_{ij}$ računamo
 v padajočem leksikografskem vrstnem redu glede na $(i, j)$.
@@ -76,11 +76,11 @@ največji teži za Mirka veljavne poti od vznožja do $a_{ij}$,
 če dovolimo $a_{ij} = 4$ oziroma če tega ne dovolimo.
 Določimo začetne pogoje in rekurzivne enačbe.
 \begin{align*}
-q_{nj} &= a_{nj} & (1 \le j \le n) \\
-r_{nj} &= a'_{nj} & (1 \le j \le n) \\
-q_{ij} &= a_{ij} + \max\{r_{i+1,j}, r_{i+1,j+1}\} & (1 \le j \le i \le n-1) \\
+q_{nj} &= a_{nj} && (1 \le j \le n) \\
+r_{nj} &= a'_{nj} && (1 \le j \le n) \\
+q_{ij} &= a_{ij} + \max\{r_{i+1,j}, r_{i+1,j+1}\} && (1 \le j \le i \le n-1) \\
 r_{ij} &= a'_{ij} + \max\{q_{i+1,j}, q_{i+1,j+1}, r_{i+1,j}, r_{i+1,j+1}\}
-& (1 \le j \le i \le n-1)
+&& (1 \le j \le i \le n-1)
 \end{align*}
 Vrednosti $q_{ij}$ in $r_{ij}$ računamo
 v padajočem leksikografskem vrstnem redu glede na $(i, j)$.

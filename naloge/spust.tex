@@ -26,8 +26,8 @@ ki poišče najtežji spust v danem številskem trikotniku.
 Naj bo $p_{ij}$ največja teža spusta v trikotniku z vrhom v $a_{ij}$.
 Določimo začetne pogoje in rekurzivne enačbe.
 \begin{align*}
-p_{nj} &= a_{nj} & (1 \le j \le n) \\
-p_{ij} &= a_{ij} + \max\{p_{i+1,j}, p_{i+1,j+1}\} & (1 \le j \le i \le n-1)
+p_{nj} &= a_{nj} && (1 \le j \le n) \\
+p_{ij} &= a_{ij} + \max\{p_{i+1,j}, p_{i+1,j+1}\} && (1 \le j \le i \le n-1)
 \end{align*}
 Vrednosti $p_{ij}$ računamo
 v padajočem leksikografskem vrstnem redu glede na $(i, j)$.

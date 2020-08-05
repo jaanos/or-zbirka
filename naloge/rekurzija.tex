@@ -13,11 +13,11 @@ da lahko izračunaš $c_{nn}$ v času $O(n^3)$.
 \begin{odgovor}
 Zapišimo začetne pogoje in rekurzivne enačbe za reševanje danega problema.
 \begin{align*}
-b_{ii} &= a_{ii} & (1 \le i \le n) \\
-b_{ij} &= a_{ij} + b_{i,j-1} & (1 \le i < j \le n) \\[1ex]
-c_{0j} &= 1 & (1 \le j \le n) \\
-c_{ii} &= c_{i-1,i} + b_{ii} & (1 \le i \le n) \\
-c_{ij} &= \min\{c_{i,j-1}, c_{i-1,j} + b_{ij}\} & (1 \le i < j \le n)
+b_{ii} &= a_{ii} && (1 \le i \le n) \\
+b_{ij} &= a_{ij} + b_{i,j-1} && (1 \le i < j \le n) \\[1ex]
+c_{0j} &= 1 && (1 \le j \le n) \\
+c_{ii} &= c_{i-1,i} + b_{ii} && (1 \le i \le n) \\
+c_{ij} &= \min\{c_{i,j-1}, c_{i-1,j} + b_{ij}\} && (1 \le i < j \le n)
 \end{align*}
 Pokažimo, da zgornje enačbe ustrezajo podani rekurziji.
 Najprej dokažimo, da velja

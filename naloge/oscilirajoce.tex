@@ -14,9 +14,9 @@ ki se končata z elementom $a_i$.
 Določimo rekurzivne enačbe.
 \begin{align*}
 p_i &= 1 + \max\left(\set{q_j}{1 \le j \le i-1 \land a_j > a_i} \cup \{0\}\right)
-& (1 \le i \le n) \\
+&& (1 \le i \le n) \\
 q_i &= \max\left(\set{1 + p_j}{1 \le j \le i-1 \land a_j < a_i} \cup \{0\}\right)
-& (1 \le i \le n)
+&& (1 \le i \le n)
 \end{align*}
 Vrednosti $p_i$ in $q_i$ računamo naraščajoče glede na indeks $i$.
 Maksimalno dolžino oscilirajočega podzaporedja dobimo kot
