@@ -21,9 +21,9 @@ Oceni tudi njegovo časovno zahtevnost v odvisnosti od $m$ in $n$.
 
 \begin{odgovor}
 \begin{enumerate}[(a)]
-\item Naj bo $p_{hij}$ največja vsota komponent strnjene podmatrike
+\item Naj bo $p_{hik}$ največja vsota komponent strnjene podmatrike
 z vrsticami od $h$-te do $i$-te vrstice matrike $A$,
-katere zadnji stolpec je $j$-ti stolpec matrike $A$.
+katere zadnji stolpec je $k$-ti stolpec matrike $A$.
 Poleg tega naj bo $s_{ij}$ vsota prvih $i$ komponent
 v $j$-tem stolpcu matrike $A$.
 Določimo začetne pogoje in rekurzivne enačbe.
@@ -38,7 +38,7 @@ Najprej za vsak $j$ ($1 \le j \le n$)
 izračunamo vrednosti $s_{ij}$ naraščajoče po indeksu $i$,
 nato pa za vsaka $h$ in $i$ ($1 \le h \le i \le m$)
 izračunamo vrednosti $p_{hik}$ naraščajoče po indeksu $k$.
-Največjo vsoto kompoment dobimo kot
+Največjo vsoto komponent dobimo kot
 $p^* = \max\set{p_{hik}}{1 \le h \le i \le m, \ 0 \le k \le n}$.
 
 \item Najprej poračunajmo vrednosti $s_{ij}$.
@@ -104,7 +104,7 @@ ki določata prvo in zadnjo vrstico oziroma stolpec.
                     \hfill rekurzivna enačba
                 \If{$p_{hik} > p^*$}
                         \hfill preverimo, ali imamo boljšo rešitev
-                    \State $p^*, h^*, i^*, j^*, k^* \gets p_{hij}, h, i, j, k$
+                    \State $p^*, h^*, i^*, j^*, k^* \gets p_{hik}, h, i, j, k$
                 \ElsIf{$p_{hik} < 0$} \hfill če je vsota negativna,
                     \State $j \gets k+1$ \hfill
                         bomo naslednjo vsoto začeli v naslednjem stolpcu
