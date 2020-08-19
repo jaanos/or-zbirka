@@ -1,10 +1,12 @@
-{%
-\newcommand{\lC}{22p-5}%
-\newcommand{\lD}{10p-2}%
-\newcommand{\lE}{3p}%
-\newcommand{\pAB}{0 \le p < 5/19}%
-\newcommand{\pAC}{5/19 \le p \le 1/3}%
-\newcommand{\pBD}{2/7 \le p \le 1/3}%
-\newcommand{\pBE}{0 \le p < 2/7}%
 \input{slike/dectree-osnova.tikz}
-}
+
+\begin{drevo*}[scale=1.1]{dectree}
+    \oznaka{C}{22p-5}
+    \oznaka{D}{10p-2}
+    \oznaka{E}{3p}%
+
+    \kolicina{A}{B}{0 \le p < 5/19}
+    \kolicina{A}{C}{5/19 \le p \le 1/3}
+    \kolicina{B}{D}{2/7 \le p \le 1/3}
+    \kolicina{B}{E}{0 \le p < 2/7}
+\end{drevo*}

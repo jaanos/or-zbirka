@@ -1,40 +1,38 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\small
-\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
-\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
-\tikzstyle{pick}=[double, very thick]
-\node[dec] (A) at (-8,-1) [label=right:$27 \ME$] {};
-\node[ran] (B) at (-4, 2) [label=above:$26 \ME$] {};
-\node[dec] (C) at (-4,-4) [label=below:$27 \ME$] {};
-\node[dec] (D) at ( 0, 4) [label=above:$35 \ME$] {};
-\node[dec] (E) at ( 0, 0) [label=below:$17 \ME$] {};
-\node[ran] (F) at ( 0,-3) [label=above:$27 \ME$] {};
-\node      (G) at ( 1,-5) {$15 \ME$};
-\node[ran] (H) at ( 4, 5) [label=above:$35 \ME$] {};
-\node      (I) at ( 5, 3) {$14 \ME$};
-\node[ran] (J) at ( 4, 1) [label=above:$17 \ME$] {};
-\node      (K) at ( 5,-1) {$14 \ME$};
-\node      (L) at ( 4,-2) {$54 \ME$};
-\node      (M) at ( 4,-4) {$0 \ME$};
-\node      (N) at ( 8, 6) {$53 \ME$};
-\node      (O) at ( 8, 4) {$-1 \ME$};
-\node      (P) at ( 8, 2) {$53 \ME$};
-\node      (Q) at ( 8, 0) {$-1 \ME$};
+\begin{drevo*}[scale=1.5]*
+    \setboolean{@oznake}{false}
+    
+    \vozlisce[odlocitev]{A}[right]{-8,-1}[27 \ME]
+    \vozlisce[dogodek]{B}[above]{-4, 2}[26 \ME]
+    \vozlisce[odlocitev]{C}[below]{-4,-4}[27 \ME]
+    \vozlisce[odlocitev]{D}[above]{ 0, 4}[35 \ME]
+    \vozlisce[odlocitev]{E}[below]{ 0, 0}[17 \ME]
+    \vozlisce[dogodek]{F}[above]{ 0,-3}[27 \ME]
+    \vozlisce{G}{ 1,-5}[15 \ME]
+    \vozlisce[dogodek]{H}[above]{ 4, 5}[35 \ME]
+    \vozlisce{I}{ 5, 3}[14 \ME]
+    \vozlisce[dogodek]{J}[above]{ 4, 1}[17 \ME]
+    \vozlisce{K}{ 5,-1}[14 \ME]
+    \vozlisce{L}{ 4,-2}[54 \ME]
+    \vozlisce{M}{ 4,-4}[0  \ME]
+    \vozlisce{N}{ 8, 6}[53 \ME]
+    \vozlisce{O}{ 8, 4}[-1 \ME]
+    \vozlisce{P}{ 8, 2}[53 \ME]
+    \vozlisce{Q}{ 8, 0}[-1 \ME]
 
-\draw (A) -- (B) node[above, midway, sloped] {naročimo raziskavo};
-\draw[pick] (A) -- (C) node[below, midway, sloped] {ne naročimo raziskave};
-\draw (B) -- (D) node[above, midway, sloped] {pozitivna: $1/2$};
-\draw (B) -- (E) node[below, midway, sloped] {negativna: $1/2$};
-\draw[pick] (C) -- (F) node[above, midway, sloped] {sami prodajamo};
-\draw (C) -- (G) node[below, midway, sloped] {prodamo konkurenci};
-\draw[pick] (D) -- (H) node[above, midway, sloped] {sami prodajamo};
-\draw (D) -- (I) node[below, midway, sloped] {prodamo konkurenci};
-\draw[pick] (E) -- (J) node[above, midway, sloped] {sami prodajamo};
-\draw (E) -- (K) node[below, midway, sloped] {prodamo konkurenci};
-\draw (F) -- (L) node[above, midway, sloped] {uspeh: $1/2$};
-\draw (F) -- (M) node[below, midway, sloped] {neuspeh: $1/2$};
-\draw (H) -- (N) node[above, midway, sloped] {uspeh: $2/3$};
-\draw (H) -- (O) node[below, midway, sloped] {neuspeh: $1/3$};
-\draw (J) -- (P) node[above, midway, sloped] {uspeh: $1/3$};
-\draw (J) -- (Q) node[below, midway, sloped] {neuspeh: $2/3$};
-\end{tikzpicture}
+    \povezava{A}{B}{\text{naročimo raziskavo}}[sloped]{above}
+    \povezava*{A}{C}{\text{ne naročimo raziskave}}[sloped]{below}
+    \povezava{B}{D}{\text{pozitivna: $1/2$}}[sloped]{above}
+    \povezava{B}{E}{\text{negativna: $1/2$}}[sloped]{below}
+    \povezava*{C}{F}{\text{sami prodajamo}}[sloped]{above}
+    \povezava{C}{G}{\text{prodamo konkurenci}}[sloped]{below}
+    \povezava*{D}{H}{\text{sami prodajamo}}[sloped]{above}
+    \povezava{D}{I}{\text{prodamo konkurenci}}[sloped]{below}
+    \povezava*{E}{J}{\text{sami prodajamo}}[sloped]{above}
+    \povezava{E}{K}{\text{prodamo konkurenci}}[sloped]{below}
+    \povezava{F}{L}{\text{uspeh: $1/2$}}[sloped]{above}
+    \povezava{F}{M}{\text{neuspeh: $1/2$}}[sloped]{below}
+    \povezava{H}{N}{\text{uspeh: $2/3$}}[sloped]{above}
+    \povezava{H}{O}{\text{neuspeh: $1/3$}}[sloped]{below}
+    \povezava{J}{P}{\text{uspeh: $1/3$}}[sloped]{above}
+    \povezava{J}{Q}{\text{neuspeh: $2/3$}}[sloped]{below}
+\end{drevo*}

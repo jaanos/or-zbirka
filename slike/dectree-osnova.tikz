@@ -1,28 +1,26 @@
-\begin{tikzpicture}[style=thick,scale=0.7]
-\tikzstyle{dec}=[draw,rectangle,minimum size=0.6cm]
-\tikzstyle{ran}=[draw,circle,minimum size=0.6cm]
-\node[dec] (A) at (-6, 0) {$A$};
-\node[dec] (B) at (-2,-2) {$B$};
-\node[ran] (C) at ( 2, 4) [label=above:$\lC$] {$C$};
-\node[ran] (D) at ( 2, 0) [label=above:$\lD$] {$D$};
-\node[ran] (E) at ( 2,-4) [label=above:$\lE$] {$E$};
-\node      (F) at ( 6, 6) {$10$};
-\node      (G) at ( 6, 4) {$2$};
-\node      (H) at ( 6, 2) {$-5$};
-\node      (I) at ( 6, 0) {$3$};
-\node      (J) at ( 6,-2) {$-2$};
-\node      (K) at ( 6,-4) {$1$};
-\node      (L) at ( 6,-6) {$0$};
+\NewEnviron{drevo@dectree}{
+    \vozlisce[odlocitev]{A}{-6, 0}
+    \vozlisce[odlocitev]{B}{-2,-2}
+    \vozlisce[dogodek]{C}[above]{ 2, 4}
+    \vozlisce[dogodek]{D}[above]{ 2, 0}
+    \vozlisce[dogodek]{E}[above]{ 2,-4}
+    \vozlisce{F}{ 6, 6}[10]
+    \vozlisce{G}{ 6, 4}[2]
+    \vozlisce{H}{ 6, 2}[-5]
+    \vozlisce{I}{ 6, 0}[3]
+    \vozlisce{J}{ 6,-2}[-2]
+    \vozlisce{K}{ 6,-4}[1]
+    \vozlisce{L}{ 6,-6}[0]
 
-\draw (A) -- (B) node[below, midway, sloped] {$\pAB$};
-\draw (A) -- (C) node[above, midway, sloped] {$\pAC$};
-\draw (B) -- (D) node[above, midway, sloped] {$\pBD$};
-\draw (B) -- (E) node[below, midway, sloped] {$\pBE$};
-\draw (C) -- (F) node[above, midway, sloped] {$p$};
-\draw (C) -- (G) node[above, midway] {$p$};
-\draw (C) -- (H) node[below, midway, sloped] {$1-2p$};
-\draw (D) -- (I) node[above, midway] {$2p$};
-\draw (D) -- (J) node[below, midway, sloped] {$1-2p$};
-\draw (E) -- (K) node[above, midway] {$3p$};
-\draw (E) -- (L) node[below, midway, sloped] {$1-3p$};
-\end{tikzpicture}
+    \povezava{A}{B}{}[sloped]{below}
+    \povezava{A}{C}{}[sloped]{above}
+    \povezava{B}{D}{}[sloped]{above}
+    \povezava{B}{E}{}[sloped]{below}
+    \povezava{C}{F}{p}[sloped]{above}
+    \povezava{C}{G}{p}{above}
+    \povezava{C}{H}{1-2p}[sloped]{below}
+    \povezava{D}{I}{2p}{above}
+    \povezava{D}{J}{1-2p}[sloped]{below}
+    \povezava{E}{K}{3p}{above}
+    \povezava{E}{L}{1-3p}[sloped]{below}
+}
