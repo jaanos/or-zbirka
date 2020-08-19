@@ -1,10 +1,4 @@
-{%
-\newcommand{\lC}{}%
-\newcommand{\lD}{}%
-\newcommand{\lE}{}%
-\newcommand{\pAB}{}%
-\newcommand{\pAC}{}%
-\newcommand{\pBD}{}%
-\newcommand{\pBE}{}%
 \input{slike/dectree-osnova.tikz}
-}
+
+\begin{drevo*}[scale=1.1]{dectree}
+\end{drevo*}
