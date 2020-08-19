@@ -1,0 +1,76 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 25.8.2020}
+\begin{vprasanje}
+V laboratoriju bodo razvijali cepivo za COVID-19.
+V tabeli~\tab so zbrana opravila, ki so jih identificirali,
+ in odvisnosti med njimi.
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+\item Določi kritična opravila in kritično pot ter čas izdelave.
+\item Katero opravilo je najmanj kritično?
+Najmanj kritično je opravilo,
+katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na trajanje izdelave.
+\end{enumerate}
+
+\begin{tabela}
+\begin{tabular}{c|ccc}
+    & Opravilo                         & Pogoji & Trajanje \\ \hline
+$a$ & pregled literature               & /      & 45 dni \\
+$b$ & pridobivanje vzorcev virusa      & /      & 20 dni \\
+$c$ & genska analiza vzorcev           & $b$    & 40 dni \\
+$d$ & priprava prototipa cepiva        & $a, b$ & 50 dni \\
+$e$ & izboljševanje cepiva             & $c, f$ & 30 dni \\
+$f$ & laboratorijsko testiranje        & $d$    & 21 dni \\
+$g$ & proizvodnja cepiva               & $k$    & 35 dni \\
+$h$ & iskanje prostovoljcev            & /      & 25 dni \\
+$i$ & testiranje s prostovoljci        & $e, h$ & 60 dni \\
+$j$ & pridobivanje certifikacije       & $i$    & 14 dni \\
+$k$ & sklepanje prednaročniških pogodb & $i$    &  7 dni
+\end{tabular}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je razvidna topološka ureditev
+$s, a, b, h, c, d, f, e, i, j, k, g, t$.
+
+\item V tabeli~\tab[cepivo-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje priprave ne podaljša.
+Izdelava bo torej trajala najmanj $248$ dni,
+edina kritična pot pa je $s - a - d - f - e - i - k - g - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[cepivo-resitev] je razvidno,
+da je najmanj kritično opravilo $h$,
+saj lahko njegovo trajanje podaljšamo za $121$ dni,
+ne da bi vplivali na trajanje celotnega projekta.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{cepivo-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{r|cccccccccccccc}
+& $s$ & $a$ & $b$ & $h$ & $c$ & $d$ & $f$ & $e$ & $i$ & $j$ & $k$ & $g$ & $t$ \\ \hline
+najprej &
+$0$ & $0_s$ & $0_s$ & $0_s$ & $20_b$ & $45_a$ & $95_d$ & $116_f$ & $146_e$ & $206_i$ & $206_i$ & $213_k$ & $248_g$ \\
+najkasneje &
+$0_a$ & $0_d$ & $25_d$ & $121_i$ & $76_e$ & $45_f$ & $95_e$ & $116_i$ & $146_k$ & $234_t$ & $206_g$ & $213_t$ & $248$ \\
+razlika &
+$0$ & $0^*$ & $25$ & $121$ & $56$ & $0^*$ & $0^*$ & $0^*$ & $0^*$ & $28$ & $0^*$ & $0^*$ & $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
