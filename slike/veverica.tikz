@@ -1,41 +1,39 @@
-\begin{tikzpicture}[style=thick,scale=1.2]
-\tikzstyle{vertex}=[draw, circle, fill=white, minimum size=4mm]
-\small
-\node[vertex] (S) at (-2, 0) {$s$};
-\node[vertex] (A) at (-2, 2) {$a$};
-\node[vertex] (B) at ( 0, 2) {$b$};
-\node[vertex] (C) at ( 2, 2) {$c$};
-\node[vertex] (D) at (-1, 1) {$d$};
-\node[vertex] (E) at ( 1, 1) {$e$};
-\node[vertex] (F) at (-1,-1) {$f$};
-\node[vertex] (G) at ( 1,-1) {$g$};
-\node[vertex] (H) at (-2,-2) {$h$};
-\node[vertex] (I) at ( 0,-2) {$i$};
-\node[vertex] (J) at ( 2,-2) {$j$};
-\node[vertex] (T) at ( 2, 0) {$t$};
+\begin{neusmerjen*}[scale=1.8]*
+    \vozlisce*{s}{-2, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 0, 2}
+    \vozlisce{c}{ 2, 2}
+    \vozlisce{d}{-1, 1}
+    \vozlisce{e}{ 1, 1}
+    \vozlisce{f}{-1,-1}
+    \vozlisce{g}{ 1,-1}
+    \vozlisce{h}{-2,-2}
+    \vozlisce{i}{ 0,-2}
+    \vozlisce{j}{ 2,-2}
+    \vozlisce*{t}{ 2, 0}
 
-\draw (S) -- (A) node[midway, left] {$0.9$};
-\draw (S) -- (D) node[midway, above, sloped] {$0.8$};
-\draw (S) -- (F) node[midway, below, sloped] {$0.5$};
-\draw (S) -- (H) node[midway, left] {$0.8$};
-\draw (A) -- (B) node[midway, above] {$0.7$};
-\draw (A) -- (D) node[midway, above, sloped] {$1$};
-\draw (B) -- (C) node[midway, above] {$0.8$};
-\draw (B) -- (D) node[midway, below, sloped] {$0.6$};
-\draw (B) -- (E) node[midway, below, sloped] {$0.9$};
-\draw (C) -- (E) node[midway, above, sloped] {$0.7$};
-\draw (C) -- (T) node[midway, right] {$1$};
-\draw (D) -- (E) node[midway, below] {$0.6$};
-\draw (D) -- (F) node[midway, right] {$0.9$};
-\draw (E) -- (G) node[midway, left] {$1$};
-\draw (E) -- (T) node[midway, above, sloped] {$0.9$};
-\draw (F) -- (G) node[midway, above] {$1$};
-\draw (F) -- (H) node[midway, below, sloped] {$0.7$};
-\draw (F) -- (I) node[midway, above, sloped] {$1$};
-\draw (G) -- (I) node[midway, above, sloped] {$0.8$};
-\draw (G) -- (J) node[midway, below, sloped] {$1$};
-\draw (G) -- (T) node[midway, below, sloped] {$0.8$};
-\draw (H) -- (I) node[midway, below] {$0.9$};
-\draw (I) -- (J) node[midway, below] {$0.9$};
-\draw (J) -- (T) node[midway, right] {$0.7$};
-\end{tikzpicture}
+    \povezava{s}{a}{0.9}{left}
+    \povezava{s}{d}{0.8}[sloped]{above}
+    \povezava{s}{f}{0.5}[sloped]{below}
+    \povezava{s}{h}{0.8}{left}
+    \povezava{a}{b}{0.7}{above}
+    \povezava{a}{d}{1}[sloped]{above}
+    \povezava{b}{c}{0.8}{above}
+    \povezava{b}{d}{0.6}[sloped]{below}
+    \povezava{b}{e}{0.9}[sloped]{below}
+    \povezava{c}{e}{0.7}[sloped]{above}
+    \povezava{c}{t}{1}{right}
+    \povezava{d}{e}{0.6}{below}
+    \povezava{d}{f}{0.9}{right}
+    \povezava{e}{g}{1}{left}
+    \povezava{e}{t}{0.9}[sloped]{above}
+    \povezava{f}{g}{1}{above}
+    \povezava{f}{h}{0.7}[sloped]{below}
+    \povezava{f}{i}{1}[sloped]{above}
+    \povezava{g}{i}{0.8}[sloped]{above}
+    \povezava{g}{j}{1}[sloped]{below}
+    \povezava{g}{t}{0.8}[sloped]{below}
+    \povezava{h}{i}{0.9}{below}
+    \povezava{i}{j}{0.9}{below}
+    \povezava{j}{t}{0.7}{right}
+\end{neusmerjen*}
