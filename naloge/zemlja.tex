@@ -1,0 +1,78 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 25.8.2020}
+\begin{vprasanje}
+Janez je podedoval zemljo, na kateri si želi zgraditi hišo.
+Ve, da mora pred začetkom gradnje pridobiti gradbeno dovoljenje,
+zaradi nerazumljivih birokratskih postopkov
+in nejasne razmejitve parcel pa ne ve,
+ali morda potrebuje tudi soglasja sosedov.
+Lahko se odloči, da takoj zaprosi za gradbeno dovoljenje
+-- ocenjuje,
+da bo z verjetnostjo $1/2$ vloga uspešna in bo po $30$ dneh lahko začel graditi,
+sicer pa mu bodo vlogo zavrnili in bo moral pridobiti soglasja,
+kar bo celoten postopek podaljšalo na $55$ dni.
+Lahko pa pred vložitvijo prošnje pridobi soglasja vseh sosedov
+-- v tem primeru bo celoten postopek trajal $45$ dni.
+
+Janez pozna tudi odvetnika Bineta,
+ki lahko pred sprožitvijo postopkov preuči situacijo,
+za kar potrebuje $7$ dni.
+Spodaj so zbrane pogojne verjetnosti za Binetovo mnenje glede na to,
+ali so soglasja potrebna.
+
+\begin{center}
+    \setlength{\extrarowheight}{2pt}
+    \begin{tabular}{c|cc}
+        $P(\text{Binetovo mnenje} \mid \text{potreba po soglasjih})$
+        & so potrebna & niso potrebna \\ \hline
+        ugodno & ${1 \over 3}$ & ${3 \over 4}$ \\
+        neugodno & ${2 \over 3}$ & ${1 \over 4}$
+    \end{tabular}
+\end{center}
+
+Kako naj se Janez odloči,
+da bo pričakovani čas do začetka gradnje hiše čim krajši?
+Nariši odločitveno drevo in ga uporabi pri sprejemanju odločitev.
+Izračunaj tudi pričakovani čas.
+\end{vprasanje}
+
+\begin{odgovor}
+Če se Janez odloči, da bo takoj zaprosil za gradbeno dovoljenje,
+bo pričakovano število dni do začetka gradnje enako
+$$
+{1 \over 2} \cdot 30 + {1 \over 2} \cdot 55 = 42.5,
+$$
+kar je manj kot $45$ dni, ki bi jih potreboval,
+če bi soglasja pridobil pred vlo\-žit\-vi\-jo prošnje.
+Brez Binetovega mnenja
+se Janezu torej izplača takoj zaprositi za gradbeno dovoljenje.
+
+Izračunajmo še verjetnosti za Binetovo mnenje
+ter potrebe po soglasjih ob vsakem mnenju.
+\begin{align*}
+P(\text{ugodno mnenje}) &=
+{1 \over 3} \cdot {1 \over 2} + {3 \over 4} \cdot {1 \over 2} = {13 \over 24} \\
+P(\text{neugodno mnenje}) &=
+{2 \over 3} \cdot {1 \over 2} + {1 \over 4} \cdot {1 \over 2} = {11 \over 24} \\
+P(\text{soglasja so potrebna} \mid \text{ugodno mnenje})
+&= {1/3 \cdot 1/2 \over 13/24} = {4 \over 13} \\
+P(\text{soglasja niso potrebna} \mid \text{ugodno mnenje})
+&= {3/4 \cdot 1/2 \over 13/24} = {9 \over 13} \\
+P(\text{soglasja so potrebna} \mid \text{neugodno mnenje})
+&= {2/3 \cdot 1/2 \over 11/24} = {8 \over 11} \\
+P(\text{soglasja niso potrebna} \mid \text{neugodno mnenje})
+&= {1/4 \cdot 1/2 \over 11/24} = {3 \over 11}
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo,
+da je pričakovani čas ob pridobitvi Binetovega mnenja večji kot $42.5$ dni,
+zato naj Janez takoj zaprosi za gradbeno dovoljenje.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}
