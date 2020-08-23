@@ -1,16 +1,36 @@
-\begin{naloga}{Alen Orbanić}{Kolokvij OR 26.1.2010}
+\begin{naloga}{Juvan, Orbanić}{Kolokvij OR 26.1.2010}
 \begin{vprasanje}
 Pri neznanem problemu, ki smo se ga lotili z dinamičnim programiranjem,
 smo prišli do naslednje rekurzivne zveze:
 $$
-c_{i,j} = \max\{c_{i-1,j-1}, c_{i+1,j-1} + 2c_{i-1,j+1}\} .
+c_{ij} = \max\{c_{i-1,j-1}, c_{i+1,j-1} + 2c_{i-1,j+1}\} .
 $$
-Izračunati želimo vrednost $c_{m,n}$.
-Katere vrednosti $c_{i,j}$,
+Izračunati želimo vrednost $c_{mn}$.
+Katere vrednosti $c_{ij}$,
 pri čemer je $(i, j)$ zunaj $\{1, \dots, m\} \times \{1, \dots, n\}$,
-moramo poznati, da bo $c_{m,n}$ enolično določen?
+moramo poznati, da bo $c_{mn}$ enolično določen?
 Poišči čim manjšo takšno množico.
 \end{vprasanje}
+
 \begin{odgovor}
+Opazimo, da za izračun vrednosti $c_{ij}$
+potrebujemo samo take vrednosti $c_{i'j'}$,
+za katere velja $i+j \equiv i'+j' \pmod{2}$.
+V primeru $m = 1$ tako za izračun $c_{1j}$
+potrebujemo le $c_{0,j-1}, c_{2,j-1}, c_{0,j+1}$,
+v primeru $n = 1$ pa za izračun $c_{i1}$
+potrebujemo le $c_{i-1,0}, c_{i+1,0}, c_{i-1,2}$.
+
+V primeru, ko velja $m, n \ge 2$,
+bo potrebno poznati vse vrednosti
+$c_{0j}$ ($0 \le j \le n+1$, $j \equiv m+n \pmod{2}$),
+$c_{i0}$ ($0 \le i \le m+1$, $i \equiv m+n \pmod{2}$),
+$c_{m+1,j}$ ($1 \le j \le n-1$, $j+1 \equiv n \pmod{2}$)
+in $c_{n+1,i}$ ($1 \le i \le n-1$, $i+1 \equiv m \pmod{2}$).
+Ker pa v podani rekurzivni zvezi pride do zanke
+(npr. za izračun $c_{ij}$ potrebujemo $c_{i+1,j-1}$,
+za izračun slednje vrednosti pa spet potrebujemo $c_{ij}$),
+morajo na teh začetnih vrednostih veljati določeni pogoji,
+da bo rešitev sploh obstajala in da bo enolično določena.
 \end{odgovor}
 \end{naloga}
