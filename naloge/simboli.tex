@@ -1,14 +1,51 @@
 \begin{naloga}{Gabrovšek, Konvalinka}{Izpit OR 28.6.2011}
 \begin{vprasanje}
 Dano imamo zaporedje simbolov $\top$ (resnično) in $\bot$ (neresnično).
-Med vsakima izrazoma imamo $\land$ (prvi in drugi),
+Med vsakima simboloma imamo veznik $\land$ (prvi in drugi),
 $\lor$ (prvi ali drugi) ali $\oplus$ (prvi ali drugi, ne pa tudi oba),
 npr.~$\top \land \top \oplus \bot$.
-Izračunaj število postavitev oklepajev, da je rezultat $\top$,
+V zaporedje postavljamo oklepaje,
+in sicer tako, da se znotraj vsakega para oklepajev
+(tj., oklepaj in ustrezni zaklepaj)
+pojavita dva podizraza, ločena z veznikom.
+Podizraz je lahko posamezen simbol ali par oklepajev s svojo vsebino.
+Izračunaj število postavitev oklepajev,
+da je logična vrednost celotnega izraza $\top$,
 in število postavitev oklepajev, da je rezultat $\bot$.
-\namig{definiraj $T_{i,j}$ in $F_{i,j}$
-kot število takih postavitev oklepajev med $i$-tim in $j$-tim izrazom.}
+\namig{definiraj $T_{ij}$ in $F_{ij}$
+kot število takih postavitev oklepajev med $i$-tim in $j$-tim simbolom.}
 \end{vprasanje}
+
 \begin{odgovor}
+Denimo, da imamo zaporedje simbolov $(s_h)_{h=0}^n$
+in zaporedje veznikov $(v_h)_{h=1}^n$,
+pri čemer se veznik $v_h$ pojavi med simboloma $s_{h-1}$ in $s_h$.
+Naj bosta $T_{ij}$ in $F_{ij}$ števili takih postavitev oklepajev
+v zaporedje simbolov $(s_h)_{h=i}^j$ z vezniki $(v_h)_{h=i+1}^j$,
+da ima ustrezni izraz vrednost $\top$ oziroma $\bot$.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+T_{ii} &= \begin{cases}
+1 & s_i = \top \\
+0 & s_i = \bot
+\end{cases} & (0 \le i \le n) \\
+F_{ii} &= 1 - T_{ii} & (0 \le i \le n) \\
+T_{ij} &= \sum_{h=i+1}^j \begin{cases}
+T_{i,h-1} T_{hj} & v_h = \land \\
+T_{i,h-1} T_{hj} + F_{i,h-1} T_{hj} + T_{i,h-1} F_{hj} & v_h = \lor \\
+F_{i,h-1} T_{hj} + T_{i,h-1} F_{hj} & v_h = \oplus
+\end{cases} & (0 \le i < j \le n) \\
+F_{ij} &= \sum_{h=i+1}^j \begin{cases}
+F_{i,h-1} T_{hj} + T_{i,h-1} F_{hj} + F_{i,h-1} F_{hj} & v_h = \land \\
+F_{i,h-1} F_{hj} & v_h = \lor \\
+T_{i,h-1} T_{hj} + F_{i,h-1} F_{hj} & v_h = \oplus
+\end{cases} & (0 \le i < j \le n)
+\end{align*}
+Vrednosti $T_{ij}$ in $F_{ij}$ računamo
+v leksikografskem vrstnem redu glede na $(j-i, i)$,
+število postavitev oklepajev,
+da je vrednost celotnega izraza enaka $\top$ ali $\bot$,
+pa dobimo kot $T^* = T_{0n}$ oziroma $F^* = F_{0n}$.
+Algoritem, ki sledi iz zgornjih rekurzivnih enačb, teče v času $O(n^3)$.
 \end{odgovor}
 \end{naloga}
