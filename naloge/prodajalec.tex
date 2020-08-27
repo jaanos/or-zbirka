@@ -43,6 +43,52 @@ kako rekonstruiramo optimalno rešitev.
 da je opisana rešitev v zgornjem primeru res optimalna.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Denimo, da imamo $n$ kupcev in $m$ predmetov ($m \le n$).
+Naj bo $v_{ij}$ največja vsota,
+ki si jo lahko prislužimo s prodajo prvih $i$ predmetov prvim $j$ kupcem.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+v_{0j} &= 0 &&\quad (1 \le j \le n) \\
+v_{i,i-1} &= v_{i-1,i-1} &&\quad (1 \le i \le m) \\
+v_{ij} &= \max\left(\{v_{i,j-1}\} \cup \set{v_{i-1,j-1} + c_j}{T_j = P_i}\right)
+&&\quad (0 \le i \le m, i \le j \le n)
+\end{align*}
+Vrednosti $v_{ij}$ računamo v leksikografskem vrstnem redu
+glede na indeksa $(i, j)$.
+Največji zaslužek dobimo kot $v^* = v_{mn}$.
+Optimalno rešitev rekonstruiramo tako,
+da za vsak $j = n, n-1, \dots, 1$
+in trenutno vrednost $i$ z začetno vrednostjo $i = m$ preverimo,
+ali velja $v_{ij} = v_{i,j-1}$
+-- če to velja, potem $i$-tega predmeta nismo prodali $i$-temu kupcu,
+sicer pa smo ga in vrednost $j$ zmanjšamo za $1$.
+
+\item Algoritem izračuna $\sum_{i=1}^m (n-i+1)$ vrednosti $v_{ij}$,
+vsak izračun pa opravi v konstantnem času.
+Ker za rekonstrukcijo rešitve potrebuje $n$ korakov,
+je skupna časovna zahtevnost $O(mn)$.
+
+\item Izračunajmo vrednosti $v_{ij}$ ($1 \le i \le 2, i \le j \le 5$).
+\begin{alignat*}{2}
+v_{11} &= \max\{0, \underline{0+2}\} &&= 2 \\
+v_{12} &&&= 2 \\
+v_{13} &= \max\{2, \underline{0+7}\} &&= 7 \\
+v_{14} &= \max\{\underline{7}, 0+1\} &&= 7 \\
+v_{15} &&&= 7 \\
+v_{22} &= \max\{2, \underline{2+2}\} &&= 4 \\
+v_{23} &&&= 4 \\
+v_{24} &&&= 4 \\
+v_{25} &= \max\{4, \underline{7+1}\} &&= 8
+\end{alignat*}
+Igralec lahko torej prisluži največ $v^* = v_{25} = 8$ enot denarja.
+Rekonstruirajmo še optimalno rešitev.
+\begin{align*}
+v_{25} &= v_{14} + c_5 & \text{drugi predmet prodamo petemu kupcu} \\
+v_{14} &= v_{13} = v_{12} + c_3 & \text{prvi predmet prodamo tretjemu kupcu}
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
