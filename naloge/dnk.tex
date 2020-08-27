@@ -19,13 +19,56 @@ Dovoljene so naslednje operacije:
 \item transpozicija ({\tt AT} $\to$ {\tt TA}).
 \end{itemize}
 \begin{enumerate}[(a)]
-\item Pomagajte znanstvenikom in napišite postopek,
-ki bo preštel najmanše število operacij,
-s katerim pridemo od enega DNK zaporedja do drugega.
-\item Postopek iz prejšnje točke izvedite nad podanima zaporedjema
-in ugotovite število razlik.
+\item Pomagaj znanstvenikom in napiši postopek,
+ki bo preštel najmanjše število operacij,
+s katerim pridemo od enega zaporedja nukleotidov do drugega.
+\item Postopek iz prejšnje točke izvedi nad podanima zaporedjema
+in ugotovi število razlik.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bosta $(a_i)_{i=1}^m$ in $(b_j)_{j=1}^n$
+podani zaporedji nukleotidov,
+spremenljivka $r_{uv}$ ($0 \le u \le m, 0 \le v \le n$)
+pa naj predstavlja najmanjše število operacij,
+s katerim pridemo od zaporedja $(a_i)_{i=1}^u$
+do zaporedja $(b_j)_{j=1}^v$.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{alignat*}{3}
+r_{0v} &= v &&&\quad (0 &\le v \le n) \\
+r_{u0} &= u &&&\quad (0 &\le u \le m) \\
+r_{uv} &= 1 &+ \min\big(
+&{} \{r_{u-1,v-1}, r_{u-1,v}, r_{u,v-1}\} \cup \set{r_{u-1,v-1} - 1}{a_u = b_v}
+&\quad (1 &\le u \le m, \\
+&& \cup &{} \set{r_{u-2,v-2}}{u, v \ge 2
+                              \land a_{u-1} = b_v \land a_u = b_{v-1}}\big)
+&\quad 1 &\le v \le n)
+\end{alignat*}
+Vrednosti $r_{uv}$ računamo v leksikografskem vrstnem redu
+glede na indeksa $(u, v)$,
+najmanjše potrebno število operacij pa dobimo kot $r^* = r_{mn}$.
+Algoritem, ki sledi iz zgornjih rekurzivnih enačb, teče v času $O(mn)$.
+
+\item Zapišimo matriko vrednosti $(r_{uv})_{u,v=0}^8$.
+$$
+\begin{array}{c|ccccccccc}
+r_{uv} & \epsilon & \text{\tt A} & \text{\tt C} & \text{\tt C} & \text{\tt A} & \text{\tt T} & \text{\tt G} & \text{\tt T} & \text{\tt A} \\ \hline
+\epsilon     & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\text{\tt A} & 1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\text{\tt A} & 2 & 1 & 1 & 2 & 2 & 3 & 4 & 5 & 6 \\
+\text{\tt C} & 3 & 2 & 1 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\text{\tt A} & 4 & 3 & 2 & 2 & 1 & 2 & 3 & 4 & 5 \\
+\text{\tt G} & 5 & 4 & 3 & 3 & 2 & 2 & 2 & 3 & 4 \\
+\text{\tt T} & 6 & 5 & 4 & 4 & 3 & 2 & 2 & 2 & 3 \\
+\text{\tt T} & 7 & 6 & 5 & 5 & 4 & 3 & 3 & 2 & 3 \\
+\text{\tt A} & 8 & 7 & 6 & 6 & 5 & 4 & 4 & 3 & 2
+\end{array}
+$$
+Najmanjše število operacij je tako $r_{88} = 2$, dosežemo pa ga tako,
+da opravimo substitucijo {\tt A} $\to$ {\tt C} na drugem mestu
+in transpozicijo {\tt GT} $\to$ {\tt TG} na šestem in sedmem mestu.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}

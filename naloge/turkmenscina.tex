@@ -15,6 +15,21 @@ Naša naloga je, da preverimo,
 ali lahko besedilo razdelimo na zaporedje veljavnih turkmenskih besed.
 Reši nalogo s pomočjo dinamičnega programiranja.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $s = (a_i)_{i=1}^n$ dani niz in $W$ množica veljavnih turkmenskih besed,
+spremenljivka $v_j$ ($0 \le j \le n$) pa nam pove,
+ali je mogoče niz $s_j = (a_i)_{i=1}^j$
+razbiti na zaporedje veljavnih turkmenskih besed.
+Zapišimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+v_0 &= \top \\
+v_j &= \exists w \in W : (|w| \le j \land v_{j-|w|} \land s_j = s_{j-|w|} \| w)
+\quad (1 \le j \le n)
+\end{align*}
+Vrednosti $v_j$ računamo v naraščajočem vrstnem redu glede na indeks $j$.
+Informacijo o tem, ali je mogoče niz $s$
+razbiti na zaporedje veljavnih turkmenskih besed,
+dobimo kot $d^* = d_n$.
 \end{odgovor}
 \end{naloga}

@@ -15,11 +15,65 @@ izpelji čim bolj učinkovit algoritem,
 ki poišče najkrajše kodiranje danega niza $D$,
 če kodiranje za tak niz obstaja.
 
-\item Demonstriraj uporabo algoritma na podanem nizu $bababbaababa$.
+\item Demonstriraj uporabo algoritma na podanem nizu $bababbaababa$
+s podano tabelo $(a, ba, abab, b)$.
 
 \item Kakšna je časovna zahtevnost tvoje rešitve?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Denimo,
+da imamo v tabeli nize $w_h$ ($1 \le h \le m$) dolžine $\ell_h \le k$,
+ter da imamo podan niz $D = (u_i)_{i=1}^n$.
+Naj bo $d_j$ dolžina najkrajšega kodiranja niza $D_j = (u_i)_{i=1}^j$
+s kodnimi besedami iz tabele.
+Zapišimo začetni pogoj in rekurzivne enačbe.
+\begin{alignat*}{2}
+d_0 &= 0 \\
+d_j &= 1 + &{} \min\left(\set{d_{j-\ell_h}}{1 \le h \le m \land
+                              \ell_h \le j \land D_j = D_{j-\ell_h} \| w_h}
+                         \cup \{\infty\}\right) \qquad \\
+&& (1 \le j \le n)
+\end{alignat*}
+Vrednosti $d_j$ računamo v naraščajočem vrstnem redu glede na indeks $j$.
+Če velja $d_n = \infty$, potem ustrezno kodiranje ne obstaja,
+sicer pa dolžino najkrajšega kodiranja dobimo kot $d^* = d_n$.
+
+\item Izračunajmo vrednosti $d_j$ ($1 \le j \le n$).
+Ker niz $D$ sestoji samo iz znakov $a$ in $b$,
+ki se kot niza pojavita v tabeli,
+bodo vse vrednosti $d_j$ končne.
+\begin{alignat*}{3}
+u_1    &= b &\qquad d_1    &= 1 + \min\{\underline{0_b}\} &&= 1 \\
+u_2    &= a &\qquad d_2    &= 1 + \min\{1_a, \underline{0_{ba}}\} &&= 1 \\
+u_3    &= b &\qquad d_3    &= 1 + \min\{\underline{1_b}\} &&= 2 \\
+u_4    &= a &\qquad d_4    &= 1 + \min\{2_a, \underline{1_{ba}}\} &&= 2 \\
+u_5    &= b &\qquad d_5    &= 1 + \min\{2_b, \underline{1_{abab}}\} &&= 2 \\
+u_6    &= b &\qquad d_6    &= 1 + \min\{\underline{2_b}\} &&= 3 \\
+u_7    &= a &\qquad d_7    &= 1 + \min\{3_a, \underline{2_{ba}}\} &&= 3 \\
+u_8    &= a &\qquad d_8    &= 1 + \min\{\underline{3_a}\} &&= 4 \\
+u_9    &= b &\qquad d_9    &= 1 + \min\{\underline{4_b}\} &&= 5 \\
+u_{10} &= a &\qquad d_{10} &= 1 + \min\{5_a, \underline{4_{ba}}\} &&= 5 \\
+u_{11} &= b &\qquad d_{11} &= 1 + \min\{5_b, \underline{3_{abab}}\} &&= 4 \\
+u_{12} &= a &\qquad d_{12} &= 1 + \min\{\underline{4_a}, 5_{abab}\} &&= 5
+\end{alignat*}
+Dolžina najkrajšega kodiranja je torej $d^* = d_{12} = 5$.
+Rekonstruirajmo še ustrezno kodiranje.
+\begin{align*}
+d_{12} &= 1 + d_{11} & a \\
+d_{11} &= 1 + d_7    & abab \\
+d_7    &= 1 + d_5    & ba \\
+d_5    &= 1 + d_1    & abab \\
+d_1    &= 1 + d_0    & b
+\end{align*}
+Najkrajše kodiranje je torej res $(b, abab, ba, abab, a)$.
+
+\item V algoritmu izračunamo $n$ spremenljivk,
+pri izračunu vsake pa primerjamo $m$ nizov,
+pri čemer vsakič primerjamo največ $k$ znakov.
+Časovna zahtevnost algoritma je torej $O(nmk)$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
