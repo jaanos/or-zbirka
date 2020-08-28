@@ -1,4 +1,6 @@
 \NewEnviron{drevo@dectree}{
+    \RenewDocumentCommand{\zacetekPovezave}{m}{##1}
+
     \vozlisce[odlocitev]{A}{-6, 0}
     \vozlisce[odlocitev]{B}{-2,-2}
     \vozlisce[dogodek]{C}[above]{ 2, 4}

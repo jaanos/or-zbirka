@@ -19,20 +19,20 @@
     \vozlisce{P}{ 8, 2}[53 \ME]
     \vozlisce{Q}{ 8, 0}[-1 \ME]
 
-    \povezava{A}{B}{\text{naročimo raziskavo}}[sloped]{above}
-    \povezava*{A}{C}{\text{ne naročimo raziskave}}[sloped]{below}
-    \povezava{B}{D}{\text{pozitivna: $1/2$}}[sloped]{above}
-    \povezava{B}{E}{\text{negativna: $1/2$}}[sloped]{below}
-    \povezava*{C}{F}{\text{sami prodajamo}}[sloped]{above}
-    \povezava{C}{G}{\text{prodamo konkurenci}}[sloped]{below}
-    \povezava*{D}{H}{\text{sami prodajamo}}[sloped]{above}
-    \povezava{D}{I}{\text{prodamo konkurenci}}[sloped]{below}
-    \povezava*{E}{J}{\text{sami prodajamo}}[sloped]{above}
-    \povezava{E}{K}{\text{prodamo konkurenci}}[sloped]{below}
-    \povezava{F}{L}{\text{uspeh: $1/2$}}[sloped]{above}
-    \povezava{F}{M}{\text{neuspeh: $1/2$}}[sloped]{below}
-    \povezava{H}{N}{\text{uspeh: $2/3$}}[sloped]{above}
-    \povezava{H}{O}{\text{neuspeh: $1/3$}}[sloped]{below}
-    \povezava{J}{P}{\text{uspeh: $1/3$}}[sloped]{above}
-    \povezava{J}{Q}{\text{neuspeh: $2/3$}}[sloped]{below}
+    \povezava{A}{B}{naročimo raziskavo}[sloped]{above}
+    \povezava*{A}{C}{ne naročimo raziskave}[sloped]{below}
+    \povezava{B}{D}{pozitivna: $1/2$}[sloped]{above}
+    \povezava{B}{E}{negativna: $1/2$}[sloped]{below}
+    \povezava*{C}{F}{sami prodajamo}[sloped]{above}
+    \povezava{C}{G}{prodamo konkurenci}[sloped]{below}
+    \povezava*{D}{H}{sami prodajamo}[sloped]{above}
+    \povezava{D}{I}{prodamo konkurenci}[sloped]{below}
+    \povezava*{E}{J}{sami prodajamo}[sloped]{above}
+    \povezava{E}{K}{prodamo konkurenci}[sloped]{below}
+    \povezava{F}{L}{uspeh: $1/2$}[sloped]{above}
+    \povezava{F}{M}{neuspeh: $1/2$}[sloped]{below}
+    \povezava{H}{N}{uspeh: $2/3$}[sloped]{above}
+    \povezava{H}{O}{neuspeh: $1/3$}[sloped]{below}
+    \povezava{J}{P}{uspeh: $1/3$}[sloped]{above}
+    \povezava{J}{Q}{neuspeh: $2/3$}[sloped]{below}
 \end{drevo*}
