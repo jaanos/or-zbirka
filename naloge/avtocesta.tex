@@ -4,8 +4,8 @@ Gradbeno podjetje gradi avtocestni odsek na težavnem terenu.
 Identificirali so faze grad\-nje, ki so zbrane v tabeli~\tab.
 
 \begin{enumerate}[(a)]
-\item S pomočjo topološke ureditve ustreznega grafa določi kritična opravila
-in čas izdelave.
+\item S pomočjo topološke ureditve ustreznega grafa
+določi kritična opravila in čas izdelave.
 Uporabi podatke iz stolpca ``trajanje''.
 
 \item Katero opravilo je najmanj kritično?
@@ -29,14 +29,14 @@ Linearnega programa ne rešuj.
 \begin{tabular}{c|l|c|c||c|c}
 opravilo & opis & trajanje & pogoji & najmanjše trajanje & cena za dan manj \\
 \hline
-$a$ & izgradnja južnega priključka         & 45 dni & /      & 40 dni &  300 \\
-$b$ & izgradnja severnega priključka       & 20 dni & /      & 15 dni &  200 \\
-$c$ & vrtanje tunelske cevi                & 90 dni & $a, b$ & 70 dni &  700 \\
-$d$ & postavitev zahodnega stebra viadukta & 25 dni & $a$    & 22 dni & 1100 \\
-$e$ & postavitev vzhodnega stebra viadukta & 30 dni & $c$    & 26 dni & 1500 \\
-$f$ & gradnja cestišča na viaduktu         & 35 dni & $d, e$ & 28 dni &  900 \\
-$g$ & ureditev napeljave v tunelu          & 80 dni & $c$    & 65 dni &  400 \\
-$h$ & asfaltiranje viadukta                & 10 dni & $f$    &  8 dni &  150
+$a$ & izgradnja južnega priključka         & 45 dni & /      & 40 dni &    300 \\
+$b$ & izgradnja severnega priključka       & 20 dni & /      & 15 dni &    200 \\
+$c$ & vrtanje tunelske cevi                & 90 dni & $a, b$ & 70 dni &    700 \\
+$d$ & postavitev zahodnega stebra viadukta & 25 dni & $a$    & 22 dni & 1\,100 \\
+$e$ & postavitev vzhodnega stebra viadukta & 30 dni & $c$    & 26 dni & 1\,500 \\
+$f$ & gradnja cestišča na viaduktu         & 35 dni & $d, e$ & 28 dni &    900 \\
+$g$ & ureditev napeljave v tunelu          & 80 dni & $c$    & 65 dni &    400 \\
+$h$ & asfaltiranje viadukta                & 10 dni & $f$    &  8 dni &    150
 \end{tabular}
 }
 \podnaslov{Podatki}
@@ -64,8 +64,8 @@ ki bo za vsako opravilo imel spremenljivki $x_u$ in $y_u$,
 ki določata število dni, za katerega skrajšamo trajanje opravila $u$,
 oziroma čas začetka izvajanja opravila $u$.
 \begin{alignat*}{2}
-\min &&&{} 300 x_a + 200 x_b + 700 x_c + 1100 x_d \\[-1mm]
-&&+\,&{} 1500 x_e + 900 x_f + 400 x_g + 150 x_h
+\min &&&{} 300 x_a + 200 x_b + 700 x_c + 1\,100 x_d \\[-1mm]
+&&+\,&{} 1\,500 x_e + 900 x_f + 400 x_g + 150 x_h
 \opis{Opravila brez pogojev}
 y_a, &&{} y_b &\ge 0
 \opis{Odvisnosti med opravili}
@@ -111,5 +111,6 @@ $$
 \end{array}
 $$
 \podnaslov{Razporejanje opravil}
-\end{tabela}\end{odgovor}
+\end{tabela}
+\end{odgovor}
 \end{naloga}
