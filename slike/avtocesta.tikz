@@ -1,28 +1,25 @@
-\begin{tikzpicture}[style=thick,scale=1]
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
+\begin{usmerjen*}[scale=1.5]*
+    \vozlisce{s}{-6, 0};
+    \vozlisce{a}{-4, 2};
+    \vozlisce{b}{-4, 0};
+    \vozlisce{c}{-2, 0};
+    \vozlisce{d}{-2, 2};
+    \vozlisce{e}{ 0, 0};
+    \vozlisce{f}{ 2, 0};
+    \vozlisce{g}{ 0,-2};
+    \vozlisce{h}{ 4, 0};
+    \vozlisce{t}{ 6, 0};
 
-\node[vertex] (S) at (-6, 0) {$s$};
-\node[vertex] (A) at (-4, 2) {$a$};
-\node[vertex] (B) at (-4, 0) {$b$};
-\node[vertex] (C) at (-2, 0) {$c$};
-\node[vertex] (D) at (-2, 2) {$d$};
-\node[vertex] (E) at ( 0, 0) {$e$};
-\node[vertex] (F) at ( 2, 0) {$f$};
-\node[vertex] (G) at ( 0,-2) {$g$};
-\node[vertex] (H) at ( 4, 0) {$h$};
-\node[vertex] (T) at ( 6, 0) {$t$};
-
-\draw[->,red] (S) -- (A) node[midway, above, sloped] {$0$};
-\draw[->] (S) -- (B) node[midway, below] {$0$};
-\draw[->,red] (A) -- (C) node[midway, above, sloped] {$45$};
-\draw[->] (A) -- (D) node[midway, above] {$45$};
-\draw[->] (B) -- (C) node[midway, below] {$20$};
-\draw[->] (C) -- (E) node[midway, above] {$90$};
-\draw[->,red] (C) -- (G) node[midway, below, sloped] {$90$};
-\draw[->] (D) -- (F) node[midway, above, sloped] {$25$};
-\draw[->] (E) -- (F) node[midway, below] {$30$};
-\draw[->] (F) -- (H) node[midway, above] {$35$};
-\draw[->,red] (G) -- (T) node[midway, below, sloped] {$80$};
-\draw[->] (H) -- (T) node[midway, above] {$10$};
-\end{tikzpicture}
+    \povezava*{s}{a}{0}{above}[sloped]
+    \povezava{s}{b}{0}{below}
+    \povezava*{a}{c}{45}{above}[sloped]
+    \povezava{a}{d}{45}{above}
+    \povezava{b}{c}{20}{below}
+    \povezava{c}{e}{90}{above}
+    \povezava*{c}{g}{90}{below}[sloped]
+    \povezava{d}{f}{25}{above}[sloped]
+    \povezava{e}{f}{30}{below}
+    \povezava{f}{h}{35}{above}
+    \povezava*{g}{t}{80}{below}[sloped]
+    \povezava{h}{t}{10}{above}
+\end{usmerjen*}
