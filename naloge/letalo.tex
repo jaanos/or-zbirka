@@ -28,19 +28,90 @@ Linearnega programa ne rešuj.
 \begin{tabular}{c|l|c|c||c|c}
 opravilo & opis & trajanje & pogoji & najmanjše trajanje & cena za dan manj \\
 \hline
-A & izgradnja nosu              & 40 dni & -    & 36 dni & 1\,000 \\
-B & izgradnja trupa s krili     & 50 dni & -    & 48 dni & 1\,500 \\
-C & izgradnja repa              & 35 dni & -    & 31 dni &    800 \\
-D & vgraditev pilotske kabine   & 30 dni & A    & 28 dni & 1\,200 \\
-E & opremljanje potniške kabine & 18 dni & F, G & 16 dni &    500 \\
-F & povezovanje nosu s trupom   & 10 dni & A, B &  9 dni & 1\,100 \\
-G & povezovanje repa s trupom   & 12 dni & B, C & 10 dni & 1\,300 \\
-H & vgraditev motorjev          & 20 dni & B    & 18 dni & 1\,400 \\
+$a$ & izgradnja nosu              & 40 dni & /      & 36 dni & 1\,000 \\
+$b$ & izgradnja trupa s krili     & 50 dni & /      & 48 dni & 1\,500 \\
+$c$ & izgradnja repa              & 35 dni & /      & 31 dni &    800 \\
+$d$ & vgraditev pilotske kabine   & 30 dni & $a$    & 28 dni & 1\,200 \\
+$e$ & opremljanje potniške kabine & 18 dni & $f, g$ & 16 dni &    500 \\
+$f$ & povezovanje nosu s trupom   & 10 dni & $a, b$ &  9 dni & 1\,100 \\
+$g$ & povezovanje repa s trupom   & 12 dni & $b, c$ & 10 dni & 1\,300 \\
+$h$ & vgraditev motorjev          & 20 dni & $b$    & 18 dni & 1\,400
 \end{tabular}
 }
 \podnaslov{Podatki}
 \end{tabela}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je raz\-vid\-na topološka ureditev $s, a, b, c, d, f, g, h, e, t$.
+V tabeli~\tab[letalo-resitev]
+so podani naj\-zgod\-nej\-ši začetki opravil in najpoznejši začetki,
+da se celotno trajanje izdelave ne podaljša.
+Izdelava bo trajala najmanj $88$ dni,
+edina kritična pot pa je $s - b - h - e - t$,
+ki tako vsebuje vsa kritična opravila.
+
+\item Iz tabele~\tab[letalo-resitev] je razvidno,
+da je najmanj kritično opravilo $c$,
+saj lahko njegovo trajanje podaljšamo za $41$ dni,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Zapišimo linearni program,
+ki bo za vsako opravilo imel spremenljivki $x_u$ in $y_u$,
+ki določata število dni, za katerega skrajšamo trajanje opravila $u$,
+oziroma čas začetka izvajanja opravila $u$.
+\begin{alignat*}{3}
+\min &&&&&{} 1\,000 x_a + 1\,500 x_b + 800 x_c + 1\,200 x_d \\[-1mm]
+&&&&+\,&{} 500 x_e + 1\,100 x_f + 1\,300 x_g + 1\,400 x_h
+\opis{Opravila brez pogojev}
+y_a, &&{} y_b, &&{} y_c &\ge 0
+\opis{Odvisnosti med opravili}
+y_d &\,-& y_a &\,+& x_a &\ge 40 \\
+y_e &\,-& y_f &\,+& x_f &\ge 10 \\
+y_e &\,-& y_g &\,+& x_g &\ge 12 \\
+y_e &\,-& y_c &\,+& x_c &\ge 90 \\
+y_f &\,-& y_a &\,+& x_a &\ge 40 \\
+y_f &\,-& y_b &\,+& x_b &\ge 50 \\
+y_g &\,-& y_b &\,+& x_b &\ge 50 \\
+y_g &\,-& y_c &\,+& x_c &\ge 35 \\
+y_h &\,-& y_b &\,+& x_b &\ge 50
+\opis{Želeni čas trajanja}
+&& y_d &\,-& x_d &\le 45 \\
+&& y_e &\,-& x_e &\le 57 \\
+&& y_g &\,-& x_g &\le 63
+\opis{Minimalno trajanje opravil}
+&& 0 &\le&\, x_a &\le 4 \\
+&& 0 &\le&\, x_b &\le 2 \\
+&& 0 &\le&\, x_c &\le 4 \\
+&& 0 &\le&\, x_d &\le 2 \\
+&& 0 &\le&\, x_e &\le 2 \\
+&& 0 &\le&\, x_f &\le 1 \\
+&& 0 &\le&\, x_g &\le 2 \\
+&& 0 &\le&\, x_h &\le 2
+\end{alignat*}
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{letalo-resitev}
+$$
+\begin{array}{c|cccccccccc}
+& s & a & b & c & d & f & g & h & e & t \\ \hline
+\text{najzgodnejši začetek} &
+0 & 0_s & 0_s & 0_s & 40_a & 50_b & 50_b & 50_b & 70_h & 88_e \\
+\text{najpoznejši začetek} &
+0 & 18_d & 0_h & 41_g & 58_t & 60_e & 76_t & 50_e & 70_t & 88 \\
+\text{razlika} &
+0 & 18 & 0^* & 41 & 18 & 10 & 26 & 0^* & 0^* & 0
+\end{array}
+$$
+\podnaslov{Razporejanje opravil}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
