@@ -1,0 +1,27 @@
+\begin{usmerjen*}[scale=1.5]*
+    \vozlisce{s}{-4, 0};
+    \vozlisce{a}{-2, 2};
+    \vozlisce{b}{-2, 0};
+    \vozlisce{c}{-2,-2};
+    \vozlisce{d}{ 0, 3};
+    \vozlisce{e}{ 2, 0};
+    \vozlisce{f}{ 0, 1};
+    \vozlisce{g}{ 0,-3};
+    \vozlisce{h}{ 0,-1};
+    \vozlisce{t}{ 4, 0};
+
+    \povezava{s}{a}{0}{above}[sloped]
+    \povezava{s}{b}{0}{below}
+    \povezava{s}{c}{0}{below}[sloped]
+    \povezava{a}{d}{40}{above}[sloped]
+    \povezava{a}{f}{40}{above}[sloped]
+    \povezava{b}{f}{50}{above}[sloped]
+    \povezava{b}{g}{50}{below}[sloped]
+    \povezava{b}{h}{50}{below}[sloped]
+    \povezava{c}{g}{35}{below}[sloped]
+    \povezava{f}{e}{10}{above}[sloped]
+    \povezava{h}{e}{20}{below}[sloped]
+    \povezava{d}{t}{30}{above}[sloped]
+    \povezava{g}{t}{12}{below}[sloped]
+    \povezava{e}{t}{18}{above}
+\end{usmerjen*}
