@@ -25,6 +25,56 @@ K &= 30,  & (c_i)_{i=1}^8 &= (18, 11, 21, 16, 23, 15, 19, 13).
 \end{align*}
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $v_i$ najnižja cena izgradnje počivališč
+na odseku od začetka avtoceste do lokacije $x_i$,
+če zadnje počivališče zgradimo na tej lokaciji.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+v_0 &= x_0 = 0 \\
+v_i &= c_i + \min\left(\set{v_j}{0 \le j \le i-1, x_i - x_j \le K}
+                       \cup \{\infty\}\right)
+\quad (1 \le i \le n)
+\end{align*}
+Vrednosti $v_i$ računamo naraščajoče po indeksu $i$.
+Najnižjo ceno izgradnje počivališč na celotnem odseku dobimo kot
+$$
+v^* = \min\left(\set{v_j}{0 \le j \le n, M - x_j \le K} \cup \{\infty\}\right) .
+$$
+Če velja $v^* = \infty$, potem izgradnja počivališč pod danimi pogoji ni mogoča.
+
+\item V algoritmu izračunamo $n$ vrednosti $v_i$,
+pri čemer pri vsaki obravnavamo največ $n$ možnosti;
+prav tako obravnavamo največ $n$ možnosti pri računanju $v^*$.
+Časovna zahtevnost algoritma je torej $O(n^2)$.
+
+\item Izračunajmo vrednosti $v_i$ ($1 \le i \le 8$).
+Ker se lokacije zaporednih počivališč razlikujejo za manj kot $K$,
+prav tako pa sta prva in zadnja možna lokacija
+oddaljeni manj kot $K$ od začetka oziroma konca odseka,
+bodo vse vrednosti $v_i$ končne,
+enako pa velja tudi za $v^*$.
+\begin{alignat*}{3}
+x_1 &= 5  &\qquad v_1 &= 18 + \min\{\underline{0}\} &&= 18 \\
+x_2 &= 12 &\qquad v_2 &= 11 + \min\{\underline{0}, 18\} &&= 11 \\
+x_3 &= 22 &\qquad v_3 &= 21 + \min\{\underline{0}, 18, 11\} &&= 21 \\
+x_4 &= 34 &\qquad v_4 &= 16 + \min\{18, \underline{11}, 21\} &&= 27 \\
+x_5 &= 49 &\qquad v_5 &= 23 + \min\{\underline{21}, 27\} &&= 44 \\
+x_6 &= 65 &\qquad v_6 &= 15 + \min\{\underline{44}\} &&= 59 \\
+x_7 &= 83 &\qquad v_7 &= 19 + \min\{\underline{59}\} &&= 78 \\
+x_8 &= 91 &\qquad v_8 &= 13 + \min\{\underline{59}, 78\} &&= 72
+\end{alignat*}
+Ker sta samo zadnji dve lokaciji oddaljeni manj kot $K$ od konca odseka,
+je najmanjša cena izgradnje počivališč enaka $v^* = \min\{78, 72\} = 72$.
+Re\-kon\-stru\-iraj\-mo še optimalno postavitev.
+\begin{align*}
+v^* = v_8 &= c_8 + v_6 & \text{počivališče na $x_8 = 91$} \\
+v_6 &= c_6 + v_5 & \text{počivališče na $x_6 = 65$} \\
+v_5 &= c_5 + v_3 & \text{počivališče na $x_5 = 49$} \\
+v_3 &= c_3 + v_0 & \text{počivališče na $x_3 = 22$} \\
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
