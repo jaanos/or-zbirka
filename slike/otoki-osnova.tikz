@@ -1,0 +1,22 @@
+\NewEnviron{neusmerjen@otoki}{
+    \vozlisce{a}{-4, 4}
+    \vozlisce{b}{ 4, 4}
+    \vozlisce{c}{ 0, 2}
+    \vozlisce{d}{-4, 0}
+    \vozlisce{e}{ 4, 0}
+    \vozlisce{f}{ 0,-2}
+    \vozlisce{g}{ 4,-4}
+
+    \povezava{a}{c}{7}[sloped]{above}
+    \povezava{a}{d}{5}{left}
+    \povezava{b}{c}{8}[sloped]{above}
+    \povezava{b}{e}{5}{right}
+    \povezava{c}{d}{9}[sloped]{above}
+    \povezava{c}{e}{7}[sloped]{above}
+    \povezava{d}{e}{15}{below}
+    \povezava{d}{f}{6}[sloped]{below}
+    \povezava{e}{f}{10}[sloped]{below}
+    \povezava{e}{g}{9}{right}
+    \povezava{f}{g}{11}[sloped]{below}
+}
+

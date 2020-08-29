@@ -1,23 +1,4 @@
-\begin{tikzpicture}[style=thick,scale=0.6]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+\input{slike/otoki-osnova.tikz}
 
-\node[vertex] (a) at (-4, 4) {$a$};
-\node[vertex] (b) at ( 4, 4) {$b$};
-\node[vertex] (c) at ( 0, 2) {$c$};
-\node[vertex] (d) at (-4, 0) {$d$};
-\node[vertex] (e) at ( 4, 0) {$e$};
-\node[vertex] (f) at ( 0,-2) {$f$};
-\node[vertex] (g) at ( 4,-4) {$g$};
-
-\draw (a) -- (c) node [midway, above, sloped] {$7$};
-\draw (a) -- (d) node [midway, left] {$5$};
-\draw (b) -- (c) node [midway, above, sloped] {$8$};
-\draw (b) -- (e) node [midway, right] {$5$};
-\draw (c) -- (d) node [midway, above, sloped] {$9$};
-\draw (c) -- (e) node [midway, above, sloped] {$7$};
-\draw (d) -- (e) node [midway, below] {$15$};
-\draw (d) -- (f) node [midway, below, sloped] {$6$};
-\draw (e) -- (f) node [midway, below, sloped] {$10$};
-\draw (e) -- (g) node [midway, right] {$9$};
-\draw (f) -- (g) node [midway, below, sloped] {$11$};
-\end{tikzpicture}
+\begin{neusmerjen}[scale=1.1]{otoki}
+\end{neusmerjen}
