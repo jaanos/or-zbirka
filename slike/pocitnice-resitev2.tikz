@@ -1,0 +1,27 @@
+\begin{neusmerjen}[scale=1.1]*
+    \RenewDocumentCommand{\imeVozlisca}{m}{\text{#1}}
+    \tikzstyle{zvezdica}=[very thick, red]
+
+    \vozlisce{LJ}{-4,-5}
+    \vozlisce{ZG}{ 0,-5}
+    \vozlisce{VE}{ 2,-3}
+    \vozlisce{MO}{ 2,-1}
+    \vozlisce{BU}{-2,-3}
+    \vozlisce{PA}{ 2, 1}
+    \vozlisce{BS}{-2,-1}
+    \vozlisce{PR}{-2, 1}
+    \vozlisce{BL}{-2, 3}
+    \vozlisce{BX}{ 2, 3}
+    \vozlisce{AM}{ 0, 5}
+
+    \povezava*{AM}{BL}{}{}
+    \povezava{AM}{BX}{}{}
+    \povezava*{BL}{PR}{}{}
+    \povezava{BX}{PA}{}{}
+    \povezava*{PR}{BS}{}{}
+    \povezava{PA}{MO}{}{}
+    \povezava*{BS}{BU}{}{}
+    \povezava{MO}{VE}{}{}
+    \povezava*{BU}{LJ}{}{}
+    \povezava{BU}{ZG}{}{}
+\end{neusmerjen}

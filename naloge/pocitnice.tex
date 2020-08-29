@@ -27,6 +27,38 @@ ki ne gre čez kraje iz prejšnje poti.
 \caption{Graf za nalogi~\nal (brez uteži) in~\nal[pot].}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Konstruiramo graf $G$, katerega vozlišča so kraji z našega seznama,
+med vozliščema pa je povezava,
+če lahko cesto med ustreznima krajema prevozimo v enem dnevu.
+Če vozlišči $s$ in $t$ predstavljata začetno točko in destinacijo,
+potem lahko na grafu $G$ izvedemo iskanje v širino z začetkom v vozlišču $s$
+ter v dobljenem drevesu poiščemo pot do vozlišča $t$.
+
+\item Iz grafa $G$ izpeljemo graf $G'$, ki ga dobimo tako,
+da odstranimo notranja vozlišča poti iz prejšnje točke
+(tj., $s$ in $t$ pustimo v $G'$).
+Potem lahko na grafu $G'$ izvedemo iskanje v širino z začetkom v vozlišču $t$
+ter v dobljenem drevesu poiščemo pot do vozlišča $s$.
+
+\item Iskanje v širino na grafu $G$ s slike~\fig
+nam da drevo s slike~\fig[pocitnice-resitev1],
+s katere je razvidna pot LJ -- WI -- BN -- LU -- AM.
+Graf $G'$ torej dobimo tako, da iz $G$ odstranimo vozlišča WI, BN in LU.
+Iskanje v širino nam da drevo s slike~\fig[pocitnice-resitev2],
+s katere je razvidna povratna pot AM -- BL -- PR -- BS -- BU -- LJ.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika[pocitnice-resitev1]
+\podnaslov{Drevo iskanja v širino na grafu $G$}
+\end{slika}
+%
+\begin{slika}
+\pgfslika[pocitnice-resitev2]
+\podnaslov{Drevo iskanja v širino na grafu $G'$}
+\end{slika}
 \end{odgovor}
 \end{naloga}
