@@ -18,6 +18,43 @@ ti pa za vsak pregled zaračunajo milijon evrov?
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+S Primovim algoritmom bomo poiskali najlažje vpeto drevo v grafu s slike~\fig.
+Algoritem deluje tako,
+da začne z drevesom z enim samim (poljubno izbranim) vozliščem,
+nato pa v vsakem koraku v drevo doda najcenejšo izmed povezav,
+ki imajo natanko eno krajišče v drevesu,
+dokler v drevesu niso vsa vozlišča.
+Potek izvajanja algoritma je prikazan v tabeli~\tab,
+najcenejše vpeto drevo s ceno $39$
+pa je prikazano na sliki~\fig[otoki-resitev].
+Skupna cena gradnje je torej $39$ milijonov evrov.
+
+Če mora vsak most pridobiti še potrdilo inšpektorjev,
+se rešitev ne spremeni,
+saj ima vsako vpeto drevo enako število povezav.
+Cena gradnje se v tem primeru poveča na $45$ milijonov evrov.
+%
+\begin{tabela}
+$$
+\begin{array}{c|c|l}
+\text{dodano vozlišče} & \text{teža drevesa} & \text{vrsta povezav} \\ \hline
+a &  0 & ad: 5, ac: 7 \\
+d &  5 & df: 6, ac: 7, dc: 9, de: 15 \\
+f & 11 & ac: 7, dc: 9, fe: 10, fg: 11, de: 15 \\
+c & 18 & ce: 7, cb: 8, fe: 10, fg: 11, de: 15 \\
+e & 25 & eb: 5, cb: 8, eg: 9, fg: 11 \\
+b & 30 & eg: 9, fg: 11 \\
+g & 39 &
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+%
+\begin{slika}
+\pgfslika[otoki-resitev]
+\podnaslov{Najcenejše vpeto drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

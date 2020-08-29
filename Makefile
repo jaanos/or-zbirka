@@ -78,6 +78,12 @@ pgf/minmaxpretok.pdf: slike/minmaxpretok.tikz slike/minmaxpretok-osnova.tikz
 pgf/minmaxpretok%.pdf: slike/minmaxpretok%.tikz slike/minmaxpretok-osnova.tikz
 	$(call pgfc,minmaxpretok$*)
 
+pgf/otoki.pdf: slike/otoki.tikz slike/otoki-osnova.tikz
+	$(call pgfc,otoki)
+
+pgf/otoki-resitev.pdf: slike/otoki-resitev.tikz slike/otoki-osnova.tikz
+	$(call pgfc,otoki-resitev)
+
 pgf/pretok%.pdf: slike/pretok%.tikz slike/pretok%-osnova.tikz
 	$(call pgfc,pretok$*)
 
