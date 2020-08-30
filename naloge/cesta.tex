@@ -10,6 +10,38 @@ Kje naj poteka cesta, da bodo stroški gradnje najmanjši možni?
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Ker v grafu s slike~\fig ni negativnih uteži,
+bomo najcenejšo pot poiskali z Dijkstrovim algoritmom.
+Potek algoritma je prikazan v tabeli~\fig,
+pri čemer so uporabljene oznake
+iz algoritma {\sc Dijkstra} iz naloge~\res[dijkstra].
+Iz končnega stanja lahko razberemo,
+da je najcenejša pot $s - a - c - d - t$ s ceno $13$.
+%
+\begin{tabela}
+$$
+\begin{array}{c|c|c|cccccccc}
+u & v & Q & s & a & b & c & d & e & f & t \\ \hline
+  &   & s: 0 & 0 & \infty & \infty & \infty & \infty & \infty & \infty & \infty \\
+s & a & a: 2 & 0 & 2_s & \infty & \infty & \infty & \infty & \infty & \infty \\
+s & c & a: 2, c: 5 & 0 & 2_s & \infty & 5_s & \infty & \infty & \infty & \infty \\
+s & e & a: 2, e: 4, c: 5 & 0 & 2_s & \infty & 5_s & \infty & 4_s & \infty & \infty \\
+a & b & e: 4, c: 5, b: 14 & 0 & 2_s & 14_a & 5_s & \infty & 4_s & \infty & \infty \\
+a & c & c: 4, e: 4, b: 14 & 0 & 2_s & 14_a & 4_a & \infty & 4_s & \infty & \infty \\
+a & d & c: 4, e: 4, d: 9, b: 14 & 0 & 2_s & 14_a & 4_a & 9_a & 4_s & \infty & \infty \\
+c & d & e: 4, d: 8, b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & \infty & \infty \\
+c & e & e: 4, d: 8, b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & \infty & \infty \\
+c & f & e: 4, f: 7, d: 8, b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & 7_c & \infty \\
+e & f & f: 7, d: 8, b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & 7_c & \infty \\
+f & d & d: 8, b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & 7_c & \infty \\
+f & t & d: 8, b: 14, t: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & 7_c & 14_f \\
+d & t & t: 13, b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & 7_c & 13_d \\
+t & b & b: 14 & 0 & 2_s & 14_a & 4_a & 8_c & 4_s & 7_c & 13_d \\
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

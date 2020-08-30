@@ -1,27 +1,25 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=8mm]
+\begin{neusmerjen}[scale=1.3]*
+    \vozlisce{s}{-3, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 2, 2}
+    \vozlisce{c}{-1, 0}
+    \vozlisce{d}{ 1, 0}
+    \vozlisce{e}{-2,-2}
+    \vozlisce{f}{ 2,-2}
+    \vozlisce{t}{ 3, 0}
 
-\node[vertex] (s) at (-3, 0) {$s$};
-\node[vertex] (A) at (-2, 2) {$a$};
-\node[vertex] (B) at ( 2, 2) {$b$};
-\node[vertex] (C) at (-1, 0) {$c$};
-\node[vertex] (D) at ( 1, 0) {$d$};
-\node[vertex] (E) at (-2,-2) {$e$};
-\node[vertex] (F) at ( 2,-2) {$f$};
-\node[vertex] (t) at ( 3, 0) {$t$};
-
-\draw (s) -- (A) node [above, midway, sloped] {$2$};
-\draw (s) -- (C) node [below, midway] {$5$};
-\draw (s) -- (E) node [below, midway, sloped] {$4$};
-\draw (A) -- (B) node [above, midway] {$12$};
-\draw (A) -- (C) node [below, midway, sloped] {$2$};
-\draw (A) -- (D) node [above, midway, sloped] {$7$};
-\draw (B) -- (t) node [above, midway, sloped] {$3$};
-\draw (C) -- (D) node [below, near end] {$4$};
-\draw (C) -- (E) node [below, midway, sloped] {$1$};
-\draw (C) -- (F) node [below, midway, sloped] {$3$};
-\draw (D) -- (F) node [above, midway, sloped] {$1$};
-\draw (D) -- (t) node [above, midway] {$5$};
-\draw (E) -- (F) node [below, midway] {$4$};
-\draw (F) -- (t) node [below, midway, sloped] {$7$};
-\end{tikzpicture}
+    \povezava{s}{a}{2}[sloped]{above}
+    \povezava{s}{c}{5}{below}
+    \povezava{s}{e}{4}[sloped]{below}
+    \povezava{a}{b}{12}{above}
+    \povezava{a}{c}{2}[sloped]{below}
+    \povezava{a}{d}{7}[sloped]{above}
+    \povezava{b}{t}{3}[sloped]{above}
+    \povezava{c}{d}{4}[near end]{below}
+    \povezava{c}{e}{1}[sloped]{below}
+    \povezava{c}{f}{3}[sloped]{below}
+    \povezava{d}{f}{1}[sloped]{above}
+    \povezava{d}{t}{5}{above}
+    \povezava{e}{f}{4}{below}
+    \povezava{f}{t}{7}[sloped]{below}
+\end{neusmerjen}
