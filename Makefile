@@ -2,7 +2,7 @@ SHELL := /bin/bash
 ZBIRKA := or-zbirka
 
 TEX_FILES := $(shell ls naloge/*.tex tex/*.tex)
-FIG_FILES := $(shell ls slike/*.tikz | grep -v osnova | sed -r "s|^slike/(.*)\\.tikz|pgf/\\1.pdf|")
+FIG_FILES := $(shell ./getfigs.sh)
 BIB_FILES := reference.bib slovene.bdf
 
 pgfc = pdflatex --jobname=pgf/$1 $(ZBIRKA).tex

@@ -1,4 +1,4 @@
-\begin{neusmerjen}[scale=1.1]*
+\begin{neusmerjen*}[scale=1.1]*
     \RenewDocumentCommand{\imeVozlisca}{m}{\text{#1}}
 
     \oznaka{LJ}{0}
@@ -53,4 +53,4 @@
     \povezava{PR}{BL}{14}{above}
     \povezava{BL}{AM}{20}{above}
     \povezava{BX}{AM}{21}{above}
-\end{neusmerjen}
+\end{neusmerjen*}

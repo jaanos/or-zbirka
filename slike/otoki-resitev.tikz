@@ -1,6 +1,6 @@
 \input{slike/otoki-osnova.tikz}
 
-\begin{neusmerjen}[scale=1.1]{otoki}
+\begin{neusmerjen*}[scale=1.1]{otoki}
     \tikzstyle{kandidat}=[red, double]
     \kandidat{a}{d}
     \kandidat{d}{f}
@@ -8,4 +8,4 @@
     \kandidat{c}{e}
     \kandidat{b}{e}
     \kandidat{e}{g}
-\end{neusmerjen}
+\end{neusmerjen*}

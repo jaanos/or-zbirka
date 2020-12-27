@@ -1,4 +1,4 @@
 \input{slike/otoki-osnova.tikz}
 
-\begin{neusmerjen}[scale=1.1]{otoki}
-\end{neusmerjen}
+\begin{neusmerjen*}[scale=1.1]{otoki}
+\end{neusmerjen*}
