@@ -33,6 +33,41 @@ $$
 Za dane podatke reši problem z zgoraj zapisanimi enačbami.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $q_{ij}$ največja verjetnost, ki jo lahko dosežejo,
+da pridobijo podporo prvih $j$ strank,
+če k njim pošljejo $i$ lobistov.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+q_{i1} &= p_{i1} && (1 \le i \le m) \\
+q_{ij} &= \max\set{q_{h,j-1} p_{i-h,j}}{0 \le h \le i}
+&& (2 \le j \le n, 0 \le i \le m)
+\end{align*}
+Vrednosti $q_{ij}$ računamo v leksikografskem vrstnem redu glede na $(j, i)$.
+Največjo verjetnost, da pridobijo podporo vseh $n$ strank,
+dobimo kot $q^* = q_{mn}$.
+
+\item Ker velja $p_{0j} = 0$ za vsak $j$,
+bo veljalo $q_{ij} = 0$ za vse $i < j$.
+Tako lahko v zgornji rekurzivni enačbi
+upoštevamo le primere z $j-1 \le h \le i-1$.
+Izračunajmo torej vrednosti $q_{i2}$ ($2 \le i \le 5$) in $q^* = q_{63}$.
+\begin{alignat*}{2}
+q_{22} &= 0.2 \cdot 0.4 &&= 0.08 \\
+q_{32} &= \max\{0.2 \cdot 0.5, \underline{0.5 \cdot 0.4}\} &&= 0.2 \\
+q_{42} &= \max\{0.2 \cdot 0.5, 0.5 \cdot 0.5, \underline{0.7 \cdot 0.4}\} &&= 0.28 \\
+q_{52} &= \max\{0.2 \cdot 0.6, 0.5 \cdot 0.5, \underline{0.7 \cdot 0.5}, 0.8 \cdot 0.4\} &&= 0.35 \\
+q_{63} &= \max\{0.08 \cdot 0.9, \underline{0.2 \cdot 0.8}, 0.28 \cdot 0.4, 0.35 \cdot 0.3\} &&= 0.16
+\end{alignat*}
+Največja verjetnost je torej $q^* = q_{63} = 0.16$.
+Poiščimo še optimalno razporeditev lobistov.
+\begin{align*}
+q_{63} &= q_{32} p_{33} && \text{$3$ lobisti k tretji stranki} \\
+q_{32} &= q_{21} p_{12} && \text{$1$ lobist k drugi stranki} \\
+q_{21} &= p_{21}        && \text{$2$ lobista k prvi stranki}
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
