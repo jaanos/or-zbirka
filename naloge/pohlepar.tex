@@ -13,7 +13,7 @@ da si uredi vse segmente poslovanja čim bolj optimalno
 in je kot tak zgled drugim.
 Predpostavimo,
 da ima upravljalec v trenutku odločanja podatke v obliki intervalov
-$[z_i, k_i]$, $i = 1, \dots, n$,
+$(z_i, k_i)$, $i = 1, \dots, n$,
 kjer $z_i$ in $k_i$ predstavljata začetni in končni čas ponudbe $i$.
 Ponudbi se prekrivata, če je njun presek neprazen časovni interval.
 
@@ -39,6 +39,67 @@ $(15, 60)$, $(60, 180)$, $(30, 90)$, $(120, 210)$,
 $(165, 255)$, $(75, 135)$, $(30, 105)$, $(90, 150)$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Ker je zaslužek premo sorazmeren času najema,
+bomo tukaj optimizirali skupen čas najema dvorane.
+Če želimo iz časa (predpostavimo, da je podan v minutah) izračunati zaslužek,
+ga lahko pomnožimo s $5 €$.
+
+\begin{enumerate}[(a)]
+\item Postopek ni optimalen,
+saj lahko najdemo protiprimer, kjer opisani postopek ne da optimalne rešitve.
+Denimo, da imamo ponudbe $(0, 2), (1, 6), (5, 7)$
+-- opisani postopek izbere prvi in zadnji interval s skupnim trajanjem $4$,
+medtem ko je optimalna rešitev izbira drugega intervala s trajanjem $5$.
+
+\item Če je $I = (z_t, k_t)$ zadnji interval v optimalni izbiri OPT,
+potem so kandidati za predzadnji interval vsi intervali oblike $(z_i, k_i)$,
+kjer je $k_i \le z_t$.
+Tako naj bo $x_i$ največji čas najema dvorane,
+če je zadnji uporabljeni interval $(z_i, k_i)$.
+Brez škode za splošnost lahko predpostavimo,
+da za vsak $i$ $(1 \le i \le n)$ velja $0 \le z_i < k_i$
+ter da so intervali $(z_i, k_i)$ urejeni naraščajoče po $k_i$.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+x_0 &= k_0 = 0 \\
+x_i &= k_i - z_i + \max\set{x_j}{0 \le j < i, k_j \le z_i}
+\end{align*}
+Urejenost intervalov nam zagotovi,
+da velja $k_j > z_i$ za vse $j \ge i$,
+tako da nam teh primerov ni potrebno obravnavati.
+Največji skupni čas najema potem dobimo kot
+$x^* = \max\set{x_i}{1 \le i \le n}$.
+
+\item Izračunati je potrebno $n$ vrednosti $x_i$,
+za izračun $x_i$ pa je potrebno pregledati največ $i$ vrednosti $x_j$.
+Skupna časovna zahtevnost je torej $O(n^2)$.
+
+\item Najprej bomo podatke uredili po časih končanje
+-- imeli bomo torej
+\begin{align*}
+((z_i, k_i))_{i=1}^8 = (&{} (15, 60), (30, 90), (30, 105), (75, 135), \\
+&{} (90, 150), (60, 180), (120, 210), (165, 255)) .
+\end{align*}
+Izračunajmo sedaj vrednosti $x_i$ ($1 \le i \le 8$).
+\begin{alignat*}{2}
+x_1 &= 45 + 0 &&= 45 \\
+x_2 &= 60 + 0 &&= 60 \\
+x_3 &= 75 + 0 &&= 75 \\
+x_4 &= 60 + \max\{0, \underline{45}\} &&= 105 \\
+x_5 &= 60 + \max\{0, 45, \underline{60}\} &&= 120 \\
+x_6 &= 120 + \max\{0, \underline{45}\} &&= 165 \\
+x_7 &= 90 + \max\{0, 45, 60, \underline{75}\} &&= 165 \\
+x_8 &= 90 + \max\{0, 45, 60, 75, 105, \underline{120}\} &&= 210
+\end{alignat*}
+Največji skupni čas najema je torej $x^* = 210$.
+Poiščimo še intervale, v katerih naj upravljalec odda dvorano.
+\begin{align*}
+x^* = x_8 &= k_8-z_8 + x_5 && \text{interval $(165, 255)$} \\
+	  x_5 &= k_5-z_5 + x_2 && \text{interval $(90, 150)$} \\
+	  x_2 &= k_2-z_2 + x_0 && \text{interval $(30, 90)$} \\
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
