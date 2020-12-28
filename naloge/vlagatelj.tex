@@ -50,6 +50,68 @@ ki nam bo prinesla največji pričakovani dobiček.
 kako naj ravna vlagatelj, da bo imel čim večji dobiček.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Zapišimo definicijo funkcije $q(x)$ za $0 \le x \le 4$.
+\begin{align*}
+q(x) &= \max\left(\{0.15 x\} \cup \set{0.1}{x = 1} \cup \set{0.35}{x = 2} \cup \set{0.5}{x = 3}\right) \\
+&= \begin{cases}
+0.35   & x = 2 \text{ (Diskretna d.d.z.)} \\
+0.5    & x = 3 \text{ (Diskretna d.d.z.)} \\
+0.15 x & \text{sicer (Zvezna d.z.z.)}
+\end{cases}
+\end{align*}
+
+\item Naj bosta $v_1(x)$ in $v_2(x)$
+največji pričakovani vrednosti naložbenih strategij,
+pri katerih imamo na voljo $x$ milijonov evrov
+oziroma to količino v celoti vložimo v naložbo in zavarovanje.
+Zapišimo rekurzivni enačbi.
+\begin{align*}
+v_2(x) &= \max\set{(x-y) (3 + 0.4 q(y))}{0 \le y \le \min\{4, x\}} \\
+v_1(x) &= \max\set{x-y + v_2(y)}{0 \le y \le x}
+\end{align*}
+
+\item Najprej izrazimo $v_2(x)$ glede na vrednost $x$ ($0 \le x \le 50$).
+\begin{alignat*}{2}
+v_2(x) &= \max&\big(&\set{3.14 (x-2)}{x \ge 2} \cup \set{3.2 (x-3)}{x \ge 3} \cup \\
+&&&{} \set{(x-y) (3 + 0.06 y)}{0 \le y \le \min\{4, x\}, y \not\in \{2, 3\}}\big)
+\end{alignat*}
+Naj bo $f(y)$ izraz v zadnjem oklepaju.
+Opazimo, da gre za kvadraten polinom v $y$ z negativnim vodilnim členom,
+tako da lahko s pomočjo odvajanja poiščemo njegov maksimum.
+\begin{align*}
+f(y)  &= -0.06 y^2 + (0.06x - 3) y + 3x \\
+f'(y) &= -0.12 y + 0.06 x - 3 = 0 \\
+y &= x/2 - 25 \le 0
+\end{align*}
+Opazimo, da je maksimum vedno dosežen za vrednost $y$,
+ki ni večja od spod\-nje meje ustreznega intervala,
+tako da je znotraj njega maksimum dosežen pri $y = 0$ in znaša $f(0) = 3x$
+-- tj., premije ne plačamo.
+S primerjavo vseh treh izrazov tako dobimo
+$$
+v_2(x) = \begin{cases}
+3 x        & 0 \le x \le 314/7 \text{ (brez zavarovanja)} \\
+3.14 (x-2) & 314/7 < x \le 50 \text{ (Diskretna d.d.z.~s premijo $2$ mio evrov)}
+\end{cases}
+$$
+Optimalno strategijo vlaganja sedaj dobimo tako,
+da izračunamo $v_1(50)$.
+\begin{alignat*}{2}
+v_1(50) &= \max&\big(&\set{50 + 2y}{0 \le y \le 314/7} \cup \\
+&&&{} \set{43.72 + 2.14y}{314/7 < x \le 50}\big)
+\end{alignat*}
+Ker oba izraza naraščata z $y$,
+zadostuje preveriti njuni vrednosti pri zgornji meji ustreznega intervala.
+Tako opazimo, da največjo vrednost dobimo pri $y = 50$.
+Optimalna strategija vlaganja je torej taka,
+pri kateri vlagatelj $48$ milijonov evrov vloži v naložbo,
+$2$ milijona evrov porabi za premijo pri zavarovalnici Diskretna d.d.z.,
+zase pa ne obdrži ničesar.
+Pričakovana vrednost naložbene strategije
+je tako $v^* = v_1(50) = 150.72$ milijonov evrov.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
