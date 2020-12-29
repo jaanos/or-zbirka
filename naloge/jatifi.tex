@@ -7,7 +7,7 @@ Nabavni stroški v mesecu $i$ so sestavljeni iz fiksnih stroškov $K_i$
 ter stroškov za nabavo sadja.
 Na začetku meseca $i$ stane škatla pomaranč $c_i$.
 Če Jatifi takrat kupi $m$ škatel,
-je za nabavo sadja torej moral odšteti $mc_i$ denarnih enot.
+je za nabavo sadja torej moral odšteti $K_i + mc_i$ denarnih enot.
 Če se Jatifi zaradi nižje cene v nekem mesecu
 odloči nakupiti vnaprej za več mesecev,
 mora plačati skladiščenje za škatle pomaranč za preostale mesece,
@@ -29,6 +29,60 @@ $c = (3, 4, 3, 4)$ ter $h = (1, 1, 1, 2)$.
 Poišči optimalno strategijo kupovanja pomaranč.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+Ker je predvideno povpraševanje znano vnaprej,
+bo zadostovalo, da minimiziramo stroške,
+saj je prodajna cena fiksna.
+
+\begin{enumerate}[(a)]
+\item Naj bodo $s_{ij}$ najmanjši skupni stroški,
+ki jih lahko ima Jatifi za nabavo pomaranč do $j$-tega meseca,
+če zadnjič kupuje v $i$-tem mesecu.
+Poleg tega naj bo $H_{ij}$ skupna cena skladiščenja škatle,
+kupljene v mesecu $i$ in prodane v mesecu $j$.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+c_0 = h_0 &= \infty \\
+s_{00} &= 0 \\
+H_{jj} &= 0 & (0 \le j \le n) \\
+s_{jj} &= K_j + r_j c_j + \min\set{s_{i,j-1}}{0 \le i \le j-1} & (1 \le j \le n) \\
+H_{ij} &= h_{j-1} + H_{i,j-1} & (0 \le i < j \le n) \\
+s_{ij} &= s_{i,j-1} + r_j (c_i + H_{ij}) & (0 \le i < j \le n)
+\end{align*}
+Vrednosti $H_{ij}$ in $s_{ij}$ računamo
+v leksikografskem vrstnem redu glede na in\-dek\-sa $(i, j)$,
+pri čemer upoštevamo $0 \cdot \infty = 0$
+(na ta način se izognemo plačilu fiks\-nih stroškov
+za morebitne začetne mesece brez povpraševanja).
+Najmanjše skupne stroške za celotno obdobje
+dobimo kot $s^* = \min\set{s_{in}}{0 \le i \le n}$.
+
+Algoritem izračuna $O(n^2)$ vrednosti,
+pri čemer za izračun vrednosti $s_{jj}$ ($1 \le j \le n$) porabi $O(j)$ korakov,
+ostale vrednosti pa izračuna v konstantnem času.
+Časovna zahtevnost algoritma je tako $O(n^2)$.
+
+\item Ker velja $r_1 > 0$, imamo $H_{0j} = s_{0j} = \infty$ ($1 \le j \le n$).
+Izračunajmo še vrednosti $H_{ij}$ in $s_{ij}$ ($1 \le i \le j \le n$).
+\begin{alignat*}{3}
+H_{11} &= 0 &\qquad s_{11} &= 2 + 20 \cdot 3 + 0 &&= 62 \\
+H_{12} &= 1 &\qquad s_{12} &= 62 + 40 \cdot (3 + 1) &&= 222 \\
+H_{13} &= 2 &\qquad s_{13} &= 222 + 15 \cdot (3 + 2) &&= 297 \\
+H_{14} &= 3 &\qquad s_{14} &= 297 + 10 \cdot (3 + 3) &&= 357 \\
+H_{22} &= 0 &\qquad s_{22} &= 3 + 40 \cdot 4 + 62 &&= 225 \\
+H_{23} &= 1 &\qquad s_{23} &= 225 + 15 \cdot (4 + 1) &&= 300 \\
+H_{24} &= 2 &\qquad s_{24} &= 300 + 10 \cdot (4 + 2) &&= 360 \\
+H_{33} &= 0 &\qquad s_{33} &= 4 + 15 \cdot 3 + \min\{\underline{222}, 225\} &&= 271 \\
+H_{34} &= 1 &\qquad s_{34} &= 271 + 10 \cdot (3 + 1) &&= 311 \\
+H_{44} &= 0 &\qquad s_{44} &= 2 + 10 \cdot 4 + \min\{297, 300, \underline{271}\} &&= 313
+\end{alignat*}
+Najmanjši skupni stroški za celotno obdobje so torej $s^* = 311$.
+Poiščimo še optimalno strategijo kupovanja pomaranč.
+\begin{align*}
+s^* = s_{34} &= K_3 + r_3 c_3 + r_4 (c_3 + H_{34}) + s_{12} & \text{kupi v 3.~mesecu za 3.~in 4.~mesec} \\
+s_{12} &= K_1 + r_1 c_1 + r_2 (c_1 + H_{12}) + s_{00} & \text{kupi v 1.~mesecu za 1.~in 2.~mesec}
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
