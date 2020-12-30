@@ -12,9 +12,34 @@ Ker prstani niso čisto homogeni,
 je verjetnost, da graviranje uspe, le $50 \%$.
 Ves ostali material (neuspeli prstani, opilki ipd.)
 bo moral na koncu vrniti zlatarju (tako je določeno v pogodbi).
-Ker je naročilo časovno omejeno, ima časa za največ 2 naročili pri zlatarju.
+Ker je naročilo časovno omejeno, ima časa za največ $2$ naročili pri zlatarju.
 Koliko prstanov naj vsakič naroči, da bodo pričakovani stroški čim manjši?
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bodo $s_{ij}$ pričakovani stroški, ki jih bo imel Antonio,
+če mora naročiti $i$ prstanov, na voljo pa ima še $j$ naročil.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+s_{ij} &= 0 € & (i \le 0, \ 0 \le j \le 2) \\
+s_{i0} &= 1\,600 € & (1 \le i \le 2) \\
+s_{ij} &= 200 € + \min\set{h \cdot 100 € + {1 \over 2^h} \sum_{k=0}^h {h \choose k} s_{i-h, j-1}}{h \ge 1} & (1 \le i, j \le 2)
+\end{align*}
+Izračunajmo najprej vrednosti $s_{11}$ in $s_{21}$,
+nato pa še skupne pričakovane stroške $s^* = s_{22}$.
+Opazimo, da minimziramo vsoto
+linearno naraščajočega in eksponentno padajočega člena,
+tako da lahko računanje ustavimo, ko začne ta vsota naraščati.
+\begin{alignat*}{2}
+s_{11} &= 200 € + \min\{900 €, 600 €, \underline{500 €}, \underline{500 €}, 550 €, \dots\} &&= 700 € \\
+s_{21} &= 200 € + \min\{1\,700 €, 1\,400 €, 1\,100 €, 900 €, 800 €, \underline{775 €}, 800 €, \dots\} &&= 975 € \\
+s_{22} &\approx 200€ + \min\{937.5 €, 793.75 €, 684.38 €, \underline{635.94 €}, 639.84 €, \dots\} &&\approx 835.94 €
+\end{alignat*}
+Antonio naj torej naroči $4$ prstane.
+Če uspe graviranje samo enega prstana,
+naj v drugo naroči še $3$ ali $4$ prstane,
+če pa ne uspe graviranje nobenega prstana,
+naj v drugo naroči še $6$ prstanov.
+Pričakovani stroški bodo tedaj približno $835.94 €$.
 \end{odgovor}
 \end{naloga}
