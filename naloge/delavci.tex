@@ -22,6 +22,39 @@ $p_3(j)$ & $0$ & $0.3$ & $0.6$ & $0.8$ & $0.85$ & $0.85$
 \end{center}
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $q_{kj}$ maksimalna verjetnost,
+da bo prvih $k$ opravil uspešno opravljenih,
+če na njih dela $j$ delavcev.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+q_{1j} &= p_1(j) & (0 \le j \le w) \\
+q_{kj} &= \max\set{q_{k-1,i} p_k(j-i)}{0 \le i \le j} & (2 \le k \le N, 0 \le j \le w)
+\end{align*}
+Vrednosti $1_{kj}$ računamo v leksikografskem vrstnem redu
+glede na indeksa $(k, j)$.
+Maksimalno verjetnost dobimo kot $q^* = q_{Nw}$.
+
+\item Izračunajmo vrednosti $q_{2j}$ ($0 \le j \le w$) in $q^* = q_{35}$.
+\begin{alignat*}{2}
+q_{20} &= 0 \cdot 0 &&= 0 \\
+q_{21} &= \max\{0 \cdot 0.4, 0.5 \cdot 0\} &&= 0 \\
+q_{22} &= \max\{0 \cdot 0.7, \underline{0.5 \cdot 0.4}, 0.6 \cdot 0\} &&= 0.2 \\
+q_{23} &= \max\{0 \cdot 0.8, \underline{0.5 \cdot 0.7}, 0.6 \cdot 0.4, 0.7 \cdot 0\} &&= 0.35 \\
+q_{24} &= \max\{0 \cdot 0.9, 0.5 \cdot 0.8, \underline{0.6 \cdot 0.7}, 0.7 \cdot 0.4, 0.8 \cdot 0\} &&= 0.42 \\
+q_{25} &= \max\{0 \cdot 0.95, 0.5 \cdot 0.9, 0.6 \cdot 0.8, \underline{0.7 \cdot 0.7}, 0.8 \cdot 0.4, 0.85 \cdot 0\} &&= 0.49 \\
+q_{35} &= \max\{0 \cdot 0.85, 0 \cdot 0.85, 0.2 \cdot 0.8, \underline{0.35 \cdot 0.6}, 0.42 \cdot 0.3, 0.49 \cdot 0\} &&= 0.21
+\end{alignat*}
+Maksimalna verjetnost uspešno opravljenih opravil
+je torej $q^* = q_{35} = 0.21$.
+Poiščimo še optimalno razporeditev delavcev.
+\begin{align*}
+q^* = q_{35} &= q_{23} p_3(2) & \text{$2$ delavca za tretje opravilo} \\
+q_{23} &= q_{11} p_2(2) & \text{$2$ delavca za drugo opravilo} \\
+q_{11} &= p_1(1) & \text{$1$ delavec za prvo opravilo}
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
