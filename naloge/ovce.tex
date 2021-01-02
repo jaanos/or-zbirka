@@ -16,6 +16,52 @@ izračuna maksimalni profit, ki ga lahko kmet doseže po $n$ letih.
 $p_1 = 100 €$, $p_2 = 130 €$ in $p_3 = 120 €$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $v_{ij}$ maksimalni profit,
+ki ga lahko kmet doseže po $i$ letih,
+če mu bo na začetku $i$-tega leta (po prodaji) ostalo $j$ ovac.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+v_{0k_0} &= 0 \\
+v_{0j} &= -\infty & (0 \le j < k_0) \\
+v_{ij} &= \max\set{v_{i-1,h} + p_i (2h-j)}{j/2 \le h \le 2^{i-1} k_0} & (1 \le i \le n, 0 \le j \le 2^i k_0)
+\end{align*}
+Vrednosti $v_{ij}$ računamo v leksikografskem vrstnem redu
+glede na indeksa $(i, j)$.
+Maksimalni profit dobimo kot $v^* = v_{n0}$.
+
+\item Izračunajmo vrednosti $v_{ij}$ ($1 \le i \le 2$, $0 \le j \le 2 \cdot 2^i$) in $v^* = v_{30}$.
+\begin{alignat*}{3}
+v_{10} &=&& 0 € + 4 \cdot 100 € &&= 400 € \\
+v_{11} &=&& 0 € + 3 \cdot 100 € &&= 300 € \\
+v_{12} &=&& 0 € + 2 \cdot 100 € &&= 200 € \\
+v_{13} &=&& 0 € + 1 \cdot 100 € &&= 100 € \\
+v_{14} &=&& 0 € + 0 \cdot 100 € &&= 0 € \\
+v_{20} &= \max\{&&{} 400 € + 0 \cdot 130 €, 300 € + 2 \cdot 130 €, 200 € + 4 \cdot 130 €, \\
+&&&{} 100 € + 6 \cdot 130 €, \underline{0 € + 8 \cdot 130 €}\} &&= 1\,040 € \\
+v_{21} &= \max\{&&{} 300 € + 1 \cdot 130 €, 200 € + 3 \cdot 130 €, \\
+&&&{} 100 € + 5 \cdot 130 €, \underline{0 € + 7 \cdot 130 €}\} &&= 910 € \\
+v_{22} &= \max\{&&{} 300 € + 0 \cdot 130 €, 200 € + 2 \cdot 130 €, \\
+&&&{} 100 € + 4 \cdot 130 €, \underline{0 € + 6 \cdot 130 €}\} &&= 780 € \\
+v_{23} &= \max\{&&{} 200 € + 1 \cdot 130 €, 100 € + 3 \cdot 130 €, \underline{0 € + 5 \cdot 130 €}\} &&= 650 € \\
+v_{24} &= \max\{&&{} 200 € + 0 \cdot 130 €, 100 € + 2 \cdot 130 €, \underline{0 € + 4 \cdot 130 €}\} &&= 520 € \\
+v_{25} &= \max\{&&{} 100 € + 1 \cdot 130 €, \underline{0 € + 3 \cdot 130 €}\} &&= 390 € \\
+v_{26} &= \max\{&&{} 100 € + 0 \cdot 130 €, \underline{0 € + 2 \cdot 130 €}\} &&= 260 € \\
+v_{27} &=&& 0 € + 1 \cdot 130 € &&= 130 € \\
+v_{28} &=&& 0 € + 0 \cdot 130 € &&= 0 € \\
+v_{30} &= \max\{&&{} 1\,040 € + 0 \cdot 120 €, 910 € + 2 \cdot 120 €, 780 € + 4 \cdot 120 €, \\
+&&&{} 650 € + 6 \cdot 120 €, 520 € + 8 \cdot 120 €, 390 € + 10 \cdot 120 €, \\
+&&&{} 260 € + 12 \cdot 120 €, 130 € + 14 \cdot 120 €, \underline{0 € + 16 \cdot 120 €}\} &&= 1\,920 €
+\end{alignat*}
+Kmet lahko torej doseže profit največ $1\,920 €$.
+Poiščimo še optimalno strategijo prodaje ovac.
+\begin{align*}
+v^* = v_{30} &= v_{28} + 16 p_3 & \text{ob prehodu v leto $3$ proda vseh $16$ ovac} \\
+v_{28} &= v_{14} + 0 p_2 & \text{ob prehodu v leto $2$ ne prodaja, ostane mu $8$ ovac} \\
+v_{14} &= v_{02} + 0 p_1 & \text{ob prehodu v leto $1$ ne prodaja, ostanejo mu $4$ ovce}
+\end{align*}
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
