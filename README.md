@@ -41,7 +41,6 @@ Uporabljajo se sledeči paketi za LaTeX:
 * `microtype`
 * `needspace`
 * [`omrezja`](https://github.com/jaanos/omrezja)
-* `pgflibraryshapes`
 * `tabularx`
 * `tikz`
 * `wasysym`
@@ -73,7 +72,7 @@ kjer so podane tudi smernice za pisanje.
 ## Prispevki
 
 Trenutno zbirka obsega 230 nalog,
-od katerih slaba petina še nima rešitev.
+od katerih jih manjši del še nima rešitev.
 Tako so trenutno zaželeni prispevki
 v obliki rešitev nalog in raznih popravkov
 (vsebinskih, slovničnih ali tipkarskih).
