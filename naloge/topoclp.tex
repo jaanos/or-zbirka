@@ -2,6 +2,29 @@
 \begin{vprasanje}
 Zapiši celoštevilski linearni program, ki določi topološko urejanje grafa.
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bo $G = (V, E)$ usmerjen graf z $n = |V|$ vozlišči.
+Za vsako vozlišče $u \in V$ in vsak $i$ ($1 \le i \le n$)
+uvedimo spremenljivko $x_{ui}$,
+katere vrednost interpretiramo kot
+$$
+x_{ui} = \begin{cases}
+1, & \text{vozlišče $u$ je $i$-to v topološki ureditvi, in} \\
+0  & \text{sicer}.
+\end{cases}
+$$
+Zapišimo linearne omejitve.
+\begin{alignat*}{2}
+\forall u \in V \ \forall i \in \{1, \dots, n\}: &\ & 0 \le x_{ui} &\le 1, \quad x_{ui} \in \Z
+\opis{Vsako vozlišče je na natanko enem mestu}
+\forall u \in V: &\ & \sum_{i=1}^n x_{ui} &= 1
+\opis{Na vsakem mestu je natanko eno vozlišče}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{u \in V} x_{ui} &= 1
+\opis{Vsaka povezava gre v smeri povečanja mesta}
+\forall uv \in E: &\ & \sum_{i=1}^n i (x_{vi} - x_{ui}) &\ge 1
+\end{alignat*}
+Ciljna funkcija tukaj ni pomembna --
+vsaka dopustna rešitev nam da topološko urejanje.
 \end{odgovor}
 \end{naloga}
