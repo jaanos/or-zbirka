@@ -2,6 +2,57 @@
 \begin{vprasanje}
 Zapiši algoritem, ki ugotovi, ali ima graf več kot eno topološko ureditev.
 \end{vprasanje}
+
 \begin{odgovor}
+Algoritem deluje tako,
+da v vrsto najprej doda vozlišča z vhodno stopnjo $0$,
+nato pa pobira vozlišča iz vrste in jih odstranjuje iz grafa,
+pri čemer se v vrsto dodajajo vozlišča,
+ki jim pri tem izhodna stopnja pade na $0$.
+Če se zgodi, da je v nekem trenutku v vrsti več kot eno vozlišče,
+si algoritem to zapomni
+-- če algoritem tako obišče vsa vozlišča
+(tj., obstaja topološka ureditev),
+potem je topološka ureditev več kot ena in algoritem vrne $\True$.
+Če pa je topološka ureditev ena sama ali pa te ni,
+algoritem vrne $\False$.
+\begin{small}
+\begin{algorithmic}
+\Function{VečTopo}{$G = (V, E)$}
+	\State {\sl stopnja} $\gets$ slovar vhodnih stopenj vozlišč grafa $G$
+	\State $Q \gets$ prazna vrsta
+	\State {\sl več} $\gets \False$
+	\State {\sl prvo} $\gets \False$
+	\State $i \gets 0$ \hfill števec obiskanih vozlišč
+	\For{$v \in V$} \hfill začetno iskanje izvorov
+	    \If{{\sl stopnja}$[v] = 0$}
+	        \State $Q.\push(v)$
+	        \If{{\sl prvo}} \hfill če je bil predhodno najden izvor,
+	            \State {\sl več} $\gets \True$ \hfill rešitev ni enolična
+	        \Else
+	            \State {\sl prvo} $\gets \True$ \hfill prvi najden izvor
+	        \EndIf
+	    \EndIf
+	\EndFor
+	\While{$\lnot Q.\isEmpty()$}
+	    \State $u \gets Q.\pop()$
+	    \State $i \gets i+1$ \hfill povečamo števec
+	    \State {\sl prvo} $\gets \False$
+	    \For{$v \in \Adj(G, u)$} \hfill izhodni sosedi vozlišča $u$
+	        \State {\sl stopnja}$[v] \gets$ {\sl stopnja}$[v] - 1$
+	        \If{{\sl stopnja}$[v] = 0$} \hfill nov izvor po odstranjevanju $u$
+		        \State $Q.\push(v)$
+		        \If{{\sl prvo}}
+		            \State {\sl več} $\gets \True$
+		        \Else
+		            \State {\sl prvo} $\gets \True$
+		        \EndIf
+	        \EndIf
+	    \EndFor
+	\EndWhile
+	\State \Return {\sl več}${} \land (i = |V|)$ \hfill vrni $\True$, če obstaja topološka ureditev in ta ni enolična
+\EndFunction
+\end{algorithmic}
+\end{small}
 \end{odgovor}
 \end{naloga}
