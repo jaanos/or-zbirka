@@ -20,7 +20,7 @@ Prav tako imata lahko obe funkciji dostop do drugih pomožnih spremenljivk.
 Naj bo $\ell_u$ globina vozlišča $u$ v drevesu iskanja v globino
 (tj., razdalja od korena do $u$ v drevesu iskanja v globino).
 Za vsako vozlišče $u$ definiramo vrednost $p_u$ kot najmanjšo globino vozlišč,
-ki so v grafu $G$ sosedna vozlišču $u$
+ki so v grafu $G$ sosedna (ali enaka) vozlišču $u$
 ali njegovim potomcem v drevesu iskanja v globino.
 
 \begin{enumerate}[(a)]
@@ -56,6 +56,69 @@ Kako v vsakem od teh primerov ugotoviš, ali je $u$ prerezno vozlišče?}
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Drevo iskanja v globino je prikazano na sliki~\fig[prerezna-resitev],
+pri čemer sta pri vsakem vozlišču $u$ prikazani še vrednosti $(\ell_u, p_u)$.
+
+Prerezna vozlišča grafa s slike~\fig so $a$, $b$ in $c$.
+Koren drevesa iskanja v globino $a$ je prerezno vozlišče,
+ker ima več kot enega naslednika.
+Ostala prerezna vozlišča prepoznamo po tem,
+da imajo takega naslednika v drevesu iskanja v globino,
+da v njegovem poddrevesu ni vozlišč s prečnimi povezavami
+do predhodnikov obravnavanega vozlišča
+-- drugače povedano,
+notranje vozlišče $u$ v drevesu iskanja v globino
+je prerezno vozlišče natanko tedaj,
+ko obstaja njegov naslednik $w$,
+za katerega velja $p_w \ge \ell_u$.
+
+\item Zapišimo rekurzivno formulo.
+$$
+p_u = \min\left(\set{p_w}{w \in V, u \to w} \cup \set{\ell_w}{w \in V, u \sim w \lor u = w}\right)
+$$
+
+\item Zapišimo psevdokodo za funkcijo $\previsit$.
+\begin{small}
+\begin{algorithmic}
+\Function{Previsit}{$u, v$}
+    \If{$v = \Null$}
+        \State $\ell_u \gets 0$
+    \Else
+        \State $\ell_u \gets \ell_v + 1$
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Zapišimo psevdokodo za funkcijo $\postvisit$.
+\begin{small}
+\begin{algorithmic}
+\Function{Postvisit}{$u, v$}
+    \If{$(v = \Null \land |\Adj(G, u)| > 1) \lor (v \ne \Null \land \exists w \in \Adj(G, u)): p_w \le \ell_u$}
+        \State {\sl izhod}$.\append(u)$
+    \EndIf
+    \State $p_u \gets \min\left(\set{p_w}{w \in \Adj(G, u) \land \ell_w > \ell_u} \cup \set{\ell_w}{w \in \Adj(G, u) \lor u = w}\right)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Iskanje v globino teče v času $O(m + T)$,
+pri čemer je $m$ število povezav v grafu,
+$T$ pa je čas,
+porabljen za klic funkcij $\previsit$ in $\postvisit$ za vsako vozlišče grafa.
+Funkcija $\previsit$ teče v konstantnem času,
+klic funkcije $\postvisit(u, v)$ pa teče v času $O(d_G(u))$,
+kjer je $d_G(u)$ stopnja vozlišča $u$ v grafu $G$.
+Ker je vsota stopenj vozlišč grafa enaka dvakratniku števila povezav,
+lahko sklenemo, da celoten algoritem teče v času $O(m)$.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika[prerezna-resitev]
+\podnaslov[\res{}(a)]{Drevo iskanja v globino}
+\end{slika}
 \end{odgovor}
 \end{naloga}
