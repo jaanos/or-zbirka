@@ -1,0 +1,11 @@
+\begin{neusmerjen*}[scale=1.3]*
+	\tikzstyle{zvezdica}=[red]
+
+	\vozlisce{a}{xyz polar cs:angle= 90,radius=2}
+	\vozlisce{b}{xyz polar cs:angle=210,radius=2}
+	\vozlisce{c}{xyz polar cs:angle=330,radius=2}
+
+	\povezava*{a}{b}{4}[sloped]{above}
+	\povezava*{a}{c}{3}[sloped]{above}
+	\povezava{b}{c}{2}{below}
+\end{neusmerjen*}
