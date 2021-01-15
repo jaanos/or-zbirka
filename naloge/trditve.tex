@@ -14,6 +14,38 @@ Pokaži, da je poljubno minimalno vpeto drevo v $G'$
 tudi minimalno vpeto drevo v $G$.
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Trditev ni resnična.
+Protiprimer je podan na sliki~\fig,
+ki z rdečo barvo prikazuje drevo najkrajših poti iz vozlišča $a$
+-- to ne vsebuje najkrajše povezave $bc$.
+
+\item Trditev je resnična.
+Da jo dokažemo,
+predpostavimo, da vpeto drevo $T$ ne vsebuje najkrajše povezave $e$.
+Potem graf $T + e$ vsebuje cikel, ki vsebuje povezavo $e' \ne e$.
+Po predpostavki je povezava $e'$ daljša od povezave $e$,
+tako da je graf $T + e - e'$ vpeto drevo v grafu $G$ z manjšo dolžino kot $T$.
+Drevo $T$ tako ne more biti minimalno vpeto drevo.
+
+\item Očitno je, da je vsako vpeto drevo v $G'$ tudi vpeto drevo v $G$.
+Naj bo $T$ drevo, ki je vpeto v grafu $G$, ne pa tudi v grafu $G'$.
+Drevo $T$ potem vsebuje povezavo $e$.
+Naj bo $e'$ povezava iz $C - e$
+-- po predpostavki je $T' = T - e + e'$ vpeto drevo v $G$,
+katerega dolžina ni večja kot dolžina drevesa $T$.
+Ker pa $T'$ ne vsebuje povezave $e$, je tudi vpeto drevo v grafu $G'$.
+Dolžina minimalnega vpetega drevesa $T_{\min}$ v $G'$
+tako ne presega dolžine nobenega vpetega drevesa v $G$,
+zaradi česar lahko sklenemo,
+da je $T_{\min}$ tudi minimalno vpeto drevo v $G$.
+
+\end{enumerate}
+\begin{slika}
+\pgfslika
+\podnaslov[\res{}(a)]{Protiprimer}
+\end{slika}
 \end{odgovor}
 \end{naloga}
