@@ -1,0 +1,40 @@
+\begin{neusmerjen*}[scale=2]*
+	\tikzstyle{zvezdica}=[dashed]
+
+	\oznaka{a}{(0, 0)}
+	\oznaka{b}{(1, 0)}
+	\oznaka{c}{(2, 2)}
+	\oznaka{d}{(3, 2)}
+	\oznaka{e}{(1, 0)}
+	\oznaka{f}{(2, 0)}
+	\oznaka{j}{(5, 3)}
+	\oznaka{g}{(3, 0)}
+	\oznaka{h}{(2, 0)}
+	\oznaka{i}{(4, 2)}
+	\oznaka{j}{(5, 3)}
+
+	\vozlisce{a}[left]{ 0, 0}
+	\vozlisce{b}[left]{-1,-1}
+	\vozlisce{c}[left]{-2,-2}
+	\vozlisce{d}[right]{-2,-3}
+	\vozlisce{e}[below]{ 1,-1}
+	\vozlisce{f}[right]{ 2,-2}
+	\vozlisce{g}[right]{ 0,-3}
+	\vozlisce{h}[left]{ 0,-2}
+	\vozlisce{i}[left]{-2,-4}
+	\vozlisce{j}[right]{-2,-5}
+
+	\povezava{c}{b}{}{}
+	\povezava{b}{a}{}{}
+	\povezava{a}{e}{}{}
+	\povezava{e}{f}{}{}
+	\povezava*{f}{a}{}{}[bend right=20]
+	\povezava*{a}{g}{}{}[bend left=30]
+	\povezava{g}{h}{}{}
+	\povezava{h}{b}{}{}
+	\povezava*{d}{j}{}{}[bend left=30]
+	\povezava{j}{i}{}{}
+	\povezava{i}{d}{}{}
+	\povezava{d}{c}{}{}
+	\povezava*{c}{i}{}{}[bend right=30]
+\end{neusmerjen*}
