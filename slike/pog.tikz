@@ -1,13 +1,12 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=4mm]
+\begin{neusmerjen*}[scale=1.3]*
+    \vozlisce{a}{-3,-1}
+    \vozlisce{b}{ 0,-1}
+    \vozlisce{c}{ 2,-1}
+    \vozlisce{d}{ 3, 1}
+    \vozlisce{e}{ 0, 1}
 
-\node[vertex] (1) at (-3,-1) [label=below:$1$] {};
-\node[vertex] (2) at ( 0,-1) [label=below:$2$] {};
-\node[vertex] (3) at ( 2,-1) [label=below:$3$] {};
-\node[vertex] (4) at ( 3, 1) [label=above:$4$] {};
-\node[vertex] (5) at ( 0, 1) [label=above:$5$] {};
-
-\draw (1) -- (5);
-\draw (2) -- (3) -- (4) -- (2);
-
-\end{tikzpicture}
+    \povezava{a}{e}{}{}
+    \povezava{b}{c}{}{}
+    \povezava{b}{d}{}{}
+    \povezava{c}{d}{}{}
+\end{neusmerjen*}
