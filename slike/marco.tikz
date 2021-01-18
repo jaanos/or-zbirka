@@ -1,36 +1,33 @@
-\begin{tikzpicture}[style=thick,scale=0.9]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
+\begin{usmerjen*}[scale=1.2]*
+    \vozlisce{a}{-7, 0}
+    \vozlisce{b}{-5, 2}
+    \vozlisce{c}{-5,-2}
+    \vozlisce{d}{-1, 3}
+    \vozlisce{e}{-1, 1}
+    \vozlisce{f}{-1,-1}
+    \vozlisce{g}{-1,-3}
+    \vozlisce{h}{ 1, 3}
+    \vozlisce{i}{ 1,-1}
+    \vozlisce{j}{ 5, 3}
+    \vozlisce{k}{ 7, 3}
+    \vozlisce{l}{ 7,-3}
 
-\node[vertex] (A) at (-7, 0) {$a$};
-\node[vertex] (B) at (-5, 2) {$b$};
-\node[vertex] (C) at (-5,-2) {$c$};
-\node[vertex] (D) at (-1, 3) {$d$};
-\node[vertex] (E) at (-1, 1) {$e$};
-\node[vertex] (F) at (-1,-1) {$f$};
-\node[vertex] (G) at (-1,-3) {$g$};
-\node[vertex] (H) at ( 1, 3) {$h$};
-\node[vertex] (I) at ( 1,-1) {$i$};
-\node[vertex] (J) at ( 5, 3) {$j$};
-\node[vertex] (K) at ( 7, 3) {$k$};
-\node[vertex] (L) at ( 7,-3) {$\ell$};
-
-\draw[->] (A) -- (B) node [midway, above, sloped] {$-1$};
-\draw[->] (A) -- (C) node [midway, below, sloped] {$1$};
-\draw[->] (B) -- (D) node [midway, above, sloped] {$6$};
-\draw[->] (B) -- (E) node [midway, above, sloped] {$10$};
-\draw[->] (B) -- (F) node [midway, below, sloped] {$6$};
-\draw[->] (C) -- (F) node [midway, above, sloped] {$5$};
-\draw[->] (C) -- (G) node [midway, below, sloped] {$10$};
-\draw[->] (D) -- (E) node [midway, left] {$5$};
-\draw[->] (D) -- (H) node [midway, above] {$5$};
-\draw[->] (E) -- (H) node [midway, below, sloped] {$2$};
-\draw[->] (E) -- (I) node [midway, above, sloped] {$-2$};
-\draw[->] (F) -- (G) node [midway, left] {$5$};
-\draw[->] (F) -- (I) node [midway, below] {$5$};
-\draw[->] (G) -- (L) node [midway, below] {$3$};
-\draw[->] (H) -- (J) node [midway, above] {$-5$};
-\draw[->] (I) -- (J) node [midway, below, sloped] {$-2$};
-\draw[->] (I) -- (L) node [midway, above, sloped] {$1$};
-\draw[->] (J) -- (K) node [midway, above] {$8$};
-
-\end{tikzpicture}
+    \povezava{a}{b}{-1}[sloped]{above}
+    \povezava{a}{c}{1}[sloped]{below}
+    \povezava{b}{d}{6}[sloped]{above}
+    \povezava{b}{e}{10}[sloped]{above}
+    \povezava{b}{f}{6}[sloped]{below}
+    \povezava{c}{f}{5}[sloped]{above}
+    \povezava{c}{g}{10}[sloped]{below}
+    \povezava{d}{e}{5}{left}
+    \povezava{d}{h}{5}{above}
+    \povezava{e}{h}{2}[sloped]{below}
+    \povezava{e}{i}{-2}[sloped]{above}
+    \povezava{f}{g}{5}{left}
+    \povezava{f}{i}{5}{below}
+    \povezava{g}{l}{3}{below}
+    \povezava{h}{j}{-5}{above}
+    \povezava{i}{j}{-2}[sloped]{below}
+    \povezava{i}{l}{1}[sloped]{above}
+    \povezava{j}{k}{8}{above}
+\end{usmerjen*}
