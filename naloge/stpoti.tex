@@ -10,6 +10,41 @@ Algoritem nato uporabi na grafu s slike~\fig.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+Zapišimo psevdokodo algoritma,
+ki kliče funkcijo {\sc Topo} iz naloge~\res[topo]{}(a).
+\begin{small}
+\begin{algorithmic}
+\Function{ŠteviloVsehPoti}{$G = (V, E), s$}
+    \State $C \gets$ slovar z vrednostjo $0$ za vsako vozlišče $v \in V$
+    \State $C[s] \gets 1$
+    \For{$u \in$ {\sc Topo}$(G)$}
+        \For{$v \in \Adj(G, u)$}
+            \State $C[v] \gets C[v] + C[u]$
+        \EndFor
+    \EndFor
+    \State \Return $C$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Potek izvajanja algoritma na grafu s slike~\fig z začetnim vozliščem $s$,
+pri čemer je uporabljena topološka ureditev $s, a, b, c, d, t$,
+je prikazan v tabeli~\tab.
+%
+\begin{tabela}
+$$
+\begin{array}{c|cccccc}
+u & s & a & b & c & d & t \\ \hline
+  & 1 & 0 & 0 & 0 & 0 & 0 \\
+s & 1 & 1 & 0 & 1 & 0 & 0 \\
+a & 1 & 1 & 1 & 2 & 0 & 0 \\
+b & 1 & 1 & 1 & 3 & 1 & 0 \\
+c & 1 & 1 & 1 & 3 & 4 & 3 \\
+d & 1 & 1 & 1 & 3 & 4 & 7
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
