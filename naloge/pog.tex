@@ -34,7 +34,7 @@ V prospektu so zasledili naslednjo psevdokodo algoritma:
 
 \begin{enumerate}[(a)]
 \item Algoritem izvedi na grafu s slike~\fig,
-tj,. nariši graf vsakič, ko se spremeni barva nekega vozlišča.
+tj., zabeleži vsako spremembo barve nekega vozlišča.
 Koliko je takrat vrednost števca?
 
 \item Kaj algoritem vrača?
@@ -49,6 +49,36 @@ Odgovor utemelji.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item V tabeli~\tab je prikazan vrstni red barvanja vozlišč v rumeno barvo,
+pri čemer se obarva vozlišče $v$ ali $u$.
+Zabeleženo je tudi, kdaj se spremeni vrednost števca $s$
+
+\item Algoritem vrača število povezanih komponent grafa.
+Izvaja namreč pregled v širino,
+pri čemer se števec poveča vsakič, ko naleti na vozlišče,
+ki ga ni dosegel po predhodnih povečevanjih števca.
+
+\item Časovna zahtevnost algoritma je $O(n + m)$,
+kjer je $n$ število vozlišč, $m$ pa število povezav podanega grafa.
+Algoritem namreč z zunanjo zanko obišče vsako vozlišče enkrat,
+z notranjo zanko pa vsako povezavo dvakrat.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{ccccl}
+s & v & w & u & Q \\ \hline
+1 & a &   &   & [a] \\
+  &   & a & e & [e] \\
+2 & b &   &   & [b] \\
+  &   & b & c & [c] \\
+  &   &   & d & [c, d]
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
