@@ -7,17 +7,17 @@ Uteži predstavljajo dobiček na povezavi (oz.~izgubo, če so negativne).
 Marco bo začel svojo pot v enem izmed vozlišč grafa
 in se po usmerjenih povezavah odpravil do končnega vozlišča
 (začetek in konec nista znana, moramo ju še določiti).
-Pomagaj Marcu najti naboljšo pot (vključno z začetnim in končnim vozliščem)!
+Pomagaj Marcu najti najboljšo pot (vključno z začetnim in končnim vozliščem)!
 Kakšen dobiček si lahko obeta?
 
 \begin{enumerate}[(a)]
-\item Reši nalogo za graf s slike~\fig
-(razloži, kako si prišel do rezultata, oz.~jasno označi vmesne rezultate).
-
 \item Opiši algoritem, ki reši dani problem,
 ter obravnavaj njegovo časovno zahtevnost.
 \namig{uporabi dinamično programiranje,
 da bo tvoj algoritem tekel v času $O(|E| + |V|)$}.
+
+\item Reši nalogo za graf s slike~\fig
+(razloži, kako si prišel do rezultata, oz.~jasno označi vmesne rezultate).
 \end{enumerate}
 
 \begin{slika}
@@ -25,6 +25,55 @@ da bo tvoj algoritem tekel v času $O(|E| + |V|)$}.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Denimo, da za vsako povezavo $e \in E$
+poznamo njeno utež $w_e$.
+Naj bo $x_u$ ($u \in V$) največji dobiček,
+ki ga lahko Marco doseže, če svojo pot konča v vozlišču $u$.
+Zapišimo rekurzivne enačbe.
+$$
+x_u = \max\left(\{0\} \cup \set{x_v + w_{vu}}{vu \in E}\right)
+\qquad (u \in V)
+$$
+Vrednosti $x_u$ računamo glede na topološko ureditev grafa.
+Optimalni dobiček dobimo kot $x^* = \max\set{x_u}{u \in V}$,
+optimalno pot pa lahko rekonstruiramo glede na vrednosti,
+ki smo jih uporabili pri računanju $x^*$.
+Časovna zahtevnost algoritma je $O(n + m)$,
+kjer je $n$ število vozlišč, $m$ pa število povezav podanega grafa.
+
+\item Izračunajmo vrednosti $x_u$.
+Uporabili bomo abecedni vrstni red vozlišč,
+za katerega opazimo, da ustreza topološki ureditvi.
+\begin{alignat*}{2}
+x_a &&&= 0 \\
+x_b &= \max\{\underline{0}, 0+(-1)\} &&= 0 \\
+x_c &= \max\{0, \underline{0+1}\} &&= 1 \\
+x_d &= \max\{0, \underline{0+6}\} &&= 6 \\
+x_e &= \max\{0, 0+10, \underline{6+5}\} &&= 11 \\
+x_f &= \max\{0, \underline{0+6}, \underline{1+5}\} &&= 6 \\
+x_g &= \max\{0, \underline{1+10}, \underline{6+5}\} &&= 11 \\
+x_h &= \max\{0, 6+5, \underline{11+2}\} &&= 13 \\
+x_i &= \max\{0, 11+(-2), \underline{6+5}\} &&= 11 \\
+x_j &= \max\{0, 13+(-5), \underline{11+(-2)}\} &&= 9 \\
+x_k &= \max\{0, \underline{9+8}\} &&= 17 \\
+x_\ell &= \max\{0, \underline{11+3}, 11+1\} &&= 14
+\end{alignat*}
+Največji dobiček, ki si ga lahko obeta Marco, je torej $x^* = 17$.
+Rekonstruirajmo pot, ki nam da tak dobiček.
+\begin{align*}
+x^* = x_k &= x_j + w_{jk} & \text{gre po povezavi $jk$} \\
+x_j &= x_i + w_{ij} & \text{gre po povezavi $ij$} \\
+x_i &= x_f + w_{fi} & \text{gre po povezavi $fi$} \\
+x_f &= x_c + w_{cf} & \text{gre po povezavi $cf$} \\
+x_c &= x_a + w_{ac} & \text{gre po povezavi $ac$} \\
+x_a &= 0 & \text{začne v vozlišču $a$}
+\end{align*}
+Optimalna pot je torej $a \to c \to f \to i \to j \to k$.
+Ker velja tudi $x_f = x_b + w_{bf}$ in $x_b = 0$,
+je druga optimalna pot $b \to f \to i \to j \to k$.
+\end{enumerate}
 \end{odgovor}
 \end{naloga}
