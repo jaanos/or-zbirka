@@ -1,0 +1,42 @@
+\documentclass[a4paper, 11pt, titlepage]{article}
+\input{tex/paketi.tex}
+\usepackage{fourier}
+\usepackage[oznake]{omrezja}
+\input{tex/ukazi.tex}
+\pgfrealjobname{or-gradivo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nal}[1][]{\ref{nal:\taoznaka{#1}}\xspace}
+\newcommand{\res}[1][]{\ref{res:\taoznaka{#1}}\xspace}
+
+\begin{document}
+\title{Študijsko gradivo za predmet Operacijske raziskave}
+\author{Janoš Vidali}
+\maketitle
+
+\setcounter{tocdepth}{2}
+\pdfbookmark[1]{Kazalo}{toc}
+\tableofcontents
+
+\clearpage
+
+\section{Naloge}
+{
+\input{tex/naloga.tex}
+\input{gradivo/seznam.tex}
+}
+
+\clearpage
+
+\section{Rešitve}
+{
+\input{tex/resitev.tex}
+\input{gradivo/seznam.tex}
+}
+
+\clearpage
+
+\bibliographystyle{bababbrv-fl}
+\bibliography{reference}
+\addcontentsline{toc}{section}{Literatura}
+
+\end{document}
