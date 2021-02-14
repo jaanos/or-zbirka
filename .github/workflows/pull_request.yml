@@ -19,8 +19,16 @@ jobs:
         uses: xu-cheng/latex-action@master
         with:
           root_file: or-zbirka.tex
+      - name: Prevedi gradivo
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: or-gradivo.tex
+      - name: Premakni PDF
+        run: |
+          mkdir pdf
+          mv or-zbirka.pdf or-gradivo.pdf pdf/
       - name: Naloži PDF
         uses: actions/upload-artifact@v1
         with:
-          name: or-zbirka
-          path: or-zbirka.pdf
+          name: pdf
+          path: pdf
