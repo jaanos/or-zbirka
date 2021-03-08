@@ -37,7 +37,6 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\razdelek}[1]{\novastran\subsection{#1}\renewcommand{\novastran}{\clearpage}}
 \newcommand{\opis}[2][2]{\shortintertext{\small\needspace{#1\baselineskip}#2:}}
 \newcommand{\namig}[1]{\\ {\small {\bf Namig:} #1}}
 \newcommand{\opomba}[1]{\\ {\small {\bf Opomba:} #1}}
@@ -63,10 +62,11 @@
 \newcounter{naloga}
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
-\newcommand{\hlabel}[2]{\label{#1:#2}\hypertarget{#1.#2}{}}
+\newcommand{\hlabel}[2][\hlab]{\label{#1:#2}\hypertarget{#1.#2}{}}
+\newcommand{\razdelek}[2]{\novastran\subsection{#1}\hlabel[raz\hlab]{#2}\renewcommand{\novastran}{\clearpage}}
 \newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\addcontentsline{toc}{subsubsection}{Naloga \thenaloga}\noindent {\bf Naloga}}{\bigskip}
-\newenvironment{slika}[1][t!]{\setlabel{\thislabel}\begin{figure}[#1]\centering}{\hlabel{fig}{\curlabel}\end{figure}}
-\newenvironment{tabela}[1][t!]{\setlabel{\thislabel}\begin{table}[#1]\centering}{\hlabel{tab}{\curlabel}\end{table}}
+\newenvironment{slika}[1][t!]{\setlabel{\thislabel}\begin{figure}[#1]\centering}{\hlabel[fig]{\curlabel}\end{figure}}
+\newenvironment{tabela}[1][t!]{\setlabel{\thislabel}\begin{table}[#1]\centering}{\hlabel[tab]{\curlabel}\end{table}}
 \newcommand{\setlabel}[1]{\grenewcommand{\curlabel}{\taoznaka{#1}}}
 \newcommand{\pgfslika}[1][]{\setlabel{#1}\leavevmode\beginpgfgraphicnamed{pgf/\taoznaka{#1}}\input{slike/\taoznaka{#1}.tikz}\endpgfgraphicnamed}
 \newcommand{\nastaviOznako}[1]{\if\relax\detokenize{#1}\relax\grenewcommand{\thislabel}{\thenaloga}\else\grenewcommand{\thislabel}{#1}\fi\grenewcommand{\curlabel}{\thislabel}}
@@ -80,6 +80,8 @@
 \newcommand{\curlabel}{\thislabel}
 \newcommand{\fig}[1][]{\ref{fig:\taoznaka{#1}}\xspace}
 \newcommand{\tab}[1][]{\ref{tab:\taoznaka{#1}}\xspace}
+\newcommand{\raznal}[1]{\ref{raznal:#1}\xspace}
+\newcommand{\razres}[1]{\ref{razres:#1}\xspace}
 \newcommand{\podnaslov}[2][]{\caption{#2 za nalogo~\if\relax\detokenize{#1}\relax\del{}\else#1\fi.}}
 
 \allowdisplaybreaks

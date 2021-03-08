@@ -1,6 +1,7 @@
 # Zbirka nalog iz Operacijskih raziskav
 
-[![](https://github.com/jaanos/or-zbirka/workflows/PDF/badge.svg) **Prenesi zadnjo različico**](https://jaanos.github.io/or-zbirka/pdf/or-zbirka.pdf)
+* [![](https://github.com/jaanos/or-zbirka/workflows/PDF/badge.svg) **Prenesi zadnjo različico**](https://jaanos.github.io/or-zbirka/pdf/or-zbirka.pdf)
+* [**Rešene naloge pri predmetu Operacijske raziskave** - študijsko gradivo za študente 2. letnika Finančne matematike](https://jaanos.github.io/or-zbirka/pdf/or-gradivo.pdf)
 
 Ta zbirka nalog obsega naloge z vaj, kolokvijev in izpitov
 pri predmetu Operacijske raziskave od š.l. 2009/10 naprej.

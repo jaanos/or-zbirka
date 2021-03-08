@@ -1,0 +1,33 @@
+\begin{usmerjen*}[scale=1.5]*
+    \vozlisce{s}{-5, 1}
+    \vozlisce{a}{-3,-1}
+    \vozlisce{b}{ 1, 1}
+    \vozlisce{c}{-3, 3}
+    \vozlisce{d}{ 3, 1}
+    \vozlisce{e}{-1, 1}
+    \vozlisce{f}{-3, 1}
+    \vozlisce{g}{ 3,-1}
+    \vozlisce{h}{ 1,-1}
+    \vozlisce{i}{-1,-1}
+    \vozlisce{j}{-1,-3}
+    \vozlisce{k}{ 1,-3}
+    \vozlisce{z}{ 5,-1}
+
+    \povezava{s}{c}{0}{above}[sloped]
+    \povezava{s}{f}{0}{above}
+    \povezava*{s}{a}{0}{below}[sloped]
+    \povezava{c}{b}{9}{above}[sloped]
+    \povezava{f}{e}{4}{above}
+    \povezava*{a}{i}{5}{above}
+    \povezava{a}{j}{5}{below}[sloped]
+    \povezava{e}{b}{8}{below}
+    \povezava{e}{h}{8}{below}[sloped]
+    \povezava*{i}{h}{5}{below}
+    \povezava{j}{k}{10}{below}
+    \povezava{b}{d}{7}{above}
+    \povezava{b}{g}{7}{below}[sloped]
+    \povezava*{h}{g}{4}{below}
+    \povezava{k}{z}{6}{below}[sloped]
+    \povezava{d}{z}{4}{above}[sloped]
+    \povezava*{g}{z}{5}{above}
+\end{usmerjen*}
