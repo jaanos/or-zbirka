@@ -1,0 +1,57 @@
+\documentclass[a4paper, 11pt, titlepage]{article}
+\input{tex/paketi.tex}
+\usepackage{fourier}
+\usepackage[oznake]{omrezja}
+\input{tex/ukazi.tex}
+\pgfrealjobname{or-gradivo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nal}[1][]{\ref{nal:\taoznaka{#1}}\xspace}
+\newcommand{\res}[1][]{\ref{res:\taoznaka{#1}}\xspace}
+
+\begin{document}
+\title{Rešene naloge pri predmetu \\
+{\bf OPERACIJSKE RAZISKAVE} \\[1cm]
+Študijsko gradivo za študente \\
+2.~letnika Finančne matematike}
+\author{\Large Janoš Vidali}
+\date{\vfill Ljubljana, 2021}
+\maketitle
+
+\input{gradivo/kolofon.tex}
+
+\clearpage
+
+\setcounter{tocdepth}{2}
+\pdfbookmark[1]{Kazalo}{toc}
+\tableofcontents
+
+\clearpage
+
+\section*{Predgovor}
+\addcontentsline{toc}{section}{Predgovor}
+
+\input{gradivo/predgovor.tex}
+
+\clearpage
+
+\section{Naloge}
+{
+\input{tex/naloga.tex}
+\input{gradivo/seznam.tex}
+}
+
+\clearpage
+
+\section{Rešitve}
+{
+\input{tex/resitev.tex}
+\input{gradivo/seznam.tex}
+}
+
+\clearpage
+
+\bibliographystyle{bababbrv-fl}
+\bibliography{reference}
+\addcontentsline{toc}{section}{Literatura}
+
+\end{document}

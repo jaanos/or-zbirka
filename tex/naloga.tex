@@ -3,5 +3,6 @@
 \newcommand{\naslov}[1]{\renewcommand{\tanaslov}{\if\relax\detokenize{#1}\relax\else\noindent {\small\bf (#1)}\par\fi}}
 \newcommand{\vir}[1]{\renewcommand{\tavir}{\hfill {\small Vir: #1}\par}}
 \newcommand{\novastran}{}
-\newenvironment{vprasanje}{\hlabel{nal}{\thislabel}{\bf \res.}\tavir\tanaslov\smallskip\noindent\ignorespaces}{}
+\newcommand{\hlab}{nal}
+\newenvironment{vprasanje}{\hlabel{\thislabel}{\bf \res.}\tavir\tanaslov\smallskip\noindent\ignorespaces}{}
 \NewEnviron{odgovor}{}
