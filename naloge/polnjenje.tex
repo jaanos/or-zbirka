@@ -43,8 +43,9 @@ ki bo štela število uporabljenih košev.
 Zapišimo celoštevilski linearni program.
 \begin{alignat*}{3}
 && \min &\ t &\quad \text{p.p.} \\
-\forall i, j \in \{1, \dots, n\}: &\ & 0 \le x_{ij} &\le 1 & x_{ij} &\in \Z \\
-&& 0 \le t &\le 1 & t &\in \Z
+\forall i, j \in \{1, \dots, n\}: &\ & 0 \le x_{ij} &\le 1 & x_{ij} &\in \Z
+\opis{Vsak predmet gre v en koš}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^n x_{ij} &= 1
 \opis{Omejitev velikosti košev}
 \forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^n s_i x_{ij} &\le V
 \opis{Štetje košev}
