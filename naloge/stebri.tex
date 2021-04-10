@@ -1,0 +1,90 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 12.4.2021}
+\begin{vprasanje}
+Zgraditi želimo avtocestni viadukt dolžine $\ell$ metrov,
+ki bo prečkal dolino s težavnim terenom.
+Geologi in arhitekti so že pregledali teren in identificirali $n$ mest,
+kamor bi lahko postavili podporne stebre.
+Vsako mesto je predstavljeno s številom $x_i$ ($1 \le i \le n$),
+ki predstavlja oddaljenost v metrih od začetka viadukta
+(lahko predpostaviš,
+da velja $0 < x_i < x_j < \ell$ za vsaka $1 \le i < j \le n$).
+Gradnja stebra na mestu $x_i$ nas stane $c_i$,
+razdalja do sosednjih stebrov
+(oziroma začetne ali končne točke viadukta pri prvem in zadnjem stebru)
+ne sme preseči $r_i$
+-- t.j., če zgradimo stebra na mestih $x_i$ in $x_j$ ter nobenega drugega vmes,
+mora veljati $|x_i - x_j| \le r_i$ in $|x_i - x_j| \le r_j$
+(začetna in končna točka nimata take omejitve,
+tako da je dolžina odsekov od začetka do prvega stebra
+ter od zadnjega stebra do konca
+odvisna samo od omejitev prvega in zadnjega stebra).
+Poiskati želimo čim cenejšo postavitev stebrov,
+da bo mogoče v celoti zgraditi viadukt.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo,
+ter kako dobimo optimalno rešitev.
+
+\item Oceni časovno zahtevnost algoritma, ki sledi iz zgoraj zapisanih enačb.
+
+\needspace{3\baselineskip}
+\item S svojim algoritmom poišči optimalno postavitev stebrov pri podatkih $\ell = 1000$, $n = 10$ in
+\begin{alignat*}{11}
+(x_i)_{i=1}^{10} &= \{&{} 49, &&{} 60, &&{} 119, &&{} 258, &&{} 309, &&{} 509, &&{} 688, &&{} 753, &&{} 857, &&{} 887\} &, \\
+(c_i)_{i=1}^{10} &= \{&{} 8, &&{} 9, &&{} 32, &&{} 14, &&{} 18, &&{} 9, &&{} 27, &&{} 47, &&{} 16, &&{} 22\} &, \\
+(r_i)_{i=1}^{10} &= \{&{} 76, &&{} 75, &&{} 217, &&{} 251, &&{} 277, &&{} 273, &&{} 181, &&{} 168, &&{} 193, &&{} 137\} &.
+\end{alignat*}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_i$ najmanjša cena postavitve stebrov do $i$-tega mesta,
+če zadnji steber stoji na $i$-tem mestu
+(pri čemer upoštevamo,
+da moramo ``stebra'' postaviti tudi na začetno in končno točko
+brez dodatnih stroškov).
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_0 &= x_0 = c_{n+1} = 0 \\
+r_0 &= r_{n+1} = \infty \\
+x_{n+1} &= \ell \\
+p_i &= c_i + \min\{p_j \mid 0 \le j \le i-1, x_i - x_j \le \min\{r_i, r_j\}\}\} && (1 \le i \le n+1)
+\end{align*}
+Vrednosti $p_i$ računamo naraščajoče po indeksu $i$ ($0 \le i \le n+1$).
+Najmanjšo ceno postavitve baznih postaj dobimo s $p^* = p_{n+1}$.
+
+\item Za izračun vrednosti $p_i$ za posamezen $i$
+potrebujemo $O(i)$ časa.
+Ker ta izračun opravimo $n$-krat,
+je torej časovna zahtevnost ustreznega algoritma $O(n^2)$.
+
+\item Izračunajmo vrednosti $p_i$ ($1 \le i \le 11$).
+\begin{alignat*}{2}
+p_1    &=  8 + 0                           &&= 8  \\
+p_2    &=  9 + \min\{\underline{0}, 8\}    &&= 9  \\
+p_3    &= 32 + \min\{\underline{0}, 8, 9\} &&= 32  \\
+p_4    &= 14 + 32                          &&= 46 \\
+p_5    &= 18 + \min\{\underline{32}, 46\}  &&= 50 \\
+p_6    &=  9 + \min\{\underline{46}, 50\}  &&= 55 \\
+p_7    &= 27 + 55                          &&= 82 \\
+p_8    &= 47 + \min\{\underline{55}, 82\}  &&= 102 \\
+p_9    &= 16 + \min\{\underline{82}, 102\} &&= 98 \\
+p_{10} &= 22 + \min\{102, \underline{98}\} &&= 120 \\
+p_{11} &=  0 + \min\{\underline{98}, 120\} &&= 98
+\end{alignat*}
+Najmanjša cena postavitve stebrov je torej $p^* = p_{11} = 98$.
+Poglejmo, kam moramo postaviti stebre.
+\begin{align*}
+p_{11} &= c_{11} + p_9 && \text{steber na $x_9 = 857$} \\
+p_9    &= c_9    + p_7 && \text{steber na $x_7 = 688$} \\
+p_7    &= c_7    + p_6 && \text{steber na $x_6 = 509$} \\
+p_6    &= c_6    + p_4 && \text{steber na $x_4 = 258$} \\
+p_4    &= c_4    + p_3 && \text{steber na $x_3 = 119$} \\
+p_3    &= c_3    + p_0
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
