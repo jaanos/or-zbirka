@@ -1,0 +1,36 @@
+\begin{drevo*}[scale=1.5]*
+    \vozlisce[odlocitev]{A}[right]{-8,-1}[45]
+    \vozlisce[dogodek]{B}[above]{-4, 2}
+    \vozlisce[odlocitev]{C}[below]{-4,-4}[45]
+    \vozlisce[odlocitev]{D}[above]{-1, 4}
+    \vozlisce[odlocitev]{E}[below]{-1, 0}[52]
+    \vozlisce[dogodek]{F}[above]{ 0,-3}[42.5+t]
+    \vozlisce{a}{ 0,-5}[45]
+    \vozlisce[dogodek]{G}[above]{ 4, 5}[37.69+t]
+    \vozlisce{b}{ 4, 3}[52]
+    \vozlisce[dogodek]{H}[above]{ 4, 1}[48.18+t]
+    \vozlisce{c}{ 4,-1}[52]
+    \vozlisce{d}{ 4,-2}[30+t]
+    \vozlisce{e}{ 4,-4}[55+t]
+    \vozlisce{f}{ 8, 6}[30+t]
+    \vozlisce{g}{ 8, 4}[55+t]
+    \vozlisce{h}{ 8, 2}[30+t]
+    \vozlisce{i}{ 8, 0}[55+t]
+
+    \povezava{A}{B}{\text{vpraša odvetnika}}[sloped]{above}
+    \povezava*{A}{C}{\text{ne vpraša odvetnika}}[sloped]{below}
+    \povezava{B}{D}{\text{ugodno: $13/24$}}[sloped]{above}
+    \povezava{B}{E}{\text{neugodno: $11/24$}}[sloped]{below}
+    \povezava{C}{F}{\text{takoj zaprosi}}[sloped]{above}
+    \povezava*{C}{a}{\text{pridobi soglasja}}[sloped]{below}
+    \povezava{D}{G}{\text{takoj zaprosi: $t < 14.31$}}[sloped]{above}
+    \povezava{D}{b}{\text{pridobi soglasja: $t \ge 14.31$}}[sloped]{below}
+    \povezava{E}{H}{\text{takoj zaprosi}}[sloped]{above}
+    \povezava*{E}{c}{\text{pridobi soglasja}}[sloped]{below}
+    \povezava{F}{d}{\text{uspeh: $1/2$}}[sloped]{above}
+    \povezava{F}{e}{\text{neuspeh: $1/2$}}[sloped]{below}
+    \povezava{G}{f}{\text{uspeh: $9/13$}}[sloped]{above}
+    \povezava{G}{g}{\text{neuspeh: $4/13$}}[sloped]{below}
+    \povezava{H}{h}{\text{uspeh: $3/11$}}[sloped]{above}
+    \povezava{H}{i}{\text{neuspeh: $8/11$}}[sloped]{below}
+\end{drevo*}

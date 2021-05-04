@@ -1,0 +1,91 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 12.4.2021}
+\begin{vprasanje}
+V večjem podjetju so se odločili za nabavo licenc za programsko opremo,
+in sicer bodo za vsakega zaposlenega iz množice $Z$ nabavili natanko eno licenco.
+Razvijalec svojo programsko opremo ponuja v različicah $1, 2, \dots, n$ z različnimi nabori funkcionalnosti.
+V podjetju so identificirali množico $F$ funkcionalnosti, ki jih zanimajo,
+ter določili vrednosti $p_{zf}$ in $q_{fi}$
+($z \in Z$, $f \in F$, $1 \le i \le n$),
+ki povedo sledeče:
+\begin{align*}
+p_{zf} &= \begin{cases}
+1 & \text{če zaposleni $z$ potrebuje funkcionalnost $f$, in} \\
+0 & \text{sicer,}
+\end{cases} \\
+\shortintertext{ter}
+q_{fi} &= \begin{cases}
+1 & \text{če različica $i$ ponuja funkcionalnost $f$, in} \\
+0 & \text{sicer.}
+\end{cases}
+\end{align*}
+Cena, ki jo v podjetju plačajo za posamezno licenco,
+je odvisna od števila licenc,
+ki jih kupijo za posamezno različico programske opreme:
+za posamezno licenco za različico $i$ plačajo ceno $c_{ij}$,
+če kupijo vsaj $r_j$ takih licenc ($1 \le j \le m$).
+Lahko predpostaviš, da velja $1 = r_1 < r_2 < \cdots < r_m$
+in $c_{i1} \ge c_{i2} \ge \cdots \ge c_{im} > 0$ ($1 \le i \le n$).
+
+\begin{enumerate}[(a)]
+\item Zapiši celoštevilski linearni program,
+ki modelira iskanje najcenejšega izbora licenc,
+tako da bo vsak zaposleni dobil različico programske opreme,
+ki ponuja vse funkcionalnosti, ki jih potrebuje.
+\namig{uvedi spremenljivke,
+ki za vsakega zaposlenega, različico in ceno povedo,
+če naj v podjetju kupijo tako licenco.}
+
+\item Celoštevilskemu linearnemu programu iz točke (a)
+dodaj omejitve za sledeče dodatne pogoje.
+
+\begin{itemize}
+\item Zaposlena $a, b \in Z$ morata dobiti licenco za enako različico programske opreme.
+\item Vsako funkcionalnost, ki jo ima na voljo katerikoli zaposleni,
+mora v svoji različici programske opreme imeti na voljo tudi direktor $d \in Z$.
+\item Če ima katerikoli zaposleni licenco za tako različico,
+ki ponuja funkcionalnost $e \in F$,
+potem mora funkcionalnost $e$ biti na voljo vsem zaposlenim.
+\end{itemize}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+Za zaposlenega $z \in Z$ in $1 \le i \le n$, $1 \le j \le m$
+bomo uvedli spremenljivko $x_{zij}$,
+katere vrednost interpretiramo kot
+$$
+x_{zij} = \begin{cases}
+1 & \text{zaposlenemu $z$ kupijo licenco za različico $i$ po ceni $c_{ij}$, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+
+\begin{enumerate}[(a)]
+\item Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+\min &\ &\sum_{z \in Z} \sum_{i=1}^n \sum_{j=1}^m c_{ij} x_{zij} &\quad \text{p.p.} \\
+\forall z \in Z \ \forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le x_{zij} &\le 1, \quad x_{zij} \in \Z
+\opis{Vsak zaposleni dobi natanko eno licenco}
+\forall z \in Z: &\ &
+\sum_{i=1}^n \sum_{j=1}^m x_{zij} &= 1
+\opis{Vsak zaposleni ima na voljo vse funkcionalnosti, ki jih potrebuje}
+\forall z \in Z \ \forall f \in F \ \forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^m x_{zij} &\le q_{fi} - p_{zf} + 1
+\opis{Ustrezna cena glede na število licenc}
+\forall z \in Z \ \forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ & \sum_{y \in Z} x_{yij} &\ge r_j x_{zij}
+\end{alignat*}
+
+\item Zapišimo še dodatne omejitve.
+\odstraniprostor
+\begin{alignat*}{2}
+\opis{$a$ in $b$ dobita enako licenco}
+\forall i \in \{1, \dots, n\}: &\ & \sum_{j=1}^m (x_{aij} - x_{bij}) &= 0
+\opis{Direktor ima na voljo vsako funkcionalnost, ki jo imajo na voljo ostali zaposleni}
+\forall z \in Z \ \forall f \in F \ \forall h, i \in \{1, \dots, n\} \ \forall j, k \in \{1, \dots, m\}: &\ & x_{zij} + x_{dhk} &\le q_{fh} - q_{fi} + 2
+\opis{Če ima kdorkoli funkcionalnost $e$, potem jo imajo vsi}
+\forall y, z \in Z \ \forall h, i \in \{1, \dots, n\} \ \forall j, k \in \{1, \dots, m\}: &\ & x_{zij} + x_{yhk} &\le q_{eh} - q_{ei} + 2
+\end{alignat*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
+

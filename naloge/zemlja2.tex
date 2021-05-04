@@ -1,0 +1,70 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 12.4.2021}
+\begin{vprasanje}
+Janez si je ravnokar odgovoril na vprašanje iz naloge~\nal[zemlja],
+ko je ugotovil,
+da so uradi zaradi epidemiološke situacije zaprti
+in da postopka ne bo mogel začeti v naslednjih $t$ dneh,
+kjer je $t \in [7, 15]$
+(vrednost $t$ bo znana v kratkem).
+Na srečo lahko Janez v tem času še vedno pridobi soglasja sosedov,
+za kar potrebuje $15$ dni,
+prav tako lahko mu lahko pomaga Bine,
+ki za izdelavo svojega mnenja še vedno potrebuje $7$ dni.
+Po izteku $t$ dni bo lahko Janez sprožil postopek
+(seveda bo pred tem počakal na Binetovo mnenje oziroma soglasja sosedov,
+če se za to odloči),
+ki bo trajal $55$ dni, če se izkaže,
+da so soglasja potrebna in jih pred tem še ni pridobil,
+oziroma $30$ dni sicer.
+Vse verjetnosti ostajajo nespremenjene.
+
+Nariši odločitveno drevo
+in ga uporabi pri sprejemanju odločitev v odvisnosti od vrednosti parametra $t$.
+\end{vprasanje}
+
+\begin{odgovor}
+Ker je $t \le 15$, bo trajanje celotnega postopka v primerih,
+da se Janez pred sprožitvijo postopka odloči za pridobitev soglasij,
+ostalo nespremenjeno glede na trajanje iz naloge~\res[zemlja].
+Ker velja tudi $t \ge 7$,
+bo celoten postopek v primeru, da soglasja niso potrebna, trajal $30+t$ dni,
+v nasprotnem primeru pa $55+t$ dni
+-- oboje neodvisno od tega, ali Janez vpraša Bineta za mnenje.
+
+S pomočjo zgoraj izračunanih trajanj
+in verjetnosti z odločitvenega drevesa na sliki~\fig[zemlja]
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo,
+da je v primerih,
+če Janez ne pridobi Binetovega mnenja ali če je to neugodno,
+pričakovani čas trajanja celotnega postopka
+ob takojšnji prošnji za gradbeno dovoljenje
+večji kot v primeru, če pred tem pridobi soglasja.
+Če pa Janez od Bineta pridobi ugodno mnenje,
+se mu bolj izplača takoj zaprositi za gradbeno dovoljenje,
+natanko tedaj, ko velja $t < 14.31$.
+Izračunajmo torej pričakovano trajanje v vozlišču $B$:
+$$
+E(B) = {13 \over 24} E(D) + {11 \over 24} \cdot 52 =
+\begin{cases}
+44.25 + {13 \over 24} t & \text{če $t < 14.31$} \\
+52 & \text{če $t \ge 14.31$}
+\end{cases}
+$$
+Poglejmo si, za katere vrednosti $t$ se Janezu izplača prositi Bineta za mnenje.
+\begin{align*}
+44.25 + {13 \over 24} t &< 45 \\
+t &< {18 \over 13} < 7
+\end{align*}
+Vidimo, da zgornja neenakost ne velja za noben $t \in [7, 15]$,
+tako da se Janezu torej ne izplača pridobiti Binetovega mnenja,
+pač pa naj najprej pridobi soglasja sosedov.
+Celoten postopek bo tako trajal 45 dni.
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}

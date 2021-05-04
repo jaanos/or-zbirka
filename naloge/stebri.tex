@@ -1,0 +1,106 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 12.4.2021}
+\begin{vprasanje}
+Zgraditi želimo avtocestni viadukt dolžine $\ell$ metrov,
+ki bo prečkal dolino s težavnim terenom.
+Geo\-lo\-gi in arhitekti so že pregledali teren in identificirali $n$ mest,
+kamor bi lahko postavili podporne stebre.
+Vsako mesto je predstavljeno s številom $x_i$ ($1 \le i \le n$),
+ki predstavlja oddaljenost v metrih od začetka viadukta,
+pri čemer velja $0 = x_1 < x_2 < \cdots < x_n = \ell$.
+Gradnja stebra na mestu $x_i$ nas stane $c_i$
+(pri čemer velja $c_1 = c_n = 0$,
+saj prvi in zadnji steber predstavljata začetno in končno točko viadukta),
+razdalja do sosednjih stebrov ne sme preseči $r_i$
+-- t.j., če zgradimo stebra na mestih $x_i$ in $x_j$ ter nobenega drugega vmes,
+mora veljati $|x_i - x_j| \le r_i$ in $|x_i - x_j| \le r_j$.
+Poiskati želimo čim cenejšo postavitev stebrov,
+da bo mogoče v celoti zgraditi viadukt.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo,
+ter kako dobimo optimalno rešitev.
+
+\item Zapiši psevdokodo algoritma, ki sledi iz zgoraj zapisanih enačb,
+in oceni njegovo časovno zahtevnost.
+Algoritem naj vrne samo najmanjšo ceno postavitve stebrov,
+ne pa tudi same izbire mest za postavitev.
+
+\needspace{3\baselineskip}
+\item S svojim algoritmom poišči optimalno postavitev stebrov pri podatkih $\ell = 1000$, $n = 12$ in
+\begin{alignat*}{13}
+(x_i)_{i=1}^{12} &= \{&{} 0, &&{} 49, &&{} 60, &&{} 119, &&{} 258, &&{} 309, &&{} 509, &&{} 688, &&{} 753, &&{} 857, &&{} 887, &&{} 1000\} &, \\
+(c_i)_{i=1}^{12} &= \{&{} 0, &&{} 8, &&{} 9, &&{} 32, &&{} 14, &&{} 18, &&{} 9, &&{} 27, &&{} 47, &&{} 16, &&{} 22, &&{} 0\} &, \\
+(r_i)_{i=1}^{12} &= \{&{} 300, &&{} 76, &&{} 75, &&{} 217, &&{} 251, &&{} 277, &&{} 273, &&{} 181, &&{} 168, &&{} 193, &&{} 137, &&{} 300\} &.
+\end{alignat*}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_i$ najmanjša cena postavitve stebrov do $i$-tega mesta,
+če zadnji steber stoji na $i$-tem mestu
+(pri čemer upoštevamo,
+da moramo ``stebra'' postaviti tudi na začetno in končno točko).
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_1 &= c_1 \\
+p_i &= c_i + \min\{p_j \mid 1 \le j \le i-1, x_i - x_j \le \min\{r_i, r_j\}\}\} && (2 \le i \le n)
+\end{align*}
+Vrednosti $p_i$ računamo naraščajoče po indeksu $i$ ($1 \le i \le n$).
+Najmanjšo ceno postavitve baznih postaj dobimo s $p^* = p_n$.
+
+\item Zapišimo psevdokodo algoritma.
+\begin{small}
+\begin{algorithmic}
+\Function{Stebri}{$(x_i)_{i=1}^n, (c_i)_{i=1}^n, (r_i)_{i=1}^n$}
+	\State $p_1 \gets c_1$
+	\For{$i = 2, 3, \dots, n$}
+	    \State $p_i \gets \infty$
+	    \State $j \gets i-1$
+	    \While{$j > 0 \land x_i - x_j \le r_i$}
+	        \If{$p_j < p_i	\land x_i - x_j \le r_j$}
+	            \State $p_i \gets p_j$
+	        \EndIf
+	        \State $j \gets j-1$
+	    \EndWhile
+	    \State $p_i \gets p_i + c_i$
+	\EndFor
+	\State \Return $p_n$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Za izračun vrednosti $p_i$ za posamezen $i$
+potrebujemo $O(i)$ časa.
+Ker ta izračun opravimo za $i = 1, 2, \dots, n+1$,
+je torej časovna zahtevnost ustreznega algoritma $O(n^2)$.
+
+\item Izračunajmo vrednosti $p_i$ ($2 \le i \le 12$).
+\begin{alignat*}{2}
+p_2    &=  8 + 0                           &&= 8  \\
+p_3    &=  9 + \min\{\underline{0}, 8\}    &&= 9  \\
+p_4    &= 32 + \min\{\underline{0}, 8, 9\} &&= 32  \\
+p_5    &= 14 + 32                          &&= 46 \\
+p_6    &= 18 + \min\{\underline{32}, 46\}  &&= 50 \\
+p_7    &=  9 + \min\{\underline{46}, 50\}  &&= 55 \\
+p_8    &= 27 + 55                          &&= 82 \\
+p_9    &= 47 + 82                          &&= 129 \\
+p_{10} &= 16 + \min\{\underline{82}, 129\} &&= 98 \\
+p_{11} &= 22 + \min\{129, \underline{98}\} &&= 120 \\
+p_{12} &=  0 + \min\{\underline{98}, 120\} &&= 98
+\end{alignat*}
+Najmanjša cena postavitve stebrov je torej $p^* = p_{12} = 98$.
+Poglejmo, kam moramo postaviti stebre.
+\begin{align*}
+p_{12} &= c_{12} + p_{10} & \text{steber na } x_{10} &= 857 \\
+p_{10} &= c_{10} + p_8    & \text{steber na } x_8    &= 688 \\
+p_8    &= c_8    + p_7    & \text{steber na } x_7    &= 509 \\
+p_7    &= c_7    + p_5    & \text{steber na } x_5    &= 258 \\
+p_5    &= c_5    + p_4    & \text{steber na } x_4    &= 119 \\
+p_4    &= c_4    + p_1
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
