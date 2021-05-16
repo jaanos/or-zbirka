@@ -1,0 +1,114 @@
+\begin{naloga}{Janoš Vidali}{Vaje OR 17.5.2021}
+\begin{vprasanje}
+S pomočjo Floyd-Warshallovega algoritma poišči
+najkrajše poti med vsemi pari vozlišč v grafu s slike~\fig[bf].
+\end{vprasanje}
+
+\begin{odgovor}
+Sledili bomo naslednjemu algoritmu.
+\begin{small}
+\begin{algorithmic}
+\Function{FloydWarshall}{$G = (V, E), L : E \to \R$}
+    \State $d \gets$ slovar z vrednostjo $\infty$ za vsak par vozlišč $u, v \in V$
+    \State $\pred \gets$ slovar z vrednostjo $\Null$
+        za vsak par vozlišč $u, v \in V$
+    \For{$u \in V$}
+        \State $d[u, u] \gets 0$
+    \EndFor
+    \For{$uv \in E$}
+        \State $d[u, v] \gets L_{uv}$
+        \State $\pred[u, v] \gets u$
+    \EndFor
+    \For{$w \in V$}
+        \For{$u \in V$}
+            \If{$d[u, w] + d[w, u] < 0$}
+                \State \Return graf ima negativen cikel
+            \EndIf
+            \For{$v \in V$}
+                \State $\ell \gets d[u, w] + d[w, v]$
+                \If{$\ell < d[u, v]$}
+                    \State $d[u, v] \gets \ell$
+                    \State $\pred[u, v] \gets \pred[w, v]$
+                \EndIf
+            \EndFor
+        \EndFor
+    \EndFor
+    \State \Return $(d, \pred)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Po vsakem obhodu zunanje zanke {\bf for}
+slovar $d$ vsebuje dolžine tistih najkrajših poti,
+ki v svoji notranjosti (tj., brez začetnega in končnega vozlišča)
+obiščejo le tista vozlišča,
+ki jih je ta zanka že obravnavala.
+Algoritem pri tem preverja, ali je našel zanko negativne dolžine
+-- tedaj sklene, da v grafu obstaja negativen cikel.
+Če graf nima negativnih ciklov,
+po izhodu iz zunanje zanke
+slovar $d$ vsebuje dolžine najkrajših poti med vsemi pari vozlišč.
+Časovna zahtevnost algoritma je $O(n^3)$,
+kjer je $n$ število vozlišč grafa.
+
+Potek zgornjega algoritma na grafu s slike~\fig[bf] je prikazan v tabeli~\tab
+(prikazani so samo koraki, ko se katera od vrednosti v slovarju $d$ spremeni).
+Izračunane razdalje so povzete v tabeli~\tab[fw-resitev],
+v kateri je prikazano tudi,
+preko katerega vozlišča gre pot, preden obišče ciljno vozlišče
+(prazni vnosi pomenijo, da ustrezna pot ne obstaja).
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|ccc|c|c|c|c}
+w & u & v & d[uv] & \pred[u, v] & $\qquad$ & w & u & v & d[uv] & \pred[u, v] \\ \cline{1-5} \cline{7-11}
+  & a & b &     3 & a && e & a & g &    13 & e \\
+  & a & f &     6 & a && e & b & g &    10 & e \\
+  & b & c &     7 & b && e & c & g &    12 & e \\
+  & b & e &     9 & b && e & d & g &    19 & e \\ \cline{7-11}
+  & c & d &    -7 & c && g & b & f &     9 & g \\
+  & d & b &     9 & d && g & c & f &    11 & g \\
+  & d & h &     4 & d && g & d & f &    18 & g \\
+  & e & d &     1 & e && g & e & f &     0 & g \\
+  & e & g &     1 & e && g & h & f &    -6 & g \\ \cline{7-11}
+  & f & g &     8 & f && h & a & f &     1 & g \\
+  & g & f &    -1 & g && h & a & g &     2 & h \\
+  & h & g &    -5 & h && h & b & f &    -2 & g \\ \cline{1-5}
+b & a & c &    10 & b && h & b & g &    -1 & h \\
+b & a & e &    12 & b && h & c & f &    -9 & g \\
+b & d & c &    16 & b && h & c & g &    -8 & h \\
+b & d & e &    18 & b && h & d & f &    -2 & g \\ \cline{1-5}
+c & a & d &     3 & c && h & d & g &    -1 & h \\
+c & b & d &     0 & c && h & e & f &    -1 & g \\ \cline{1-5}
+d & a & h &     7 & d && h & e & g &     0 & h \\
+d & b & h &     4 & d \\
+d & c & b &     2 & d \\
+d & c & e &    11 & b \\
+d & c & h &    -3 & d \\
+d & e & b &    10 & d \\
+d & e & c &    17 & b \\
+d & e & h &     5 & d 
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+
+\begin{tabela}
+\setlabel{fw-resitev}
+$$
+\begin{array}{c|cccccccc}
+& a & b & c & d & e & f & g & h \\ \hline
+a & 0 & 3_a & 10_b & 3_c & 12_b &  1_g &  2_h &  7_d \\
+b & & 0 & 7_b & 0_c & 9_b & -2_g & -1_h &  4_d \\
+c & & 2_d & 0 & -7_c & 11_b & -9_g & -8_h & -3_d \\
+d & & 9_d & 16_b & 0 & 18_b & -2_g & -1_h & 4_d \\
+e & & 10_d & 17_b & 1_e & 0 & -1_g &  0_h & 5_d \\
+f & & & & & & 0 & 8_f & \\
+g & & & & & & -1_g & 0 & \\
+h & & & & & & -6_g & -5_h & 0 \\
+\end{array}
+$$
+\podnaslov{Najkrajše razdalje}
+\end{tabela}
+
+\end{odgovor}
+\end{naloga}
