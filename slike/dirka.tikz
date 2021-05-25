@@ -1,34 +1,32 @@
-\begin{tikzpicture}[style=thick,scale=1]
-\tikzstyle{every node}=[]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
+\begin{usmerjen*}[scale=1.5]*
 
-\node[vertex] (S) at (-6,-1) {$s$};
-\node[vertex] (A) at (-4,-1) {$a$};
-\node[vertex] (B) at (-2, 0) {$b$};
-\node[vertex] (C) at (-2, 1) {$c$};
-\node[vertex] (D) at (-2, 2) {$d$};
-\node[vertex] (E) at (-2,-1) {$e$};
-\node[vertex] (F) at (-4,-2.5) {$f$};
-\node[vertex] (G) at ( 0,-1) {$g$};
-\node[vertex] (H) at ( 2,-1) {$h$};
-\node[vertex] (I) at ( 4,-1) {$i$};
-\node[vertex] (J) at ( 0,-2.5) {$j$};
-\node[vertex] (T) at ( 6,-1) {$t$};
+	\vozlisce{s}{-6,-1  }
+	\vozlisce{a}{-4,-1  }
+	\vozlisce{b}{-2, 0  }
+	\vozlisce{c}{-2, 1  }
+	\vozlisce{d}{-2, 2  }
+	\vozlisce{e}{-2,-1  }
+	\vozlisce{f}{-4,-2.5}
+	\vozlisce{g}{ 0,-1  }
+	\vozlisce{h}{ 2,-1  }
+	\vozlisce{i}{ 4,-1  }
+	\vozlisce{j}{ 0,-2.5}
+	\vozlisce{t}{ 6,-1  }
 
-\draw[->,red] (S) -- (A) node[midway, above] {$0$};
-\draw[->] (S) -- (F) node[midway, below, sloped] {$0$};
-\draw[->] (A) -- (B) node[midway, below, sloped] {$30$};
-\draw[->,red] (A) -- (C) node[midway, below, sloped] {$30$};
-\draw[->] (A) -- (D) node[midway, above, sloped] {$30$};
-\draw[->] (A) -- (E) node[midway, below] {$30$};
-\draw[->] (B) -- (G) node[midway, above, sloped] {$6.5$};
-\draw[->,red] (C) -- (H) node[midway, above, sloped] {$21$};
-\draw[->] (D) -- (I) node[midway, above, sloped] {$7$};
-\draw[->] (E) -- (G) node[near start, above] {$17.5$};
-\draw[->] (E) -- (J) node[near end, below, sloped] {$17.5$};
-\draw[->] (F) -- (G) node[near start, below, sloped] {$18.5$};
-\draw[->] (G) -- (H) node[midway, below] {$1$};
-\draw[->,red] (H) -- (I) node[midway, below] {$1$};
-\draw[->,red] (I) -- (T) node[midway, above] {$1$};
-\draw[->] (J) -- (T) node[midway, below, sloped] {$5$};
-\end{tikzpicture}
+    \povezava*{s}{a}{0}{above}
+    \povezava {s}{f}{0}{below}[sloped]
+    \povezava {a}{b}{30}{below}[sloped]
+    \povezava*{a}{c}{30}{below}[sloped]
+    \povezava {a}{d}{30}{above}[sloped]
+    \povezava {a}{e}{30}{below}
+    \povezava {b}{g}{6.5}{above}[sloped]
+    \povezava*{c}{h}{21}{above}[sloped]
+    \povezava {d}{i}{7}{above}[sloped]
+    \povezava {e}{g}{17.5}{near start, above}
+    \povezava {e}{j}{17.5}{near end, below}[sloped]
+    \povezava {f}{g}{18.5}{near start, below}[sloped]
+    \povezava {g}{h}{1}{below}
+    \povezava*{h}{i}{1}{below}
+    \povezava*{i}{t}{1}{above}
+    \povezava {j}{t}{5}{below}[sloped]
+\end{usmerjen*}
