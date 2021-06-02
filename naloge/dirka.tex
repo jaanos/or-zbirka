@@ -13,9 +13,6 @@ Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
 \item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
 Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
 ne da bi vplivali na celotno trajanje izvedbe.
-
-\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
-da bo projekt trajal manj kot $55$ dni.
 \end{enumerate}
 %
 \begin{tabela}
@@ -35,7 +32,7 @@ $i$ & izvedba zaključne etape           & $d, h$    &  1 dan &  1 dan &  1 dan 
 $j$ & priprava zaključne prireditve     & $e, f$    &  4 dni &  5 dni &  6 dni
 \end{tabular}
 }
-\podnaslov{Podatki}
+\caption{Podatki za nalogi~\nal in~\nal[dirka2].}
 \end{tabela}
 \end{vprasanje}
 
@@ -59,17 +56,6 @@ da je najmanj kritično opravilo $f$,
 saj lahko njegovo trajanje
 podaljšamo za $31.5$ dni v primerjavi s pričakovanim,
 ne da bi vplivali na trajanje celotnega projekta.
-
-\item Izračunajmo standardni odklon trajanja pričakovane kritične poti.
-$$
-\sigma = \sqrt{4 + 1 + 0 + 0} = 2.236
-$$
-Naj bo $X$ slučajna spremenljivka,
-ki meri čas izvajanja pričakovane kritične poti.
-Izračunajmo verjetnost končanja v roku $T = 55$ dni.
-$$
-P(X \le 55) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(0.894) = 0.8144
-$$
 \end{enumerate}
 %
 \begin{slika}
@@ -92,7 +78,7 @@ $$
 \text{razlika} & 0 & 0^* & 31.5 & 13.5 & 0^* & 15 & 0.5 & 2.5 & 0.5 & 0^* & 0^* & 0
 \end{array}
 $$
-\podnaslov{Razporejanje opravil}
+\caption{Razporejanje opravil za nalogi~\nal in~\nal[dirka2].}
 \end{tabela}
 \end{odgovor}
 \end{naloga}

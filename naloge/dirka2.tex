@@ -1,0 +1,20 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 3.6.2021}
+\begin{vprasanje}
+Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo projekt iz naloge~\nal[dirka] trajal manj kot $55$ dni.
+\end{vprasanje}
+
+\begin{odgovor}
+Izračunajmo standardni odklon trajanja pričakovane kritične poti,
+pri čemer uporabimo variance iz tabele~\tab[dirka-resitev].
+$$
+\sigma = \sqrt{4 + 1 + 0 + 0} = 2.236
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 55$ dni.
+$$
+P(X \le 55) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(0.894) = 0.8144
+$$
+\end{odgovor}
+\end{naloga}
