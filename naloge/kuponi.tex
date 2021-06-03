@@ -1,0 +1,81 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 3.6.2021}
+\begin{vprasanje}
+Igor je zadnje mesece pridno zbiral kupone,
+s katerimi lahko pridobi različne popuste v bližnji trgovini.
+Zanima ga, koliko kosov posameznega artikla naj kupi
+in katere kupone naj unovči,
+da bo zadostil svojim potrebam in da bo nakup čim cenejši.
+
+V trgovini prodajajo artikle iz množice $A$,
+pri čemer posamezen kos artikla $i \in A$ prodajajo po ceni $c_i$.
+Igor si je pripravil seznam stvari, ki jih potrebuje:
+identificiral je paroma disjunktne množice $B_h \subseteq A$
+in količine $n_h$ ($1 \le h \le m$),
+ki povedo, vsaj koliko kosov artiklov iz množice $B_h$ mora kupiti
+(tj., posamezna množica $B_h$ podaja artikle istega tipa --
+posamezen artikel lahko kupi v več kosih,
+količino $n_h$ pa lahko doseže tudi z nakupom različnih artiklov iz $B_h$).
+Zaloge artiklov v trgovini so dovolj velike, tako da Igor glede tega ne skrbi.
+
+Pri nakupu lahko Igor uporabi tudi kupone,
+pri čemer množica $K_j$ ($1 \le j \le k$) pove,
+katere artikle mora kupiti, da lahko unovči $j$-ti kupon.
+Z unovčenjem $j$-tega kupona si pribori popust v višini $p_j$
+za vsak nabor izdelkov iz množice $K_j$.
+Pri tem velja omejitev,
+da lahko pri posameznem artiklu unovči največ en kupon.
+\primer{denimo,	da imamo $B_1 = \{t, u\}$, $B_2 = \{v, w\}$, $n_1 = n_2 = 3$
+in $K_1 = \{u, v\}$, $K_2 = \{u, w\}$ in $K_3 = \{v, t\}$.
+Potem Igor zadosti svojim potrebam,
+če se odloči za nakup treh kosov artikla $u$,
+dveh kosov artikla $v$ in enega kosa artikla $w$.
+Tretjega kupona v tem primeru ne more unovčiti,
+saj ne kupi nobenega kosa artikla $t$.
+Če se odloči za unovčenje prvega kupona,
+potem za svoj nakup plača $3c_u + 2c_v + c_w - 2p_1$,
+saj je nabor artiklov iz $K_1$ pokrit dvakrat.
+Pri tem ne more dodatno unovčiti tudi drugega kupona,
+saj je pri artiklu $u$ že unovčil en kupon.}
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+Pri tem lahko predpostaviš,
+da so vse vrednosti $c_i$ ($i \in A$) in $p_j$ ($1 \le j \le k$) nenegativne.
+Prav tako lahko predpostaviš,
+da noben kupon ne prinaša popusta,
+ki bi presegal skupne cene artiklov,
+ki jih je treba kupiti za njegovo unovčenje
+-- torej $p_j \le \sum_{i \in K_j} c_i$ ($1 \le j \le k$).
+\end{vprasanje}
+
+\begin{odgovor}
+Za artikel $i \in A$ in $j$-ti kupon ($1 \le j \le k$)
+bomo uvedli spremenljivke $x_i$, $y_j$ in $z_{ij}$,
+kjer je $x_i$ število kosov artikla $i$, ki naj jih Igor kupi,
+$y_j$ predstavlja ``pokritost'' $j$-tega kupona
+(tj., koliko naborov artiklov iz $K_j$ kupi),
+vrednost $z_{ij}$ pa interpretiramo kot
+$$
+z_{ij} = \begin{cases}
+1, & \text{Igor uporabi $j$-ti kupon za artikel $i \in A$, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Poleg tega definirajmo še konstanto $N = \max\{n_h \mid 1 \le h \le m\}$.
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+\min &\ & \sum_{i \in A} c_i x_i &- \sum_{j=1}^k p_j y_j && \text{p.p.} \\
+\forall i \in A: &\ & x_i &\ge 0, & x_i &\in \Z \\
+\forall j \in \{1, \dots, k\}: &\ & y_j &\ge 0, & y_j &\in \Z \\
+\forall i \in A \ \forall j \in \{1, \dots, k\}: &\ &
+0 \le z_{ij} &\le 1, & z_{ij} &\in \Z
+\opis{Zadostimo potrebam}
+\forall h \in \{1, \dots, m\}: &\ & \sum_{i \in B_h} x_i &\ge n_h
+\opis{Kupon $j$ pokrijemo največ tolikokrat, kolikor kupimo posameznega artikla iz $K_j$}
+\forall j \in \{1, \dots, k\} \ \forall i \in K_j: &\ & y_j &\le x_i
+\opis{Če uporabimo $j$-ti kupon za $i \in K_j$, naj bo $z_{ij} = 1$}
+\forall j \in \{1, \dots, k\} \ \forall i \in K_j: &\ & y_j &\le N z_{ij}
+\opis{Za vsak izdelek uporabimo največ en kupon}
+\forall i \in A: &\ & \sum_{j=1}^k z_{ij} &\le 1
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
