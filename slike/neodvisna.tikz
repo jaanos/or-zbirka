@@ -1,20 +1,36 @@
-\begin{tikzpicture}[style=thick,scale=0.7]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
-\small
-\node[vertex] (A) at ( 0, 3) [label=left:$8$] {$a$};
-\node[vertex] (B) at (-2, 1) [label=left:$1$] {$b$};
-\node[vertex] (C) at ( 2, 1) [label=left:$9$] {$c$};
-\node[vertex] (D) at (-4,-1) [label=left:$1$] {$d$};
-\node[vertex] (E) at (-2,-1) [label=left:$1$] {$e$};
-\node[vertex] (F) at ( 0,-1) [label=left:$4$] {$f$};
-\node[vertex] (G) at ( 2,-1) [label=left:$8$] {$g$};
-\node[vertex] (H) at ( 4,-1) [label=left:$4$] {$h$};
-\node[vertex] (I) at (-3,-3) [label=left:$9$] {$i$};
-\node[vertex] (J) at (-1,-3) [label=left:$4$] {$j$};
-\node[vertex] (K) at ( 2,-3) [label=left:$2$] {$k$};
+\begin{neusmerjen}[scale=1]*
+    \oznaka{a}{8}
+    \oznaka{b}{1}
+    \oznaka{c}{9}
+    \oznaka{d}{1}
+    \oznaka{e}{1}
+    \oznaka{f}{4}
+    \oznaka{g}{8}
+    \oznaka{h}{4}
+    \oznaka{i}{9}
+    \oznaka{j}{4}
+    \oznaka{k}{2}
 
-\draw (D) -- (B) -- (A) -- (C) -- (G) -- (K);
-\draw (I) -- (E) -- (B) -- (F);
-\draw (E) -- (J);
-\draw (C) -- (H);
-\end{tikzpicture}
+    \vozlisce{a}[left]{ 0, 3}
+    \vozlisce{b}[left]{-2, 1}
+    \vozlisce{c}[left]{ 2, 1}
+    \vozlisce{d}[left]{-4,-1}
+    \vozlisce{e}[left]{-2,-1}
+    \vozlisce{f}[left]{ 0,-1}
+    \vozlisce{g}[left]{ 2,-1}
+    \vozlisce{h}[left]{ 4,-1}
+    \vozlisce{i}[left]{-3,-3}
+    \vozlisce{j}[left]{-1,-3}
+    \vozlisce{k}[left]{ 2,-3}
+
+    \povezava{d}{b}{}{above}[sloped]
+    \povezava{b}{a}{}{above}[sloped]
+    \povezava{a}{c}{}{above}[sloped]
+    \povezava{c}{g}{}{left}
+    \povezava{g}{k}{}{left}
+    \povezava{i}{e}{}{left}
+    \povezava{e}{b}{}{left}
+    \povezava{b}{f}{}{above}[sloped]
+    \povezava{e}{j}{}{right}
+    \povezava{c}{h}{}{above}[sloped]
+\end{neusmerjen}
