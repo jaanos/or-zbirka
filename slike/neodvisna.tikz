@@ -1,4 +1,4 @@
-\begin{neusmerjen}[scale=1]*
+\begin{neusmerjen*}[scale=1]*
     \oznaka{a}{8}
     \oznaka{b}{1}
     \oznaka{c}{9}
@@ -33,4 +33,4 @@
     \povezava{b}{f}{}{above}[sloped]
     \povezava{e}{j}{}{right}
     \povezava{c}{h}{}{above}[sloped]
-\end{neusmerjen}
+\end{neusmerjen*}

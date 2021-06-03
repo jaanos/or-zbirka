@@ -1,4 +1,4 @@
-\begin{neusmerjen}[scale=1]*
+\begin{neusmerjen*}[scale=1]*
     \vozlisce{a}{ 0, 3}
     \vozlisce{b}{-2, 1}
     \vozlisce{c}{ 2, 1}
@@ -21,4 +21,4 @@
     \povezava{b}{f}{4}{above}[sloped]
     \povezava{e}{j}{9}{right}
     \povezava{c}{h}{4}{above}[sloped]
-\end{neusmerjen}
+\end{neusmerjen*}
