@@ -1,0 +1,93 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 3.6.2021}
+\begin{vprasanje}
+Dan je usmerjen utežen graf $G = (V, E)$ s cenami povezav $c_e$ ($e \in E$)
+ter njegovo vozlišče $s$ in celo število $t$ ($0 \le t < n = |V|$).
+V grafu $G$ želimo poiskati najkrajše poti
+od vozlišča $s$ do ostalih vozlišč grafa,
+ki vsebujejo največ $t$ povezav.
+
+\begin{enumerate}[(a)]
+\item Predlagaj čim učinkovitejši algoritem za reševanje danega problema.
+Kakšna je njegova časovna zahtevnost?
+\opozorilo{pazi, da bo mogoče iz izhoda rekonstruirati vse želene poti.}
+
+\item S svojim algoritmom poišči najkrajše poti
+od vozlišča $a$ do ostalih vozlišč v grafu s slike~\fig,
+ki vsebujejo največ $4$ povezave.
+Iz rešitve naj bo jasno, kako poteka izvajanje algoritma.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov[\nal{}(b)]{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Uporabili bomo prirejeno različico Bellman-Fordovega algoritma,
+pri katerem bomo naredili le $t$ obhodov glavne zanke.
+\begin{small}
+\begin{algorithmic}
+\Function{OmejeniBellmanFord}{$G = (V, E), s \in V, c : E \to \R, t \in \{0, 1, \dots, |V| - 1\}$}
+    \State $d[0, \dots, t] \gets$ seznam slovarjev z vrednostjo $\infty$ za vsako vozlišče $v \in V$
+    \State $\pred[0, \dots, t] \gets$ seznam slovarjev z vrednostjo $\Null$
+	za vsako vozlišče $v \in V$
+    \State $d[0][s] \gets 0$
+    \For{$i = 1, 2, \dots, t$}
+        \For{$u \in V$}
+            \State $d[i][u] \gets d[i-1][u]$
+            \State $\pred[i][u] \gets u$
+        \EndFor
+        \For{$uv \in E$}
+            \If{$d[i][v] > d[i-1][u] + c_{uv}$}
+                \State $d[i][v] \gets d[i-1][u] + c_{uv}$
+                \State $\pred[i][v] \gets u$
+            \EndIf
+        \EndFor
+    \EndFor
+    \State \Return $(d, \pred)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Časovna zahtevnost algoritma je $O(tm)$,
+kjer je $m$ število povezav grafa.
+Da rekonstruiramo najkrajšo pot od $s$ do vozlišča $u \in V$
+z največ $t$ povezavami,
+poiščemo tako zaporedje $(v_0, v_1, \dots, v_t)$,
+da velja $v_t = u$ in $v_{i-1} = \pred[i][v_i]$ ($1 \le i \le t$).
+Ustrezna pot je potem $v_0 v_1 \dots v_h$,
+kjer je $h$ najmanjši tak indeks, da velja $v_h = v_{h+1} = \dots = v_t$.
+
+\item Potek izvajanja zgornjega algoritma je prikazan v tabeli~\tab,
+kjer so prikazani le koraki,
+ko algoritem najde krajšo pot do vozlišča
+v primerjavi s prejšnjim obhodom glavne zanke.
+Iz tabele lahko rekonstruiramo sledeče najkrajše poti z največ $4$ povezavami:
+\begin{itemize}
+\item $a$, dolžina $0$
+\item $ab$, dolžina $2$
+\item $abc$, dolžina $3$
+\item $abcd$, dolžina $4$
+\item $abcde$, dolžina $5$
+\item $aef$, dolžina $8$
+\end{itemize}
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{c|cccccc}
+i & a & b & c & d & e & f \\ \hline
+0 & 0 &&&&& \\
+1 && 2_a &&& 7_a & \\
+2 &&& 3_b &&& 8_e \\
+3 &&&& 4_c && \\
+4 &&&&& 6_d &
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek reševanja}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
