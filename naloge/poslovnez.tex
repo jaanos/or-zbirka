@@ -40,5 +40,48 @@ ki bodo Janezu zagotovile trajno dobičkonosno poslovanje?
 \end{slika}
 \end{vprasanje}
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $G=(V,E)$ graf v katerem iščemo iskano rešitev. Da problem prevedemo na 
+iskanje najcenejše poti, v grafu spremenimo predznak vsem povezavam. Z $E'$ označimo
+množico novih povezav, z $G'=(V,E')$ pa nov graf. Ideja algoritma je, da na grafu $G'$
+najde najcenejšo pot, oz. negativen cikel, če ta obstaja. Kot algoritem uporabimo 
+predelano verzijo Floyd-Warshallovega algoritma, ki lahko zazna negativen cikel že med 
+samim iskanjem poti. 
+
+\begin{small}
+\begin{small}
+\begin{algorithmic}
+\Function{FW_maksimalni_dobicek}{$G' = (V, E')$,začetek}
+    \State razdalja $\gets$  slovar s ključi oblike $(u,v)$ in vrednostmi
+    0, v primeru, $u=v$, ter $\infty$ sicer, za vse $u,v \in V$
+	\State pot $\gets$ slovar s ključi oblike $(u,v)$ in vrednostmi $\Null$
+    za vse $u,v \in V$
+    \For $u \in V$:
+    \For $ v, r \in \Adj(G,u).items()$:
+        \State razdalja$[u, v] \gets r$
+        \State pot$[u,v] \gets [u,v]$
+        \For $w \in V$:
+        \For $u \in V$:
+            \If $razdalja[u, w] + razdalja[w, u] < 0:$ zaznamo negativen(pozitiven) cikel
+                \State $pot_zasluzka = pot[zacetek,u][:-1]+ pot[u,w][:-1] + pot[w,u][:-2]$
+                \State \Return($\infty$, pot_zasluzka)
+            \For $v \in V$:
+                \State $r \gets $razdalja$[u, w] + $razdalja$[w, v]$
+                \If $r < $razdalja$[u, v]$:
+                    \State razdalja$[u, v] = r$
+                    \State pot$[u,v]$ = pot$[u,w]$ + pot$[w,v][1:]$   
+    \State zasluzek $= min($razdalja$[zacetek,u]$ \For $u in V)$ v grafu ni cikla
+    \For u in G.vozlisca(): 
+        \If razdalja$[zacetek,u] == zasluzek$:
+            \State konec $= u$
+    \State pot_zasluzka = pot[zacetek,konec]
+    \State zasluzek = -zasluzek spremenimo predznak zasluzka 
+    \State \Return (pot_zasluzka, zasluzek)
+    \EndFunction
+\end{algorithmic}
+\end{small}
+
+
+
 \end{odgovor}
 \end{naloga}
