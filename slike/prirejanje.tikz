@@ -1,0 +1,24 @@
+\begin{neusmerjen}[scale=1.2]*
+    \vozlisce{a}{ 0, 3}
+    \vozlisce{b}{-2, 1}
+    \vozlisce{c}{ 2, 1}
+    \vozlisce{d}{-4,-1}
+    \vozlisce{e}{-2,-1}
+    \vozlisce{f}{ 0,-1}
+    \vozlisce{g}{ 2,-1}
+    \vozlisce{h}{ 4,-1}
+    \vozlisce{i}{-3,-3}
+    \vozlisce{j}{-1,-3}
+    \vozlisce{k}{ 2,-3}
+
+    \povezava{d}{b}{8}{above}[sloped]
+    \povezava{b}{a}{1}{above}[sloped]
+    \povezava{a}{c}{9}{above}[sloped]
+    \povezava{c}{g}{2}{left}
+    \povezava{g}{k}{1}{left}
+    \povezava{i}{e}{4}{left}
+    \povezava{e}{b}{8}{left}
+    \povezava{b}{f}{4}{above}[sloped]
+    \povezava{e}{j}{9}{right}
+    \povezava{c}{h}{4}{above}[sloped]
+\end{neusmerjen}
