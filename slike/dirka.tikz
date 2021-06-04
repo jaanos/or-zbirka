@@ -23,8 +23,9 @@
     \povezava*{c}{h}{21}{above}[sloped]
     \povezava {d}{i}{7}{above}[sloped]
     \povezava {e}{g}{17.5}{near start, above}
-    \povezava {e}{j}{17.5}{near end, below}[sloped]
-    \povezava {f}{g}{18.5}{near start, below}[sloped]
+    \povezava {e}{j}{17.5}{near end, above}[sloped]
+    \povezava {f}{g}{18.5}{near start, above}[sloped]
+    \povezava {f}{j}{18.5}{below}
     \povezava {g}{h}{1}{below}
     \povezava*{h}{i}{1}{below}
     \povezava*{i}{t}{1}{above}
