@@ -113,9 +113,9 @@ dobiček 11.
 \newpage
 \begin{small}
 \begin{algorithmic}
-\Function{MAKSIMALNIDOBIČEK}{$G = (V, E), s \in V, L : E \to \R$}
-    \State $d \gets$ seznam slovarjev z vrednostjo $- \infty$ za vsako vozlišče $v \in V$
-    \State $\pred \gets$ seznam slovarjev z vrednostjo $\Null$
+\Function{MaksimalniDobiček}{$G = (V, E), s \in V, L : E \to \R$}
+    \State $d[0, \dots, n] \gets$ seznam slovarjev z vrednostjo $-\infty$ za vsako vozlišče $v \in V$
+    \State $\pred[1, \dots, n] \gets$ seznam slovarjev z vrednostjo $\Null$
     za vsako vozlišče $v \in V$
     \State $d[0][s] \gets 0$
     \State $i \gets 0$
@@ -140,7 +140,7 @@ dobiček 11.
     \EndWhile
     \State $zasluzek \gets$ max $({d_{i,u} |i=0, \ldots , |V|;  u \in V})$
     \State $konec \gets \{v | d_{i,v}= zasluzek \}$
-    \State \Return $(zasluzek,$ RekonstruirajPot $(pred,konec)$, $\Null$)
+    \State \Return $(zasluzek, \text{\sc RekonstruirajPot}(\pred, \text{\sl konec}), \Null)$
 \EndFunction
 \end{algorithmic}
 \end{small}
@@ -150,7 +150,7 @@ dobiček 11.
         \Function{RekonstruirajPot}{$\pred, t$}
         \State $u \gets t$
         \State {\sl pot} $\gets [t]$
-        \While{$i \ne 0$}
+        \While{$i \ge 0$}
             \State $u \gets \pred[i][u]$
             \State {\sl pot}$.\append(u)$
             \State $i \gets i - 1$
