@@ -33,7 +33,7 @@ pri katerem bomo naredili le $t$ obhodov glavne zanke.
 \begin{algorithmic}
 \Function{OmejeniBellmanFord}{$G = (V, E), s \in V, c : E \to \R, t \in \{0, 1, \dots, |V| - 1\}$}
     \State $d[0, \dots, t] \gets$ seznam slovarjev z vrednostjo $\infty$ za vsako vozlišče $v \in V$
-    \State $\pred[0, \dots, t] \gets$ seznam slovarjev z vrednostjo $\Null$
+    \State $\pred[1, \dots, t] \gets$ seznam slovarjev z vrednostjo $\Null$
 	za vsako vozlišče $v \in V$
     \State $d[0][s] \gets 0$
     \For{$i = 1, 2, \dots, t$}
