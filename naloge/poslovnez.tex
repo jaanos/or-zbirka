@@ -1,139 +1,163 @@
 \begin{naloga}{Alen Orbanić}{Kolokvij OR 19.11.2009}
-\begin{vprasanje}
-Janez je prekaljen poslovnež, ki hoče vedno zaslužiti kar največ.
-A Janez lahko naenkrat prevzame le en posel.
-Če se en posel začne med izvajanjem nekega drugega posla,
-novega posla ne more prevzeti.
-Poslovne priložnosti so predstavljene z grafom.
-Vozlišča predstavljajo stanja, v katerih Janez izbira med posli,
-izhodne povezave iz vsakega vozlišča pa predstavljajo posle,
-ki se jih lahko loti.
-Cene povezav predstavljajo dobiček pri poslu oziroma izgubo,
-če je cena negativna
-(včasih je potrebno sprejeti tudi kak posel, ki nosi izgubo,
-da se lahko prebijemo do dobičkonosnega posla \dots).
-V vsakem stanju lahko Janez izbere katerega koli izmed poslov,
-ki pripadajo izhodnim povezavam.
-Tekom svoje poslovne kariere se lahko Janez
-v določenem stanju znajde tudi večkrat.
-Janez se trenutno nahaja v izbranem vozlišču grafa.
-\begin{enumerate}[(a)]
-\item Za poljuben graf poslovnih priložnosti ugotovi,
-kakšen problem moraš na njem rešiti, da boš lahko pravilno svetoval Janezu,
-da bo uresničil svoje poslovne ambicije.
-Predlagaj algoritem, s katerim rešiš problem,
-in oceni časovno zahtevnost predlagane rešitve.
-Janeza med drugim še posebej zanima,
-ali mu graf poslovnih priložnosti zagotavlja stalno pridobivanje poslov
-in dobičkonosno poslovanje za celo kariero.
-\item Za graf poslovnih priložnosti s slike~\fig
-izberi ustrezen algoritem in ga izvedi ter izračunaj,
-koliko največ lahko zasluži Janez, če ``vstopi v igro'' v stanju $a$ ali $b$.
-Upoštevaj lastnosti spodnjega grafa in navedi, kateri algoritem je to.
-Ali graf predstavlja poslovne priložnosti,
-ki bodo Janezu zagotovile trajno dobičkonosno poslovanje?
-\end{enumerate}
-
-\begin{slika}
-\pgfslika
-\podnaslov{Graf}
-\end{slika}
-\end{vprasanje}
-\begin{odgovor}
-\begin{enumerate}[(a)]
-\item Naj bo $G=(V,E)$ graf, v katerem iščemo iskano rešitev. Za iskanje najdražje poti 
-v grafu bomo uporabili predelano algoritma {\sc BellmanFord} iz rešitve naloge~\res[bf] 
-in malo spremenjen algoritem {\sc RekonstruirajPot} iz rešitve naloge~\res[topo]. Za 
-razliko od algoritma {\sc BellmanFord}, naš algoritem za namen problema sproti shranjuje
-še globino, ki jo uporabi pri iskanju poti, in to na koncu s pomočjo {\sc RekonstruirajPot}
-tudi izpiše. V algoritmu že pred izvajanjem zank nastavimo začetne vrednosti \textit{zaslužek,
-konec,globina}, ki jih med samim algoritmom povečujemo v primeru, najdenega večjega zaslužka.
-
-
-\begin{small}
-\begin{algorithmic}
-\Function{MAKSIMALNIDOBIČEK}{$G = (V, E), s \in V, L : E \to \R$}
-    \State $d \gets$ seznam slovarjev z vrednostjo $- \infty$ za vsako vozlišče $v \in V$
-    \State $\pred \gets$ seznam slovarjev z vrednostjo $\Null$
-    za vsako vozlišče $v \in V$
-    \State $d[0][s] \gets 0$
-    \State $i \gets 0$
-    \State $\text{\sl trenutna} \gets \{s\}$
-    \State $\text{\sl zasluzek}, \text{\sl konec}, \text{\sl globina} \gets 0,s,0$  \hfill nastavimo začetne vrednosti
-    \While{$\lnot \text{\sl trenutna}.\isEmpty()$}
-        \State $i \gets i+1$
-        \If{$i > |V|$} \hfill $\exists$ pozitiven cikel
-            \State $w\gets \{ u \mid d[i][u] \quad  \exists \}$ \hfill z $w$ označimo konec poti, ki vsebuje cikel
-            \State $\text{\sl pot} \gets \text{\sl RekonstruirajPot}(\pred, w,\text{\sl i})$ \hfill naredimo pot do $w$
-            \State $\text{\sl konec} \gets \Null$
-            \State $i \gets 0$
-            \State $\text{\sl pregledani} \gets$ prazen seznam
-            \For{$u \in pot$} \hfill v poti poiščemo vozlišče, ki se pojavi dvakrat
-                \State {\sl pregledani}$.\append(u)$
-                \If{$\text{\sl število.pojavitev(u) v pregledani} > 1$}
-                    \State{$\text{\sl konec} \gets u$}
-                    \State{$\text{\sl globina} \gets i$}
-                \EndIf
-                \State$i \gets i + 1$
-            \EndFor
-            \State \Return $(\infty, \text{\sl RekonstruirajPot}(\pred, \text{\sl konec},\text{\sl globina}),\text{\sl Cikel obstaja})$    
-        \EndIf 
-        \State $\text{\sl{naslednja}} \gets$ prazna množica
-        \For{$u \in \text{\sl trenutna}$}
-            \State $d[i][u] \gets d[i-1][u]$
-            \State $\pred[i][u] \gets u$
-            \For{$v \in  \Adj(G, u)$}
-                \If{$d[i][v] < d[i-1][u] +  L_{uv}$} \hfill najdemo večji zaslužek do $v$
-                    \State $d[i][v] \gets d[i-1][u] +  L_{uv}$ 
-                    \State $\pred[i][v] \gets u$
-                \EndIf
-                \If{$d[i][v] > \text{\sl zasluzek}$} \hfill najdemo nov največji zaslužek
-                    \State $\text{\sl zasluzek}, \text{\sl konec}, \text{\sl globina} \gets d[i][v],v,i$
-                \EndIf
+    \begin{vprasanje}
+    Janez je prekaljen poslovnež, ki hoče vedno zaslužiti kar največ.
+    A Janez lahko naenkrat prevzame le en posel.
+    Če se en posel začne med izvajanjem nekega drugega posla,
+    novega posla ne more prevzeti.
+    Poslovne priložnosti so predstavljene z grafom.
+    Vozlišča predstavljajo stanja, v katerih Janez izbira med posli,
+    izhodne povezave iz vsakega vozlišča pa predstavljajo posle,
+    ki se jih lahko loti.
+    Cene povezav predstavljajo dobiček pri poslu oziroma izgubo,
+    če je cena negativna
+    (včasih je potrebno sprejeti tudi kak posel, ki nosi izgubo,
+    da se lahko prebijemo do dobičkonosnega posla \dots).
+    V vsakem stanju lahko Janez izbere katerega koli izmed poslov,
+    ki pripadajo izhodnim povezavam.
+    Tekom svoje poslovne kariere se lahko Janez
+    v določenem stanju znajde tudi večkrat.
+    Janez se trenutno nahaja v izbranem vozlišču grafa.
+    \begin{enumerate}[(a)]
+    \item Za poljuben graf poslovnih priložnosti ugotovi,
+    kakšen problem moraš na njem rešiti, da boš lahko pravilno svetoval Janezu,
+    da bo uresničil svoje poslovne ambicije.
+    Predlagaj algoritem, s katerim rešiš problem,
+    in oceni časovno zahtevnost predlagane rešitve.
+    Janeza med drugim še posebej zanima,
+    ali mu graf poslovnih priložnosti zagotavlja stalno pridobivanje poslov
+    in dobičkonosno poslovanje za celo kariero.
+    \item Za graf poslovnih priložnosti s slike~\fig
+    izberi ustrezen algoritem in ga izvedi ter izračunaj,
+    koliko največ lahko zasluži Janez, če ``vstopi v igro'' v stanju $a$ ali $b$.
+    Upoštevaj lastnosti spodnjega grafa in navedi, kateri algoritem je to.
+    Ali graf predstavlja poslovne priložnosti,
+    ki bodo Janezu zagotovile trajno dobičkonosno poslovanje?
+    \end{enumerate}
+    \begin{slika}
+    \pgfslika
+    \podnaslov{Graf}
+    \end{slika}
+    \end{vprasanje}
+    \begin{odgovor}
+    \begin{enumerate}[(a)]
+    \item Naj bo $G=(V,E)$ graf, v katerem iščemo iskano rešitev. Da problem prevedemo na 
+    iskanje najcenejše poti, v grafu spremenimo predznak vsem povezavam. Z $E'$ označimo
+    množico novih povezav, z $G'=(V,E')$ pa nov graf. Ideja algoritma je, da na grafu $G'$
+    najde najcenejšo pot oz. negativen cikel, če ta obstaja. Kot algoritem uporabimo 
+    predelano verzijo Floyd-Warshallovega algoritma, ki lahko zazna negativen cikel že med 
+    samim iskanjem poti. 
+    \\
+    \begin{small}
+    \begin{algorithmic}
+    \Function{FW-MAKSIMALNIDOBIČEK}{$G'=(V, E'), začetek$}
+        \State $razdalja \gets$  slovar s ključi oblike $(u,v)$ in vrednostmi
+        0 v primeru $u=v$,
+        \State{ sicer $\infty$, za vse $u,v \in V$}
+        \State $pot \gets$ slovar s ključi oblike $(u,v)$ in vrednostmi $\Null$
+        za vse $u,v \in V$
+        \For{$u \in V$}
+            \For{$ v, r \in \Adj(G, u).items()$}
+                \State $razdalja[u, v] \gets r$
+                \State $pot[u,v] \gets [u,v]$
             \EndFor
         \EndFor
-        \State $\text{\sl{trenutna}} \gets \text{\sl{naslednja}}$
-    \EndWhile \hfill v grafu ni pozitivnega cikla
-    \State \Return $(zasluzek, \text{\sl RekonstruirajPot}(\pred, \text{\sl konec},\text{\sl globina}), \Null)$
-\EndFunction
-\end{algorithmic}
-
-
-\begin{algorithmic}
-\Function{RekonstruirajPot}{$\pred, t, i$}
-    \State $u \gets t$
-    \State {\sl pot} $\gets [t]$
-    \While{$i \ge 0$}
-        \State $u \gets \pred[i][u]$
-        \State {\sl pot}$.\append(u)$
-        \State $i \gets i - 1$
-    \EndWhile
-    \State {\sl pot}$.\reverse()$
-    \State \Return {\sl pot}
-\EndFunction
-\end{algorithmic}
-\end{small}
-
-Časovna zahtevnost algoritma {\sc MAKSIMALNIDOBIČEK} je kot pri navadnem Bellman-Fordovem algoritmu 
-enaka $O(mn)$, kjer je $n$ število vozlišč in $m$ število povezav grafa.
-
-\item Če algoritem iz točke (a) izvedemo na danem grafu, se lahko prepričamo, 
-da je graf acikličen in zato vrne končno pot, ki torej ne predstavlja trajnega
-dobičkonosnega poslovanja.  \\
-V primeru, da začnemo v stanju a, nam algoritem vrne pot [a, c, d, f] in 
-dobiček 10, v primeru, da začnemo v stanju b, pa [b, e, g, h, j] in 
-dobiček 11.
-
-\end{enumerate}
-\begin{slika}
-\pgfslika[poslovnez-resitev1]
-\podnaslov{Rešitev v primeru začetnega stanja v $a$}
-\end{slika}
-
-\begin{slika}
-\pgfslika[poslovnez-resitev2]
-\podnaslov{Rešitev v primeru začetnega stanja v $b$}
-\end{slika}
-
-\end{odgovor}
-\end{naloga}
+        \For{$w \in V$}
+            \For{$u \in V$}
+                \If{$razdalja[u, w] + razdalja[w, u] < 0$} \hfill $\exists$ negativen cikel
+                    \State {$potZasluzka = pot[zacetek,u][:-1] +$} \hfill sestavimo pot
+                    \State{$+ pot[u,w][:-1] + pot[w,u][:-2]$}
+                        \State{ \Return{($\infty, potZasluzka$)}} \hfill vrne $zaslužek = \infty$ in pot s ciklom
+                \EndIf
+                \For{$v \in V$}
+                    \State{ $r \gets razdalja[u, w] + razdalja[w, v]$}
+                    \If {$r < razdalja[u, v]$}
+                        \State{ $razdalja[u, v] = r$}
+                        \State{$pot[u,v] = pot[u,w] + pot[w,v][1:]$  }
+                    \EndIf 
+                \EndFor
+            \EndFor
+        \EndFor \hfill v grafu ni cikla
+    \State {$zasluzek = $min$(razdalja[zacetek,u]$ \textbf{for} $u \in V)$} \hfill poiščemo najmanjšo vr.
+    \For{$u \in  V$} \hfill poiščemo najmanjšo pot
+        \If {$razdalja[zacetek,u] == zasluzek$}
+            \State{$konec = u$}
+        \EndIf
+    \EndFor
+    \State {$potZasluzka = pot[zacetek,konec]$}
+    \State{ $zasluzek = -zasluzek$  \hfill spremenimo predznak zasluzka}
+    \State {\Return {$(potZasluzka, zasluzek)$}}
+    \EndFunction
+    \end{algorithmic}
+    \end{small}
+    Ker gre za izpeljavo Floyd- Warshallovega algoritma, je časovna zahtevnost
+    enaka $o(n^3)$, kjer je $n$ število vozlišč.
+    \item Če algoritem iz točke (a) izvedemo na danem grafu, se lahko prepričamo, 
+    da je graf acikličen in zato vrne končno pot, ki torej ne predstavlja trajnega
+    dobičkonosnega poslovanja.  \\
+    V primeru, da začnemo v stanju a, nam algoritem vrne pot [a, c, d, f] in 
+    dobiček 10, v primeru, da začnemo v stanju b, pa [b, e, g, h, j] in 
+    dobiček 11.
+    \end{enumerate}
+    \begin{slika}
+    \pgfslika[poslovnez-resitev1]
+    \end{slika}
+    \begin{slika}
+    \pgfslika[poslovnez-resitev2]
+    \end{slika}
+        
+    \newpage
+    \begin{small}
+    \begin{algorithmic}
+    \Function{MAKSIMALNIDOBIČEK}{$G = (V, E), s \in V, L : E \to \R$}
+        \State $d \gets$ seznam slovarjev z vrednostjo $- \infty$ za vsako vozlišče $v \in V$
+        \State $\pred \gets$ seznam slovarjev z vrednostjo $\Null$
+    \Function{MaksimalniDobiček}{$G = (V, E), s \in V, L : E \to \R$}
+        \State $d[0, \dots, n] \gets$ seznam slovarjev z vrednostjo $-\infty$ za vsako vozlišče $v \in V$
+        \State $\pred[1, \dots, n] \gets$ seznam slovarjev z vrednostjo $\Null$
+        za vsako vozlišče $v \in V$
+        \State $d[0][s] \gets 0$
+        \State $i \gets 0$
+        \State $\text{\sl trenutna} \gets \{s\}$
+        \While{$\lnot \text{\sl trenutna}.\isEmpty()$}
+            \State $i \gets i+1$
+            \If{$i > |V|$} \hfill $\exists$ pozitiven cikel
+                \State \Return graf ima negativen cikel 
+            \EndIf
+            \State $\text{\sl{naslednja}} \gets$ prazna množica
+            \For{$u \in \text{\sl trenutna}$}
+                \State $d[i][u] \gets d[i-1][u]$
+                \State $\pred[i][u] \gets u$
+            \EndFor
+            \For{$uv \in E$}
+                \If{$d[i][v] < d[i-1][u] +  L_{uv}$}
+                    \State $d[i][v] \gets d[i-1][u] +  L_{uv}$
+                    \State $\pred[i][v] \gets u$
+                \EndIf
+            \EndFor
+            \State $\text{\sl{trenutna}} \gets \text{\sl{naslednja}}$
+        \EndWhile
+        \State $zasluzek \gets$ max $({d_{i,u} |i=0, \ldots , |V|;  u \in V})$
+        \State $konec \gets \{v | d_{i,v}= zasluzek \}$
+        \State \Return $(zasluzek,$ RekonstruirajPot $(pred,konec)$, $\Null$)
+        \State \Return $(zasluzek, \text{\sc RekonstruirajPot}(\pred, \text{\sl konec}), \Null)$
+    \EndFunction
+    \end{algorithmic}
+    \end{small}
+        \begin{small}
+        \begin{algorithmic}
+            \Function{RekonstruirajPot}{$\pred, t$}
+            \State $u \gets t$
+            \State {\sl pot} $\gets [t]$
+            \While{$i \ne 0$}
+            \While{$i \ge 0$}
+                \State $u \gets \pred[i][u]$
+                \State {\sl pot}$.\append(u)$
+                \State $i \gets i - 1$
+            \EndWhile
+            \State {\sl pot}$.\reverse()$
+            \State \Return {\sl pot}
+        \EndFunction
+    \end{algorithmic}
+    \end{small}
+    \end{odgovor}
+    \end{naloga}
