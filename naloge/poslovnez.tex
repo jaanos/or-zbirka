@@ -112,8 +112,10 @@ ki deluje podobno kot istoimenska funkcija v rešitvi naloge~\res[topo].
     \State $u \gets t$
     \State {\sl pot} $\gets [t]$
     \While{$i \ge 0$}
-        \State $u \gets \pred[i][u]$
-        \State {\sl pot}$.\append(u)$
+        \If{$u \ne \pred[i][u]$}
+            \State $u \gets \pred[i][u]$
+            \State {\sl pot}$.\append(u)$
+        \EndIf
         \State $i \gets i - 1$
     \EndWhile
     \State {\sl pot}$.\reverse()$
