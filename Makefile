@@ -84,6 +84,12 @@ pgf/otoki.pdf: slike/otoki.tikz slike/otoki-osnova.tikz
 pgf/otoki-resitev.pdf: slike/otoki-resitev.tikz slike/otoki-osnova.tikz
 	$(call pgfc,otoki-resitev)
 
+pgf/poslovnez.pdf: slike/poslovnez.tikz slike/poslovnez-osnova.tikz
+	$(call pgfc,poslovnez)
+
+pgf/poslovnez%.pdf: slike/poslovnez%.tikz slike/poslovnez-osnova.tikz
+	$(call pgfc,poslovnez$*)
+
 pgf/pretok%.pdf: slike/pretok%.tikz slike/pretok%-osnova.tikz
 	$(call pgfc,pretok$*)
 

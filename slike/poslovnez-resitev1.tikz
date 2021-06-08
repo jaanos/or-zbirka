@@ -1,0 +1,11 @@
+\input{slike/poslovnez-osnova.tikz}
+
+\begin{usmerjen*}[scale=1.3]{poslovnez}
+    \kandidat{a}{c}
+    \kandidat{c}{d}
+    \kandidat{d}{f}
+    \kandidat{d}{e}
+    \kandidat{e}{g}
+    \kandidat{g}{h}
+    \kandidat{h}{j}
+\end{usmerjen*}

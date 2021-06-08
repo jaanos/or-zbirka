@@ -1,0 +1,28 @@
+\NewEnviron{usmerjen@poslovnez}{
+    \tikzstyle{kandidat}=[red]
+
+    \vozlisce{a}{ 2, 3}
+    \vozlisce{b}{-2, 3}
+    \vozlisce{c}{ 2, 1}
+    \vozlisce{d}{ 0, 1}
+    \vozlisce{e}{-2, 1}
+    \vozlisce{f}{-2,-1}
+    \vozlisce{g}{ 0,-1}
+    \vozlisce{h}{ 0,-3}
+    \vozlisce{i}{ 2,-3}
+    \vozlisce{j}{-2,-3}
+
+    \povezava{a}{c}{3}{right}
+    \povezava{b}{e}{2}{left}
+    \povezava{c}{d}{1}{above}
+    \povezava{c}{i}{-2}{right}
+    \povezava{d}{e}{-3}{above}
+    \povezava{d}{f}{6}[sloped]{near start, above}
+    \povezava{e}{g}{2}[sloped]{near end, above}
+    \povezava{e}{h}{-1}[sloped]{near end, below}
+    \povezava{f}{j}{-3}{left}
+    \povezava{g}{h}{6}{right}
+    \povezava{h}{j}{1}{below}
+    \povezava{i}{g}{-1}[sloped]{above}
+    \povezava{i}{h}{6}{below}
+}
