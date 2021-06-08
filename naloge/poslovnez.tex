@@ -91,9 +91,9 @@ ki jih med samim algoritmom posodabljamo v primeru najdenega večjega zaslužka.
                     \State $d[i][v] \gets d[i-1][u] +  L_{uv}$
                     \State $\pred[i][v] \gets u$
                     \State $\text{\sl{naslednja}}.\add(v)$
-                \EndIf
-                \If{$d[i][v] > d[\text{\sl globina}][\text{\sl konec}]$} \hfill najdemo nov največji zaslužek
-                    \State $\text{\sl konec}, \text{\sl globina} \gets v, i$
+                    \If{$d[i][v] > d[\text{\sl globina}][\text{\sl konec}]$}
+                        \State $\text{\sl konec}, \text{\sl globina} \gets v, i$ \hfill najdemo nov največji zaslužek
+                    \EndIf
                 \EndIf
             \EndFor
         \EndFor
