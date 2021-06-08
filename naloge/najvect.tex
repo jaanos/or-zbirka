@@ -54,12 +54,9 @@ pri katerem bomo naredili le $t$ obhodov glavne zanke.
 \end{small}
 Časovna zahtevnost algoritma je $O(tm)$,
 kjer je $m$ število povezav grafa.
-Da rekonstruiramo najkrajšo pot od $s$ do vozlišča $u \in V$
-z največ $t$ povezavami,
-poiščemo tako zaporedje $(v_0, v_1, \dots, v_t)$,
-da velja $v_t = u$ in $v_{i-1} = \pred[i][v_i]$ ($1 \le i \le t$).
-Ustrezna pot je potem $v_0 v_1 \dots v_h$,
-kjer je $h$ najmanjši tak indeks, da velja $v_h = v_{h+1} = \dots = v_t$.
+Najkrajšo pot od $s$ do vozlišča $u \in V$ z največ $t$ povezavami
+lahko rekonstruiramo s klicem funkcije
+$\text{\sc RekonstruirajPot}(\pred, u, t)$ iz rešitve naloge~\res[poslovnez].
 
 \item Potek izvajanja zgornjega algoritma je prikazan v tabeli~\tab,
 kjer so prikazani le koraki,
