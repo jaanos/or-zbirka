@@ -1,0 +1,21 @@
+\begin{usmerjen*}[scale=1.2]*
+    \vozlisce{a}{xyz polar cs:angle= 90,radius=3}
+    \vozlisce{b}{xyz polar cs:angle=150,radius=3}
+    \vozlisce{c}{xyz polar cs:angle=210,radius=3}
+    \vozlisce{d}{xyz polar cs:angle=270,radius=3}
+    \vozlisce{e}{xyz polar cs:angle=330,radius=3}
+    \vozlisce{f}{xyz polar cs:angle= 30,radius=3}
+
+    \povezava{a}{b}{2}{above}[sloped]
+    \povezava{b}{c}{1}{left}
+    \povezava{c}{d}{1}{below}[sloped]
+    \povezava{d}{e}{2}{below}[sloped]
+    \povezava{e}{f}{1}{right}
+    \povezava{f}{a}{4}{above}[sloped]
+    \povezava{a}{e}{7}{above}[sloped]
+    \povezava{e}{c}{11}{below}
+    \povezava{c}{a}{2}{above}[sloped]
+    \povezava{b}{f}{10}{above}
+    \povezava{f}{d}{3}{below}[sloped]
+    \povezava{d}{b}{12}{below}[sloped]
+\end{usmerjen*}

@@ -65,6 +65,7 @@ in osnoven koncept dinamičnega programiranja.
 Označimo z $L_{uv}$ utež povezave $u \rightarrow v$.
 Naj $d_G(u)$ predstavlja najkrajšo razdaljo
 od izbranega vozlišča $s$ do vozlišča $u$.
+\needspace{2\baselineskip}
 \begin{align*}
 d_G(s) &= 0 \\
 d_G(u) &= \min_{v \rightarrow u}(d_G(v) + L_{vu})
@@ -80,6 +81,7 @@ Imamo torej vse, kar potrebujemo za izračun najkrajše poti.
 Za beleženje vozlišč, skozi katera vodi ta pot,
 bomo uporabili seznam predhodnikov,
 ki bo nakazoval, katero vozlišče smo izbrali za predhodnika.
+\needspace{2\baselineskip}
 \begin{align*}
 \pred(s) &= \Null \\
 \pred(u) &= \argmin_{v \rightarrow u}(d_G(v) + L_{vu})

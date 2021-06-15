@@ -1,0 +1,125 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 3.6.2021}
+\begin{vprasanje}
+{\em Prirejanje} v grafu $G = (V, E)$ je taka množica $M \subseteq E$,
+da je vsako vozlišče $u \in V$ krajišče največ ene povezave iz $M$.
+
+Dano je drevo $T = (V, E)$ in uteži povezav $c_e$ ($e \in E$).
+V drevesu $T$ želimo najti {\em najtežje prirejanje}
+-- torej tako množico povezav $M \subseteq E$,
+ki maksimizira vsoto njihovih uteži, torej vrednost $\sum_{e \in M} c_e$.
+
+\begin{enumerate}[(a)]
+\item Napiši rekurzivne enačbe za reševanje problema
+najtežjega prirejanja v drevesu $T$.
+Razloži, kaj pred\-stav\-lja\-jo spremenljivke,
+v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
+Predpostaviš lahko,
+da imaš poleg seznamov sosedov in uteži povezav drevesa $T$
+na voljo tudi tabelo $\pred$ (glej nalogo~\nal[neodvisna]{}(a)),
+ki za vsako vozlišče $v \in V$ določa njegovega prednika,
+če za koren izbereš vozlišče $r \in V$.
+Koren $r$ je lahko izbran poljubno, zanj pa velja $\pred[r] = \Null$.
+\namig{za vsako vozlišče uporabi dve spremenljivki
+-- eno za primer, ko je vozlišče krajišče povezave iz prirejanja,
+in eno za primer, ko ni.}
+
+\item Natančno opiši postopek (z besedami ali psevdokodo),
+ki iz zgoraj izračunanih vred\-no\-sti
+sestavi najtežje prirejanje v $T$.
+
+\item Oceni časovno zahtevnost algoritma iz točk (a) in (b).
+
+\item S svojim algoritmom poišči najtežje prirejanje
+na drevesu s slike~\fig.
+Iz re\-šit\-ve naj bo jasno, kako poteka izvajanje algoritma.
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov[\nal{}(d)]{Drevo}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bosta $x_u$ in $y_u$ teži najtežjega prirejanja $M$
+v poddrevesu s korenom $u$ (glede na slovar $\pred$),
+za katerega velja, da ne vsebuje nobene povezave s krajiščem $u$,
+oziroma da tako povezavo lahko vsebuje.
+Potem velja
+\needspace{2\baselineskip}
+\begin{align*}
+x_u &= \sum_{\substack{v \sim u \\ v \ne \pred[u]}}\!\!\!\! y_v
+\qquad \text{in} \\
+y_u &= x_u + \max\left(\{0\} \cup \{c_{uv} + x_v - y_v \mid v \sim u, v \ne \pred[u]\}\right).
+\end{align*}
+Vrednosti $x_u$ in $y_u$ računamo od listov v smeri proti korenu $r$
+(tj., v topološki ureditvi glede na $\pred$).
+Težo najtežje neodvisne množice dobimo kot $c^* = y_r$.
+
+\item Da iz vrednosti $x_u$ in $y_u$ ($u \in V$)
+izluščimo najtežje prirejanje $M$ v drevesu $T$,
+se sprehodimo od korena proti listom (npr. z iskanjem v širino)
+in za posamezno vozlišče $u$,
+za katerega velja $x_u \ne y_u$
+in v $M$ nimamo povezave do njegovega predhodnika,
+v množico $M$ dodamo povezavo do enega od naslednikov $v$,
+za katerega velja $y_u + y_v - x_u - x_v = c_{uv}$.
+\begin{small}
+\begin{algorithmic}
+\Function{NajtežjePrirejanje}%
+        {$T = (V, E), r, c : E \to \R, (x_u)_{u \in V}, (y_u)_{u \in V}$}
+    \State $M \gets$ prazna množica
+    \Function{Visit}{$u, w$}
+        \If{$x_u \ne y_u \land (w = \Null \lor uw \not\in M)$}
+            \State $v \gets$ eno izmed vozlišč iz $\Adj_G(u) \setminus \{w\}$ z $y_u + y_v - x_u - x_v = c_{uv}$
+            \State $M.\add(uv)$
+        \EndIf
+    \EndFunction
+    \State {\sc bfs}$(T, \{r\}, \visit)$
+    \State \Return $S$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\item Naj bo $n$ število vozlišč drevesa $T$.
+Potem ima $T$ natanko $n-1$ povezav.
+Za izračun najtežjega prirejanja naredimo tri preglede v širino,
+pri čemer v vsakem vozlišču porabimo konstantno mnogo časa.
+Časovna zahtevnost celotnega algoritma je torej $O(n)$.
+
+\item Izračunajmo vrednosti $x_u$ in $y_u$ ($u \in V$),
+če za koren vzamemo vozlišče $a$.
+\begin{alignat*}{4}
+x_i &&&= 0 &\qquad y_i &&&= 0 \\
+x_j &&&= 0 &\qquad y_j &&&= 0 \\
+x_k &&&= 0 &\qquad y_k &&&= 0 \\
+x_d &&&= 0 &\qquad y_d &&&= 0 \\
+x_e &= 0+0 &&= 0 &\qquad
+y_e &= 0 + \max\{0, 4, \underline{9}\} &&= 9 \\
+x_f &&&= 0 &\qquad y_f &&&= 0 \\
+x_g &&&= 0 &\qquad
+y_g &= 0 + \max\{0, \underline{1}\} &&= 1 \\
+x_h &&&= 0 &\qquad y_h &&&= 0 \\
+x_b &= 0+9+0 &&= 9 &\qquad
+y_b &= 9 + \max\{0, \underline{8}, -1, 4\ &&= 17 \\
+x_c &= 1+0 &&= 1 &\qquad
+y_c &= 1 + \max\{0, 1, \underline{4}\} &&= 5 \\
+x_a &= 17+5 &&= 22 &\qquad
+y_a &= 22 + \max\{0, -7, \underline{5}\} &&= 27
+\end{alignat*}
+Teža najtežjega prirejanja $M$ je torej $c^* = y_a = 27$.
+Poglejmo, katere povezave so v množici $M$.
+\begin{align*}
+c^* = y_a &= c_{ac} + x_a + x_c - y_c && ac \in M \\
+y_b &= c_{bd} + x_b + x_d - y_d && bd \in M \\
+x_c &= y_g + y_h \\
+y_e &= c_{ej} + x_e + x_j - y_j && ej \in M \\
+x_g &= c_{gk} + x_g + x_k - y_k && gk \in M
+\end{align*}
+Najtežje prirejanje je torej $M = \{ac, bd, ej, gk\}$.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

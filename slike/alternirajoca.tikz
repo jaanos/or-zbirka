@@ -1,23 +1,23 @@
-\begin{tikzpicture}[style=thick,scale=0.8]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=5mm]
-\small
-\node[vertex] (R) at (xyz polar cs:angle= 90,radius=3) {$r$};
-\node[vertex] (S) at (xyz polar cs:angle=150,radius=3) {$s$};
-\node[vertex] (T) at (xyz polar cs:angle=210,radius=3) {$t$};
-\node[vertex] (U) at (xyz polar cs:angle=270,radius=3) {$u$};
-\node[vertex] (V) at (xyz polar cs:angle=330,radius=3) {$v$};
-\node[vertex] (W) at (xyz polar cs:angle= 30,radius=3) {$w$};
+\begin{neusmerjen*}[scale=1.2]*
+    \tikzstyle{zvezdica}=[dashed]
 
-\draw (R) -- (S) node [midway, above, sloped] {$4$}
-          -- (T) node [midway, left] {$12$}
-          -- (U) node [midway, below, sloped] {$1$}
-          -- (V) node [midway, below, sloped] {$2$}
-          -- (W) node [midway, right] {$1$}
-          -- (R) node [midway, above, sloped] {$2$};
-\draw[dashed] (R) -- (T) node [midway, above, sloped] {$7$}
-                  -- (V) node [midway, below] {$11$}
-                  -- (R) node [midway, above, sloped] {$2$};
-\draw[dashed] (S) -- (U) node [midway, below, sloped] {$10$}
-                  -- (W) node [midway, below, sloped] {$3$}
-                  -- (S) node [midway, above] {$1$};
-\end{tikzpicture}
+    \vozlisce{r}{xyz polar cs:angle= 90,radius=3}
+    \vozlisce{s}{xyz polar cs:angle=150,radius=3}
+    \vozlisce{t}{xyz polar cs:angle=210,radius=3}
+    \vozlisce{u}{xyz polar cs:angle=270,radius=3}
+    \vozlisce{v}{xyz polar cs:angle=330,radius=3}
+    \vozlisce{w}{xyz polar cs:angle= 30,radius=3}
+
+    \povezava{r}{s}{4}{above}[sloped]
+    \povezava{s}{t}{12}{left}
+    \povezava{t}{u}{1}{below}[sloped]
+    \povezava{u}{v}{2}{below}[sloped]
+    \povezava{v}{w}{1}{right}
+    \povezava{w}{r}{2}{above}[sloped]
+    \povezava*{r}{v}{2}{above}[sloped]
+    \povezava*{v}{t}{11}{below}
+    \povezava*{t}{r}{7}{above}[sloped]
+    \povezava*{s}{w}{1}{above}
+    \povezava*{w}{u}{3}{below}[sloped]
+    \povezava*{u}{s}{10}{below}[sloped]
+\end{neusmerjen*}

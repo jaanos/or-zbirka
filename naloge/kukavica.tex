@@ -36,7 +36,9 @@ Naj bo $V = \{\{1, 2\}, \{3, 4, 5, 6\}, \{7, 8, 9\}, \{10, 11\}, \{12\}\}$
 particija indeksov gnezd glede na vrsto ptice.
 Zapišimo celoštevilski linearni program.
 \begin{align*}
-\max \ \sum_{i=1}^{12} j \ p_{ij} \ x_{ij} &\quad \text{p.p.} \\
+\max \ \sum_{i=1}^{12} \sum_{j=1}^3 j \ p_{ij} \ x_{ij} &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, 12\} \ \forall j \in \{1, 2, 3\}: \ 0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{V vsakem gnezdu je določeno število jajc}
 \forall i \in \{1, \dots, 12\}: \ \sum_{j=1}^3 x_{ij} &\le 1
 \opis{Skupaj izleže $16$ jajc}
 \sum_{i=1}^{12} \sum_{j=1}^3 j \ x_{ij} &= 16
