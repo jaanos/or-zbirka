@@ -1,0 +1,46 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 18.6.2021}
+\begin{vprasanje}
+Vaščani Gornjih Dol že nestrpno čakajo na cepljenje proti COVID-19,
+zato so se odločili stvari vzeti v svoje roke.
+Vzpostavili so kontakt s trgovcem,
+ki se ukvarja z maloprodajo cepiv na sivem trgu,
+in dobili ponudbo za nakup stekleničke cepiva po ceni $250 €$,
+pri čemer je v vsaki steklenički dovolj cepiva za $4$ ljudi.
+
+V vasi živi $122$ ljudi,
+vendar je zelo verjetno, da se nekateri ne bodo prišli cepit,
+prav tako pa je možno, da bodo nekateri prišli na vrsto za cepljenje drugje,
+že preden bo cepivo dobavljeno (in se tako ne bodo prišli ponovno cepit).
+Tako se odločajo med nabavo $29$, $30$ ali $31$ stekleničk cepiva.
+Pri tem so ocenili verjetnosti $p_i$,
+da se natanko $i$ ljudi ne odloči za cepljenje
+(in tudi drugje niso prišli na vrsto),
+in verjetnosti $q_i$, da natanko $i$ ljudi cepivo dobi drugje:
+$$
+\begin{array}{c|cccc}
+i & 0 & 1 & 2 & 3 \\ \hline
+p_i & 0.3 & 0.4 & 0.2 & 0.1 \\
+q_i & 0.1 & 0.3 & 0.4 & 0.2
+\end{array}
+$$
+Verjetnosti $p_i$ in $q_i$ so med seboj neodvisne.
+Računajo, da bodo imeli z vsakim vaščanom, ki ne bo cepljen
+(bodisi zato, ker ne bo prišel na cepljenje,
+ali pa zato, ker bo zanj zmanjkalo cepiva),
+dodatnih $1\,000 €$ stroškov.
+
+Zanima nas torej, koliko stekleničk naj naročijo,
+da bodo pričakovani skupni stroški čim manjši.
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bodo $X_k$ ($29 \le k \le 31$) stroški,
+če se vaščani odločijo nabaviti $k$ stekleničk cepiva.
+\begin{alignat*}{2}
+E(X_{29}) &= 29 \cdot 250 € + (3 q_3 + 4 q_2 + 5 q_1 + 6 q_0) \cdot 1\,000 € &&= 11\,550 € \\
+E(X_{30}) &= 30 \cdot 250 € + ((p_0 q_1 + p_1 (1 - q_0)) + 2 \cdot ((p_0 + p_1) q_0 + p_2) + 3 p_3) \cdot 1\,000 € &&= 8\,790 € \\
+E(X_{31}) &= 31 \cdot 250 € + (p_1 + 2 p_2 + 3 p_3) \cdot 1\,000 € &&= 8\,850 €
+\end{alignat*}
+Vidimo, da se vaščanom najbolj izplača kupiti $30$ stekleničk cepiva.
+\end{odgovor}
+\end{naloga}
