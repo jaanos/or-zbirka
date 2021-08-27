@@ -67,6 +67,8 @@ za katerega velja $x_u \ne y_u$
 in v $M$ nimamo povezave do njegovega predhodnika,
 v množico $M$ dodamo povezavo do enega od naslednikov $v$,
 za katerega velja $y_u + y_v - x_u - x_v = c_{uv}$.
+
+Zapišimo algoritem, ki kliče funkcijo {\sc bfs} iz naloge~\res[bfs].
 \begin{small}
 \begin{algorithmic}
 \Function{NajtežjePrirejanje}%
@@ -79,7 +81,7 @@ za katerega velja $y_u + y_v - x_u - x_v = c_{uv}$.
         \EndIf
     \EndFunction
     \State {\sc bfs}$(T, \{r\}, \visit)$
-    \State \Return $S$
+    \State \Return $M$
 \EndFunction
 \end{algorithmic}
 \end{small}
