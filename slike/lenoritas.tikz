@@ -1,0 +1,35 @@
+\begin{usmerjen*}[scale=1.5]*
+    \vozlisce{s}{-6,3}
+    \vozlisce{7}{-6,0}
+    \vozlisce{8}{-4,0}
+    \vozlisce{9}{-2,0}
+    \vozlisce{10}{0,0}
+    \vozlisce{12}{2,0}
+    \vozlisce{13}{4,0}
+    \vozlisce{15}{6,0}
+    \vozlisce{t}{6,-3}
+
+    \povezava*{s}{7}{0}{left}
+    \povezava{s}{8}{0}{below}[sloped]
+    \povezava{s}{9}{0}{below}[sloped]
+    \povezava{s}{10}{0}{below}[sloped]
+    \povezava{s}{12}{0}{above}[bend left=3]
+    \povezava{s}{13}{0}{above}[bend left=7]
+    \povezava{s}{15}{0}{above}[bend left=10]
+    \povezava{7}{8}{1}{below, near end}
+    \povezava{8}{9}{1}{below, near end}
+    \povezava{9}{10}{1}{above, near start}
+    \povezava{8}{12}{4}{below}[bend right=25]
+    \povezava*{10}{13}{3}{above, near start}[bend left=25]
+    \povezava{12}{15}{3}{below}[bend right=25]
+    \povezava*{13}{15}{2}{above, near start}
+    \povezava{9}{12}{3}{above, near start}[bend right=23]
+    \povezava*{7}{10}{3}{above, very near start}[bend left=25]
+    \povezava{7}{t}{0}{below}[bend right=10]
+    \povezava{8}{t}{0}{below}[bend right=7]
+    \povezava{9}{t}{0}{below}[bend right=3]
+    \povezava{10}{t}{0}{above}[sloped]
+    \povezava{12}{t}{0}{above}[sloped]
+    \povezava{13}{t}{0}{above}[sloped]
+    \povezava*{15}{t}{0}{right}
+\end{usmerjen*}
