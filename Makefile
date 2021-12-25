@@ -27,6 +27,12 @@ pgf/%.pdf: slike/%.tikz
 pgf/bf.pdf: slike/bf.tikz slike/dijkstra-bf-osnova.tikz
 	$(call pgfc,bf)
 
+pgf/cmrlji.pdf: slike/cmrlji.tikz slike/cmrlji-osnova.tikz
+	$(call pgfc,cmrlji)
+
+pgf/cmrlji-resitev.pdf: slike/cmrlji-resitev.tikz slike/cmrlji-osnova.tikz
+	$(call pgfc,cmrlji-resitev)
+
 pgf/dectree.pdf: slike/dectree.tikz slike/dectree-osnova.tikz
 	$(call pgfc,dectree)
 

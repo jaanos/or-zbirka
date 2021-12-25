@@ -36,6 +36,42 @@ kjer oznake na povezavah povedo, koliko rožic se nahaja vzdolž povezave.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Problem lahko prevedemo
+na problem iskanja najcenejše poti od $s$ do $t$ v grafu,
+kjer je vsaka povezava utežena s številom,
+ki je za $1$ večje od števila rožic na tej povezavi.
+Ker so uteži nenegativne, lahko za reševanje uporabimo Dijkstrov algoritem.
+
+\item Postopek izvajanja Dijkstrovega algoritma
+na grafu s slike~\fig[cmrlji-resitev] z začetkom pri $s$
+je prikazan v tabeli~\tab,
+iz katere je razvidno, da je najkrajša pot $s - y - t$,
+zanjo pa Gaber potrebuje $8$ časovnih enot.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika[cmrlji-resitev]
+\podnaslov{Graf in najkrajša pot}
+\end{slika}
+%
+\begin{tabela}[h]
+$$
+\begin{array}{cccccccc}
+s & u & v & w & x & y & z & t \\ \hline
+* & 2_s && 2_s && 4_s && \\
+& * & 4_u &&&&& \\
+&&& * &&& 9_w & \\
+&& * && 5_v &&& \\
+&&&&& * && 8_y \\
+&&&& * && 7_x & \\
+&&&&&& * & \\
+&&&&&&& *
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
