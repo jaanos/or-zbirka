@@ -1,0 +1,17 @@
+\input{slike/omrezje-osnova.tikz}
+
+\begin{neusmerjen*}[scale=1.1]{omrezje}
+    \tikzstyle{zvezdica}=[red]
+
+    \kolicina*{s}{t}[1]{}
+    \kolicina*{s}{v}[3]{}
+    \kolicina*{s}{y}[5]{}
+    \kolicina*{t}{u}[2]{}
+    \kolicina{u}{v}[1]{}
+    \kolicina*{u}{x}[1]{}
+    \kolicina*{v}{w}[2]{}
+    \kolicina*{v}{z}[3]{}
+    \kolicina{w}{x}[2]{}
+    \kolicina{x}{z}[3]{}
+    \kolicina{y}{z}[1]{}
+\end{neusmerjen*}

@@ -3,28 +3,28 @@
 Računalniško omrežje sestavlja $n$ računalnikov.
 Predstavljeno je z neusmerjenim povezanim grafom $G$,
 ki ima na povezavah nenegativne uteži.
-Utež na povezavi $ij$ nam pove,
+Utež na povezavi $uv$ nam pove,
 koliko časa (v milisekundah) potrebuje informacija,
-da pride neposredno od računalnika $i$ do računalnika $j$.
+da pride neposredno od računalnika $u$ do računalnika $v$.
 Vsak računalnik potrebuje natanko $1$ ms, da informacijo pošlje naprej.
-Naj bo $T_{i,j}$ najkrajši čas,
-v katerem lahko računalnik $j$ dobi informacijo od računalnika $i$.
-Ta čas vsebuje $1$ ms, ki jo računalnik $i$ porabi za pošiljanje informacije,
-in ne vsebuje $1$ ms za računalnik $j$,
+Naj bo $T_{uv}$ najkrajši čas,
+v katerem lahko računalnik $v$ dobi informacijo od računalnika $u$.
+Ta čas vsebuje $1$ ms, ki jo računalnik $u$ porabi za pošiljanje informacije,
+in ne vsebuje $1$ ms za računalnik $v$,
 saj slednjemu informacije ni več potrebno poslati naprej.
 Tudi naš računalnik je priklopljen na to omrežje
--- recimo, da je predstavljen z vozliščem 0.
+-- recimo, da je predstavljen z vozliščem $s$.
 Zanima nas, kateri računalnik od nas najkasneje dobi informacije,
-tj., pri katerem $j$ je dosežena maksimalna vrednost $T_{0,j}$,
+tj., pri katerem $v$ je dosežena maksimalna vrednost $T_{sv}$,
 in kolikšen je ta maksimum.
 
 \begin{enumerate}[(a)]
-\item Reši nalogo na grafu s slike~\fig tako,
-da bo postopek jasen in pravilen.
-
 \item Opiši algoritem časovne zahtevnosti največ $O(n^2)$,
 ki reši dani problem.
-Na vhod naj sprejme graf $G$ in vozlišče $0$.
+Na vhod naj sprejme graf $G$ in vozlišče $s$.
+
+\item Reši nalogo na grafu s slike~\fig tako,
+da bo postopek jasen in pravilen.
 \end{enumerate}
 
 \begin{slika}
@@ -32,6 +32,50 @@ Na vhod naj sprejme graf $G$ in vozlišče $0$.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Problem lahko prevedemo
+na problem iskanja najcenejših poti od vozlišča $s$ do ostalih vozlišč v grafu,
+kjer je vsaka povezava utežena s številom,
+ki je za $1$ večje od uteži na ustrezni povezavi v grafu $G$.
+Vrnemo vozlišče, do katerega je najdena pot najdražja.
+
+Ker so uteži nenegativne, lahko za reševanje uporabimo Dijkstrov algoritem.
+Če za prednostno vrsto uporabimo seznam,
+potem ta teče v času $O(n^2)$
+(v primeru, ko je število povezav $m = O\left({n^2 \over \log n}\right)$,
+potem bo hitrejša različica algoritma,
+pri kateri za prednostno vrsto uporabimo kopico,
+saj ta teče v času $O(m \log n)$).
+
+\item Postopek izvajanja Dijkstrovega algoritma
+na grafu s slike~\fig[omrezje-resitev] z začetkom pri $s$
+je prikazan v tabeli~\tab,
+iz katere je razvidno, da bo informacijo nakasneje dobil računalnik $z$,
+in sicer po $6$ ms.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika[omrezje-resitev]
+\podnaslov{Graf in drevo najkrajših poti}
+\end{slika}
+%
+\begin{tabela}[h]
+$$
+\begin{array}{cccccccc}
+s & t & u & v & w & x & y & z \\ \hline
+* & 1_s && 3_s &&& 5_s & \\
+& * & 3_t &&&&& \\
+&& * &&& 4_u && \\
+&&& * & 5_v &&& 6_v \\
+&&&&& * && \\
+&&&& * &&& \\
+&&&&&& * & \\
+&&&&&&& *
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
