@@ -1,0 +1,12 @@
+\input{slike/optika-osnova.tikz}
+
+\begin{neusmerjen*}[scale=1.1]{optika}
+    \tikzstyle{kandidat}=[red, double]
+    \kandidat{a}{d}
+    \kandidat{d}{f}
+    \kandidat{a}{b}
+    \kandidat{b}{e}
+    \kandidat{c}{e}
+    \kandidat{e}{g}
+    \dosezeno{g}[red]
+\end{neusmerjen*}
