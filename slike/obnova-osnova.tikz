@@ -1,0 +1,35 @@
+\NewEnviron{neusmerjen@obnova}{
+    \vozlisce{a}{-6, 2}
+    \vozlisce{b}{-6,-2}
+    \vozlisce{c}{-2, 6}
+    \vozlisce{d}{-2, 2}
+    \vozlisce{e}{-2,-2}
+    \vozlisce{f}{-2,-6}
+    \vozlisce{g}{ 2, 6}
+    \vozlisce{h}{ 2, 2}
+    \vozlisce{i}{ 2,-2}
+    \vozlisce{j}{ 2,-6}
+    \vozlisce{k}{ 6, 2}
+    \vozlisce{l}{ 6,-2}
+
+    \povezava{a}{b}{7}{left}
+    \povezava{a}{c}{2}[sloped]{above}
+    \povezava{a}{d}{10}{below}
+    \povezava{b}{e}{10}{above};
+    \povezava{b}{f}{6}[sloped]{below}
+    \povezava{c}{d}{8}{right}
+    \povezava{c}{g}{14}{above}
+    \povezava{d}{e}{5}{left}
+    \povezava{e}{f}{8}{left}
+    \povezava{e}{h}{10}[sloped]{above}
+    \povezava{e}{j}{18}[sloped]{above}
+    \povezava{f}{j}{16}{below}
+    \povezava{g}{h}{12}{left}
+    \povezava{g}{k}{10}[sloped]{above}
+    \povezava{h}{i}{6}{right}
+    \povezava{h}{k}{12}{above}
+    \povezava{i}{j}{15}{right}
+    \povezava{i}{k}{8}[sloped]{below}
+    \povezava{j}{l}{10}[sloped]{below}
+    \povezava{k}{l}{15}{right}
+}

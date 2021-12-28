@@ -1,38 +1,4 @@
-\begin{tikzpicture}[style=thick,scale=0.6]
-\tikzstyle{vertex}=[draw, circle, fill=white, inner sep=0pt, minimum size=6mm]
+\input{slike/obnova-osnova.tikz}
 
-\node[vertex] (A) at (-6, 2) {$a$};
-\node[vertex] (B) at (-6,-2) {$b$};
-\node[vertex] (C) at (-2, 6) {$c$};
-\node[vertex] (D) at (-2, 2) {$d$};
-\node[vertex] (E) at (-2,-2) {$e$};
-\node[vertex] (F) at (-2,-6) {$f$};
-\node[vertex] (G) at ( 2, 6) {$g$};
-\node[vertex] (H) at ( 2, 2) {$h$};
-\node[vertex] (I) at ( 2,-2) {$i$};
-\node[vertex] (J) at ( 2,-6) {$j$};
-\node[vertex] (K) at ( 6, 2) {$k$};
-\node[vertex] (L) at ( 6,-2) {$\ell$};
-
-\draw (A) -- (B) node [midway, left] {$7$};
-\draw (A) -- (C) node [midway, above, sloped] {$2$};
-\draw (A) -- (D) node [midway, below] {$10$};
-\draw (B) -- (E) node [midway, above] {$10$};
-\draw (B) -- (F) node [midway, below, sloped] {$6$};
-\draw (C) -- (D) node [midway, right] {$8$};
-\draw (C) -- (G) node [midway, above] {$14$};
-\draw (D) -- (E) node [midway, left] {$5$};
-\draw (E) -- (F) node [midway, left] {$8$};
-\draw (E) -- (H) node [midway, above, sloped] {$10$};
-\draw (E) -- (J) node [midway, above, sloped] {$18$};
-\draw (F) -- (J) node [midway, below] {$16$};
-\draw (G) -- (H) node [midway, left] {$12$};
-\draw (G) -- (K) node [midway, above, sloped] {$10$};
-\draw (H) -- (I) node [midway, right] {$6$};
-\draw (H) -- (K) node [midway, above] {$12$};
-\draw (I) -- (J) node [midway, right] {$15$};
-\draw (I) -- (K) node [midway, below, sloped] {$8$};
-\draw (J) -- (L) node [midway, below, sloped] {$10$};
-\draw (K) -- (L) node [midway, right] {$15$};
-
-\end{tikzpicture}
+\begin{neusmerjen*}[scale=0.9]{obnova}
+\end{neusmerjen*}

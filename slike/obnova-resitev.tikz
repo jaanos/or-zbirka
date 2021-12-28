@@ -1,0 +1,16 @@
+\input{slike/obnova-osnova.tikz}
+
+\begin{neusmerjen*}[scale=0.9]{obnova}
+    \tikzstyle{kandidat}=[red, double]
+    \kandidat{a}{c}
+    \kandidat{a}{b}
+    \kandidat{b}{f}
+    \kandidat{c}{d}[kandidat, dashed]
+    \kandidat{d}{e}
+    \kandidat{e}{h}[kandidat, dashed]
+    \kandidat{h}{i}
+    \kandidat{i}{k}
+    \kandidat{g}{k}
+    \kandidat{i}{j}[kandidat, dashed]
+    \kandidat{j}{l}
+\end{neusmerjen*}
