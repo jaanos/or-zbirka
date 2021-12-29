@@ -18,6 +18,7 @@ Oceni tudi njegovo časovno zahtevnost.
 \item Naj bo $x_0 = 0$ in $x_{n+1} = \ell$,
 ter naj bo $p_{ij}$ cena rezanja dela hloda od $x_i$ do $x_{j+1}$.
 Določimo začetne pogoje in rekurzivne enačbe.
+
 \begin{align*}
 p_{ii} &= 0 && (0 \le i \le n) \\
 p_{ij} &= x_{j+1} - x_i + \min\set{p_{ih} + p_{h+1,j}}{i \le h < j}

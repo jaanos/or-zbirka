@@ -12,23 +12,24 @@ Sledili bomo naslednjemu algoritmu.
 \begin{small}
 \begin{algorithmic}
 \Function{dfs}{$G = (V, E), S, \previsit, \postvisit$}
-	\For{$v \in V$}
-		\State $\visited[v] \gets \False$
-	\EndFor
+    \For{$v \in V$}
+        \State $\visited[v] \gets \False$
+    \EndFor
+    \needspace{\baselineskip}
     \Function{Razišči}{$v, w$}
         \If{$\visited[v]$}
             \State \Return
         \EndIf
         \State $\visited[v] \gets \True$
         \State $\previsit(v, w)$
-		\For{$u \in \Adj(G, v)$}:
+        \For{$u \in \Adj(G, v)$}:
             \State {\sc Razišči}$(u, v)$
-		\EndFor
+        \EndFor
         \State $\postvisit(v, w)$
     \EndFunction
-	\For{$v \in S$}
-		\State {\sc Razišči}$(v, \Null)$
-	\EndFor
+    \For{$v \in S$}
+        \State {\sc Razišči}$(v, \Null)$
+    \EndFor
 \EndFunction
 \end{algorithmic}
 \end{small}

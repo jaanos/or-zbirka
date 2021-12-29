@@ -1,6 +1,6 @@
 \begin{neusmerjen*}[scale=1.5]*
-    \renewcommand{\imeVozlisca}[1]{\text{#1}}
-    \tikzstyle{velikost vozlisca neusmerjenega grafa}=[minimum size=18mm]
+    \renewcommand{\imeVozlisca}[1]{\text{\footnotesize #1}}
+    \tikzstyle{velikost vozlisca neusmerjenega grafa}=[minimum size=15mm]
     \tikzstyle{zvezdica}=[red]
 
     \vozlisce{Frank}     {xyz polar cs:angle=0*360/7+90,radius=3}

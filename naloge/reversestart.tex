@@ -52,22 +52,8 @@ od časovne zahtevnosti algoritma dr.~Kaczyńskega.
 Ker se ta izvede v kon\-stant\-nem času,
 je torej časovna zahtevnost algoritma $O(n^2)$.
 
-\item Izpišimo stanje ``tabele'' po vsakem klicu ukaza $A.\reverseStart$.
-$$
-\begin{array}{cc|cc|c|c}
-i & j & A[i] & A[j] & A.\reverseStart(j) & A.\reverseStart(i) \\ \hline
-5 & 1 & 15 &  5 && \\
-  & 2 &    &  9 && \\
-  & 3 &    & 12 && \\
-  & 4 &    &  7 && \\ \hline
-4 & 1 &  7 &  5 && \\
-  & 2 &    &  9 & [9, 5, 12, 7, 15] & [7, 12, 5, 9, 15] \\
-  & 3 &  9 &  5 && \\ \hline
-3 & 1 &  5 &  7 & [7, 12, 5, 9, 15] & [5, 12, 7, 9, 15] \\
-  & 2 &  7 & 12 & [12, 7, 5, 9, 15] & [5, 7, 12, 9, 15] \\ \hline
-2 & 1 &  7 &  5 &&
-\end{array}
-$$
+\item V tabeli~\tab[reversestart-resitev1]
+je izpisano stanje ``tabele'' po vsakem klicu ukaza $A.\reverseStart$.
 Vidimo, da po koncu algoritma ``tabela'' ni urejena,
 torej algoritem ne deluje pravilno.
 
@@ -81,6 +67,8 @@ V notranji zanki bo torej treba poskrbeti,
 da vrednost $A[j]$ pride na $i$-to mesto,
 elementi med $j$-tim in $i$-tim pa ostanejo v tem intervalu
 (ne nujno na istem mestu).
+
+\needspace{\baselineskip}
 \begin{small}
 \begin{algorithmic}
 \State $n \gets A.\length()$
@@ -124,7 +112,32 @@ in $b_i = a_j \ge a_{k-1} = b_k$ ($2 \le k \le j$).
 Zančna invarianta torej drži.
 
 Preizkusimo algoritem še na primeru iz točke (b).
-
+Potek algoritma je zabeležen v tabeli~\tab[reversestart-resitev2],
+iz katere je razvidno, da algoritem na tem primeru res deluje pravilno.
+\end{enumerate}
+%
+\begin{tabela}
+\setlabel{reversestart-resitev1}
+$$
+\begin{array}{cc|cc|c|c}
+i & j & A[i] & A[j] & A.\reverseStart(j) & A.\reverseStart(i) \\ \hline
+5 & 1 & 15 &  5 && \\
+  & 2 &    &  9 && \\
+  & 3 &    & 12 && \\
+  & 4 &    &  7 && \\ \hline
+4 & 1 &  7 &  5 && \\
+  & 2 &    &  9 & [9, 5, 12, 7, 15] & [7, 12, 5, 9, 15] \\
+  & 3 &  9 &  5 && \\ \hline
+3 & 1 &  5 &  7 & [7, 12, 5, 9, 15] & [5, 12, 7, 9, 15] \\
+  & 2 &  7 & 12 & [12, 7, 5, 9, 15] & [5, 7, 12, 9, 15] \\ \hline
+2 & 1 &  7 &  5 &&
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+%
+\begin{tabela}
+\setlabel{reversestart-resitev2}
 \makebox[\textwidth][c]{
 \begin{tabular}{cc|cc|c|c|c}
 $i$ & $j$ & $A[i]$ & $A[j]$ & $A.\reverseStart(i-1)$ & $A.\reverseStart(i-j)$ & $A.\reverseStart(i)$ \\ \hline
@@ -140,8 +153,7 @@ $i$ & $j$ & $A[i]$ & $A[j]$ & $A.\reverseStart(i-1)$ & $A.\reverseStart(i-j)$ & 
 2 & 1 &  7 &  5 &&&
 \end{tabular}
 }
-
-Vidimo, da algoritem na tem primeru res deluje pravilno.
-\end{enumerate}
+\podnaslov[\res{}(c)]{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}
