@@ -9,6 +9,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\nal}[1][]{{\tt \taoznaka{#1}}\xspace}
 \newcommand{\res}[1][]{{\tt \taoznaka{#1}}\xspace}
+\newcommand{\sirina}{\textwidth}
 
 % Zamenjaj ime naloge z želeno nalogo za testiranje
 \newcommand{\testnaNaloga}{ajkalaj}
