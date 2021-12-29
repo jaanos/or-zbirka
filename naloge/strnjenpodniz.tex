@@ -14,6 +14,8 @@ ali je strnjen podniz $a_i a_{i+1} \dots a_{j-2} a_{j-1}$ palindromski,
 torej, ali velja $a_{i+k-1} = a_{j-k}$ za vsak $k$ ($1 \le k \le j-i$).
 Ker so vsi podnizi dolžin $0$ in $1$ palindromski,
 lahko določimo začetne pogoje in rekurzivno enačbo.
+
+\needspace{\baselineskip}
 \begin{align*}
 b_{i,i} &= \top && (1 \le i \le n+1) \\
 b_{i,i+1} &= \top && (1 \le i \le n) \\

@@ -31,6 +31,40 @@ pomenijo ceno priklopa na zunanje omrežje iz sobane.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Na grafu $G$ bomo s Primovim algoritmom poiskali najlažje vpeto drevo.
+Za priklop na zunanje omrežje bomo izbrali sobano,
+za katero je priklop najcenejši.
+
+\item Potek izvajanja algoritma je prikazan v tabeli~\tab,
+najcenejše vpeto drevo s ceno $17$ guldov
+pa je prikazano na sliki~\fig[optika-resitev].
+Za priklop na zunanje omrežje bomo uporabili sobano $g$,
+kjer priklop stane $3$ gulde.
+Skupna cena je torej $20$ guldov.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{c|c|l}
+\text{dodano vozlišče} & \text{teža drevesa} & \text{vrsta povezav} \\ \hline
+a &  0 & ad: 3, ab: 4, ac: 4 \\
+d &  3 & df: 3, ab: 4, ac: 4 \\
+f &  6 & ab: 4, ac: 4, fc: 4, fg: 5 \\
+b & 10 & be: 2, bc: 3, ac: 4, fc: 4, fg: 5 \\
+e & 12 & ec: 1, bc: 3, ac: 4, eg: 4, fc: 4, fg: 5 \\
+c & 13 & eg: 4, fg: 5 \\
+g & 17 &
+\end{array}
+$$
+\podnaslov{Potek izvajanja algoritma}
+\end{tabela}
+%
+\begin{slika}
+\pgfslika[optika-resitev]
+\podnaslov[\res{}(b)]{Najcenejše vpeto drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

@@ -21,6 +21,57 @@ preko samih obnovljenih cest in največ ene neobnovljene ceste.
 \podnaslov{Graf}
 \end{slika}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Na grafu s slike~\fig s Primovim algoritmom poiščemo najcenejše vpeto drevo.
+Potek izvajanja algoritma je prikazan v tabeli~\tab,
+najcenejše vpeto drevo s ceno $87$
+pa je prikazano na sliki~\fig[obnova-resitev].
+
+\item Poiskati želimo najcenejši gozd $F$ na povezavah danega grafa,
+tako da v grafu obstaja povezava med vsakim parom povezanih komponent gozda $F$.
+Če v danem grafu skrčimo vse povezave iz $F$,
+bomo torej dobili poln graf s to\-lik\-šnim številom vozlišč,
+kolikor ima $F$ povezanih komponent
+-- tak poln graf je torej minor v danem grafu.
+
+Ker je graf s slike~\fig ravninski in torej ne vsebuje minorja $K_5$,
+bo iskani gozd imel največ $4$ povezane komponente.
+Iskanja optimalne rešitve se torej lahko lotimo tako,
+da največ trem povezavam spremenimo utež na $0$
+ter s Primovim algoritmom poiščemo najcenejše vpeto drevo v takih grafih
+(če se v njem pojavi povezava, ki smo ji utež nastavili na $0$,
+smatramo, da te ceste ne bomo prenovili).
+Izkaže se, da je optimalna rešitev taka kot na sliki~\fig[obnova-resitev],
+pri čemer izpustimo povezave $cd$, $eh$ in $ij$.
+Skupna cena obnove je v tem primeru $54$.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{c|c|l}
+\text{dodano vozlišče} & \text{teža drevesa} & \text{vrsta povezav} \\ \hline
+a &  0 & ac: 2, ab: 7, ad: 10 \\
+c &  2 & ab: 7, cd: 8, ad: 10, cg: 14 \\
+b &  9 & bf: 6, cd: 8, ad: 10, be: 10, cg: 14 \\
+f & 15 & cd: 8, fe: 8, ad: 10, be: 10, cg: 14, fj: 16 \\
+d & 23 & de: 5, fe: 8, be: 10, cg: 14, fj: 16 \\
+e & 28 & eh: 10, cg: 14, fj: 16, ej: 18 \\
+h & 38 & hi: 6, hg: 12, hk: 12, cg: 14, fj: 16, ej: 18 \\
+i & 44 & ik: 8, hg: 12, hk: 12, cg: 14, ij: 15, fj: 16, ej: 18 \\
+k & 52 & kg: 10, hg: 12, cg: 14, ij: 15, k\ell: 15, fj: 16, ej: 18 \\
+g & 62 & ij: 15, k\ell: 15, fj: 16, ej: 18 \\
+j & 77 & j\ell: 10, k\ell: 15 \\
+\ell & 87 &
+\end{array}
+$$
+\podnaslov[\res{}(a)]{Potek izvajanja algoritma}
+\end{tabela}
+%
+\begin{slika}
+\pgfslika[obnova-resitev]
+\podnaslov[\res{}]{Najcenejše vpeto drevo}
+\end{slika}
 \end{odgovor}
 \end{naloga}

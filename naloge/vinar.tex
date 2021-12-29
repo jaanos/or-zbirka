@@ -42,9 +42,9 @@ x_{ij} = \begin{cases}
 0  & \text{sicer.}
 \end{cases}
 $$
+
 Zapišimo celoštevilski linearni program.
-\begin{gather*}
-\begin{alignedat}{4}
+\begin{alignat*}{4}
 \max &\  2\,000 x_{RM, K} &&+ 2\,200 x_{RM, L}
     &&+     750 x_{RM, Z} &&+ 1\,800 x_{RM, O} \\
 {}+  &\ 10\,000 x_{LR, K} &&+ 5\,500 x_{LR, L}
@@ -52,8 +52,9 @@ Zapišimo celoštevilski linearni program.
 {}+  &\  5\,000 x_{RR, K} &&+ 5\,500 x_{RR, L} &&+
             750 x_{RR, Z} &&+ 1\,800 x_{RR, O}
 \quad \text{p.p.}
-\end{alignedat} \\
-\begin{aligned}
+\end{alignat*}
+\vspace{-2\baselineskip}
+\begin{align*}
 \forall i \in I \ \forall j \in J: \ 0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
 \opis{Vsako sorto proda največ enemu kupcu}
 \forall i \in I: \sum_{j \in J} x_{ij} &\le 1
@@ -67,7 +68,6 @@ x_{LR, K} &\le x_{RM, L}
 \sum_{i \in I} (x_{i, O} + x_{i, Z} - x_{i, K}) &\ge 0
 \opis{Ženin pogoj}
 x_{s_A, A} + x_{s_B, B} + \sum_{j \in J \setminus \{C\}} x_{s_C, j} &\le 2
-\end{aligned}
-\end{gather*}
+\end{align*}
 \end{odgovor}
 \end{naloga}

@@ -27,6 +27,37 @@ ter s pomočjo le-tega reši dekanov ``problem'' za ponedeljek.
 
 \nadaljevanje{lenority}
 \end{vprasanje}
+
 \begin{odgovor}
+Naj bodo $(z_i, k_i)$ ($i \le i \le n$)
+pari z začetnimi in končnimi urami izpitov.
+Zapišimo algoritem, ki reši dani problem
+-- ta bo klical algoritma {\sc NajdaljšaPot} in {\sc RekonstruirajPot}
+iz rešitve naloge~\res[topo].
+\begin{small}
+\begin{algorithmic}
+\Function{NajdaljšeStrnjenoZaporedje}{$\{(z_i, k_i)\}_{i=1}^n$}
+    \State $V \gets \set{s, t, z_i, k_i}{1 \le i \le n}$
+    \State $E \gets \set{s z_i, z_i k_i, k_i t}{i \le i \le n}$
+    \For{$i \in \{1, 2, \dots, n\}$}
+        \State $L_{s z_i} \gets 0$
+        \State $L_{z_i k_i} \gets k_i - z_i$
+        \State $L_{k_i t} \gets 0$
+    \EndFor
+    \State $d_G, \pred \gets$ {\sc NajdaljšaPot}$(G = (V, E), s, L)$
+    \State \Return {\sc RekonstruirajPot}$(\pred, t)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Pri podanih podatkih algoritem najprej konstruira graf s slike~\fig,
+iz katerega je razvidno,
+da je ena od najdaljših poti od $s$ do $t$ dosežena s povezavami,
+ki ustrezajo intervalom $(7, 10)$, $(10, 13)$ in $(13, 15)$.
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
 \end{odgovor}
 \end{naloga}

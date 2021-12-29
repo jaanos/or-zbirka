@@ -27,6 +27,12 @@ pgf/%.pdf: slike/%.tikz
 pgf/bf.pdf: slike/bf.tikz slike/dijkstra-bf-osnova.tikz
 	$(call pgfc,bf)
 
+pgf/cmrlji.pdf: slike/cmrlji.tikz slike/cmrlji-osnova.tikz
+	$(call pgfc,cmrlji)
+
+pgf/cmrlji-resitev.pdf: slike/cmrlji-resitev.tikz slike/cmrlji-osnova.tikz
+	$(call pgfc,cmrlji-resitev)
+
 pgf/dectree.pdf: slike/dectree.tikz slike/dectree-osnova.tikz
 	$(call pgfc,dectree)
 
@@ -77,6 +83,24 @@ pgf/minmaxpretok.pdf: slike/minmaxpretok.tikz slike/minmaxpretok-osnova.tikz
 
 pgf/minmaxpretok%.pdf: slike/minmaxpretok%.tikz slike/minmaxpretok-osnova.tikz
 	$(call pgfc,minmaxpretok$*)
+
+pgf/obnova.pdf: slike/obnova.tikz slike/obnova-osnova.tikz
+	$(call pgfc,obnova)
+
+pgf/obnova-resitev.pdf: slike/obnova-resitev.tikz slike/obnova-osnova.tikz
+	$(call pgfc,obnova-resitev)
+
+pgf/omrezje.pdf: slike/omrezje.tikz slike/omrezje-osnova.tikz
+	$(call pgfc,omrezje)
+
+pgf/omrezje-resitev.pdf: slike/omrezje-resitev.tikz slike/omrezje-osnova.tikz
+	$(call pgfc,omrezje-resitev)
+
+pgf/optika.pdf: slike/optika.tikz slike/optika-osnova.tikz
+	$(call pgfc,optika)
+
+pgf/optika-resitev.pdf: slike/optika-resitev.tikz slike/optika-osnova.tikz
+	$(call pgfc,optika-resitev)
 
 pgf/otoki.pdf: slike/otoki.tikz slike/otoki-osnova.tikz
 	$(call pgfc,otoki)

@@ -1,4 +1,4 @@
-\documentclass[a4paper, 11pt, titlepage]{article}
+\documentclass[a4paper, 11pt, titlepage, twoside]{article}
 \input{tex/paketi.tex}
 \usepackage{fourier}
 \usepackage[oznake]{omrezja}
@@ -7,17 +7,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\nal}[1][]{\ref{nal:\taoznaka{#1}}\xspace}
 \newcommand{\res}[1][]{\ref{res:\taoznaka{#1}}\xspace}
+\newcommand{\sirina}{1.13\textwidth}
 
 \begin{document}
 \title{Zbirka nalog iz Operacijskih raziskav}
 \author{Janoš Vidali}
 \maketitle
 
+\cleardoublepage
+
 \setcounter{tocdepth}{2}
 \pdfbookmark[1]{Kazalo}{toc}
 \tableofcontents
 
-\clearpage
+\cleardoublepage
 
 \section{Naloge}
 {
@@ -25,7 +28,7 @@
 \input{tex/seznam.tex}
 }
 
-\clearpage
+\cleardoublepage
 
 \section{Rešitve}
 {
@@ -33,7 +36,7 @@
 \input{tex/seznam.tex}
 }
 
-\clearpage
+\cleardoublepage
 
 \bibliographystyle{bababbrv-fl}
 \bibliography{reference}

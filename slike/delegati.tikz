@@ -1,0 +1,28 @@
+\begin{neusmerjen*}[scale=1.5]*
+    \renewcommand{\imeVozlisca}[1]{\text{\footnotesize #1}}
+    \tikzstyle{velikost vozlisca neusmerjenega grafa}=[minimum size=15mm]
+    \tikzstyle{zvezdica}=[red]
+
+    \vozlisce{Frank}     {xyz polar cs:angle=0*360/7+90,radius=3}
+    \vozlisce{Ivan}      {xyz polar cs:angle=1*360/7+90,radius=3}
+    \vozlisce{Paul-Henri}{xyz polar cs:angle=5*360/7+90,radius=3}
+    \vozlisce{Brigitte}  {xyz polar cs:angle=3*360/7+90,radius=3}
+    \vozlisce{Andrej}    {xyz polar cs:angle=4*360/7+90,radius=3}
+    \vozlisce{Wolfgang}  {xyz polar cs:angle=2*360/7+90,radius=3}
+    \vozlisce{Jafar}     {xyz polar cs:angle=6*360/7+90,radius=3}
+
+    \povezava*{Frank}{Ivan}{20}{above}[sloped]
+    \povezava{Frank}{Paul-Henri}{95}{below, near end}[sloped]
+    \povezava{Frank}{Wolfgang}{90}{below}[sloped]
+    \povezava{Frank}{Jafar}{80}{above}[sloped]
+    \povezava{Ivan}{Wolfgang}{95}{above}[sloped]
+    \povezava*{Ivan}{Jafar}{10}{below}
+    \povezava{Paul-Henri}{Brigitte}{85}{above}[sloped]
+    \povezava{Paul-Henri}{Andrej}{85}{below}[sloped]
+    \povezava{Paul-Henri}{Wolfgang}{85}{below, near start}
+    \povezava{Paul-Henri}{Jafar}{80}{above}[sloped]
+    \povezava{Brigitte}{Andrej}{15}{below}
+    \povezava*{Brigitte}{Wolfgang}{15}{below}[sloped]
+    \povezava*{Brigitte}{Jafar}{30}{above, near start}[sloped]
+    \povezava{Andrej}{Wolfgang}{10}{above, near end}[sloped]
+\end{neusmerjen*}

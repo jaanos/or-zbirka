@@ -1,0 +1,17 @@
+\input{slike/cmrlji-osnova.tikz}
+
+\begin{neusmerjen*}[scale=1.1]{cmrlji}
+    \tikzstyle{zvezdica}=[red]
+
+    \kolicina{s}{u}[2]{}
+    \kolicina{s}{w}[2]{}
+    \kolicina*{s}{y}[4]{}
+    \kolicina{u}{v}[2]{}
+    \kolicina{v}{w}[2]{}
+    \kolicina{v}{x}[1]{}
+    \kolicina{w}{y}[2]{}
+    \kolicina{w}{z}[7]{}
+    \kolicina{x}{z}[2]{}
+    \kolicina*{y}{t}[4]{}
+    \kolicina{z}{t}[2]{}
+\end{neusmerjen*}

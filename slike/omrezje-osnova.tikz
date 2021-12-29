@@ -1,0 +1,22 @@
+\NewEnviron{neusmerjen@omrezje}{
+    \vozlisce{s}{-6,-3}
+    \vozlisce{t}{-6,-1}
+    \vozlisce{u}{-2,-1}
+    \vozlisce{v}{ 2,-1}
+    \vozlisce{w}{ 2, 1}
+    \vozlisce{x}{ 2, 3}
+    \vozlisce{y}{ 6,-3}
+    \vozlisce{z}{ 6,-1}
+
+    \povezava{s}{t}{0}{left}
+    \povezava{s}{v}{2}[sloped]{below}
+    \povezava{s}{y}{4}{below}
+    \povezava{t}{u}{1}{above}
+    \povezava{u}{v}{0}{above}
+    \povezava{u}{x}{0}[sloped]{above}
+    \povezava{v}{w}{1}{right}
+    \povezava{v}{z}{2}{below}
+    \povezava{w}{x}{1}{right}
+    \povezava{x}{z}{2}[sloped]{above}
+    \povezava{y}{z}{0}{right}
+}

@@ -46,6 +46,50 @@ Jafar &
 Kako lahko Frank najhitreje posreduje informacijo Wolfgangu?
 \end{enumerate}
 \end{vprasanje}
+
 \begin{odgovor}
+\begin{enumerate}[(a)]
+\item Skonstruiramo graf, v katerem vsakemu delegatu priredimo vozlišče;
+če delegata $X$ in $Y$ govorita skupni jezik
+pri stopnjah obvladovanja $s_X$ in $s_Y$,
+med njima postavimo povezavo z utežjo $\max\{s_X, s_Y\}$
+(če govorita več skupnih jezikov,
+potem zadostuje ena sama povezava med $X$ in $Y$,
+in sicer tista z najmanjšo utežjo).
+Na tem grafu nato poiščemo najcenejšo pot od $A$ do $B$,
+kar lahko storimo z Dijkstrovim algoritmom,
+saj so vse uteži nenegativne.
+
+\item Po zgornjem postopku zgrajeni graf je prikazan na sliki~\fig.
+Postopek izvajanja Dijkstrovega algoritma z začetkom pri Franku
+je prikazan v tabeli~\tab,
+iz katere je razvidno, da bo Frankovo sporočilo najhitreje
+(v $75$ časovnih enotah) do\-seg\-lo Wolfganga,
+če ga v španščini preda Ivanu,
+ta ga v ruščini preda Jafarju,
+ta ga v nizozemščini preda Brigitte,
+ki ga nazadnje v nemščini preda Wolfgangu.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+%
+\begin{tabela}
+$$
+\begin{array}{ccccccc}
+\text{Frank} & \text{Ivan} & \text{Paul-Henri} & \text{Brigitte} & \text{Andrej} & \text{Wolfgang} & \text{Jafar} \\ \hline
+* & 20_{\text{Frank}} & 95_{\text{Frank}} &&& 90_{\text{Frank}} & 80_{\text{Frank}} \\
+& * &&&&& 30_{\text{Ivan}} \\
+&&& 60_{\text{Jafar}} &&& * \\
+&&& * & 75_{\text{Brigitte}} & 75_{\text{Brigitte}} & \\
+&&&& * && \\
+&&&&& * & \\
+&& * &&&& \\
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
 \end{odgovor}
 \end{naloga}

@@ -1,0 +1,28 @@
+\NewEnviron{neusmerjen@optika}{
+    \oznaka{a}{10}
+    \oznaka{b}{12}
+    \oznaka{c}{15}
+    \oznaka{d}{7}
+    \oznaka{e}{13}
+    \oznaka{f}{5}
+    \oznaka{g}{3}
+
+    \vozlisce[draw,thick,star,star points=7,star point ratio=0.8]{a}[left]{-5, 0}
+    \vozlisce[draw,thick,star,star points=7,star point ratio=0.8]{b}[above]{-1, 2}
+    \vozlisce[draw,thick,regular polygon,regular polygon sides=7]{c}[right]{ 0, 0}
+    \vozlisce[draw,thick,star,star points=7,star point ratio=0.8]{d}[below]{-1,-2}
+    \vozlisce[draw,thick,diamond]                                {e}[above]{ 1, 2}
+    \vozlisce[draw,thick,star,star points=7,star point ratio=0.8]{f}[below]{ 1,-2}
+    \vozlisce[draw,thick,circle]                                 {g}[right]{ 5, 0}
+
+    \povezava{a}{b}{4}[sloped]{above}
+    \povezava{a}{c}{4}{above}
+    \povezava{a}{d}{3}[sloped]{below}
+    \povezava{b}{c}{3}[sloped]{above}
+    \povezava{b}{e}{2}{above}
+    \povezava{c}{e}{1}[sloped]{below}
+    \povezava{c}{f}{4}[sloped]{above}
+    \povezava{d}{f}{3}{below}
+    \povezava{e}{g}{4}[sloped]{above}
+    \povezava{f}{g}{5}[sloped]{below}
+}

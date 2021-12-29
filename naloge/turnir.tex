@@ -49,6 +49,8 @@ z_i &= \begin{cases}
 0  & \text{sicer.}
 \end{cases}
 \end{align*}
+
+\needspace{3\baselineskip}
 Zapišimo celoštevilski linearni program.
 \begin{alignat*}{2}
 && \max &\ \sum_{i=1}^n (y_i + 2z_i) \quad \text{p.p.} \\
@@ -58,7 +60,7 @@ Zapišimo celoštevilski linearni program.
 \opis{Porabimo $M$ žetonov}
 && \sum_{i=1}^n x_i &= M
 \opis{$y_i = 1$ natanko tedaj, ko $x_i \ge c_i$}
-\forall i \in \{1, \dots, n\}: &\ & c_i y_i &\le x_i \le c_i - 1 + M y_i
+\forall i \in \{1, \dots, n\}: &\ & c_i y_i &\le x_i \le c_i - 1 + (M+1) y_i
 \opis{$z_i = 1$ natanko tedaj, ko $x_i > c_i$}
 \forall i \in \{1, \dots, n\}: &\ & (c_i + 1) z_i &\le x_i \le c_i + M z_i
 \end{alignat*}
