@@ -64,8 +64,6 @@
 \counterwithin*{naloga}{subsection}
 \renewcommand{\thenaloga}{\arabic{subsection}.\arabic{naloga}}
 \newcommand{\hlabel}[2][\hlab]{\label{#1:#2}\hypertarget{#1.#2}{}}
-\newcommand{\razdelek}[2]{\novastran\subsection{#1}\hlabel[raz\hlab]{#2}\renewcommand{\novastran}{\cleardoublepage}}
-\newenvironment{naloga}[3][]{\refstepcounter{naloga}\avtor{#2}\naslov{#1}\vir{#3}\needspace{3\baselineskip}\addcontentsline{toc}{subsubsection}{Naloga \thenaloga}\subsubsection*{}\odstraniprostor\noindent {\bf Naloga}}{}
 \newenvironment{slika}[1][t!]{\setlabel{\thislabel}\begin{figure}[#1]\centering}{\hlabel[fig]{\curlabel}\end{figure}}
 \newenvironment{tabela}[1][t!]{\setlabel{\thislabel}\begin{table}[#1]\centering}{\hlabel[tab]{\curlabel}\end{table}}
 \newcommand{\setlabel}[1]{\grenewcommand{\curlabel}{\taoznaka{#1}}}
