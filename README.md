@@ -5,7 +5,6 @@
 
 Ta zbirka nalog obsega naloge z vaj, kolokvijev in izpitov
 pri predmetu Operacijske raziskave od š.l. 2009/10 naprej.
-Rešitve so še v pripravi.
 
 ## Licenca
 
