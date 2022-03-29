@@ -1,0 +1,90 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 31.3.2022}
+\begin{vprasanje}
+Skupina $m$ vlagateljev pripravlja ponudbe
+za prevzem deležev $n$ zagonskih podjetij.
+Naj bo $k_i$ skupni kapital, ki ga ima $i$-ti vlagatelj na voljo,
+in $c_{ij}$ znesek, ki ga je pripravljen vložiti v $j$-to podjetje,
+da pridobi delež $p_{ij} > 0$ ($1 \le i \le m$, $1 \le j \le n$)
+-- odkupil bo natanko tak delež po ponujeni ceni, ali pa ničesar.
+Poleg tega naj bo $q_j$ ($1 \le j \le n$) največji delež $j$-tega podjetja,
+ki ga je vlagateljem pripravljen odprodati njegov lastnik
+(deleže podjetja lahko odproda nobenemu, enemu ali več vlagateljem).
+Vlagatelji želijo pripraviti tako ponudbo,
+ki bo upoštevala njihove želje in omejitve
+ter bo maksimizirala najmanjše število podjetij,
+katerih delež bo odkupil posamezen vlagatelj
+(če delež nekega podjetja odkupi več vlagateljev,
+se pri vsakem šteje enkrat)
+-- tj., želimo, da tisti vlagatelj,
+ki odkupi delež v najmanjšem številu podjetij,
+to stori pri čim večjem številu podjetij.
+
+\begin{enumerate}[(a)]
+\item Zapiši celoštevilski linearni program, ki modelira zgornji problem.
+\namig{maksimiziraj spremenljivko, ki je navzgor omejena s številom podjetij,
+katerih delež odkupi posamezen vlagatelj.}
+
+\item Vlagatelji so pripravili svojo ponudbo,
+a lastniki zagonskih podjetij z njo niso najbolj zadovoljni,
+zato bi radi sestavili protiponudbo, ki bo upoštevala tudi njihove pogoje.
+Lastnik $j$-tega podjetja ($1 \le j \le n$)
+ocenjuje njegovo vrednost na $v_j$ in tako ne bo sprejel ponudbe,
+s katero bi delež podjetja prodal pod sorazmerno ceno
+(tj., če želijo vlagatelji skupaj odkupiti delež $r$,
+potem morajo skupaj plačati vsaj $r v_j$);
+prav tako ne bo sprejel ponudbe,
+s katero ne bi prejel skupnega zneska vsaj $u_j$
+(lahko pa ne odproda nobenega deleža in tako ostane brez dobička).
+
+Zgornji celoštevilski linearni program dopolni z omejitvami,
+ki bodo upoštevale tudi želje last\-ni\-kov zagonskih podjetij.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-tega vlagatelja in $j$-to zagonsko podjetje
+($1 \le i \le m$, $1 \le j \le n$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1 & \text{$i$-ti vlagatelj kupi delež v $j$-tem podjetju, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+
+\begin{enumerate}[(a)]
+\item Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+&& \max \ t &&&\quad \text{p.p.} \\
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\}: &\ &
+0 \le x_{ij} &\le 1, &&\quad x_{ij} \in \Z
+\opis{Omejitev kapitala za vsakega vlagatelja}
+\forall i \in \{1, \dots, m\}: &\ &\sum_{j=1}^n c_{ij} x_{ij} &\le k_i
+\opis{Omejitev deleža, ki ga proda vsak lastnik}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^m p_{ij} x_{ij} &\le q_j
+\opis{Spodnja meja za število podjetij, v katera vloži vsak vlagatelj}
+\forall i \in \{1, \dots, m\}: &\ & \sum_{j=1}^n x_{ij} &\ge t
+\end{alignat*}
+
+\item Za $j$-to podjetje ($1 \le j \le n$) bomo uvedli še spremenljivko $y_j$,
+katere vrednost interpretiramo kot
+$$
+y_j = \begin{cases}
+1 & \text{vsaj en vlagatelj kupi delež v $j$-tem podjetju, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+Zapišimo še dodatne omejitve.
+\odstraniprostor
+\begin{alignat*}{2}
+\opis{Nobeno podjetje ne proda deleža pod cenitvijo}
+\forall j \in \{1, \dots, n\}: &\ & v_j \sum_{i=1}^m p_{ij} x_{ij} &\le \sum_{i=1}^m c_{ij} x_{ij}
+\opis{Lastnik vsakega podjetja prejme želeni znesek, ali pa ne proda ničesar}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^m c_{ij} x_{ij} &\ge u_j y_j \\
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\}: &\ & y_j &\ge x_{ij}
+\end{alignat*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
+
