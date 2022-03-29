@@ -1,0 +1,124 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 31.3.2022}
+\begin{vprasanje}
+Vojaška enota je dobila nalogo,
+da prevzame nadzor nad pomembno oskrbovalno potjo.
+V ta namen morajo zasesti $n$ mest, ki ležijo ob poti.
+Naloge se bodo lotili v $n$ korakih:
+v prvem koraku bodo zajeli eno od mest,
+v vsakem naslednjem koraku pa bodo zasedli eno od mest,
+ki je sosednje tistim, ki jih že zasedajo
+(tj., če po $i$ korakih zasedajo mesta $j, j+1, \dots, j+i-1$,
+bodo v $(i+1)$-vem koraku zasedli mesto $j-1$ ali $j+i$).
+Naj bo $s_i$ količina sredstev, ki jih potrebujejo,
+da uspešno zasedejo $i$-to mesto (ta sredstva se pri tem porabijo),
+$t_i$ pa količina sredstev,
+ki jih lahko pridobijo po uspešni zasedbi $i$-tega mesta
+(ta sredstva lahko potem porabljajo v sledečih korakih).
+Poveljnik enote želi določiti tak vrstni red zasedanja mest,
+pri katerem bo potrebno na začetku vložiti čim manj sredstev
+(seveda je potrebno pred vsakim korakom imeti zadostna sredstva
+-- ta torej v nobenem trenutku ne smejo biti negativna).
+
+\begin{enumerate}[(a)]
+\item S psevdokodo ali rekurzivnimi enačbami
+podaj čim bolj učinkovit algoritem za reševanje zgornjega problema.
+Jasno naj bo,
+v kakšnem vrstnem redu poteka računanje ter kako sestavimo končno rešitev.
+\namig{algoritem naj izračuna tako minimalna potrebna sredstva
+za zasedbo izbranih mest,
+kot tudi sredstva, ki ostanejo na voljo po njihovi zasedbi.}
+
+\item Oceni časovno zahtevnost svojega algoritma.
+
+\item S svojim algoritmom poišči optimalno rešitev za podatke $n = 5$ in
+\begin{alignat*}{6}
+(s_i)_{i=1}^5 &= \{&{} 8, &&{} 10, &&{} 9, &&{} 11, &&{} 9\} &, \\
+(t_i)_{i=1}^5 &= \{&{} 6, &&{} 4, &&{} 7, &&{} 12, &&{} 3\} &.
+\end{alignat*}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bodo $x_{ij}$, $y_{ij}$ in $z_{ij}$ ($1 \le i \le j \le n$)
+najmanjša začetna sredstva,
+potrebna za zasedbo mest od $i$-tega do $j$-tega,
+sredstva, ki jih imamo po tem na voljo,
+če začnemo z $x_{ij}$ sredstvi,
+ter indeks mesta, ki je bilo pri tem nazadnje zasedeno.
+Zapišimo psevdokodo algoritma,
+iz katerega bodo razvidni tudi začetni pogoji in rekurzivne enačbe.
+\begin{small}
+\begin{algorithmic}
+\Function{Zasedba}{$(s_i)_{i=1}^n, (t_i)_{i=1}^n$}
+	\For{$i = 1, \dots, n$} \hfill začetni pogoji
+		\State $x_{ii} \gets s_i$
+		\State $y_{ii} \gets t_i$
+	\EndFor
+	\For{$h = 1, \dots, n-1$}
+		\For{$i = 1, \dots, n-h$}
+			\State $j \gets i+h$ \hfill zasedamo mesta od $i$ do $j$
+			\State $\begin{aligned}
+			x_{ij}, y_{ij}, z_{ij} \gets \min\{
+			&{} (x_{i+1, j} + \max\{0, s_i - y_{i+1, j}\}, t_i + \max\{0, y_{i+1, j} - s_i\}, i), \\
+			&{} (x_{i, j-1} + \max\{0, s_j - y_{i, j-1}\}, t_j + \max\{0, y_{i, j-1} - s_j\}, j)\}
+			\end{aligned}$
+		\EndFor
+	\EndFor
+	\State $\ell \gets$ prazen seznam
+	\State $i, j \gets 1, n$
+	\While{$i < j$} \hfill rekonstruiramo zaporedje zasedanja mest
+		\State $h \gets z_{ij}$
+		\State $\ell.\append(h)$
+		\If{$h = i$}
+			\State $i \gets i+1$
+		\Else
+			\State $j \gets j-1$
+		\EndIf
+	\EndWhile
+	\State $\ell.\append(i)$
+	\State $\ell.\reverse()$
+	\State \Return $(x_{1n}, \ell)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+Da algoritem deluje pravilno,
+bo za vse $i, j$ ($1 \le i \le j \le n$) moralo veljati
+$$
+y_{ij} - x_{ij} = \sum_{h=i}^j (t_h - s_h).
+$$
+Opazimo, da rekurzivne enačbe v zgornjem algoritmu zadoščajo temu pogoju.
+
+\item Algoritem izračuna $O(n^2)$ spremenljivk,
+za vsako pa porabi konstantno časa.
+Pri rekonstrukciji rešitve algoritem naredi še $O(n)$ korakov,
+pri čemer za vsakega spet porabi konstantno časa.
+Skupna časovna zahtevnost je torej $O(n^2)$.
+
+\item Izračunajmo vrednosti $x_{ij}$ in $y_{ij}$ ($1 \le i < j \le 5$).
+\begin{alignat*}{4}
+x_{12} &= \min\{10+8-4, \underline{8+10-6}\} &&= 12 &\qquad y_{12} &&&= 4 \\
+x_{23} &= \min\{\underline{9+10-7}, 10+9-4\} &&= 12 &\qquad y_{23} &&&= 4 \\
+x_{34} &= \min\{\underline{11}, 9+11-7\} &&= 11 &\qquad y_{34} &= 7+12-9 &&= 10 \\
+x_{45} &= \min\{9+11-3, \underline{11}\} &&= 11 &\qquad y_{34} &= 3+12-9 &&= 6 \\
+x_{13} &= \min\{\underline{12+8-4}, 12+9-4\} &&= 16 &\qquad y_{13} &&&= 6 \\
+x_{24} &= \min\{\underline{11}, 12+11-4\} &&= 11 &\qquad y_{24} &&&= 4 \\
+x_{35} &= \min\{11+9-6, \underline{11}\} &&= 11 &\qquad y_{35} &= 3+10-9 &&= 4 \\
+x_{14} &= \min\{\underline{11+8-4}, 16+11-6\} &&= 15 &\qquad y_{14} &&&= 6 \\
+x_{25} &= \min\{11+10-4, \underline{11+9-4}\} &&= 16 &\qquad y_{25} &&&= 3 \\
+x_{15} &= \min\{16+8-3, \underline{15+9-6}\} &&= 18 &\qquad y_{15} &&&= 3
+\end{alignat*}
+Za zasedbo mest torej potrebujemo začetna sredstva vsaj $x_{15} = 18$.
+Rekonstruirajmo vrstni red zasedbe mest
+-- dobili ga bomo v obratnem vrstnem redu.
+\begin{align*}
+x_{15} &= x_{14} + s_5 - y_{14} & \text{nazadnje zasedemo mesto $5$} \\
+x_{14} &= x_{24} + s_1 - y_{24} & \text{pred tem zasedemo mesto $1$} \\
+x_{24} &= x_{34}                & \text{pred tem zasedemo mesto $2$} \\
+x_{34} &= x_{44}                & \text{pred tem zasedemo mesto $3$} \\
+       &                        & \text{začnemo z zasedbo mesta $4$}
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
