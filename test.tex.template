@@ -16,6 +16,8 @@
 
 \begin{document}
 
+\input{tex/glavno.tex}
+
 \section{Naloge}
 {
 \input{tex/naloga.tex}
