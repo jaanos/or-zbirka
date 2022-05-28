@@ -1,0 +1,83 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 2.6.2022}
+\begin{vprasanje}
+V hotelu z $n$ enakimi sobami so za sezono v trajanju $\ell$ dni
+dobili $m$ zahtevkov za rezervacije,
+za katere imajo podatke $(a_i, b_i, c_i)$ ($1 \le i \le m$),
+pri čemer je $a_i$ najzgodnejši dan prihoda,
+$b_i$ naj\-kas\-nej\-ši dan odhoda, $c_i$ pa želeno število nočitev
+(pri tem velja $0 \le a_i < b_i \le \ell$ in $1 \le c_i \le b_i - a_i$).
+Za vsak zahtevek se lahko odločijo,
+da ga sprejmejo ali zavrnejo.
+Če sprejmejo $i$-ti zahtevek,
+morajo zagotoviti $c_i$ zaporednih nočitev v isti sobi
+(tj., če se rezervacija sobe $j$ začne na dan $k$,
+potem ji pripadajo nočitve na dni $k+1, k+2, \dots, k+c_i$,
+kjer velja $k \ge a_i$, $k+c_i \le b_i$
+-- nočitev na dan $k$ lahko pripada drugi rezervaciji,
+prav tako se lahko na dan $k+c_i$ začne nova rezervacija).
+Seveda je lahko vsaka soba vsako noč oddana le enkrat.
+V hotelu želijo sprejeti zahtevke tako, da bo zasedenost čim večja
+(tj., maksimizirati želijo vsoto števil zasedenih sob za vsako noč).
+
+Zapiši celoštevilski linearni program,
+ki modelira iskanje optimalne rešitve zgornjega problema.
+\namig{uvedi spremenljivke,
+ki beležijo začetke vsake sprejete rezervacije,
+ter spremenljivke, ki beležijo dejansko zasedenost sob.
+Ne pozabi vzpostaviti ustrezne povezave med njimi!}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-ti zahtevek ($1 \le i \le m$),
+$j$-to sobo ($1 \le j \le n$)
+in $k$-ti dan ($0 \le k \le \ell$)
+bomo uvedli spremenljivki $x_{ijk}$ in $y_{ijk}$,
+katerih vrednosti interpretiramo kot
+\begin{align*}
+x_{ijk} &= \begin{cases}
+1; &
+\text{$i$-temu zahtevku dodelimo $j$-to sobo z začetkom na $k$-ti dan, in}
+\\
+0  & \text{sicer,}
+\end{cases}
+\shortintertext{ter}
+y_{ijk} &= \begin{cases}
+1; &
+\text{$j$-to sobo v noči na $k$-ti dan zaseda $i$-ti zahtevek, in}
+\\
+0  & \text{sicer.}
+\end{cases}
+\end{align*}
+Ker se nobena rezervacija ne more končati na $\ell$-ti dan
+in nobena soba ni zasedena v noči na ničti dan,
+spremenljivk $x_{ij\ell}$ in $y_{ij0}$ ($1 \le i \le m$, $1 \le j \le n$)
+ne bomo uporabili.
+
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+\max &\ & \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^\ell y_{ijk} \quad \text{p.p.} \\
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\} \ \forall k \in \{0, \dots, \ell-1\}:
+&\ & 0 \le x_{ijk} \le 1, \quad x_{ijk} &\in \Z \\
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\} \ \forall k \in \{1, \dots, \ell\}:
+&\ & 0 \le y_{ijk} \le 1, \quad y_{ijk} &\in \Z
+\opis{Vsak zahtevek sprejmemo največ enkrat}
+\forall i \in \{1, \dots, m\}:
+&\ & \sum_{j=1}^n \sum_{k=0}^{\ell-1} x_{ijk} &\le 1
+\opis{Vsaka soba je vsako noč zasedena največ enkrat}
+\forall j \in \{1, \dots, n\} \ \forall k \in \{1, \dots, \ell\}:
+&\ & \sum_{i=1}^m y_{ijk} &\le 1
+\opis{Začetek rezervacije ni prepozen}
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\} \\ \forall k \in \{b_i-c_i+1, \dots, \ell-1\}:
+&\ & x_{ijk} &= 0
+\opis{Soba ni rezervirana do najzgodnejšega začetka rezervacije}
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\} \ \forall k \in \{1, \dots, a_i\}:
+&\ & y_{ijk} &= 0
+\opis{Nočitve so rezervirane $c_i$ dni po začetku rezervacije}
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\} \ \forall k \in \{0, \dots, b_i-c_i\}:
+&\ & \sum_{h=1}^{c_i} y_{i,j,k+h} &\ge c_i x_{ijk}
+\opis{Začetek rezervacije je največ $c_i$ dni pred nočitvijo}
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\} \ \forall k \in \{a_i+1, \dots, \ell\}:
+&\ & \sum_{h=1}^{\min\{c_i, k\}} x_{i,j,k-h} &\ge y_{ijk}
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
