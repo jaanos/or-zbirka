@@ -49,7 +49,7 @@ p_1 &= c_1 \\
 p_i &= c_i + \min\{p_j \mid 1 \le j \le i-1, x_i - x_j \le \min\{r_i, r_j\}\}\} && (2 \le i \le n)
 \end{align*}
 Vrednosti $p_i$ računamo naraščajoče po indeksu $i$ ($1 \le i \le n$).
-Najmanjšo ceno postavitve baznih postaj dobimo s $p^* = p_n$.
+Najmanjšo ceno postavitve stebrov dobimo s $p^* = p_n$.
 
 \item Zapišimo psevdokodo algoritma.
 \begin{small}
@@ -74,7 +74,7 @@ Najmanjšo ceno postavitve baznih postaj dobimo s $p^* = p_n$.
 
 Za izračun vrednosti $p_i$ za posamezen $i$
 potrebujemo $O(i)$ časa.
-Ker ta izračun opravimo za $i = 1, 2, \dots, n+1$,
+Ker ta izračun opravimo za $i = 2, 3, \dots, n$,
 je torej časovna zahtevnost ustreznega algoritma $O(n^2)$.
 
 \item Izračunajmo vrednosti $p_i$ ($2 \le i \le 12$).
