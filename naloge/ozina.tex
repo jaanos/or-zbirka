@@ -1,0 +1,215 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 2.6.2022}
+\begin{vprasanje}
+Dan je neusmerjen graf $G = (V, E)$.
+Poiskati želimo {\em ožino} grafa,
+tj., zanima nas dolžina najkrajšega cikla v grafu $G$.
+Tukaj kot cikel razumemo zaporedje različnih vozlišč $u_1 u_2 \dots u_k$,
+kjer je $k \ge 3$ in $u_{i-1} u_i \in E$ ($1 \le i \le k$, $u_0 = u_k$);
+dolžina takega cikla je potem $k$.
+Pri reševanju tega problema
+si bomo pomagali s sledečo različico iskanja v širino:
+\needspace{3\baselineskip}
+\begin{small}
+\begin{algorithmic}
+\Function{bfs2}{$G = (V, E),\ s \in V$}
+	\State $z \gets \False$ \hfill zastavica za sode cikle
+	\State $S \gets \{s\}$ \hfill množica obiskanih vozlišč
+	\State $T \gets \{s\}$ \hfill trenutni nivo
+	\State $i \gets 1$ \hfill trenutna globina
+	\While{$\lnot T.\isEmpty()$} \hfill ponavljamo, dokler nivo ni prazen
+		\State $N \gets$ prazna množica \hfill naslednji nivo
+		\For{$u \in T$} \hfill gremo čez vozlišča na trenutnem nivoju
+			\For{$v \in$ $\Adj(G, u)$} \hfill pregledamo sosede $u$
+				\If{$v \not\in S$} \hfill če soseda prvič obiščemo,
+					\State $S.\add(v)$ \hfill ga označimo za obiskanega
+					\State $N.\add(v)$ \hfill in ga dodamo na naslednji nivo
+				\ElsIf{$v \in T$} \hfill če je sosed na istem nivoju,
+					\State \Return $2i - 1$ \hfill smo našli lih cikel
+				\ElsIf{$v \in N$} \hfill če je sosed na naslednjem nivoju,
+					\State $z \gets \True$ \hfill smo našli sod cikel
+				\EndIf
+			\EndFor
+		\EndFor
+		\If{$z$} \hfill če smo našli sod cikel, končamo
+			\State \Return $2i$
+		\EndIf
+		\State $T \gets N$ \hfill naslednji nivo postane trenutni
+		\State $i \gets i + 1$ \hfill povečamo globino
+	\EndWhile
+	\State \Return $\infty$ \hfill nismo našli cikla
+\EndFunction
+\end{algorithmic}
+\end{small}
+
+\begin{enumerate}[(a)]
+\item Naj bo $C = u_1 u_2 \dots u_k$ najkrajši cikel v grafu $G$.
+Dokaži, da za poljubna $i, j$ ($1 \le i \le j \le k$) velja,
+da sta $u_i u_{i+1} \dots u_{j-1} u_j$
+in $u_i u_{i-1} \dots u_1 u_k \dots u_{j+1} u_j$
+najkrajši dve poti od $u_i$ do $u_j$ v grafu $G$.
+
+\item Naj bo $g$ dolžina najkrajšega cikla v grafu $G$
+in $s$ vozlišče grafa $G$.
+Utemelji sledeči trditvi:
+\begin{itemize}
+\itemsep 0mm
+\item Klic funkcije {\sc bfs2}$(G, s)$ vrne vrednost, ki je večja ali enaka $g$.
+\item Če vozlišče $s$ leži na najkrajšem ciklu v grafu $G$,
+potem klic funkcije {\sc bfs2}$(G, s)$ vrne $g$.
+\end{itemize}
+
+\item Natančno opiši algoritem (z besedami ali psevdokodo),
+ki izračuna ožino danega neusmerjenega grafa $G = (V, E)$.
+Tvoj algoritem lahko kliče funkcijo {\sc bfs2}.
+Upoštevaj, da veljajo trditve iz točk (a) in (b)
+(tudi, če nista rešeni).
+
+\item Oceni časovno zahtevnost algoritma iz točke (c)
+v odvisnosti od števila vozlišč in povezav grafa $G = (V, E)$
+(lahko uporabiš standardne oznake $n = |V|$, $m = |V| + |E|$).
+Svojo oceno utemelji.
+
+\item Na grafu $G = (V, E)$ s slike~\fig
+izvedi klic funkcije {\sc bfs2}$(G, a)$,
+pri čemer upoštevaj abecedni vrstni red sosedov vsakega vozlišča.
+Iz odgovora naj bo jasen potek algoritma
+(tj., za vsako spremembo naj bo jasno, v katerem koraku se zgodi).
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\nal{}(e)]{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Označimo poti $P_1 := u_i u_{i+1} \dots u_{j-1} u_j$
+in $P_2 := u_i u_{i-1} \dots u_1 u_k \dots u_{j+1} u_j$.
+Brez škode za splošnost lahko predpostavimo, da je dolžina poti $P_1$
+manjša ali enaka dolžini poti $P_2$.
+Denimo, da v grafu $G$ obstaja pot $P' = v_0 v_1 v_2 \dots v_\ell$,
+kjer je $v_0 = u_i$ in $v_\ell = u_j$, ki je krajša od poti $P_2$.
+Potem obstaja tak indeks $p$ ($0 \le p \le \min\{\ell, j-i\} - 1$),
+da velja $v_h = u_{i+h}$ za vsak $h \in \{0, 1, \dots, p\}$
+in $v_{p+1} \ne u_{i+p+1}$,
+ter tak indeks $q$ ($p+1 \le q \le \ell$),
+da nobeno vozlišče $v_h$ ($p+1 \le h \le q-1$) ne leži na $P_1$
+in $v_q = u_r$ za nek $u_r$ na $P_1$ ($i+p+1 \le r \le j$).
+Potem obstaja cikel $v_p v_{p+1} \dots v_q u_{r-1} \dots u_{i+p+1}$
+(tj., iz delov poti $P'$ in $P_1$),
+ki je krajši od $C$,
+kar je v protislovju s predpostavko, da je $C$ najkrajši cikel v $G$.
+Poti $P_1$ in $P_2$ sta torej najkrajši dve poti od $u_i$ do $u_j$ v grafu $G$.
+
+\item Funkcija {\sc bfs2} se ustavi,
+ko najde povezavo med vozliščema na razdalji $i-1$ od $s$ (tedaj vrne $2i-1$),
+ali pa take povezave ne najde,
+najde pa dve poti dolžine $i$ od $s$ do nekega vozlišča (tedaj vrne $2i$).
+Če ne najde ničesar od tega,
+potem povezana komponenta grafa $G$, ki vsebuje vozlišče $s$,
+ne vsebuje ciklov (tedaj funkcija vrne $\infty$).
+Funkcija torej vrne vrednost,
+ki je večja ali enaka dolžini nekega cikla v grafu
+(in torej večja ali enaka $g$),
+oziroma $\infty$, če graf nima ciklov.
+
+Denimo sedaj, da vozlišče $s$ leži na najkrajšem ciklu v grafu $G$,
+in naj bo $t$ vozlišče, ki povzroči končanje algoritma
+-- očitno mora vozlišče $t$ ležati na nekem najkrajšem ciklu $C$,
+ki vsebuje vozlišče $s$.
+Potem bodisi obstajata dve najkrajši poti od $s$ do $t$,
+ali pa obstajata enolično določeni najkrajši poti enake dolžine
+od $s$ do $t$ in vozlišča $t'$, ki je sosedno vozlišču $t$.
+V obeh primerih morata biti obe poti po povezavah disjunktni,
+sicer bi obstajal cikel, krajši od $C$.
+Funkcija {\sc bfs2} v obeh primerih vrne ravno dolžino cikla $C$.
+
+\needspace{\baselineskip}
+\item Zapišimo psevdokodo za funkcijo {\sc Ožina}.
+\begin{small}
+\begin{algorithmic}
+\Function{Ožina}{$G = (V, E)$}
+    \State \Return $\min\{${\sc bfs2}$(G, s) \mid s \in V\}$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Funkcija torej vrne ravno najmanjšo vrednost,
+ki jo {\sc bfs2} vrne za graf $G$ in neko njegovo vozlišče,
+ta pa je dosežena ravno za vozlišča na najkrajšem ciklu
+in je enaka njegovi dolžini.
+
+\item Pri klicu funkcije {\sc bfs2}
+je vsako vozlišče največ enkrat v trenutnem nivoju
+-- za vsakega od njih se pregledajo vsi njegovi sosedi.
+Vsaka povezava grafa se torej obravnava največ dvakrat,
+vse operacije z množicami pa tečejo v konstantnem času.
+Funkcija {\sc bfs2} torej teče v času $O(m)$.
+
+Funkcija {\sc Ožina} kliče funkcijo {\sc bfs2} za vsako vozlišče grafa
+in vrne najmanjšo dobljeno vrednost.
+Časovna zahtevnost funkcije {\sc Ožina} je torej $O(mn)$.
+
+\item Potek izvajanja algoritma je prikazan v tabeli~\tab,
+kjer so zabeležene spremembe vrednosti spremenljivk
+(izpuščena je le množica $S$, ki sestoji iz vozlišč,
+ki so se do tedaj pojavila kot $u$ ali $v$).
+Zabeleženo je tudi, kdaj vsakič se zgodi pogoj,
+ki vrednost $z$ nastavi na $\True$
+(tj., tudi, ko že ima to vrednost).
+Ker se to prvič zgodi v tretjem koraku (tj., pri $i = 3$)
+in algoritem ne najde povezave med dvema vozliščema na istem nivoju,
+se algoritem ustavi na koncu tretjega obhoda zanke {\bf while}
+in vrne vrednost $2i = 6$.
+\end{enumerate}
+
+\begin{tabela}
+$$
+\begin{array}{c|c|c|c|c|c}
+i & T & u & v & N & z \\ \hline
+1 & \{a\} & a && \emptyset & \False \\
+&&& b & \{b\} \\
+&&& h & \{b, h\} \\
+&&& j & \{b, h, j\} \\
+2 & \{b, h, j\} & b && \emptyset \\
+&&& a & \emptyset \\
+&&& c & \{c\} \\
+&&& k & \{c, k\} \\
+&& h && \{c, k\} \\
+&&& a & \{c, k\} \\
+&&& g & \{c, k, g\} \\
+&&& q & \{c, k, g, q\} \\
+&& j && \{c, k, g, q\} \\
+&&& a & \{c, k, g, q\} \\
+&&& m & \{c, k, g, q, m\} \\
+&&& o & \{c, k, g, q, m, o\} \\
+3 & \{c, k, g, q, m, o\} & c && \emptyset \\
+&&& b & \emptyset \\
+&&& d & \{d\} \\
+&&& \ell & \{d, \ell\} \\
+&& k && \{d, \ell\} \\
+&&& b & \{d, \ell\} \\
+&&& n & \{d, \ell, n\} \\
+&&& p & \{d, \ell, n, p\} \\
+&& g && \{d, \ell, n, p\} \\
+&&& f & \{d, \ell, n, p, f\} \\
+&&& h & \{d, \ell, n, p, f\} \\
+&&& p & \{d, \ell, n, p, f\} & \True \\
+&& q && \{d, \ell, n, p, f\} \\
+&&& h & \{d, \ell, n, p, f\} \\
+&&& \ell & \{d, \ell, n, p, f\} & \True \\
+&&& n & \{d, \ell, n, p, f\} & \True \\
+&& m && \{d, \ell, n, p, f\} \\
+&&& d & \{d, \ell, n, p, f\} & \True \\
+&&& j & \{d, \ell, n, p, f\} \\
+&&& p & \{d, \ell, n, p, f\} & \True \\
+&& m && \{d, \ell, n, p, f\} \\
+&&& f & \{d, \ell, n, p, f\} & \True \\
+&&& j & \{d, \ell, n, p, f\} \\
+&&& \ell & \{d, \ell, n, p, f\} & \True
+\end{array}
+$$
+\podnaslov[\res{}(e)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

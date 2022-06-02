@@ -1,0 +1,43 @@
+\begin{neusmerjen*}[scale=1.2]*
+	\vozlisce{a}{xyz polar cs:angle= 22.5,radius=3}
+	\vozlisce{b}{xyz polar cs:angle= 67.5,radius=3}
+	\vozlisce{c}{xyz polar cs:angle=112.5,radius=3}
+	\vozlisce{d}{xyz polar cs:angle=157.5,radius=3}
+	\vozlisce{e}{xyz polar cs:angle=202.5,radius=3}
+	\vozlisce{f}{xyz polar cs:angle=247.5,radius=3}
+	\vozlisce{g}{xyz polar cs:angle=292.5,radius=3}
+	\vozlisce{h}{xyz polar cs:angle=337.5,radius=3}
+	\vozlisce{j}{xyz polar cs:angle= 22.5,radius=1.5}
+	\vozlisce{k}{xyz polar cs:angle= 67.5,radius=1.5}
+	\vozlisce{l}{xyz polar cs:angle=112.5,radius=1.5}
+	\vozlisce{m}{xyz polar cs:angle=157.5,radius=1.5}
+	\vozlisce{n}{xyz polar cs:angle=202.5,radius=1.5}
+	\vozlisce{o}{xyz polar cs:angle=247.5,radius=1.5}
+	\vozlisce{p}{xyz polar cs:angle=292.5,radius=1.5}
+	\vozlisce{q}{xyz polar cs:angle=337.5,radius=1.5}
+	
+	\povezava{a}{b}{}{}
+	\povezava{b}{c}{}{}
+	\povezava{c}{d}{}{}
+	\povezava{d}{e}{}{}
+	\povezava{e}{f}{}{}
+	\povezava{f}{g}{}{}
+	\povezava{g}{h}{}{}
+	\povezava{h}{a}{}{}
+	\povezava{j}{m}{}{}
+	\povezava{k}{n}{}{}
+	\povezava{l}{o}{}{}
+	\povezava{m}{p}{}{}
+	\povezava{n}{q}{}{}
+	\povezava{o}{j}{}{}
+	\povezava{p}{k}{}{}
+	\povezava{q}{l}{}{}
+	\povezava{a}{j}{}{}
+	\povezava{b}{k}{}{}
+	\povezava{c}{l}{}{}
+	\povezava{d}{m}{}{}
+	\povezava{e}{n}{}{}
+	\povezava{f}{o}{}{}
+	\povezava{g}{p}{}{}
+	\povezava{h}{q}{}{}
+\end{neusmerjen*}
