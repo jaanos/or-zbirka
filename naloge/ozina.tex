@@ -88,17 +88,12 @@ Iz odgovora naj bo jasen potek algoritma
 in $P_2 := u_i u_{i-1} \dots u_1 u_k \dots u_{j+1} u_j$.
 Brez škode za splošnost lahko predpostavimo, da je dolžina poti $P_1$
 manjša ali enaka dolžini poti $P_2$.
-Denimo, da v grafu $G$ obstaja pot $P' = v_0 v_1 v_2 \dots v_\ell$,
+Denimo, da v grafu $G$ obstaja pot $P' = v_0 v_1 v_2 \dots v_\ell \ne P_1$,
 kjer je $v_0 = u_i$ in $v_\ell = u_j$, ki je krajša od poti $P_2$.
-Potem obstaja tak indeks $p$ ($0 \le p \le \min\{\ell, j-i\} - 1$),
-da velja $v_h = u_{i+h}$ za vsak $h \in \{0, 1, \dots, p\}$
-in $v_{p+1} \ne u_{i+p+1}$,
-ter tak indeks $q$ ($p+1 \le q \le \ell$),
-da nobeno vozlišče $v_h$ ($p+1 \le h \le q-1$) ne leži na $P_1$
-in $v_q = u_r$ za nek $u_r$ na $P_1$ ($i+p+1 \le r \le j$).
-Potem obstaja cikel $v_p v_{p+1} \dots v_q u_{r-1} \dots u_{i+p+1}$
-(tj., iz delov poti $P'$ in $P_1$),
-ki je krajši od $C$,
+Potem je $u_i u_{i+1} \dots u_j$ $v_{\ell-1} v_{\ell-2} \dots v_1$
+obhod v grafu $G$,
+ki sestoji iz poti $P_1$ in $P'$ in je torej krajši od $C$.
+V grafu $G$ torej obstaja krajši cikel od $C$,
 kar je v protislovju s predpostavko, da je $C$ najkrajši cikel v $G$.
 Poti $P_1$ in $P_2$ sta torej najkrajši dve poti od $u_i$ do $u_j$ v grafu $G$.
 
