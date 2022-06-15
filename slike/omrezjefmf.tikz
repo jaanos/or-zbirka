@@ -1,0 +1,33 @@
+\begin{usmerjen*}[scale=1.2]*
+
+	\vozlisce{s}{-8, 0}
+	\vozlisce{a}{-2, 2}
+	\vozlisce{b}{-5, 2}
+	\vozlisce{c}{-6,-2}
+	\vozlisce{d}{-4,-2}
+	\vozlisce{e}{ 0,2}
+	\vozlisce{f}{-2,-2}
+	\vozlisce{g}{ 0,-2}
+	\vozlisce{h}{ 2, 0}
+	\vozlisce{i}{ 4, 2}
+	\vozlisce{j}{ 6, 2}
+	\vozlisce{k}{ 5,-2}
+	\vozlisce{t}{ 8, 0}
+
+    \povezava {s}{b}{0}{above}
+    \povezava*{s}{c}{0}{below}[sloped]
+    \povezava {b}{a}{23}{above}
+    \povezava*{c}{d}{21}{below}
+    \povezava*{d}{a}{7}{above}[sloped]
+    \povezava {d}{f}{7}{below}
+    \povezava {a}{e}{45}{above}
+    \povezava*{a}{g}{45}{below}[sloped]
+    \povezava {f}{g}{8}{below}
+    \povezava {e}{h}{3}{above}[sloped]
+    \povezava*{g}{h}{19}{below}[sloped]
+    \povezava*{h}{i}{2}{above}[sloped]
+    \povezava {h}{k}{2}{below}[sloped]
+    \povezava*{i}{j}{9.5}{above}
+    \povezava {k}{t}{10}{below}[sloped]
+    \povezava*{j}{t}{6.5}{above}[sloped]
+\end{usmerjen*}

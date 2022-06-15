@@ -1,0 +1,84 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 2.6.2022}
+\begin{vprasanje}
+Lokalni prevoznik bo uvedel novo avtobusno progo.
+Trasa je že določena,
+v sodelovanju z občino pa želijo poiskati najprimernejša mesta za postajališča.
+Tako so določili možne lokacije postajališč,
+ki so predstavljene s števili v naraščajočem zaporedju
+$x_0, x_1, \dots, x_n, x_{n+1}$.
+Na lokacijah $x_0 = 0$ in $x_{n+1}$ postajališči že stojita,
+cena postavitve postajališča na lokaciji $x_i$ pa je $c_i$ ($1 \le i \le n$).
+Da bi dosegli za\-dost\-no dostopnost avtobusnega prevoza,
+mora biti oddaljenost od vsake točke $x_i$ ($1 \le i \le n$)
+do najbližjega postajališča (vključno s tistima na $x_0$ in $x_{n+1}$)
+največ $r$
+(za vmesne točke to ne velja nujno --
+tj., lahko obstajajo take točke $y$ ($x_i < y < x_{i+1}$, $0 \le i \le n$),
+ki so do najbližjega postajališča oddaljene za več kot $r$).
+Na občini želijo torej določiti,
+kje naj zgradijo postajališča,
+da bodo skupni stroški čim manjši
+in da bodo dosegli zadostno dostopnost avtobusnega prevoza.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe,
+s katerimi poiščemo najmanjši strošek ustrezne postavitve postajališč.
+Razloži,
+kaj predstavljajo spremenljivke in v kakšnem vrstnem redu jih računamo.
+\namig{za vsako točko $x_i$ zabeleži,
+katera je zadnja točka, ki je od nje oddaljena strogo več kot $r$.}
+
+\item Oceni časovno zahtevnost algoritma, ki sledi iz zgoraj zapisanih enačb.
+Svojo oceno utemelji.
+
+\needspace{3\baselineskip}
+\item S svojim algoritmom poišči optimalno rešitev pri podatkih
+$n = 8$, $r = 5$ in
+\begin{alignat*}{11}
+(x_i)_{i=0}^9 &=&\ (0 &,& 4 &,& 7 &,& 11 &,& 18 &,& 23 &,& 27 &,& 31 &,& 36 &,& 40) \\
+(c_i)_{i=1}^8 &=&&& (2 &,& 4 &,& 7 &,& 2 &,& 9 &,& 6 &,& 5 &,& 4 &)
+\end{alignat*}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_i$ najmanjša cena gradnje postajališč do točke $x_i$,
+če na točki $x_i$-tem mestu zgradimo postajališče.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_0 &= c_{n+1} = 0 \\
+y_i &= \max\left(\{0\} \cup \{x_j \mid 0 \le j \le i-1, x_i - x_j > r\}\right) && (1 \le i \le n + 1) \\
+p_i &= c_i + \min\{p_j \mid 0 \le j \le i-1, y_i - x_j \le r\} && (1 \le i \le n + 1)
+\end{align*}
+Vrednosti $p_i$ računamo naraščajoče po indeksu $i$ ($1 \le i \le n + 1$).
+Najmanjšo ceno gradnje postajališč dobimo s $p^* = p_{n+1}$.
+
+\item Za izračun vrednosti $y_i$ in $p_i$ za posamezen $i$
+potrebujemo $O(i)$ časa.
+Ker ta izračun opravimo za $i = 1, 2, \dots, n+1$,
+je torej časovna zahtevnost ustreznega algoritma $O(n^2)$.
+
+\item Izračunajmo vrednosti $y_i$ in $p_i$ ($1 \le i \le 9$).
+\begin{alignat*}{3}
+y_1 &=  0 &\qquad p_1 &= 2 + 0                              &&=  2 \\
+y_2 &=  0 &\qquad p_2 &= 4 + \min\{\underline{0}, 2\}       &&=  4 \\
+y_3 &=  4 &\qquad p_3 &= 7 + \min\{\underline{0}, 2, 4\}    &&=  7 \\
+y_4 &= 11 &\qquad p_4 &= 2 + \min\{\underline{4}, 7\}       &&=  6 \\
+y_5 &= 11 &\qquad p_5 &= 9 + \min\{\underline{4}, 7, 6\}    &&= 13 \\
+y_6 &= 18 &\qquad p_6 &= 6 + \min\{\underline{6}, 13\}      &&= 12 \\
+y_7 &= 23 &\qquad p_7 &= 5 + \min\{\underline{6}, 13, 12\}  &&= 11 \\
+y_8 &= 27 &\qquad p_8 &= 4 + \min\{13, 12, \underline{11}\} &&= 15 \\
+y_9 &= 31 &\qquad p_9 &= 0 + \min\{12, \underline{11}, 15\} &&= 11
+\end{alignat*}
+Najmanjša cena gradnje postajališč je torej $p^* = p_9 = 11$.
+Poglejmo, kje naj zgradimo postajališča.
+\begin{align*}
+p_9 &= c_9 + p_7 & \text{postajališče na } x_7 &= 31 \\
+p_7 &= c_7 + p_4 & \text{postajališče na } x_4 &= 18 \\
+p_4 &= c_4 + p_2 & \text{postajališče na } x_2 &= 7 \\
+p_2 &= c_2 + p_0
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

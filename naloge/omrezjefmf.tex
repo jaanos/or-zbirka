@@ -1,0 +1,100 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 2.6.2022}
+\begin{vprasanje}
+Na Fakulteti za matematiko in fiziko bo izvedena prenova računalniškega omrežja.
+V Računalniškem centru so tako identificirali opravila,
+ki jih bodo pri tem izvedli -- ta so zbrana v tabeli~\tab.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in čas izdelave.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje izvedbe.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo projekt trajal manj kot $105$ dni.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+$a$ & nabava omrežne opreme                      & $b$, $d$ & 30 dni & 45 dni & 60 dni \\
+$b$ & pregled fizičnega stanja omrežja           & /        & 18 dni & 20 dni & 40 dni \\
+$c$ & popis računalnikov v omrežju               & /        & 20 dni & 20 dni & 26 dni \\
+$d$ & načrtovanje prenovljene sheme omrežja      & $c$      &  6 dni &  7 dni &  8 dni \\
+$e$ & zamenjava osrednjih usmerjevalnikov        & $a$      &  2 dni &  3 dni &  4 dni \\
+$f$ & polaganje novih kablov                     & $d$      &  5 dni &  8 dni & 11 dni \\
+$g$ & postavitev vzporednega brezžičnega omrežja & $a$, $f$ & 12 dni & 18 dni & 30 dni \\
+$h$ & preklop na novo brezžično omrežje          & $e$, $g$ &  1 dan &  2 dni &  3 dni \\
+$i$ & testiranje nove postavitve                 & $h$      &  7 dni &  9 dni &  14 dni \\
+$j$ & odpravljanje napak                         & $i$      &  1 dan &  7 dni & 10 dni \\
+$k$ & odstranitev stare opreme                   & $h$      &  8 dni & 10 dni & 12 dni
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je raz\-vid\-na topološka ureditev
+$s, b, c, d, a, f, e, g, h, i, k, j, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[omrezjefmf-resitev].
+
+\item V tabeli~\tab[omrezjefmf-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje projekta ne podaljša.
+Pričakovano trajanje projekta je torej $\mu = 110$ dni,
+edina kritična pot pa je $s - c - d - a - g - h - i - j - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[omrezjefmf-resitev] je razvidno,
+da je najmanj kritično opravilo $f$,
+saj lahko njegovo trajanje
+podaljšamo za $37$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti,
+pri čemer uporabimo variance iz tabele~\tab[omrezjefmf-resitev].
+$$
+\sigma = \sqrt{1 + 0.11 + 25 + 9 + 0.11 + 1.36 + 2.25} \approx 6.231
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 105$ dni.
+$$
+P(X \le 105) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(-0.802) = 0.2119
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{omrezjefmf-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|ccccccccccccc}
+& $s$ & $b$ & $c$ & $d$ & $a$ & $f$ & $e$ & $g$ & $h$ & $i$ & $k$ & $j$ & $t$ \\ \hline
+pričakovano && $23$ & $21$ & $7$ & $45$ & $8$ & $3$ & $19$ & $2$ & $9.5$ & $10$ & $6.5$ \\
+varianca && $13.44$ & $1$ & $0.11$ & $25$ & $1$ & $0.11$ & $9$ & $0.11$ & $1.36$ & $0.44$ & $2.25$ \\
+\hline
+najprej & $0$ & $0_s$ & $0_s$ & $21_c$ & $28_d$ & $28_d$ & $73_a$ & $73_a$ & $92_g$ & $94_h$ & $94_h$ & $103.5_i$ & $110_j$ \\
+najkasneje & $0_c$ & $5_a$ & $0_d$ & $21_a$ & $28_g$ & $65_g$ & $89_h$ & $73_h$ & $92_i$ & $94_j$ & $100_t$ & $103.5_t$ & $110$ \\
+\text{razlika} & $0$ & $5$ & $0^*$ & $0^*$ & $0^*$ & $37$ & $16$ & $0^*$ & $0^*$ & $0^*$ & $6$ & $0^*$ & $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

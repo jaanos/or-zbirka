@@ -1,0 +1,44 @@
+\begin{drevo*}[scale=1.5]*
+    \setboolean{@oznake}{false}
+
+    \vozlisce[odlocitev]{A}[right]{-8,-1}[6\,500]
+    \vozlisce[dogodek]{B}[above]{-4, 3}[6\,500]
+    \vozlisce[odlocitev]{C}[below]{-4,-5}[6\,000]
+    \vozlisce[dogodek]{D}[above]{ 0, 7}[18\,800]
+    \vozlisce[odlocitev]{E}[above]{ 0, 3}[3\,333.33]
+    \vozlisce[odlocitev]{F}[below]{ 0,-1}[-1\,000]
+    \vozlisce[dogodek]{G}[below]{ 0,-5}[6\,000]
+    \vozlisce{H}{ 1,-7}[0]
+    \vozlisce{I}{ 5, 7}[26\,000]
+    \vozlisce{J}{ 5, 5}[-10\,000]
+    \vozlisce[dogodek]{K}[above]{ 4, 3}[3\,333.33]
+    \vozlisce{L}{ 5, 1}[0]
+    \vozlisce[dogodek]{M}[above]{ 4,-1}[-6\,294.12]
+    \vozlisce{N}{ 5,-3}[-1\,000]
+    \vozlisce{O}{ 5,-5}[30\,000]
+    \vozlisce{P}{ 5,-7}[-10\,000]
+    \vozlisce{Q}{ 8, 3}[30\,000]
+    \vozlisce{R}{ 8, 1}[-10\,000]
+    \vozlisce{S}{ 8,-1}[29\,000]
+    \vozlisce{T}{ 8,-3}[-11\,000]
+
+    \povezava*{A}{B}{\text{vpraša vlagatelja}}[sloped]{above}
+    \povezava{A}{C}{\text{ne vpraša vlagatelja}}[sloped]{below}
+    \povezava{B}{D}{\text{partnerstvo: $0.30$}}[sloped]{above}
+    \povezava{B}{E}{\text{odstop: $0.36$}}{above}
+    \povezava{B}{F}{\text{odsvetuje: $0.34$}}[sloped]{below}
+    \povezava*{C}{G}{\text{začne projekt}}{above}
+    \povezava{C}{H}{\text{ne začne projekta}}[sloped]{below}
+    \povezava{D}{I}{\text{uspeh: $4/5$}}{above}
+    \povezava{D}{J}{\text{neuspeh: $1/5$}}[sloped]{below}
+    \povezava*{E}{K}{\text{začne projekt}}{above}
+    \povezava{E}{L}{\text{ne začne projekta}}[sloped]{below}
+    \povezava{F}{M}{\text{začne projekt}}{above}
+    \povezava*{F}{N}{\text{ne začne projekta}}[sloped]{below}
+    \povezava{G}{O}{\text{uspeh: $2/5$}}{above}
+    \povezava{G}{P}{\text{neuspeh: $3/5$}}[sloped]{below}
+    \povezava{K}{Q}{\text{uspeh: $1/3$}}{above}
+    \povezava{K}{R}{\text{neuspeh: $2/3$}}[sloped]{below}
+    \povezava{M}{S}{\text{uspeh: $2/17$}}{above}
+    \povezava{M}{T}{\text{neuspeh: $15/17$}}[sloped]{below}
+\end{drevo*}
