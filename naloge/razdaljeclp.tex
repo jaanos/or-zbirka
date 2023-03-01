@@ -33,15 +33,13 @@ Zapišimo celoštevilski linearni program.
 \opis{Vozlišče $u$ nima vstopne povezave v drevesu}
 && \sum_{vu \in E} x_{vu} &= 0
 \opis{Ostala vozlišča imajo natanko eno vstopno povezavo v drevesu}
-\forall vw \in E, & \ v \ne u: \ & \sum_{vw \in E} x_{vw} &= 1
+\forall w \in V\, & \setminus \{u\}: \ & \sum_{vw \in E} x_{vw} &= 1
 \opis{Vozlišče $u$ je na razdalji $0$ od sebe}
 && y_u &= 0
 \opis{Če je povezava $vw$ v drevesu,
 je razdalja do $w$ vsaj za $1$ večja od razdalje do $v$,
 sicer pa je razlika največ $n-1$}
 \forall vw \in E: &\ & y_v + n x_{vw} &\le y_w + n - 1
-\opis{V drevesu je natanko $n-1$ povezav}
-&& \sum_{vw \in e} x_{vw} &= n-1
 \end{alignat*}
 \end{odgovor}
 \end{naloga}
