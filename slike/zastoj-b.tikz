@@ -1,0 +1,36 @@
+\begin{drevo*}[scale=1.5]*
+    \setboolean{@oznake}{false}
+    
+    \vozlisce[dogodek]{B}[above]{-5, 0}[E(Y)]
+    \vozlisce[odlocitev]{D}[above]{-1, 4}[u]
+    \vozlisce[odlocitev]{E}[above]{-1, 0}[v]
+    \vozlisce[odlocitev]{C}[above]{-1,-4}[w]
+    \vozlisce[dogodek]{H}[above]{ 4, 5}[23 + 1.4a]
+    \vozlisce{I}{ 4, 3}[28]
+    \vozlisce[dogodek]{J}[above]{ 4, 1}[27.8 + 1.64a]
+    \vozlisce{K}{ 4,-1}[28]
+    \vozlisce[dogodek]{F}[above]{ 4,-3}[18.2 + 1.16a]
+    \vozlisce{G}{ 4,-5}[28]
+    \vozlisce{N}{ 8, 6}[35+2a]
+    \vozlisce{O}{ 8, 4}[15+a]
+    \vozlisce{P}{ 8, 2}[35+2a]
+    \vozlisce{Q}{ 8, 0}[15+a]
+    \vozlisce{L}{ 8,-2}[35+2a]
+    \vozlisce{M}{ 8,-4}[15+a]
+
+    \povezava{B}{D}{zjutraj po lokalni: $0.7$}[sloped]{above}
+    \povezava{B}{E}{zjutraj zastoj: $0.06$}{below}
+    \povezava{B}{C}{zjutraj ni zastoja: $0.24$}[sloped]{below}
+    \povezava{D}{H}{avtocesta: $a < 3.57$}[sloped]{above}
+    \povezava{D}{I}{lokalna cesta: $a \ge 3.57$}[sloped]{below}
+    \povezava{E}{J}{avtocesta: $a < 0.12$}[sloped]{above}
+    \povezava{E}{K}{lokalna cesta: $a \ge 0.12$}[sloped]{below}
+    \povezava{C}{F}{avtocesta: $a < 8.45$}[sloped]{above}
+    \povezava{C}{G}{lokalna cesta: $a \ge 8.45$}[sloped]{below}
+    \povezava{H}{N}{zastoj: $0.4$}[sloped]{below}
+    \povezava{H}{O}{ni zastoja: $0.6$}[sloped]{below}
+    \povezava{J}{P}{zastoj: $0.64$}[sloped]{below}
+    \povezava{J}{Q}{ni zastoja: $0.36$}[sloped]{below}
+    \povezava{F}{L}{zastoj: $0.16$}[sloped]{below}
+    \povezava{F}{M}{ni zastoja: $0.84$}[sloped]{below}
+\end{drevo*}
