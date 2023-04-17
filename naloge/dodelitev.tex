@@ -55,7 +55,7 @@ za zadnji možen čas začetka $i$-te naloge.
 \sum_{h=1}^n \sum_{k=1}^{T_i} x_{hik} &= 1
 \opis{Vsak delavec lahko hkrati izvaja samo eno nalogo}
 \forall h, i \in \{1, \dots, n\} \ \forall k \in \{1, \dots, T_i\}: &\ &
-(t_i-2) x_{hik} + \sum_{j=1}^n \sum_{\ell=k}^{k+t_i-1} x_{hj\ell} &\le t_i-1
+(t_i-1) x_{hik} + \sum_{j=1}^n \sum_{\ell=k}^{k+t_i-1} x_{hj\ell} &\le t_i
 \opis{Vrstni red opravljanja nalog}
 \forall (i, j) \in S \ \forall k \in \{1, \dots, T_i\}: &\ &
 \sum_{h=1}^n \left(x_{hik} - \sum_{\ell=k+t_i}^{T_j} x_{hj\ell}\right) &\le 0
