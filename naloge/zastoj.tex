@@ -1,0 +1,192 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 17.4.2023}
+\begin{vprasanje}
+Jože je ravnokar dobil službo v mestu in načrtuje,
+po kateri poti se bo vsako jutro peljal od doma do službe.
+Lahko se odloči za pot po avtocesti:
+od doma do avtocestnega priključka potrebuje $5$ minut,
+trajanje poti po avtocesti pa je odvisno od gneče.
+Statistični podatki kažejo,
+da se z verjetnostjo $0.6$ na avtocesti pojavi zastoj
+in tedaj traja pot od priključka do mesta $30$ minut;
+z verjetnostjo $0.4$ pa zastoja ni
+in pot po avtocesti traja $10$ minut
+(skupno trajanje poti je torej $35$ ali $15$ minut).
+
+Lahko se pa Jože zapelje na vrh hriba, do koder ima $5$ minut,
+in od tam oceni gostoto prometa na avtocesti.
+Izkušnje kažejo, da veljajo sledeče pogojne verjetnosti
+$P(\text{gostota prometa} \mid \text{zastoj na avtocesti})$:
+\begin{center}
+\begin{tabular}{c|cc}
+& zastoj & ni zastoja \\
+\hline
+gost promet & $0.9$ & $0.4$ \\
+redek promet & $0.1$ & $0.6$
+\end{tabular}
+\end{center}
+Jože se potem lahko odloči, ali bo pot nadaljeval po avtocesti
+(do priključka potrebuje še dodatnih $5$ minut
+-- skupaj bo torej potreboval $40$ ali $20$ minut),
+ali pa bo pot nadaljeval po lokalni cesti,
+po kateri do mesta potrebuje $23$ minut
+(skupaj torej $28$ minut).
+
+\begin{enumerate}[(a)]
+\item Kako naj se Jože odloči, da bo pričakovano trajanje poti čim krajše?
+Nariši odločitveno drevo in odločitve sprejmi na podlagi izračunanih verjetnosti
+ter izračunaj pričakovano trajanje poti.
+
+\item Jože želi minimizirati tudi trajanje popoldanske poti nazaj domov iz službe,
+pri čemer bo upošteval tudi to,
+da se bodo v naslednjem mesecu v popoldanskem času
+na avtocesti izvajala vzdrževalna dela.
+Tudi sedaj se lahko odloči za pot lokalni cesti,
+po kateri celotna pot traja $28$ minut,
+ali pa za pot po avtocesti, pri čemer je njeno trajanje odvisno od gneče.
+V času vračanja je verjetnost, da se pojavi zastoj, enaka $0.4$
+-- tedaj celotna pot po avtocesti od mesta do doma traja $35 + 2a$ minut;
+z verjetnostjo $0.6$ pa zastoja ni in pot traja $15 + a$ minut.
+Tukaj je $a \in [0, 10]$ parameter,
+ki se vsak dan spreminja v odvisnosti od obsega del.
+V primeru, ko se je Jože zjutraj pripeljal po avtocesti,
+pa lahko bolje oceni verjetnost zastoja na poti domov,
+saj pozna tudi pogojne verjetnosti
+$P(\text{zastoj zjutraj} \mid \text{zastoj popoldne})$
+(te so neodvisne od gostote prometa,
+kot jo lahko Jože zjutraj oceni z vrha hriba):
+\begin{center}
+\begin{tabular}{c|cc}
+& zastoj popoldne & ni zastoja popoldne \\
+\hline
+zastoj zjutraj & $0.8$ & $0.3$ \\
+ni zastoja zjutraj & $0.2$ & $0.7$
+\end{tabular}
+\end{center}
+Nariši odločitveno drevo
+ter določi optimalne odločitve in pričakovano trajanje poti
+v odvisnosti od parametra $a$.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Izračunajmo verjetnosti za oceno gostote prometa
+in za nastanek zastoja glede na oceno.
+\begin{align*}
+P(\text{gost promet}) &= 0.9 \cdot 0.6 + 0.4 \cdot 0.4 = 0.7 \\
+P(\text{redek promet}) &= 0.1 \cdot 0.6 + 0.6 \cdot 0.4 = 0.3 \\
+P(\text{zastoj zjutraj} \mid \text{gost promet})
+&= {0.9 \cdot 0.6 \over 0.7} \approx 0.77 \\
+P(\text{ni zastoja zjutraj} \mid \text{gost promet})
+&= {0.4 \cdot 0.4 \over 0.7} \approx 0.23 \\
+P(\text{zastoj zjutraj} \mid \text{redek promet})
+&= {0.1 \cdot 0.6 \over 0.3} = 0.2 \\
+P(\text{ni zastoja zjutraj} \mid \text{redek promet})
+&= {0.6 \cdot 0.4 \over 0.3} = 0.8
+\end{align*}
+Odločitveno drevo je prikazano na sliki~\fig[zastoj-a].
+Jože naj gre vsako jutro na vrh hriba
+-- če je promet gost, naj nadaljuje po lokalni cesti,
+sicer pa naj gre po avtocesti.
+Pričakovano trajanje poti je tedaj $26.8$ minut.
+
+\item Iz slike~\fig[zastoj-a] je razvidno,
+da se bo Jože z verjetnostjo $0.7$ zjutraj peljal po lokalni cesti
+in tako ne bo vedel,
+ali je zjutraj nastal zastoj.
+Izračunajmo še verjetnosti,
+da se je zjutraj peljal po avtocesti in je ali ni nastal zastoj,
+ter pogojne verjetnosti za zastoj popoldne v odvisnosti od zastoja zjutraj.%
+\footnote{%
+Opazimo lahko,
+da pri izračunu pogojnih verjetnosti izračunamo,
+da je verjetnost gneče zjutraj enaka $0.5$,
+kar se sicer ne sklada z oceno iz točke (a).
+}
+\begin{align*}
+P(\text{po avtocesti in zastoj zjutraj}) = 0.3 \cdot 0.2 &= 0.06 \\
+P(\text{po avtocesti in ni zastoja zjutraj}) = 0.3 \cdot 0.8 &= 0.24 \\
+P(\text{zastoj popoldne} \mid \text{zastoj zjutraj}) = {0.8 \cdot 0.4 \over 0.8 \cdot 0.4 + 0.3 \cdot 0.6} &= 0.64 \\
+P(\text{ni zastoja popoldne} \mid \text{zastoj zjutraj}) = {0.3 \cdot 0.6 \over 0.8 \cdot 0.4 + 0.3 \cdot 0.6} &= 0.36 \\
+P(\text{zastoj popoldne} \mid \text{ni zastoja zjutraj}) = {0.2 \cdot 0.4 \over 0.2 \cdot 0.4 + 0.7 \cdot 0.6} &= 0.16 \\
+P(\text{zastoj popoldne} \mid \text{ni zastoja zjutraj}) = {0.7 \cdot 0.6 \over 0.2 \cdot 0.4 + 0.7 \cdot 0.6} &= 0.84
+\end{align*}
+Naj bo $X$ trajanje popoldanske poti po avtocesti v minutah.
+Izračunajmo pričakovane vrednosti v odvisnosti od jutranje poti.
+\begin{align*}
+E(X \mid \text{po lokalni cesti zjutraj})
+&= 0.4 \cdot (35 + 2a) + 0.6 \cdot (15 + a) \\ &= 23 + 1.4a \\
+E(X \mid \text{po avtocesti in zastoj zjutraj})
+&= 0.64 \cdot (35 + 2a) + 0.36 \cdot (15 + a) \\ &= 27.8 + 1.64a \\
+E(X \mid \text{po avtocesti in ni zastoja zjutraj})
+&= 0.16 \cdot (35 + 2a) + 0.84 \cdot (15 + a) \\ &= 18.2 + 1.16a
+\end{align*}
+Pot po avtocesti izberemo,
+če je njeno pričakovano trajanje manjše od $28$ minut,
+kolikor traja pot po lokalni cesti.
+Poglejmo, pri katerih vrednostih $a$ bi izbrali pot po avtocesti:
+\begin{align*}
+% BUG: \opis doda prazno vrstico
+\shortintertext{\small\needspace{2\baselineskip}%
+%\opis{
+Po lokalni cesti zjutraj%
+:%
+}
+a < {28 - 23 \over 1.4} &\approx 3.57
+\opis{Po avtocesti in zastoj zjutraj}
+a < {28 - 27.8 \over 1.64} &\approx 0.12
+\opis{Po avtocesti in ni zastoja zjutraj}
+a < {28 - 18.2 \over 1.16} &\approx 8.45
+\end{align*}
+Z zgornjimi podatki lahko narišemo
+odločitveno drevo s slike~\fig[zastoj-b].
+
+Naj bo $Y$ trajanje izbrane popoldanske poti v minutah.
+Da določimo pričakovano trajanje poti,
+bomo najprej povzeli njene pričakovane vrednosti
+v odvisnosti od jutranje poti.
+\begin{align*}
+u := E(Y \mid \text{po lokalni cesti zjutraj})
+&= \begin{cases}
+23 + 1.4a & a < 3.57 \\
+28 & a \ge 3.57
+\end{cases} \\
+v := E(Y \mid \text{po avtocesti in zastoj zjutraj})
+&= \begin{cases}
+27.8 + 1.64a & a < 0.12 \\
+28 & a \ge 0.12
+\end{cases} \\
+w := E(Y \mid \text{po avtocesti in ni zastoja zjutraj})
+&= \begin{cases}
+18.2 + 1.16a & a < 8.45 \\
+28 & a \ge 8.45
+\end{cases}
+\end{align*}
+Sedaj lahko izračunamo pričakovano trajanje poti.
+\begin{multline*}
+E(Y) = 0.7 u + 0.06 v + 0.24 w = \\
+= \begin{cases}
+22.136 + 1.3568 a \in [22.136, 22.301) & 0 \le a < 0.12 \\
+22.148 + 1.2584 a \in [22.301, 26.642) & 0.12 \le a < 3.57 \\
+25.648 + 0.2784 a \in [26.642, 28) & 3.57 \le a < 8.45 \\
+28 & 8.45 \le a \le 10
+\end{cases}
+\end{multline*}
+\end{enumerate}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[zastoj-a]
+}
+\podnaslov[\res{}(a)]{Odločitveno drevo}
+\end{slika}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika[zastoj-b]
+}
+\podnaslov[\res{}(b) v odvisnosti od vrednosti parametra $a$]%
+{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}

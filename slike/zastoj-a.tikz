@@ -1,0 +1,34 @@
+\begin{drevo*}[scale=1.5]*
+    \setboolean{@oznake}{false}
+    
+    \vozlisce[odlocitev]{A}[above]{-8,-1}[26.8]
+    \vozlisce[dogodek]{B}[above]{-4, 2}[26.8]
+    \vozlisce[odlocitev]{D}[above]{ 0, 4}[28]
+    \vozlisce[odlocitev]{E}[below]{ 0, 0}[24]
+    \vozlisce[dogodek]{F}[below]{-4,-4}[27]
+    \vozlisce[dogodek]{H}[above]{ 4, 5}[35.43]
+    \vozlisce{I}{ 4, 3}[28]
+    \vozlisce[dogodek]{J}[above]{ 4, 1}[24]
+    \vozlisce{K}{ 4,-1}[28]
+    \vozlisce{L}{ 0,-3}[35]
+    \vozlisce{M}{ 0,-5}[15]
+    \vozlisce{N}{ 8, 6}[40]
+    \vozlisce{O}{ 8, 4}[20]
+    \vozlisce{P}{ 8, 2}[40]
+    \vozlisce{Q}{ 8, 0}[20]
+
+    \povezava*{A}{B}{hrib}[sloped]{above}
+    \povezava{A}{F}{avtocesta}[sloped]{below}
+    \povezava{B}{D}{gost promet: $0.7$}[sloped]{above}
+    \povezava{B}{E}{redek promet: $0.3$}[sloped]{below}
+    \povezava{D}{H}{avtocesta}[sloped]{above}
+    \povezava*{D}{I}{lokalna cesta}[sloped]{below}
+    \povezava*{E}{J}{avtocesta}[sloped]{above}
+    \povezava{E}{K}{lokalna cesta}[sloped]{below}
+    \povezava{F}{L}{zastoj: $0.6$}[sloped]{above}
+    \povezava{F}{M}{ni zastoja: $0.4$}[sloped]{below}
+    \povezava{H}{N}{zastoj: $0.77$}[sloped]{above}
+    \povezava{H}{O}{ni zastoja: $0.23$}[sloped]{below}
+    \povezava{J}{P}{zastoj: $0.2$}[sloped]{above}
+    \povezava{J}{Q}{ni zastoja: $0.8$}[sloped]{below}
+\end{drevo*}

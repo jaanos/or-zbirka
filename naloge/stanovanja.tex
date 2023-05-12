@@ -1,0 +1,73 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 25.8.2020}
+\begin{vprasanje}
+Skupina $n$ prijateljev išče študentska stanovanja v Ljubljani.
+Našli so $m$ stanovanj,
+pri čemer je v $i$-tem stanovanju ($1 \le i \le m$)
+lahko največ $k_i$ stanovalcev,
+mesečna najemnina (skupaj s stroški) pa je $c_{ij}$,
+če je v njem $j$ stanovalcev ($0 \le j \le k_i$).
+Med stanovanja se želijo razporediti tako,
+da bodo skupaj plačevali čim manj najemnine.
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Izrazi časovno zahtevnost algoritma, ki sledi iz enačb,
+v odvisnosti od parametrov $m$ in $n$.
+
+\item S svojimi rekurzivnimi enačbami reši problem pri podatkih
+$n = 10$, $m = 4$, $k_1 = k_2 = 3$, $k_3 = k_4 = 4$
+in vrednostih $c_{ij}$ iz spodnje tabele.
+$$
+\begin{array}{c|cccc}
+c_{ij} & 1 & 2 & 3 & 4 \\ \hline
+0 &   0 &   0 &   0 &   0 \\
+1 & 510 & 440 & 550 & 700 \\
+2 & 580 & 560 & 600 & 720 \\
+3 & 640 & 700 & 680 & 740 \\
+4 &   - &   - & 790 & 770 \\
+\end{array}
+$$
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ najmanjša skupna najemnina za prvih $i$ stanovanj,
+če se vanje skupno vseli $j$ stanovalcev.
+Določimo začetne pogoje in rekurzivne enačbe.
+\needspace{2\baselineskip}
+\begin{align*}
+c_{ij} &= \infty && (j > k_i) \\
+p_{1j} &= c_{1j} && (0 \le j \le n) \\
+p_{ij} &= \min\set{p_{i-1,h} + c_{i,j-h}}{0 \le h \le j}
+&& (2 \le i \le m, \ 0 \le j \le n)
+\end{align*}
+Vrednosti $p_{ij}$ računamo v leksikografskem vrstnem redu glede na $(i, j)$.
+Najmanjšo skupno mesečno najemnino dobimo kot $p^* = p_{mn}$.
+Algoritem, ki sledi iz zgornjih enačb, teče v času $O(mn^2)$.
+
+\item Izračunajmo tiste končne vrednosti $p_{ij}$ ($i \ge 2$),
+ki jih potrebujemo za reševanje problema.
+\begin{alignat*}{2}
+p_{22} &= \min\{\underline{0+560}, 510+440, 580+0\} &&= 560 \\
+p_{23} &= \min\{0+700, 510+560, 580+440, \underline{640+0}\} &&= 640 \\
+p_{24} &= \min\{510+700, 580+560, \underline{640+440}\} &&= 1\,080 \\
+p_{25} &= \min\{580+700, \underline{640+560}\} &&= 1\,200 \\
+p_{26} &= 640 + 700 &&= 1\,340 \\
+p_{36} &= \min\{560+790, \underline{640+680}, 1\,080+600, 1\,200+550, 1\,340+0\} &&= 1\,320 \\
+p_{37} &= \min\{\underline{640+790}, 1\,080+680, 1\,200+600, 1\,340+550\} &&= 1\,430 \\
+p_{38} &= \min\{\underline{1\,080+790}, 1\,200+680, 1\,340+600\} &&= 1\,870 \\
+p_{39} &= \min\{\underline{1\,200+790}, 1\,340+680\} &&= 1\,990 \\
+p_{3,10} &= 1\,340 + 790 &&= 2\,130 \\
+p_{4,10} &= \min\{\underline{1\,320+770}, 1\,430+740, 1\,870+720, 1\,990+700, 2\,130+0\} &&= 2\,090
+\end{alignat*}
+Najmanjša skupna mesečna najemnina je torej $p^* = p_{4,10} = 2\,090$.
+Poiščimo še optimalno razporeditev stanovalcev.
+\begin{align*}
+p_{4,10} &= p_{36} + c_{44} && \text{$4$ stanovalci v četrtem stanovanju} \\
+p_{36}   &= p_{23} + c_{33} && \text{$3$ stanovalci v tretjem stanovanju} \\
+p_{23}   &= p_{13} + c_{20} && \text{$0$ stanovalcev v drugem stanovanju} \\
+p_{13}   &= c_{13}          && \text{$3$ stanovalci v prvem stanovanju}
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

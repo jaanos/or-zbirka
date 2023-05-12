@@ -1,0 +1,92 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 17.4.2023}
+\begin{vprasanje}
+Danih je $n$ enakokrakih pravokotnih trikotnikov,
+pri čemer je $\ell_i$ ($1 \le i \le n$) dolžina katete $i$-tega trikotnika.
+Vsak trikotnik se z enim od krajišč hipotenuze dotika osi $x$,
+pri čemer se nanj priležna kateta dviga navpično nad njim
+(tj., pravokotno na os $x$),
+nasprotna kateta pa je na desni strani priležne katete.
+Trikotnike želimo postaviti tako,
+da se med seboj ne prekrivajo (lahko se dotikajo),
+območje, ki ga zavzemajo, pa ima čim manjšo skupno širino
+(tj., minimiziramo razliko v $x$-koordinatah levega roba skrajno levega trikotnika
+in najbolj desnega oglišča kateregakoli od trikotnikov),
+pri čemer smemo trikotnike le premikati vzdolž osi $x$
+(tj., ne smemo jih odmakniti od osi $x$ oziroma jih rotirati ali zrcaliti
+-- vsi trikotniki torej gledajo v isto smer).
+Lahko se prepričaš, da mora torej za poljubna različna $i, j$
+veljati $|x_i - x_j| \ge \min\{\ell_i, \ell_j\}$,
+kjer sta $x_i$ in $x_j$ $x$-koordinati
+levih robov $i$-tega in $j$-tega trikotnika.
+Primer je podan na sliki~\fig.
+
+\begin{enumerate}[(a)]
+\item Zapiši celoštevilski linearni program, ki modelira zgornji problem.
+Iz rešitve naj bo mogoče odčitati tudi ustrezno postavitev trikotnikov,
+torej $x$-koordinate njihovih levih robov.
+\namig{za vsak urejen par trikotnikov uvedi spremenljivko,
+ki pove, kateri od njiju je bolj na levi,
+ter minimiziraj zgornjo mejo za širino.
+Lahko tudi predpostaviš, da so vsi trikotniki desno od izhodišča.}
+
+\item K svojemu celoštevilskemu linearnemu programu dodaj pogoje za sledeči omejitvi.
+\begin{itemize}
+\item Trikotnik $a$ mora ležati med trikotnikoma $b$ in $c$
+(pri čemer ni pomembno, kateri od njiju je bolj na levi).
+\item Desno oglišče trikotnika $d$ je najbolj desno oglišče
+kateregakoli od tri\-kot\-ni\-kov
+(pri čemer dovolimo, da kak trikotnik leži v celoti pod trikotnikom $d$).
+\end{itemize}
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\caption{Primer dopustne (ne nujno optimalne) rešitve za nalogo~\nal.}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-ti trikotnik ($1 \le i \le n$) bomo uvedli spremenljivko $x_i$,
+ki poda $x$-koordinato njegovega levega roba.
+Za $i$-ti in $j$-ti trikotnik ($1 \le i, j \le n$, $i \ne j$)
+bomo uvedli še spremenljivko $y_{ij}$,
+katere vrednost interpretiramo kot
+$$
+y_{ij} = \begin{cases}
+1 & \text{$i$-ti trikotnik leži levo od $j$-tega trikotnika, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$,
+ki predstavlja zgornjo mejo za $x$-koordinate desnih oglišč trikotnikov.
+Nazadnje uvedemo še konstanto $L = \sum_{i=1}^n \ell_i$,
+ki predstavlja zgornjo mejo za širino območja, ki ga zavzemajo trikotniki.
+
+\begin{enumerate}[(a)]
+\item Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ t &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\}: &\ &
+0 \le x_i &\le t - \ell_i \\
+\forall i, j \in \{1, \dots, n\}, \ i \ne j: &\ &
+0 \le y_{ij} &\le 1, \quad y_{ij} \in \Z
+\opis{Trikotniki se ne prekrivajo}
+\forall i, j \in \{1, \dots, n\}, \ i \ne j: &\ &
+x_i - x_j + L y_{ij} &\ge \min\{\ell_i, \ell_j\}
+\opis{Relativni položaj dveh trikotnikov}
+\forall i, j \in \{1, \dots, n\}, \ i < j: &\ &
+y_{ij} + y_{ji} &= 1
+\end{alignat*}
+
+\item Zapišimo še dodatne omejitve.
+\odstraniprostor
+\begin{align*}
+\opis{Trikotnik $a$ leži med trikotnikoma $b$ in $c$}
+y_{ab} + y_{ac} &= 1
+\opis{Trikotnik $d$ se dotika desnega roba območja}
+x_d + \ell_d &= t
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
+
