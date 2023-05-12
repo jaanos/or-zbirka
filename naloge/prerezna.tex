@@ -98,7 +98,7 @@ $$
 \begin{small}
 \begin{algorithmic}
 \Function{Postvisit}{$u, v$}
-    \If{$(v = \Null \land |\Adj(G, u)| > 1) \lor (v \ne \Null \land \exists w \in \Adj(G, u): p_w \le \ell_u)$}
+    \If{$(v = \Null \land |\Adj(G, u)| > 1) \lor (v \ne \Null \land \exists w \in \Adj(G, u): p_w \ge \ell_u)$}
         \State {\sl izhod}$.\append(u)$
     \EndIf
     \State $p_u \gets \min\left(\set{p_w}{w \in \Adj(G, u) \land \ell_w > \ell_u} \cup \set{\ell_w}{w \in \Adj(G, u) \lor w = u}\right)$
