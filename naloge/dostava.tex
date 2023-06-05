@@ -1,0 +1,51 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 5.6.2023}
+\begin{vprasanje}
+Preko storitve za dostavo želimo naročiti $m$ različnih artiklov,
+ki jih lahko naročimo iz $n$ različnih trgovin.
+Za vsaka $i, j$ ($1 \le i \le m$, $1 \le j \le n$) imamo sledeče podatke:
+$a_i$ je število kosov $i$-tega artikla, ki jih želimo naročiti,
+$b_{ij}$ je število kosov $i$-tega artikla, ki so na voljo v $j$-ti trgovini,
+$c_{ij}$ je cena za kos $i$-tega artikla v $j$-ti trgovini,
+$d_j$ je strošek dostave iz $j$-te trgovine
+(plačamo ga, če iz nje naročimo vsaj en artikel)
+in $e_j$ je minimalni znesek naročila (brez stroškov dostave) iz $j$-te trgovine
+(naročila ne moremo opraviti, če naročimo za manj kot minimalni znesek).
+Določiti želimo,
+koliko kosov posameznega artikla bomo naročili iz vsake trgovine,
+da bodo skupni stroški čim manjši.
+
+Zapiši celoštevilski linearni program,
+ki modelira iskanje optimalne rešitve zgornjega problema.
+\end{vprasanje}
+
+\begin{odgovor}
+Za $j$-to trgovino ($1 \le j \le n$) bomo uvedli spremenljivko $x_j$,
+katere vrednost interpretiramo kot
+$$
+x_j = \begin{cases}
+1 & \text{naročamo iz $j$-te trgovine, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo za $i$-ti artikel in $j$-to trgovino
+($1 \le i \le m$, $1 \le j \le n$)
+uvedli še spremenljivko $y_{ij}$,
+ki pove, koliko kosov $i$-tega artikla bomo naročili iz $j$-te trgovine.
+
+Zapišimo celoštevilski linearni program.
+\needspace{2\baselineskip}
+\begin{alignat*}{3}
+\min &\ & \sum_{j=1}^n \Big(d_j x_j &+ \sum_{i=1}^m c_{ij} y_{ij}\Big)
+&\quad \text{p.p.} \\
+\forall j \in \{1, \dots, n\}: &\ & 0 \le x_j &\le 1, & x_j &\in \Z
+\opis{Število kosov je omejeno z zalogo in naročilom}
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\}: &\ &
+0 \le y_{ij} &\le b_{ij} x_j, & y_{ij} &\in \Z
+\opis{Naročimo želeno število kosov artikla}
+\forall i \in \{1, \dots, m\}: &\ & \sum_{j=1}^n y_{ij} &= a_i
+\opis{Če naročamo iz trgovine, je dosežena minimalna vrednost naročila}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^m c_{ij} y_{ij} &\ge e_j x_j
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
+
