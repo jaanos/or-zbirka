@@ -1,0 +1,96 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 5.6.2023}
+\begin{vprasanje}
+Lotili se bomo prenove stanovanja, ki jo želimo izvesti v čim krajšem času.
+V tabeli~\tab so zbrana opravila, ki jih bo treba postoriti.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in pričakovani čas trajanja prenove.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje izvedbe.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo projekt trajal manj kot $40$ dni.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+$a$ & odstranjevanje starega pohištva & /        &  4 dni &  5 dni & 12 dni \\
+$b$ & nabava novega pohištva          & /        & 18 dni & 20 dni & 40 dni \\
+$c$ & montaža novega pohištva         & $b$, $f$ &  9 dni & 12 dni & 15 dni \\
+$d$ & prenova električne napeljave    & $a$      &  4 dni & 10 dni & 10 dni \\
+$e$ & vrtanje v zunanjo steno         & /        &  1 dan &  1 dan &  4 dni \\
+$f$ & beljenje sten                   & $d$      &  3 dni &  4 dni &  5 dni \\
+$g$ & montaža klimatske naprave       & $e$, $f$ &  1 dan &  3 dni &  5 dni \\
+$h$ & čiščenje                        & $c$, $e$ &  2 dni &  2 dni &  2 dni
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je raz\-vid\-na topološka ureditev
+$s, a, b, e, d, f, c, g, h, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[prenova-resitev].
+
+\item V tabeli~\tab[prenova-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje projekta ne podaljša.
+Pričakovano trajanje projekta je torej $\mu = 37$ dni,
+edina kritična pot pa je $s - b - c - h - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[prenova-resitev] je razvidno,
+da je najmanj kritično opravilo $e$,
+saj lahko njegovo trajanje
+podaljšamo za $32.5$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti,
+pri čemer uporabimo variance iz tabele~\tab[prenova-resitev].
+$$
+\sigma = \sqrt{13.44 + 1 + 0} \approx 3.80
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 40$ dni.
+$$
+P(X \le 40) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(0.789) = 0.7850
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{prenova-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cccccccccc}
+& $s$ & $a$ & $b$ & $e$ & $d$ & $f$ & $c$ & $g$ & $h$ & $t$ \\ \hline
+pričakovano && $6$ & $23$ & $1.5$ & $9$ & $4$ & $12$ & $3$ & $2$ \\
+varianca && $1.78$ & $13.44$ & $0.25$ & $1$ & $0.11$ & $1$ & $0.44$ & $0$ \\
+\hline
+najprej & $0$ & $0_s$ & $0_s$ & $0_s$ & $6_a$ & $15_d$ & $23_b$ & $19_f$ & $35_c$ & $37_h$ \\
+najkasneje & $0_b$ & $4_d$ & $0_c$ & $32.5_g$ & $10_f$ & $19_c$ & $23_h$ & $34_t$ & $35_t$ & $37$ \\
+\text{razlika} & $0$ & $4$ & $0^*$ & $32.5$ & $4$ & $4$ & $0^*$ & $15$ & $0^*$ & $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

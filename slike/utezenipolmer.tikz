@@ -1,0 +1,12 @@
+\begin{neusmerjen*}[scale=1]*
+	\vozlisce{a}{-2, 0}
+	\vozlisce{b}{ 0, 2}
+	\vozlisce{c}{ 2, 0}
+	\vozlisce{d}{ 0,-2}
+
+	\povezava{a}{b}{1}[sloped]{above}
+	\povezava{a}{c}{4}{above}
+	\povezava{a}{d}{5}[sloped]{below}
+	\povezava{b}{c}{2}[sloped]{above}
+	\povezava{c}{d}{1}[sloped]{below}
+\end{neusmerjen*}

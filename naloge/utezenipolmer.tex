@@ -1,0 +1,126 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 5.6.2023}
+\begin{vprasanje}
+Naj bo $G = (V, E)$ neusmerjen graf s cenami povezav $t_e \in \R$ ($e \in E$),
+tako da v grafu ni negativnih ciklov
+(tj., za vsak cikel $C$ v grafu $G$ velja $\sum_{e \in E(C)} t_e \ge 0$,
+kjer je $E(C)$ množica povezav v ciklu $C$).
+
+Za razdaljo $\partial_t(u, v)$ med vozliščema $u, v \in V$ vzamemo
+ceno najcenejše poti med $u$ in $v$
+(tj.,
+$\partial_t(u, v) = \min\left\{\sum_{e \in E(P)} t_e
+\mid \text{$P$ pot med $u$ in $v$}\right\}$,
+kjer je $E(P)$ množica povezav v poti $P$).
+{\em Utežena ekscentričnost} $\epsilon_t(u)$ vozlišča $u$
+je največja razdalja od $u$ do ostalih vozlišč
+(tj., $\epsilon_t(u) = \max\left\{\partial_t(u, v) \mid v \in V\right\}$).
+{\em Uteženi polmer} $r_t(G)$ grafa $G$ potem definiramo kot
+najmanjšo uteženo ekscentričnost,
+torej $r_t(G) = \min\left\{\epsilon_t(u) \mid u \in V\right\}$.
+
+\begin{enumerate}[(a)]
+\item Predlagaj čim bolj učinkovit algoritem
+za določitev uteženega polmera danega grafa.
+Kolikšna je njegova časovna zahtevnost?
+Pojasni tudi, kako bo algoritem deloval,
+če ni izpolnjen pogoj glede negativnih ciklov.
+
+\item S svojim algoritmom izračunaj uteženi polmer grafa s slike~\fig.
+Iz odgovora naj bo jasen potek algoritma
+(tj., za vsako spremembo naj bo jasno, v katerem koraku se zgodi).
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\nal{}(b)]{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Na grafu $G$ in cenah povezav $t$
+uporabimo algoritem {\sc FloydWarshall} iz re\-šit\-ve naloge~\res[fw].
+Ta nam vrne matriki $d$ in $\pred$,
+ki nam povesta razdalje med pari vozlišč
+in predzadnje vozlišče na poti med vsakima dvema vozliščema.
+Iz vsake vrstice matrike $d$ vzamemo največjo vrednost
+-- tako dobimo utežene ekscentričnosti vseh vozlišč.
+Uteženi polmer potem dobimo tako,
+da izmed dobljenih uteženih ekscentričnosti vzamemo najmanjšo vrednost.
+
+Algoritem {\sc FloydWarshall} teče v času $O(n^3)$,
+kjer je $n$ število vozlišč v grafu $G$.
+Za izračun uteženih ekscentričnosti potem potrebujemo še $O(n^2)$ korakov,
+za izračun uteženega polmera pa še $O(n)$ korakov.
+Skupna časovna zahtevnost algoritma je torej $O(n^3)$.
+
+V primeru, da ima vhodni graf negativen cikel,
+bo to zaznal že algoritem {\sc FloydWarshall},
+tako da se lahko v tem primeru tudi naš algoritem ustavi.
+
+\item Potek izvajanja algoritma {\sc FloydWarshall}
+skupaj z izračuni uteženih ekscentričnosti je prikazan v tabeli~\tab.
+Prikazano je tako začetno stanje kot tudi stanje po vsakem koraku glavne zanke,
+pri čemer je v zgornjem levem kotu vsake matrike zapisano vozlišče,
+skozi katerega dodajamo poti v ustreznem koraku zanke,
+spremembe pa so podčrtane.
+Iz uteženih ekscentričnosti lahko potem razberemo,
+da je uteženi polmer grafa s slike~\fig enak $3$.
+\end{enumerate}
+
+\begin{tabela}
+$$
+\begin{gathered}
+\begin{array}{c|cccc}
+  & a & b & c & d \\ \hline
+a & 0 & 1_a & 4_a & 5_a \\
+b & 1_b & 0 & 2_b & \infty \\
+c & 4_c & 2_c & 0 & 1_c \\
+d & 5_d & \infty & 1_d & 0
+\end{array}
+\qquad
+\begin{array}{c|cccc}
+a & a & b & c & d \\ \hline
+a & 0 & 1_a & 4_a & 5_a \\
+b & 1_b & 0 & 2_b & \underline{6_a} \\
+c & 4_c & 2_c & 0 & 1_c \\
+d & 5_d & \underline{6_a} & 1_d & 0
+\end{array}
+\qquad
+\begin{array}{c|cccc}
+b & a & b & c & d \\ \hline
+a & 0 & 1_a & \underline{3_b} & 5_a \\
+b & 1_b & 0 & 2_b & 6_a \\
+c & \underline{3_b} & 2_c & 0 & 1_c \\
+d & 5_d & 6_a & 1_d & 0
+\end{array}
+\\
+\begin{array}{c|cccc}
+c & a & b & c & d \\ \hline
+a & 0 & 1_a & 3_b & \underline{4_c} \\
+b & 1_b & 0 & 2_b & \underline{3_c} \\
+c & 3_b & 2_c & 0 & 1_c \\
+d & \underline{4_b} & \underline{3_c} & 1_d & 0
+\end{array}
+\qquad
+\begin{array}{c|cccc}
+d & a & b & c & d \\ \hline
+a & 0 & 1_a & 3_b & 4_c \\
+b & 1_b & 0 & 2_b & 3_c \\
+c & 3_b & 2_c & 0 & 1_c \\
+d & 4_b & 3_c & 1_d & 0
+\end{array}
+\qquad
+\begin{array}{c|c}
+u & \epsilon_t(u) \\ \hline
+a & 4 \\
+b & 3 \\
+c & 3 \\
+d & 4
+\end{array}
+\end{gathered}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

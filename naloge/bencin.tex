@@ -1,0 +1,141 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 5.6.2023}
+\begin{vprasanje}
+V kriminalni združbi so se odločili,
+da bodo iz bencinskih črpalk v okoliških mestih poskusili ukrasti čim več bencina.
+V ta namen so si priskrbeli tovornjak s predelano posodo za gorivo,
+ki lahko gorivo preusmeri v cisterno.
+V vsakem mestu, kjer se bodo ustavili,
+bodo na bencinski črpalki načrpali vnaprej določeno količino goriva,
+nato pa se odpeljali, ne da bi plačali.
+Tovornjak se trenutno nahaja v enem izmed mest
+-- ker v njem trenutno ni nič bencina,
+bodo torej prvi rop izpeljali kar v tem mestu,
+nato pa se bodo lahko z načrpanim gorivom peljali naprej
+(lahko predpostaviš, da jim ga za tem ne bo zmanjkalo).
+Seveda bodo iz vsakega mesta, kjer bodo kradli,
+za njimi poslali šerifove može,
+tako da se sme med vsakima obiskanima mestoma
+tovornjak torej peljati le po najkrajši poti
+(sicer tvegajo, da jih bodo ujeli).
+Pot želijo končati v eni od varnih točk,
+kjer lahko tovornjak neopazno izgine in se tako izogne temu,
+da bi ga ujeli
+(lahko pa tudi peljejo naprej in pot končajo v drugi varni točki).
+Cilj je torej, da v eno od varnih točk pripeljejo čim večjo količino bencina.
+
+Cestno omrežje je predstavljeno z neusmerjenim grafom $G = (V, E)$,
+tako da lahko množico $V$ zapišemo kot unijo disjunktnih množic $A$ in $B$,
+kjer vozlišča iz množice $A$ predstavljajo mesta z bencinskimi črpalkami,
+vozlišča iz množice $B$ pa varne točke.
+Poleg tega poznamo še nenegativne dolžine povezav med vozlišči
+v kilometrih $\ell_{uv}$ ($uv \in E$)
+in nenegativne uteži vozlišč $t_v$ ($v \in V$),
+ki predstavljajo količino bencina v litrih,
+ki jih lahko ukradejo v danem mestu,
+ter začetno mesto $r \in A$
+in porabo $p$ v litrih na kilometer.
+Lahko predpostaviš,
+da velja $t_r > 0$ in $t_v = 0$ za vsak $v \in B$.
+
+Če povzamemo, iščemo torej tako pot $u_0 u_1 \dots u_s$ v grafu $G$,
+da je $u_i u_{i+1} \dots u_j$ najkrajša pot med vozliščema $u_i$ in $u_j$
+($1 \le i \le j \le s$)
+ter $u_0 = r$ in $u_s \in B$,
+ki maksimizira vrednost $\sum_{i=1}^s (t_{u_i} - p \ell_{u_{i-1} u_i})$.
+
+\begin{enumerate}[(a)]
+\item Predpostavimo, da je graf $G$ drevo in da vzamemo vozlišče $r$ za njegov koren.
+Zapiši rekurzivne enačbe za reševanje danega problema ter pojasni,
+v katerem vrstnem redu računamo spremenljivke,
+kako iz podatkov pridemo do tega vrstnega reda,
+ter kako dobimo optimalno rešitev.
+Kakšna je časovna zahtevnost celotnega algoritma?
+
+\item Uporabi algoritem iz točke ()a),
+da rešiš problem za drevo s slike~\fig
+pri vrednosti $p = 0.1$.
+Vrednosti $\ell_{uv}$ ($uv \in E$) in $t_v$ ($v \in V$)
+so prikazane pri povezavah oziroma vozliščih.
+Vozlišča (mesta) iz množice $A$ so prikazane z belo barvo,
+vozlišča (varne točke) iz množice $B$ pa s sivo barvo.
+Treba je torej poiskati pot, ki naj jo prevozijo,
+in količino bencina, ki jo bodo pripeljali v varno točko.
+
+\item Opiši algoritem, ki reši dani problem za splošen neusmerjen graf $G$
+(tj., ne nujno drevo).
+Kakšna je njegova časovna zahtevnost?
+\namig{prevedi problem na problem iz točke (a).}
+\end{enumerate}
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov[\nal{}(b)]{Drevo}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj oznaka $u \to v$ pomeni,
+da je vozlišče $v$ neposredni potomec vozlišča $u$.
+Uvedimo še konstante
+$$
+z_u = \begin{cases}
+-\infty & u \in A, \\
+0 & u \in B.
+\end{cases}
+$$
+Spremenljivka $x_u$ ($u \in V$) bo podala največjo količino bencina,
+ki jo lahko prepeljemo od vozlišča $u$ do nekega njegovega potomca $v \in B$.
+Zapišimo rekurzivno enačbo.
+$$
+x_u = t_u + \max\left(\{z_u\} \cup \{x_v - p \ell_{uv} \mid u \to v\}\right) .
+$$
+Vrednosti $x_u$ računamo od listov v smeri proti korenu $r$,
+optimalno vrednost pa dobimo kot $x^* = x_r$.
+Ustrezni vrstni red lahko dobimo tako,
+da na drevesu opravimo iskanje v širino ali globino iz korena $r$
+in izračunamo topološko ureditev glede na dobljeno tabelo prednikov vozlišč.
+Časovna zahtevnost celotnega algoritma je potem $O(n)$,
+kjer je $n$ število vozlišč v drevesu
+-- tako drevo ima namreč $n-1$ povezav,
+in vsako od njih obravnavamo konstantno mnogo krat.
+
+\item Izračunajmo vrednosti $x_u$ ($u \in V$).
+\begin{alignat*}{2}
+x_k &= 0 + 0 &&= 0 \\
+x_j &= 0 + 0 &&= 0 \\
+x_i &= 32 + \max\{-\infty, \underline{0 - 15.3}\} &&= 16.7 \\
+x_h &= 47 + \max\{-\infty, \underline{0 - 3.2}\} &&= 43.8 \\
+x_g &= 0 + \max\{\underline{0}, 16.7 - 18.7\} &&= 0 \\
+x_f &= 123 - \infty &&= -\infty \\
+x_e &= 0 + 0 &&= 0 \\
+x_d &= 51 + \max\{-\infty, \underline{43.8 - 6.2}\} &&= 88.6 \\
+x_c &= 179 + \max\{-\infty, -\infty - 3.7, \underline{0 - 1.4}\} &&= 177.6 \\
+x_b &= 89 + \max\{-\infty, \underline{88.6 - 9.3}, 0 - 0.5\} &&= 168.3 \\
+x_a &= 0 + \max\{0, \underline{177.6 - 10.2}\} &&= 167.4 \\
+x_r &= 145 + \max\{-\infty, \underline{167.4 - 7.4}, 168.3 - 8.8\} &&= 305.0
+\end{alignat*}
+Pripeljemo lahko torej $x^* = x_r = 305$ litrov bencina.
+Poglejmo, katero pot bomo opravili.
+\begin{align*}
+x^* = x_r &= t_r + x_a - p \ell_{ra} && r \to a \\
+x_a &= t_a + x_c - p \ell_{ac}       && a \to c \\
+x_c &= t_c + x_g - p \ell_{cg}       && c \to g \\
+x_g &= t_g + z_g                     && \text{konec pri $g$}
+\end{align*}
+Tovornjak bo torej opravil pot $r \to a \to c \to g$.
+
+\item Na grafu $G$ izvedemo Dijkstrov algoritem z začetkom v vozlišču $r$
+-- tako dobimo drevo najkrajših poti iz vozlišča $r$.
+Na dobljenem drevesu lahko potem uporabimo rekurzivne enačbe iz točke (a),
+da poiščemo želeno pot.
+Časovna zahtevnost celotnega algoritma je tako $O(m \log n)$,
+če v Dijkstrovem algoritmu uporabimo kopico,
+oziroma $O(n^2)$,
+če uporabimo seznam,
+pri čemer je $m$ število povezav v grafu.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

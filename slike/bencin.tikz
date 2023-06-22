@@ -1,0 +1,41 @@
+\begin{neusmerjen*}[scale=1]*
+	\tikzstyle{sivo}=[vertex,fill=lightgray]
+
+	\oznaka{r}{145}
+	\oznaka{a}{0}
+	\oznaka{b}{89}
+	\oznaka{c}{179}
+	\oznaka{d}{51}
+	\oznaka{e}{0}
+	\oznaka{f}{123}
+	\oznaka{g}{0}
+	\oznaka{h}{47}
+	\oznaka{i}{32}
+	\oznaka{j}{0}
+	\oznaka{k}{0}
+
+	\vozlisce{r}[left]{-10, 0}
+	\vozlisce[sivo]{a}[above]{-6, 2}
+	\vozlisce{b}[below]{-6, -2}
+	\vozlisce{c}[above]{-2, 2}
+	\vozlisce{d}[below]{-2,-1}
+	\vozlisce[sivo]{e}[right]{-2,-3}
+	\vozlisce{f}[right]{ 2, 3}
+	\vozlisce[sivo]{g}[below]{ 2, 1}
+	\vozlisce{h}[below]{ 2,-1}
+	\vozlisce{i}[below]{ 6, 1}
+	\vozlisce[sivo]{j}[below]{ 6,-1}
+	\vozlisce[sivo]{k}[below]{10, 1}
+
+	\povezava{r}{a}{74}{above}[sloped]
+	\povezava{r}{b}{88}{below}[sloped]
+	\povezava{a}{c}{102}{above}
+	\povezava{b}{d}{93}{above}[sloped]
+	\povezava{b}{e}{5}{below}[sloped]
+	\povezava{c}{f}{37}{above}[sloped]
+	\povezava{c}{g}{14}{below}[sloped]
+	\povezava{d}{h}{62}{above}
+	\povezava{g}{i}{187}{above}
+	\povezava{h}{j}{32}{above}
+	\povezava{i}{k}{153}{above}
+\end{neusmerjen*}
