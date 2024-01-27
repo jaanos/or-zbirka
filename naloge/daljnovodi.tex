@@ -1,0 +1,145 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 23.8.2023}
+\begin{vprasanje}
+V redko poseljeni pokrajini se gradi $n$ tovarn,
+ki bodo razporejene na krožnici,
+v središču krož\-ni\-ce pa elektrarna, ki bo oskrbovala te tovarne.
+Zgraditi želimo omrežje daljnovodov
+-- to bo imelo obliko drevesa, kjer so listi elektrarna in tovarne,
+notranja vozlišča pa so transformatorske postaje,
+kjer se dovodni tok iz smeri elektrarne razdeli na dva dela,
+ki oskrbujeta (morda preko nadaljnjih transformatorskih postaj)
+zaporedne tovarne na krožnici
+(tako bo mogoče daljnovode postaviti brez sekanja).
+
+Za $i$-to zaporedno tovarno na krožnici $(1 \le i \le n)$
+poznamo njeno maksimalno porabo $p_i$.
+Cena postavitve ene transformatorske postaje
+je sorazmerna vsoti maksimalnih porab vseh tovarn, ki jih oskrbuje.
+Zanima nas,
+kako postaviti transformatorske postaje
+(tj., katere tovarne naj vsaka oskrbuje -- natančen položaj nas ne zanima),
+da bo skup\-na cena njihove postavitve čim manjša.
+
+Na sliki~\fig je prikazan primer dopustne (ne nujno optimalne!) rešitve.
+Prva transformatorska postaja $a$ tok iz elektrarne (vozlišče $E$)
+razdeli na daljnovod proti tovarni $t_2$
+in na daljnovod proti transformatorski postaji $b$,
+ki oskrbuje ostale štiri tovarne.
+Od tam se tok razdeli na daljnovoda
+proti transformatorskima postajama $c$ in $d$,
+ki oskrbujeta tovarne $t_1$ in $t_5$ oziroma $t_3$ in $t_4$.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe,
+s katerimi poiščemo najcenejšo postavitev transformatorskih postaj.
+Razloži, kaj predstavljajo spremenljivke,
+v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
+Kakšna je časovna zahtevnost algoritma, ki sledi iz tvojih rekurzivnih enačb?
+
+\item Reši nalogo pri podatkih $n = 5$ in $(p_i)_{i=1}^5 = (64, 35, 38, 80, 23)$.
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika
+\podnaslov{Primer postavitve transformatorskih postaj}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Uvedimo oznaki
+$$
+i^- = \begin{cases}
+n & \text{če $i = 1$}, \\
+i-1 & \text{sicer}
+\end{cases}
+$$
+in
+$$
+\llbracket i, j \rrbracket = \begin{cases}
+\{i, i+1, \dots, j-1, j\} & \text{če $i \le j$}, \\
+\{i, i+1, \dots, n, 1, \dots, j-1, j\} & \text{če $i > j$}.
+\end{cases}
+$$
+Vidimo,
+da je $i \mapsto i^-$ bijektivna preslikava
+na množici $\llbracket 1, n \rrbracket$,
+tako da vrednost $i^-$ enolično določa $i$.
+
+Definirajmo spremenljivko $v_i$ ($0 \le i \le n$)
+kot vsoto maksimalnih porab prvih $i$ tovarn
+in $c_{ij}$ ($1 \le i, j \le n$)
+kot najmanjšo ceno postavitve transformatorske postaje,
+ki oskrbuje tovarne iz množice $\llbracket i, j \rrbracket$.
+Pišimo še
+$$
+v_{ij} = \begin{cases}
+v_j - v_{i-1} & \text{če $i \le j$}, \\
+v_n + v_j - v_{i-1} & \text{če $i > j$}.
+\end{cases}
+$$
+
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+v_0 &= c_{ii} = 0 & (1 \le i &\le n) \\
+v_i &= v_{i-1} + p_i & (1 \le i &\le n) \\
+c_{ij} &= v_{ij} + \min\{c_{ih^-} + c_{hj} \mid h^- \in \llbracket i, j^- \rrbracket\}
+ & (1 \le i, j &\le n, i \ne j \ne i^-)
+\end{align*}
+Vrednosti $v_i$ ($0 \le i \le n$) računamo naraščajoče po indeksu $i$,
+vrednosti $c_{ij}$ pa v leksikografskem vrstnem redu
+glede na $(|\llbracket i, j \rrbracket|, i)$.
+Cena celotne postavitve je
+$c^* = v_n + \min\{c_{ij^-} + c_{ji^-} \mid 1 \le i < j \le n\}$.
+Za izračun porabimo $O(n^3)$ časa.
+
+\item Najprej izračunajmo vrednosti $v_i$ ($1 \le i \le 5$).
+\begin{alignat*}{3}
+v_1 &=\ &   0 &+ 64 &&=  64 \\
+v_2 &=\ &  64 &+ 35 &&=  99 \\
+v_3 &=\ &  99 &+ 38 &&= 137 \\
+v_4 &=\ & 137 &+ 80 &&= 217 \\
+v_5 &=\ & 217 &+ 23 &&= 240
+\end{alignat*}
+Sedaj izračunajmo še vrednosti $c_{ij}$ ($1 \le i, j \le 5$, $i \ne j \ne i^-$).
+\begin{alignat*}{4}
+c_{12} &=\ &{}        99 &-   0 &&+ 0 + 0 &&=  99 \\
+c_{23} &=\ &{}       137 &-  64 &&+ 0 + 0 &&=  73 \\
+c_{34} &=\ &{}       217 &-  99 &&+ 0 + 0 &&= 118 \\
+c_{45} &=\ &{}       240 &- 137 &&+ 0 + 0 &&= 103 \\
+c_{51} &=\ &{} 240 +  64 &- 217 &&+ 0 + 0 &&=  87 \\
+c_{13} &=\ &{}       137 &-   0 &&+ \min\{\underline{0+73}, 99+0\}   &&= 210 \\
+c_{24} &=\ &{}       217 &-  64 &&+ \min\{0+118, \underline{73+0}\}  &&= 226 \\
+c_{35} &=\ &{}       240 &-  99 &&+ \min\{\underline{0+103}, 118+0\} &&= 244 \\
+c_{41} &=\ &{} 240 +  64 &- 137 &&+ \min\{\underline{0+87}, 103+0\}  &&= 254 \\
+c_{52} &=\ &{} 240 +  99 &- 217 &&+ \min\{0+99, \underline{87+0}\}   &&= 209 \\
+c_{14} &=\ &{}       217 &-   0 &&+ \min\{0+226, 99+118, \underline{210+0}\} &&= 427 \\
+c_{25} &=\ &{}       240 &-  64 &&+ \min\{0+244, \underline{73+103}, 226+0\} &&= 352 \\
+c_{31} &=\ &{} 240 +  64 &-  99 &&+ \min\{0+254, \underline{118+87}, 244+0\} &&= 410 \\
+c_{42} &=\ &{} 240 +  99 &- 137 &&+ \min\{0+209, \underline{103+99}, 254+0\} &&= 404 \\
+c_{53} &=\ &{} 240 + 137 &- 217 &&+ \min\{0+210, \underline{87+73}, 209+0\}  &&= 320
+\end{alignat*}
+Cena optimalne postavitve transformatorskih postaj je potem
+\begin{align*}
+c^* = 240 + \min\{&{} 0+352, 99+244, \underline{210+103}, 427+0, 0+410, \\
+&{} 73+254, \underline{226+87}, 0+404, 118+209, 0+320\} = 553 .
+\end{align*}
+Poglejmo, kako naj jih postavimo.
+\begin{align*}
+c^* &= v_5 + c_{13} + c_{45} & \text{delimo na $1$ do $3$ in $4, 5$} &\quad (a) \\
+c_{13} &= v_3 - v_0 + c_{11} + c_{23} & \text{delimo na $1$ in $2, 3$} &\quad (b) \\
+c_{45} &= v_5 - v_3 + c_{44} + c_{55} & \text{delimo na $4$ in $5$} &\quad (c) \\
+c_{23} &= v_3 - v_2 + c_{22} + c_{33} & \text{delimo na $2$ in $3$} &\quad (d)
+\end{align*}
+%
+Postavitev je prikazana na sliki~\fig[daljnovodi-resitev].
+Druga optimalna postavitev bi bila taka,
+da bi najprej delili tok na tovarni $5, 1$ in tovarne $2$ do $4$,
+tok za slednje pa bi nadalje delili na tovarni $2, 3$ in tovarno $4$.
+\begin{slika}
+\pgfslika[daljnovodi-resitev]
+\podnaslov[\res{}(b)]{Postavitev transformatorskih postaj}
+\end{slika}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
