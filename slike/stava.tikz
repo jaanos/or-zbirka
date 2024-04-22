@@ -1,0 +1,26 @@
+\begin{drevo*}[scale=1.5]*
+    \setboolean{@oznake}{false}
+
+    \vozlisce[odlocitev]{A}[left]{-8, 2}[8 €]
+    \vozlisce{B}{-4, 4}[0 €]
+    \vozlisce[dogodek]{C}[below]{-4, 0}[8 €]
+    \vozlisce[dogodek]{D}[above]{ 0, 2}[28.57 €]
+    \vozlisce[odlocitev]{E}[below]{ 0,-2}[0 €]
+    \vozlisce{F}{ 4, 4}[60 €]
+    \vozlisce{G}{ 4, 2}[-100 €]
+    \vozlisce{H}{ 4, 0}[0 €]
+    \vozlisce[dogodek]{I}{ 4,-4}[-37.5 €]
+    \vozlisce{J}{ 8,-2}[100 €]
+    \vozlisce{K}{ 8,-4}[-100 €]
+
+    \povezava{A}{B}{\text{ne vpraša Jureta}}[sloped]{above}
+    \povezava*{A}{C}{\text{vpraša Jureta}}[sloped]{below}
+    \povezava{C}{D}{\text{ugodno: $0.28$}}[sloped]{above}
+    \povezava{C}{E}{\text{neugodno: $0.72$}}[sloped]{below}
+    \povezava{D}{F}{\text{dobi: $0.8036$}}[sloped]{above}
+    \povezava{D}{G}{\text{izgubi: $0.1964$}}{below}
+    \povezava*{E}{H}{\text{ne stavi}}[sloped]{above}
+    \povezava{E}{I}{\text{stavi}}[sloped]{below}
+    \povezava{I}{J}{\text{dobi: $0.3125$}}[sloped]{above}
+    \povezava{I}{K}{\text{izgubi: $0.6875$}}{below}
+\end{drevo*}
