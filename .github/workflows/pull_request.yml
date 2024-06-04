@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Kloniraj git repozitorij
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: true
       - name: Dodaj povezavo do paketa omrezja
@@ -28,7 +28,7 @@ jobs:
           mkdir pdf
           mv or-zbirka.pdf or-gradivo.pdf pdf/
       - name: Naloži PDF
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: pdf
           path: pdf
