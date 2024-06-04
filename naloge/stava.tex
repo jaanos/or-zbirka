@@ -1,0 +1,79 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 22.4.2024}
+\begin{vprasanje}
+Barbara razmišlja,
+da bi stavila $100€$ na zmago svoje priljubljene športne ekipe.
+Na spletni strani stavnice vidi, da je kvota za njeno stavo enaka $2$,
+kar pomeni, da bi v primeru, da bi stavo dobila, dobila izplačanih $200€$
+(njen dobiček je tedaj $100€$),
+v nasprotnem primeru pa nič (tedaj torej izgubi $100 €$).
+Lahko se seveda tudi odloči, da stave ne vplača
+-- v tem primeru seveda nima dobička ali izgube.
+Dobro je znano, da ima stavnica v povprečju $10\%$ dobiček od vplačanih stav.
+Iz tega lahko Barbara izračuna verjetnost, da bi svojo stavo dobila.
+
+Barbara se lahko tudi odloči za mnenje povprašati svojega prijatelja Jureta,
+ki lahko poda ugod\-no ali neugodno mnenje glede želene stave.
+V primeru ugodnega mnenja Jure zahteva $20\%$ morebitnega dobitka od stave
+(v našem primeru torej $40€$, tako da ima Barbara tedaj $60€$ dobička),
+v primeru neugodnega mnenja pa ne zahteva ničesar
+(tedaj se lahko Barbara še vedno odloči, ali bo stavila ali ne)\footnote{%
+Lahko predpostaviš, da Barbara plača Juretu,
+da po svoji presoji in njenih navodilih vplača stavo ali ji vrne denar,
+svojo odločitev pa ji sporoči šele po izteku roka za vplačilo stav.
+Tako Barbara ne bo mogla uporabiti morebitnega Juretovega ugodnega mnenja,
+da bi še sama stavila mimo njega in tako morda povečala svoj dobiček.
+}.
+Znane so sledeče pogojne verjetnosti
+$P(\text{Juretovo mnenje} \mid \text{stava bo dobila})$:
+\begin{center}
+\begin{tabular}{c|cc}
+& dobi & izgubi \\ \hline
+ugodno mnenje & 0.5 & 0.1 \\
+neugodno mnenje & 0.5 & 0.9
+\end{tabular}
+\end{center}
+Kako naj se Barbara odloči?
+Nariši odločitveno drevo in odločitve sprejmi na podlagi izračunanih verjetnosti
+ter izračunaj pričakovani dobiček.
+\end{vprasanje}
+
+\begin{odgovor}
+Ker ima stavnica $10\%$ dobiček od vplačanih stav, Barbara pričakuje,
+da bo ob vplačani stavi imela izgubo $100 € \cdot 0.1 = 10 €$.
+Brez Juretovega mnenja se ji torej ne bo izplačalo staviti.
+
+Naj bo $p$ verjetnost, da bi Barbarina stava dobila.
+Velja torej
+$$
+p \cdot 200 € - 100 € = -10 €,
+$$
+iz česar lahko izračunamo $p = {9 \over 20} = 0.45$.
+Izračunajmo še verjetnosti za Juretovo mnenje
+ter uspeh stave glede na njega.
+\needspace{2\baselineskip}
+\begin{align*}
+P(\text{ugodno}) &= 0.5 \cdot 0.45 + 0.1 \cdot 0.55 = 0.28 \\
+P(\text{neugodno}) &= 0.5 \cdot 0.45 + 0.9 \cdot 0.55 = 0.72 \\
+P(\text{stava dobi} \mid \text{ugodno})
+&= {0.5 \cdot 0.45 \over 0.28} \approx 0.8036 \\
+P(\text{stava izgubi} \mid \text{ugodno})
+&= {0.1 \cdot 0.55 \over 0.28} \approx 0.1964 \\
+P(\text{stava dobi} \mid \text{neugodno})
+&= {0.5 \cdot 0.45 \over 0.72} = 0.3125 \\
+P(\text{stava izgubi} \mid \text{neugodno})
+&= {0.9 \cdot 0.55 \over 0.72} = 0.6875
+\end{align*}
+S pomočjo zgoraj izračunanih verjetnosti
+lahko narišemo odločitveno drevo s slike~\fig.
+Opazimo,
+da je pričakovani dobiček, če vpraša Jureta za mnenje, enak $8 €$,
+zato naj se Barbara torej odloči za to možnost.
+V primeru, da je mnenje neugodno, naj Barbara ne stavi.
+
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}\end{odgovor}
+\end{naloga}

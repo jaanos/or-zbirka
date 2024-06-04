@@ -1,0 +1,22 @@
+\begin{neusmerjen*}*
+	\vozlisce{E}{0, 0}
+	\vozlisce{t_1}{xyz polar cs:angle= 90,radius=3}
+	\vozlisce{t_2}{xyz polar cs:angle=162,radius=3}
+	\vozlisce{t_3}{xyz polar cs:angle=234,radius=3}
+	\vozlisce{t_4}{xyz polar cs:angle=306,radius=3}
+	\vozlisce{t_5}{xyz polar cs:angle= 18,radius=3}
+	\vozlisce{a}{xyz polar cs:angle=252,radius=1}
+	\vozlisce{b}{xyz polar cs:angle=342,radius=2}
+	\vozlisce{c}{xyz polar cs:angle= 54,radius=2}
+	\vozlisce{d}{xyz polar cs:angle=270,radius=2}
+	
+	\povezava{E}{a}{}{}
+	\povezava{a}{t_2}{}{}
+	\povezava{a}{b}{}{}
+	\povezava{b}{c}{}{}
+	\povezava{b}{d}{}{}
+	\povezava{c}{t_1}{}{}
+	\povezava{c}{t_5}{}{}
+	\povezava{d}{t_3}{}{}
+	\povezava{d}{t_4}{}{}
+\end{neusmerjen*}

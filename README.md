@@ -27,6 +27,7 @@ Uporabljajo se sledeči paketi za LaTeX:
 * `babelbib`
 * `bookmark`
 * `caption`
+* `chessboard`
 * `chngcntr`
 * `enumerate`
 * `environ`
