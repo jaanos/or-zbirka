@@ -1,0 +1,70 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 24.8.2021}
+\begin{vprasanje}
+Imamo $n$ predmetov s cenami $p_i$ ($1 \le i \le n$),
+ki jih želimo razporediti v $m$ košar tako,
+da bo delitev čim bolj enakomerna
+-- minimizirati želimo največjo razliko
+v skupnih cenah predmetov v dveh košarah.
+
+\begin{enumerate}[(a)]
+\item Zapiši celoštevilski linearni program, ki modelira zgornji problem.
+Lahko predpostaviš,
+da so cene $p_i$ ($1 \le i \le n$) nenegativna cela števila.
+\namig{vpelji spremenljivko,
+ki bo omejena z razlikami skupnih cen v dveh košarah.
+Pazi na to,
+da absolutna vrednost ni linearna funkcija
+in se ne sme uporabljati v linearnem programu!}
+
+\item Zgornjemu celoštevilskemu linearnemu programu dodaj omejitve,
+ki modelirajo sledeče dodatne pogoje.
+\begin{itemize}
+\item Predmetov $a$ in $b$ ne smemo dodeliti v isto košaro.
+\item V košaro, kamor dodelimo predmet $c$,
+ne smemo dodeliti nobenega dražjega predmeta.
+\item Če predmeta $d$ in $e$ dodelimo v isto košaro,
+moramo tja dodeliti tudi predmet $f$.
+\end{itemize}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-ti predmet ($1 \le i \le n$) in $j$-to košaro ($1 \le j \le m$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1 & \text{$i$-ti predmet dodelimo v $j$-to košaro, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$,
+ki bo navzdol omejena z največjo razliko skupnih cen v dveh košarah.
+
+\begin{enumerate}[(a)]
+\item Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ t &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{Vsak predmet dodelimo v natanko eno košaro}
+\forall i \in \{1, \dots, n\}: &\ &
+\sum_{j=1}^m x_{ij} &= 1
+\opis{Razlika skupnih cen dveh košar}
+\forall j, k \in \{1, \dots, m\}: &\ & \sum_{i=1}^n p_i (x_{ij} - x_{ik}) &\le t
+\end{alignat*}
+
+\item Zapišimo še dodatne omejitve.
+\odstraniprostor
+\begin{alignat*}{2}
+\opis{$a$ in $b$ nista v isti košari}
+\forall j \in \{1, \dots, m\}: &\ & x_{aj} + x_{bj} &\le 1
+\opis{$c$ je najdražji v svoji košari}
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ & p_i (x_{ij} + x_{cj} - 1) &\le p_c
+\opis{Če sta $d$ in $e$ skupaj, je zraven tudi $f$}
+\forall j \in \{1, \dots, m\}: &\ & x_{dj} + x_{ej} &\le x_{fj} + 1
+\end{alignat*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
+
