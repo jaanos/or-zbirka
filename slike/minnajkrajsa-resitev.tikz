@@ -1,0 +1,20 @@
+\begin{neusmerjen*}[scale=1.5]*
+	\vozlisce{f}{xyz polar cs:angle=  0,radius=2}
+	\vozlisce{c}{xyz polar cs:angle= 60,radius=2}
+	\vozlisce{g}{$2*(f)$}
+	\vozlisce{a}{$2*(c)$}
+	\vozlisce{b}{xyz polar cs:angle=  0,radius=0}
+	\vozlisce{d}{$(c) + (f)$}
+	\vozlisce{e}{$0.5*(f) - (c)$}
+	\vozlisce{h}{$1.5*(f) - (c)$}
+	\vozlisce{i}{$2.5*(f) - (c)$}
+
+	\povezava{c}{f}{4}{above}[sloped]
+	\povezava{e}{b}{3}{left}
+	\povezava{b}{c}{2}{above}[sloped]
+	\povezava{c}{a}{3}{above}[sloped]
+	\povezava{a}{d}{5}{above}[sloped]
+	\povezava{g}{d}{-1}{above}[sloped]
+	\povezava{g}{i}{-1}{right}
+	\povezava{f}{h}{9}{right}
+\end{neusmerjen*}

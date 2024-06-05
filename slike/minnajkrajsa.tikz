@@ -1,0 +1,27 @@
+\begin{neusmerjen*}[scale=1.5]*
+	\vozlisce{f}{xyz polar cs:angle=  0,radius=0}
+	\vozlisce{c}{xyz polar cs:angle= 60,radius=2}
+	\vozlisce{g}{xyz polar cs:angle=  0,radius=2}
+	\vozlisce{a}{$2*(c)$}
+	\vozlisce{b}{$(c) - (g)$}
+	\vozlisce{d}{$(c) + (g)$}
+	\vozlisce{e}{$-1*(g)$}
+	\vozlisce{h}{$-1*(c)$}
+	\vozlisce{i}{$-1*(b)$}
+
+	\povezava{c}{f}{4}{above}[sloped]
+	\povezava{f}{e}{7}{above}
+	\povezava{e}{b}{3}{above}[sloped]
+	\povezava{b}{c}{2}{above}
+	\povezava{c}{a}{3}{above}[sloped]
+	\povezava{a}{d}{5}{above}[sloped]
+	\povezava{d}{c}{5}{above}
+	\povezava{c}{g}{2}{above}[sloped]
+	\povezava{g}{d}{-1}{below}[sloped]
+	\povezava{e}{h}{0}{below}[sloped]
+	\povezava{h}{i}{11}{below}
+	\povezava{i}{f}{10}{above}[sloped]
+	\povezava{f}{g}{-4}{above}
+	\povezava{g}{i}{-1}{below}[sloped]
+	\povezava{f}{h}{9}{above}[sloped]
+\end{neusmerjen*}
