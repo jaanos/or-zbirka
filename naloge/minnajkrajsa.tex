@@ -1,0 +1,139 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 5.6.2024}
+\begin{vprasanje}
+Dan je povezan neusmerjen graf $G = (V, E)$
+s cenami povezav $t_{uv} \in \R$ ($uv \in E$)
+ter njegovo vozlišče $r \in V$.
+Za vsako vozlišče $u \in V$ želimo izmed najkrajših poti med $r$ in $u$
+(tj., izmed poti z najmanjšim številom povezav)
+poiskati tako, ki ima najmanjšo ceno
+(kjer je cena poti enaka vsoti cen njenih povezav).
+Pri reševanju problema si bomo pomagali z iskanjem v širino.
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za določitev cen iskanih poti ter pojasni,
+v katerem vrst\-nem redu računamo spremenljivke,
+ter kako iz danih podatkov pridemo do tega vrstnega reda.
+
+\item Natančno opiši algoritem (z besedami ali psevdokodo),
+ki s pomočjo iskanja v širino
+(metoda {\sc bfs} -- ni potrebno opisovati njenega delovanja)
+in zgornjih rekurzivnih enačb reši dani problem.
+Kakšna je časovna zahtevnost tvojega algoritma?
+Razloži še, kako lahko iz dobljenih vrednosti
+določimo iskano pot od $r$ do izbranega vozlišča $u$.
+
+\item Uporabi svoj algoritem,
+da rešiš problem za graf $G = (V, E)$ s slike~\fig
+z začetkom v vozlišču $a \in V$
+(tj., za vsako vozlišče grafa določi najcenejšo izmed najkrajših poti iz $a$).
+Vrednosti $t_{uv}$ ($uv \in E$) so prikazane pri povezavah.
+
+\item Denimo,
+da namesto samo med najkrajšimi potmi iz vozlišča $r$
+za vsako vozlišče $u \in V$ iščemo najcenejšo pot od $r$ do $u$ izmed poti,
+ki sestojijo iz največ $d(r, u) + 1$ povezav
+(kjer je $d(r, u)$ razdalja med $r$ in $u$ v grafu $G$ brez upoštevanja uteži,
+tj., najmanjše število povezav v poteh med $r$ in $u$).
+Iščemo torej najcenejše poti od $r$ do ostalih vozlišč,
+ki imajo kvečjemu eno povezavo več od najkrajše poti.
+Dopolni svoje rekurzivne enačbe tako, da bodo reševale ta problem.
+\namig{definiraj nove spremenljivke
+za obravnavo poti z eno povezavo več od najkrajše poti do vsakega vozlišča.}
+\end{enumerate}
+%
+\begin{slika}
+\pgfslika
+\podnaslov[\nal{}(c)]{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Definirajmo spremenljivko $x_v$ ($v \in V$)
+kot najmanjšo ceno najkrajše poti od $r$ do $v$ v grafu $G$.
+Zapišimo začetni pogoj in rekurzivne enačbe.
+\begin{align*}
+x_r &= 0 \\
+x_v &= \min\{x_u + t_{uv} \mid u \sim v, d(r, u) < d(r, v)\} & (v \in V \setminus \{r\})
+\end{align*}
+Tukaj smo z $d(u, v)$ označili razdaljo med vozliščema $u$ in $v$ v grafu $G$.
+Vred\-no\-sti $x_v$ ($v \in V$) računamo naraščajoče po vrednosti $d(r, v)$
+-- v tem vrstnem redu obiskujemo vozlišča pri iskanju v širino
+z začetkom v vozlišču $r$.
+
+\item Zapišimo algoritem, ki kliče funkcijo {\sc bfs} iz naloge~\res[bfs].
+\needspace{3\baselineskip}
+\begin{small}
+\begin{algorithmic}
+\Function{NajcenejšeNajkrajšePoti}{$G = (V, E), r, t : E \to \R$}
+	\State $x \gets$ prazen slovar
+	\State $d \gets$ prazen slovar
+	\State $\pred \gets$ prazen slovar
+	\Function{Visit}{$v, w$}
+		\If{$w = \Null$} \hfill ni predhodnika, $v = r$
+			\State $d[v] \gets 0$
+			\State $x[v] \gets 0$
+			\State $\pred[v] \gets \Null$
+		\Else \hfill uporabimo rekurzivno enačbo
+			\State $d[v] \gets d[w] + 1$
+			\State $x[v] \gets \infty$
+			\For{$u \in \Adj(G, v)$}
+				\If{$u \in d \land d[u] < d[v]$}
+					\State $c \gets x[u] + t_{uv}$
+					\If{$c < x[v]$}
+						\State $x[v] \gets c$
+						\State $\pred[v] \gets u$
+					\EndIf
+				\EndIf
+			\EndFor
+		\EndIf
+	\EndFunction
+	\State {\sc bfs}$(G, \{r\}, \visit)$
+	\State \Return $(x, \pred)$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Funkcija $\visit$ se kliče na vsakem vozlišču enkrat
+in tako pregleda vsakega soseda vsakega vozlišča.
+Časovna zahtevnost algoritma je tako $O(m)$,
+kjer je $m$ število povezav v grafu.
+Iskano pot od $r$ do izbranega vozlišča $u$
+lahko določimo s klicem funkcije {\sc RekonstruirajPot}$(\pred, u)$
+iz naloge~\res[topo].
+
+\item Izračunajmo vrednosti $x_v$ in $\pred_v$ ($v \in V \setminus \{a\}$).
+\begin{alignat*}{4}
+x_c &= 0 + 3 &&= 3 &\qquad \pred_c &= a \\
+x_d &= 0 + 5 &&= 5 &\qquad \pred_d &= a \\
+x_b &= 3 + 2 &&= 5 &\qquad \pred_b &= c \\
+x_f &= 3 + 4 &&= 7 &\qquad \pred_f &= c \\
+x_g &= \min\{3+2, \underline{5 + (-1)}\} &&= 4 &\qquad \pred_g &= d \\
+x_e &= \min\{\underline{5+3}, 7+7\} &&= 8 &\qquad \pred_e &= b \\
+x_h &= 7 + 9 &&= 16 &\qquad \pred_h &= f \\
+x_i &= \min\{7+10, \underline{4 + (-1)}\} &&= 3 &\qquad \pred_i &= g
+\end{alignat*}
+Drevo najcenejših najkrajših poti je prikazano na sliki~\fig[minnajkrajsa-resitev].
+%
+\begin{slika}
+\pgfslika[minnajkrajsa-resitev]
+\podnaslov[\nal{}(c)]{Drevo najcenejših najkrajših poti}
+\end{slika}
+
+\item Definirajmo še spremenljivki $y_v$ in $z_v$ ($v \in V$)
+kot najmanjšo ceno poti od $r$ do $v$ v grafu $G$
+z eno povezavo več od najkrajše poti
+ter kot najmanjšo ceno poti od $r$ do $v$ v grafu $G$
+z največ eno povezavo več od najkrajše poti.
+Zapišimo začetni pogoj in rekurzivne enačbe.
+\begin{alignat*}{3}
+y_r &= \infty \\
+y_v &= \min&\big(&\{y_u + t_{uv} \mid u \sim v, d(r, u) < d(r, v)\} \\
+&&\cup &\{x_u + t_{uv} \mid u \sim v, d(r, u) = d(r, v)\}\big) &\quad (v &\in V \setminus \{r\}) \\
+z_v &= \min&&\{x_v, y_v\} &\quad (v &\in V)
+\end{alignat*}
+Najprej izračunamo spremenljivke $x_v$ ($v \in V$) kot prej,
+nato pa v istem vrst\-nem redu še spremenljivke $y_v$ in $z_v$.
+
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

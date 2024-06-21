@@ -1,0 +1,39 @@
+\begin{neusmerjen*}[scale=1.8]*
+    \vozlisce*{s}{-2, 0}
+    \vozlisce{a}{-2, 2}
+    \vozlisce{b}{ 0, 2}
+    \vozlisce{c}{ 2, 2}
+    \vozlisce{d}{-1, 1}
+    \vozlisce{e}{ 1, 1}
+    \vozlisce{f}{-1,-1}
+    \vozlisce{g}{ 1,-1}
+    \vozlisce{h}{-2,-2}
+    \vozlisce{i}{ 0,-2}
+    \vozlisce{j}{ 2,-2}
+    \vozlisce*{t}{ 2, 0}
+
+    \povezava{s}{a}{0.9}{left}
+    \povezava{s}{d}{0.8}[sloped]{above}
+    \povezava{s}{f}{0.5}[sloped]{below}
+    \povezava{s}{h}{0.8}{left}
+    \povezava{a}{b}{0.7}{above}
+    \povezava{a}{d}{1}[sloped]{above}
+    \povezava{b}{c}{0.8}{above}
+    \povezava{b}{d}{0.6}[sloped]{below}
+    \povezava{b}{e}{0.9}[sloped]{below}
+    \povezava{c}{e}{0.7}[sloped]{above}
+    \povezava{c}{t}{1}{right}
+    \povezava{d}{e}{0.6}{below}
+    \povezava{d}{f}{0.9}{right}
+    \povezava{e}{g}{1}{left}
+    \povezava{e}{t}{0.9}[sloped]{above}
+    \povezava{f}{g}{1}{above}
+    \povezava{f}{h}{0.7}[sloped]{below}
+    \povezava{f}{i}{1}[sloped]{above}
+    \povezava{g}{i}{0.8}[sloped]{above}
+    \povezava{g}{j}{1}[sloped]{below}
+    \povezava{g}{t}{0.8}[sloped]{below}
+    \povezava{h}{i}{0.9}{below}
+    \povezava{i}{j}{0.9}{below}
+    \povezava{j}{t}{0.7}{right}
+\end{neusmerjen*}

@@ -1,0 +1,96 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 5.6.2024}
+\begin{vprasanje}
+Gradbeno podjetje pripravlja načrt izgradnje novega odseka železniške proge.
+Faze gradnje so zbrane v tabeli~\tab.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi pričakovano kritično pot in pričakovani čas izgradnje.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje projekta.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo projekt trajal manj kot $340$ dni.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+$a$ & postavitev stebrov viadukta                       & /         &  84 dni &  90 dni &  96 dni \\
+$b$ & gradnja voziščne konstrukcije viadukta            & $a$       & 133 dni & 151 dni & 163 dni \\
+$c$ & izkop glavne cevi predora                         & /         & 180 dni & 195 dni & 240 dni \\
+$d$ & izkop servisne cevi predora                       & /         & 150 dni & 174 dni & 234 dni \\
+$e$ & postavljanje tirov                                & $b, c, d$ &  51 dni &  60 dni &  69 dni \\
+$f$ & postavitev električne in komunikacijske napeljave & $d$       &  37 dni &  46 dni &  49 dni \\
+$g$ & pregled trase                                     & $e, f$    &  25 dni &  25 dni &  55 dni \\
+$h$ & priključitev na obstoječe železniško omrežje      & $e$       &  11 dni &  14 dni &  23 dni
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je raz\-vid\-na topološka ureditev
+$s, a, c, d, b, f, e, h, g, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[zeleznica-resitev].
+
+\item V tabeli~\tab[zeleznica-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje projekta ne podaljša.
+Pričakovano trajanje projekta je torej $\mu = 330$ dni,
+edina kritična pot pa je $s - a - b - e - g - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[zeleznica-resitev] je razvidno,
+da je najmanj kritično opravilo $f$,
+saj lahko njegovo trajanje
+podaljšamo za $75$ dni v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti,
+pri čemer uporabimo variance iz tabele~\tab[zeleznica-resitev].
+$$
+\sigma = \sqrt{4 + 25 + 9 + 25} \approx 7.94
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 340$ dni.
+$$
+P(X \le 340) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(1.260) = 0.8962
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{zeleznica-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cccccccccc}
+& $s$ & $a$ & $c$ & $d$ & $b$ & $f$ & $e$ & $h$ & $g$ & $t$ \\ \hline
+pričakovano && $90$ & $200$ & $180$ & $150$ & $45$ & $60$ & $15$ & $30$ \\
+varianca && $4$ & $100$ & $196$ & $25$ & $4$ & $9$ & $4$ & $25$ \\
+\hline
+najprej & $0$ & $0_s$ & $0_s$ & $0_s$ & $90_a$ & $180_d$ & $240_b$ & $300_e$ & $300_e$ & $330_g$ \\
+najkasneje & $0_a$ & $0_b$ & $40_e$ & $60_e$ & $90_e$ & $255_g$ & $240_h$ & $315_t$ & $300_t$ & $330$ \\
+\text{razlika} & $0$ & $0^*$ & $40$ & $60$ & $0^*$ & $75$ & $0^*$ & $15$ & $0^*$ & $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

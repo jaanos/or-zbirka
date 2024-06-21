@@ -1,0 +1,38 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 5.6.2024}
+\begin{vprasanje}
+Bine pripravlja večerjo za večjo skupino ljudi.
+Zraven glavne jedi bo postregel tudi omako gua\-ca\-mo\-le,
+za katero potrebuje $15$ avokadov,
+Ker teh trenutno nima, jih bo naročil
+-- prodajajo se pakirani po dva skupaj po ceni $3 €$ na par,
+tako da se Bine odloča, ali bo naročil $8$, $9$ ali $10$ parov avokadov.
+Iz izkušenj pozna verjetnosti $p_i$ ($0 \le i \le 4$),
+da $i$ avokadov izmed naročenih ne bo dobrih in jih torej ne bo mogel uporabiti:
+$$
+\begin{array}{c|ccccc}
+i & 0 & 1 & 2 & 3 & 4 \\ \hline
+p_i & 0.05 & 0.05 & 0.4 & 0.3 & 0.2 \\
+\end{array}
+$$
+Če ne bo imel dovolj avokadov za pripravo omake,
+se bo zapeljal v bližnjo trgovino,
+kjer lahko kupi potrebno število avokadov po ceni $2 €$ za posamezen sadež
+(zanje se lahko prepriča, da bodo dobri).
+Pri tem ima dodaten strošek $1 €$ za pot.
+
+Zanima nas, koliko parov avokadov naj Bine naroči,
+da bodo pričakovani skupni stroški čim manjši.
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bodo $X_k$ ($8 \le k \le 10$) stroški,
+če se Bine odloči naročiti $k$ parov avokadov.
+\begin{alignat*}{3}
+E(X_8) &=&&\ 8 \cdot 3 € + 0.4 \cdot (1 € + 1 \cdot 2 €) + \\
+&&&\ 0.3 \cdot (1 € + 2 \cdot 2 €) + 0.2 \cdot (1 € + 3 \cdot 2 €) &&= 28.1 € \\
+E(X_9) &=&&\ 9 \cdot 3 € + 0.2 \cdot (1 € + 1 \cdot 2 €) &&= 27.6 € \\
+E(X_{10}) &=&&\ 10 \cdot 3 € &&= 30 €
+\end{alignat*}
+Vidimo, da se Binetu najbolj izplača naročiti $9$ parov avokadov.
+\end{odgovor}
+\end{naloga}
