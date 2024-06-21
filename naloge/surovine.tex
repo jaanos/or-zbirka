@@ -1,0 +1,60 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 26.6.2024}
+\begin{vprasanje}
+Dobavitelj ima na zalogi $m$ različnih surovin,
+za katere se zanima $n$ kupcev.
+Naj bo $c_{ij}$ ($1 \le i \le m$, $1 \le j \le n$) cena,
+po kateri je $j$-ti kupec pripravljen kupiti celotno zalogo $i$-te surovine,
+ter $d_j$ ($1 \le j \le n$) kapital,
+ki ga ima na voljo $j$-ti kupec za nakup surovin.
+Dobavitelj se lahko odloči, katerim kupcem bo prodal katero surovino,
+pri čemer bo vsak kupec dobil enak delež posamezne surovine
+in plačal sorazmerno ceno zanjo
+(npr. če se dobavitelj odloči prodati neko surovino trem kupcem,
+bo vsak od njih dobil tretjino zaloge te surovine
+in zanjo plačal tretjino ponujene cene).
+Dobavitelj želi odprodati celotno zalogo vseh surovin
+in pri tem čim več zaslužiti,
+pri čemer mora vsak kupec dobiti takšne količine surovin,
+da jih bo lahko plačal po ponujeni ceni
+(tj., skupni stroški posameznega kupca ne smejo preseči njegovega kapitala).
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\namig{uvedi spremenljivke, ki beležijo število kupcev,
+ki bodo dobili posamezno surovino.}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-to surovino ($1 \le i \le m$),
+$j$-tega kupca ($1 \le j \le n$) in število $k$ ($1 \le k \le n$)
+bomo uvedli spremenljivki $x_{ijk}$ in $y_{ik}$,
+katerih vrednosti interpretiramo kot
+\begin{align*}
+x_{ijk} &= \begin{cases}
+1 & \text{$j$-temu kupcu prodamo ${1 \over k}$ zaloge $j$-te surovine, in} \\
+0 & \text{sicer; ter}
+\end{cases} \\
+y_{ik} &= \begin{cases}
+1 & \text{$i$-to surovino prodamo $k$ kupcem, in} \\
+0 & \text{sicer.}
+\end{cases}
+\end{align*}
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{3}
+& \max &\ \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^n {c_{ij} \over k} &{} x_{ijk} && \text{p.p.} \\
+\forall i \in \{1, \dots, m\} \ \forall j, k \in \{1, \dots, n\}: &\ &
+0 \le x_{ijk} &\le 1, & x_{ijk} &\in \Z \\
+\forall i \in \{1, \dots, m\} \ \forall k \in \{1, \dots, n\}: &\ &
+0 \le y_{ik} &\le 1, & y_{ik} &\in \Z
+\opis{Surovine prodamo ustreznemu številu kupcev}
+\forall i \in \{1, \dots, n\} \ \forall k \in \{1, \dots, n\}: &\ &
+\sum_{j=1}^n x_{ijk} &= k y_{ik}
+\opis{Za vsako surovino je določeno število kupcev}
+\forall i \in \{1, \dots, m\}: &\ &
+\sum_{k=1}^n y_{ik} &= 1
+\opis{Kupci ne presežejo svojega kapitala}
+\forall j \in \{1, \dots, n\}: &\ &
+\sum_{i=1}^m \sum_{k=1}^n {c_{ij} \over k} x_{ijk} &\le d_j
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
+
