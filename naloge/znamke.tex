@@ -1,0 +1,94 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 28.8.2024}
+\begin{vprasanje}
+Tilnov hobi je zbiranje redkih znamk.
+V svojo zbirko bi rad dodal znamko $t$.
+Pri svojih prijateljih filatelistih je poizvedel,
+katere znamke so pripravljeni zamenjati ob doplačilu
+in tako sestavil seznam možnih menjav
+(npr.,
+Ana je pripravljena Tilnu dati svojo znamko $a$
+v zameno za znamko $c$ in doplačilo $x$,
+Boris je pri\-prav\-ljen Tilnu dati svojo znamko $b$
+v zameno za znamko $d$, pri čemer Tilnu plača znesek $y$, itd.).
+Tilen ima znamko $s$,
+ki jo je pripravljen zamenjati
+in potem dobljene znamke zamenjevati naprej,
+dokler ne dobi znamke $t$
+(ostalih znamk iz svoje zbirke pa ni pri\-prav\-ljen zamenjati).
+Zanima ga, kakšno zaporedje menjav naj izvede,
+da bo pri tem plačal čim manj oziroma čim več zaslužil.
+
+\begin{enumerate}[(a)]
+\item Predstavi problem v jeziku grafov
+in predlagaj čim bolj učinkovit algoritem za reševanje zgornjega problema.
+Kako naj Tilen ravna glede na izid algoritma?
+Kak\-šna je njegova časovna zahtevnost?
+
+\item S svojim algoritmom reši problem na grafu s slike~\fig.
+Iz odgovora naj bo jasen potek algoritma
+(tj., za vsako spremembo naj bo jasno, v katerem koraku se zgodi).
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Definirajmo usmerjen graf $G$,
+kjer vsako znamko predstavimo z vozliščem,
+za vsako možno zamenjavo tipa
+``nekdo je pripravljen Tilnu dati svojo znamko $u$
+v zameno za znamko $v$ ob doplačilu $w$''
+pa v grafu postavimo povezavo od $u$ do $v$ z utežjo $w$
+(če ob zamenjavi Tilen zasluži,
+to smatramo kot negativno doplačilo).
+V grafu $G$ potem iščemo najcenejšo pot od $s$ do $t$.
+
+Ker so lahko uteži na povezavah grafa $G$ tudi negativne,
+za iskanje najkrajše poti uporabimo Bellman-Fordov algoritem.
+Ta nam lahko vrne najcenejšo pot,
+ki predstavlja iskano zaporedje menjav znamk.
+Če pot od $s$ do $t$ ne obstaja,
+potem tudi ustrezno zaporedje menjav ne obstaja.
+Če pa algoritem zazna obstoj negativnega cikla,
+to pomeni, da lahko Tilen z menjavami na tem ciklu zasluži poljubno
+(pri čemer znamke na ciklu zamenjajo lastnika,
+tako da moramo za to predpostaviti,
+da bodo novi lastniki sprejeli iste menjave).
+
+Časovna zahtevnost algoritma je $O((m + n) n)$,
+kjer je $m$ število povezav v grafu (tj., število možnih menjav),
+$n$ pa število vozlišč (tj., število znamk, ki jih obravnavamo).
+Da bi algoritem tekel čim hitreje,
+lahko za vsak urejen par vozlišč v grafu ohranimo le eno povezavo
+(če ta obstaja),
+in sicer tisto z najmanjšo utežjo.
+V primeru, ko so vse uteži nenegativne,
+lahko uporabimo tudi Dijkstrov algoritem,
+ki teče v času $O(n^2)$ oziroma $O(m \log n)$.
+
+\item Potek izvajanja zgoraj opisanega algoritma je prikazan v tabeli~\tab,
+iz katere razberemo,
+da je najcenejša pot $s - g - c - a - t$,
+njena cena pa je $3 + (-4) + 6 + 1 = 6$.
+\end{enumerate}
+%
+\begin{tabela}
+$$
+\begin{array}{c|ccccccccc}
+i & s & a & b & c & d & e & f & g & t \\ \hline
+0 & 0 &&&&&&&& \\
+1 &&&&& 7_s &&& 3_s & 10_s \\
+2 &&&& -1_g && 2_d &&& \\
+3 && 5_c &&&&& 1_e && \\
+4 &&& 11_a &&&&&& 6_a \\
+5 &&&&&&&&&
+\end{array}
+$$
+\podnaslov[\res{}(b)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{odgovor}
+\end{naloga}

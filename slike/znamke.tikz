@@ -1,0 +1,25 @@
+\begin{usmerjen*}[scale=1.1]*
+    \vozlisce{a}{ 0, 3}
+    \vozlisce{b}{-3, 3}
+    \vozlisce{c}{-3, 0}
+    \vozlisce{d}{-3,-3}
+    \vozlisce{e}{ 3, 0}
+    \vozlisce{f}{ 3,-3}
+    \vozlisce{g}{ 0,-3}
+    \vozlisce{s}{ 0, 0}
+    \vozlisce{t}{ 3, 3}
+
+    \povezava{a}{b}{6}{}[above]
+    \povezava{c}{a}{6}{}[below, sloped]
+    \povezava{a}{t}{1}{}[above]
+    \povezava{b}{c}{3}{}[left]
+    \povezava{d}{c}{-5}{}[left]
+    \povezava{g}{c}{-4}[near end]{}[below, sloped]
+    \povezava{d}{e}{-5}[near end]{}[below, sloped]
+    \povezava{d}{g}{-1}{}[below]
+    \povezava{s}{d}{7}[near start]{}[above, sloped]
+    \povezava{e}{f}{-1}{}[right]
+    \povezava{f}{g}{5}{}[below]
+    \povezava{s}{g}{3}[near end]{}[right]
+    \povezava{s}{t}{10}{}[below, sloped]
+\end{usmerjen*}
