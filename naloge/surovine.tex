@@ -30,7 +30,7 @@ bomo uvedli spremenljivki $x_{ijk}$ in $y_{ik}$,
 katerih vrednosti interpretiramo kot
 \begin{align*}
 x_{ijk} &= \begin{cases}
-1 & \text{$j$-temu kupcu prodamo ${1 \over k}$ zaloge $j$-te surovine, in} \\
+1 & \text{$j$-temu kupcu prodamo ${1 \over k}$ zaloge $i$-te surovine, in} \\
 0 & \text{sicer; ter}
 \end{cases} \\
 y_{ik} &= \begin{cases}
@@ -46,7 +46,7 @@ Zapišimo celoštevilski linearni program.
 \forall i \in \{1, \dots, m\} \ \forall k \in \{1, \dots, n\}: &\ &
 0 \le y_{ik} &\le 1, & y_{ik} &\in \Z
 \opis{Surovine prodamo ustreznemu številu kupcev}
-\forall i \in \{1, \dots, n\} \ \forall k \in \{1, \dots, n\}: &\ &
+\forall i \in \{1, \dots, m\} \ \forall k \in \{1, \dots, n\}: &\ &
 \sum_{j=1}^n x_{ijk} &= k y_{ik}
 \opis{Za vsako surovino je določeno število kupcev}
 \forall i \in \{1, \dots, m\}: &\ &
@@ -57,4 +57,3 @@ Zapišimo celoštevilski linearni program.
 \end{alignat*}
 \end{odgovor}
 \end{naloga}
-
