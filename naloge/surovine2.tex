@@ -1,0 +1,30 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 14.4.2025}
+\begin{vprasanje}
+Celoštevilskemu linearnemu programu iz naloge~\nal[surovine]
+dodaj sledeče pogoje.
+\begin{itemize}
+\item Kupec $r$ kupuje surovine samo v celoti
+(tj., če dobi neko surovino, je ne sme dobiti nihče drug).
+\item Kupcema $s$ in $t$ dobavitelj ne sme prodati iste surovine.
+\item Surovino $u$ lahko dobijo samo tisti kupci,
+ki dobijo tudi surovino $v$.
+\end{itemize}
+\end{vprasanje}
+
+\begin{odgovor}
+Zapišimo dodatne pogoje k celoštevilskemu linearnemu programu
+iz naloge~\res[surovine].
+\vskip -2\baselineskip
+\begin{alignat*}{3}
+\opis{Kupec $r$ kupuje samo v celoti}
+\forall i \in \{1, \dots, m\} \ \forall k \in \{2, \dots, n\}: &\ &
+x_{irk} &= 0
+\opis{Kupca $s$ in $t$ ne dobita iste surovine}
+\forall i \in \{1, \dots, m\}: &\ &
+\sum_{k=1}^n (x_{isk} + x_{jsk}) &\le 1
+\opis{Surovino $u$ lahko dobijo le tisti, ki dobijo surovino $v$}
+\forall j \in \{1, \dots, n\}: &\ &
+\sum_{k=1}^n x_{ujk} &\le \sum_{k=1}^n x_{vjk}
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
