@@ -1,0 +1,72 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 14.4.2025}
+\begin{vprasanje}
+Tinetu se je odprla priložnost za mamljiv posel,
+s katerim lahko zasluži $5\,000 €$.
+Da bi ga sklenil, pa mora že pojutrišnjem na pot,
+sicer bo zamudil priložnost in tako ne bo imel dobička.
+Žal pa je imel v zadnjem času težave s svojim avtom,
+drugega prevoza pa si v tako kratkem času ne bo mogel priskrbeti.
+Računa, da bo z verjetnostjo $0.4$ njegov avto zdržal pot,
+z verjetnostjo $0.3$ se bodo težave pojavile na poti naprej,
+z verjetnostjo $0.3$ pa se bodo težave pojavile na poti nazaj.
+V primeru, da bo pravočasno prišel do cilja
+(tj., ne bo imel težav na poti naprej),
+bo torej zaslužil $5\,000 €$;
+v primeru, da se pa pojavijo težave z avtom
+(bodisi na poti naprej ali nazaj),
+pa bo imel $1\,200 €$ stroškov z odvozom.
+
+Tine se lahko odloči, da še jutri odpelje avto na servis,
+kjer bodo ugotovili, ali je avto izpraven ali ne.
+Znane so sledeče pogojne verjetnosti
+$P(\text{avto je izpraven} \mid \text{pot bo uspela})$:
+\begin{center}
+	\begin{tabular}{c|cc}
+		& uspe & težave (naprej ali nazaj) \\ \hline
+		izpraven & $0.9$ & $0.2$ \\
+		ni izpraven & $0.1$ & $0.8$
+	\end{tabular}
+\end{center}
+V primeru, da na servisu ugotovijo, da avto ni izpraven,
+ga bodo z verjetnostjo $0.5$ uspeli popraviti
+-- tedaj bo Tine imel $500 €$ stroškov s servisom in zagotovilo,
+da bo pot uspela.
+V nasprotnem primeru (ne glede na ugotovitve)
+mu bodo na servisu zaračunali $100 €$ za pregled.
+
+Kako naj se Tine odloči?
+Nariši odločitveno drevo in odločitve sprejmi na podlagi izračunanih verjetnosti
+ter izračunaj pričakovani dobiček.
+\end{vprasanje}
+
+\begin{odgovor}
+Izračunajmo verjetnosti za oceno izpravnosti
+in za uspešnost poti glede na oceno.
+\begin{align*}
+P(\text{izpraven}) &= 0.9 \cdot 0.4 + 0.2 \cdot (0.3 + 0.3) = 0.48 \\
+P(\text{ni izpraven}) &= 0.1 \cdot 0.4 + 0.8 \cdot (0.3 + 0.3) = 0.52 \\
+P(\text{pot uspe} \mid \text{izpraven})
+&= {0.9 \cdot 0.4 \over 0.48} = 0.75 \\
+P(\text{težave naprej} \mid \text{izpraven})
+&= {0.2 \cdot 0.3 \over 0.48} = 0.125 \\
+P(\text{težave nazaj} \mid \text{izpraven})
+&= {0.2 \cdot 0.3 \over 0.48} = 0.125 \\
+P(\text{pot uspe} \mid \text{ni izpraven})
+&= {0.1 \cdot 0.4 \over 0.52} \approx 0.077 \\
+P(\text{težave naprej} \mid \text{ni izpraven})
+&= {0.8 \cdot 0.3 \over 0.52} \approx 0.462 \\
+P(\text{težave nazaj} \mid \text{ni izpraven})
+&= {0.8 \cdot 0.3 \over 0.52} \approx 0.462
+\end{align*}
+Odločitveno drevo je prikazano na sliki~\fig.
+Tine naj pelje avto na servis,
+nato pa naj gre na pot ne glede na izid servisa.
+Pričakovani dobiček je tedaj $3\,464 €$.
+\begin{slika}[p]
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Odločitveno drevo}
+\end{slika}
+\end{odgovor}
+\end{naloga}
