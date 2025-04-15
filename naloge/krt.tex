@@ -1,0 +1,79 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 14.4.2025}
+\begin{vprasanje}
+Krt je ravnokar izkopal nov rov in se odloča,
+kje naj iz rova odkoplje krtine, da bi se vanje ujelo čim več črvov.
+Rov je razdelil na $n$ zaporednih delov, iz katerih lahko odkoplje krtino
+-- če se jo odloči odkopati na nekem delu,
+bo odvečno zemljo odmetal na prejšnji ali naslednji del,
+tako da tam ne bo mogel izkopati krtine
+(če izkoplje krtino na prvem ali zadnjem delu,
+potem bo moral zemljo odmetati na drugi oziroma predzadnji del,
+saj ga z druge strani omejujejo drevesa).
+Prav tako lahko na posamezen del odmeče zemljo samo iz ene krtine,
+sicer bi zemlje bilo preveč na kupu in bi se usipala nazaj.
+Za $i$-ti del ($1 \le i \le n$) pozna vrednost $a_i$,
+ki pove, koliko črvov bi se vsak dan ujelo na krtino na tem delu.
+
+
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe,
+s katerimi poiščemo ustrezno postavitev krtin,
+v katere se bo ujelo največ črvov.
+Razloži, kaj predstavljajo spremenljivke,
+v kakšnem vrstnem redu jih računamo, ter kako dobimo optimalno rešitev.
+
+\item Kakšna je časovna zahtevnost algoritma,
+ki sledi iz tvojih rekurzivnih enačb?
+
+\item Reši nalogo pri podatkih $n = 8$
+in $(a_i)_{i=1}^8 = (94, 81, 47, 57, 73, 84, 6, 14)$.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Definirajmo spremenljivko $v_i$ ($0 \le i \le n$)
+kot največje število črvov,
+ki se lahko ujame v krtine na delih od $1$ do $i$,
+če je tudi vsa odmetana zemlja na teh delih.
+Zapišimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+v_0 &= v_1 = 0 \\
+v_i &= \max\{v_{i-1}, v_{i-2} + a_{i-1}, v_{i-2} + a_i\}
+ & (2 \le i \le n)
+\end{align*}
+Tukaj smo upoštevali, da lahko krt dela $i$ ne uporabi,
+ali pa da izkoplje krtino na delu $i-1$ in odmeče zemljo na del $i$,
+oziroma izkoplje krtino na delu $i$ in odmeče zemljo na del $i-1$.
+
+Vrednosti $v_i$ ($0 \le i \le n$) računamo naraščajoče po indeksu $i$.
+Največje število črvov, ki se lahko dnevno ujamejo v krtine,
+je tako $v^* = v_n$.
+
+\item Posamezno vrednost $v_i$ ($0 \le i \le n$)
+lahko izračunamo v konstantnem času.
+Ker moramo izračunati $O(n)$ vrednosti,
+tudi za celoten izračun porabimo $O(n)$ časa.
+
+\item Izračunajmo vrednosti $v_i$ ($2 \le i \le 8$).
+\begin{alignat*}{2}
+v_2 &= \max\{0, \underline{0 + 94}, 0+ 81\} &&= 94 \\
+v_3 &= \max\{\underline{94}, 0 + 81, 0 + 47\} &&= 94 \\
+v_4 &= \max\{94, 94 + 47, \underline{94 + 57}\} &&= 151 \\
+v_5 &= \max\{151, 94 + 57, \underline{94 + 73}\} &&= 167 \\
+v_6 &= \max\{167, 151 + 73, \underline{151 + 84}\} &&= 235 \\
+v_7 &= \max\{235, \underline{167 + 84}, 167 + 6\} &&= 251 \\
+v_8 &= \max\{\underline{251}, 235 + 6, 235 + 14\} &&= 251
+\end{alignat*}
+V krtine se bo torej vsak dan ujelo $v^* = v_8 = 251$ črvov.
+Poglejmo, kako naj jih krt postavi.
+\begin{align*}
+v^* = v_8 &= v_7 & \text{ne uporabi dela $8$} \\
+v_7 &= v_5 + a_6 & \text{krtina na delu $6$, zemlja na delu $7$} \\
+v_5 &= v_3 + a_5 & \text{krtina na delu $5$, zemlja na delu $4$} \\
+v_3 &= v_2 & \text{ne uporabi dela $3$} \\
+v_2 &= v_0 + a_1 & \text{krtina na delu $1$, zemlja na delu $2$}
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
