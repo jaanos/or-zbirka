@@ -1,0 +1,221 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 9.6.2025}
+\begin{vprasanje}
+Dan je utežen neusmerjen graf $G = (V, E, c)$
+s cenami povezav $c_e > 0$ ($e \in E$).
+Poiskati želimo {\em uteženo ožino} grafa,
+tj., zanima nas cena najcenejšega cikla v grafu $G$.
+Tukaj kot cikel razumemo zaporedje različnih vozlišč $u_1 u_2 \dots u_k$,
+kjer je $k \ge 3$ in $u_{i-1} u_i \in E$ ($1 \le i \le k$, $u_0 = u_k$);
+cena takega cikla je potem $\sum_{i=1}^k c_{u_{i-1} u_i}$.
+Pri reševanju tega problema
+si bomo pomagali s sledečo različico Dijkstrovega algoritma,
+ki vsako vozlišče obravnava dvakrat:
+\needspace{2\baselineskip}
+\begin{small}
+\begin{algorithmic}
+\Function{Dijkstra2}{$G = (V, E, c),\ s \in V$}
+	\State $d \gets$ prazen slovar \hfill slovar najmanjših cen poti
+	\State $\pred \gets \set{(v, j): (\Null, \Null)}{v \in V, \ j \in \{1, 2\}}$
+	\hfill slovar predhodnikov
+	\State $Q \gets \PrioritetnaVrsta(\set{(v, j): \infty}{v \in V, \ j \in \{1, 2\}})$
+	\hfill prioritetna vrsta \\ \hfill s podvojenimi vozlišči
+	\State $Q[s, 1] \gets 0$ \hfill najmanjša cena do prve kopije $s$ je $0$
+	\While{$Q$ ni prazna} \hfill ponavljamo, dokler priorietna vrsta ni prazna
+		\State $(u, i), \ \ell \gets Q.\pop()$
+		\hfill vzamemo kopijo vozlišča \\
+		\hfill z najmanjšo ceno poti v prioritetni vrsti
+		\State $d[u, i] \gets \ell$ \hfill shranimo dobljeno ceno poti
+		\State $w, h \gets \pred[u, i]$
+		\hfill dobimo predhodnika trenutne kopije vozlišča
+		\For{$v \in \Adj(G, u)$} \hfill pregledamo sosede trenutnega vozlišča
+			\If{$v = w$} \hfill do predhodnega vozlišča se ne vračamo
+				\State {\bf continue}
+			\EndIf
+			\State $r \gets \ell + c_{uv}$
+			\hfill izračunamo ceno nove poti preko $u$
+			\If{$i = 1 \land (v, 1) \in Q \land Q[v, 1] > r$}
+				\hfill če smo pri prvi kopiji vozlišča
+				\State $Q[v, 2] \gets Q[v, 1]$
+				\hfill ter smo dobili manjšo ceno poti do prve kopije soseda,
+				\State $\pred[v, 2] \gets \pred[v, 1]$
+				\hfill potem premaknemo trenutno ceno poti
+				\State $Q[v, 1] \gets r$
+				\hfill in predhodnika prve kopije k drugi kopiji
+				\State $\pred[v, 1] \gets (u, i)$
+				\hfill ter ju ustrezno nastavimo pri prvi
+			\ElsIf{$(v, 2) \in Q \land Q[v, 2] > r$}
+			\hfill sicer, če smo dobili manjšo ceno poti
+				\State $Q[v, 2] \gets r$
+				\hfill kot do druge kopije,
+				\State $\pred[v, 2] \gets (u, i)$
+				\hfill ustrezno popravimo predhodnika in ceno poti
+			\EndIf
+		\EndFor
+	\EndWhile
+	\State \Return $(d, \pred)$
+	\hfill vrnemo najmanjše cene in predhodnike za obe kopiji
+\EndFunction
+\end{algorithmic}
+\end{small}
+Tukaj je $\PrioritetnaVrsta$ podatkovna struktura,
+ki hrani pare ključev in vred\-no\-sti,
+pri čemer omogoča sledeče operacije:
+\begin{itemize}
+\itemsep 0mm
+\item $Q \gets \PrioritetnaVrsta$({\sl slovar})
+v času $O(n)$ konstruira prioritetno vrsto $Q$,
+ki hrani ključe in vrednosti iz podanega slovarja;
+\item $Q.\isEmpty()$ v času $O(1)$ pove, ali je prioritetna vrsta prazna;
+\item $k \in Q$ v času $O(1)$ pove,
+ali prioritetna vrsta hrani vnos s ključem $k$;
+\item $Q[k]$ v času $O(1)$ vrne vrednost pri ključu $k$;
+\item $Q[k] \gets v$ v času $O(\log n)$ zamenja vrednost pri ključu $k$ z $v$;
+in
+\item $k, v \gets Q.\pop()$ v času $O(\log n)$
+iz prioritetne vrste odstrani ter vrne par $(k, v)$,
+kjer je $v$ najmanjša hranjena vrednost ter $k$ pripadajoči ključ
+(če je takih ključev več, se odstrani in vrne samo en vnos).
+\end{itemize}
+V zgornjih časovnih zahtevnostih $n$ predstavlja
+število vnosov v prioritetni vrsti.
+Ključi, uporabljeni pri prioritetni vrsti $Q$ v zgornjem algoritmu
+(kot tudi pri slovarjih $d$ in $\pred$),
+so urejeni pari iz $V \times \{1, 2\}$.
+
+\begin{enumerate}[(a)]
+\item Naj bo $C = u_1 u_2 \dots u_k$ najcenejši cikel v grafu $G$.
+Dokaži, da za poljubna $i, j$ ($1 \le i \le j \le k$) velja,
+da sta $u_i u_{i+1} \dots u_{j-1} u_j$
+in $u_i u_{i-1} \dots u_1 u_k \dots u_{j+1} u_j$
+najcenejši dve poti od $u_i$ do $u_j$ v grafu $G$.
+
+\item Naj bo $g$ cena najcenejšega cikla v grafu $G$.
+Utemelji sledeči trditvi:
+\begin{itemize}
+\itemsep 0mm
+\item Na koncu izvajanja klica funkcije {\sc Dijkstra2}$(G, s)$
+velja $d[s, 2] \ge g$.
+\item Če vozlišče $s$ leži na najcenejšem ciklu v grafu $G$,
+potem na koncu izvajanja klica funkcije {\sc Dijkstra2}$(G, s)$
+velja $d[s, 2] = g$.
+\end{itemize}
+
+\item Na grafu $G = (V, E, c)$ s slike~\fig
+s cenami povezav $c_e$ ($e \in E$), označenimi na povezavah,
+izvedi klic funkcije {\sc Dijkstra2}$(G, a)$.
+Iz odgovora naj bo jasen potek algoritma
+(tj., za vsako spremembo naj bo jasno, v katerem koraku se zgodi).
+
+\item Natančno opiši algoritem (z besedami ali psevdokodo),
+ki izračuna uteženo ožino danega uteženega neusmerjenega grafa $G = (V, E, c)$.
+Tvoj algoritem lahko kliče funkcijo {\sc Dijkstra2}.
+Upoštevaj, da veljajo trditve iz točk (a) in (b)
+(tudi, če nista rešeni).
+
+\item Oceni časovno zahtevnost algoritma {\sc Dijkstra2}
+in algoritma iz točke (d)
+v odvisnosti od števila vozlišč in povezav grafa $G = (V, E, c)$
+(lahko uporabiš standardne oznake $n = |V|$, $m = |V| + |E|$).
+Svojo oceno utemelji.
+\end{enumerate}
+
+\begin{slika}
+\pgfslika
+\podnaslov[\nal{}(c)]{Graf}
+\end{slika}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Označimo poti $P_1 := u_i u_{i+1} \dots u_{j-1} u_j$
+in $P_2 := u_i u_{i-1} \dots u_1 u_k \dots u_{j+1} u_j$.
+Brez škode za splošnost lahko predpostavimo,
+da je cena poti $P_1$ manjša ali enaka ceni poti $P_2$.
+Denimo, da v grafu $G$ obstaja pot $P' = v_0 v_1 v_2 \dots v_\ell \ne P_1$,
+kjer je $v_0 = u_i$ in $v_\ell = u_j$, ki je cenejša od poti $P_2$.
+Potem je $u_i u_{i+1} \dots u_j$ $v_{\ell-1} v_{\ell-2} \dots v_1$
+obhod v grafu $G$,
+ki sestoji iz poti $P_1$ in $P'$ in je torej cenejši od $C$.
+Ker so cene povezav pozitivne,
+v grafu $G$ torej obstaja cenejši cikel od $C$,
+kar je v protislovju s predpostavko, da je $C$ najcenejši cikel v $G$.
+Poti $P_1$ in $P_2$ sta torej najcenejši dve poti
+od $u_i$ do $u_j$ v grafu $G$.
+
+\item Ob koncu izvajanja funkcije {\sc Dijkstra2}
+so vrednosti $d[u, 1]$ ($u \in V$)
+enake cenam najcenejših poti (in tako tudi sprehodov) od $s$ do $u$,
+vrednosti $d[u, 2]$ ($u \in V$)
+pa so enake cenam drugih najkrajših sprehodov od $s$ do $u$,
+pri katerih se nikoli ne vrnemo v neposrednega predhodnika nekega vozlišča.
+Vrednost $d[s, 2]$ je torej enaka ceni
+najcenejšega obhoda preko vozlišča $s$ z vsaj eno povezavo
+brez vračanja v neposredne predhodnike
+-- ta sestoji iz nekega cikla $C$
+in poti med $s$ in nekim vozliščem na $C$ (morda z $0$ povezavami).
+Ker so cene povezav pozitivne, tako velja $d[s, 2] \ge g$.
+
+Denimo sedaj, da vozlišče $s$ leži na najcenejšem ciklu v grafu $G$.
+Ker so cene povezav pozitivne,
+je ta cikel tudi najcenejši obhod skozi vozlišče $s$ z vsaj eno povezavo,
+in tako velja $d[s, 2] = g$.
+
+\item Potek izvajanja algoritma je prikazan v tabeli~\tab.
+Iz nje razberemo,
+da je najcenejši obhod preko vozlišča $a$ z vsaj eno povezavo
+brez vračanja v predhodnike $a - d - e - f - a$ s ceno $7$.
+
+\item Zapišimo psevdokodo za funkcijo {\sc UteženaOžina}.
+\begin{small}
+\begin{algorithmic}
+\Function{UteženaOžina}{$G = (V, E, c)$}
+	\State $g \gets \infty$
+	\For{$u \in V$}
+		\State $d, \pred \gets \text{\sc{Dijkstra2}}(G, u)$
+		\State $g \gets \min\{g, d[u, 2]\}$
+	\EndFor
+    \State \Return $g$
+\EndFunction
+\end{algorithmic}
+\end{small}
+Funkcija torej vrne ravno najmanjšo vrednost $d[u, 2]$,
+ki jo funkcija {\sc Dijkstra2} vrne za graf $G$
+in neko njegovo vozlišče $u$,
+ta pa je dosežena ravno za vozlišča na najcenejšem ciklu
+in je enaka njegovi ceni.
+
+\item Pri klicu funkcije {\sc Dijkstra2}
+se vsako vozlišče iz prioritetne vrste vzame dvakrat
+-- za vsakega od njih se pregledajo vsi njegovi sosedi.
+Vsaka povezava grafa se torej obravnava največ dvakrat,
+vse operacije na vrsti pa tečejo v času $O(\log n)$.
+Funkcija {\sc Dijkstra2} torej teče v času $O(m \log n)$.
+
+Funkcija {\sc UteženaOžina} kliče funkcijo {\sc Dijkstra2}
+za vsako vozlišče $u$ grafa in vrne najmanjšo dobljeno vrednost $d[u, 2]$.
+Časovna zahtevnost funkcije {\sc UteženaOžina} je torej $O(mn \log n)$.
+\end{enumerate}
+
+\begin{tabela}[htbp]
+$$
+\begin{array}{cccccccccccc}
+(a, 1) & (a, 2) & (b, 1) & (b, 2) & (c, 1) & (c, 2) & (d, 1) & (d, 2) & (e, 1) & (e, 2) & (f, 1) & (f, 2) \\ \hline
+0 & \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty & \infty \\
+* && 4_{a,1} &&&& 2_{a,1} &&&& 2_{a,1} & \\
+&&&& 3_{d,1} && * && 4_{d,1} &&& \\
+&&&&& 9_{f,1} &&& 3_{f,1} & 4_{d,1} & * & \\
+&&& 15_{c,1} & * &&&&&&& 10_{c,1} \\
+&&& 14_{e,1} &&&& 5_{e,1} & * &&& \\
+&& * &&&&&&&&& \\
+&&&&&&&&& * && 5_{e,2} \\
+& 7_{d,2} &&&& 6_{d,2} && * &&&& \\
+&&&&&&&&&&& * \\
+&&&&& * &&&&&& \\
+& * && 11_{a,2} &&&&&&&& \\
+&&& * &&&&&&&&
+\end{array}
+$$
+\podnaslov[\res{}(c)]{Potek izvajanja algoritma}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
