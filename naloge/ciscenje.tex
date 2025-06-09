@@ -1,0 +1,97 @@
+\begin{naloga}{Janoš Vidali}{Kolokvij OR 9.6.2025}
+\begin{vprasanje}
+Novakovi načrtujejo spomladansko čiščenje hiše in okolice.
+Opravila, ki jih želijo opraviti, so zbrana v tabeli~\tab.
+
+\begin{enumerate}[(a)]
+\item Topološko uredi ustrezni graf in ga nariši.
+Za trajanja opravil vzemi pričakovana trajanja po modelu PERT.
+
+\item Določi kritično pot in čas trajanja čiščenja,
+če za trajanja opravil uporabimo pričakovana trajanja po modelu PERT.
+
+\item Katero opravilo je (ob zgornjih predpostavkah) najmanj kritično?
+Najmanj kritično je opravilo, katerega trajanje lahko najbolj podaljšamo,
+ne da bi vplivali na celotno trajanje čiščenja.
+
+\item Določi variance trajanj opravil in oceni ve\-rjet\-nost,
+da bo čiščenje trajalo manj kot $550$ minut.
+\end{enumerate}
+%
+\begin{tabela}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cc|b{2cm}b{2.7cm}b{2cm}}
+& Opravilo & Pogoji & Minimalno trajanje
+& Najbolj verjetno trajanje & Maksimalno trajanje \\ \hline
+$a$ & snemanje zaves           & /         &  24 minut &  30 minut &  36 minut \\
+$b$ & pranje zaves             & $a$       & 168 minut & 192 minut & 204 minute \\
+$c$ & sušenje zaves            & $b, f$    & 240 minut & 300 minut & 420 minut \\
+$d$ & ponovno nameščanje zaves & $c, e$    &  36 minut &  48 minut &  66 minut \\
+$e$ & čiščenje oken            & $a$       & 210 minut & 300 minut & 330 minut \\
+$f$ & čiščenje dvorišča        & /         & 120 minut & 150 minut & 210 minut \\
+$g$ & košnja trate             & /         &  60 minut &  75 minut & 105 minut \\
+$h$ & odvoz smeti              & $e, f, g$ &  30 minut &  45 minut &  45 minut
+\end{tabular}
+}
+\podnaslov{Podatki}
+\end{tabela}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Projekt lahko predstavimo z uteženim grafom s slike~\fig,
+iz katerega je raz\-vid\-na topološka ureditev
+$s, a, f, g, b, e, c, h, d, t$.
+Uteži povezav ustrezajo pričakovanim trajanjem opravil,
+ki so prikazana v tabeli~\tab[ciscenje-resitev].
+
+\item V tabeli~\tab[ciscenje-resitev]
+so podani najzgodnejši začetki opravil in najpoznejši začetki,
+da se celotno trajanje projekta ne podaljša.
+Pričakovano trajanje projekta je torej $\mu = 330$ dni,
+edina kritična pot pa je $s - a - b - c - d - t$,
+ki tako vsebuje tudi vsa kritična opravila.
+
+\item Iz tabele~\tab[ciscenje-resitev] je razvidno,
+da je najmanj kritično opravilo $g$,
+saj lahko njegovo trajanje
+podaljšamo za $459$ minut v primerjavi s pričakovanim,
+ne da bi vplivali na trajanje celotnega projekta.
+
+\item Izračunajmo standardni odklon trajanja pričakovane kritične poti,
+pri čemer uporabimo variance iz tabele~\tab[ciscenje-resitev].
+$$
+\sigma = \sqrt{4 + 36 + 900 + 25} \approx 31.06
+$$
+Naj bo $X$ slučajna spremenljivka,
+ki meri čas izvajanja pričakovane kritične poti.
+Izračunajmo verjetnost končanja v roku $T = 550$ minut.
+$$
+P(X \le 550) = \Phi\left({T - \mu \over \sigma}\right) = \Phi(-0.934) = 0.1752
+$$
+\end{enumerate}
+%
+\begin{slika}
+\makebox[\textwidth][c]{
+\pgfslika
+}
+\podnaslov{Graf odvisnosti med opravili in kritična pot}
+\end{slika}
+%
+\begin{tabela}
+\setlabel{ciscenje-resitev}
+\makebox[\textwidth][c]{
+\begin{tabular}{c|cccccccccc}
+& $s$ & $a$ & $f$ & $g$ & $b$ & $e$ & $c$ & $h$ & $d$ & $t$ \\ \hline
+pričakovano && $30$ & $155$ & $77.5$ & $190$ & $290$ & $310$ & $42.5$ & $49$ \\
+varianca && $4$ & $225$ & $56.25$ & $36$ & $400$ & $900$ & $6.25$ & $25$ \\
+\hline
+najprej & $0$ & $0_s$ & $0_s$ & $0_s$ & $30_a$ & $30_a$ & $220_b$ & $320_e$ & $530_c$ & $579_d$ \\
+najkasneje & $0_a$ & $0_b$ & $65_c$ & $459_h$ & $30_c$ & $240_d$ & $220_d$ & $536.5_t$ & $530_t$ & $579$ \\
+\text{razlika} & $0$ & $0^*$ & $65$ & $459$ & $0^*$ & $210$ & $0^*$ & $216.5$ & $0^*$ & $0$
+\end{tabular}
+}
+\podnaslov{Razporejanje opravil}
+\end{tabela}
+\end{odgovor}
+\end{naloga}
