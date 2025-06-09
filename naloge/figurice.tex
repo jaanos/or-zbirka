@@ -1,0 +1,39 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 9.6.2025}
+\begin{vprasanje}
+Mojca je prejela naročilo za izdelavo $100$ figuric,
+ki jih bo natisnila s 3D tiskalnikom.
+Z enim tiskanjem nastanejo tri figurice,
+posamezno tiskanje pa traja $2$ minuti.
+Ker se čas uporabe 3D tiskalnika plača in kvaliteta nastalih figuric niha,
+se Mojca odloča, ali naj izvede $34$, $35$ ali $36$ tiskanj.
+Mojca pozna verjetnosti $p_i$ ($2 \le i \le 7$),
+da $i$ figuric ne bo dosegalo standardov kakovosti
+in jih torej ne bo mogla vključiti v naročilo
+(verjetnosti so neodvisne od števila tiskanj):
+$$
+\begin{array}{c|cccccc}
+	i & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
+	p_i & 0.05 & 0.15 & 0.3 & 0.25 & 0.15 & 0.1 \\
+\end{array}
+$$
+Če ne bo imela dovolj figuric za vključitev v naročilo,
+bo Mojca manjkajoče figurice natisnila z drugačnimi nastavitvami
+-- tokrat bosta z enim tiskanjem nastali dve figurici,
+posamezno tiskanje pa bo trajalo $3$ minute.
+V tem primeru bo kvaliteta nastalih figuric zagotovo dosegala standarde.
+
+Zanima nas, koliko tiskanj naj Mojca izvede,
+da bo pričakovani skupni čas tiskanja čim manjši.
+\end{vprasanje}
+
+\begin{odgovor}
+Naj bo $X_k$ ($34 \le k \le 36$) čas uporabe 3D tiskalnika v minutah,
+če se Mojca odloči za $k$ tiskanj.
+\begin{alignat*}{2}
+E(X_{34}) &= 34 \cdot 2 + ((p_3 + p_4) + 2 \cdot (p_5 + p_6) + 3 \cdot p_7) \cdot 3 &&= 72.65 \\
+E(X_{35}) &= 35 \cdot 2 + (p_6 + p_7) \cdot 3 &&= 70.75 \\
+E(X_{36}) &= 36 \cdot 2 &&= 72
+\end{alignat*}
+Vidimo, da se Mojci najbolj izplača opraviti $35$ tiskanj.
+\end{odgovor}
+\end{naloga}
