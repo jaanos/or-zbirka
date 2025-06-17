@@ -1,0 +1,32 @@
+\begin{usmerjen*}[scale=1.5]*
+    \vozlisce{s}{-8, 0}
+    \vozlisce{a}{-6, 2}
+    \vozlisce{b}{-6, 0}
+    \vozlisce{c}{-4, 0}
+    \vozlisce{d}{-4, 2}
+    \vozlisce{e}{ 0, 0}
+    \vozlisce{f}{-2, 2}
+    \vozlisce{g}{ 6, 0}
+    \vozlisce{h}{-6,-2}
+    \vozlisce{i}{ 2,-2}
+    \vozlisce{j}{ 4,-2}
+    \vozlisce{k}{ 4, 0}
+    \vozlisce{t}{ 8, 0}
+
+    \povezava*{s}{a}{0}{above}[sloped]
+    \povezava{s}{b}{0}{above}
+    \povezava{s}{h}{0}{below}[sloped]
+    \povezava*{a}{d}{45}{above}
+    \povezava{b}{d}{20}{above}[sloped]
+    \povezava{b}{c}{20}{below}
+    \povezava{h}{i}{25}{below}
+    \povezava*{d}{f}{50}{above}
+    \povezava{c}{e}{40}{below}
+    \povezava*{f}{e}{21}{above}[sloped]
+    \povezava*{e}{i}{30}{above}[sloped]
+    \povezava*{i}{k}{60}{above}[sloped]
+    \povezava{i}{j}{60}{below}
+    \povezava*{k}{g}{7}{above}
+    \povezava{j}{t}{14}{below}[sloped]
+    \povezava*{g}{t}{35}{above}
+\end{usmerjen*}
