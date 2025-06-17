@@ -1,0 +1,53 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 18.6.2021}
+\begin{vprasanje}
+Imamo $m$ predmetov, ki jih želimo prodati $n$ strankam.
+Za $i$-ti predmet ($1 \le i \le m$) in $j$-to stranko ($1 \le j \le n$)
+poznamo znesek $c_{ij}$,
+ki ga je $j$-ta stranka pripravljena plačati za $i$-ti predmet.
+Ker pa želimo, da si stranke med seboj ne zavidajo,
+se lahko odločimo, da vsaki damo nekolikšen popust.
+Smatramo, da $j$-ta stranka zavida $k$-ti stranki,
+če je razlika med plačano ceno in zneskom,
+ki bi ga bila pripravljena plačati $j$-ta stranka,
+večja pri $k$-ti kot pri $j$-ti stranki
+-- torej,
+če $j$-ta in $k$-ta stranka dobita predmete iz množic $A_j$ oziroma $A_k$
+in za to plačata ceni $p_j$ oziroma $p_k$,
+potem $j$-ta stranka zavida $k$-ti stranki,
+če velja $\sum_{i \in A_j} c_{ij} - p_j < \sum_{i \in A_k} c_{ij} - p_k$.
+Vsak predmet želimo prodati natanko eni stranki,
+nobena stranka pa pri tem ne sme zaslužiti (tj., plačati manj kot $0$).
+Zaslužek od prodaje želimo maksimizirati.
+
+Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-ti predmet ($1 \le i \le m$)
+in $j$-to stranko ($1 \le j \le n$)
+bomo uvedli spremenljivki $x_j$ in $y_{ij}$,
+kjer je $x_j$ cena, ki jo plača $j$-ta stranka,
+vrednost $y_{ij}$ pa interpretiramo kot
+$$
+y_{ij} = \begin{cases}
+1, & \text{$j$-ti stranki prodamo $i$-ti predmet, in} \\
+0  & \text{sicer.}
+\end{cases}
+$$
+Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \max \ \sum_{j=1}^n x_j \quad \text{p.p.} \\
+\forall i \in \{1, \dots, n\} \ \forall j \in \{1, \dots, m\}: &\ &
+0 \le y_{ij} &\le 1, \quad y_{ij} \in \Z
+\opis{Vsak predmet prodamo natanko eni stranki}
+\forall i \in \{1, \dots, m\}: &\ & \sum_{j=1}^n y_{ij} &= 1
+\opis{Nobena stranka ne zasluži}
+\forall j \in \{1, \dots, n\}: &\ &
+x_j &\ge 0
+\opis{Nobena stranka ne plača več, kot je pripravljena}
+\forall j \in \{1, \dots, n\}: &\ & \sum_{i=1}^m c_{ij} y_{ij} &\ge x_j
+\opis{Stranke si med seboj ne zavidajo}
+\forall j \in \{1, \dots, n\} \ \forall k \in \{1, \dots, n\}: &\ & \sum_{i=1}^m c_{ij} (y_{ij} - y_{ik}) &\ge x_j - x_k
+\end{alignat*}
+\end{odgovor}
+\end{naloga}

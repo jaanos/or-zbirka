@@ -1,0 +1,72 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 26.6.2024}
+\begin{vprasanje}
+Na upravni enoti želijo zaradi povečanega števila zahtevkov občanov
+optimizirati delovni proces,
+kar bodo storili s prerazporejanjem zaposlenih po oddelkih.
+V vsaki izmeni dela $n$ zaposlenih,
+ki jih želijo razporediti med $m$ oddelkov,
+pri čemer mora biti na vsak oddelek dodeljen vsaj en za\-pos\-le\-ni.
+Določili so vrednosti $z_{ij}$ ($1 \le i \le m$, $1 \le j \le n$),
+ki ocenjujejo število zahtevkov,
+ki jih lahko v eni uri obdelajo na $i$-tem oddelku,
+če tja dodelijo $j$ zaposlenih.
+Poiskati želijo tako razporeditev zaposlenih med oddelke,
+da bodo skupno lahko obdelali čim več zahtevkov.
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Izrazi časovno zahtevnost algoritma, ki sledi iz enačb,
+v odvisnosti od parametrov $m$ in $n$.
+
+\item S svojimi rekurzivnimi enačbami reši problem
+pri podatkih $n = 8$, $m = 3$ in vred\-no\-stih $z_{ij}$ iz spodnje tabele.
+$$
+\begin{array}{r|cccccc}
+z_{ij} & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+\text{Oddelek za javni red in promet} &  3 &  6 &  8 & 10 & 12 & 13 \\
+\text{Oddelek za matične zadeve}      &  4 &  8 & 11 & 14 & 15 & 16 \\
+\text{Oddelek za okolje in prostor}   &  2 &  3 &  4 &  5 &  6 &  7
+\end{array}
+$$
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ največje število zahtevkov,
+ki jih lahko v eni uri obdelajo v prvih $i$ oddelkih,
+če nanje dodelijo $j$ zaposlenih.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{1j} &= z_{1j} && (1 \le j \le n-m+1) \\
+p_{ij} &= \max\set{p_{i-1,h} + z_{i,j-h}}{i-1 \le h \le j-1}
+&& (2 \le i \le m, \ i \le j \le n-m+i)
+\end{align*}
+Vrednosti $p_{ij}$ računamo v leksikografskem vrstnem redu glede na $(i, j)$.
+Največje skupno število zahtevkov, ki jih lahko obdelajo v eni uri,
+dobimo kot $p^* = p_{mn}$.
+Algoritem, ki sledi iz zgornjih enačb, teče v času $O(mn^2)$.
+
+\item Izračunajmo tiste končne vrednosti $p_{ij}$ ($i \ge 2$),
+ki jih potrebujemo za reševanje problema.
+Pri tem smo oddelke oštevilčili z indeksi $1, 2, 3$
+v podanem vrstnem redu v tabeli.
+\needspace{2\baselineskip}
+\begin{alignat*}{2}
+p_{22} &= 3+4 &&= 7 \\
+p_{23} &= \max\{\underline{3+8}, 6+4\} &&= 11 \\
+p_{24} &= \max\{\underline{3+11}, \underline{6+8}, 8+4\} &&= 14 \\
+p_{25} &= \max\{\underline{3+14}, \underline{6+11}, 8+8, 10+4\} &&= 17 \\
+p_{26} &= \max\{3+15, \underline{6+14}, 8+11, 10+8, 12+4\} &&= 20 \\
+p_{27} &= \max\{3+16, 6+15, \underline{8+14}, 10+11, 12+8, 13+4\} &&= 22 \\
+p_{38} &= \max\{7+7, 11+6, 14+5, 17+4, 20+3, \underline{22+2}\} &&= 24
+\end{alignat*}
+Največ lahko torej v eni uri obdelajo $p^* = p_{38} = 24$ zahtevkov.
+Poiščimo še optimalno razporeditev po oddelkih.
+\begin{align*}
+p_{38} &= p_{27} + z_{31} && \text{$1$ zaposleni na Oddelku za okolje in prostor} \\
+p_{27} &= p_{13} + z_{24} && \text{$4$ zaposleni na Oddelku za matične zadeve} \\
+p_{13} &= z_{13}          && \text{$3$ zaposleni na Oddelku za javni red in promet}
+\end{align*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}

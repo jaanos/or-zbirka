@@ -1,0 +1,25 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 9.6.2025}
+\begin{vprasanje}
+Celoštevilskemu linearnemu programu iz naloge~\nal[zavist]
+dodaj sledeča pogoja.
+\begin{itemize}
+\item Predmetov $a$ in $b$ ne smemo prodati isti stranki.
+\item Stranka $u$ mora dobiti največ predmetov
+(tj., vsaj toliko predmetov kot vsaka druga stranka).
+\end{itemize}
+\end{vprasanje}
+
+\begin{odgovor}
+Zapišimo dodatna pogoja k celoštevilskemu linearnemu programu
+iz naloge~\res[zavist].
+\vskip -2\baselineskip
+\begin{alignat*}{3}
+\opis{Predmetov $a$ in $b$ ne prodamo isti stranki}
+\forall j \in \{1, \dots, n\}: &\ &
+y_{aj} + y_{bj} &\le 1
+\opis{Stranka $u$ dobi največ predmetov}
+\forall j \in \{1, \dots, n\}: &\ &
+\sum_{i=1}^m y_{ij} &\le \sum_{i=1}^m y_{iu}
+\end{alignat*}
+\end{odgovor}
+\end{naloga}
