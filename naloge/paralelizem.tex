@@ -1,0 +1,75 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 27.6.2025}
+\begin{vprasanje}
+Dane so matrike $M_1, M_2, \dots, M_n$,
+pri čemer so ima matrika $M_i$ dimenzije $m_{i-1} \times m_i$ ($1 \le i \le n$).
+Izračunati želimo produkt matrik $M_1 \cdot M_2 \cdots M_n$
+(produkt matrik je asociativna operacija),
+pri čemer imamo na voljo omrežje računalnikov:
+za izračun produkta nekega zaporedja več kot dveh matrik
+računalnik razdeli zaporedje na dve podzaporedji,
+dodeli izračun produktov podzaporedij dvema prostima računalnikoma,
+ki nato računata {\em hkrati}
+-- ko oba končata s svojim izračunom,
+se nato izračuna produkt dobljenih produktov podzaporedij.
+Za izračun produkta matrik $A$ in $B$
+dimenzij $a \times b$ oziroma $b \times c$
+računalnik porabi $abc$ časovnih enot,
+rezultat pa je matrika dimenzij $a \times c$.
+Zanima nas,
+kako naj računalniki izvedejo množenje matrik,
+da bodo čim hitreje izračunali rezultat.
+\begin{enumerate}[(a)]
+\item Zapiši rekurzivne enačbe za reševanje danega problema.
+Pojasni, v katerem vrstnem redu računamo spremenljivke,
+kako dobimo optimalno vrednost,
+ter kakšna je časovna zahtevnost algoritma, ki sledi iz enačb,
+v odvisnosti od parametra $n$.
+
+\item S svojimi rekurzivnimi enačbami reši problem pri podatkih $n = 5$
+in $(m_i)_{i=0}^5 = (8, 7, 5, 10, 5, 6)$.
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+\begin{enumerate}[(a)]
+\item Naj bo $p_{ij}$ najmanjše število časovnih enot,
+potrebnih za izračun produkta $M_{ij} := M_{i+1} \cdot M_{i+1} \cdots M_j$.
+Določimo začetne pogoje in rekurzivne enačbe.
+\begin{align*}
+p_{i-1, i} &= 0 && (1 \le i \le n) \\
+p_{ij} &= \min\set{m_i m_h m_j + \max\{p_{ih}, p_{hj}\}}{i < h < j}
+&& (0 \le i < j \le n, \ j - i \ge 2)
+\end{align*}
+Vrednosti $p_{ij}$ računamo v leksikografskem vrstnem redu glede na $(j-i, i)$.
+Najmanjše število časovnih enot,
+potrebnih za izračun celotnega produkta $M_{0n}$,
+dobimo kot $p^* = p_{0n}$.
+Algoritem, ki sledi iz zgornjih enačb, teče v času $O(n^3)$.
+
+\item Izračunajmo vrednosti $p_{ij}$ ($0 \le i < j \le n$, $j - i \ge 2$).
+\begin{alignat*}{3}
+p_{02} &= &&{} 280 + \max\{0, 0\} &&= 280 \\
+p_{13} &= &&{} 350 + \max\{0, 0\} &&= 350 \\
+p_{24} &= &&{} 250 + \max\{0, 0\} &&= 250 \\
+p_{35} &= &&{} 300 + \max\{0, 0\} &&= 300 \\
+p_{03} &= \min\{&&{} 560 + \max\{0, 350\}, \underline{400 + \max\{280, 0\}}\} &&= 680 \\
+p_{14} &= \min\{&&{} \underline{175 + \max\{0, 250\}}, 350 + \max\{350, 0\}\} &&= 425 \\
+p_{25} &= \min\{&&{} 300 + \max\{0, 300\}, \underline{150 + \max\{250, 0\}}\} &&= 400 \\
+p_{04} &= \min\{&&{} 280 + \max\{0, 425\}, \underline{200 + \max\{280, 250\}}, 400 + \max\{680, 0\}\} &&= 480 \\
+p_{15} &= \min\{&&{} \underline{210 + \max\{0, 400\}}, 420 + \max\{350, 300\}, 210 + \max\{425, 0\}\} &&= 610 \\
+p_{05} &= \min\{&&{} 336 + \max\{0, 610\}, \underline{240 + \max\{280, 400\}}, \\
+&&&{} 480 + \max\{680, 300\}, 240 + \max\{480, 0\}\} &&= 640
+\end{alignat*}
+Za izračun produkta je torej potrebnih vsaj $p^* = p_{05} = 640$ časovnih enot.
+Določimo še optimalni način izračuna produkta.
+\begin{align*}
+p_{05} &= m_0 m_2 m_5 + \max\{p_{02}, p_{25}\} & M_{05} &= M_{02} \cdot M_{25} \\
+p_{02} &= m_0 m_1 m_2 + \max\{p_{01}, p_{12}\} & M_{02} &= M_1 \cdot M_2 \\
+p_{25} &= m_2 m_4 m_5 + \max\{p_{24}, p_{45}\} & M_{25} &= M_{24} \cdot M_5 \\
+p_{24} &= m_2 m_3 m_4 + \max\{p_{23}, p_{34}\} & M_{24} &= M_3 \cdot M_4
+\end{align*}
+Optimalni način izračuna produkta je torej
+$(M_1 \cdot M_2) \cdot ((M_3 \cdot M_4) \cdot M_5)$.
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
