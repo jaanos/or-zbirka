@@ -1,0 +1,64 @@
+\begin{naloga}{Janoš Vidali}{Izpit OR 27.6.2025}
+\begin{vprasanje}
+Med $m$ delavcev želimo razdeliti $n$ nalog
+in pri tem doseči čim večjo učinkovitost.
+Za $i$-tega delavca ($1 \le i \le m$) in $j$-to nalogo ($1 \le j \le n$)
+poznamo čas $T_{ij}$,
+v katerem bi $i$-ti delavec opravil $j$-to nalogo.
+Vsak delavec lahko hkrati opravlja samo eno nalogo,
+vsako posamezno nalogo pa mora v celoti opraviti en delavec.
+Naloge želimo razdeliti tako,
+da bo skupni čas izvajanja nalog čim manjši
+-- tj., minimizirati želimo najdaljši čas,
+ki ga za izvedbo dodeljenih nalog potrebuje posamezen delavec.
+
+\begin{enumerate}[(a)]
+\item Zapiši celoštevilski linearni program, ki modelira zgoraj opisani problem.
+
+\item Svojemu celoštevilskemu linearnemu programu dodaj sledeča pogoja.
+\begin{itemize}
+\item Posamezen delavec lahko izvaja največ dve od nalog $a, b, c, d$.
+\item Delavcu $u$ moramo dodeliti največje število nalog
+(tj., vsaj toliko nalog kot ostalim delavcem -- ne glede na trajanje).
+\end{itemize}
+\end{enumerate}
+\end{vprasanje}
+
+\begin{odgovor}
+Za $i$-tega delavca ($1 \le i \le m$) in $j$-to nalogo ($1 \le j \le n$)
+bomo uvedli spremenljivko $x_{ij}$,
+katere vrednost interpretiramo kot
+$$
+x_{ij} = \begin{cases}
+1 & \text{$i$-temu delavcu dodelimo $j$-to nalogo, in} \\
+0 & \text{sicer.}
+\end{cases}
+$$
+Poleg tega bomo uvedli še spremenljivko $t$,
+ki bo navzdol omejena s časom opravljanja nalog pri vsakem delavcu.
+
+\begin{enumerate}[(a)]
+\item Zapišimo celoštevilski linearni program.
+\begin{alignat*}{2}
+&& \min \ t &\quad \text{p.p.} \\
+\forall i \in \{1, \dots, m\} \ \forall j \in \{1, \dots, n\}: &\ &
+0 \le x_{ij} &\le 1, \quad x_{ij} \in \Z
+\opis{Vsako nalogo dodelimo natanko enemu delavcu}
+\forall j \in \{1, \dots, n\}: &\ &
+\sum_{i=1}^m x_{ij} &= 1
+\opis{Skupni čas izvajanja nalog posameznega delavca}
+\forall i \in \{1, \dots, m\}: &\ & \sum_{j=1}^n T_{ij} x_{ij} &\le t
+\end{alignat*}
+
+\item Zapišimo še dodatni omejitvi.
+\odstraniprostor
+\begin{alignat*}{2}
+\opis{Posamezen delavec lahko izvaja največ dve od nalog $a$, $b$, $c$ in $d$}
+\forall i \in \{1, \dots, m\}: &\ & x_{ia} + x_{ib} + x_{ic} + x_{id} &\le 2
+\opis{Delavcu $u$ dodelimo največ nalog}
+\forall i \in \{1, \dots, m\}: &\ & \sum_{j=1}^n (x_{uj} - x_{ij}) &\ge 0
+\end{alignat*}
+\end{enumerate}
+\end{odgovor}
+\end{naloga}
+
