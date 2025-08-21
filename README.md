@@ -71,7 +71,7 @@ kjer so podane tudi smernice za pisanje.
 
 ## Prispevki
 
-Trenutno zbirka obsega 274 rešenih nalog.
+Trenutno zbirka obsega 278 rešenih nalog.
 Tako so trenutno zaželeni prispevki v obliki raznih popravkov
 (vsebinskih, slovničnih ali tipkarskih).
 Natančnejša navodila so v datoteki [`CONTRIBUTING.md`](CONTRIBUTING.md).
